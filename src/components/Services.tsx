@@ -17,28 +17,28 @@ const Services = () => {
       title: "Web Design",
       description: "Custom, responsive designs that captivate your audience and reflect your brand identity.",
       features: ["UI/UX Design", "Brand Identity", "Responsive Layout", "Figma Prototypes"],
-      price: "Starting at $1,500"
+      price: "Starting at £1,200"
     },
     {
       icon: Code,
       title: "Web Development",
       description: "Modern, fast, and secure websites built with the latest technologies and best practices.",
       features: ["React & TypeScript", "Node.js Backend", "Database Integration", "API Development"],
-      price: "Starting at $3,000"
+      price: "Starting at £2,400"
     },
     {
       icon: Server,
       title: "Hosting & Maintenance",
       description: "Reliable hosting solutions with ongoing support, updates, and performance monitoring.",
       features: ["Cloud Hosting", "SSL Certificates", "Regular Backups", "24/7 Monitoring"],
-      price: "Starting at $50/month"
+      price: "Starting at £40/month"
     },
     {
       icon: Search,
       title: "SEO Optimization",
       description: "Improve your search rankings and drive organic traffic with comprehensive SEO strategies.",
       features: ["Keyword Research", "On-Page SEO", "Technical SEO", "Performance Optimization"],
-      price: "Starting at $800"
+      price: "Starting at £640"
     },
     {
       icon: Smartphone,
@@ -52,7 +52,7 @@ const Services = () => {
       title: "E-commerce Solutions",
       description: "Complete online store development with payment processing and inventory management.",
       features: ["Shopping Cart", "Payment Integration", "Inventory Management", "Order Processing"],
-      price: "Starting at $5,000"
+      price: "Starting at £4,000"
     }
   ];
 
