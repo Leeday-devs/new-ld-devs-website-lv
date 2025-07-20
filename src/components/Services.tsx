@@ -124,26 +124,26 @@ const Services = () => {
                 {/* Dark overlay for better text contrast */}
                 <div className="absolute inset-0 bg-black/20 z-10"></div>
                 
-                <CardHeader className="text-center relative z-20 text-white p-8">
-                  <div className="w-20 h-20 rounded-3xl bg-white/20 backdrop-blur-sm p-5 mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 border border-white/30 shadow-xl">
-                    <Icon className="h-10 w-10 text-white" />
+                <CardHeader className="text-center relative z-20 text-white p-4">
+                  <div className="w-12 h-12 rounded-2xl bg-white/20 backdrop-blur-sm p-3 mx-auto mb-3 group-hover:scale-110 transition-transform duration-300 border border-white/30 shadow-xl">
+                    <Icon className="h-6 w-6 text-white" />
                   </div>
                   
-                  <CardTitle className="text-2xl text-white font-bold mb-4 drop-shadow-lg">
+                  <CardTitle className="text-lg text-white font-bold mb-2 drop-shadow-lg">
                     {service.title}
                   </CardTitle>
                   
-                  <CardDescription className="text-white/90 leading-relaxed text-base drop-shadow-sm">
+                  <CardDescription className="text-white/90 leading-relaxed text-sm drop-shadow-sm">
                     {service.description}
                   </CardDescription>
                 </CardHeader>
                 
-                <CardContent className="relative z-20 text-white px-8 pb-8">
-                  <div className="bg-white/15 backdrop-blur-sm rounded-2xl p-6 mb-6 border border-white/25 shadow-lg">
-                    <div className="grid grid-cols-1 gap-3">
+                <CardContent className="relative z-20 text-white px-4 pb-4">
+                  <div className="bg-white/15 backdrop-blur-sm rounded-xl p-3 mb-4 border border-white/25 shadow-lg">
+                    <div className="grid grid-cols-1 gap-2">
                       {service.features.slice(0, 3).map((feature) => (
-                        <div key={feature} className="flex items-center gap-3 text-sm text-white font-medium">
-                          <div className="w-2 h-2 bg-white rounded-full shadow-sm"></div>
+                        <div key={feature} className="flex items-center gap-2 text-xs text-white font-medium">
+                          <div className="w-1.5 h-1.5 bg-white rounded-full shadow-sm"></div>
                           {feature}
                         </div>
                       ))}
@@ -151,13 +151,13 @@ const Services = () => {
                   </div>
                   
                   <div className="text-center">
-                    <div className="text-3xl font-bold text-white mb-6 drop-shadow-lg">{service.price}</div>
+                    <div className="text-xl font-bold text-white mb-3 drop-shadow-lg">{service.price}</div>
                     <Button 
-                      size="lg"
-                      className="w-full bg-white/25 backdrop-blur-sm border-2 border-white/40 text-white hover:bg-white hover:text-black transition-all duration-300 rounded-2xl font-semibold py-4 text-lg shadow-xl"
+                      size="sm"
+                      className="w-full bg-white/25 backdrop-blur-sm border-2 border-white/40 text-white hover:bg-white hover:text-black transition-all duration-300 rounded-xl font-semibold py-2 text-sm shadow-xl"
                     >
                       Get Started
-                      <ArrowRight className="ml-2 h-5 w-5" />
+                      <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
                   </div>
                 </CardContent>
