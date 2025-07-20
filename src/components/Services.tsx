@@ -33,7 +33,7 @@ const Services = () => {
       features: [
         "Super Fast Websites",
         "Works on Phone & Computer", 
-        "Fun Colors & Animations",
+        "5 Page Website",
         "Easy to Use Buttons",
         "Safe & Secure",
         "Free Website Transfer"
