@@ -37,6 +37,8 @@ const Services = () => {
         "Works on Phone & Computer",
         "Easy to Use Buttons",
         "Safe & Secure",
+        "1 Months Free Revisions",
+        "24/7 Hosting Support",
         "Free Website Transfer",
         "Free SSL & Monthly Backup"
       ],
