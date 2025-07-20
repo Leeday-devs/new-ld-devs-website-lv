@@ -37,6 +37,9 @@ const Hero = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+              <Button size="lg" className="bg-primary/20 backdrop-blur-sm border border-primary/30 text-white hover:bg-primary/30 shadow-2xl" asChild>
+                <a href="/auth">Get Started</a>
+              </Button>
               <Button size="lg" className="bg-primary/20 backdrop-blur-sm border border-primary/30 text-white hover:bg-primary/30 shadow-2xl">
                 Book Consultation
               </Button>
