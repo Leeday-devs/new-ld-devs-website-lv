@@ -23,7 +23,7 @@ const Services = () => {
       features: ["React & TypeScript", "Node.js & Express", "Database Design", "API Development", "Performance Optimization"],
       price: "Starting at £3,500",
       popular: false,
-      gradient: "from-blue-600 to-purple-600"
+      gradient: "from-orange-500 via-orange-600 to-red-500"
     },
     {
       icon: Server,
@@ -32,7 +32,7 @@ const Services = () => {
       features: ["Custom AI Training", "Natural Language Processing", "Workflow Automation", "Integration Support", "24/7 AI Support"],
       price: "Starting at £2,800",
       popular: true,
-      gradient: "from-orange-500 to-red-600"
+      gradient: "from-blue-600 via-blue-700 to-indigo-600"
     },
     {
       icon: Search,
@@ -41,7 +41,7 @@ const Services = () => {
       features: ["Technology Audit", "Digital Strategy", "Architecture Planning", "Process Optimization", "Team Training"],
       price: "£150/hour",
       popular: false,
-      gradient: "from-green-600 to-teal-600"
+      gradient: "from-gray-800 via-gray-900 to-black"
     },
     {
       icon: Smartphone,
@@ -50,7 +50,7 @@ const Services = () => {
       features: ["PWA Development", "Offline Functionality", "Push Notifications", "App Store Deployment"],
       price: "Starting at £4,200",
       popular: false,
-      gradient: "from-indigo-600 to-purple-600"
+      gradient: "from-orange-400 via-amber-500 to-yellow-500"
     },
     {
       icon: ShoppingCart,
@@ -59,7 +59,7 @@ const Services = () => {
       features: ["Custom Shop Build", "Payment Integration", "AI Recommendations", "Inventory Management", "Analytics Dashboard"],
       price: "Starting at £5,500",
       popular: false,
-      gradient: "from-pink-600 to-rose-600"
+      gradient: "from-blue-500 via-indigo-600 to-purple-600"
     },
     {
       icon: Palette,
@@ -68,7 +68,7 @@ const Services = () => {
       features: ["Process Analysis", "Custom Software", "AI Integration", "Staff Training", "Ongoing Support"],
       price: "Project-based pricing",
       popular: false,
-      gradient: "from-cyan-600 to-blue-600"
+      gradient: "from-gray-700 via-orange-600 to-red-600"
     }
   ];
 
@@ -109,51 +109,55 @@ const Services = () => {
             return (
               <Card 
                 key={service.title} 
-                className={`relative overflow-hidden hover-lift group bg-gradient-card border-0 shadow-card hover:shadow-elegant transition-all duration-500 animate-fade-in-up stagger-delay-${Math.min(index + 1, 5)} ${service.popular ? 'ring-2 ring-primary/20 scale-105' : ''}`}
+                className={`relative overflow-hidden group border-0 shadow-2xl transition-all duration-500 animate-fade-in-up stagger-delay-${Math.min(index + 1, 5)} rounded-3xl ${service.popular ? 'ring-4 ring-white/20 scale-105' : ''}`}
+                style={{
+                  background: `linear-gradient(135deg, var(--tw-gradient-stops))`,
+                  backgroundImage: `linear-gradient(135deg, ${service.gradient.split(' ').map(c => `hsl(var(--${c.replace('from-', '').replace('via-', '').replace('to-', '').replace('-', '-')}))`).join(', ')})`
+                }}
               >
                 {service.popular && (
-                  <Badge className="absolute top-4 right-4 bg-gradient-primary text-white border-0 animate-pulse-glow z-10">
+                  <Badge className="absolute top-4 right-4 bg-white/90 text-black border-0 animate-pulse-glow z-10 backdrop-blur-sm">
                     <Target className="h-3 w-3 mr-1" />
                     Most Popular
                   </Badge>
                 )}
                 
-                {/* Gradient overlay */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-black/20 via-transparent to-black/30"></div>
                 
-                <CardHeader className="text-center relative z-10">
-                  <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${service.gradient} p-4 mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+                <CardHeader className="text-center relative z-10 text-white">
+                  <div className="w-16 h-16 rounded-2xl bg-white/20 backdrop-blur-sm p-4 mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 border border-white/30">
                     <Icon className="h-8 w-8 text-white" />
                   </div>
                   
-                  <CardTitle className="text-xl text-foreground group-hover:text-primary transition-colors duration-300">
+                  <CardTitle className="text-xl text-white group-hover:text-white/90 transition-colors duration-300 font-bold">
                     {service.title}
                   </CardTitle>
                   
-                  <CardDescription className="text-muted-foreground leading-relaxed">
+                  <CardDescription className="text-white/80 leading-relaxed">
                     {service.description}
                   </CardDescription>
                 </CardHeader>
                 
-                <CardContent className="relative z-10">
-                  <ul className="space-y-2 mb-6">
-                    {service.features.map((feature) => (
-                      <li key={feature} className="flex items-center gap-2 text-sm text-muted-foreground group-hover:text-foreground transition-colors duration-300">
-                        <div className="w-1.5 h-1.5 bg-primary rounded-full animate-pulse-glow"></div>
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
+                <CardContent className="relative z-10 text-white">
+                  <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 mb-4 border border-white/20">
+                    <div className="grid grid-cols-1 gap-2">
+                      {service.features.slice(0, 3).map((feature) => (
+                        <div key={feature} className="flex items-center gap-2 text-sm text-white/90">
+                          <div className="w-1.5 h-1.5 bg-white rounded-full"></div>
+                          {feature}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                   
                   <div className="text-center">
-                    <div className="text-lg font-semibold text-primary mb-3">{service.price}</div>
+                    <div className="text-2xl font-bold text-white mb-4">{service.price}</div>
                     <Button 
-                      variant="outline" 
-                      size="sm" 
-                      className="w-full group hover:bg-gradient-button hover:text-white hover:border-transparent transition-all duration-300"
+                      size="lg"
+                      className="w-full bg-white/20 backdrop-blur-sm border border-white/30 text-white hover:bg-white hover:text-black transition-all duration-300 rounded-xl"
                     >
-                      Learn More
-                      <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
+                      Get Started
+                      <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
                   </div>
                 </CardContent>
