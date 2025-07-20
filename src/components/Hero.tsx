@@ -20,7 +20,7 @@ const Hero = () => {
           {/* Content */}
           <div className="text-center lg:text-left animate-fade-in">
             <div className="text-sm text-white/80 mb-4 font-medium tracking-wide">
-              London-Based Tech Solutions
+              LD Development - London-Based Tech Solutions
             </div>
             
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">

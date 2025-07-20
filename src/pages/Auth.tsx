@@ -69,7 +69,7 @@ const Auth = () => {
       <div className="w-full max-w-md space-y-8">
         <div className="text-center">
           <Link to="/" className="text-2xl font-bold text-primary hover:text-primary/80 transition-colors">
-            DevCraft Studio
+            LD Development
           </Link>
           <p className="mt-2 text-muted-foreground">
             {isLogin ? 'Welcome back' : 'Get started today'}
