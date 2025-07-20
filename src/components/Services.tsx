@@ -33,12 +33,13 @@ const Services = () => {
       features: [
         "5 Page Website",
         "Super Fast Website",
-        "Mobile Friendly", 
+        "Mobile Friendly",
+        "Free SSL Certificate",
+        "24/7 Hosting Support",
+        "1 Months Free Revisions",
         "Works on Phone & Computer",
         "Easy to Use Buttons",
         "Safe & Secure",
-        "1 Months Free Revisions",
-        "24/7 Hosting Support",
         "Free Website Transfer",
         "Free SSL & Monthly Backup"
       ],
