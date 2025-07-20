@@ -115,7 +115,6 @@ const Services = () => {
       features: [
         "Smart Chatbots",
         "Auto Customer Support",
-        "Automations",
         "Data Analysis",
         "Task Automation",
         "AI Content Creation"
