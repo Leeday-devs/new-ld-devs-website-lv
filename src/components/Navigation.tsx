@@ -18,11 +18,12 @@ const Navigation = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <div className="flex items-center gap-2">
-            <div className="bg-gradient-primary rounded-lg p-2">
-              <Code2 className="h-6 w-6 text-white" />
-            </div>
-            <span className="text-xl font-bold text-foreground">WebCraft</span>
+          <div className="flex items-center">
+            <img 
+              src="/lovable-uploads/c05ee520-dfce-4d37-9abd-2ecb7430e4da.png" 
+              alt="LD Logo" 
+              className="h-10 w-auto"
+            />
           </div>
 
           {/* Desktop Navigation */}
