@@ -4,97 +4,97 @@ import heroImage from "@/assets/hero-image.jpg";
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-background via-primary/5 to-accent/10">
-      {/* Abstract background shapes */}
-      <div className="absolute top-20 right-10 w-80 h-80 bg-gradient-to-br from-primary to-accent rounded-full blur-3xl opacity-20 animate-pulse"></div>
-      <div className="absolute bottom-20 left-10 w-60 h-60 bg-gradient-to-tr from-accent to-primary rounded-full blur-2xl opacity-15"></div>
-      <div className="absolute top-1/2 left-1/4 w-40 h-40 bg-primary rounded-full blur-xl opacity-10 animate-float"></div>
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-hero">
+      {/* Glowing background elements */}
+      <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-primary rounded-full blur-3xl opacity-20 animate-pulse"></div>
+      <div className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full blur-2xl opacity-15"></div>
+      <div className="absolute top-1/2 right-1/3 w-60 h-60 bg-orange-400 rounded-full blur-xl opacity-10 animate-float"></div>
+      
+      {/* Floating orbs */}
+      <div className="absolute top-20 right-20 w-4 h-4 bg-primary rounded-full animate-pulse"></div>
+      <div className="absolute bottom-32 left-16 w-6 h-6 bg-purple-400 rounded-full animate-float" style={{animationDelay: '2s'}}></div>
+      <div className="absolute top-1/3 left-1/5 w-3 h-3 bg-pink-400 rounded-full animate-pulse" style={{animationDelay: '1s'}}></div>
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Content */}
           <div className="text-center lg:text-left animate-fade-in">
-            <div className="inline-flex items-center gap-2 bg-primary/10 backdrop-blur-sm rounded-full px-4 py-2 text-sm text-primary font-medium mb-6">
-              <Zap className="h-4 w-4" />
-              Professional Web Solutions
+            <div className="text-sm text-white/80 mb-4 font-medium tracking-wide">
+              Professional Web Designer
             </div>
             
-            <h1 className="text-5xl md:text-7xl font-bold text-foreground mb-6 leading-tight">
-              WEB DESIGN IS HERE TO BE{" "}
-              <span className="text-primary">
-                YOUR ASSISTANCE
+            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
+              BRAND WEB
+              <br />
+              <span className="bg-gradient-to-r from-primary to-orange-300 bg-clip-text text-transparent">
+                Design Hero Banner
               </span>
             </h1>
             
-            <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl">
-              I am here ready to help you in making creative digital products. 
-              Transform your online presence with stunning websites that convert.
+            <p className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl leading-relaxed">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do 
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis 
+              ipsum suspendisse ultrices gravida.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-elegant">
-                Let's Discuss
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-              <Button size="lg" variant="outline" className="border-primary/30 text-primary hover:bg-primary/10">
-                <Code className="mr-2 h-5 w-5" />
-                View Portfolio
+              <Button size="lg" className="bg-primary/20 backdrop-blur-sm border border-primary/30 text-white hover:bg-primary/30 shadow-2xl">
+                Check Portfolio &gt;&gt;
               </Button>
             </div>
           </div>
           
           {/* Hero Image with floating elements */}
           <div className="relative animate-scale-in">
+            {/* Large glowing circle behind image */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="w-96 h-96 bg-gradient-to-br from-primary/30 to-purple-500/30 rounded-full blur-xl animate-pulse"></div>
+            </div>
+            
             {/* Main hero image */}
             <div className="relative z-10">
               <img
                 src={heroImage}
-                alt="Professional web designer"
-                className="relative rounded-3xl w-full h-auto animate-float"
+                alt="Professional web designer showcase"
+                className="relative rounded-3xl w-full h-auto animate-float drop-shadow-2xl"
               />
             </div>
             
-            {/* Floating UI elements */}
-            <div className="absolute top-16 -right-4 bg-white rounded-2xl shadow-elegant p-4 animate-float z-20">
+            {/* Floating UI elements with glow */}
+            <div className="absolute top-16 -right-4 bg-white/10 backdrop-blur-md rounded-2xl shadow-2xl p-4 animate-float z-20 border border-white/20">
               <div className="flex items-center gap-3">
-                <div className="bg-primary rounded-full p-2">
+                <div className="bg-gradient-to-br from-primary to-orange-400 rounded-full p-2 shadow-lg">
                   <span className="text-white font-bold text-sm">2K+</span>
                 </div>
                 <div>
-                  <p className="text-xs text-muted-foreground">Projects</p>
-                  <p className="text-sm font-semibold">Completed</p>
+                  <p className="text-xs text-white/70">Projects</p>
+                  <p className="text-sm font-semibold text-white">Completed</p>
                 </div>
               </div>
             </div>
             
-            <div className="absolute bottom-16 -left-4 bg-white rounded-2xl shadow-elegant p-4 animate-pulse z-20">
+            <div className="absolute bottom-16 -left-4 bg-white/10 backdrop-blur-md rounded-2xl shadow-2xl p-4 z-20 border border-white/20" style={{animationDelay: '1s'}}>
               <div className="flex items-center gap-2">
                 <div className="flex text-primary text-sm">
                   ★★★★★
                 </div>
                 <div>
-                  <p className="text-sm font-semibold">4.8</p>
-                  <p className="text-xs text-muted-foreground">Satisfaction</p>
+                  <p className="text-sm font-semibold text-white">4.8</p>
+                  <p className="text-xs text-white/70">Satisfaction</p>
                 </div>
               </div>
             </div>
             
-            <div className="absolute top-1/2 right-8 bg-white rounded-xl shadow-elegant p-3 z-20" style={{animationDelay: '1s'}}>
+            <div className="absolute top-1/2 right-8 bg-white/10 backdrop-blur-md rounded-xl shadow-2xl p-3 z-20 border border-white/20" style={{animationDelay: '2s'}}>
               <div className="flex items-center gap-2">
-                <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
+                <div className="w-8 h-8 bg-gradient-to-br from-primary to-orange-400 rounded-full flex items-center justify-center shadow-lg">
                   <Code className="h-4 w-4 text-white" />
                 </div>
                 <div>
-                  <p className="text-xs font-medium">Web Designer</p>
-                  <p className="text-xs text-muted-foreground">Expert</p>
+                  <p className="text-xs font-medium text-white">Web Designer</p>
+                  <p className="text-xs text-white/70">Expert</p>
                 </div>
               </div>
-            </div>
-            
-            {/* Background decorative elements */}
-            <div className="absolute inset-0 -z-10">
-              <div className="absolute top-8 right-16 w-32 h-32 bg-primary/20 rounded-full"></div>
-              <div className="absolute bottom-12 left-8 w-24 h-24 bg-accent/20 rounded-full"></div>
             </div>
           </div>
         </div>
