@@ -14,19 +14,25 @@ const Navigation = () => {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-border">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-xl border-b border-border/50 shadow-lg">
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <div className="flex items-center gap-2">
-            <img 
-              src="/lovable-uploads/c05ee520-dfce-4d37-9abd-2ecb7430e4da.png" 
-              alt="LD Logo" 
-              className="h-10 w-auto"
-            />
-            <span className="text-xl font-bold text-orange-500">
-              Development
-            </span>
+        <div className="flex items-center justify-between h-20">
+          {/* Enhanced Logo */}
+          <div className="flex items-center gap-3">
+            <div className="relative">
+              <img 
+                src="/lovable-uploads/c05ee520-dfce-4d37-9abd-2ecb7430e4da.png" 
+                alt="LD Logo" 
+                className="h-12 w-auto transition-transform duration-300 hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-accent/20 rounded-lg blur-lg opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+            </div>
+            <div className="flex flex-col">
+              <span className="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                LD Development
+              </span>
+              <span className="text-xs text-muted-foreground font-medium">Digital Innovation</span>
+            </div>
           </div>
 
           {/* Desktop Navigation */}
