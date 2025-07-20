@@ -68,10 +68,17 @@ export const PaymentButton = ({ className }: PaymentButtonProps) => {
           Processing...
         </>
       ) : (
-        <>
-          <CreditCard className="mr-2 h-4 w-4" />
-          Purchase Service - £300
-        </>
+        <div className="flex flex-col items-center gap-1">
+          <div className="flex items-center gap-2">
+            <span className="text-sm line-through text-muted-foreground">£500</span>
+            <span className="font-bold text-lg">£300</span>
+          </div>
+          <span className="text-xs text-orange-500 font-medium">Limited Time Only!</span>
+          <div className="flex items-center gap-2 mt-1">
+            <CreditCard className="h-4 w-4" />
+            <span>Build My Website</span>
+          </div>
+        </div>
       )}
     </Button>
   );
