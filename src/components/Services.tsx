@@ -265,94 +265,94 @@ const Services = () => {
             
             return (
               <div key={service.title} className="group">
-                <Card className={`relative h-[480px] overflow-hidden bg-gradient-card border-0 shadow-elegant hover:shadow-2xl transition-all duration-300 ${service.popular ? 'ring-2 ring-primary/50 ring-offset-2 ring-offset-background' : ''}`}>
+                <Card className={`relative h-[520px] overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 ${service.popular ? 'ring-2 ring-primary ring-offset-4' : ''}`}>
+                  {/* Background with solid gradient */}
+                  <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient}`}></div>
+                  
                   {/* Popular badge */}
                   {service.popular && (
-                    <div className="absolute top-3 right-3 z-30">
-                      <Badge className="bg-gradient-to-r from-primary to-accent text-white border-0 animate-pulse text-xs">
-                        <Star className="h-3 w-3 mr-1" />
-                        Popular
+                    <div className="absolute top-4 right-4 z-20">
+                      <Badge className="bg-orange-500 text-white border-0 shadow-lg">
+                        ⭐ Popular
                       </Badge>
                     </div>
                   )}
 
-                  {/* Enhanced gradient background with animation */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-90 group-hover:opacity-100 transition-all duration-500`}></div>
-                  
-                  {/* Overlay with subtle pattern */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent z-10"></div>
-                  <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_1px_1px,_white_1px,_transparent_0)] bg-[size:20px_20px] z-10"></div>
-                  
-                  <CardHeader className="text-center relative z-20 text-white p-4">
-                    <div className="w-12 h-12 rounded-2xl bg-white/20 backdrop-blur-sm p-3 mx-auto mb-3 group-hover:scale-110 transition-transform duration-300 border border-white/30 shadow-xl">
-                      <Icon className="h-6 w-6 text-white" />
+                  {/* Content */}
+                  <div className="relative z-10 h-full flex flex-col text-white p-6">
+                    {/* Icon */}
+                    <div className="w-16 h-16 rounded-2xl bg-white/20 backdrop-blur-sm p-4 mb-6 flex items-center justify-center">
+                      <Icon className="h-8 w-8 text-white" />
                     </div>
                     
-                    <CardTitle className="text-lg text-white font-bold mb-2 drop-shadow-lg">
+                    {/* Title */}
+                    <h3 className="text-2xl font-bold mb-3 text-white">
                       {service.title}
-                    </CardTitle>
+                    </h3>
                     
-                    <CardDescription className="text-white/90 leading-relaxed text-xs drop-shadow-sm">
+                    {/* Description */}
+                    <p className="text-white/90 text-sm leading-relaxed mb-4">
                       {service.description}
-                    </CardDescription>
-                  </CardHeader>
-                  
-                  <CardContent className="relative z-20 text-white px-4 pb-4 flex flex-col h-full">
-                    {/* Technology stack */}
-                    <div className="flex flex-wrap gap-1 mb-3">
-                      {service.technologies.slice(0, 3).map((tech) => (
-                        <Badge key={tech} variant="outline" className="text-xs bg-white/10 text-white border-white/30 hover:bg-white/20 transition-colors px-2 py-1">
+                    </p>
+
+                    {/* Technology badges */}
+                    <div className="flex flex-wrap gap-2 mb-6">
+                      {service.technologies.slice(0, 4).map((tech) => (
+                        <span key={tech} className="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-xs font-medium text-white border border-white/30">
                           {tech}
-                        </Badge>
+                        </span>
                       ))}
                     </div>
 
-                    <div className="bg-white/15 backdrop-blur-sm rounded-xl p-3 mb-3 border border-white/25 shadow-lg flex-grow">
-                      <div className="grid grid-cols-1 gap-2">
+                    {/* Features list */}
+                    <div className="flex-grow mb-6">
+                      <div className="space-y-3">
                         {service.features.slice(0, 3).map((feature) => (
-                          <div key={feature} className="flex items-center gap-2 text-xs text-white font-medium">
-                            <CheckCircle className="w-3 h-3 text-green-400 flex-shrink-0" />
-                            {feature}
+                          <div key={feature} className="flex items-center gap-3">
+                            <div className="w-5 h-5 rounded-full bg-green-400 flex items-center justify-center flex-shrink-0">
+                              <CheckCircle className="w-3 h-3 text-green-800" />
+                            </div>
+                            <span className="text-white text-sm font-medium">{feature}</span>
                           </div>
                         ))}
                       </div>
                     </div>
-                    
-                    {/* Price and buttons */}
-                    <div className="text-center mb-3">
-                      <div className="text-xl font-bold text-white mb-1">{service.price}</div>
+
+                    {/* Price */}
+                    <div className="mb-6 text-center">
+                      <div className="text-3xl font-bold text-white mb-1">{service.price}</div>
                       {service.monthlyPrice !== "Contact us" && (
-                        <div className="text-xs text-white/80 mb-2">
-                          Then {service.monthlyPrice}/month for hosting
+                        <div className="text-white/80 text-sm">
+                          Then {service.monthlyPrice}/month
                         </div>
                       )}
                     </div>
                     
-                    <div className="space-y-2 mt-auto">
+                    {/* Buttons */}
+                    <div className="space-y-3 mt-auto">
                       {service.title === "Build Cool Websites" ? (
-                        <PaymentButton className="w-full bg-gradient-to-r from-green-500 to-green-600 border-0 text-white hover:scale-105 transition-all duration-300 rounded-xl font-semibold py-2 text-xs shadow-xl" />
+                        <PaymentButton className="w-full bg-white text-gray-900 hover:bg-gray-100 transition-all duration-200 rounded-xl font-semibold py-3 text-sm shadow-lg border-0" />
                       ) : (
                         <Button 
-                          size="sm"
                           onClick={() => console.log('Buy Now clicked for:', service.title)}
-                          className="w-full bg-gradient-to-r from-green-500 to-green-600 border-0 text-white hover:scale-105 transition-all duration-300 rounded-xl font-semibold py-2 text-xs shadow-xl"
+                          className="w-full bg-white text-gray-900 hover:bg-gray-100 transition-all duration-200 rounded-xl font-semibold py-3 text-sm shadow-lg border-0"
                         >
-                          <ShoppingCart className="mr-1 h-3 w-3" />
-                          Buy Now
+                          <ShoppingCart className="mr-2 h-4 w-4" />
+                          Buy Now - {service.price}
                         </Button>
                       )}
                       <Button 
-                        size="sm"
+                        variant="outline"
                         onClick={() => {
                           console.log('WhatsApp clicked');
                           window.open('https://wa.me/447586266007', '_blank');
                         }}
-                        className="w-full bg-white/25 backdrop-blur-sm border border-white/40 text-white hover:bg-white hover:text-black transition-all duration-300 rounded-xl font-semibold py-2 text-xs shadow-xl"
+                        className="w-full bg-transparent border-2 border-white/40 text-white hover:bg-white hover:text-gray-900 transition-all duration-200 rounded-xl font-semibold py-3 text-sm"
                       >
-                        💬 Message Us
+                        💬 Chat with Us
                       </Button>
                     </div>
-                  </CardContent>
+                  </div>
                 </Card>
               </div>
             );
