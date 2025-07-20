@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Code, Zap, Sparkles, Layers, Palette, Database, Shield, Rocket } from "lucide-react";
+import { PaymentButton } from "@/components/PaymentButton";
 import heroImage from "@/assets/hero-image-no-bg.png";
 
 const Hero = () => {
@@ -130,11 +131,7 @@ const Hero = () => {
             </div>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <Button size="lg" className="bg-gradient-to-r from-primary to-accent text-white border-0 hover:scale-105 transition-all duration-300 shadow-2xl group">
-                <Sparkles className="mr-2 h-5 w-5 group-hover:animate-spin" />
-                Let's Build Something Cool!
-                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </Button>
+              <PaymentButton className="bg-gradient-to-r from-primary to-accent text-white border-0 hover:scale-105 transition-all duration-300 shadow-2xl group" />
               <Button size="lg" variant="outline" className="border-white/30 text-foreground bg-white/90 hover:bg-white hover:text-foreground backdrop-blur-sm hover:scale-105 transition-all duration-300">
                 <Layers className="mr-2 h-5 w-5" />
                 See What We Made
