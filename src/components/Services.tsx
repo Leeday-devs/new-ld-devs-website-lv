@@ -105,28 +105,28 @@ const Services = () => {
       ]
     },
     {
-      icon: Database,
-      title: "Super Safe Storage",
-      description: "We keep all your important stuff safe in the cloud - like a super secure treasure chest!",
+      icon: Brain,
+      title: "AI Automations",
+      description: "Smart AI helpers that work 24/7 to make your business run smoother - like having a super smart robot assistant!",
       features: [
-        "Cloud Storage",
-        "Safe Data Keeping",
-        "Password Protection",
-        "Fast Loading",
-        "Never Loses Stuff"
+        "Smart Chatbots",
+        "Auto Customer Support",
+        "Data Analysis",
+        "Task Automation",
+        "AI Content Creation"
       ],
-      price: "£300",
-      monthlyPrice: "£40",
+      price: "£500",
+      monthlyPrice: "£75",
       gradient: "from-purple-600 via-indigo-600 to-blue-700",
       popular: false,
-      technologies: ["Cloud Magic", "Security", "Fast Servers", "Safe Storage"],
-      icon2: Database,
+      technologies: ["AI Magic", "Automation", "Smart Bots", "Machine Learning"],
+      icon2: Brain,
       pricingFeatures: [
-        "5 Pages Website",
-        "Mobile Responsive Design",
-        "Contact Form",
-        "Basic SEO Setup",
-        "Social Media Integration"
+        "Custom AI Assistant",
+        "Automated Workflows",
+        "Data Processing",
+        "Smart Integrations",
+        "24/7 AI Support"
       ]
     },
     {
