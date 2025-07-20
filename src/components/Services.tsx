@@ -265,13 +265,13 @@ const Services = () => {
         </div>
 
         {/* Enhanced services grid with flip cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-16 justify-items-center">{/* Center align the last row */}
           {services.map((service, index) => {
             const Icon = service.icon;
             
             return (
-              <div key={service.title} className="group">
-                <Card className={`relative h-[620px] overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 ${service.popular ? 'ring-2 ring-primary ring-offset-4' : ''}`}>
+              <div key={service.title} className="group w-full max-w-sm mx-auto">
+                <Card className={`relative h-[680px] w-full overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 ${service.popular ? 'ring-2 ring-primary ring-offset-4' : ''}`}>
                   {/* Background with solid gradient */}
                   <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient}`}></div>
                   
