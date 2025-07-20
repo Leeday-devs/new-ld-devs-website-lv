@@ -87,11 +87,11 @@ const Services = () => {
       title: "Online Stores",
       description: "Amazing online shops where people can buy things easily - like having your own digital Shop!",
       features: [
+        "Up to 10 Pages",
         "Easy Shopping Cart",
         "Safe Payment System",
         "AI Chat Bot",
         "Inventory Tracking",
-        "Sales Reports",
         "Customer Messages"
       ],
       price: "£800",
