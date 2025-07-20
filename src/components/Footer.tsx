@@ -23,10 +23,12 @@ const Footer = () => {
         <div className="grid md:grid-cols-4 gap-8">
           {/* Brand */}
           <div className="space-y-4">
-            <div className="flex items-center gap-2">
-              <div className="bg-gradient-to-r from-orange-500 to-red-500 rounded-lg p-3 text-2xl font-bold text-white">
-                LD
-              </div>
+            <div className="flex items-center gap-3">
+              <img 
+                src="/lovable-uploads/e5390fb6-5fce-4c9a-bb8a-9fc7d7559edd.png" 
+                alt="LD Development Logo" 
+                className="w-12 h-12 object-contain"
+              />
               <span className="text-xl font-bold">LD Development</span>
             </div>
             <p className="text-white/70">
