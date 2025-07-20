@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -38,30 +40,39 @@ All colors MUST be HSL.
     --input: 16 20% 90%;
     --ring: 16 100% 50%;
 
-    /* Custom design tokens */
+    /* Enhanced design tokens */
     --gradient-primary: linear-gradient(135deg, hsl(16 100% 50%), hsl(24 100% 60%));
-    --gradient-hero: linear-gradient(135deg, hsl(258 89% 25%) 0%, hsl(280 100% 35%) 50%, hsl(16 100% 50%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(258 89% 25%) 0%, hsl(280 100% 35%) 30%, hsl(16 100% 50%) 70%, hsl(30 100% 60%) 100%);
     --gradient-card: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(16 20% 98%) 100%);
+    --gradient-button: linear-gradient(135deg, hsl(16 100% 50%) 0%, hsl(24 100% 55%) 50%, hsl(30 100% 60%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(280 100% 35%) 0%, hsl(16 100% 50%) 100%);
+    --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+    
+    /* Enhanced shadows */
     --shadow-elegant: 0 10px 30px -10px hsl(16 100% 50% / 0.3);
     --shadow-glow: 0 0 40px hsl(24 100% 60% / 0.4);
+    --shadow-card: 0 4px 20px -2px hsl(0 0% 0% / 0.08);
+    --shadow-button: 0 8px 25px -8px hsl(16 100% 50% / 0.5);
+    --shadow-inner: inset 0 2px 4px 0 hsl(0 0% 0% / 0.06);
+    
+    /* Enhanced transitions */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* Glass effect */
+    --glass-bg: rgba(255, 255, 255, 0.1);
+    --glass-border: rgba(255, 255, 255, 0.2);
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 0 0% 26%;
-
     --sidebar-primary: 0 0% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 16 20% 96%;
-
     --sidebar-accent-foreground: 0 0% 10%;
-
     --sidebar-border: 16 20% 91%;
-
     --sidebar-ring: 16 100% 50%;
   }
 
@@ -93,6 +104,13 @@ All colors MUST be HSL.
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
+    
+    /* Dark mode gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(222.2 84% 4.9%) 0%, hsl(217.2 32.6% 17.5%) 30%, hsl(16 100% 50%) 70%, hsl(30 100% 60%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(222.2 84% 4.9%) 0%, hsl(217.2 32.6% 17.5%) 100%);
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -110,6 +128,61 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  /* Glass morphism components */
+  .glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+  }
+  
+  /* Enhanced button styles */
+  .btn-gradient {
+    background: var(--gradient-button);
+    box-shadow: var(--shadow-button);
+    transition: var(--transition-smooth);
+  }
+  
+  .btn-gradient:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 35px -8px hsl(16 100% 50% / 0.6);
+  }
+  
+  /* Animated backgrounds */
+  .animated-gradient {
+    background: linear-gradient(270deg, hsl(16 100% 50%), hsl(24 100% 60%), hsl(30 100% 60%), hsl(16 100% 50%));
+    background-size: 400% 400%;
+    animation: gradientShift 6s ease infinite;
+  }
+  
+  /* Text effects */
+  .text-glow {
+    text-shadow: 0 0 20px hsl(16 100% 50% / 0.5);
+  }
+  
+  /* Interactive elements */
+  .hover-lift {
+    transition: var(--transition-smooth);
+  }
+  
+  .hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-card);
+  }
+  
+  /* Stagger animation utility */
+  .stagger-delay-1 { animation-delay: 0.1s; }
+  .stagger-delay-2 { animation-delay: 0.2s; }
+  .stagger-delay-3 { animation-delay: 0.3s; }
+  .stagger-delay-4 { animation-delay: 0.4s; }
+  .stagger-delay-5 { animation-delay: 0.5s; }
 }
