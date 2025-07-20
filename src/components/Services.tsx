@@ -65,8 +65,8 @@ const Services = () => {
         "24/7 Monitoring",
         "Free Website Transfer"
       ],
-      price: "£25",
-      monthlyPrice: "£25",
+      price: "£40",
+      monthlyPrice: "£40",
       gradient: "from-pink-500 via-rose-500 to-orange-500",
       popular: true,
       technologies: ["Cloud Hosting", "Security", "Monitoring", "Support"],
