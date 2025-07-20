@@ -53,33 +53,52 @@ export const PaymentButton = ({ className }: PaymentButtonProps) => {
   };
 
   return (
-    <Button
-      onClick={() => {
-        console.log('BUTTON CLICKED!');
-        handlePayment();
-      }}
-      disabled={loading}
-      className={className}
-      size="lg"
-    >
-      {loading ? (
-        <>
-          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-          Processing...
-        </>
-      ) : (
-        <div className="flex flex-col items-center gap-1">
-          <div className="flex items-center gap-2">
-            <span className="text-sm line-through text-muted-foreground">£500</span>
-            <span className="font-bold text-lg">£300</span>
-          </div>
-          <span className="text-xs text-orange-500 font-medium">Limited Time Only!</span>
-          <div className="flex items-center gap-2 mt-1">
-            <CreditCard className="h-4 w-4" />
-            <span>Build My Website</span>
-          </div>
+    <div className="flex flex-col items-center gap-4">
+      {/* Price Display */}
+      <div className="text-center">
+        <div className="text-4xl font-bold text-primary mb-1">£300</div>
+        <div className="text-sm text-muted-foreground mb-2">Then £40/month</div>
+        <div className="flex items-center justify-center gap-2 mb-2">
+          <span className="text-lg line-through text-muted-foreground">£500</span>
+          <span className="text-2xl font-bold text-primary">£300</span>
         </div>
-      )}
-    </Button>
+        <span className="text-sm text-orange-500 font-medium animate-pulse">
+          Limited Time Only!
+        </span>
+      </div>
+
+      {/* Payment Button */}
+      <Button
+        onClick={() => {
+          console.log('BUTTON CLICKED!');
+          handlePayment();
+        }}
+        disabled={loading}
+        className={`w-full ${className}`}
+        size="lg"
+      >
+        {loading ? (
+          <>
+            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+            Processing...
+          </>
+        ) : (
+          <>
+            <CreditCard className="mr-2 h-4 w-4" />
+            Build MY Website
+          </>
+        )}
+      </Button>
+
+      {/* Chat Button */}
+      <Button
+        variant="outline"
+        className="w-full"
+        size="lg"
+        onClick={() => window.open('https://wa.me/1234567890', '_blank')}
+      >
+        💬 Chat with Us
+      </Button>
+    </div>
   );
 };
