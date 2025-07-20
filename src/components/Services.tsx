@@ -1,6 +1,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { PaymentButton } from "@/components/PaymentButton";
 import { 
   Code, 
   Palette, 
@@ -363,14 +364,18 @@ const Services = () => {
                         </div>
                       </div>
                       
-                      <div className="space-y-3">
-                        <Button 
-                          size="lg"
-                          className="w-full bg-gradient-to-r from-green-500 to-green-600 border-0 text-white hover:scale-105 transition-all duration-300 rounded-2xl font-semibold py-3 text-sm shadow-xl"
-                        >
-                          <ShoppingCart className="mr-2 h-4 w-4" />
-                          Buy Now
-                        </Button>
+                       <div className="space-y-3">
+                        {service.title === "Build Cool Websites" ? (
+                          <PaymentButton className="w-full bg-gradient-to-r from-green-500 to-green-600 border-0 text-white hover:scale-105 transition-all duration-300 rounded-2xl font-semibold py-3 text-sm shadow-xl" />
+                        ) : (
+                          <Button 
+                            size="lg"
+                            className="w-full bg-gradient-to-r from-green-500 to-green-600 border-0 text-white hover:scale-105 transition-all duration-300 rounded-2xl font-semibold py-3 text-sm shadow-xl"
+                          >
+                            <ShoppingCart className="mr-2 h-4 w-4" />
+                            Buy Now
+                          </Button>
+                        )}
                         <Button 
                           size="lg"
                           onClick={() => window.open('https://wa.me/447586266007', '_blank')}
