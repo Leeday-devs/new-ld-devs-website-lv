@@ -74,7 +74,7 @@ const Hero = () => {
             </div>
             
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 leading-tight">
-              <span className="block">BUILD</span>
+              <span className="block">BUILDING</span>
               <span className="bg-gradient-to-r from-primary via-accent to-orange-300 bg-clip-text text-transparent animate-text-glow">
                 AWESOME
               </span>
