@@ -83,28 +83,28 @@ const Services = () => {
       ]
     },
     {
-      icon: Smartphone,
-      title: "Phone & Tablet Apps",
-      description: "Apps that work perfectly on phones, tablets, and computers - so everyone can use them anywhere!",
+      icon: ShoppingCart,
+      title: "Online Stores",
+      description: "Amazing online shops where people can buy things easily - like having your own digital mall!",
       features: [
-        "Works on All Devices",
-        "Touch-Friendly Buttons",
-        "Pretty Animations",
-        "Works Without Internet",
-        "Super Easy to Use"
+        "Easy Shopping Cart",
+        "Safe Payment System",
+        "Inventory Tracking",
+        "Sales Reports",
+        "Customer Messages"
       ],
-      price: "Custom",
-      monthlyPrice: "Contact us",
-      gradient: "from-green-500 via-emerald-500 to-teal-600",
+      price: "£800",
+      monthlyPrice: "£60",
+      gradient: "from-orange-500 via-red-500 to-pink-600",
       popular: false,
-      technologies: ["Phone Apps", "Tablet Apps", "Easy Touch", "Fun Design"],
-      icon2: Smartphone,
+      technologies: ["Shopping", "Payments", "Reports", "Customer Care"],
+      icon2: ShoppingCart,
       pricingFeatures: [
-        "Unlimited Pages",
-        "Custom Design & Development",
-        "E-commerce Integration",
-        "Advanced User Authentication",
-        "Multi-language Support"
+        "Up to 10 Pages",
+        "Advanced Contact Forms",
+        "Complete SEO Package",
+        "Custom Animations",
+        "Database Integration"
       ]
     },
     {
@@ -133,28 +133,28 @@ const Services = () => {
       ]
     },
     {
-      icon: ShoppingCart,
-      title: "Online Stores",
-      description: "Amazing online shops where people can buy things easily - like having your own digital mall!",
+      icon: Smartphone,
+      title: "Phone & Tablet Apps",
+      description: "Apps that work perfectly on phones, tablets, and computers - so everyone can use them anywhere!",
       features: [
-        "Easy Shopping Cart",
-        "Safe Payment System",
-        "Inventory Tracking",
-        "Sales Reports",
-        "Customer Messages"
+        "Works on All Devices",
+        "Touch-Friendly Buttons",
+        "Pretty Animations",
+        "Works Without Internet",
+        "Super Easy to Use"
       ],
-      price: "£800",
-      monthlyPrice: "£60",
-      gradient: "from-orange-500 via-red-500 to-pink-600",
+      price: "Custom",
+      monthlyPrice: "Contact us",
+      gradient: "from-green-500 via-emerald-500 to-teal-600",
       popular: false,
-      technologies: ["Shopping", "Payments", "Reports", "Customer Care"],
-      icon2: ShoppingCart,
+      technologies: ["Phone Apps", "Tablet Apps", "Easy Touch", "Fun Design"],
+      icon2: Smartphone,
       pricingFeatures: [
-        "Up to 10 Pages",
-        "Advanced Contact Forms",
-        "Complete SEO Package",
-        "Custom Animations",
-        "Database Integration"
+        "Unlimited Pages",
+        "Custom Design & Development",
+        "E-commerce Integration",
+        "Advanced User Authentication",
+        "Multi-language Support"
       ]
     },
     {
