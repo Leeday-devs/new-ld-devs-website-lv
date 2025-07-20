@@ -56,7 +56,7 @@ const Portfolio = () => {
   ];
 
   return (
-    <section className="py-24 bg-gradient-to-br from-accent/10 via-background to-primary/10 relative overflow-hidden">
+    <section className="py-24 bg-gradient-to-br from-purple-800 via-slate-800 to-gray-800 relative overflow-hidden">
       {/* Background elements */}
       <div className="absolute inset-0 opacity-20">
         <div className="absolute top-32 right-20 w-64 h-64 bg-primary/30 rounded-full blur-3xl animate-float"></div>

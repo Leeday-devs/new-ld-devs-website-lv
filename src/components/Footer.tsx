@@ -28,7 +28,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-foreground text-white">
+    <footer className="bg-gradient-to-br from-slate-600 via-slate-700 to-slate-800 text-white">
       <div className="container mx-auto px-4 py-16">
         <div className="grid md:grid-cols-4 gap-8">
           {/* Brand */}

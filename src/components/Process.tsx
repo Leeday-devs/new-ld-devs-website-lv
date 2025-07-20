@@ -103,7 +103,7 @@ const Process = () => {
   ];
 
   return (
-    <section className="py-16 bg-gradient-to-br from-background via-accent/5 to-primary/10 relative overflow-hidden">
+    <section className="py-16 bg-gradient-to-br from-slate-800 via-gray-800 to-blue-800 relative overflow-hidden">
       {/* Background elements */}
       <div className="absolute inset-0">
         <div className="absolute top-20 right-20 w-96 h-96 bg-gradient-to-r from-primary/10 to-accent/10 rounded-full blur-3xl animate-float"></div>

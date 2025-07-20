@@ -4,7 +4,7 @@ import heroImage from "@/assets/hero-image-no-bg.png";
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-800">
       {/* Professional layered background */}
       <div className="absolute inset-0">
         {/* Sophisticated gradient overlay */}
