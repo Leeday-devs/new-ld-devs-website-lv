@@ -156,65 +156,136 @@ const Process = () => {
           </p>
         </div>
 
-        {/* Horizontal Process timeline */}
-        <div className="relative">
-          {/* Horizontal connection line */}
-          <div className="absolute top-16 left-0 right-0 h-1 bg-gradient-to-r from-primary/20 via-accent/20 to-primary/20 hidden md:block"></div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6">
+        {/* Modern Wavy Timeline */}
+        <div className="relative max-w-6xl mx-auto">
+          {/* Wavy SVG Path */}
+          <div className="absolute inset-0 hidden lg:block">
+            <svg 
+              className="w-full h-full" 
+              viewBox="0 0 1200 800" 
+              preserveAspectRatio="none"
+            >
+              <defs>
+                <linearGradient id="waveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" style={{stopColor: "hsl(var(--primary))", stopOpacity: 0.6}} />
+                  <stop offset="50%" style={{stopColor: "hsl(var(--accent))", stopOpacity: 0.8}} />
+                  <stop offset="100%" style={{stopColor: "hsl(var(--primary))", stopOpacity: 0.6}} />
+                </linearGradient>
+                <filter id="glow">
+                  <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                  <feMerge> 
+                    <feMergeNode in="coloredBlur"/>
+                    <feMergeNode in="SourceGraphic"/>
+                  </feMerge>
+                </filter>
+              </defs>
+              <path
+                d="M50,400 Q300,200 550,400 T1050,400"
+                stroke="url(#waveGradient)"
+                strokeWidth="4"
+                fill="none"
+                filter="url(#glow)"
+                className="animate-pulse"
+              />
+              {/* Timeline dots */}
+              {[
+                { x: 50, y: 400 },
+                { x: 300, y: 280 },
+                { x: 550, y: 400 },
+                { x: 700, y: 320 },
+                { x: 850, y: 400 },
+                { x: 1050, y: 400 }
+              ].map((dot, index) => (
+                <circle
+                  key={index}
+                  cx={dot.x}
+                  cy={dot.y}
+                  r="12"
+                  fill="hsl(var(--primary))"
+                  className="drop-shadow-lg animate-pulse"
+                  style={{animationDelay: `${index * 0.2}s`}}
+                />
+              ))}
+            </svg>
+          </div>
+
+          {/* Process Cards with Wavy Layout */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-4 relative z-10">
             {steps.map((step, index) => {
               const Icon = step.icon;
+              const isEven = index % 2 === 0;
               
               return (
-                <div key={step.number} className="relative">
-                  {/* Timeline dot */}
-                  <div className="absolute top-12 left-1/2 transform -translate-x-1/2 w-8 h-8 rounded-full bg-gradient-to-br from-primary to-accent shadow-lg z-10 flex items-center justify-center hidden md:flex">
-                    <div className="w-3 h-3 bg-white rounded-full"></div>
-                  </div>
-                  
-                  {/* Process card */}
-                  <Card className={`group bg-gradient-card border-0 shadow-elegant hover:shadow-glow transition-all duration-500 hover:scale-105 animate-fade-in-up mt-20 md:mt-24`}>
-                    <CardContent className="p-6 text-center">
-                      {/* Icon and number */}
-                      <div className="flex flex-col items-center mb-4">
-                        <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${step.color} p-3 group-hover:scale-110 transition-transform duration-300 mb-3`}>
-                          <Icon className="h-6 w-6 text-white" />
+                <div 
+                  key={step.number} 
+                  className={`relative ${
+                    index === 0 ? 'lg:col-start-1 lg:mt-0' :
+                    index === 1 ? 'lg:col-start-2 lg:-mt-16' :
+                    index === 2 ? 'lg:col-start-3 lg:mt-0' :
+                    index === 3 ? 'lg:col-start-1 lg:row-start-2 lg:-mt-12' :
+                    index === 4 ? 'lg:col-start-2 lg:row-start-2 lg:mt-0' :
+                    'lg:col-start-3 lg:row-start-2 lg:mt-0'
+                  }`}
+                  style={{
+                    animationDelay: `${index * 0.15}s`
+                  }}
+                >
+                  {/* Enhanced Process Card */}
+                  <Card className="group bg-gradient-to-br from-background via-primary/5 to-accent/10 border border-primary/20 shadow-2xl hover:shadow-3xl transition-all duration-700 hover:scale-105 animate-fade-in-up backdrop-blur-sm">
+                    <CardContent className="p-6 relative overflow-hidden">
+                      {/* Background decoration */}
+                      <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-primary/10 to-accent/10 rounded-full blur-xl transform translate-x-8 -translate-y-8"></div>
+                      
+                      {/* Step number badge */}
+                      <div className="absolute top-4 right-4">
+                        <div className={`w-8 h-8 rounded-full bg-gradient-to-br ${step.color} flex items-center justify-center text-white text-sm font-bold shadow-lg`}>
+                          {step.number}
                         </div>
-                        <Badge variant="outline" className="text-xs font-bold">
-                          Step {step.number}
-                        </Badge>
+                      </div>
+                      
+                      {/* Icon */}
+                      <div className="flex justify-center mb-4">
+                        <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${step.color} p-4 group-hover:scale-110 transition-transform duration-500 shadow-lg`}>
+                          <Icon className="h-8 w-8 text-white" />
+                        </div>
                       </div>
                       
                       {/* Content */}
-                      <div>
-                        <div className="flex items-center justify-center gap-2 mb-3">
-                          <h3 className="text-lg font-bold text-foreground">{step.title}</h3>
+                      <div className="text-center space-y-4">
+                        <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">
+                          {step.title}
+                        </h3>
+                        
+                        <div className="flex items-center justify-center gap-2 text-muted-foreground">
+                          <Clock className="h-4 w-4" />
+                          <span className="text-sm font-medium">{step.duration}</span>
                         </div>
                         
-                        <div className="flex items-center justify-center gap-2 text-muted-foreground mb-4">
-                          <Clock className="h-3 w-3" />
-                          <span className="text-xs">{step.duration}</span>
-                        </div>
-                        
-                        <p className="text-muted-foreground mb-4 leading-relaxed text-sm">
+                        <p className="text-muted-foreground leading-relaxed text-sm">
                           {step.description}
                         </p>
                         
-                        <div className="space-y-2">
-                          {step.details.slice(0, 2).map((detail, i) => (
-                            <div key={i} className="flex items-center gap-2 justify-center">
+                        {/* Key features */}
+                        <div className="space-y-2 pt-2">
+                          {step.details.slice(0, 3).map((detail, i) => (
+                            <div key={i} className="flex items-center gap-2 text-left">
                               <CheckCircle className="h-3 w-3 text-green-500 flex-shrink-0" />
                               <span className="text-xs text-muted-foreground">{detail}</span>
                             </div>
                           ))}
                         </div>
                       </div>
+                      
+                      {/* Bottom decoration */}
+                      <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary/30 to-transparent"></div>
                     </CardContent>
                   </Card>
                   
-                  {/* Arrow for larger screens */}
+                  {/* Floating connector for mobile */}
                   {index < steps.length - 1 && (
-                    <ArrowRight className="absolute top-16 -right-3 h-6 w-6 text-muted-foreground/50 animate-pulse hidden xl:block z-20" />
+                    <div className="flex justify-center mt-4 lg:hidden">
+                      <div className="w-px h-8 bg-gradient-to-b from-primary/50 to-transparent"></div>
+                    </div>
                   )}
                 </div>
               );
