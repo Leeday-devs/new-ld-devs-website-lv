@@ -70,7 +70,7 @@ const Hero = () => {
           <div className="text-center lg:text-left animate-fade-in">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full mb-6 border border-white/20">
               <Sparkles className="h-4 w-4 text-primary animate-pulse" />
-              <span className="text-sm text-white/90 font-medium">Cool Websites for Kids!</span>
+              <span className="text-sm text-white/90 font-medium">LD Development</span>
             </div>
             
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 leading-tight">
