@@ -86,7 +86,7 @@ const Pricing = () => {
   ];
 
   return (
-    <section className="relative py-24 px-4 bg-gradient-to-b from-purple-800 to-slate-700 overflow-hidden">
+    <section className="relative py-24 px-4 bg-gradient-to-b from-purple-800 to-indigo-900 overflow-hidden">
       {/* Background Effects */}
       <div className="absolute inset-0 bg-gradient-to-r from-orange-500/5 via-blue-500/5 to-purple-500/5" />
       
