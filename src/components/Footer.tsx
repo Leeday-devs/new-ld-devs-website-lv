@@ -1,29 +1,19 @@
-import { Code2, Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin, Github, Linkedin } from "lucide-react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const footerLinks = {
     services: [
-      "Web Design",
+      "Web Hosting",
       "Web Development", 
-      "Hosting Solutions",
-      "SEO Optimization",
-      "E-commerce",
-      "Maintenance"
-    ],
-    company: [
-      "About",
-      "Portfolio",
-      "Process",
-      "Testimonials",
-      "Blog",
-      "Contact"
+      "AI Tools",
+      "Blog"
     ],
     contact: [
-      { icon: Mail, text: "hello@webdesigner.com", href: "mailto:hello@webdesigner.com" },
-      { icon: Phone, text: "+1 (555) 123-4567", href: "tel:+15551234567" },
-      { icon: MapPin, text: "San Francisco, CA", href: "#" }
+      { icon: Phone, text: "07586 266007", href: "tel:07586266007" },
+      { icon: Mail, text: "LeeDayDevs@gmail.com", href: "mailto:LeeDayDevs@gmail.com" },
+      { icon: MapPin, text: "3RD Floor 86-90, Paul Street, London EC2A 4NE", href: "#" }
     ]
   };
 
@@ -34,17 +24,14 @@ const Footer = () => {
           {/* Brand */}
           <div className="space-y-4">
             <div className="flex items-center gap-2">
-              <div className="bg-gradient-primary rounded-lg p-2">
-                <Code2 className="h-6 w-6 text-white" />
+              <div className="bg-gradient-to-r from-orange-500 to-red-500 rounded-lg p-3 text-2xl font-bold text-white">
+                LD
               </div>
-              <span className="text-xl font-bold">WebCraft</span>
+              <span className="text-xl font-bold">LD Development</span>
             </div>
             <p className="text-white/70">
-              Creating beautiful, high-performance websites that drive results for businesses worldwide.
+              Professional web development and software engineering services, delivering exceptional digital solutions for businesses worldwide.
             </p>
-            <div className="text-sm text-white/60">
-              Trusted by 150+ clients across 20+ countries
-            </div>
           </div>
 
           {/* Services */}
@@ -64,46 +51,58 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Company */}
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Company</h3>
-            <ul className="space-y-2">
-              {footerLinks.company.map((item) => (
-                <li key={item}>
-                  <a
-                    href="#"
-                    className="text-white/70 hover:text-white transition-smooth text-sm"
-                  >
-                    {item}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
           {/* Contact */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Get in Touch</h3>
+            <h3 className="text-lg font-semibold mb-4">Contact</h3>
             <ul className="space-y-3">
               {footerLinks.contact.map((contact) => (
                 <li key={contact.text}>
                   <a
                     href={contact.href}
-                    className="flex items-center gap-2 text-white/70 hover:text-white transition-smooth text-sm"
+                    className="flex items-start gap-2 text-white/70 hover:text-white transition-smooth text-sm"
                   >
-                    <contact.icon className="h-4 w-4" />
-                    {contact.text}
+                    <contact.icon className="h-4 w-4 mt-0.5 flex-shrink-0" />
+                    <span>{contact.text}</span>
                   </a>
                 </li>
               ))}
             </ul>
           </div>
+
+          {/* Connect */}
+          <div>
+            <h3 className="text-lg font-semibold mb-4">Connect</h3>
+            <p className="text-white/70 text-sm mb-4">
+              Available for freelance opportunities and collaborations
+            </p>
+            <div className="flex gap-3">
+              <a
+                href="#"
+                className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-white/20 transition-smooth"
+              >
+                <Github className="h-5 w-5" />
+              </a>
+              <a
+                href="#"
+                className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-white/20 transition-smooth"
+              >
+                <Linkedin className="h-5 w-5" />
+              </a>
+              <a
+                href="mailto:LeeDayDevs@gmail.com"
+                className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-white/20 transition-smooth"
+              >
+                <Mail className="h-5 w-5" />
+              </a>
+            </div>
+          </div>
         </div>
 
         {/* Bottom Bar */}
         <div className="border-t border-white/20 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <div className="text-white/60 text-sm">
-            © {currentYear} WebCraft. All rights reserved.
+          <div className="text-white/60 text-sm text-center md:text-left">
+            <div>© {currentYear} LD Development - a part of Hosting Easy Ltd</div>
+            <div className="mt-1">UK Registered Company | CN 15169743</div>
           </div>
           <div className="flex gap-6 mt-4 md:mt-0">
             <a href="#" className="text-white/60 hover:text-white transition-smooth text-sm">
@@ -111,9 +110,6 @@ const Footer = () => {
             </a>
             <a href="#" className="text-white/60 hover:text-white transition-smooth text-sm">
               Terms of Service
-            </a>
-            <a href="#" className="text-white/60 hover:text-white transition-smooth text-sm">
-              Cookie Policy
             </a>
           </div>
         </div>

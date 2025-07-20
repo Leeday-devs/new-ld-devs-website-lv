@@ -9,19 +9,19 @@ const Contact = () => {
     {
       icon: Mail,
       label: "Email",
-      value: "hello@webdesigner.com",
-      href: "mailto:hello@webdesigner.com"
+      value: "LeeDayDevs@gmail.com",
+      href: "mailto:LeeDayDevs@gmail.com"
     },
     {
       icon: Phone,
       label: "Phone",
-      value: "+1 (555) 123-4567",
-      href: "tel:+15551234567"
+      value: "07586 266007",
+      href: "tel:07586266007"
     },
     {
       icon: MapPin,
       label: "Location",
-      value: "San Francisco, CA",
+      value: "3RD Floor 86-90, Paul Street, London EC2A 4NE",
       href: "#"
     }
   ];
