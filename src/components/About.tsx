@@ -4,12 +4,12 @@ import { CheckCircle, Users, Award, Rocket, Zap, Star, Globe, Code, Palette, Dat
 
 const About = () => {
   const technologies = [
-    { name: "React & Fun Frameworks", level: 95, category: "Making Websites" },
-    { name: "Smart Programming", level: 90, category: "Coding Language" },
-    { name: "Server Magic", level: 85, category: "Behind the Scenes" },
-    { name: "Pretty Design", level: 92, category: "Making it Look Good" },
-    { name: "Cloud Computing", level: 88, category: "Internet Servers" },
-    { name: "Data Storage", level: 87, category: "Keeping Information" }
+    { name: "React & Next.js", level: 95, category: "Frontend Development" },
+    { name: "TypeScript & JavaScript", level: 90, category: "Programming Languages" },
+    { name: "Node.js & Express", level: 85, category: "Backend Development" },
+    { name: "Tailwind CSS & Figma", level: 92, category: "UI/UX Design" },
+    { name: "AWS & Vercel", level: 88, category: "Cloud Hosting" },
+    { name: "MongoDB & PostgreSQL", level: 87, category: "Database Management" }
   ];
 
   const capabilities = [
