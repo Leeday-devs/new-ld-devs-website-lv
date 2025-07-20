@@ -28,7 +28,7 @@ const Services = () => {
   const services = [
     {
       icon: Code,
-      title: "Build Cool Websites",
+      title: "Build Me a Website",
       description: "We make awesome websites that work great and look amazing - just like your favorite apps!",
       features: [
         "Super Fast Websites",
@@ -330,7 +330,7 @@ const Services = () => {
                     
                     {/* Buttons */}
                     <div className="space-y-3 mt-auto">
-                      {service.title === "Build Cool Websites" ? (
+                      {service.title === "Build Me a Website" ? (
                         <PaymentButton className="w-full bg-white text-gray-900 hover:bg-gray-100 transition-all duration-200 rounded-xl font-semibold py-3 text-sm shadow-lg border-0" />
                       ) : (
                         <Button 
