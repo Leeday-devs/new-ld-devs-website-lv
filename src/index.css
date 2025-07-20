@@ -186,3 +186,31 @@ All colors MUST be HSL.
   .stagger-delay-4 { animation-delay: 0.4s; }
   .stagger-delay-5 { animation-delay: 0.5s; }
 }
+
+@layer utilities {
+  /* Enhanced keyframe animations */
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(2deg); }
+  }
+  
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  
+  @keyframes matrix-rain {
+    0% { transform: translateY(-100vh); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateY(100vh); opacity: 0; }
+  }
+  
+  @keyframes code-float {
+    0%, 100% { transform: translateY(0px) translateX(0px); opacity: 0.2; }
+    25% { transform: translateY(-10px) translateX(5px); opacity: 0.4; }
+    50% { transform: translateY(-20px) translateX(-5px); opacity: 0.6; }
+    75% { transform: translateY(-10px) translateX(10px); opacity: 0.4; }
+  }
+}

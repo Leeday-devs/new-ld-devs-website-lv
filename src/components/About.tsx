@@ -52,6 +52,42 @@ const About = () => {
       <div className="absolute inset-0">
         <div className="absolute top-20 right-20 w-96 h-96 bg-gradient-to-r from-primary/10 to-accent/10 rounded-full blur-3xl animate-float"></div>
         <div className="absolute bottom-20 left-20 w-80 h-80 bg-gradient-to-l from-accent/10 to-primary/10 rounded-full blur-2xl animate-float-delayed"></div>
+        
+        {/* Tech symbols and code */}
+        <div className="absolute top-16 left-16 text-primary/20 text-4xl font-mono animate-float">React</div>
+        <div className="absolute top-40 right-24 text-accent/20 text-3xl font-mono animate-float-delayed">TypeScript</div>
+        <div className="absolute bottom-32 left-24 text-primary/20 text-5xl font-mono animate-pulse">AI</div>
+        <div className="absolute bottom-16 right-16 text-accent/20 text-4xl font-mono animate-float">Node.js</div>
+        <div className="absolute top-1/2 left-10 text-primary/20 text-6xl font-mono animate-float-delayed">&lt;/&gt;</div>
+        <div className="absolute top-1/3 right-10 text-accent/20 text-5xl font-mono animate-pulse">{`{}`}</div>
+        
+        {/* Data visualization elements */}
+        <div className="absolute top-1/4 left-1/3 w-32 h-32 opacity-15">
+          <svg viewBox="0 0 100 100" className="text-primary animate-pulse">
+            <rect x="10" y="60" width="15" height="30" fill="currentColor" />
+            <rect x="30" y="40" width="15" height="50" fill="currentColor" />
+            <rect x="50" y="20" width="15" height="70" fill="currentColor" />
+            <rect x="70" y="50" width="15" height="40" fill="currentColor" />
+          </svg>
+        </div>
+        
+        {/* Matrix effect */}
+        <div className="absolute inset-0 overflow-hidden opacity-5">
+          {Array.from({ length: 15 }).map((_, i) => (
+            <div 
+              key={i} 
+              className="absolute text-green-400/50 text-sm font-mono animate-pulse"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 4}s`,
+                animationDuration: `${3 + Math.random() * 3}s`
+              }}
+            >
+              {['HTML', 'CSS', 'JS', 'React', 'AI', 'API', 'DB', 'UX'][Math.floor(Math.random() * 8)]}
+            </div>
+          ))}
+        </div>
       </div>
 
       <div className="container mx-auto px-4 relative z-10">

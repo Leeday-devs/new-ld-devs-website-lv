@@ -11,6 +11,45 @@ const Hero = () => {
         <div className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-full blur-2xl animate-float"></div>
         <div className="absolute top-1/2 right-1/3 w-60 h-60 bg-gradient-to-l from-orange-400/15 to-red-400/15 rounded-full blur-xl animate-float-delayed"></div>
         
+        {/* Floating code elements */}
+        <div className="absolute top-20 left-10 text-primary/20 text-6xl font-mono animate-float">&lt;/&gt;</div>
+        <div className="absolute top-40 right-20 text-accent/20 text-4xl font-mono animate-float-delayed">{`{}`}</div>
+        <div className="absolute bottom-32 left-20 text-primary/20 text-5xl font-mono animate-float">AI</div>
+        <div className="absolute bottom-20 right-10 text-accent/20 text-3xl font-mono animate-pulse">[ ]</div>
+        <div className="absolute top-60 left-1/3 text-primary/20 text-4xl font-mono animate-float-delayed">=&gt;</div>
+        
+        {/* Binary rain effect */}
+        <div className="absolute inset-0 overflow-hidden opacity-10">
+          {Array.from({ length: 20 }).map((_, i) => (
+            <div 
+              key={i} 
+              className="absolute text-green-400/30 text-xs font-mono animate-pulse"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 3}s`,
+                animationDuration: `${2 + Math.random() * 2}s`
+              }}
+            >
+              {Math.random() > 0.5 ? '1' : '0'}
+            </div>
+          ))}
+        </div>
+        
+        {/* Circuit board patterns */}
+        <div className="absolute top-10 right-10 w-32 h-32 opacity-20">
+          <svg viewBox="0 0 100 100" className="text-primary animate-pulse">
+            <circle cx="20" cy="20" r="2" fill="currentColor" />
+            <circle cx="80" cy="20" r="2" fill="currentColor" />
+            <circle cx="20" cy="80" r="2" fill="currentColor" />
+            <circle cx="80" cy="80" r="2" fill="currentColor" />
+            <line x1="20" y1="20" x2="80" y2="20" stroke="currentColor" strokeWidth="1" />
+            <line x1="20" y1="80" x2="80" y2="80" stroke="currentColor" strokeWidth="1" />
+            <line x1="20" y1="20" x2="20" y2="80" stroke="currentColor" strokeWidth="1" />
+            <line x1="80" y1="20" x2="80" y2="80" stroke="currentColor" strokeWidth="1" />
+          </svg>
+        </div>
+        
         {/* Geometric shapes */}
         <div className="absolute top-20 left-20 w-32 h-32 border border-white/10 rotate-45 animate-spin"></div>
         <div className="absolute bottom-40 right-40 w-24 h-24 bg-gradient-to-br from-primary/20 to-transparent rounded-full animate-pulse"></div>

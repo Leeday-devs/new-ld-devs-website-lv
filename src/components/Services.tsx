@@ -137,6 +137,32 @@ const Services = () => {
         <div className="absolute bottom-20 left-20 w-96 h-96 bg-gradient-to-l from-accent/10 to-primary/10 rounded-full blur-2xl animate-float-delayed"></div>
         <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-gradient-to-br from-orange-400/5 to-pink-400/5 rounded-full blur-xl animate-pulse"></div>
         
+        {/* AI and Code themed elements */}
+        <div className="absolute top-10 left-10 text-primary/15 text-5xl font-mono animate-float">🤖</div>
+        <div className="absolute top-32 right-16 text-accent/15 text-4xl font-mono animate-float-delayed">console.log()</div>
+        <div className="absolute bottom-40 left-16 text-primary/15 text-3xl font-mono animate-pulse">npm install</div>
+        <div className="absolute bottom-20 right-20 text-accent/15 text-4xl font-mono animate-float">function()</div>
+        <div className="absolute top-1/3 left-1/4 text-primary/15 text-6xl font-mono animate-float-delayed">&lt;div&gt;</div>
+        <div className="absolute top-2/3 right-1/4 text-accent/15 text-5xl font-mono animate-pulse">API</div>
+        
+        {/* Neural network visualization */}
+        <div className="absolute top-1/4 right-1/3 w-40 h-40 opacity-10">
+          <svg viewBox="0 0 100 100" className="text-primary animate-pulse">
+            <circle cx="20" cy="20" r="3" fill="currentColor" />
+            <circle cx="50" cy="20" r="3" fill="currentColor" />
+            <circle cx="80" cy="20" r="3" fill="currentColor" />
+            <circle cx="35" cy="50" r="3" fill="currentColor" />
+            <circle cx="65" cy="50" r="3" fill="currentColor" />
+            <circle cx="50" cy="80" r="3" fill="currentColor" />
+            <line x1="20" y1="20" x2="35" y2="50" stroke="currentColor" strokeWidth="1" opacity="0.5" />
+            <line x1="50" y1="20" x2="35" y2="50" stroke="currentColor" strokeWidth="1" opacity="0.5" />
+            <line x1="50" y1="20" x2="65" y2="50" stroke="currentColor" strokeWidth="1" opacity="0.5" />
+            <line x1="80" y1="20" x2="65" y2="50" stroke="currentColor" strokeWidth="1" opacity="0.5" />
+            <line x1="35" y1="50" x2="50" y2="80" stroke="currentColor" strokeWidth="1" opacity="0.5" />
+            <line x1="65" y1="50" x2="50" y2="80" stroke="currentColor" strokeWidth="1" opacity="0.5" />
+          </svg>
+        </div>
+        
         {/* Dynamic grid overlay */}
         <div className="absolute inset-0 opacity-5">
           <div className="grid grid-cols-8 h-full">
