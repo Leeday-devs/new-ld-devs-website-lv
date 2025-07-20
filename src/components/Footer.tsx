@@ -18,7 +18,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-foreground text-white">
+    <footer className="bg-white/95 backdrop-blur-xl border-t border-border/50 shadow-lg">
       <div className="container mx-auto px-4 py-16">
         <div className="grid md:grid-cols-4 gap-8">
           {/* Brand */}
@@ -29,22 +29,22 @@ const Footer = () => {
                 alt="LD Development Logo" 
                 className="w-12 h-12 object-contain"
               />
-              <span className="text-xl font-bold">LD Development</span>
+              <span className="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">LD Development</span>
             </div>
-            <p className="text-white/70">
+            <p className="text-muted-foreground">
               Professional web development and software engineering services, delivering exceptional digital solutions for businesses worldwide.
             </p>
           </div>
 
           {/* Services */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Services</h3>
+            <h3 className="text-lg font-semibold mb-4 text-foreground">Services</h3>
             <ul className="space-y-2">
               {footerLinks.services.map((service) => (
                 <li key={service}>
                   <a
                     href="#"
-                    className="text-white/70 hover:text-white transition-smooth text-sm"
+                    className="text-muted-foreground hover:text-foreground transition-smooth text-sm"
                   >
                     {service}
                   </a>
@@ -55,13 +55,13 @@ const Footer = () => {
 
           {/* Contact */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Contact</h3>
+            <h3 className="text-lg font-semibold mb-4 text-foreground">Contact</h3>
             <ul className="space-y-3">
               {footerLinks.contact.map((contact) => (
                 <li key={contact.text}>
                   <a
                     href={contact.href}
-                    className="flex items-start gap-2 text-white/70 hover:text-white transition-smooth text-sm"
+                    className="flex items-start gap-2 text-muted-foreground hover:text-foreground transition-smooth text-sm"
                   >
                     <contact.icon className="h-4 w-4 mt-0.5 flex-shrink-0" />
                     <span>{contact.text}</span>
@@ -73,44 +73,44 @@ const Footer = () => {
 
           {/* Connect */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Connect</h3>
-            <p className="text-white/70 text-sm mb-4">
+            <h3 className="text-lg font-semibold mb-4 text-foreground">Connect</h3>
+            <p className="text-muted-foreground text-sm mb-4">
               Available for freelance opportunities and collaborations
             </p>
             <div className="flex gap-3">
               <a
                 href="#"
-                className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-white/20 transition-smooth"
+                className="w-10 h-10 bg-secondary/50 rounded-lg flex items-center justify-center hover:bg-secondary transition-smooth"
               >
-                <Github className="h-5 w-5" />
+                <Github className="h-5 w-5 text-foreground" />
               </a>
               <a
                 href="#"
-                className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-white/20 transition-smooth"
+                className="w-10 h-10 bg-secondary/50 rounded-lg flex items-center justify-center hover:bg-secondary transition-smooth"
               >
-                <Linkedin className="h-5 w-5" />
+                <Linkedin className="h-5 w-5 text-foreground" />
               </a>
               <a
                 href="mailto:LeeDayDevs@gmail.com"
-                className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-white/20 transition-smooth"
+                className="w-10 h-10 bg-secondary/50 rounded-lg flex items-center justify-center hover:bg-secondary transition-smooth"
               >
-                <Mail className="h-5 w-5" />
+                <Mail className="h-5 w-5 text-foreground" />
               </a>
             </div>
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-white/20 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <div className="text-white/60 text-sm text-center md:text-left">
+        <div className="border-t border-border/50 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+          <div className="text-muted-foreground text-sm text-center md:text-left">
             <div>© {currentYear} LD Development - a part of Hosting Easy Ltd</div>
             <div className="mt-1">UK Registered Company | CN 15169743</div>
           </div>
           <div className="flex gap-6 mt-4 md:mt-0">
-            <a href="#" className="text-white/60 hover:text-white transition-smooth text-sm">
+            <a href="#" className="text-muted-foreground hover:text-foreground transition-smooth text-sm">
               Privacy Policy
             </a>
-            <a href="#" className="text-white/60 hover:text-white transition-smooth text-sm">
+            <a href="#" className="text-muted-foreground hover:text-foreground transition-smooth text-sm">
               Terms of Service
             </a>
           </div>
