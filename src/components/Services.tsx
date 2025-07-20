@@ -85,7 +85,7 @@ const Services = () => {
     {
       icon: ShoppingCart,
       title: "Online Stores",
-      description: "Amazing online shops where people can buy things easily - like having your own digital mall!",
+      description: "Amazing online shops where people can buy things easily - like having your own digital Shop!",
       features: [
         "Easy Shopping Cart",
         "Safe Payment System",
