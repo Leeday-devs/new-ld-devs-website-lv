@@ -54,7 +54,10 @@ export const PaymentButton = ({ className }: PaymentButtonProps) => {
 
   return (
     <Button
-      onClick={handlePayment}
+      onClick={() => {
+        console.log('BUTTON CLICKED!');
+        handlePayment();
+      }}
       disabled={loading}
       className={className}
       size="lg"
