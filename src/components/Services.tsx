@@ -111,7 +111,7 @@ const Services = () => {
     {
       icon: Brain,
       title: "AI Automations",
-      description: "Smart AI helpers that work 24/7 to make your business run smoother - like having a super smart robot assistant!",
+      description: "Smart AI helpers that work 24/7 to make your business run smoother - like having a super smart assistant!",
       features: [
         "Smart Chatbots",
         "Auto Customer Support",
