@@ -36,7 +36,8 @@ const Services = () => {
         "5 Page Website",
         "Easy to Use Buttons",
         "Safe & Secure",
-        "Free Website Transfer"
+        "Free Website Transfer",
+        "Free SSL & Monthly Backup"
       ],
       price: "£300",
       monthlyPrice: "£40",
