@@ -36,11 +36,19 @@ const Services = () => {
         "Easy to Use Buttons",
         "Safe & Secure"
       ],
-      price: "Let's Talk!",
+      price: "£300",
+      monthlyPrice: "£40",
       gradient: "from-blue-600 via-indigo-600 to-purple-700",
       popular: false,
       technologies: ["React", "Fun Stuff", "Cool Code", "Magic"],
-      icon2: Rocket
+      icon2: Rocket,
+      pricingFeatures: [
+        "5 Pages Website",
+        "Mobile Responsive Design",
+        "Contact Form",
+        "Basic SEO Setup",
+        "Social Media Integration"
+      ]
     },
     {
       icon: Brain,
@@ -53,11 +61,19 @@ const Services = () => {
         "Smart Predictions",
         "Helpful Automation"
       ],
-      price: "Let's Talk!",
+      price: "£800",
+      monthlyPrice: "£60",
       gradient: "from-pink-500 via-rose-500 to-orange-500",
       popular: true,
       technologies: ["AI Magic", "Smart Bots", "Learning", "Cool Tech"],
-      icon2: Brain
+      icon2: Brain,
+      pricingFeatures: [
+        "Up to 10 Pages",
+        "Advanced Contact Forms",
+        "Complete SEO Package",
+        "Custom Animations",
+        "Database Integration"
+      ]
     },
     {
       icon: Smartphone,
@@ -70,11 +86,19 @@ const Services = () => {
         "Works Without Internet",
         "Super Easy to Use"
       ],
-      price: "Let's Talk!",
+      price: "Custom",
+      monthlyPrice: "Contact us",
       gradient: "from-green-500 via-emerald-500 to-teal-600",
       popular: false,
       technologies: ["Phone Apps", "Tablet Apps", "Easy Touch", "Fun Design"],
-      icon2: Smartphone
+      icon2: Smartphone,
+      pricingFeatures: [
+        "Unlimited Pages",
+        "Custom Design & Development",
+        "E-commerce Integration",
+        "Advanced User Authentication",
+        "Multi-language Support"
+      ]
     },
     {
       icon: Database,
@@ -87,11 +111,19 @@ const Services = () => {
         "Fast Loading",
         "Never Loses Stuff"
       ],
-      price: "Let's Talk!",
+      price: "£300",
+      monthlyPrice: "£40",
       gradient: "from-purple-600 via-indigo-600 to-blue-700",
       popular: false,
       technologies: ["Cloud Magic", "Security", "Fast Servers", "Safe Storage"],
-      icon2: Database
+      icon2: Database,
+      pricingFeatures: [
+        "5 Pages Website",
+        "Mobile Responsive Design",
+        "Contact Form",
+        "Basic SEO Setup",
+        "Social Media Integration"
+      ]
     },
     {
       icon: ShoppingCart,
@@ -104,11 +136,19 @@ const Services = () => {
         "Sales Reports",
         "Customer Messages"
       ],
-      price: "Let's Talk!",
+      price: "£800",
+      monthlyPrice: "£60",
       gradient: "from-orange-500 via-red-500 to-pink-600",
       popular: false,
       technologies: ["Shopping", "Payments", "Reports", "Customer Care"],
-      icon2: ShoppingCart
+      icon2: ShoppingCart,
+      pricingFeatures: [
+        "Up to 10 Pages",
+        "Advanced Contact Forms",
+        "Complete SEO Package",
+        "Custom Animations",
+        "Database Integration"
+      ]
     },
     {
       icon: Globe,
@@ -121,11 +161,19 @@ const Services = () => {
         "Connect Everything",
         "Teach People How to Use"
       ],
-      price: "Let's Talk!",
+      price: "Custom",
+      monthlyPrice: "Contact us",
       gradient: "from-indigo-600 via-purple-600 to-pink-600",
       popular: false,
       technologies: ["Fixing", "Upgrading", "Teaching", "Connecting"],
-      icon2: Globe
+      icon2: Globe,
+      pricingFeatures: [
+        "Unlimited Pages",
+        "Custom Design & Development",
+        "E-commerce Integration",
+        "Advanced User Authentication",
+        "Multi-language Support"
+      ]
     }
   ];
 
@@ -209,264 +257,134 @@ const Services = () => {
           </div>
         </div>
 
-        {/* Enhanced services grid with modern cards */}
+        {/* Enhanced services grid with flip cards */}
         <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-8 mb-16">
           {services.map((service, index) => {
             const Icon = service.icon;
             
             return (
-              <Card 
-                key={service.title}
-                className={`group relative overflow-hidden bg-gradient-card border-0 shadow-elegant hover:shadow-glow transition-all duration-500 hover:scale-105 animate-fade-in-up stagger-delay-${index % 3 + 1} ${service.popular ? 'ring-2 ring-primary/50 ring-offset-2 ring-offset-background' : ''}`}
-              >
-                {/* Popular badge */}
-                {service.popular && (
-                  <div className="absolute top-4 right-4 z-30">
-                    <Badge className="bg-gradient-to-r from-primary to-accent text-white border-0 animate-pulse">
-                      <Star className="h-3 w-3 mr-1" />
-                      Popular
-                    </Badge>
-                  </div>
-                )}
-
-                {/* Enhanced gradient background with animation */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-90 group-hover:opacity-100 transition-all duration-500 group-hover:scale-105`}></div>
-                
-                {/* Overlay with subtle pattern */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent z-10"></div>
-                <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_1px_1px,_white_1px,_transparent_0)] bg-[size:20px_20px] z-10"></div>
-                
-                <CardHeader className="text-center relative z-20 text-white p-6">
-                  <div className="w-16 h-16 rounded-3xl bg-white/20 backdrop-blur-sm p-4 mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 border border-white/30 shadow-xl">
-                    <Icon className="h-8 w-8 text-white" />
-                  </div>
+              <div key={service.title} className="group perspective-1000">
+                <div className={`relative h-[500px] transition-transform duration-700 transform-style-preserve-3d group-hover:rotate-y-180 animate-fade-in-up stagger-delay-${index % 3 + 1}`}>
                   
-                  <CardTitle className="text-xl text-white font-bold mb-3 drop-shadow-lg group-hover:text-glow transition-all duration-300">
-                    {service.title}
-                  </CardTitle>
-                  
-                  <CardDescription className="text-white/90 leading-relaxed text-sm drop-shadow-sm">
-                    {service.description}
-                  </CardDescription>
-                </CardHeader>
-                
-                <CardContent className="relative z-20 text-white px-6 pb-6">
-                  {/* Technology stack */}
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {service.technologies.map((tech) => (
-                      <Badge key={tech} variant="outline" className="text-xs bg-white/10 text-white border-white/30 hover:bg-white/20 transition-colors">
-                        {tech}
-                      </Badge>
-                    ))}
-                  </div>
+                  {/* Front Side */}
+                  <Card className={`absolute inset-0 backface-hidden overflow-hidden bg-gradient-card border-0 shadow-elegant ${service.popular ? 'ring-2 ring-primary/50 ring-offset-2 ring-offset-background' : ''}`}>
+                    {/* Popular badge */}
+                    {service.popular && (
+                      <div className="absolute top-4 right-4 z-30">
+                        <Badge className="bg-gradient-to-r from-primary to-accent text-white border-0 animate-pulse">
+                          <Star className="h-3 w-3 mr-1" />
+                          Popular
+                        </Badge>
+                      </div>
+                    )}
 
-                  <div className="bg-white/15 backdrop-blur-sm rounded-2xl p-4 mb-6 border border-white/25 shadow-lg">
-                    <div className="grid grid-cols-1 gap-3">
-                      {service.features.slice(0, 5).map((feature) => (
-                        <div key={feature} className="flex items-center gap-3 text-sm text-white font-medium">
-                          <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0" />
-                          {feature}
+                    {/* Enhanced gradient background with animation */}
+                    <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-90 group-hover:opacity-100 transition-all duration-500`}></div>
+                    
+                    {/* Overlay with subtle pattern */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent z-10"></div>
+                    <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_1px_1px,_white_1px,_transparent_0)] bg-[size:20px_20px] z-10"></div>
+                    
+                    <CardHeader className="text-center relative z-20 text-white p-6">
+                      <div className="w-16 h-16 rounded-3xl bg-white/20 backdrop-blur-sm p-4 mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 border border-white/30 shadow-xl">
+                        <Icon className="h-8 w-8 text-white" />
+                      </div>
+                      
+                      <CardTitle className="text-xl text-white font-bold mb-3 drop-shadow-lg">
+                        {service.title}
+                      </CardTitle>
+                      
+                      <CardDescription className="text-white/90 leading-relaxed text-sm drop-shadow-sm">
+                        {service.description}
+                      </CardDescription>
+                    </CardHeader>
+                    
+                    <CardContent className="relative z-20 text-white px-6 pb-6">
+                      {/* Technology stack */}
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {service.technologies.map((tech) => (
+                          <Badge key={tech} variant="outline" className="text-xs bg-white/10 text-white border-white/30 hover:bg-white/20 transition-colors">
+                            {tech}
+                          </Badge>
+                        ))}
+                      </div>
+
+                      <div className="bg-white/15 backdrop-blur-sm rounded-2xl p-4 mb-6 border border-white/25 shadow-lg">
+                        <div className="grid grid-cols-1 gap-3">
+                          {service.features.slice(0, 5).map((feature) => (
+                            <div key={feature} className="flex items-center gap-3 text-sm text-white font-medium">
+                              <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0" />
+                              {feature}
+                            </div>
+                          ))}
                         </div>
-                      ))}
-                    </div>
-                  </div>
-                  
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-white mb-4 drop-shadow-lg">{service.price}</div>
-                    <Button 
-                      size="lg"
-                      className="w-full bg-white/25 backdrop-blur-sm border-2 border-white/40 text-white hover:bg-white hover:text-black transition-all duration-300 rounded-2xl font-semibold py-3 text-sm shadow-xl group"
-                    >
-                      Let's Make This!
-                      <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
+                      </div>
+                      
+                      <div className="text-center">
+                        <div className="text-sm text-white/80 mb-4">Hover to see pricing</div>
+                        <Button 
+                          size="lg"
+                          className="w-full bg-white/25 backdrop-blur-sm border-2 border-white/40 text-white hover:bg-white hover:text-black transition-all duration-300 rounded-2xl font-semibold py-3 text-sm shadow-xl group"
+                        >
+                          Learn More
+                          <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  {/* Back Side - Pricing */}
+                  <Card className="absolute inset-0 backface-hidden rotate-y-180 overflow-hidden bg-gradient-card border-0 shadow-elegant">
+                    <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-90`}></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent z-10"></div>
+                    
+                    <CardHeader className="text-center relative z-20 text-white p-6">
+                      <CardTitle className="text-2xl text-white font-bold mb-4 drop-shadow-lg">
+                        {service.title}
+                      </CardTitle>
+                      <div className="text-4xl font-bold text-white mb-2">{service.price}</div>
+                      {service.monthlyPrice !== "Contact us" && (
+                        <div className="text-sm text-white/80 mb-4">
+                          Then {service.monthlyPrice}/month for hosting & support
+                        </div>
+                      )}
+                    </CardHeader>
+                    
+                    <CardContent className="relative z-20 text-white px-6 pb-6">
+                      <div className="bg-white/15 backdrop-blur-sm rounded-2xl p-4 mb-6 border border-white/25 shadow-lg">
+                        <div className="text-sm font-semibold mb-3 text-white">Included features:</div>
+                        <div className="grid grid-cols-1 gap-2">
+                          {service.pricingFeatures.map((feature) => (
+                            <div key={feature} className="flex items-center gap-3 text-sm text-white">
+                              <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0" />
+                              {feature}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                      
+                      <div className="space-y-3">
+                        <Button 
+                          size="lg"
+                          className="w-full bg-gradient-to-r from-green-500 to-green-600 border-0 text-white hover:scale-105 transition-all duration-300 rounded-2xl font-semibold py-3 text-sm shadow-xl"
+                        >
+                          <ShoppingCart className="mr-2 h-4 w-4" />
+                          Buy Now
+                        </Button>
+                        <Button 
+                          size="lg"
+                          onClick={() => window.open('https://wa.me/447586266007', '_blank')}
+                          className="w-full bg-white/25 backdrop-blur-sm border-2 border-white/40 text-white hover:bg-white hover:text-black transition-all duration-300 rounded-2xl font-semibold py-3 text-sm shadow-xl"
+                        >
+                          💬 Message Us
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+              </div>
             );
           })}
-        </div>
-
-        {/* Pricing Section */}
-        <div className="text-center mb-16 animate-fade-in">
-          <h3 className="text-4xl md:text-5xl font-bold font-serif mb-6">
-            <span className="bg-gradient-to-r from-primary via-accent to-orange-400 bg-clip-text text-transparent">
-              PRICING
-            </span>
-          </h3>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed mb-12">
-            Simple, transparent pricing for projects of all sizes
-          </p>
-
-          {/* Pricing Cards */}
-          <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
-            {/* Basic */}
-            <Card className="relative overflow-hidden bg-gradient-card border-0 shadow-elegant hover:shadow-glow transition-all duration-500 hover:scale-105">
-              <div className="absolute inset-0 bg-gradient-to-br from-slate-700 to-slate-800 opacity-90"></div>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent"></div>
-              
-              <CardHeader className="relative z-20 text-white p-8 text-center">
-                <CardTitle className="text-2xl font-bold mb-4">Basic</CardTitle>
-                <div className="text-4xl font-bold mb-2">£300</div>
-                <div className="text-sm text-white/80 mb-4">one-time</div>
-                <div className="text-sm text-white/90">Then £40/month for hosting & support</div>
-                <p className="text-white/80 mt-4">Perfect for small businesses needing a professional web presence</p>
-              </CardHeader>
-              
-              <CardContent className="relative z-20 text-white px-8 pb-8">
-                <div className="text-sm font-semibold mb-4">Included features:</div>
-                <div className="space-y-3 mb-6">
-                  {[
-                    "5 Pages Website",
-                    "Mobile Responsive Design", 
-                    "Contact Form",
-                    "Basic SEO Setup",
-                    "Social Media Integration",
-                    "Google Maps Integration",
-                    "1 month of Revisions",
-                    "24/7 Hosting Support",
-                    "Basic Analytics Setup",
-                    "Loading Speed Optimization"
-                  ].map((feature) => (
-                    <div key={feature} className="flex items-center gap-3 text-sm">
-                      <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0" />
-                      {feature}
-                    </div>
-                  ))}
-                </div>
-                
-                <div className="text-sm font-semibold mb-4 text-white/80">Not included:</div>
-                <div className="space-y-2 mb-6">
-                  {[
-                    "Custom Animations",
-                    "E-commerce Features",
-                    "Database Integration", 
-                    "User Authentication",
-                    "API Integration"
-                  ].map((feature) => (
-                    <div key={feature} className="flex items-center gap-3 text-sm text-white/60">
-                      <span className="w-4 h-4 text-red-400 flex-shrink-0">×</span>
-                      {feature}
-                    </div>
-                  ))}
-                </div>
-                
-                <Button className="w-full bg-white/25 backdrop-blur-sm border-2 border-white/40 text-white hover:bg-white hover:text-black transition-all duration-300 rounded-2xl font-semibold py-3">
-                  Get Started
-                </Button>
-              </CardContent>
-            </Card>
-
-            {/* Professional */}
-            <Card className="relative overflow-hidden bg-gradient-card border-0 shadow-elegant hover:shadow-glow transition-all duration-500 hover:scale-105 ring-2 ring-primary/50 ring-offset-2 ring-offset-background">
-              <div className="absolute top-4 left-1/2 transform -translate-x-1/2 z-30">
-                <Badge className="bg-gradient-to-r from-orange-500 to-red-500 text-white border-0 px-4 py-1 text-sm font-semibold">
-                  Most Popular
-                </Badge>
-              </div>
-              
-              <div className="absolute inset-0 bg-gradient-to-br from-slate-700 to-slate-800 opacity-90"></div>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent"></div>
-              
-              <CardHeader className="relative z-20 text-white p-8 text-center pt-12">
-                <CardTitle className="text-2xl font-bold mb-4">Professional</CardTitle>
-                <div className="text-4xl font-bold mb-2">£800</div>
-                <div className="text-sm text-white/80 mb-4">one-time</div>
-                <div className="text-sm text-white/90">Then £60/month for hosting & support</div>
-                <p className="text-white/80 mt-4">Ideal for growing businesses requiring advanced functionality</p>
-              </CardHeader>
-              
-              <CardContent className="relative z-20 text-white px-8 pb-8">
-                <div className="text-sm font-semibold mb-4">Included features:</div>
-                <div className="space-y-3 mb-6">
-                  {[
-                    "Up to 10 Pages",
-                    "Mobile Responsive Design",
-                    "Advanced Contact Forms", 
-                    "Complete SEO Package",
-                    "Social Media Integration",
-                    "Google Maps Integration",
-                    "Custom Animations",
-                    "Database Integration",
-                    "User Authentication",
-                    "3 Months Support",
-                    "Advanced Analytics",
-                    "Performance Optimization",
-                    "Content Management System",
-                    "SSL Certificate",
-                    "2 Months of Revisions"
-                  ].map((feature) => (
-                    <div key={feature} className="flex items-center gap-3 text-sm">
-                      <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0" />
-                      {feature}
-                    </div>
-                  ))}
-                </div>
-                
-                <div className="text-sm font-semibold mb-4 text-white/80">Not included:</div>
-                <div className="space-y-2 mb-6">
-                  {[
-                    "Custom Admin Dashboard",
-                    "Advanced User Roles",
-                    "Third-party Integrations"
-                  ].map((feature) => (
-                    <div key={feature} className="flex items-center gap-3 text-sm text-white/60">
-                      <span className="w-4 h-4 text-red-400 flex-shrink-0">×</span>
-                      {feature}
-                    </div>
-                  ))}
-                </div>
-                
-                <Button className="w-full bg-gradient-to-r from-primary to-accent hover:shadow-glow transition-all duration-300 hover:scale-105 text-white border-0 rounded-2xl font-semibold py-3">
-                  Choose Professional
-                </Button>
-              </CardContent>
-            </Card>
-
-            {/* Enterprise */}
-            <Card className="relative overflow-hidden bg-gradient-card border-0 shadow-elegant hover:shadow-glow transition-all duration-500 hover:scale-105">
-              <div className="absolute inset-0 bg-gradient-to-br from-slate-700 to-slate-800 opacity-90"></div>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent"></div>
-              
-              <CardHeader className="relative z-20 text-white p-8 text-center">
-                <CardTitle className="text-2xl font-bold mb-4">Enterprise</CardTitle>
-                <div className="text-4xl font-bold mb-2">Custom</div>
-                <div className="text-sm text-white/90 mt-4">Full-featured solution for large businesses with complex requirements</div>
-              </CardHeader>
-              
-              <CardContent className="relative z-20 text-white px-8 pb-8">
-                <div className="text-sm font-semibold mb-4">Included features:</div>
-                <div className="space-y-3 mb-6">
-                  {[
-                    "Unlimited Pages",
-                    "Custom Design & Development",
-                    "E-commerce Integration",
-                    "Custom API Development", 
-                    "Advanced User Authentication",
-                    "Multi-language Support",
-                    "Advanced Security Features",
-                    "Database Design & Integration",
-                    "Custom Admin Dashboard",
-                    "6 Months Support",
-                    "Performance Optimization",
-                    "Advanced Analytics Suite",
-                    "Load Balancing Setup",
-                    "CI/CD Pipeline",
-                    "Unlimited Revisions"
-                  ].map((feature) => (
-                    <div key={feature} className="flex items-center gap-3 text-sm">
-                      <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0" />
-                      {feature}
-                    </div>
-                  ))}
-                </div>
-                
-                <Button className="w-full bg-white/25 backdrop-blur-sm border-2 border-white/40 text-white hover:bg-white hover:text-black transition-all duration-300 rounded-2xl font-semibold py-3">
-                  Contact Us
-                </Button>
-              </CardContent>
-            </Card>
-          </div>
         </div>
 
         {/* Enhanced CTA section */}
@@ -480,6 +398,7 @@ const Services = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
               size="lg" 
+              onClick={() => window.open('https://wa.me/447586266007', '_blank')}
               className="bg-gradient-button hover:shadow-button transition-all duration-300 hover:scale-105 text-lg px-8 py-6"
             >
               <Zap className="mr-2 h-5 w-5" />
