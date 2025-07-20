@@ -4,63 +4,91 @@ import heroImage from "@/assets/hero-image-no-bg.png";
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-hero">
-      {/* Advanced animated background */}
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900">
+      {/* Professional layered background */}
       <div className="absolute inset-0">
-        <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-primary/30 to-accent/30 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-full blur-2xl animate-float"></div>
-        <div className="absolute top-1/2 right-1/3 w-60 h-60 bg-gradient-to-l from-orange-400/15 to-red-400/15 rounded-full blur-xl animate-float-delayed"></div>
+        {/* Sophisticated gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/50 via-indigo-900/30 to-purple-900/50"></div>
         
-        {/* Floating code elements */}
-        <div className="absolute top-20 left-10 text-primary/20 text-6xl font-mono animate-float">&lt;/&gt;</div>
-        <div className="absolute top-40 right-20 text-accent/20 text-4xl font-mono animate-float-delayed">{`{}`}</div>
-        <div className="absolute bottom-32 left-20 text-primary/20 text-5xl font-mono animate-float">AI</div>
-        <div className="absolute bottom-20 right-10 text-accent/20 text-3xl font-mono animate-pulse">[ ]</div>
-        <div className="absolute top-60 left-1/3 text-primary/20 text-4xl font-mono animate-float-delayed">=&gt;</div>
-        
-        {/* Binary rain effect */}
-        <div className="absolute inset-0 overflow-hidden opacity-10">
-          {Array.from({ length: 20 }).map((_, i) => (
-            <div 
-              key={i} 
-              className="absolute text-green-400/30 text-xs font-mono animate-pulse"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 3}s`,
-                animationDuration: `${2 + Math.random() * 2}s`
-              }}
-            >
-              {Math.random() > 0.5 ? '1' : '0'}
-            </div>
-          ))}
-        </div>
-        
-        {/* Circuit board patterns */}
-        <div className="absolute top-10 right-10 w-32 h-32 opacity-20">
-          <svg viewBox="0 0 100 100" className="text-primary animate-pulse">
-            <circle cx="20" cy="20" r="2" fill="currentColor" />
-            <circle cx="80" cy="20" r="2" fill="currentColor" />
-            <circle cx="20" cy="80" r="2" fill="currentColor" />
-            <circle cx="80" cy="80" r="2" fill="currentColor" />
-            <line x1="20" y1="20" x2="80" y2="20" stroke="currentColor" strokeWidth="1" />
-            <line x1="20" y1="80" x2="80" y2="80" stroke="currentColor" strokeWidth="1" />
-            <line x1="20" y1="20" x2="20" y2="80" stroke="currentColor" strokeWidth="1" />
-            <line x1="80" y1="20" x2="80" y2="80" stroke="currentColor" strokeWidth="1" />
-          </svg>
-        </div>
-        
-        {/* Geometric shapes */}
-        <div className="absolute top-20 left-20 w-32 h-32 border border-white/10 rotate-45 animate-spin"></div>
-        <div className="absolute bottom-40 right-40 w-24 h-24 bg-gradient-to-br from-primary/20 to-transparent rounded-full animate-pulse"></div>
-        
-        {/* Dynamic grid pattern */}
-        <div className="absolute inset-0 opacity-5">
-          <div className="grid grid-cols-12 h-full">
-            {Array.from({ length: 144 }).map((_, i) => (
-              <div key={i} className="border border-white/20 animate-pulse" style={{ animationDelay: `${i * 0.1}s` }}></div>
-            ))}
+        {/* Professional geometric patterns */}
+        <div className="absolute inset-0">
+          {/* Large geometric shapes */}
+          <div className="absolute top-0 right-0 w-1/2 h-1/2 opacity-10">
+            <svg viewBox="0 0 400 400" className="w-full h-full">
+              <polygon points="0,0 400,100 300,400 0,300" fill="url(#grad1)" />
+              <defs>
+                <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style={{stopColor:'rgb(59, 130, 246)', stopOpacity:0.3}} />
+                  <stop offset="100%" style={{stopColor:'rgb(147, 51, 234)', stopOpacity:0.1}} />
+                </linearGradient>
+              </defs>
+            </svg>
           </div>
+          
+          {/* Professional grid overlay */}
+          <div className="absolute inset-0 opacity-5">
+            <div className="grid grid-cols-20 grid-rows-12 h-full w-full">
+              {Array.from({ length: 240 }).map((_, i) => (
+                <div 
+                  key={i} 
+                  className="border border-white/20"
+                  style={{ 
+                    animationDelay: `${i * 0.02}s`,
+                    animation: `pulse 3s ease-in-out infinite`
+                  }}
+                ></div>
+              ))}
+            </div>
+          </div>
+          
+          {/* Floating hexagonal patterns */}
+          <div className="absolute top-1/4 left-1/4 w-32 h-32 opacity-20">
+            <svg viewBox="0 0 100 100" className="w-full h-full animate-float">
+              <polygon points="50,5 90,25 90,75 50,95 10,75 10,25" fill="none" stroke="currentColor" strokeWidth="1" className="text-blue-300"/>
+              <polygon points="50,15 80,30 80,70 50,85 20,70 20,30" fill="none" stroke="currentColor" strokeWidth="1" className="text-indigo-300"/>
+            </svg>
+          </div>
+          
+          <div className="absolute bottom-1/4 right-1/4 w-40 h-40 opacity-15">
+            <svg viewBox="0 0 100 100" className="w-full h-full animate-float-delayed">
+              <polygon points="50,5 90,25 90,75 50,95 10,75 10,25" fill="none" stroke="currentColor" strokeWidth="1" className="text-purple-300"/>
+              <circle cx="50" cy="50" r="25" fill="none" stroke="currentColor" strokeWidth="1" className="text-blue-300"/>
+            </svg>
+          </div>
+          
+          {/* Professional tech elements */}
+          <div className="absolute top-20 left-10 text-blue-300/30 text-4xl font-mono animate-float">&lt;/&gt;</div>
+          <div className="absolute top-32 right-20 text-indigo-300/30 text-3xl font-mono animate-float-delayed">{`{}`}</div>
+          <div className="absolute bottom-32 left-16 text-purple-300/30 text-3xl font-mono animate-pulse">API</div>
+          <div className="absolute bottom-20 right-16 text-blue-300/30 text-2xl font-mono animate-float">[ ]</div>
+          
+          {/* Subtle code snippets */}
+          <div className="absolute top-1/3 right-10 text-indigo-200/20 text-xs font-mono animate-float-delayed">
+            function() {`{`}<br/>
+            &nbsp;&nbsp;return magic;<br/>
+            {`}`}
+          </div>
+          
+          {/* Professional connection lines */}
+          <div className="absolute inset-0 opacity-10">
+            <svg className="w-full h-full">
+              <line x1="10%" y1="20%" x2="30%" y2="40%" stroke="rgb(59, 130, 246)" strokeWidth="1" opacity="0.5"/>
+              <line x1="70%" y1="30%" x2="90%" y2="60%" stroke="rgb(147, 51, 234)" strokeWidth="1" opacity="0.5"/>
+              <line x1="20%" y1="70%" x2="40%" y2="90%" stroke="rgb(59, 130, 246)" strokeWidth="1" opacity="0.5"/>
+              <circle cx="30%" cy="40%" r="2" fill="rgb(59, 130, 246)" opacity="0.6"/>
+              <circle cx="90%" cy="60%" r="2" fill="rgb(147, 51, 234)" opacity="0.6"/>
+              <circle cx="40%" cy="90%" r="2" fill="rgb(59, 130, 246)" opacity="0.6"/>
+            </svg>
+          </div>
+          
+          {/* Abstract flowing shapes */}
+          <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
+            <div className="absolute top-1/4 -left-20 w-96 h-96 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-full blur-3xl animate-float"></div>
+            <div className="absolute bottom-1/4 -right-20 w-80 h-80 bg-gradient-to-l from-indigo-500/10 to-blue-500/10 rounded-full blur-2xl animate-float-delayed"></div>
+          </div>
+          
+          {/* Professional mesh gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-blue-900/20 to-purple-900/30"></div>
         </div>
       </div>
       
