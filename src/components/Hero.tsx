@@ -4,7 +4,7 @@ import heroImage from "@/assets/hero-image.jpg";
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-background via-primary/5 to-accent/10">
       {/* Abstract background shapes */}
       <div className="absolute top-20 right-10 w-80 h-80 bg-gradient-to-br from-primary to-accent rounded-full blur-3xl opacity-20 animate-pulse"></div>
       <div className="absolute bottom-20 left-10 w-60 h-60 bg-gradient-to-tr from-accent to-primary rounded-full blur-2xl opacity-15"></div>
