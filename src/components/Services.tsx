@@ -285,65 +285,65 @@ const Services = () => {
                   )}
 
                   {/* Content */}
-                  <div className="relative z-10 h-full flex flex-col text-white p-6">
+                  <div className={`relative z-10 h-full flex flex-col text-white ${index < 4 ? 'p-6' : 'p-3'}`}>
                     {/* Icon */}
-                    <div className="w-16 h-16 rounded-2xl bg-white/20 backdrop-blur-sm p-4 mb-6 flex items-center justify-center">
-                      <Icon className="h-8 w-8 text-white" />
+                    <div className={`${index < 4 ? 'w-16 h-16' : 'w-8 h-8'} rounded-2xl bg-white/20 backdrop-blur-sm ${index < 4 ? 'p-4 mb-6' : 'p-2 mb-2'} flex items-center justify-center`}>
+                      <Icon className={`${index < 4 ? 'h-8 w-8' : 'h-4 w-4'} text-white`} />
                     </div>
                     
                     {/* Title */}
-                    <h3 className="text-2xl font-bold mb-3 text-white">
+                    <h3 className={`${index < 4 ? 'text-2xl' : 'text-lg'} font-bold ${index < 4 ? 'mb-3' : 'mb-1'} text-white`}>
                       {service.title}
                     </h3>
                     
                     {/* Description */}
-                    <p className="text-white/90 text-sm leading-relaxed mb-4">
+                    <p className={`text-white/90 ${index < 4 ? 'text-sm' : 'text-xs'} leading-relaxed ${index < 4 ? 'mb-4' : 'mb-2'}`}>
                       {service.description}
                     </p>
 
                     {/* Technology badges */}
-                    <div className="flex flex-wrap gap-2 mb-6">
+                    <div className={`flex flex-wrap gap-2 ${index < 4 ? 'mb-6' : 'mb-2'}`}>
                       {service.technologies.slice(0, 4).map((tech) => (
-                        <span key={tech} className="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-xs font-medium text-white border border-white/30">
+                        <span key={tech} className={`px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full ${index < 4 ? 'text-xs' : 'text-xs'} font-medium text-white border border-white/30`}>
                           {tech}
                         </span>
                       ))}
                     </div>
 
                     {/* Features list */}
-                    <div className="flex-grow mb-4">
-                      <div className="space-y-2">
-                        {service.features.slice(0, 6).map((feature) => (
+                    <div className={`flex-grow ${index < 4 ? 'mb-4' : 'mb-2'}`}>
+                      <div className={`${index < 4 ? 'space-y-2' : 'space-y-1'}`}>
+                        {service.features.slice(0, index < 4 ? 6 : 3).map((feature) => (
                           <div key={feature} className="flex items-center gap-3">
-                            <div className="w-4 h-4 rounded-full bg-green-400 flex items-center justify-center flex-shrink-0">
-                              <CheckCircle className="w-2.5 h-2.5 text-green-800" />
+                            <div className={`${index < 4 ? 'w-4 h-4' : 'w-3 h-3'} rounded-full bg-green-400 flex items-center justify-center flex-shrink-0`}>
+                              <CheckCircle className={`${index < 4 ? 'w-2.5 h-2.5' : 'w-2 h-2'} text-green-800`} />
                             </div>
-                            <span className="text-white text-xs font-medium">{feature}</span>
+                            <span className={`text-white ${index < 4 ? 'text-xs' : 'text-xs'} font-medium`}>{feature}</span>
                           </div>
                         ))}
                       </div>
                     </div>
 
                     {/* Price */}
-                    <div className="mb-6 text-center">
-                      <div className="text-3xl font-bold text-white mb-1">{service.price}</div>
+                    <div className={`${index < 4 ? 'mb-6' : 'mb-2'} text-center`}>
+                      <div className={`${index < 4 ? 'text-3xl' : 'text-xl'} font-bold text-white mb-1`}>{service.price}</div>
                       {service.monthlyPrice !== "Contact us" && (
-                        <div className="text-white/80 text-sm">
+                        <div className={`text-white/80 ${index < 4 ? 'text-sm' : 'text-xs'}`}>
                           Then {service.monthlyPrice}/month
                         </div>
                       )}
                     </div>
                     
                     {/* Buttons */}
-                    <div className="space-y-3 mt-auto">
+                    <div className={`${index < 4 ? 'space-y-3' : 'space-y-1'} mt-auto`}>
                       {service.title === "Build Me a Website" ? (
-                        <PaymentButton className="w-full bg-white text-gray-900 hover:bg-gray-100 transition-all duration-200 rounded-xl font-semibold py-3 text-sm shadow-lg border-0" />
+                        <PaymentButton className={`w-full bg-white text-gray-900 hover:bg-gray-100 transition-all duration-200 rounded-xl font-semibold ${index < 4 ? 'py-3 text-sm' : 'py-2 text-xs'} shadow-lg border-0`} />
                       ) : (
                         <Button 
                           onClick={() => console.log('Buy Now clicked for:', service.title)}
-                          className="w-full bg-white text-gray-900 hover:bg-gray-100 transition-all duration-200 rounded-xl font-semibold py-3 text-sm shadow-lg border-0"
+                          className={`w-full bg-white text-gray-900 hover:bg-gray-100 transition-all duration-200 rounded-xl font-semibold ${index < 4 ? 'py-3 text-sm' : 'py-2 text-xs'} shadow-lg border-0`}
                         >
-                          <ShoppingCart className="mr-2 h-4 w-4" />
+                          <ShoppingCart className={`mr-2 ${index < 4 ? 'h-4 w-4' : 'h-3 w-3'}`} />
                           Buy Now - {service.price}
                         </Button>
                       )}
@@ -353,7 +353,7 @@ const Services = () => {
                           console.log('WhatsApp clicked');
                           window.open('https://wa.me/447586266007', '_blank');
                         }}
-                        className="w-full bg-transparent border-2 border-white/40 text-white hover:bg-white hover:text-gray-900 transition-all duration-200 rounded-xl font-semibold py-3 text-sm"
+                        className={`w-full bg-transparent border-2 border-white/40 text-white hover:bg-white hover:text-gray-900 transition-all duration-200 rounded-xl font-semibold ${index < 4 ? 'py-3 text-sm' : 'py-2 text-xs'}`}
                       >
                         💬 Chat with Us
                       </Button>
