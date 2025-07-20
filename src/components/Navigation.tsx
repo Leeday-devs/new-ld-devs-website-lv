@@ -24,8 +24,8 @@ const Navigation = () => {
               alt="LD Logo" 
               className="h-10 w-auto"
             />
-            <span className="text-xl font-bold">
-              LD <span className="text-orange-500">Development</span>
+            <span className="text-xl font-bold text-orange-500">
+              Development
             </span>
           </div>
 
