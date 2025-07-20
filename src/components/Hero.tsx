@@ -44,7 +44,7 @@ const Hero = () => {
             
             <p className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl leading-relaxed">
               We make super cool websites and apps that are fun to use! Just like your favorite games and apps, 
-              but for schools, businesses, and anyone who wants something amazing on the internet!
+              but for businesses, and anyone who wants something amazing on the internet!
             </p>
             
             {/* Feature highlights */}
