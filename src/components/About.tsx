@@ -100,7 +100,7 @@ const About = () => {
           
           <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold font-serif mb-6">
             <span className="block">WE MAKE</span>
-            <span className="bg-gradient-to-r from-primary via-accent to-orange-400 bg-clip-text text-transparent animate-text-glow">
+            <span className="bg-gradient-to-r from-orange-400 via-yellow-400 to-orange-500 bg-clip-text text-transparent animate-text-glow">
               AWESOME
             </span>
             <span className="block">STUFF</span>

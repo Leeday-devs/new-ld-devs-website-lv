@@ -72,7 +72,7 @@ const Portfolio = () => {
           </div>
           
           <h2 className="text-4xl md:text-6xl font-bold font-serif mb-6 animate-fade-in-up stagger-delay-1">
-            <span className="bg-gradient-accent bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-orange-400 via-yellow-400 to-orange-500 bg-clip-text text-transparent">
               Our Portfolio
             </span>
             <br />
