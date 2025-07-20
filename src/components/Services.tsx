@@ -109,41 +109,41 @@ const Services = () => {
             return (
               <Card 
                 key={service.title} 
-                className={`relative overflow-hidden group border-0 shadow-2xl transition-all duration-500 animate-fade-in-up stagger-delay-${Math.min(index + 1, 5)} rounded-3xl ${service.popular ? 'ring-4 ring-white/20 scale-105' : ''}`}
-                style={{
-                  background: `linear-gradient(135deg, var(--tw-gradient-stops))`,
-                  backgroundImage: `linear-gradient(135deg, ${service.gradient.split(' ').map(c => `hsl(var(--${c.replace('from-', '').replace('via-', '').replace('to-', '').replace('-', '-')}))`).join(', ')})`
-                }}
+                className={`relative overflow-hidden group border-0 shadow-2xl transition-all duration-500 animate-fade-in-up stagger-delay-${Math.min(index + 1, 5)} rounded-3xl ${service.popular ? 'ring-4 ring-orange-400/50 scale-105' : ''}`}
               >
+                {/* Solid gradient background */}
+                <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient}`}></div>
+                
                 {service.popular && (
-                  <Badge className="absolute top-4 right-4 bg-white/90 text-black border-0 animate-pulse-glow z-10 backdrop-blur-sm">
+                  <Badge className="absolute top-6 right-6 bg-white text-black border-0 animate-pulse-glow z-20 font-semibold px-3 py-1">
                     <Target className="h-3 w-3 mr-1" />
                     Most Popular
                   </Badge>
                 )}
                 
-                <div className="absolute inset-0 bg-gradient-to-br from-black/20 via-transparent to-black/30"></div>
+                {/* Dark overlay for better text contrast */}
+                <div className="absolute inset-0 bg-black/20 z-10"></div>
                 
-                <CardHeader className="text-center relative z-10 text-white">
-                  <div className="w-16 h-16 rounded-2xl bg-white/20 backdrop-blur-sm p-4 mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 border border-white/30">
-                    <Icon className="h-8 w-8 text-white" />
+                <CardHeader className="text-center relative z-20 text-white p-8">
+                  <div className="w-20 h-20 rounded-3xl bg-white/20 backdrop-blur-sm p-5 mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 border border-white/30 shadow-xl">
+                    <Icon className="h-10 w-10 text-white" />
                   </div>
                   
-                  <CardTitle className="text-xl text-white group-hover:text-white/90 transition-colors duration-300 font-bold">
+                  <CardTitle className="text-2xl text-white font-bold mb-4 drop-shadow-lg">
                     {service.title}
                   </CardTitle>
                   
-                  <CardDescription className="text-white/80 leading-relaxed">
+                  <CardDescription className="text-white/90 leading-relaxed text-base drop-shadow-sm">
                     {service.description}
                   </CardDescription>
                 </CardHeader>
                 
-                <CardContent className="relative z-10 text-white">
-                  <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 mb-4 border border-white/20">
-                    <div className="grid grid-cols-1 gap-2">
+                <CardContent className="relative z-20 text-white px-8 pb-8">
+                  <div className="bg-white/15 backdrop-blur-sm rounded-2xl p-6 mb-6 border border-white/25 shadow-lg">
+                    <div className="grid grid-cols-1 gap-3">
                       {service.features.slice(0, 3).map((feature) => (
-                        <div key={feature} className="flex items-center gap-2 text-sm text-white/90">
-                          <div className="w-1.5 h-1.5 bg-white rounded-full"></div>
+                        <div key={feature} className="flex items-center gap-3 text-sm text-white font-medium">
+                          <div className="w-2 h-2 bg-white rounded-full shadow-sm"></div>
                           {feature}
                         </div>
                       ))}
@@ -151,13 +151,13 @@ const Services = () => {
                   </div>
                   
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-white mb-4">{service.price}</div>
+                    <div className="text-3xl font-bold text-white mb-6 drop-shadow-lg">{service.price}</div>
                     <Button 
                       size="lg"
-                      className="w-full bg-white/20 backdrop-blur-sm border border-white/30 text-white hover:bg-white hover:text-black transition-all duration-300 rounded-xl"
+                      className="w-full bg-white/25 backdrop-blur-sm border-2 border-white/40 text-white hover:bg-white hover:text-black transition-all duration-300 rounded-2xl font-semibold py-4 text-lg shadow-xl"
                     >
                       Get Started
-                      <ArrowRight className="ml-2 h-4 w-4" />
+                      <ArrowRight className="ml-2 h-5 w-5" />
                     </Button>
                   </div>
                 </CardContent>
