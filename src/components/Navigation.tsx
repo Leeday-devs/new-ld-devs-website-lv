@@ -18,12 +18,15 @@ const Navigation = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <div className="flex items-center">
+          <div className="flex items-center gap-2">
             <img 
               src="/lovable-uploads/c05ee520-dfce-4d37-9abd-2ecb7430e4da.png" 
               alt="LD Logo" 
               className="h-10 w-auto"
             />
+            <span className="text-xl font-bold">
+              LD <span className="text-orange-500">Development</span>
+            </span>
           </div>
 
           {/* Desktop Navigation */}
