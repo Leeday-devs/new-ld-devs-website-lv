@@ -4,37 +4,37 @@ import { CheckCircle, Users, Award, Rocket, Zap, Star, Globe, Code, Palette, Dat
 
 const About = () => {
   const technologies = [
-    { name: "React & Next.js", level: 95, category: "Frontend" },
-    { name: "TypeScript", level: 90, category: "Language" },
-    { name: "Node.js & Python", level: 85, category: "Backend" },
-    { name: "UI/UX Design", level: 92, category: "Design" },
-    { name: "Cloud & DevOps", level: 88, category: "Infrastructure" },
-    { name: "Database Design", level: 87, category: "Data" }
+    { name: "React & Fun Frameworks", level: 95, category: "Making Websites" },
+    { name: "Smart Programming", level: 90, category: "Coding Language" },
+    { name: "Server Magic", level: 85, category: "Behind the Scenes" },
+    { name: "Pretty Design", level: 92, category: "Making it Look Good" },
+    { name: "Cloud Computing", level: 88, category: "Internet Servers" },
+    { name: "Data Storage", level: 87, category: "Keeping Information" }
   ];
 
   const capabilities = [
     {
       icon: Code,
-      title: "Full-Stack Development",
-      description: "End-to-end application development with modern tech stacks",
+      title: "Building Cool Websites",
+      description: "We build complete websites from start to finish using the coolest technology",
       color: "from-blue-500 to-purple-600"
     },
     {
       icon: Palette,
-      title: "Creative Design",
-      description: "User-centered design that converts and delights",
+      title: "Making Things Pretty",
+      description: "We design beautiful colors, animations, and layouts that make people smile",
       color: "from-pink-500 to-orange-500"
     },
     {
       icon: Globe,
-      title: "Global Scale",
-      description: "Applications built to handle millions of users worldwide",
+      title: "Works for Everyone",
+      description: "Our websites work for millions of people all around the world",
       color: "from-green-500 to-teal-600"
     },
     {
       icon: Shield,
-      title: "Security First",
-      description: "Enterprise-grade security and data protection",
+      title: "Keeping Things Safe",
+      description: "We make sure all websites are super secure and protect people's information",
       color: "from-red-500 to-pink-600"
     }
   ];
@@ -59,20 +59,20 @@ const About = () => {
         <div className="max-w-4xl mx-auto text-center mb-20 animate-fade-in">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-primary/10 to-accent/10 backdrop-blur-sm rounded-full mb-6 border border-primary/20">
             <Sparkles className="h-4 w-4 text-primary animate-pulse" />
-            <span className="text-sm font-medium text-primary">About Our Expertise</span>
+            <span className="text-sm font-medium text-primary">About Our Team</span>
           </div>
           
           <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold font-serif mb-6">
-            <span className="block">CRAFTING</span>
+            <span className="block">WE MAKE</span>
             <span className="bg-gradient-to-r from-primary via-accent to-orange-400 bg-clip-text text-transparent animate-text-glow">
-              DIGITAL
+              AWESOME
             </span>
-            <span className="block">EXCELLENCE</span>
+            <span className="block">STUFF</span>
           </h2>
           
           <p className="text-xl text-muted-foreground leading-relaxed mb-8">
-            Pioneering the future of web development with cutting-edge technologies, innovative design principles, 
-            and a passion for creating digital experiences that transform businesses and delight users.
+            We're like digital builders who love making cool websites and apps! We use the newest technology 
+            and fun designs to create things that people love to use every day.
           </p>
         </div>
 
@@ -91,7 +91,7 @@ const About = () => {
 
         {/* Technology expertise */}
         <div className="max-w-4xl mx-auto mb-20">
-          <h3 className="text-3xl font-bold text-center mb-12 animate-fade-in">Technology Expertise</h3>
+          <h3 className="text-3xl font-bold text-center mb-12 animate-fade-in">Cool Tools We Use</h3>
           <div className="grid md:grid-cols-2 gap-8">
             {technologies.map((tech, index) => (
               <div key={tech.name} className={`bg-gradient-card rounded-xl p-6 shadow-elegant animate-fade-in-up stagger-delay-${index % 2 + 1}`}>
@@ -133,11 +133,11 @@ const About = () => {
         {/* Call to action */}
         <div className="text-center bg-gradient-to-r from-primary/10 via-accent/10 to-primary/10 rounded-3xl p-12 glass animate-fade-in-up">
           <h3 className="text-3xl md:text-4xl font-bold font-serif mb-6 text-glow">
-            Ready to Build Something Amazing?
+            Want to Build Something Cool Together?
           </h3>
           <p className="text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed text-lg">
-            Let's collaborate to transform your vision into a digital reality that exceeds expectations 
-            and drives meaningful results for your business.
+            Got an awesome idea for a website or app? Let's work together to make it real! 
+            We'll help you create something amazing that everyone will love.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
@@ -145,14 +145,14 @@ const About = () => {
               className="bg-gradient-to-r from-primary to-accent hover:shadow-button transition-all duration-300 hover:scale-105 text-lg px-8 py-6 group"
             >
               <Sparkles className="mr-2 h-5 w-5 group-hover:animate-spin" />
-              Start Your Project
+              Let's Start Building!
             </Button>
             <Button 
               size="lg" 
               variant="outline" 
               className="text-lg px-8 py-6 hover-lift border-primary/20 hover:border-primary/40"
             >
-              View Our Work
+              Show Me Cool Examples
             </Button>
           </div>
         </div>

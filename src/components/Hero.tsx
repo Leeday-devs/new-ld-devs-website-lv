@@ -31,29 +31,29 @@ const Hero = () => {
           <div className="text-center lg:text-left animate-fade-in">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full mb-6 border border-white/20">
               <Sparkles className="h-4 w-4 text-primary animate-pulse" />
-              <span className="text-sm text-white/90 font-medium">Modern Web Solutions 2024</span>
+              <span className="text-sm text-white/90 font-medium">Cool Websites for Kids!</span>
             </div>
             
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 leading-tight">
-              <span className="block">CRAFT</span>
+              <span className="block">BUILD</span>
               <span className="bg-gradient-to-r from-primary via-accent to-orange-300 bg-clip-text text-transparent animate-text-glow">
-                DIGITAL
+                AWESOME
               </span>
-              <span className="block">EXPERIENCES</span>
+              <span className="block">WEBSITES</span>
             </h1>
             
             <p className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl leading-relaxed">
-              Where cutting-edge design meets powerful functionality. We create immersive digital experiences 
-              that captivate users and drive exceptional business results through innovative web technologies.
+              We make super cool websites and apps that are fun to use! Just like your favorite games and apps, 
+              but for schools, businesses, and anyone who wants something amazing on the internet!
             </p>
             
             {/* Feature highlights */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
               {[
-                { icon: Code, label: "Modern Code" },
-                { icon: Palette, label: "Creative Design" },
-                { icon: Rocket, label: "Fast Performance" },
-                { icon: Shield, label: "Secure Solutions" }
+                { icon: Code, label: "Cool Code" },
+                { icon: Palette, label: "Pretty Colors" },
+                { icon: Rocket, label: "Super Fast" },
+                { icon: Shield, label: "Safe & Secure" }
               ].map((feature, index) => (
                 <div key={feature.label} className="flex flex-col items-center gap-2 p-3 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 hover:bg-white/10 transition-all duration-300" style={{ animationDelay: `${index * 0.1}s` }}>
                   <feature.icon className="h-5 w-5 text-primary" />
@@ -65,12 +65,12 @@ const Hero = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <Button size="lg" className="bg-gradient-to-r from-primary to-accent text-white border-0 hover:scale-105 transition-all duration-300 shadow-2xl group">
                 <Sparkles className="mr-2 h-5 w-5 group-hover:animate-spin" />
-                Start Your Project
+                Let's Build Something Cool!
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Button>
               <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 backdrop-blur-sm hover:scale-105 transition-all duration-300">
                 <Layers className="mr-2 h-5 w-5" />
-                View Portfolio
+                See What We Made
               </Button>
             </div>
           </div>
