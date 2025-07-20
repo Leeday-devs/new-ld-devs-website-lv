@@ -52,28 +52,28 @@ const Services = () => {
       ]
     },
     {
-      icon: Brain,
-      title: "Smart Computer Helpers", 
-      description: "We teach computers to be really smart and help people do things faster - like a robot assistant!",
+      icon: Server,
+      title: "Hosting and Maintenance", 
+      description: "We keep your website running perfectly 24/7 and make sure everything works smoothly - like having a tech guardian!",
       features: [
-        "Computers That Learn",
-        "Chatbots That Talk",
-        "Picture Recognition",
-        "Smart Predictions",
-        "Helpful Automation"
+        "Website Always Online",
+        "Regular Updates",
+        "Security Protection",
+        "Fast Performance",
+        "24/7 Monitoring"
       ],
-      price: "£800",
-      monthlyPrice: "£60",
+      price: "£25",
+      monthlyPrice: "£25",
       gradient: "from-pink-500 via-rose-500 to-orange-500",
       popular: true,
-      technologies: ["AI Magic", "Smart Bots", "Learning", "Cool Tech"],
-      icon2: Brain,
+      technologies: ["Cloud Hosting", "Security", "Monitoring", "Support"],
+      icon2: Server,
       pricingFeatures: [
-        "Up to 10 Pages",
-        "Advanced Contact Forms",
-        "Complete SEO Package",
-        "Custom Animations",
-        "Database Integration"
+        "99.9% Uptime Guarantee",
+        "Daily Backups",
+        "SSL Security Certificate",
+        "Regular Updates",
+        "Technical Support"
       ]
     },
     {
