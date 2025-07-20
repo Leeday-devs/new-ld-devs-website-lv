@@ -14,51 +14,50 @@ const Navigation = () => {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-xl border-b border-border/50 shadow-lg">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-xl border-b border-border/50 shadow-premium">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
-          {/* Enhanced Logo */}
-          <div className="flex items-center gap-3">
-            <div className="relative">
+          {/* Premium Logo with glow effect */}
+          <div className="flex items-center gap-3 hover-scale cursor-pointer">
+            <div className="relative hover-glow">
               <img 
                 src="/lovable-uploads/c05ee520-dfce-4d37-9abd-2ecb7430e4da.png" 
                 alt="LD Logo" 
                 className="h-12 w-auto transition-transform duration-300 hover:scale-110"
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-accent/20 rounded-lg blur-lg opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute inset-0 bg-gradient-primary rounded-lg blur-lg opacity-0 hover:opacity-30 transition-opacity duration-300"></div>
             </div>
             <div className="flex flex-col">
-              <span className="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              <span className="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
                 LD Development
               </span>
               <span className="text-xs text-muted-foreground font-medium">Digital Innovation</span>
             </div>
           </div>
 
-          {/* Desktop Navigation */}
+          {/* Premium Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
               <a
                 key={item.label}
                 href={item.href}
-                className="text-muted-foreground hover:text-foreground transition-smooth relative group"
+                className="link-premium text-muted-foreground hover:text-foreground transition-smooth relative group font-medium"
               >
                 {item.label}
-                <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-smooth"></div>
               </a>
             ))}
           </div>
 
-          {/* CTA Button */}
+          {/* Premium CTA Button */}
           <div className="hidden md:block">
-            <Button className="bg-gradient-primary border-0 text-white hover:scale-105 transition-smooth shadow-elegant">
+            <Button className="btn-premium hover-glow">
               Get Quote
             </Button>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu Button with glow */}
           <button
-            className="md:hidden p-2"
+            className="md:hidden p-2 hover-glow rounded-lg transition-smooth"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? (
@@ -69,22 +68,23 @@ const Navigation = () => {
           </button>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* Premium Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden py-4 border-t border-border bg-white/95 backdrop-blur-md">
+          <div className="md:hidden py-4 border-t border-border bg-white/95 backdrop-blur-md animate-fade-in-up">
             <div className="flex flex-col space-y-4">
-              {navItems.map((item) => (
+              {navItems.map((item, index) => (
                 <a
                   key={item.label}
                   href={item.href}
-                  className="text-muted-foreground hover:text-foreground transition-smooth px-4 py-2"
+                  className="link-premium text-muted-foreground hover:text-foreground transition-smooth px-4 py-2 animate-slide-in-left"
+                  style={{ animationDelay: `${index * 0.1}s` }}
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.label}
                 </a>
               ))}
-              <div className="px-4 pt-2">
-                <Button className="w-full bg-gradient-primary border-0 text-white">
+              <div className="px-4 pt-2 animate-fade-in-up stagger-delay-5">
+                <Button className="btn-premium w-full">
                   Get Quote
                 </Button>
               </div>
