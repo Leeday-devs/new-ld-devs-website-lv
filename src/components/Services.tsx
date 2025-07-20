@@ -313,7 +313,7 @@ const Services = () => {
                     {/* Features list */}
                     <div className="flex-grow mb-6">
                       <div className="space-y-3">
-                        {service.features.slice(0, 3).map((feature) => (
+                        {service.features.slice(0, 6).map((feature) => (
                           <div key={feature} className="flex items-center gap-3">
                             <div className="w-5 h-5 rounded-full bg-green-400 flex items-center justify-center flex-shrink-0">
                               <CheckCircle className="w-3 h-3 text-green-800" />
