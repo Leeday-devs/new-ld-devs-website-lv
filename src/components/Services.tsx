@@ -46,7 +46,7 @@ const Services = () => {
       monthlyPrice: "£40",
       gradient: "from-blue-600 via-indigo-600 to-purple-700",
       popular: false,
-      technologies: ["React", "Fun Stuff", "Cool Code", "Magic"],
+      technologies: ["WordPress", "HTML/CSS", "Responsive", "SEO Ready"],
       icon2: Rocket,
       pricingFeatures: [
         "5 Pages Website",
