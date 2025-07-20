@@ -35,7 +35,8 @@ const Services = () => {
         "Works on Phone & Computer", 
         "Fun Colors & Animations",
         "Easy to Use Buttons",
-        "Safe & Secure"
+        "Safe & Secure",
+        "Free Website Transfer"
       ],
       price: "£300",
       monthlyPrice: "£40",
@@ -60,7 +61,8 @@ const Services = () => {
         "Regular Updates",
         "Security Protection",
         "Fast Performance",
-        "24/7 Monitoring"
+        "24/7 Monitoring",
+        "Free Website Transfer"
       ],
       price: "£25",
       monthlyPrice: "£25",
