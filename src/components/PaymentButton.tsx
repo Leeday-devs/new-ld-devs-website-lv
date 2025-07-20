@@ -53,18 +53,18 @@ export const PaymentButton = ({ className }: PaymentButtonProps) => {
   };
 
   return (
-    <div className="flex flex-col items-center gap-4">
-      {/* Price Display */}
+    <div className="space-y-3">
+      {/* Limited Time Badge */}
       <div className="text-center">
-        <div className="text-4xl font-bold text-primary mb-1">£300</div>
-        <div className="text-sm text-muted-foreground mb-2">Then £40/month</div>
-        <div className="flex items-center justify-center gap-2 mb-2">
-          <span className="text-lg line-through text-muted-foreground">£500</span>
-          <span className="text-2xl font-bold text-primary">£300</span>
-        </div>
-        <span className="text-sm text-orange-500 font-medium animate-pulse">
+        <span className="text-orange-400 font-medium text-sm animate-pulse">
           Limited Time Only!
         </span>
+      </div>
+      
+      {/* Crossed out price */}
+      <div className="text-center">
+        <span className="text-white/60 line-through text-lg">£500</span>
+        <span className="text-white text-2xl font-bold ml-2">£300</span>
       </div>
 
       {/* Payment Button */}
@@ -74,8 +74,7 @@ export const PaymentButton = ({ className }: PaymentButtonProps) => {
           handlePayment();
         }}
         disabled={loading}
-        className={`w-full ${className}`}
-        size="lg"
+        className={`w-full bg-white text-gray-900 hover:bg-gray-100 transition-all duration-200 rounded-xl font-semibold shadow-lg border-0 ${className}`}
       >
         {loading ? (
           <>
@@ -88,16 +87,6 @@ export const PaymentButton = ({ className }: PaymentButtonProps) => {
             Build MY Website
           </>
         )}
-      </Button>
-
-      {/* Chat Button */}
-      <Button
-        variant="outline"
-        className="w-full"
-        size="lg"
-        onClick={() => window.open('https://wa.me/1234567890', '_blank')}
-      >
-        💬 Chat with Us
       </Button>
     </div>
   );
