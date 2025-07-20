@@ -27,6 +27,32 @@ import {
 const Services = () => {
   const services = [
     {
+      icon: Server,
+      title: "Hosting and Maintenance", 
+      description: "We keep your website running perfectly 24/7 and make sure everything works smoothly - like having a tech guardian!",
+      features: [
+        "Website Always Online",
+        "Regular Updates",
+        "Security Protection",
+        "Fast Performance",
+        "24/7 Monitoring",
+        "Free Website Transfer"
+      ],
+      price: "£40",
+      monthlyPrice: "£40",
+      gradient: "from-pink-500 via-rose-500 to-orange-500",
+      popular: true,
+      technologies: ["Cloud Hosting", "Security", "Monitoring", "Support"],
+      icon2: Server,
+      pricingFeatures: [
+        "99.9% Uptime Guarantee",
+        "Daily Backups",
+        "SSL Security Certificate",
+        "Regular Updates",
+        "Technical Support"
+      ]
+    },
+    {
       icon: Code,
       title: "Build Me a Website",
       description: "We will build you an awesome website that works and looks amazing - just how you want it!",
@@ -54,32 +80,6 @@ const Services = () => {
         "Contact Form",
         "Basic SEO Setup",
         "Social Media Integration"
-      ]
-    },
-    {
-      icon: Server,
-      title: "Hosting and Maintenance", 
-      description: "We keep your website running perfectly 24/7 and make sure everything works smoothly - like having a tech guardian!",
-      features: [
-        "Website Always Online",
-        "Regular Updates",
-        "Security Protection",
-        "Fast Performance",
-        "24/7 Monitoring",
-        "Free Website Transfer"
-      ],
-      price: "£40",
-      monthlyPrice: "£40",
-      gradient: "from-pink-500 via-rose-500 to-orange-500",
-      popular: true,
-      technologies: ["Cloud Hosting", "Security", "Monitoring", "Support"],
-      icon2: Server,
-      pricingFeatures: [
-        "99.9% Uptime Guarantee",
-        "Daily Backups",
-        "SSL Security Certificate",
-        "Regular Updates",
-        "Technical Support"
       ]
     },
     {
