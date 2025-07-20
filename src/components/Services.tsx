@@ -13,46 +13,46 @@ import {
 const Services = () => {
   const services = [
     {
-      icon: Palette,
-      title: "Web Design",
-      description: "Custom, responsive designs that captivate your audience and reflect your brand identity.",
-      features: ["UI/UX Design", "Brand Identity", "Responsive Layout", "Figma Prototypes"],
-      price: "Starting at £1,200"
-    },
-    {
       icon: Code,
-      title: "Web Development",
-      description: "Modern, fast, and secure websites built with the latest technologies and best practices.",
-      features: ["React & TypeScript", "Node.js Backend", "Database Integration", "API Development"],
-      price: "Starting at £2,400"
+      title: "Custom Web Development",
+      description: "ROI-focused web applications built with modern frameworks. Scalable solutions that grow with your business.",
+      features: ["React & TypeScript", "Node.js & Express", "Database Design", "API Development", "Performance Optimization"],
+      price: "Starting at £3,500"
     },
     {
       icon: Server,
-      title: "Hosting & Maintenance",
-      description: "Reliable hosting solutions with ongoing support, updates, and performance monitoring.",
-      features: ["Cloud Hosting", "SSL Certificates", "Regular Backups", "24/7 Monitoring"],
-      price: "Starting at £40/month"
+      title: "AI Assistant Development",
+      description: "Tailored AI solutions that automate processes and enhance customer experiences with intelligent responses.",
+      features: ["Custom AI Training", "Natural Language Processing", "Workflow Automation", "Integration Support", "24/7 AI Support"],
+      price: "Starting at £2,800"
     },
     {
       icon: Search,
-      title: "SEO Optimization",
-      description: "Improve your search rankings and drive organic traffic with comprehensive SEO strategies.",
-      features: ["Keyword Research", "On-Page SEO", "Technical SEO", "Performance Optimization"],
-      price: "Starting at £640"
+      title: "Tech Consulting",
+      description: "Strategic technology guidance to optimize your digital infrastructure and drive business growth.",
+      features: ["Technology Audit", "Digital Strategy", "Architecture Planning", "Process Optimization", "Team Training"],
+      price: "£150/hour"
     },
     {
       icon: Smartphone,
-      title: "Mobile Optimization",
-      description: "Ensure your website looks and performs perfectly on all devices and screen sizes.",
-      features: ["Responsive Design", "Mobile-First Approach", "Touch Optimization", "App-like Experience"],
-      price: "Included in all packages"
+      title: "Mobile-First Development",
+      description: "Progressive web applications that deliver native app experiences across all devices.",
+      features: ["PWA Development", "Offline Functionality", "Push Notifications", "App Store Deployment"],
+      price: "Starting at £4,200"
     },
     {
       icon: ShoppingCart,
-      title: "E-commerce Solutions",
-      description: "Complete online store development with payment processing and inventory management.",
-      features: ["Shopping Cart", "Payment Integration", "Inventory Management", "Order Processing"],
-      price: "Starting at £4,000"
+      title: "E-commerce Platforms",
+      description: "Complete online stores with AI-powered recommendations and automated customer service.",
+      features: ["Custom Shop Build", "Payment Integration", "AI Recommendations", "Inventory Management", "Analytics Dashboard"],
+      price: "Starting at £5,500"
+    },
+    {
+      icon: Palette,
+      title: "Digital Transformation",
+      description: "End-to-end digitalization of your business processes with modern web technologies and AI integration.",
+      features: ["Process Analysis", "Custom Software", "AI Integration", "Staff Training", "Ongoing Support"],
+      price: "Project-based pricing"
     }
   ];
 
@@ -61,10 +61,11 @@ const Services = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center mb-16 animate-fade-in">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-            Comprehensive Web Solutions
+            Web Development • AI Solutions • Tech Consulting
           </h2>
           <p className="text-lg text-muted-foreground">
-            From concept to launch and beyond, I provide end-to-end services to bring your digital vision to life.
+            Driving measurable business results through tailored technology solutions. From high-performance web applications 
+            to intelligent AI assistants that work 24/7 for your success.
           </p>
         </div>
 
@@ -107,12 +108,17 @@ const Services = () => {
 
         <div className="text-center animate-fade-in">
           <p className="text-muted-foreground mb-6">
-            Need a custom solution? Let's discuss your specific requirements.
+            Ready to transform your business with tailored technology solutions? Let's discuss your specific goals and ROI targets.
           </p>
-          <Button size="lg" className="bg-gradient-primary border-0 text-white hover:scale-105 transition-smooth shadow-glow">
-            Get Custom Quote
-            <ArrowRight className="ml-2 h-5 w-5" />
-          </Button>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button size="lg" className="bg-gradient-primary border-0 text-white hover:scale-105 transition-smooth shadow-glow">
+              Book Free Consultation
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
+            <Button size="lg" variant="outline" className="hover:bg-primary/10">
+              Request AI Demo
+            </Button>
+          </div>
         </div>
       </div>
     </section>

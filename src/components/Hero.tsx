@@ -20,26 +20,28 @@ const Hero = () => {
           {/* Content */}
           <div className="text-center lg:text-left animate-fade-in">
             <div className="text-sm text-white/80 mb-4 font-medium tracking-wide">
-              Professional Web Designer
+              London-Based Tech Solutions
             </div>
             
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
-              BRAND WEB
+              WEB DEV &
               <br />
               <span className="bg-gradient-to-r from-primary to-orange-300 bg-clip-text text-transparent">
-                Design Hero Banner
+                AI SOLUTIONS
               </span>
             </h1>
             
             <p className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl leading-relaxed">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do 
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis 
-              ipsum suspendisse ultrices gravida.
+              ROI-focused web development and tailored AI assistants that drive real business results. 
+              From custom web applications to intelligent automation solutions that scale with your growth.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <Button size="lg" className="bg-primary/20 backdrop-blur-sm border border-primary/30 text-white hover:bg-primary/30 shadow-2xl">
-                Check Portfolio &gt;&gt;
+                Book Consultation
+              </Button>
+              <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 backdrop-blur-sm">
+                Request AI Demo
               </Button>
             </div>
           </div>
