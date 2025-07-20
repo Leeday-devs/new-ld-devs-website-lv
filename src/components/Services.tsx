@@ -31,9 +31,9 @@ const Services = () => {
       title: "Build Me a Website",
       description: "We will build you an awesome website that works and looks amazing - just how you want it!",
       features: [
-        "Super Fast Websites",
-        "Works on Phone & Computer", 
         "5 Page Website",
+        "Super Fast Websites", 
+        "Works on Phone & Computer",
         "Easy to Use Buttons",
         "Safe & Secure",
         "Free Website Transfer",
