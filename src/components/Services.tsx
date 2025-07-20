@@ -271,7 +271,7 @@ const Services = () => {
             
             return (
               <div key={service.title} className="group w-full max-w-sm mx-auto">
-                <Card className={`relative h-[680px] w-full overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 ${service.popular ? 'ring-2 ring-primary ring-offset-4' : ''}`}>
+                <Card className={`relative h-[750px] w-full overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 ${service.popular ? 'ring-2 ring-primary ring-offset-4' : ''}`}>
                   {/* Background with solid gradient */}
                   <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient}`}></div>
                   
@@ -311,14 +311,14 @@ const Services = () => {
                     </div>
 
                     {/* Features list */}
-                    <div className="flex-grow mb-6">
-                      <div className="space-y-3">
+                    <div className="flex-grow mb-4">
+                      <div className="space-y-2">
                         {service.features.slice(0, 6).map((feature) => (
                           <div key={feature} className="flex items-center gap-3">
-                            <div className="w-5 h-5 rounded-full bg-green-400 flex items-center justify-center flex-shrink-0">
-                              <CheckCircle className="w-3 h-3 text-green-800" />
+                            <div className="w-4 h-4 rounded-full bg-green-400 flex items-center justify-center flex-shrink-0">
+                              <CheckCircle className="w-2.5 h-2.5 text-green-800" />
                             </div>
-                            <span className="text-white text-sm font-medium">{feature}</span>
+                            <span className="text-white text-xs font-medium">{feature}</span>
                           </div>
                         ))}
                       </div>
