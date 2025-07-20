@@ -29,7 +29,7 @@ const Services = () => {
     {
       icon: Code,
       title: "Build Me a Website",
-      description: "We make awesome websites that work great and look amazing - just like your favorite apps!",
+      description: "We will build you an awesome website that works and looks amazing - just how you want it!",
       features: [
         "Super Fast Websites",
         "Works on Phone & Computer", 
