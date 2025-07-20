@@ -15,7 +15,11 @@ export const PaymentButton = ({ className }: PaymentButtonProps) => {
   const { toast } = useToast();
 
   const handlePayment = async () => {
+    console.log('Payment button clicked');
+    console.log('User:', user);
+    
     if (!user) {
+      console.log('No user found, showing auth error');
       toast({
         title: "Authentication Required",
         description: "Please log in to purchase our service.",
