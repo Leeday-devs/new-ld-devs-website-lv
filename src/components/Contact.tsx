@@ -27,7 +27,7 @@ const Contact = () => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-br from-gray-800 via-slate-700 to-slate-600">
+    <section className="py-20 bg-secondary/30">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center mb-16 animate-fade-in">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">

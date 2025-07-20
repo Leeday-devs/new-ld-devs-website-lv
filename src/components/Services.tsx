@@ -130,7 +130,7 @@ const Services = () => {
   ];
 
   return (
-    <section className="py-24 bg-gradient-to-br from-blue-800 via-indigo-800 to-purple-800 relative overflow-hidden">
+    <section className="py-24 bg-gradient-to-br from-background via-accent/5 to-primary/10 relative overflow-hidden">
       {/* Advanced animated background */}
       <div className="absolute inset-0">
         <div className="absolute top-20 right-20 w-72 h-72 bg-gradient-to-r from-primary/10 to-accent/10 rounded-full blur-3xl animate-float"></div>
@@ -183,7 +183,7 @@ const Services = () => {
           
           <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold font-serif mb-6">
             <span className="block">WHAT WE</span>
-            <span className="bg-gradient-to-r from-orange-400 via-yellow-400 to-orange-500 bg-clip-text text-transparent animate-text-glow">
+            <span className="bg-gradient-to-r from-primary via-accent to-orange-400 bg-clip-text text-transparent animate-text-glow">
               BUILD
             </span>
           </h2>

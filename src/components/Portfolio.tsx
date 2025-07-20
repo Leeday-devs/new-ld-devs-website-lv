@@ -56,7 +56,7 @@ const Portfolio = () => {
   ];
 
   return (
-    <section className="py-24 bg-gradient-to-br from-purple-800 via-slate-800 to-gray-800 relative overflow-hidden">
+    <section className="py-24 bg-gradient-to-br from-accent/10 via-background to-primary/10 relative overflow-hidden">
       {/* Background elements */}
       <div className="absolute inset-0 opacity-20">
         <div className="absolute top-32 right-20 w-64 h-64 bg-primary/30 rounded-full blur-3xl animate-float"></div>
@@ -72,7 +72,7 @@ const Portfolio = () => {
           </div>
           
           <h2 className="text-4xl md:text-6xl font-bold font-serif mb-6 animate-fade-in-up stagger-delay-1">
-            <span className="bg-gradient-to-r from-orange-400 via-yellow-400 to-orange-500 bg-clip-text text-transparent">
+            <span className="bg-gradient-accent bg-clip-text text-transparent">
               Our Portfolio
             </span>
             <br />
