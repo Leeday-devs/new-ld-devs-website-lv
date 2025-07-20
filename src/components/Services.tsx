@@ -89,6 +89,7 @@ const Services = () => {
       features: [
         "Easy Shopping Cart",
         "Safe Payment System",
+        "AI Chat Bot",
         "Inventory Tracking",
         "Sales Reports",
         "Customer Messages"
@@ -113,7 +114,6 @@ const Services = () => {
       description: "Smart AI helpers that work 24/7 to make your business run smoother - like having a super smart robot assistant!",
       features: [
         "Smart Chatbots",
-        "AI Chat Bot",
         "Auto Customer Support",
         "Data Analysis",
         "Task Automation",
