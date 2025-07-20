@@ -103,7 +103,7 @@ const Process = () => {
   ];
 
   return (
-    <section className="py-24 bg-gradient-to-br from-background via-accent/5 to-primary/10 relative overflow-hidden">
+    <section className="py-16 bg-gradient-to-br from-background via-accent/5 to-primary/10 relative overflow-hidden">
       {/* Background elements */}
       <div className="absolute inset-0">
         <div className="absolute top-20 right-20 w-96 h-96 bg-gradient-to-r from-primary/10 to-accent/10 rounded-full blur-3xl animate-float"></div>
@@ -136,13 +136,13 @@ const Process = () => {
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Enhanced header */}
-        <div className="max-w-4xl mx-auto text-center mb-20 animate-fade-in">
+        <div className="max-w-4xl mx-auto text-center mb-16 animate-fade-in">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-primary/10 to-accent/10 backdrop-blur-sm rounded-full mb-6 border border-primary/20">
             <Sparkles className="h-4 w-4 text-primary animate-pulse" />
             <span className="text-sm font-medium text-primary">Our Process</span>
           </div>
           
-          <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold font-serif mb-6">
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold font-serif mb-4">
             <span className="block">HOW WE</span>
             <span className="bg-gradient-to-r from-primary via-accent to-orange-400 bg-clip-text text-transparent animate-text-glow">
               BUILD
@@ -150,79 +150,72 @@ const Process = () => {
             <span className="block">YOUR WEBSITE</span>
           </h2>
           
-          <p className="text-xl text-muted-foreground leading-relaxed mb-8 max-w-3xl mx-auto">
+          <p className="text-lg text-muted-foreground leading-relaxed mb-6 max-w-3xl mx-auto">
             From your first idea to launching your amazing website, here's exactly how we work together 
             to create something incredible step by step!
           </p>
         </div>
 
-        {/* Process timeline */}
+        {/* Horizontal Process timeline */}
         <div className="relative">
-          {/* Connection line */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-primary/20 via-accent/20 to-primary/20 hidden lg:block"></div>
+          {/* Horizontal connection line */}
+          <div className="absolute top-16 left-0 right-0 h-1 bg-gradient-to-r from-primary/20 via-accent/20 to-primary/20 hidden md:block"></div>
           
-          <div className="space-y-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6">
             {steps.map((step, index) => {
               const Icon = step.icon;
-              const isEven = index % 2 === 0;
               
               return (
-                <div key={step.number} className={`flex items-center gap-8 ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'}`}>
-                  {/* Content card */}
-                  <div className={`flex-1 ${isEven ? 'lg:text-right' : 'lg:text-left'}`}>
-                    <Card className={`group bg-gradient-card border-0 shadow-elegant hover:shadow-glow transition-all duration-500 hover:scale-105 animate-fade-in-up stagger-delay-${index % 3 + 1}`}>
-                      <CardContent className="p-8">
-                        <div className={`flex items-start gap-6 ${isEven ? 'lg:flex-row-reverse' : 'lg:flex-row'}`}>
-                          {/* Icon and number */}
-                          <div className="flex-shrink-0">
-                            <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${step.color} p-4 group-hover:scale-110 transition-transform duration-300 mb-4`}>
-                              <Icon className="h-8 w-8 text-white" />
-                            </div>
-                            <Badge variant="outline" className="text-xs font-bold">
-                              Step {step.number}
-                            </Badge>
-                          </div>
-                          
-                          {/* Content */}
-                          <div className="flex-1">
-                            <div className={`flex items-center gap-3 mb-4 ${isEven ? 'lg:justify-end' : 'lg:justify-start'}`}>
-                              <h3 className="text-2xl font-bold text-foreground">{step.title}</h3>
-                              <div className="flex items-center gap-2 text-muted-foreground">
-                                <Clock className="h-4 w-4" />
-                                <span className="text-sm">{step.duration}</span>
-                              </div>
-                            </div>
-                            
-                            <p className="text-muted-foreground mb-6 leading-relaxed">
-                              {step.description}
-                            </p>
-                            
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                              {step.details.map((detail, i) => (
-                                <div key={i} className={`flex items-center gap-2 ${isEven ? 'lg:justify-end' : 'lg:justify-start'}`}>
-                                  <CheckCircle className="h-4 w-4 text-green-500 flex-shrink-0" />
-                                  <span className="text-sm text-muted-foreground">{detail}</span>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
+                <div key={step.number} className="relative">
+                  {/* Timeline dot */}
+                  <div className="absolute top-12 left-1/2 transform -translate-x-1/2 w-8 h-8 rounded-full bg-gradient-to-br from-primary to-accent shadow-lg z-10 flex items-center justify-center hidden md:flex">
+                    <div className="w-3 h-3 bg-white rounded-full"></div>
+                  </div>
+                  
+                  {/* Process card */}
+                  <Card className={`group bg-gradient-card border-0 shadow-elegant hover:shadow-glow transition-all duration-500 hover:scale-105 animate-fade-in-up mt-20 md:mt-24`}>
+                    <CardContent className="p-6 text-center">
+                      {/* Icon and number */}
+                      <div className="flex flex-col items-center mb-4">
+                        <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${step.color} p-3 group-hover:scale-110 transition-transform duration-300 mb-3`}>
+                          <Icon className="h-6 w-6 text-white" />
                         </div>
-                      </CardContent>
-                    </Card>
-                  </div>
+                        <Badge variant="outline" className="text-xs font-bold">
+                          Step {step.number}
+                        </Badge>
+                      </div>
+                      
+                      {/* Content */}
+                      <div>
+                        <div className="flex items-center justify-center gap-2 mb-3">
+                          <h3 className="text-lg font-bold text-foreground">{step.title}</h3>
+                        </div>
+                        
+                        <div className="flex items-center justify-center gap-2 text-muted-foreground mb-4">
+                          <Clock className="h-3 w-3" />
+                          <span className="text-xs">{step.duration}</span>
+                        </div>
+                        
+                        <p className="text-muted-foreground mb-4 leading-relaxed text-sm">
+                          {step.description}
+                        </p>
+                        
+                        <div className="space-y-2">
+                          {step.details.slice(0, 2).map((detail, i) => (
+                            <div key={i} className="flex items-center gap-2 justify-center">
+                              <CheckCircle className="h-3 w-3 text-green-500 flex-shrink-0" />
+                              <span className="text-xs text-muted-foreground">{detail}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
                   
-                  {/* Center timeline dot */}
-                  <div className="hidden lg:flex flex-col items-center">
-                    <div className={`w-6 h-6 rounded-full bg-gradient-to-br ${step.color} shadow-lg z-10 flex items-center justify-center`}>
-                      <div className="w-2 h-2 bg-white rounded-full"></div>
-                    </div>
-                    {index < steps.length - 1 && (
-                      <ArrowRight className="h-6 w-6 text-muted-foreground/50 mt-4 animate-pulse" />
-                    )}
-                  </div>
-                  
-                  {/* Spacer for alignment */}
-                  <div className="flex-1 hidden lg:block"></div>
+                  {/* Arrow for larger screens */}
+                  {index < steps.length - 1 && (
+                    <ArrowRight className="absolute top-16 -right-3 h-6 w-6 text-muted-foreground/50 animate-pulse hidden xl:block z-20" />
+                  )}
                 </div>
               );
             })}
@@ -230,12 +223,12 @@ const Process = () => {
         </div>
 
         {/* CTA section */}
-        <div className="text-center mt-20 bg-gradient-to-r from-primary/5 via-accent/5 to-primary/5 rounded-3xl p-12 glass animate-fade-in-up">
+        <div className="text-center mt-16 bg-gradient-to-r from-primary/5 via-accent/5 to-primary/5 rounded-3xl p-8 glass animate-fade-in-up">
           <div className="max-w-2xl mx-auto">
-            <h3 className="text-3xl md:text-4xl font-bold font-serif mb-6 text-glow">
+            <h3 className="text-2xl md:text-3xl font-bold font-serif mb-4 text-glow">
               Ready to Start Your Project?
             </h3>
-            <p className="text-muted-foreground mb-8 leading-relaxed text-lg">
+            <p className="text-muted-foreground mb-6 leading-relaxed">
               Let's begin this exciting journey together! We'll guide you through every step 
               to create the perfect website for your needs.
             </p>
