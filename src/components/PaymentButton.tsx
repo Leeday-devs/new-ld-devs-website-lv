@@ -63,7 +63,7 @@ export const PaymentButton = ({ className }: PaymentButtonProps) => {
       ) : (
         <>
           <CreditCard className="mr-2 h-4 w-4" />
-          Purchase Service - $402.36
+          Purchase Service - £300
         </>
       )}
     </Button>
