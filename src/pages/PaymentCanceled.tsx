@@ -1,9 +1,15 @@
+
 import { Link } from "react-router-dom";
 import { XCircle, ArrowLeft, CreditCard } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useSearchParams } from "react-router-dom";
 
 export default function PaymentCanceled() {
+  const [searchParams] = useSearchParams();
+  const paymentType = searchParams.get('type');
+  const isDeposit = paymentType === 'deposit';
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary/5 to-accent/5 flex items-center justify-center p-4">
       <Card className="w-full max-w-md text-center">
@@ -12,12 +18,15 @@ export default function PaymentCanceled() {
             <XCircle className="w-8 h-8 text-red-600" />
           </div>
           <CardTitle className="text-2xl font-bold text-foreground">
-            Payment Canceled
+            {isDeposit ? 'Deposit Payment Canceled' : 'Payment Canceled'}
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <p className="text-muted-foreground">
-            Your payment was canceled. No charges have been made to your account.
+            {isDeposit 
+              ? "Your deposit payment was canceled. No charges have been made to your account. Your project slot has not been reserved."
+              : "Your payment was canceled. No charges have been made to your account."
+            }
           </p>
           <div className="flex flex-col sm:flex-row gap-3 pt-4">
             <Button asChild variant="outline" className="flex-1">

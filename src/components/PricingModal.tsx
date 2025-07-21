@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import {
   Dialog,
@@ -103,7 +104,7 @@ export const PricingModal = ({ isOpen, onClose, service }: PricingModalProps) =>
             </CardContent>
           </Card>
 
-          {/* Payment Plans */}
+          {/* Payment Plans - Only show for non-monthly and non-custom services */}
           {!isCustomPricing && !isMonthlyOnly && (
             <Card>
               <CardHeader>

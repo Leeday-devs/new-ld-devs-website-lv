@@ -1,3 +1,4 @@
+
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import Stripe from "https://esm.sh/stripe@14.21.0";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.45.0";
@@ -28,6 +29,9 @@ serve(async (req) => {
     const user = data.user;
     if (!user?.email) throw new Error("User not authenticated or email not available");
 
+    // Parse request body to get payment details
+    const { amount, serviceName, type } = await req.json();
+    
     // Initialize Stripe
     const stripe = new Stripe(Deno.env.get("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") || "", {
       apiVersion: "2023-10-16",
@@ -40,36 +44,81 @@ serve(async (req) => {
       customerId = customers.data[0].id;
     }
 
-    // Create a one-time payment session for $402.36
-    const session = await stripe.checkout.sessions.create({
-      customer: customerId,
-      customer_email: customerId ? undefined : user.email,
-      line_items: [
-        {
-          price_data: {
-            currency: "usd",
-            product_data: { 
-              name: "Premium Service",
-              description: "Professional service consultation and delivery"
-            },
-            unit_amount: 40236, // $402.36 in cents
+    let sessionConfig;
+
+    if (type === 'deposit') {
+      // For deposit payments, use the provided Stripe product
+      // First, get the prices for the product
+      const prices = await stripe.prices.list({
+        product: 'prod_SikyUQfqEguRP8',
+        active: true,
+        limit: 1,
+      });
+
+      if (prices.data.length === 0) {
+        throw new Error("No active price found for the deposit product");
+      }
+
+      const priceId = prices.data[0].id;
+
+      sessionConfig = {
+        customer: customerId,
+        customer_email: customerId ? undefined : user.email,
+        line_items: [
+          {
+            price: priceId,
+            quantity: 1,
           },
-          quantity: 1,
+        ],
+        mode: "payment",
+        success_url: `${req.headers.get("origin")}/payment-success?session_id={CHECKOUT_SESSION_ID}&type=deposit`,
+        cancel_url: `${req.headers.get("origin")}/payment-canceled?type=deposit`,
+        metadata: {
+          service_name: serviceName || "Service Deposit",
+          payment_type: "deposit",
+          user_id: user.id,
         },
-      ],
-      mode: "payment",
-      success_url: `${req.headers.get("origin")}/payment-success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${req.headers.get("origin")}/payment-canceled`,
-    });
+      };
+    } else {
+      // For other payments, use the original logic
+      sessionConfig = {
+        customer: customerId,
+        customer_email: customerId ? undefined : user.email,
+        line_items: [
+          {
+            price_data: {
+              currency: "gbp",
+              product_data: { 
+                name: serviceName || "Premium Service",
+                description: "Professional service consultation and delivery"
+              },
+              unit_amount: amount || 2000, // Default to £20 if no amount specified
+            },
+            quantity: 1,
+          },
+        ],
+        mode: "payment",
+        success_url: `${req.headers.get("origin")}/payment-success?session_id={CHECKOUT_SESSION_ID}`,
+        cancel_url: `${req.headers.get("origin")}/payment-canceled`,
+        metadata: {
+          service_name: serviceName || "Premium Service",
+          payment_type: type || "full",
+          user_id: user.id,
+        },
+      };
+    }
+
+    // Create the checkout session
+    const session = await stripe.checkout.sessions.create(sessionConfig);
 
     // Record the payment attempt in Supabase
     await supabaseClient.from("orders").insert({
       user_id: user.id,
       stripe_session_id: session.id,
-      amount: 40236,
-      currency: "usd",
+      amount: type === 'deposit' ? 2000 : (amount || 2000), // £20 for deposit
+      currency: "gbp",
       status: "pending",
-      service_name: "Premium Service",
+      service_name: serviceName || (type === 'deposit' ? "Service Deposit" : "Premium Service"),
       created_at: new Date().toISOString()
     });
 
@@ -78,6 +127,7 @@ serve(async (req) => {
       status: 200,
     });
   } catch (error) {
+    console.error('Payment creation error:', error);
     return new Response(JSON.stringify({ error: error.message }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
       status: 500,

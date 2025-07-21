@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { useSearchParams, Link } from "react-router-dom";
 import { CheckCircle, ArrowLeft } from "lucide-react";
@@ -7,6 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 export default function PaymentSuccess() {
   const [searchParams] = useSearchParams();
   const sessionId = searchParams.get('session_id');
+  const paymentType = searchParams.get('type');
   const [isConfirmed, setIsConfirmed] = useState(false);
 
   useEffect(() => {
@@ -16,6 +18,8 @@ export default function PaymentSuccess() {
     }
   }, [sessionId]);
 
+  const isDeposit = paymentType === 'deposit';
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary/5 to-accent/5 flex items-center justify-center p-4">
       <Card className="w-full max-w-md text-center">
@@ -24,17 +28,31 @@ export default function PaymentSuccess() {
             <CheckCircle className="w-8 h-8 text-green-600" />
           </div>
           <CardTitle className="text-2xl font-bold text-foreground">
-            Payment Successful!
+            {isDeposit ? 'Deposit Payment Successful!' : 'Payment Successful!'}
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <p className="text-muted-foreground">
-            Thank you for your purchase. Your payment of $402.36 has been processed successfully.
+            {isDeposit 
+              ? "Thank you for your £20 deposit. We'll contact you within 24 hours to discuss your project details."
+              : "Thank you for your purchase. Your payment has been processed successfully."
+            }
           </p>
           {sessionId && (
             <p className="text-sm text-muted-foreground">
               Transaction ID: {sessionId.slice(-12)}
             </p>
+          )}
+          {isDeposit && (
+            <div className="bg-blue-50 p-4 rounded-lg text-sm text-blue-800">
+              <p className="font-semibold mb-2">What happens next:</p>
+              <ul className="text-left space-y-1">
+                <li>✓ Your project slot is now secured</li>
+                <li>✓ We'll contact you within 24 hours</li>
+                <li>✓ Discuss project details and timeline</li>
+                <li>✓ Your £20 deposit will be deducted from the final payment</li>
+              </ul>
+            </div>
           )}
           <div className="pt-4">
             <Button asChild className="w-full">
