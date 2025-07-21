@@ -29,23 +29,23 @@ const About = () => {
   }];
   const capabilities = [{
     icon: Code,
-    title: "Building Cool Websites",
-    description: "We build complete websites from start to finish using the coolest technology",
+    title: "Websites",
+    description: "We build complete websites from start to finish using the latest technology",
     color: "from-blue-500 to-purple-600"
   }, {
-    icon: Palette,
-    title: "Making Things Pretty",
-    description: "We design beautiful colors, animations, and layouts that make people smile",
+    icon: Database,
+    title: "Hosting",
+    description: "Reliable hosting solutions that keep your website fast and always online",
     color: "from-pink-500 to-orange-500"
   }, {
-    icon: Globe,
-    title: "Works for Everyone",
-    description: "Our websites work for millions of people all around the world",
+    icon: Sparkles,
+    title: "AI Integration",
+    description: "Smart AI features that make your website more powerful and user-friendly",
     color: "from-green-500 to-teal-600"
   }, {
     icon: Shield,
-    title: "Keeping Things Safe",
-    description: "We make sure all websites are super secure and protect people's information",
+    title: "Security",
+    description: "Advanced security measures to protect your website and user data",
     color: "from-red-500 to-pink-600"
   }];
   const stats = [{
