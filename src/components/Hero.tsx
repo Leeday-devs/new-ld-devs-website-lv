@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Code, Zap, Sparkles, Layers, Palette, Database, Shield, Rocket, Star, Users } from "lucide-react";
-import { PaymentButton } from "@/components/PaymentButton";
+import { ArrowRight, Code, Zap, Sparkles, Layers, Palette, Database, Shield, Rocket, Star, Users, CreditCard } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import heroImage from "@/assets/hero-image-no-bg.png";
 const Hero = () => {
@@ -101,7 +100,13 @@ const Hero = () => {
             
             {/* Action buttons */}
             <div className="flex flex-col sm:flex-row gap-4 pt-4 animate-fade-in-up stagger-delay-5">
-              <PaymentButton className="btn-premium text-lg px-8 py-4 rounded-2xl font-bold shadow-button hover:shadow-glow transition-all duration-300" />
+              <Button 
+                onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
+                className="btn-premium text-lg px-8 py-4 rounded-2xl font-bold shadow-button hover:shadow-glow transition-all duration-300"
+              >
+                <CreditCard className="mr-2 h-5 w-5" />
+                Buy Now
+              </Button>
               <Button variant="outline" size="lg" onClick={() => window.open('https://wa.me/447586266007', '_blank')} className="text-lg px-8 py-4 rounded-2xl font-bold bg-white/10 backdrop-blur-md border-2 border-white/30 text-white hover:bg-white hover:text-slate-900 transition-all duration-300 hover-scale">
                 <ArrowRight className="mr-2 h-5 w-5" />
                 Let's Talk
