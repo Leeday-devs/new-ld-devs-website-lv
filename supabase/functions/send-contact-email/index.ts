@@ -85,16 +85,75 @@ interface ContactFormData {
   message: string;
 }
 
+// Enhanced audit logging for contact forms
+const logContactSubmission = (
+  clientIP: string,
+  userAgent: string,
+  formData: any,
+  success: boolean,
+  error?: string,
+  warnings?: string[]
+) => {
+  const logEntry = {
+    timestamp: new Date().toISOString(),
+    event: "contact_form_submission",
+    clientIP,
+    userAgent,
+    email: formData.email,
+    success,
+    error,
+    securityWarnings: warnings || [],
+    metadata: {
+      subjectLength: formData.subject?.length || 0,
+      messageLength: formData.message?.length || 0,
+      nameLength: formData.name?.length || 0
+    }
+  };
+  
+  console.log("CONTACT_AUDIT:", JSON.stringify(logEntry));
+};
+
+// Security monitoring for contact forms
+const detectSuspiciousContact = (req: Request, formData: any): string[] => {
+  const warnings: string[] = [];
+  const userAgent = req.headers.get("user-agent") || "";
+  
+  // Detect automated requests
+  if (!userAgent || userAgent.includes("bot") || userAgent.includes("crawler")) {
+    warnings.push("Suspicious user agent detected");
+  }
+  
+  // Detect spam patterns
+  const spamKeywords = ['viagra', 'casino', 'lottery', 'prize', 'winner'];
+  const messageText = (formData.message || '').toLowerCase();
+  if (spamKeywords.some(keyword => messageText.includes(keyword))) {
+    warnings.push("Potential spam content detected");
+  }
+  
+  // Detect URL flooding
+  const urlCount = (messageText.match(/https?:\/\//g) || []).length;
+  if (urlCount > 3) {
+    warnings.push("Multiple URLs detected in message");
+  }
+  
+  return warnings;
+};
+
 const handler = async (req: Request): Promise<Response> => {
   // Handle CORS preflight requests
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
   }
 
+  const startTime = Date.now();
+  const clientIP = req.headers.get("cf-connecting-ip") || req.headers.get("x-forwarded-for") || "unknown";
+  const userAgent = req.headers.get("user-agent") || "";
+  let formData: any = {};
+
   try {
-    // Rate limiting
-    const clientIP = req.headers.get("cf-connecting-ip") || req.headers.get("x-forwarded-for") || "unknown";
+    // Enhanced rate limiting
     if (!checkRateLimit(clientIP, 3, 15)) {
+      logContactSubmission(clientIP, userAgent, {}, false, "Rate limit exceeded");
       return new Response(JSON.stringify({ 
         error: "Too many contact form submissions. Please try again later.",
         success: false 
@@ -105,10 +164,10 @@ const handler = async (req: Request): Promise<Response> => {
     }
 
     // Parse and validate request
-    let formData;
     try {
       formData = await req.json();
     } catch (error) {
+      logContactSubmission(clientIP, userAgent, {}, false, "Invalid JSON in request body");
       return new Response(JSON.stringify({ 
         error: "Invalid JSON in request body",
         success: false 
@@ -121,6 +180,7 @@ const handler = async (req: Request): Promise<Response> => {
     // Validate input
     const validationErrors = validateContactForm(formData);
     if (validationErrors.length > 0) {
+      logContactSubmission(clientIP, userAgent, formData, false, `Validation failed: ${validationErrors.join(", ")}`);
       return new Response(JSON.stringify({ 
         error: validationErrors.join(", "),
         success: false 
@@ -128,6 +188,18 @@ const handler = async (req: Request): Promise<Response> => {
         headers: { ...corsHeaders, "Content-Type": "application/json" },
         status: 400,
       });
+    }
+
+    // Security fraud detection
+    const securityWarnings = detectSuspiciousContact(req, formData);
+    if (securityWarnings.length > 0) {
+      console.warn("CONTACT_SECURITY_WARNING:", JSON.stringify({
+        timestamp: new Date().toISOString(),
+        clientIP,
+        userAgent,
+        warnings: securityWarnings,
+        email: formData.email
+      }));
     }
 
     const { name, email, subject, message }: ContactFormData = formData;
@@ -184,6 +256,24 @@ const handler = async (req: Request): Promise<Response> => {
 
     console.log("Emails sent successfully:", { ownerEmailResponse, customerEmailResponse });
 
+    // Log successful contact submission
+    logContactSubmission(
+      clientIP,
+      userAgent,
+      formData,
+      true,
+      undefined,
+      securityWarnings.length > 0 ? securityWarnings : undefined
+    );
+
+    // Performance monitoring
+    const processingTime = Date.now() - startTime;
+    console.log("CONTACT_PERFORMANCE:", JSON.stringify({
+      timestamp: new Date().toISOString(),
+      processingTimeMs: processingTime,
+      email: email
+    }));
+
     return new Response(
       JSON.stringify({ 
         success: true, 
@@ -199,9 +289,19 @@ const handler = async (req: Request): Promise<Response> => {
     );
   } catch (error: any) {
     console.error("Error in send-contact-email function:", error);
+    
+    // Log contact submission failure
+    logContactSubmission(
+      clientIP,
+      userAgent,
+      formData,
+      false,
+      error.message
+    );
+    
     return new Response(
       JSON.stringify({ 
-        error: error.message,
+        error: "Failed to send contact email. Please try again later.",
         success: false 
       }),
       {

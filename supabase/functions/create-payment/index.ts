@@ -58,16 +58,79 @@ const checkRateLimit = (identifier: string, maxRequests = 10, windowMinutes = 15
   return true;
 };
 
+// Security monitoring and fraud detection
+const detectSuspiciousActivity = (req: Request, paymentData: any): string[] => {
+  const warnings: string[] = [];
+  const userAgent = req.headers.get("user-agent") || "";
+  const clientIP = req.headers.get("cf-connecting-ip") || req.headers.get("x-forwarded-for") || "unknown";
+  
+  // Detect automated requests
+  if (!userAgent || userAgent.includes("bot") || userAgent.includes("crawler")) {
+    warnings.push("Suspicious user agent detected");
+  }
+  
+  // Detect unusually high amounts
+  if (paymentData.amount && paymentData.amount > 500000) { // £5000
+    warnings.push("Unusually high payment amount");
+  }
+  
+  // Detect rapid requests from same IP
+  const recentRequests = rateLimitStore.get(clientIP);
+  if (recentRequests && recentRequests.count > 3) {
+    warnings.push("Multiple payment attempts from same IP");
+  }
+  
+  return warnings;
+};
+
+// Enhanced audit logging
+const logPaymentAttempt = (
+  clientIP: string, 
+  userAgent: string, 
+  user: any, 
+  paymentData: any, 
+  success: boolean, 
+  error?: string,
+  warnings?: string[]
+) => {
+  const logEntry = {
+    timestamp: new Date().toISOString(),
+    event: "payment_attempt",
+    clientIP,
+    userAgent,
+    userId: user?.id || "guest",
+    userEmail: user?.email || "guest",
+    paymentType: paymentData.type || "unknown",
+    amount: paymentData.amount,
+    serviceName: paymentData.serviceName,
+    success,
+    error,
+    securityWarnings: warnings || [],
+    metadata: {
+      hasAuth: !!user,
+      origin: paymentData.origin
+    }
+  };
+  
+  console.log("PAYMENT_AUDIT:", JSON.stringify(logEntry));
+};
+
 serve(async (req) => {
   // Handle CORS preflight requests
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
   }
 
+  const startTime = Date.now();
+  const clientIP = req.headers.get("cf-connecting-ip") || req.headers.get("x-forwarded-for") || "unknown";
+  const userAgent = req.headers.get("user-agent") || "";
+  let paymentData: any = {};
+  let user: any = null;
+
   try {
-    // Rate limiting
-    const clientIP = req.headers.get("cf-connecting-ip") || req.headers.get("x-forwarded-for") || "unknown";
+    // Enhanced rate limiting with IP tracking
     if (!checkRateLimit(clientIP, 5, 15)) {
+      logPaymentAttempt(clientIP, userAgent, null, {}, false, "Rate limit exceeded");
       return new Response(JSON.stringify({ error: "Too many requests. Please try again later." }), {
         headers: { ...corsHeaders, "Content-Type": "application/json" },
         status: 429,
@@ -94,10 +157,11 @@ serve(async (req) => {
     }
 
     // Parse and validate request body
-    let paymentData;
     try {
       paymentData = await req.json();
+      paymentData.origin = req.headers.get("origin");
     } catch (error) {
+      logPaymentAttempt(clientIP, userAgent, user, {}, false, "Invalid JSON in request body");
       return new Response(JSON.stringify({ error: "Invalid JSON in request body" }), {
         headers: { ...corsHeaders, "Content-Type": "application/json" },
         status: 400,
@@ -109,10 +173,23 @@ serve(async (req) => {
     // Validate input
     const validationErrors = validatePaymentInput(amount, serviceName, type);
     if (validationErrors.length > 0) {
+      logPaymentAttempt(clientIP, userAgent, user, paymentData, false, `Validation failed: ${validationErrors.join(", ")}`);
       return new Response(JSON.stringify({ error: validationErrors.join(", ") }), {
         headers: { ...corsHeaders, "Content-Type": "application/json" },
         status: 400,
       });
+    }
+
+    // Security fraud detection
+    const securityWarnings = detectSuspiciousActivity(req, paymentData);
+    if (securityWarnings.length > 0) {
+      console.warn("SECURITY_WARNING:", JSON.stringify({
+        timestamp: new Date().toISOString(),
+        clientIP,
+        userAgent,
+        warnings: securityWarnings,
+        paymentData: { amount, serviceName, type }
+      }));
     }
     
     // Initialize Stripe with proper secret key from environment
@@ -206,7 +283,7 @@ serve(async (req) => {
     // Create the checkout session
     const session = await stripe.checkout.sessions.create(sessionConfig);
 
-    // Record the payment attempt in Supabase (optional for guest payments)
+    // Record the payment attempt in Supabase with enhanced metadata
     try {
       await supabaseClient.from("orders").insert({
         user_id: user?.id || null, // Allow null for guest payments
@@ -217,10 +294,33 @@ serve(async (req) => {
         service_name: serviceName || (type === 'deposit' ? "Service Deposit" : "Premium Service"),
         created_at: new Date().toISOString()
       });
+
+      // Log successful payment creation
+      logPaymentAttempt(
+        clientIP, 
+        userAgent, 
+        user, 
+        paymentData, 
+        true, 
+        undefined, 
+        securityWarnings.length > 0 ? securityWarnings : undefined
+      );
+
     } catch (dbError) {
-      console.log("Failed to record payment in database (guest payment):", dbError);
+      console.error("Failed to record payment in database:", dbError);
+      logPaymentAttempt(clientIP, userAgent, user, paymentData, false, `Database error: ${dbError.message}`);
       // Continue with payment even if database insert fails for guest payments
     }
+
+    // Performance monitoring
+    const processingTime = Date.now() - startTime;
+    console.log("PAYMENT_PERFORMANCE:", JSON.stringify({
+      timestamp: new Date().toISOString(),
+      processingTimeMs: processingTime,
+      paymentType: type,
+      amount: amount,
+      userType: user ? "authenticated" : "guest"
+    }));
 
     return new Response(JSON.stringify({ url: session.url }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
@@ -228,7 +328,20 @@ serve(async (req) => {
     });
   } catch (error) {
     console.error('Payment creation error:', error);
-    return new Response(JSON.stringify({ error: error.message }), {
+    
+    // Log payment failure with full context
+    logPaymentAttempt(
+      clientIP, 
+      userAgent, 
+      user, 
+      paymentData, 
+      false, 
+      error.message
+    );
+    
+    return new Response(JSON.stringify({ 
+      error: "Payment processing failed. Please try again." 
+    }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
       status: 500,
     });

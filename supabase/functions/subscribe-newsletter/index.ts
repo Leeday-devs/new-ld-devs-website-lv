@@ -47,16 +47,63 @@ interface NewsletterData {
   email: string;
 }
 
+// Enhanced audit logging for newsletter subscriptions
+const logNewsletterSubscription = (
+  clientIP: string,
+  userAgent: string,
+  email: string,
+  success: boolean,
+  error?: string,
+  warnings?: string[]
+) => {
+  const logEntry = {
+    timestamp: new Date().toISOString(),
+    event: "newsletter_subscription",
+    clientIP,
+    userAgent,
+    email,
+    success,
+    error,
+    securityWarnings: warnings || []
+  };
+  
+  console.log("NEWSLETTER_AUDIT:", JSON.stringify(logEntry));
+};
+
+// Security monitoring for newsletter subscriptions
+const detectSuspiciousNewsletter = (req: Request, email: string): string[] => {
+  const warnings: string[] = [];
+  const userAgent = req.headers.get("user-agent") || "";
+  
+  // Detect automated requests
+  if (!userAgent || userAgent.includes("bot") || userAgent.includes("crawler")) {
+    warnings.push("Suspicious user agent detected");
+  }
+  
+  // Detect disposable email services
+  const disposableEmailPatterns = ['10minutemail', 'tempmail', 'guerrillamail', 'mailinator'];
+  if (disposableEmailPatterns.some(pattern => email.includes(pattern))) {
+    warnings.push("Disposable email service detected");
+  }
+  
+  return warnings;
+};
+
 const handler = async (req: Request): Promise<Response> => {
   // Handle CORS preflight requests
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
   }
 
+  const startTime = Date.now();
+  const clientIP = req.headers.get("cf-connecting-ip") || req.headers.get("x-forwarded-for") || "unknown";
+  const userAgent = req.headers.get("user-agent") || "";
+  let email = "";
+
   try {
-    // Rate limiting
-    const clientIP = req.headers.get("cf-connecting-ip") || req.headers.get("x-forwarded-for") || "unknown";
+    // Enhanced rate limiting
     if (!checkRateLimit(clientIP, 2, 15)) {
+      logNewsletterSubscription(clientIP, userAgent, "", false, "Rate limit exceeded");
       return new Response(JSON.stringify({ 
         error: "Too many newsletter subscriptions. Please try again later.",
         success: false 
@@ -71,6 +118,7 @@ const handler = async (req: Request): Promise<Response> => {
     try {
       newsletterData = await req.json();
     } catch (error) {
+      logNewsletterSubscription(clientIP, userAgent, "", false, "Invalid JSON in request body");
       return new Response(JSON.stringify({ 
         error: "Invalid JSON in request body",
         success: false 
@@ -83,6 +131,7 @@ const handler = async (req: Request): Promise<Response> => {
     // Validate input
     const validationErrors = validateEmail(newsletterData.email);
     if (validationErrors.length > 0) {
+      logNewsletterSubscription(clientIP, userAgent, newsletterData.email || "", false, `Validation failed: ${validationErrors.join(", ")}`);
       return new Response(JSON.stringify({ 
         error: validationErrors.join(", "),
         success: false 
@@ -92,7 +141,19 @@ const handler = async (req: Request): Promise<Response> => {
       });
     }
 
-    const { email }: NewsletterData = newsletterData;
+    email = newsletterData.email;
+
+    // Security fraud detection
+    const securityWarnings = detectSuspiciousNewsletter(req, email);
+    if (securityWarnings.length > 0) {
+      console.warn("NEWSLETTER_SECURITY_WARNING:", JSON.stringify({
+        timestamp: new Date().toISOString(),
+        clientIP,
+        userAgent,
+        warnings: securityWarnings,
+        email
+      }));
+    }
 
     // Initialize Supabase client
     const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
@@ -128,6 +189,24 @@ const handler = async (req: Request): Promise<Response> => {
 
     console.log("Newsletter subscription added:", data);
 
+    // Log successful subscription
+    logNewsletterSubscription(
+      clientIP,
+      userAgent,
+      email,
+      true,
+      undefined,
+      securityWarnings.length > 0 ? securityWarnings : undefined
+    );
+
+    // Performance monitoring
+    const processingTime = Date.now() - startTime;
+    console.log("NEWSLETTER_PERFORMANCE:", JSON.stringify({
+      timestamp: new Date().toISOString(),
+      processingTimeMs: processingTime,
+      email
+    }));
+
     return new Response(
       JSON.stringify({ 
         success: true, 
@@ -143,9 +222,19 @@ const handler = async (req: Request): Promise<Response> => {
     );
   } catch (error: any) {
     console.error("Error in subscribe-newsletter function:", error);
+    
+    // Log newsletter subscription failure
+    logNewsletterSubscription(
+      clientIP,
+      userAgent,
+      email,
+      false,
+      error.message
+    );
+    
     return new Response(
       JSON.stringify({ 
-        error: error.message,
+        error: "Newsletter subscription failed. Please try again later.",
         success: false 
       }),
       {
