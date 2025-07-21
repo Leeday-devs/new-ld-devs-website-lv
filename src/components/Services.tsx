@@ -162,8 +162,8 @@ const Services = () => {
     },
     {
       icon: Globe,
-      title: "Make Old Things New",
-      description: "We help make old websites and computers work like new again - like giving them superpowers!",
+      title: "Make Old Sites New",
+      description: "We help make old websites work like new again - giving them superpowers with modern features and lightning-fast speed!",
       features: [
         "Fix Old Websites",
         "Make Things Faster",
