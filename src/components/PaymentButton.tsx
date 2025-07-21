@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
-import { useAuth } from "@/hooks/useAuth";
 import { useToast } from "@/hooks/use-toast";
 import { CreditCard, Loader2 } from "lucide-react";
 interface PaymentButtonProps {
@@ -12,23 +11,10 @@ export const PaymentButton = ({
 }: PaymentButtonProps) => {
   const [loading, setLoading] = useState(false);
   const {
-    user
-  } = useAuth();
-  const {
     toast
   } = useToast();
   const handlePayment = async () => {
     console.log('Payment button clicked');
-    console.log('User:', user);
-    if (!user) {
-      console.log('No user found, showing auth error');
-      toast({
-        title: "Authentication Required",
-        description: "Please log in to purchase our service.",
-        variant: "destructive"
-      });
-      return;
-    }
     setLoading(true);
     try {
       const {
