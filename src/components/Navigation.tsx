@@ -29,7 +29,7 @@ const Navigation = () => {
             </div>
             <div className="flex flex-col">
               <span className="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                LD Development
+                Development
               </span>
               <span className="text-xs text-muted-foreground font-medium">Digital Innovation</span>
             </div>
