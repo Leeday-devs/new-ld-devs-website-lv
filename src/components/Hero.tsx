@@ -131,10 +131,22 @@ const Hero = () => {
             </div>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <PaymentButton className="bg-gradient-to-r from-primary to-accent text-white border-0 hover:scale-105 transition-all duration-300 shadow-2xl group" />
-              <Button size="lg" variant="outline" className="border-white/30 text-foreground bg-white/90 hover:bg-white hover:text-foreground backdrop-blur-sm hover:scale-105 transition-all duration-300">
+              <Button 
+                size="lg" 
+                onClick={() => window.open('https://wa.me/447586266007', '_blank')}
+                className="bg-gradient-to-r from-primary to-accent text-white border-0 hover:scale-105 transition-all duration-300 shadow-2xl group"
+              >
+                <Zap className="mr-2 h-5 w-5" />
+                Help
+              </Button>
+              <Button 
+                size="lg" 
+                variant="outline" 
+                onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
+                className="border-white/30 text-foreground bg-white/90 hover:bg-white hover:text-foreground backdrop-blur-sm hover:scale-105 transition-all duration-300"
+              >
                 <Layers className="mr-2 h-5 w-5" />
-                See What We Made
+                Plans
               </Button>
             </div>
           </div>
