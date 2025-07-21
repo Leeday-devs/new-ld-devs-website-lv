@@ -335,6 +335,11 @@ const Services = () => {
                           Then {service.monthlyPrice}/month
                         </div>
                       )}
+                      {(service.title === "Build Me a Website" || service.title === "Create Me a Online Store" || service.title === "AI Automations") && (
+                        <div className={`text-white/70 ${index < 4 ? 'text-xs' : 'text-xs'} mt-1`}>
+                          💳 Payment plans available
+                        </div>
+                      )}
                     </div>
                     
                     {/* Buttons */}
