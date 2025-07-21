@@ -1,11 +1,16 @@
+import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ExternalLink, Github, ArrowRight, Star, Users, Calendar, Sparkles, CheckCircle, TrendingUp, Award, Shield, DollarSign } from "lucide-react";
+import { ExternalLink, Github, ArrowRight, Star, Users, Calendar, Sparkles, CheckCircle, TrendingUp, Award, Shield, DollarSign, Filter } from "lucide-react";
 import project1 from "@/assets/project-1.jpg";
 import project2 from "@/assets/project-2.jpg";
 import project3 from "@/assets/project-3.jpg";
+
 const Portfolio = () => {
+  const [activeFilter, setActiveFilter] = useState("All");
+  
+  const filters = ["All", "E-commerce", "Business", "Restaurant", "Fitness", "Enterprise"];
   const projects = [{
     title: "FitnessPro Studio",
     description: "Complete fitness business solution with member management, class booking, payment processing, and mobile app integration. Increased client bookings by 300%.",
@@ -94,8 +99,25 @@ const Portfolio = () => {
           </p>
         </div>
 
+        {/* Filter Buttons */}
+        <div className="flex flex-wrap justify-center gap-2 mb-12">
+          {filters.map((filter) => (
+            <Button
+              key={filter}
+              variant={activeFilter === filter ? "default" : "outline"}
+              size="sm"
+              onClick={() => setActiveFilter(filter)}
+              className="transition-all duration-200"
+            >
+              {filter}
+            </Button>
+          ))}
+        </div>
+
         <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
+          {projects
+            .filter(project => activeFilter === "All" || project.category === activeFilter)
+            .map((project, index) => (
             <Card key={project.title} className="group hover:shadow-xl transition-all duration-300 overflow-hidden">
               <div className="relative overflow-hidden">
                 <img 
@@ -148,4 +170,5 @@ const Portfolio = () => {
     </section>
   );
 };
+
 export default Portfolio;

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Code2 } from "lucide-react";
+import ThemeToggle from "./ThemeToggle";
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -10,11 +11,12 @@ const Navigation = () => {
     { label: "About", href: "#about" },
     { label: "Services", href: "#services" },
     { label: "Portfolio", href: "#portfolio" },
+    { label: "FAQ", href: "#faq" },
     { label: "Contact", href: "#contact" }
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-xl border-b border-border/50 shadow-premium">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-xl border-b border-border/50 shadow-premium">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           {/* Premium Logo with glow effect */}
@@ -48,8 +50,9 @@ const Navigation = () => {
             ))}
           </div>
 
-          {/* Premium CTA Button */}
-          <div className="hidden md:block">
+          {/* Theme Toggle and CTA */}
+          <div className="hidden md:flex items-center gap-3">
+            <ThemeToggle />
             <Button 
               className="btn-premium hover-glow"
               onClick={() => window.open('https://wa.me/447586266007', '_blank')}
@@ -58,22 +61,25 @@ const Navigation = () => {
             </Button>
           </div>
 
-          {/* Mobile Menu Button with glow */}
-          <button
-            className="md:hidden p-2 hover-glow rounded-lg transition-smooth"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            {isMenuOpen ? (
-              <X className="h-6 w-6 text-foreground" />
-            ) : (
-              <Menu className="h-6 w-6 text-foreground" />
-            )}
-          </button>
+          {/* Mobile Menu Button and Theme Toggle */}
+          <div className="md:hidden flex items-center gap-2">
+            <ThemeToggle />
+            <button
+              className="p-2 hover-glow rounded-lg transition-smooth"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              {isMenuOpen ? (
+                <X className="h-6 w-6 text-foreground" />
+              ) : (
+                <Menu className="h-6 w-6 text-foreground" />
+              )}
+            </button>
+          </div>
         </div>
 
         {/* Premium Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden py-4 border-t border-border bg-white/95 backdrop-blur-md animate-fade-in-up">
+          <div className="md:hidden py-4 border-t border-border bg-background/95 backdrop-blur-md animate-fade-in-up">
             <div className="flex flex-col space-y-4">
               {navItems.map((item, index) => (
                 <a

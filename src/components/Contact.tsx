@@ -1,10 +1,22 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { Mail, Phone, MapPin, Send, Loader2 } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
 
 const Contact = () => {
+  const { toast } = useToast();
+  const [isLoading, setIsLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+
   const contactInfo = [
     {
       icon: Mail,
@@ -25,6 +37,68 @@ const Contact = () => {
       href: "#"
     }
   ];
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!formData.name || !formData.email || !formData.message) {
+      toast({
+        title: "Error",
+        description: "Please fill in all required fields",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsLoading(true);
+
+    try {
+      // Store in database
+      const { error: dbError } = await supabase
+        .from('contact_submissions')
+        .insert([formData]);
+
+      if (dbError) throw dbError;
+
+      // Send email
+      const { data, error } = await supabase.functions.invoke('send-contact-email', {
+        body: formData
+      });
+
+      if (error) throw error;
+
+      toast({
+        title: "Message sent!",
+        description: "Thank you for your message. We'll get back to you soon!",
+      });
+
+      // Reset form
+      setFormData({
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
+      });
+
+    } catch (error: any) {
+      console.error('Error sending message:', error);
+      toast({
+        title: "Error",
+        description: "Failed to send message. Please try again or email us directly.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <section className="py-12 bg-background">
@@ -71,26 +145,59 @@ const Contact = () => {
               </div>
 
               {/* Contact Form - Streamlined */}
-              <div className="space-y-4">
+              <form onSubmit={handleSubmit} className="space-y-4">
                 <h3 className="text-lg font-semibold text-foreground mb-4">Send Message</h3>
                 
                 <div className="grid grid-cols-2 gap-3">
-                  <Input placeholder="Name" className="text-sm" />
-                  <Input type="email" placeholder="Email" className="text-sm" />
+                  <Input 
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    placeholder="Name" 
+                    className="text-sm"
+                    required 
+                  />
+                  <Input 
+                    name="email"
+                    type="email" 
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    placeholder="Email" 
+                    className="text-sm"
+                    required 
+                  />
                 </div>
                 
-                <Input placeholder="Subject" className="text-sm" />
-                
-                <Textarea
-                  placeholder="Tell me about your project..."
-                  className="text-sm min-h-24 resize-none"
+                <Input 
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleInputChange}
+                  placeholder="Subject" 
+                  className="text-sm" 
                 />
                 
-                <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
-                  <Send className="mr-2 h-4 w-4" />
-                  Send Message
+                <Textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  placeholder="Tell me about your project..."
+                  className="text-sm min-h-24 resize-none"
+                  required
+                />
+                
+                <Button 
+                  type="submit"
+                  disabled={isLoading}
+                  className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
+                >
+                  {isLoading ? (
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  ) : (
+                    <Send className="mr-2 h-4 w-4" />
+                  )}
+                  {isLoading ? "Sending..." : "Send Message"}
                 </Button>
-              </div>
+              </form>
             </div>
           </div>
         </div>

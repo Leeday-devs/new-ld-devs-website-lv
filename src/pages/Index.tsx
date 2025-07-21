@@ -6,38 +6,50 @@ import Process from "@/components/Process";
 import Services from "@/components/Services";
 import CaseStudies from "@/components/CaseStudies";
 import Portfolio from "@/components/Portfolio";
+import Testimonials from "@/components/Testimonials";
+import Newsletter from "@/components/Newsletter";
+import FAQ from "@/components/FAQ";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import SEOHead from "@/components/SEOHead";
 
 const Index = () => {
   return (
-    <div className="min-h-screen">
-      <Navigation />
-      <main>
-        <section id="home">
-          <Hero />
-        </section>
-        <section id="how-we-build">
-          <HowWeBuild />
-        </section>
-        <section id="about">
-          <About />
-        </section>
-        <section id="services">
-          <Services />
-        </section>
-        <section id="case-studies">
-          <CaseStudies />
-        </section>
-        <section id="portfolio">
-          <Portfolio />
-        </section>
-        <section id="contact">
-          <Contact />
-        </section>
-      </main>
-      <Footer />
-    </div>
+    <>
+      <SEOHead />
+      <div className="min-h-screen">
+        <Navigation />
+        <main>
+          <section id="home">
+            <Hero />
+          </section>
+          <section id="how-we-build">
+            <HowWeBuild />
+          </section>
+          <section id="about">
+            <About />
+          </section>
+          <section id="services">
+            <Services />
+          </section>
+          <section id="case-studies">
+            <CaseStudies />
+          </section>
+          <section id="portfolio">
+            <Portfolio />
+          </section>
+          <Testimonials />
+          <Newsletter />
+          <section id="faq">
+            <FAQ />
+          </section>
+          <section id="contact">
+            <Contact />
+          </section>
+        </main>
+        <Footer />
+      </div>
+    </>
   );
 };
 
