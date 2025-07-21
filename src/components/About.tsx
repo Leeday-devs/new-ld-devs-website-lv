@@ -31,22 +31,22 @@ const About = () => {
     icon: Code,
     title: "Websites",
     description: "We build complete websites from start to finish using the latest technology",
-    color: "from-blue-500 to-purple-600"
+    color: "from-primary to-primary-glow"
   }, {
     icon: Database,
     title: "Hosting",
     description: "Reliable hosting solutions that keep your website fast and always online",
-    color: "from-pink-500 to-orange-500"
+    color: "from-secondary to-secondary-glow"
   }, {
     icon: Sparkles,
     title: "AI Integration",
     description: "Smart AI features that make your website more powerful and user-friendly",
-    color: "from-green-500 to-teal-600"
+    color: "from-accent to-accent-glow"
   }, {
     icon: Shield,
     title: "Security",
     description: "Advanced security measures to protect your website and user data",
-    color: "from-red-500 to-pink-600"
+    color: "from-secondary to-accent"
   }];
   const stats = [{
     icon: Users,

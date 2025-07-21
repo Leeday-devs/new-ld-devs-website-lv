@@ -77,12 +77,12 @@ const Services = () => {
     icon2: Globe,
     pricingFeatures: ["Unlimited Pages", "Custom Design & Development", "E-commerce Integration", "Advanced User Authentication", "Multi-language Support"]
   }];
-  return <section className="py-24 bg-gradient-to-br from-background via-accent/5 to-primary/10 relative overflow-hidden">
-      {/* Advanced animated background */}
+  return <section className="py-24 bg-gradient-to-br from-background via-muted/20 to-accent/5 relative overflow-hidden">
+      {/* Modern animated background */}
       <div className="absolute inset-0">
-        <div className="absolute top-20 right-20 w-72 h-72 bg-gradient-to-r from-primary/10 to-accent/10 rounded-full blur-3xl animate-float"></div>
+        <div className="absolute top-20 right-20 w-72 h-72 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-full blur-3xl animate-float"></div>
         <div className="absolute bottom-20 left-20 w-96 h-96 bg-gradient-to-l from-accent/10 to-primary/10 rounded-full blur-2xl animate-float-delayed"></div>
-        <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-gradient-to-br from-orange-400/5 to-pink-400/5 rounded-full blur-xl animate-pulse"></div>
+        <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-gradient-to-br from-secondary/5 to-accent/5 rounded-full blur-xl animate-pulse"></div>
         
         {/* AI and Code themed elements */}
         <div className="absolute top-10 left-10 text-primary/15 text-5xl font-mono animate-float">🤖</div>
