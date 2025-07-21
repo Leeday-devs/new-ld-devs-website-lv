@@ -193,7 +193,9 @@ serve(async (req) => {
     }
     
     // Initialize Stripe with proper secret key from environment
-    const stripeSecretKey = Deno.env.get("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");
+    // The secret is stored with the actual key as the name in Supabase
+    const stripeSecretKey = "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";
+    
     if (!stripeSecretKey) {
       console.error("Stripe secret key not found in environment");
       logPaymentAttempt(clientIP, userAgent, user, paymentData, false, "Stripe secret key not configured");
