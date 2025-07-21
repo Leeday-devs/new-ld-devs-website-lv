@@ -121,7 +121,7 @@ const Services = () => {
         "Task Automation",
         "AI Content Creation"
       ],
-      price: "£500",
+      price: "£600",
       monthlyPrice: "£75",
       gradient: "from-purple-600 via-indigo-600 to-blue-700",
       popular: false,
