@@ -96,7 +96,7 @@ const Services = () => {
         "Inventory Tracking",
         "Sales Reports & Analytics"
       ],
-      price: "£499",
+      price: "£800",
       monthlyPrice: "£60",
       gradient: "from-orange-500 via-red-500 to-pink-600",
       popular: true,
