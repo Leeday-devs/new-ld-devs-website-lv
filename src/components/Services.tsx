@@ -4,16 +4,23 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { PaymentButton } from "@/components/PaymentButton";
 import { PricingModal } from "@/components/PricingModal";
+import { ContactOptionsModal } from "@/components/ContactOptionsModal";
 import { useStaggeredScrollAnimation } from "@/hooks/useScrollAnimation";
 import { Code, Palette, Search, ShoppingCart, Server, BarChart, ArrowRight, Star, CheckCircle, Sparkles, Zap, Shield, Globe, Database, Smartphone, Layers, Rocket, Brain, Target } from "lucide-react";
 const Services = () => {
   const containerRef = useStaggeredScrollAnimation('.service-card', 150);
   const [selectedService, setSelectedService] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
   const handleCardClick = (service) => {
     setSelectedService(service);
     setIsModalOpen(true);
+  };
+
+  const handleChatClick = (e) => {
+    e.stopPropagation(); // Prevent card click
+    setIsContactModalOpen(true);
   };
   const services = [{
     icon: Server,
@@ -250,10 +257,7 @@ const Services = () => {
                           Buy Now
                         </Button>
                       )}
-                      <Button variant="outline" onClick={() => {
-                    console.log('WhatsApp clicked');
-                    window.open('https://wa.me/447586266007', '_blank');
-                  }} className={`w-full bg-transparent border-2 border-white/40 text-white hover:bg-white hover:text-gray-900 transition-all duration-200 rounded-xl font-semibold ${index < 4 ? 'py-3 text-sm' : 'py-2 text-xs'}`}>
+                      <Button variant="outline" onClick={handleChatClick} className={`w-full bg-transparent border-2 border-white/40 text-white hover:bg-white hover:text-gray-900 transition-all duration-200 rounded-xl font-semibold ${index < 4 ? 'py-3 text-sm' : 'py-2 text-xs'}`}>
                         💬 Chat with Us
                       </Button>
                     </div>
@@ -288,6 +292,11 @@ const Services = () => {
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         service={selectedService}
+      />
+
+      <ContactOptionsModal
+        isOpen={isContactModalOpen}
+        onClose={() => setIsContactModalOpen(false)}
       />
     </section>;
 };
