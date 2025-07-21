@@ -8,8 +8,20 @@ const WhatsAppWidget = () => {
   const whatsappUrl = `https://wa.me/${whatsappNumber}`;
 
   const handleWhatsAppClick = () => {
+    console.log("Opening WhatsApp:", whatsappUrl);
     window.open(whatsappUrl, '_blank');
     setIsOpen(false);
+  };
+
+  const handleToggleClick = () => {
+    console.log("Toggle clicked, isOpen:", !isOpen);
+    if (!isOpen) {
+      // If widget is closed, open WhatsApp directly
+      handleWhatsAppClick();
+    } else {
+      // If widget is open, just close it
+      setIsOpen(false);
+    }
   };
 
   return (
@@ -75,7 +87,7 @@ const WhatsAppWidget = () => {
         {/* Main WhatsApp Button */}
         <div className="relative">
           <Button
-            onClick={() => setIsOpen(!isOpen)}
+            onClick={handleToggleClick}
             className="w-16 h-16 bg-green-500 hover:bg-green-600 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 flex items-center justify-center group"
           >
             {isOpen ? (
