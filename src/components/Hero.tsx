@@ -59,7 +59,10 @@ const Hero = () => {
           {/* Left side - Content */}
           <div className="text-white space-y-8">
             {/* Badge */}
-            
+            <div className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-primary backdrop-blur-md rounded-full border border-white/20 shadow-glow animate-pulse-glow">
+              <Sparkles className="h-5 w-5 animate-spin" />
+              <span className="font-semibold">Premium Web Development</span>
+            </div>
             
             {/* Main Heading */}
             <div className="space-y-4">

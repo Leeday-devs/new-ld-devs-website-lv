@@ -350,30 +350,6 @@
   .stagger-delay-5 {
     animation-delay: 0.5s;
   }
-
-  /* Text Effects */
-  .text-shimmer {
-    background: linear-gradient(90deg, 
-      hsl(var(--foreground)) 25%, 
-      hsl(var(--primary)) 50%, 
-      hsl(var(--foreground)) 75%
-    );
-    background-size: 200% 100%;
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: hsl(var(--foreground)); /* fallback for unsupported browsers */
-    animation: shimmer 3s ease-in-out infinite;
-  }
-
-  /* Ensure shimmer works in dark mode */
-  .dark .text-shimmer {
-    background: linear-gradient(90deg, 
-      hsl(var(--foreground)) 25%, 
-      hsl(var(--primary)) 50%, 
-      hsl(var(--foreground)) 75%
-    );
-  }
 }
 
 @layer utilities {
