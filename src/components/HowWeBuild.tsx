@@ -1,73 +1,127 @@
-import { Users, Monitor, CheckCircle, Sparkles } from "lucide-react";
-
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { MessageCircle, Palette, Code, Rocket, CheckCircle, ArrowRight, Users, Monitor, Sparkles } from "lucide-react";
 const HowWeBuild = () => {
-  const tools = [
-    { name: "React & Next.js", category: "Frontend Development", percentage: 95 },
-    { name: "TypeScript & JavaScript", category: "Programming Languages", percentage: 90 },
-    { name: "Node.js & Express", category: "Backend Development", percentage: 85 },
-    { name: "Tailwind CSS & Figma", category: "UI/UX Design", percentage: 92 },
-    { name: "AWS & Vercel", category: "Cloud Hosting", percentage: 88 },
-    { name: "MongoDB & PostgreSQL", category: "Database Management", percentage: 87 }
-  ];
+  const steps = [{
+    step: "01",
+    icon: MessageCircle,
+    title: "Chat About Your Ideas",
+    description: "We sit down with you (virtually or in person) and listen to what you want. Tell us about your business, your style, and what makes you special!",
+    details: ["Understanding your business goals", "Learning about your target customers", "Discussing your favorite colors and styles", "Planning the features you need"],
+    color: "from-blue-500 to-indigo-600",
+    bgColor: "bg-blue-50"
+  }, {
+    step: "02",
+    icon: Palette,
+    title: "Design Your Perfect Look",
+    description: "Our creative team makes your website look absolutely amazing! We create designs that match your personality and make your customers smile.",
+    details: ["Custom color schemes and branding", "Beautiful layouts that work on all devices", "Easy-to-use navigation that makes sense", "Professional graphics and images"],
+    color: "from-purple-500 to-pink-600",
+    bgColor: "bg-purple-50"
+  }, {
+    step: "03",
+    icon: Code,
+    title: "Build with Love & Code",
+    description: "This is where the magic happens! We write clean, fast code that brings your design to life. Every button, every page, every feature - built perfectly.",
+    details: ["Lightning-fast loading speeds", "Mobile-friendly responsive design", "Secure and reliable code", "Easy content management system"],
+    color: "from-green-500 to-teal-600",
+    bgColor: "bg-green-50"
+  }, {
+    step: "04",
+    icon: Rocket,
+    title: "Launch & Celebrate!",
+    description: "Your website goes live and the world can see your amazing new online presence! We help you launch and make sure everything works perfectly.",
+    details: ["Domain setup and hosting", "SSL security certificates", "Search engine optimization", "Training on how to update content"],
+    color: "from-orange-500 to-red-600",
+    bgColor: "bg-orange-50"
+  }];
+  return <section className="py-24 bg-gradient-to-br from-white via-gray-50 to-blue-50 relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute inset-0">
+        <div className="absolute top-20 right-20 w-64 h-64 bg-gradient-to-r from-blue-200/30 to-purple-200/30 rounded-full blur-3xl animate-float"></div>
+        <div className="absolute bottom-20 left-20 w-80 h-80 bg-gradient-to-l from-purple-200/30 to-pink-200/30 rounded-full blur-2xl animate-float-delayed"></div>
+        
+        {/* Subtle pattern overlay */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="grid grid-cols-8 h-full">
+            {Array.from({
+            length: 64
+          }).map((_, i) => {})}
+          </div>
+        </div>
+      </div>
 
-  const stats = [
-    { icon: Users, value: "500+", label: "Happy Clients" },
-    { icon: Monitor, value: "1000+", label: "Projects Delivered" },
-    { icon: Sparkles, value: "10+", label: "Years Experience" },
-    { icon: CheckCircle, value: "99.9%", label: "Success Rate" }
-  ];
-
-  return (
-    <section className="py-16 bg-gradient-to-br from-gray-50 to-white">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Cool Tools We Use
+        <div className="max-w-4xl mx-auto text-center mb-16 animate-fade-in">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-100 to-purple-100 backdrop-blur-sm rounded-full mb-6 border border-blue-200">
+            <Sparkles className="h-4 w-4 text-blue-600 animate-pulse" />
+            <span className="text-sm font-medium text-blue-700">Our Process</span>
+          </div>
+          
+          <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold font-serif mb-6">
+            <span className="block text-gray-900">HOW WE BUILD</span>
+            <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+              YOUR WEBSITE
+            </span>
           </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            We use the latest and greatest technologies to build amazing websites
+          
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            From your first idea to your website going live - here's exactly how we make your dreams come true, step by step!
           </p>
         </div>
 
-        {/* Tools Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
-          {tools.map((tool, index) => (
-            <div key={index} className="bg-white rounded-lg p-6 shadow-sm border border-gray-100">
-              <div className="flex justify-between items-start mb-3">
-                <div>
-                  <h3 className="font-semibold text-gray-900">{tool.name}</h3>
-                  <p className="text-sm text-gray-500">{tool.category}</p>
-                </div>
-                <span className="text-lg font-bold text-orange-500">{tool.percentage}%</span>
-              </div>
-              <div className="w-full bg-gray-200 rounded-full h-2">
-                <div 
-                  className="bg-gradient-to-r from-orange-400 to-yellow-400 h-2 rounded-full transition-all duration-1000"
-                  style={{ width: `${tool.percentage}%` }}
-                ></div>
-              </div>
-            </div>
-          ))}
+        {/* Process Steps */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+          {steps.map((step, index) => {
+          const Icon = step.icon;
+          return <div key={step.step} className="relative group">
+                {/* Connection line for desktop */}
+                {index < steps.length - 1 && <div className="hidden lg:block absolute top-16 -right-4 w-8 h-0.5 bg-gradient-to-r from-gray-300 to-gray-200 z-0"></div>}
+                
+                <Card className="relative h-full hover:shadow-xl hover:scale-105 transition-all duration-300 border-0 bg-white/80 backdrop-blur-sm overflow-hidden">
+                  {/* Step number badge */}
+                  <div className="absolute top-4 left-4 z-10">
+                    <Badge className={`bg-gradient-to-r ${step.color} text-white border-0 text-sm font-bold px-3 py-1`}>
+                      {step.step}
+                    </Badge>
+                  </div>
+
+                  {/* Background gradient */}
+                  <div className={`absolute inset-0 ${step.bgColor} opacity-50`}></div>
+                  
+                  <CardContent className="relative z-10 p-6 pt-16">
+                    {/* Icon */}
+                    <div className={`w-16 h-16 rounded-2xl bg-gradient-to-r ${step.color} p-4 mb-4 flex items-center justify-center shadow-lg`}>
+                      <Icon className="h-8 w-8 text-white" />
+                    </div>
+                    
+                    {/* Title */}
+                    <h3 className="text-xl font-bold mb-3 text-gray-900">
+                      {step.title}
+                    </h3>
+                    
+                    {/* Description */}
+                    <p className="text-gray-600 text-sm leading-relaxed mb-4">
+                      {step.description}
+                    </p>
+
+                    {/* Details */}
+                    <div className="space-y-2">
+                      {step.details.map((detail, idx) => <div key={idx} className="flex items-start gap-2">
+                          <CheckCircle className="h-3 w-3 text-green-500 mt-0.5 flex-shrink-0" />
+                          <span className="text-xs text-gray-600">{detail}</span>
+                        </div>)}
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>;
+        })}
         </div>
 
-        {/* Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-          {stats.map((stat, index) => {
-            const Icon = stat.icon;
-            return (
-              <div key={index} className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-r from-orange-400 to-yellow-400 rounded-2xl mx-auto mb-4 flex items-center justify-center">
-                  <Icon className="h-8 w-8 text-white" />
-                </div>
-                <div className="text-3xl font-bold text-orange-500 mb-1">{stat.value}</div>
-                <div className="text-gray-600 text-sm">{stat.label}</div>
-              </div>
-            );
-          })}
-        </div>
+        {/* Bottom CTA */}
+        
       </div>
-    </section>
-  );
+    </section>;
 };
 export default HowWeBuild;
