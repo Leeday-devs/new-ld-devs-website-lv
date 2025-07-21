@@ -68,7 +68,7 @@ const Services = () => {
         "Safe & Secure",
         "Free Website Transfer"
       ],
-      price: "£300",
+      price: "£500",
       monthlyPrice: "£40",
       gradient: "from-blue-600 via-indigo-600 to-purple-700",
       popular: false,
