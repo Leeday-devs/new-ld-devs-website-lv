@@ -66,7 +66,7 @@ const Hero = () => {
             
             {/* Main Heading */}
             <div className="space-y-4">
-              <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold font-serif leading-tight">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold font-serif leading-tight">
                 <span className="block text-shimmer animate-fade-in">WE BUILD</span>
                 <span className="block text-shimmer animate-fade-in stagger-delay-1">AMAZING</span>
                 <span className="block bg-gradient-primary bg-clip-text text-transparent animate-fade-in stagger-delay-2">WEBSITES</span>
@@ -74,7 +74,7 @@ const Hero = () => {
             </div>
             
             {/* Description */}
-            <p className="text-xl md:text-2xl text-gray-300 leading-relaxed max-w-2xl animate-fade-in-up stagger-delay-3">
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-300 leading-relaxed max-w-2xl animate-fade-in-up stagger-delay-3">
               Transform your business with stunning, lightning-fast websites that captivate users 
               and drive results. We craft digital experiences that make your brand unforgettable.
             </p>

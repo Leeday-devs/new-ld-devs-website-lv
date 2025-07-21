@@ -130,12 +130,12 @@ const Services = () => {
             <span className="text-sm font-medium text-primary">Cool Things We Make</span>
           </div>
           
-          <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold font-serif mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold font-serif mb-6">
             <span className="block">OUR</span>
             <span className="bg-gradient-to-r from-primary via-accent to-orange-400 bg-clip-text text-transparent animate-text-glow">PLANS</span>
           </h2>
           
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed mb-8">
+          <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed mb-8">
             Choose the perfect plan for your project! From simple websites to powerful online stores and smart AI solutions - 
             we've got everything you need to succeed online.
           </p>
