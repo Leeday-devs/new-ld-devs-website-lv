@@ -43,21 +43,23 @@ export const PricingModal = ({ isOpen, onClose, service }: PricingModalProps) =>
     setIsProcessing(true);
     try {
       const { data, error } = await supabase.functions.invoke('create-payment', {
-        body: JSON.stringify({
+        body: {
           amount: 2000, // £20 in pence
           serviceName: service.title,
           type: 'deposit'
-        })
+        }
       });
 
-      if (error) throw error;
+      if (error) {
+        console.error('Payment error:', error);
+        return;
+      }
 
       if (data?.url) {
         window.open(data.url, '_blank');
       }
     } catch (error) {
       console.error('Payment error:', error);
-      // Removed error toast to prevent popup warnings
     } finally {
       setIsProcessing(false);
     }
