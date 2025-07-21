@@ -13,6 +13,7 @@ import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
 import StatsBar from "@/components/StatsBar";
+import WhatsAppWidget from "@/components/WhatsAppWidget";
 
 const Index = () => {
   return (
@@ -50,6 +51,7 @@ const Index = () => {
           </section>
         </main>
         <Footer />
+        <WhatsAppWidget />
       </div>
     </>
   );
