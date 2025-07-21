@@ -7,6 +7,42 @@ const corsHeaders = {
     "authorization, x-client-info, apikey, content-type",
 };
 
+// Input validation
+const validateEmail = (email: any) => {
+  const errors: string[] = [];
+  
+  if (!email || typeof email !== 'string') {
+    errors.push("Email is required and must be a string");
+  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    errors.push("Invalid email format");
+  } else if (email.length > 255) {
+    errors.push("Email must be less than 255 characters");
+  }
+  
+  return errors;
+};
+
+// Rate limiting
+const rateLimitStore = new Map<string, { count: number; resetTime: number }>();
+
+const checkRateLimit = (identifier: string, maxRequests = 3, windowMinutes = 15): boolean => {
+  const now = Date.now();
+  const windowMs = windowMinutes * 60 * 1000;
+  
+  const record = rateLimitStore.get(identifier);
+  if (!record || now > record.resetTime) {
+    rateLimitStore.set(identifier, { count: 1, resetTime: now + windowMs });
+    return true;
+  }
+  
+  if (record.count >= maxRequests) {
+    return false;
+  }
+  
+  record.count++;
+  return true;
+};
+
 interface NewsletterData {
   email: string;
 }
@@ -18,7 +54,45 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
-    const { email }: NewsletterData = await req.json();
+    // Rate limiting
+    const clientIP = req.headers.get("cf-connecting-ip") || req.headers.get("x-forwarded-for") || "unknown";
+    if (!checkRateLimit(clientIP, 2, 15)) {
+      return new Response(JSON.stringify({ 
+        error: "Too many newsletter subscriptions. Please try again later.",
+        success: false 
+      }), {
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+        status: 429,
+      });
+    }
+
+    // Parse and validate request
+    let newsletterData;
+    try {
+      newsletterData = await req.json();
+    } catch (error) {
+      return new Response(JSON.stringify({ 
+        error: "Invalid JSON in request body",
+        success: false 
+      }), {
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+        status: 400,
+      });
+    }
+
+    // Validate input
+    const validationErrors = validateEmail(newsletterData.email);
+    if (validationErrors.length > 0) {
+      return new Response(JSON.stringify({ 
+        error: validationErrors.join(", "),
+        success: false 
+      }), {
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+        status: 400,
+      });
+    }
+
+    const { email }: NewsletterData = newsletterData;
 
     // Initialize Supabase client
     const supabaseUrl = Deno.env.get('SUPABASE_URL')!;

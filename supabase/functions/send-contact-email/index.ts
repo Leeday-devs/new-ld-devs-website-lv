@@ -9,6 +9,75 @@ const corsHeaders = {
     "authorization, x-client-info, apikey, content-type",
 };
 
+// Input validation and sanitization
+const validateContactForm = (data: any) => {
+  const errors: string[] = [];
+  
+  if (!data.name || typeof data.name !== 'string') {
+    errors.push("Name is required and must be a string");
+  } else if (data.name.length > 100) {
+    errors.push("Name must be less than 100 characters");
+  }
+  
+  if (!data.email || typeof data.email !== 'string') {
+    errors.push("Email is required and must be a string");
+  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
+    errors.push("Invalid email format");
+  } else if (data.email.length > 255) {
+    errors.push("Email must be less than 255 characters");
+  }
+  
+  if (!data.subject || typeof data.subject !== 'string') {
+    errors.push("Subject is required and must be a string");
+  } else if (data.subject.length > 200) {
+    errors.push("Subject must be less than 200 characters");
+  }
+  
+  if (!data.message || typeof data.message !== 'string') {
+    errors.push("Message is required and must be a string");
+  } else if (data.message.length > 5000) {
+    errors.push("Message must be less than 5000 characters");
+  }
+  
+  // Basic XSS protection
+  const xssPattern = /<script|javascript:|on\w+=/i;
+  if (xssPattern.test(data.name) || xssPattern.test(data.subject) || xssPattern.test(data.message)) {
+    errors.push("Input contains invalid characters");
+  }
+  
+  return errors;
+};
+
+const sanitizeHtml = (str: string): string => {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+};
+
+// Rate limiting
+const rateLimitStore = new Map<string, { count: number; resetTime: number }>();
+
+const checkRateLimit = (identifier: string, maxRequests = 5, windowMinutes = 15): boolean => {
+  const now = Date.now();
+  const windowMs = windowMinutes * 60 * 1000;
+  
+  const record = rateLimitStore.get(identifier);
+  if (!record || now > record.resetTime) {
+    rateLimitStore.set(identifier, { count: 1, resetTime: now + windowMs });
+    return true;
+  }
+  
+  if (record.count >= maxRequests) {
+    return false;
+  }
+  
+  record.count++;
+  return true;
+};
+
 interface ContactFormData {
   name: string;
   email: string;
@@ -23,7 +92,45 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
-    const { name, email, subject, message }: ContactFormData = await req.json();
+    // Rate limiting
+    const clientIP = req.headers.get("cf-connecting-ip") || req.headers.get("x-forwarded-for") || "unknown";
+    if (!checkRateLimit(clientIP, 3, 15)) {
+      return new Response(JSON.stringify({ 
+        error: "Too many contact form submissions. Please try again later.",
+        success: false 
+      }), {
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+        status: 429,
+      });
+    }
+
+    // Parse and validate request
+    let formData;
+    try {
+      formData = await req.json();
+    } catch (error) {
+      return new Response(JSON.stringify({ 
+        error: "Invalid JSON in request body",
+        success: false 
+      }), {
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+        status: 400,
+      });
+    }
+
+    // Validate input
+    const validationErrors = validateContactForm(formData);
+    if (validationErrors.length > 0) {
+      return new Response(JSON.stringify({ 
+        error: validationErrors.join(", "),
+        success: false 
+      }), {
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+        status: 400,
+      });
+    }
+
+    const { name, email, subject, message }: ContactFormData = formData;
 
     // Send email to business owner
     const ownerEmailResponse = await resend.emails.send({
@@ -32,12 +139,12 @@ const handler = async (req: Request): Promise<Response> => {
       subject: `New Contact Form Submission: ${subject}`,
       html: `
         <h2>New Contact Form Submission</h2>
-        <p><strong>From:</strong> ${name} (${email})</p>
-        <p><strong>Subject:</strong> ${subject}</p>
+        <p><strong>From:</strong> ${sanitizeHtml(name)} (${sanitizeHtml(email)})</p>
+        <p><strong>Subject:</strong> ${sanitizeHtml(subject)}</p>
         <div style="margin-top: 20px;">
           <strong>Message:</strong>
           <div style="background: #f5f5f5; padding: 15px; border-radius: 5px; margin-top: 10px;">
-            ${message.replace(/\n/g, '<br>')}
+            ${sanitizeHtml(message).replace(/\n/g, '<br>')}
           </div>
         </div>
         <hr style="margin: 20px 0;">
@@ -53,13 +160,13 @@ const handler = async (req: Request): Promise<Response> => {
       to: [email],
       subject: "Thanks for contacting Lee Day Devs!",
       html: `
-        <h1>Thank you for contacting us, ${name}!</h1>
+        <h1>Thank you for contacting us, ${sanitizeHtml(name)}!</h1>
         <p>We have received your message and will get back to you as soon as possible.</p>
         
         <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
           <h3>Your Message:</h3>
-          <p><strong>Subject:</strong> ${subject}</p>
-          <p>${message.replace(/\n/g, '<br>')}</p>
+          <p><strong>Subject:</strong> ${sanitizeHtml(subject)}</p>
+          <p>${sanitizeHtml(message).replace(/\n/g, '<br>')}</p>
         </div>
         
         <p>We typically respond within 24 hours. For urgent matters, feel free to call us at 07586 266007.</p>

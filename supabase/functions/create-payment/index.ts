@@ -8,6 +8,56 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
+// Input validation functions
+const validatePaymentInput = (amount: any, serviceName: any, type: any) => {
+  const errors: string[] = [];
+  
+  if (amount !== undefined) {
+    if (typeof amount !== 'number' || amount < 100 || amount > 1000000) {
+      errors.push("Amount must be a number between £1 and £10,000");
+    }
+  }
+  
+  if (serviceName !== undefined) {
+    if (typeof serviceName !== 'string' || serviceName.length > 255) {
+      errors.push("Service name must be a string with max 255 characters");
+    }
+    // Basic XSS protection
+    if (/<script|javascript:|on\w+=/i.test(serviceName)) {
+      errors.push("Service name contains invalid characters");
+    }
+  }
+  
+  if (type !== undefined) {
+    if (typeof type !== 'string' || !['deposit', 'full', 'subscription'].includes(type)) {
+      errors.push("Payment type must be 'deposit', 'full', or 'subscription'");
+    }
+  }
+  
+  return errors;
+};
+
+// Rate limiting store (in production, use Redis or similar)
+const rateLimitStore = new Map<string, { count: number; resetTime: number }>();
+
+const checkRateLimit = (identifier: string, maxRequests = 10, windowMinutes = 15): boolean => {
+  const now = Date.now();
+  const windowMs = windowMinutes * 60 * 1000;
+  
+  const record = rateLimitStore.get(identifier);
+  if (!record || now > record.resetTime) {
+    rateLimitStore.set(identifier, { count: 1, resetTime: now + windowMs });
+    return true;
+  }
+  
+  if (record.count >= maxRequests) {
+    return false;
+  }
+  
+  record.count++;
+  return true;
+};
+
 serve(async (req) => {
   // Handle CORS preflight requests
   if (req.method === "OPTIONS") {
@@ -15,6 +65,14 @@ serve(async (req) => {
   }
 
   try {
+    // Rate limiting
+    const clientIP = req.headers.get("cf-connecting-ip") || req.headers.get("x-forwarded-for") || "unknown";
+    if (!checkRateLimit(clientIP, 5, 15)) {
+      return new Response(JSON.stringify({ error: "Too many requests. Please try again later." }), {
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+        status: 429,
+      });
+    }
     // Create Supabase client using the service role key for secure writes
     const supabaseClient = createClient(
       Deno.env.get("SUPABASE_URL") ?? "",
@@ -35,11 +93,39 @@ serve(async (req) => {
       }
     }
 
-    // Parse request body to get payment details
-    const { amount, serviceName, type } = await req.json();
+    // Parse and validate request body
+    let paymentData;
+    try {
+      paymentData = await req.json();
+    } catch (error) {
+      return new Response(JSON.stringify({ error: "Invalid JSON in request body" }), {
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+        status: 400,
+      });
+    }
+
+    const { amount, serviceName, type } = paymentData;
     
-    // Initialize Stripe
-    const stripe = new Stripe(Deno.env.get("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") || "", {
+    // Validate input
+    const validationErrors = validatePaymentInput(amount, serviceName, type);
+    if (validationErrors.length > 0) {
+      return new Response(JSON.stringify({ error: validationErrors.join(", ") }), {
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+        status: 400,
+      });
+    }
+    
+    // Initialize Stripe with proper secret key from environment
+    const stripeSecretKey = Deno.env.get("STRIPE_SECRET_KEY");
+    if (!stripeSecretKey) {
+      console.error("STRIPE_SECRET_KEY environment variable not set");
+      return new Response(JSON.stringify({ error: "Payment processing unavailable" }), {
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+        status: 500,
+      });
+    }
+    
+    const stripe = new Stripe(stripeSecretKey, {
       apiVersion: "2023-10-16",
     });
 
