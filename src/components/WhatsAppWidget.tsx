@@ -8,13 +8,21 @@ const WhatsAppWidget = () => {
   const whatsappUrl = `https://wa.me/${whatsappNumber}`;
 
   const handleWhatsAppClick = () => {
-    console.log("Opening WhatsApp:", whatsappUrl);
-    window.location.href = whatsappUrl;
+    console.log("handleWhatsAppClick called!");
+    console.log("WhatsApp URL:", whatsappUrl);
+    try {
+      window.location.href = whatsappUrl;
+    } catch (error) {
+      console.error("Error opening WhatsApp:", error);
+      // Fallback: try window.open
+      window.open(whatsappUrl, '_blank');
+    }
     setIsOpen(false);
   };
 
   const handleToggleClick = () => {
-    console.log("Toggle clicked, isOpen:", !isOpen);
+    console.log("handleToggleClick called!");
+    console.log("Current isOpen state:", isOpen);
     if (!isOpen) {
       // If widget is closed, open WhatsApp directly
       handleWhatsAppClick();
