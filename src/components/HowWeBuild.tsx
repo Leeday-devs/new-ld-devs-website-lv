@@ -46,7 +46,9 @@ const HowWeBuild = () => {
           <div className="grid grid-cols-8 h-full">
             {Array.from({
             length: 64
-          }).map((_, i) => {})}
+          }).map((_, i) => (
+            <div key={i} className="border border-gray-200/20"></div>
+          ))}
           </div>
         </div>
       </div>

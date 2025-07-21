@@ -73,6 +73,88 @@ const Portfolio = () => {
     githubUrl: "#",
     featured: false
   }];
-  return;
+  return (
+    <section className="py-24 bg-gradient-to-br from-gray-50 via-white to-blue-50 relative overflow-hidden">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-100 to-purple-100 backdrop-blur-sm rounded-full mb-6 border border-blue-200">
+            <Sparkles className="h-4 w-4 text-blue-600 animate-pulse" />
+            <span className="text-sm font-medium text-blue-700">Our Work</span>
+          </div>
+          
+          <h2 className="text-4xl md:text-6xl font-bold mb-6">
+            <span className="block text-gray-900">PORTFOLIO</span>
+            <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+              SHOWCASE
+            </span>
+          </h2>
+          
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            Real projects, real results. See how we've helped businesses transform their online presence.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
+          {projects.map((project, index) => (
+            <Card key={project.title} className="group hover:shadow-xl transition-all duration-300 overflow-hidden">
+              <div className="relative overflow-hidden">
+                <img 
+                  src={project.image} 
+                  alt={project.title}
+                  className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+                {project.featured && (
+                  <Badge className="absolute top-4 left-4 bg-gradient-to-r from-orange-500 to-red-500 text-white">
+                    Featured
+                  </Badge>
+                )}
+              </div>
+              
+              <CardContent className="p-6">
+                <div className="flex items-center gap-2 mb-3">
+                  <Badge variant="outline">{project.category}</Badge>
+                  {project.stats.verified && (
+                    <CheckCircle className="h-4 w-4 text-green-500" />
+                  )}
+                </div>
+                
+                <h3 className="text-xl font-bold mb-3">{project.title}</h3>
+                <p className="text-gray-600 mb-4 line-clamp-3">{project.description}</p>
+                
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {project.technologies.slice(0, 3).map((tech) => (
+                    <Badge key={tech} variant="secondary" className="text-xs">
+                      {tech}
+                    </Badge>
+                  ))}
+                </div>
+                
+                <div className="grid grid-cols-2 gap-4 mb-4 text-sm">
+                  <div className="flex items-center gap-1">
+                    <Users className="h-4 w-4 text-blue-500" />
+                    <span>{project.stats.users}</span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <Star className="h-4 w-4 text-yellow-500" />
+                    <span>{project.stats.rating}</span>
+                  </div>
+                </div>
+                
+                <div className="flex gap-2">
+                  <Button size="sm" className="flex-1">
+                    <ExternalLink className="h-4 w-4 mr-2" />
+                    View Live
+                  </Button>
+                  <Button size="sm" variant="outline">
+                    <Github className="h-4 w-4" />
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 };
 export default Portfolio;

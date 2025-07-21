@@ -118,10 +118,10 @@ const Hero = () => {
             {/* Feature highlights */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
               {[
-                { icon: Code, label: "Cool Code" },
-                { icon: Palette, label: "Pretty Colors" },
-                { icon: Rocket, label: "Super Fast" },
-                { icon: Shield, label: "Safe & Secure" }
+                { icon: Code, label: "Websites" },
+                { icon: Database, label: "Hosting" },
+                { icon: Sparkles, label: "AI Integration" },
+                { icon: Shield, label: "Security" }
               ].map((feature, index) => (
                 <div key={feature.label} className="flex flex-col items-center gap-2 p-3 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 hover:bg-white/10 transition-all duration-300" style={{ animationDelay: `${index * 0.1}s` }}>
                   <feature.icon className="h-5 w-5 text-primary" />

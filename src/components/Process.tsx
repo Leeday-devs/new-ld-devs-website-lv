@@ -51,6 +51,47 @@ const Process = () => {
     duration: "Ongoing",
     color: "from-teal-500 to-blue-500"
   }];
-  return;
+  return (
+    <div className="py-16 bg-gradient-to-br from-gray-50 to-white">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Development Process</h2>
+          <p className="text-gray-600 max-w-2xl mx-auto">
+            We follow a proven process to deliver amazing websites that exceed your expectations.
+          </p>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {steps.map((step, index) => {
+            const Icon = step.icon;
+            return (
+              <Card key={step.number} className="relative overflow-hidden hover:shadow-lg transition-all duration-300">
+                <CardContent className="p-6">
+                  <div className={`w-12 h-12 rounded-lg bg-gradient-to-r ${step.color} flex items-center justify-center mb-4`}>
+                    <Icon className="h-6 w-6 text-white" />
+                  </div>
+                  <Badge variant="outline" className="mb-3">{step.number}</Badge>
+                  <h3 className="text-xl font-semibold mb-3">{step.title}</h3>
+                  <p className="text-gray-600 mb-4">{step.description}</p>
+                  <div className="space-y-2">
+                    {step.details.map((detail, idx) => (
+                      <div key={idx} className="flex items-center gap-2">
+                        <CheckCircle className="h-4 w-4 text-green-500" />
+                        <span className="text-sm text-gray-600">{detail}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="mt-4 text-sm text-gray-500">
+                    <Clock className="inline h-4 w-4 mr-1" />
+                    {step.duration}
+                  </div>
+                </CardContent>
+              </Card>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
 };
 export default Process;
