@@ -39,7 +39,7 @@ const Services = () => {
     icon: Code,
     title: "Build Me a Website",
     description: "We will build you an awesome website that works and looks amazing - just how you want it!",
-    features: ["Up to 5 Pages", "Super Fast Website", "Mobile Friendly", "Free SSL Certificate", "24/7 Hosting Support", "1 Months Free Revisions", "Works on Phone & Computer", "Easy to Use Buttons", "Safe & Secure", "Free Website Transfer"],
+    features: ["Up to 5 Pages", "Super Fast Website", "Mobile Friendly", "Free SSL Certificate", "24/7 Hosting Support", "1 Months Free Revisions", "Works on Phone & Computer", "Easy to Use Buttons", "Safe & Secure", "Free Website Transfer", "Free Site Migration"],
     price: "£500",
     monthlyPrice: "£40",
     gradient: "from-blue-600 via-indigo-600 to-purple-700",
