@@ -1,11 +1,20 @@
+import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { PaymentButton } from "@/components/PaymentButton";
+import { PricingModal } from "@/components/PricingModal";
 import { useStaggeredScrollAnimation } from "@/hooks/useScrollAnimation";
 import { Code, Palette, Search, ShoppingCart, Server, BarChart, ArrowRight, Star, CheckCircle, Sparkles, Zap, Shield, Globe, Database, Smartphone, Layers, Rocket, Brain, Target } from "lucide-react";
 const Services = () => {
   const containerRef = useStaggeredScrollAnimation('.service-card', 150);
+  const [selectedService, setSelectedService] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleCardClick = (service) => {
+    setSelectedService(service);
+    setIsModalOpen(true);
+  };
   const services = [{
     icon: Server,
     title: "Hosting and Maintenance",
@@ -170,7 +179,10 @@ const Services = () => {
           {services.map((service, index) => {
           const Icon = service.icon;
           return <div key={service.title} className={`service-card scroll-roll group w-full ${index < 4 ? 'max-w-sm mx-auto' : ''}`}>
-                <Card className={`relative ${index < 4 ? 'h-[750px]' : 'h-[375px]'} w-full overflow-hidden border-0 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 ${service.popular ? 'ring-2 ring-primary ring-offset-4' : ''}`}>
+                <Card 
+                  onClick={() => handleCardClick(service)} 
+                  className={`relative ${index < 4 ? 'h-[750px]' : 'h-[375px]'} w-full overflow-hidden border-0 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer ${service.popular ? 'ring-2 ring-primary ring-offset-4' : ''}`}
+                >
                   {/* Background with solid gradient */}
                   <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient}`}></div>
                   
@@ -271,6 +283,12 @@ const Services = () => {
           </div>
         </div>
       </div>
+
+      <PricingModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        service={selectedService}
+      />
     </section>;
 };
 export default Services;
