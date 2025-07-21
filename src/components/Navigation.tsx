@@ -50,8 +50,11 @@ const Navigation = () => {
 
           {/* Premium CTA Button */}
           <div className="hidden md:block">
-            <Button className="btn-premium hover-glow">
-              Get Quote
+            <Button 
+              className="btn-premium hover-glow"
+              onClick={() => window.open('https://wa.me/447586266007', '_blank')}
+            >
+              Speak to Team
             </Button>
           </div>
 
@@ -84,8 +87,11 @@ const Navigation = () => {
                 </a>
               ))}
               <div className="px-4 pt-2 animate-fade-in-up stagger-delay-5">
-                <Button className="btn-premium w-full">
-                  Get Quote
+                <Button 
+                  className="btn-premium w-full"
+                  onClick={() => window.open('https://wa.me/447586266007', '_blank')}
+                >
+                  Speak to Team
                 </Button>
               </div>
             </div>
