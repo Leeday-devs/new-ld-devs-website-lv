@@ -3,12 +3,9 @@ import { ArrowRight, Code, Zap, Sparkles, Layers, Palette, Database, Shield, Roc
 import { PaymentButton } from "@/components/PaymentButton";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import heroImage from "@/assets/hero-image-no-bg.png";
-
 const Hero = () => {
   const heroRef = useScrollAnimation();
-
-  return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800">
+  return <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800">
       {/* Modern layered background with mesh gradient */}
       <div className="absolute inset-0">
         {/* Modern gradient mesh */}
@@ -25,9 +22,9 @@ const Hero = () => {
           {/* Modern geometric patterns */}
           <div className="absolute top-10 right-10 w-32 h-32 opacity-20 animate-rotate-slow">
             <svg viewBox="0 0 100 100" className="w-full h-full">
-              <polygon points="50,5 90,25 90,75 50,95 10,75 10,25" fill="none" stroke="hsl(var(--primary))" strokeWidth="1"/>
-              <polygon points="50,15 80,30 80,70 50,85 20,70 20,30" fill="none" stroke="hsl(var(--secondary))" strokeWidth="1"/>
-              <polygon points="50,25 70,35 70,65 50,75 30,65 30,35" fill="none" stroke="hsl(var(--accent))" strokeWidth="1"/>
+              <polygon points="50,5 90,25 90,75 50,95 10,75 10,25" fill="none" stroke="hsl(var(--primary))" strokeWidth="1" />
+              <polygon points="50,15 80,30 80,70 50,85 20,70 20,30" fill="none" stroke="hsl(var(--secondary))" strokeWidth="1" />
+              <polygon points="50,25 70,35 70,65 50,75 30,65 30,35" fill="none" stroke="hsl(var(--accent))" strokeWidth="1" />
             </svg>
           </div>
           
@@ -84,32 +81,30 @@ const Hero = () => {
 
             {/* Feature highlights */}
             <div className="flex flex-wrap gap-4 animate-fade-in-up stagger-delay-4">
-              {[
-                { icon: Zap, label: "Lightning Fast" },
-                { icon: Shield, label: "Ultra Secure" },
-                { icon: Rocket, label: "Modern Design" },
-                { icon: Code, label: "Clean Code" }
-              ].map((feature, index) => (
-                <div 
-                  key={feature.label} 
-                  className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-lg border border-white/20 hover-lift"
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
+              {[{
+              icon: Zap,
+              label: "Lightning Fast"
+            }, {
+              icon: Shield,
+              label: "Ultra Secure"
+            }, {
+              icon: Rocket,
+              label: "Modern Design"
+            }, {
+              icon: Code,
+              label: "Clean Code"
+            }].map((feature, index) => <div key={feature.label} className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-lg border border-white/20 hover-lift" style={{
+              animationDelay: `${index * 0.1}s`
+            }}>
                   <feature.icon className="h-4 w-4 text-secondary" />
                   <span className="text-sm font-medium">{feature.label}</span>
-                </div>
-              ))}
+                </div>)}
             </div>
             
             {/* Action buttons */}
             <div className="flex flex-col sm:flex-row gap-4 pt-4 animate-fade-in-up stagger-delay-5">
               <PaymentButton className="btn-premium text-lg px-8 py-4 rounded-2xl font-bold shadow-button hover:shadow-glow transition-all duration-300" />
-              <Button 
-                variant="outline" 
-                size="lg"
-                onClick={() => window.open('https://wa.me/447586266007', '_blank')}
-                className="text-lg px-8 py-4 rounded-2xl font-bold bg-white/10 backdrop-blur-md border-2 border-white/30 text-white hover:bg-white hover:text-slate-900 transition-all duration-300 hover-scale"
-              >
+              <Button variant="outline" size="lg" onClick={() => window.open('https://wa.me/447586266007', '_blank')} className="text-lg px-8 py-4 rounded-2xl font-bold bg-white/10 backdrop-blur-md border-2 border-white/30 text-white hover:bg-white hover:text-slate-900 transition-all duration-300 hover-scale">
                 <ArrowRight className="mr-2 h-5 w-5" />
                 Let's Talk
               </Button>
@@ -125,11 +120,7 @@ const Hero = () => {
               
               {/* Main image */}
               <div className="relative bg-gradient-card rounded-3xl p-8 backdrop-blur-md border border-white/20 shadow-premium hover:shadow-glow transition-all duration-500 card-float">
-                <img 
-                  src={heroImage} 
-                  alt="Professional Web Development" 
-                  className="w-full h-auto rounded-2xl shadow-2xl"
-                />
+                <img src={heroImage} alt="Professional Web Development" className="w-full h-auto rounded-2xl shadow-2xl" />
                 
                 {/* Floating tech badges */}
                 <div className="absolute -top-4 -left-4 bg-gradient-primary text-white px-4 py-2 rounded-xl font-semibold shadow-lg animate-float">
@@ -147,29 +138,8 @@ const Hero = () => {
         </div>
 
         {/* Trust indicators */}
-        <div className="mt-16 pt-8 border-t border-white/20 animate-fade-in-up stagger-delay-6">
-          <div className="flex flex-wrap justify-center items-center gap-8 text-white/70">
-            <div className="flex items-center gap-2">
-              <Star className="h-5 w-5 text-yellow-400" />
-              <span className="font-semibold">5.0 Rating</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Users className="h-5 w-5 text-green-400" />
-              <span className="font-semibold">50+ Happy Clients</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Rocket className="h-5 w-5 text-blue-400" />
-              <span className="font-semibold">24/7 Support</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Shield className="h-5 w-5 text-purple-400" />
-              <span className="font-semibold">100% Secure</span>
-            </div>
-          </div>
-        </div>
+        
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default Hero;
