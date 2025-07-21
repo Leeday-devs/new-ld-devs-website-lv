@@ -230,7 +230,7 @@ const Services = () => {
                     <div className={`${index < 4 ? 'space-y-3' : 'space-y-1'} mt-auto`}>
                       {service.title === "Build Me a Website" ? <PaymentButton className={`w-full bg-white text-gray-900 hover:bg-gray-100 transition-all duration-200 rounded-xl font-semibold ${index < 4 ? 'py-3 text-sm' : 'py-2 text-xs'} shadow-lg border-0`} /> : <Button onClick={() => console.log('Buy Now clicked for:', service.title)} className={`w-full bg-white text-gray-900 hover:bg-gray-100 transition-all duration-200 rounded-xl font-semibold ${index < 4 ? 'py-3 text-sm' : 'py-2 text-xs'} shadow-lg border-0`}>
                           <ShoppingCart className={`mr-2 ${index < 4 ? 'h-4 w-4' : 'h-3 w-3'}`} />
-                          Buy Now
+                          Host Me
                         </Button>}
                       <Button variant="outline" onClick={() => {
                     console.log('WhatsApp clicked');
