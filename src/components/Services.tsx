@@ -27,7 +27,7 @@ const Services = () => {
     title: "Hosting and Maintenance",
     description: "We keep your website running perfectly 24/7 and make sure everything works smoothly - like having a tech guardian!",
     features: ["Website Always Online", "Regular Updates", "Security Protection", "Fast Performance", "24/7 Monitoring", "Free Website Transfer"],
-    price: "£480",
+    price: "£40",
     monthlyPrice: "£40",
     gradient: "from-pink-500 via-rose-500 to-orange-500",
     popular: false,
@@ -242,7 +242,7 @@ const Services = () => {
                       {service.monthlyPrice !== "Contact us" && <div className={`text-white/80 ${index < 4 ? 'text-sm' : 'text-xs'}`}>
                           Then {service.monthlyPrice}/month
                         </div>}
-                      {(service.title === "Hosting and Maintenance" || service.title === "Build Me a Website" || service.title === "Create Me a Online Store" || service.title === "AI Automations") && <div className={`text-white/70 ${index < 4 ? 'text-xs' : 'text-xs'} mt-1`}>
+                      {(service.title === "Build Me a Website" || service.title === "Create Me a Online Store" || service.title === "AI Automations") && <div className={`text-white/70 ${index < 4 ? 'text-xs' : 'text-xs'} mt-1`}>
                           💳 Payment plans available
                         </div>}
                     </div>
