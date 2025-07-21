@@ -41,7 +41,7 @@ const Services = () => {
       price: "£40",
       monthlyPrice: "£40",
       gradient: "from-pink-500 via-rose-500 to-orange-500",
-      popular: true,
+      popular: false,
       technologies: ["Cloud Hosting", "Security", "Monitoring", "Support"],
       icon2: Server,
       pricingFeatures: [
@@ -71,7 +71,7 @@ const Services = () => {
       price: "£500",
       monthlyPrice: "£40",
       gradient: "from-blue-600 via-indigo-600 to-purple-700",
-      popular: false,
+      popular: true,
       technologies: ["WordPress", "HTML/CSS", "Responsive", "SEO Ready"],
       icon2: Rocket,
       pricingFeatures: [
@@ -99,7 +99,7 @@ const Services = () => {
       price: "£800",
       monthlyPrice: "£60",
       gradient: "from-orange-500 via-red-500 to-pink-600",
-      popular: true,
+      popular: false,
       technologies: ["E-commerce", "Stripe Payments", "Mobile Ready", "Analytics"],
       icon2: ShoppingCart,
       pricingFeatures: [
