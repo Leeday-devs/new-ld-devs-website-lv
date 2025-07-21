@@ -12,6 +12,7 @@ import FAQ from "@/components/FAQ";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
+import StatsBar from "@/components/StatsBar";
 
 const Index = () => {
   return (
@@ -22,6 +23,7 @@ const Index = () => {
         <main>
           <section id="home">
             <Hero />
+            <StatsBar />
           </section>
           <section id="how-we-build">
             <HowWeBuild />
