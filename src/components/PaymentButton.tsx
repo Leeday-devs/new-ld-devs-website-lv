@@ -61,17 +61,6 @@ export const PaymentButton = ({
       
 
       {/* Payment Button */}
-      <Button onClick={() => {
-      console.log('BUTTON CLICKED!');
-      handlePayment();
-    }} disabled={loading} className={`w-full bg-white text-gray-900 hover:bg-gray-100 transition-all duration-200 rounded-xl font-semibold shadow-lg border-0 ${className}`}>
-        {loading ? <>
-            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-            Processing...
-          </> : <>
-            <CreditCard className="mr-2 h-4 w-4" />
-            Build MY Website
-          </>}
-      </Button>
+      
     </div>;
 };
