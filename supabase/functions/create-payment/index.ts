@@ -193,9 +193,10 @@ serve(async (req) => {
     }
     
     // Initialize Stripe with proper secret key from environment
-    const stripeSecretKey = Deno.env.get("STRIPE_SECRET_KEY");
+    const stripeSecretKey = Deno.env.get("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");
     if (!stripeSecretKey) {
-      console.error("STRIPE_SECRET_KEY environment variable not set");
+      console.error("Stripe secret key not found in environment");
+      logPaymentAttempt(clientIP, userAgent, user, paymentData, false, "Stripe secret key not configured");
       return new Response(JSON.stringify({ error: "Payment processing unavailable" }), {
         headers: { ...corsHeaders, "Content-Type": "application/json" },
         status: 500,
