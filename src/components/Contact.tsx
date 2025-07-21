@@ -27,103 +27,71 @@ const Contact = () => {
   ];
 
   return (
-    <section className="py-20 bg-secondary/30">
+    <section className="py-12 bg-background">
       <div className="container mx-auto px-4">
-        <div className="max-w-3xl mx-auto text-center mb-16 animate-fade-in">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
+        <div className="max-w-2xl mx-auto text-center mb-8 animate-fade-in">
+          <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
             Let's Build Something Amazing
           </h2>
-          <p className="text-lg text-muted-foreground">
+          <p className="text-muted-foreground">
             Ready to start your project? Get in touch and let's discuss how we can bring your vision to life.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {/* Contact Info */}
-          <div className="space-y-6 animate-slide-up">
-            <h3 className="text-2xl font-semibold text-foreground mb-6">Get in Touch</h3>
-            
-            {contactInfo.map((info) => (
-              <a
-                key={info.label}
-                href={info.href}
-                className="flex items-center gap-4 p-4 bg-gradient-card rounded-lg shadow-elegant hover:shadow-glow transition-smooth group"
-              >
-                <div className="bg-gradient-primary rounded-full w-12 h-12 flex items-center justify-center group-hover:scale-110 transition-smooth">
-                  <info.icon className="h-5 w-5 text-white" />
-                </div>
-                <div>
-                  <div className="text-sm text-muted-foreground">{info.label}</div>
-                  <div className="font-medium text-foreground">{info.value}</div>
-                </div>
-              </a>
-            ))}
+        <div className="max-w-4xl mx-auto">
+          {/* Contact Form - Modern Card Design */}
+          <div className="bg-card border border-border rounded-xl p-6 shadow-sm">
+            <div className="grid md:grid-cols-2 gap-6">
+              {/* Contact Info - Compact */}
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold text-foreground mb-4">Get in Touch</h3>
+                
+                {contactInfo.map((info) => (
+                  <a
+                    key={info.label}
+                    href={info.href}
+                    className="flex items-center gap-3 p-3 rounded-lg hover:bg-accent/50 transition-colors group"
+                  >
+                    <div className="bg-primary/10 rounded-lg w-10 h-10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                      <info.icon className="h-4 w-4 text-primary" />
+                    </div>
+                    <div>
+                      <div className="text-xs text-muted-foreground">{info.label}</div>
+                      <div className="text-sm font-medium text-foreground">{info.value}</div>
+                    </div>
+                  </a>
+                ))}
 
-            <div className="bg-gradient-card rounded-lg p-6 shadow-elegant">
-              <h4 className="font-semibold text-foreground mb-3">Quick Response Time</h4>
-              <p className="text-muted-foreground text-sm">
-                I typically respond to all inquiries within 24 hours. For urgent projects, 
-                feel free to call directly.
-              </p>
-            </div>
-          </div>
-
-          {/* Contact Form */}
-          <Card className="lg:col-span-2 bg-gradient-card border-0 shadow-elegant animate-slide-up">
-            <CardHeader>
-              <CardTitle className="text-2xl text-foreground">Send a Message</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-4">
-                <div>
-                  <label className="text-sm font-medium text-foreground mb-2 block">
-                    Name
-                  </label>
-                  <Input placeholder="Your full name" className="bg-background/50" />
-                </div>
-                <div>
-                  <label className="text-sm font-medium text-foreground mb-2 block">
-                    Email
-                  </label>
-                  <Input type="email" placeholder="your@email.com" className="bg-background/50" />
+                <div className="bg-accent/30 rounded-lg p-4 mt-4">
+                  <h4 className="text-sm font-semibold text-foreground mb-2">Quick Response</h4>
+                  <p className="text-xs text-muted-foreground">
+                    I typically respond within 24 hours.
+                  </p>
                 </div>
               </div>
-              
-              <div>
-                <label className="text-sm font-medium text-foreground mb-2 block">
-                  Subject
-                </label>
-                <Input placeholder="Project inquiry" className="bg-background/50" />
-              </div>
-              
-              <div>
-                <label className="text-sm font-medium text-foreground mb-2 block">
-                  Message
-                </label>
+
+              {/* Contact Form - Streamlined */}
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold text-foreground mb-4">Send Message</h3>
+                
+                <div className="grid grid-cols-2 gap-3">
+                  <Input placeholder="Name" className="text-sm" />
+                  <Input type="email" placeholder="Email" className="text-sm" />
+                </div>
+                
+                <Input placeholder="Subject" className="text-sm" />
+                
                 <Textarea
-                  placeholder="Tell me about your project, timeline, and any specific requirements..."
-                  className="bg-background/50 min-h-32"
+                  placeholder="Tell me about your project..."
+                  className="text-sm min-h-24 resize-none"
                 />
+                
+                <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
+                  <Send className="mr-2 h-4 w-4" />
+                  Send Message
+                </Button>
               </div>
-              
-              <Button size="lg" className="w-full bg-gradient-primary border-0 text-white hover:scale-105 transition-smooth shadow-glow">
-                <Send className="mr-2 h-5 w-5" />
-                Send Message
-              </Button>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Call to Action */}
-        <div className="text-center mt-16 animate-fade-in">
-          <div className="bg-gradient-primary rounded-2xl p-8 text-white shadow-glow">
-            <h3 className="text-2xl font-bold mb-4">Ready to Get Started?</h3>
-            <p className="text-white/90 mb-6 max-w-2xl mx-auto">
-              Join over 150 satisfied clients who have transformed their online presence with professional web design and hosting solutions.
-            </p>
-            <Button size="lg" className="bg-white text-primary hover:bg-white/90">
-              Start Your Project Today
-            </Button>
+            </div>
           </div>
         </div>
       </div>
