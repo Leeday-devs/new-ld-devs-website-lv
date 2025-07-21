@@ -90,9 +90,6 @@ const Hero = () => {
             }, {
               icon: Rocket,
               label: "Modern Design"
-            }, {
-              icon: Code,
-              label: "Clean Code"
             }].map((feature, index) => <div key={feature.label} className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-lg border border-white/20 hover-lift" style={{
               animationDelay: `${index * 0.1}s`
             }}>
