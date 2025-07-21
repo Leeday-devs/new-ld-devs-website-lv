@@ -136,8 +136,8 @@ const Services = () => {
           </h2>
           
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed mb-8">
-            We take your ideas and turn them into amazing websites and apps that everyone will love to use! 
-            It's like building with digital LEGO blocks, but way cooler!
+            Choose the perfect plan for your project! From simple websites to powerful online stores and smart AI solutions - 
+            we've got everything you need to succeed online.
           </p>
 
           {/* Capability highlights */}
