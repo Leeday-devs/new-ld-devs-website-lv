@@ -140,15 +140,6 @@ const Portfolio = () => {
                   </div>
                 </div>
                 
-                <div className="flex gap-2">
-                  <Button size="sm" className="flex-1">
-                    <ExternalLink className="h-4 w-4 mr-2" />
-                    View Live
-                  </Button>
-                  <Button size="sm" variant="outline">
-                    <Github className="h-4 w-4" />
-                  </Button>
-                </div>
               </CardContent>
             </Card>
           ))}
