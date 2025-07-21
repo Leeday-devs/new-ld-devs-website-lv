@@ -9,7 +9,7 @@ const WhatsAppWidget = () => {
 
   const handleWhatsAppClick = () => {
     console.log("Opening WhatsApp:", whatsappUrl);
-    window.open(whatsappUrl, '_blank');
+    window.location.href = whatsappUrl;
     setIsOpen(false);
   };
 
