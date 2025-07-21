@@ -84,28 +84,30 @@ const Services = () => {
     },
     {
       icon: ShoppingCart,
-      title: "Online Stores",
-      description: "Amazing online shops where people can buy things easily - like having your own digital Shop!",
+      title: "Create Me a Online Store",
+      description: "Build your dream online shop! Sell anything from cupcakes to custom art - we make it super easy for customers to buy from you!",
       features: [
-        "Up to 10 Pages",
+        "Beautiful Product Pages",
         "Easy Shopping Cart",
-        "Safe Payment System",
-        "AI Chat Bot",
+        "Secure Payment System",
+        "Order Management",
+        "Customer Account Area",
+        "Mobile Shopping Ready",
         "Inventory Tracking",
-        "Customer Messages"
+        "Sales Reports & Analytics"
       ],
-      price: "£800",
+      price: "£499",
       monthlyPrice: "£60",
       gradient: "from-orange-500 via-red-500 to-pink-600",
-      popular: false,
-      technologies: ["Shopping", "Payments", "Reports", "Customer Care"],
+      popular: true,
+      technologies: ["E-commerce", "Stripe Payments", "Mobile Ready", "Analytics"],
       icon2: ShoppingCart,
       pricingFeatures: [
-        "Up to 10 Pages",
-        "Advanced Contact Forms",
-        "Complete SEO Package",
-        "Custom Animations",
-        "Database Integration"
+        "Unlimited Products",
+        "Payment Gateway Setup",
+        "Customer Management",
+        "Order Tracking System",
+        "SEO Optimized Store"
       ]
     },
     {
