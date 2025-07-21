@@ -23,6 +23,7 @@ interface Service {
   popular: boolean;
   pricingFeatures: string[];
   icon: any;
+  isMonthlyOnly?: boolean;
 }
 
 interface PricingModalProps {
@@ -66,6 +67,7 @@ export const PricingModal = ({ isOpen, onClose, service }: PricingModalProps) =>
   };
 
   const isCustomPricing = service.price === "Custom";
+  const isMonthlyOnly = service.isMonthlyOnly;
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -102,7 +104,7 @@ export const PricingModal = ({ isOpen, onClose, service }: PricingModalProps) =>
           </Card>
 
           {/* Payment Plans */}
-          {!isCustomPricing && (
+          {!isCustomPricing && !isMonthlyOnly && (
             <Card>
               <CardHeader>
                 <CardTitle className="text-lg">Payment Options</CardTitle>
@@ -193,7 +195,21 @@ export const PricingModal = ({ isOpen, onClose, service }: PricingModalProps) =>
                   </ul>
                 </div>
 
-                {!isCustomPricing ? (
+                {isMonthlyOnly ? (
+                  <div className="text-center space-y-3">
+                    <p className="text-sm text-muted-foreground">
+                      This is a monthly service billed at {service.price}. Contact us to get started.
+                    </p>
+                    <Button 
+                      onClick={() => window.open('https://wa.me/447586266007', '_blank')}
+                      className="w-full bg-primary hover:bg-primary/90 text-white font-semibold py-3"
+                      size="lg"
+                    >
+                      💬 Get Started Now
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </div>
+                ) : !isCustomPricing ? (
                   <Button 
                     onClick={handleDepositPayment}
                     disabled={isProcessing}
