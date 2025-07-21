@@ -239,12 +239,20 @@ export const PricingModal = ({ isOpen, onClose, service }: PricingModalProps) =>
                       This service requires a custom quote. Contact us to discuss your specific needs.
                     </p>
                     <Button 
-                      onClick={() => window.open('https://wa.me/447586266007', '_blank')}
+                      onClick={handleDepositPayment}
+                      disabled={isProcessing}
                       className="w-full bg-primary hover:bg-primary/90 text-white font-semibold py-3"
                       size="lg"
                     >
-                      💬 Get Custom Quote
-                      <ArrowRight className="ml-2 h-4 w-4" />
+                      {isProcessing ? (
+                        <>Processing...</>
+                      ) : (
+                        <>
+                          <Shield className="mr-2 h-5 w-5" />
+                          Pay £20 Deposit Now
+                          <ArrowRight className="ml-2 h-4 w-4" />
+                        </>
+                      )}
                     </Button>
                   </div>
                 )}
