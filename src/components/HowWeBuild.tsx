@@ -62,9 +62,9 @@ const HowWeBuild = () => {
           </div>
           
           <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold font-serif mb-6">
-            <span className="block text-gray-900">HOW WE BUILD</span>
+            <span className="block text-gray-900">OUR</span>
             <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-              YOUR WEBSITE
+              PLANS
             </span>
           </h2>
           
