@@ -13,7 +13,6 @@ import { Badge } from "@/components/ui/badge";
 import { CheckCircle, CreditCard, Banknote, Shield, Clock, ArrowRight } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
-import { useAuth } from "@/hooks/useAuth";
 
 interface Service {
   title: string;
@@ -37,22 +36,10 @@ interface PricingModalProps {
 export const PricingModal = ({ isOpen, onClose, service }: PricingModalProps) => {
   const [isProcessing, setIsProcessing] = useState(false);
   const { toast } = useToast();
-  const { user } = useAuth();
 
   if (!service) return null;
 
   const handleDepositPayment = async () => {
-    if (!user) {
-      toast({
-        title: "Authentication Required",
-        description: "Please sign in or create an account to continue with payment.",
-        variant: "destructive",
-      });
-      // Redirect to auth page
-      window.location.href = '/auth';
-      return;
-    }
-
     setIsProcessing(true);
     try {
       const { data, error } = await supabase.functions.invoke('create-payment', {

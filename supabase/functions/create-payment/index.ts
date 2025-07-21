@@ -22,12 +22,18 @@ serve(async (req) => {
       { auth: { persistSession: false } }
     );
 
-    // Retrieve authenticated user
-    const authHeader = req.headers.get("Authorization")!;
-    const token = authHeader.replace("Bearer ", "");
-    const { data } = await supabaseClient.auth.getUser(token);
-    const user = data.user;
-    if (!user?.email) throw new Error("User not authenticated or email not available");
+    // Try to retrieve authenticated user, but don't require it for guest payments
+    let user = null;
+    const authHeader = req.headers.get("Authorization");
+    if (authHeader) {
+      try {
+        const token = authHeader.replace("Bearer ", "");
+        const { data } = await supabaseClient.auth.getUser(token);
+        user = data.user;
+      } catch (error) {
+        console.log("No valid auth token, proceeding with guest payment");
+      }
+    }
 
     // Parse request body to get payment details
     const { amount, serviceName, type } = await req.json();
@@ -37,8 +43,11 @@ serve(async (req) => {
       apiVersion: "2023-10-16",
     });
 
-    // Check if a Stripe customer record exists for this user
-    const customers = await stripe.customers.list({ email: user.email, limit: 1 });
+    // For guest payments, use a default email or collect it in the checkout
+    const customerEmail = user?.email || "guest@ldevelopment.co.uk";
+
+    // Check if a Stripe customer record exists for this email
+    const customers = await stripe.customers.list({ email: customerEmail, limit: 1 });
     let customerId;
     if (customers.data.length > 0) {
       customerId = customers.data[0].id;
@@ -63,7 +72,7 @@ serve(async (req) => {
 
       sessionConfig = {
         customer: customerId,
-        customer_email: customerId ? undefined : user.email,
+        customer_email: customerId ? undefined : customerEmail,
         line_items: [
           {
             price: priceId,
@@ -76,14 +85,14 @@ serve(async (req) => {
         metadata: {
           service_name: serviceName || "Service Deposit",
           payment_type: "deposit",
-          user_id: user.id,
+          user_id: user?.id || "guest",
         },
       };
     } else {
       // For other payments, use the original logic
       sessionConfig = {
         customer: customerId,
-        customer_email: customerId ? undefined : user.email,
+        customer_email: customerId ? undefined : customerEmail,
         line_items: [
           {
             price_data: {
@@ -103,7 +112,7 @@ serve(async (req) => {
         metadata: {
           service_name: serviceName || "Premium Service",
           payment_type: type || "full",
-          user_id: user.id,
+          user_id: user?.id || "guest",
         },
       };
     }
@@ -111,16 +120,21 @@ serve(async (req) => {
     // Create the checkout session
     const session = await stripe.checkout.sessions.create(sessionConfig);
 
-    // Record the payment attempt in Supabase
-    await supabaseClient.from("orders").insert({
-      user_id: user.id,
-      stripe_session_id: session.id,
-      amount: type === 'deposit' ? 2000 : (amount || 2000), // £20 for deposit
-      currency: "gbp",
-      status: "pending",
-      service_name: serviceName || (type === 'deposit' ? "Service Deposit" : "Premium Service"),
-      created_at: new Date().toISOString()
-    });
+    // Record the payment attempt in Supabase (optional for guest payments)
+    try {
+      await supabaseClient.from("orders").insert({
+        user_id: user?.id || null, // Allow null for guest payments
+        stripe_session_id: session.id,
+        amount: type === 'deposit' ? 2000 : (amount || 2000), // £20 for deposit
+        currency: "gbp",
+        status: "pending",
+        service_name: serviceName || (type === 'deposit' ? "Service Deposit" : "Premium Service"),
+        created_at: new Date().toISOString()
+      });
+    } catch (dbError) {
+      console.log("Failed to record payment in database (guest payment):", dbError);
+      // Continue with payment even if database insert fails for guest payments
+    }
 
     return new Response(JSON.stringify({ url: session.url }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
