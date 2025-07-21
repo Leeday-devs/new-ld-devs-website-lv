@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { useStaggeredScrollAnimation } from "@/hooks/useScrollAnimation";
 import { ExternalLink, Github, ArrowRight, Star, Users, Calendar, Sparkles, CheckCircle, TrendingUp, Award, Shield, DollarSign, Filter } from "lucide-react";
 import project1 from "@/assets/project-1.jpg";
 import project2 from "@/assets/project-2.jpg";
@@ -9,6 +10,7 @@ import project3 from "@/assets/project-3.jpg";
 
 const Portfolio = () => {
   const [activeFilter, setActiveFilter] = useState("All");
+  const containerRef = useStaggeredScrollAnimation('.portfolio-card', 150);
   
   const filters = ["All", "E-commerce", "Business", "Restaurant", "Fitness", "Enterprise"];
   const projects = [{
@@ -114,11 +116,11 @@ const Portfolio = () => {
           ))}
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
+        <div ref={containerRef} className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
           {projects
             .filter(project => activeFilter === "All" || project.category === activeFilter)
             .map((project, index) => (
-            <Card key={project.title} className="group hover:shadow-xl transition-all duration-300 overflow-hidden">
+            <Card key={project.title} className="portfolio-card scroll-roll group hover:shadow-xl transition-all duration-300 overflow-hidden">
               <div className="relative overflow-hidden">
                 <img 
                   src={project.image} 

@@ -2,8 +2,10 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { PaymentButton } from "@/components/PaymentButton";
+import { useStaggeredScrollAnimation } from "@/hooks/useScrollAnimation";
 import { Code, Palette, Search, ShoppingCart, Server, BarChart, ArrowRight, Star, CheckCircle, Sparkles, Zap, Shield, Globe, Database, Smartphone, Layers, Rocket, Brain, Target } from "lucide-react";
 const Services = () => {
+  const containerRef = useStaggeredScrollAnimation('.service-card', 150);
   const services = [{
     icon: Server,
     title: "Hosting and Maintenance",
@@ -163,11 +165,11 @@ const Services = () => {
           </div>
         </div>
 
-        {/* Enhanced services grid with flip cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16 [&>*:nth-child(5)]:lg:col-span-2 [&>*:nth-child(6)]:lg:col-span-2">{/* Make last 2 cards span 2 columns each */}
+        {/* Enhanced services grid with rolling cards */}
+        <div ref={containerRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16 [&>*:nth-child(5)]:lg:col-span-2 [&>*:nth-child(6)]:lg:col-span-2">{/* Make last 2 cards span 2 columns each */}
           {services.map((service, index) => {
           const Icon = service.icon;
-          return <div key={service.title} className={`group w-full ${index < 4 ? 'max-w-sm mx-auto' : ''}`}>
+          return <div key={service.title} className={`service-card scroll-roll group w-full ${index < 4 ? 'max-w-sm mx-auto' : ''}`}>
                 <Card className={`relative ${index < 4 ? 'h-[750px]' : 'h-[375px]'} w-full overflow-hidden border-0 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 ${service.popular ? 'ring-2 ring-primary ring-offset-4' : ''}`}>
                   {/* Background with solid gradient */}
                   <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient}`}></div>

@@ -398,6 +398,51 @@
     }
   }
 
+  @keyframes roll-in {
+    0% {
+      opacity: 0;
+      transform: perspective(1000px) rotateX(-90deg) translateY(50px);
+    }
+    50% {
+      opacity: 0.7;
+      transform: perspective(1000px) rotateX(-45deg) translateY(25px);
+    }
+    100% {
+      opacity: 1;
+      transform: perspective(1000px) rotateX(0deg) translateY(0);
+    }
+  }
+
+  @keyframes roll-in-left {
+    0% {
+      opacity: 0;
+      transform: perspective(1000px) rotateY(90deg) translateX(-50px);
+    }
+    50% {
+      opacity: 0.7;
+      transform: perspective(1000px) rotateY(45deg) translateX(-25px);
+    }
+    100% {
+      opacity: 1;
+      transform: perspective(1000px) rotateY(0deg) translateX(0);
+    }
+  }
+
+  @keyframes roll-in-right {
+    0% {
+      opacity: 0;
+      transform: perspective(1000px) rotateY(-90deg) translateX(50px);
+    }
+    50% {
+      opacity: 0.7;
+      transform: perspective(1000px) rotateY(-45deg) translateX(25px);
+    }
+    100% {
+      opacity: 1;
+      transform: perspective(1000px) rotateY(0deg) translateX(0);
+    }
+  }
+
   @keyframes scale-in {
     0% {
       opacity: 0;
@@ -512,6 +557,18 @@
     animation: gradient-shift 6s ease infinite;
   }
 
+  .animate-roll-in {
+    animation: roll-in 0.8s ease-out;
+  }
+
+  .animate-roll-in-left {
+    animation: roll-in-left 0.8s ease-out;
+  }
+
+  .animate-roll-in-right {
+    animation: roll-in-right 0.8s ease-out;
+  }
+
   /* Scroll Triggered Animations */
   .scroll-in {
     opacity: 0;
@@ -559,6 +616,40 @@
 
   .scroll-stagger {
     transition-delay: var(--stagger-delay, 0ms);
+  }
+
+  /* Rolling Scroll Animations */
+  .scroll-roll {
+    opacity: 0;
+    transform: perspective(1000px) rotateX(-90deg) translateY(50px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .scroll-roll.animate {
+    opacity: 1;
+    transform: perspective(1000px) rotateX(0deg) translateY(0);
+  }
+
+  .scroll-roll-left {
+    opacity: 0;
+    transform: perspective(1000px) rotateY(90deg) translateX(-50px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .scroll-roll-left.animate {
+    opacity: 1;
+    transform: perspective(1000px) rotateY(0deg) translateX(0);
+  }
+
+  .scroll-roll-right {
+    opacity: 0;
+    transform: perspective(1000px) rotateY(-90deg) translateX(50px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .scroll-roll-right.animate {
+    opacity: 1;
+    transform: perspective(1000px) rotateY(0deg) translateX(0);
   }
 
   /* Card Animations */

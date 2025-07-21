@@ -1,6 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { useStaggeredScrollAnimation } from "@/hooks/useScrollAnimation";
 import { 
   ArrowUpRight, 
   Users, 
@@ -13,6 +14,7 @@ import {
 } from "lucide-react";
 
 const CaseStudies = () => {
+  const containerRef = useStaggeredScrollAnimation('.case-study-card', 200);
   const caseStudies = [
     {
       title: "Bella Vista Restaurant",
@@ -111,9 +113,9 @@ const CaseStudies = () => {
         </div>
 
         {/* Case Studies Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
+        <div ref={containerRef} className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
           {caseStudies.map((study, index) => (
-            <Card key={study.title} className="group hover:shadow-2xl hover:scale-105 transition-all duration-300 overflow-hidden border-0 bg-white/80 backdrop-blur-sm">
+            <Card key={study.title} className="case-study-card scroll-roll group hover:shadow-2xl hover:scale-105 transition-all duration-300 overflow-hidden border-0 bg-white/80 backdrop-blur-sm">
               {/* Image */}
               <div className="relative h-48 overflow-hidden">
                 <img 
