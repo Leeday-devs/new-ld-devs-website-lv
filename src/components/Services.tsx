@@ -274,7 +274,7 @@ const Services = () => {
             
             return (
               <div key={service.title} className={`group w-full ${index < 4 ? 'max-w-sm mx-auto' : ''}`}>
-                <Card className={`relative ${index < 4 ? 'h-[750px]' : 'h-[375px]'} w-full overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 ${service.popular ? 'ring-2 ring-primary ring-offset-4' : ''}`}>
+                <Card className={`relative ${index < 4 ? 'h-[750px]' : 'h-[375px]'} w-full overflow-hidden border-0 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 ${service.popular ? 'ring-2 ring-primary ring-offset-4' : ''}`}>
                   {/* Background with solid gradient */}
                   <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient}`}></div>
                   
