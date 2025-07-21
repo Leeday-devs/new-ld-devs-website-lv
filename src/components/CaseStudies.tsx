@@ -185,15 +185,6 @@ const CaseStudies = () => {
                   </div>
                 </div>
 
-                {/* View Case Study Button */}
-                <Button 
-                  variant="outline" 
-                  className="w-full group-hover:bg-primary group-hover:text-white transition-all duration-300"
-                  onClick={() => console.log(`View case study: ${study.title}`)}
-                >
-                  View Case Study
-                  <ExternalLink className="ml-2 h-4 w-4" />
-                </Button>
               </CardContent>
             </Card>
           ))}
