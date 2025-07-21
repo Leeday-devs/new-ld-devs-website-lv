@@ -8,26 +8,53 @@ const WhatsAppWidget = () => {
   const whatsappUrl = `https://wa.me/${whatsappNumber}`;
 
   const handleWhatsAppClick = () => {
-    console.log("handleWhatsAppClick called!");
-    console.log("WhatsApp URL:", whatsappUrl);
+    console.log("🚀 handleWhatsAppClick called!");
+    console.log("📞 WhatsApp URL:", whatsappUrl);
+    
+    // Try multiple methods to ensure it works
     try {
+      // Method 1: Direct location change
+      console.log("🔄 Trying window.location.href...");
       window.location.href = whatsappUrl;
     } catch (error) {
-      console.error("Error opening WhatsApp:", error);
-      // Fallback: try window.open
-      window.open(whatsappUrl, '_blank');
+      console.error("❌ Error with location.href:", error);
+      
+      try {
+        // Method 2: Window.open as fallback
+        console.log("🔄 Trying window.open...");
+        const newWindow = window.open(whatsappUrl, '_blank');
+        if (!newWindow) {
+          console.error("❌ Popup blocked! Trying direct assignment...");
+          window.location.assign(whatsappUrl);
+        }
+      } catch (error2) {
+        console.error("❌ All methods failed:", error2);
+        // Method 3: Create and click a link element
+        const link = document.createElement('a');
+        link.href = whatsappUrl;
+        link.target = '_blank';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
     }
+    
     setIsOpen(false);
   };
 
-  const handleToggleClick = () => {
-    console.log("handleToggleClick called!");
-    console.log("Current isOpen state:", isOpen);
+  const handleToggleClick = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    console.log("🔘 handleToggleClick called!");
+    console.log("📊 Current isOpen state:", isOpen);
+    
     if (!isOpen) {
       // If widget is closed, open WhatsApp directly
+      console.log("🚀 Widget closed, opening WhatsApp...");
       handleWhatsAppClick();
     } else {
       // If widget is open, just close it
+      console.log("❌ Widget open, closing...");
       setIsOpen(false);
     }
   };
