@@ -53,14 +53,18 @@ export const PaymentButton = ({
       setLoading(false);
     }
   };
-  return <div className="space-y-3">
-      {/* Limited Time Badge */}
-      
-      
-      {/* Crossed out price */}
-      
-
-      {/* Payment Button */}
-      
-    </div>;
+  return (
+    <Button
+      onClick={handlePayment}
+      disabled={loading}
+      className={className}
+    >
+      {loading ? (
+        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+      ) : (
+        <CreditCard className="mr-2 h-4 w-4" />
+      )}
+      {loading ? 'Processing...' : 'Buy Now'}
+    </Button>
+  );
 };
