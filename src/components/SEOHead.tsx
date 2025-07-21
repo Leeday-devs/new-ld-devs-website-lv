@@ -9,7 +9,7 @@ interface SEOHeadProps {
 }
 
 const SEOHead = ({ 
-  title = "Lee Day Devs - Professional Web Development & Hosting",
+  title = "LD Development - Professional Web Development & Hosting",
   description = "Professional web development and hosting services in London. Custom websites, e-commerce, hosting solutions, and digital transformation for businesses.",
   keywords = "web development, website design, hosting, e-commerce, London, custom websites, digital transformation, responsive design",
   ogImage = "/hero-image.jpg",
