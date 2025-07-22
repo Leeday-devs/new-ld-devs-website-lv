@@ -185,7 +185,14 @@ const Services = () => {
         <div ref={containerRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16 [&>*:nth-child(5)]:lg:col-span-2 [&>*:nth-child(6)]:lg:col-span-2">{/* Make last 2 cards span 2 columns each */}
           {services.map((service, index) => {
           const Icon = service.icon;
-          return <div key={service.title} className={`service-card scroll-roll group w-full ${index < 4 ? 'max-w-sm mx-auto' : ''}`}>
+          return <div key={service.title} className={`service-card scroll-roll group w-full ${index < 4 ? 'max-w-sm mx-auto' : ''} relative`}>
+                {/* Overlapping Icon */}
+                <div className={`absolute ${index < 4 ? '-top-8 left-6' : '-top-6 left-4'} z-30`}>
+                  <div className={`${index < 4 ? 'w-16 h-16' : 'w-12 h-12'} rounded-2xl bg-white shadow-lg ${index < 4 ? 'p-4' : 'p-3'} flex items-center justify-center`}>
+                    <Icon className={`${index < 4 ? 'h-8 w-8' : 'h-6 w-6'} text-gray-700`} />
+                  </div>
+                </div>
+                
                 <Card 
                   onClick={() => handleCardClick(service)} 
                   className={`relative ${index < 4 ? 'h-[620px]' : 'h-[380px]'} w-full overflow-hidden border-0 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer ${service.popular ? 'ring-2 ring-primary ring-offset-4' : ''}`}
@@ -201,11 +208,7 @@ const Services = () => {
                     </div>}
 
                   {/* Content */}
-                  <div className={`relative z-10 h-full flex flex-col text-white ${index < 4 ? 'p-6' : 'p-3'}`}>
-                    {/* Icon */}
-                    <div className={`${index < 4 ? 'w-16 h-16' : 'w-8 h-8'} rounded-2xl bg-white/20 backdrop-blur-sm ${index < 4 ? 'p-4 mb-6' : 'p-2 mb-2'} flex items-center justify-center`}>
-                      <Icon className={`${index < 4 ? 'h-8 w-8' : 'h-4 w-4'} text-white`} />
-                    </div>
+                  <div className={`relative z-10 h-full flex flex-col text-white ${index < 4 ? 'p-6 pt-12' : 'p-3 pt-8'}`}>
                     
                     {/* Title */}
                     <h3 className={`${index < 4 ? 'text-2xl' : 'text-lg'} font-bold ${index < 4 ? 'mb-3' : 'mb-1'} text-white`}>
