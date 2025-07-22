@@ -61,11 +61,6 @@ export const PricingModal = ({ isOpen, onClose, service }: PricingModalProps) =>
 
       if (error) {
         console.error('Payment error:', error);
-        toast({
-          title: "Payment Error",
-          description: "There was an issue processing your payment. Please try again.",
-          variant: "destructive",
-        });
         return;
       }
 
@@ -78,11 +73,7 @@ export const PricingModal = ({ isOpen, onClose, service }: PricingModalProps) =>
       }
     } catch (error) {
       console.error('Payment error:', error);
-      toast({
-        title: "Payment Error",
-        description: "There was an issue processing your payment. Please try again.",
-        variant: "destructive",
-      });
+      // Error popup removed as requested
     } finally {
       setIsProcessing(false);
     }
