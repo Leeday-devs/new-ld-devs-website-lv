@@ -222,7 +222,7 @@ const Services = () => {
 
 
                     {/* Features list */}
-                    <div className={`${index < 4 ? 'mb-4' : 'mb-2'}`}>
+                    <div className={`${index < 4 ? 'mb-4' : 'mb-2'} flex-grow`}>
                       <div className={`${index < 4 ? 'space-y-2' : 'space-y-1'}`}>
                         {service.features.slice(0, index < 4 ? 4 : 3).map(feature => <div key={feature} className="flex items-center gap-3">
                             <div className={`${index < 4 ? 'w-4 h-4' : 'w-3 h-3'} rounded-full bg-green-400 flex items-center justify-center flex-shrink-0`}>
