@@ -236,6 +236,11 @@ const Services = () => {
                       </div>
                     </div>
 
+                    {/* FREE Migration Banner */}
+                    <div className="text-center mb-3">
+                      <span className="text-green-400 font-bold text-sm">FREE Migration</span>
+                    </div>
+
                     {/* Price */}
                     <div className={`${index < 4 ? 'mb-6' : 'mb-2'} text-center`}>
                       <div className={`${index < 4 ? 'text-3xl' : 'text-xl'} font-bold text-white mb-1`}>{service.price}</div>
