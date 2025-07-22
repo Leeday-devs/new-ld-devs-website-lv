@@ -50,11 +50,7 @@ export const PaymentButton = ({
       }
     } catch (error) {
       console.error('Payment error:', error);
-      toast({
-        title: "Payment Error",
-        description: "Failed to initiate payment. Please try again.",
-        variant: "destructive"
-      });
+      // Error popup removed as requested
     } finally {
       setLoading(false);
     }
