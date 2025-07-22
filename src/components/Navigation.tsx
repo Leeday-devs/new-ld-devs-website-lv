@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Code2 } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
+import AuthButton from "./AuthButton";
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -50,8 +51,9 @@ const Navigation = () => {
             ))}
           </div>
 
-          {/* Theme Toggle and CTA */}
+          {/* Auth, Theme Toggle and CTA */}
           <div className="hidden md:flex items-center gap-3">
+            <AuthButton />
             <ThemeToggle />
             <Button 
               className="btn-premium hover-glow"
@@ -63,6 +65,7 @@ const Navigation = () => {
 
           {/* Mobile Menu Button and Theme Toggle */}
           <div className="md:hidden flex items-center gap-2">
+            <AuthButton />
             <ThemeToggle />
             <button
               className="p-2 hover-glow rounded-lg transition-smooth"

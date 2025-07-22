@@ -160,6 +160,33 @@ const handler = async (req: Request): Promise<Response> => {
     const supabaseKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
     const supabase = createClient(supabaseUrl, supabaseKey);
 
+    // Check if email already exists
+    const { data: existingSubscription, error: checkError } = await supabase
+      .from('newsletter_subscriptions')
+      .select('email')
+      .eq('email', email)
+      .single();
+
+    if (checkError && checkError.code !== 'PGRST116') {
+      // PGRST116 is "not found" which is what we want
+      throw new Error(`Database check failed: ${checkError.message}`);
+    }
+
+    if (existingSubscription) {
+      await logNewsletterSubscription(clientIP, userAgent, email, true, undefined, ['Duplicate subscription attempt']);
+      
+      return new Response(
+        JSON.stringify({
+          success: true,
+          message: 'You are already subscribed to our newsletter!'
+        }),
+        {
+          status: 200,
+          headers: { 'Content-Type': 'application/json', ...corsHeaders },
+        }
+      );
+    }
+
     // Insert newsletter subscription
     const { data, error } = await supabase
       .from('newsletter_subscriptions')
