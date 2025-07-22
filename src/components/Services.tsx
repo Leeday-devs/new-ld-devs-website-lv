@@ -188,7 +188,7 @@ const Services = () => {
           return <div key={service.title} className={`service-card scroll-roll group w-full ${index < 4 ? 'max-w-sm mx-auto' : ''}`}>
                 <Card 
                   onClick={() => handleCardClick(service)} 
-                  className={`relative ${index < 4 ? 'min-h-[750px]' : 'min-h-[450px]'} w-full overflow-hidden border-0 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer ${service.popular ? 'ring-2 ring-primary ring-offset-4' : ''}`}
+                  className={`relative ${index < 4 ? 'h-[780px]' : 'h-[480px]'} w-full overflow-hidden border-0 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer ${service.popular ? 'ring-2 ring-primary ring-offset-4' : ''}`}
                 >
                   {/* Background with solid gradient */}
                   <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient}`}></div>
