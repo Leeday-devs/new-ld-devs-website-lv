@@ -16,23 +16,31 @@ export const PaymentButton = ({
   const handlePayment = async () => {
     console.log('Payment button clicked');
     setLoading(true);
+    
+    const requestBody = {
+      amount: 2000, // £20 in pence
+      serviceName: "Quick Purchase",
+      type: 'deposit',
+      customerInfo: {
+        fullName: "Guest User",
+        email: "guest@ldevelopment.co.uk",
+        phone: null,
+        company: null
+      }
+    };
+    
+    console.log('Sending payment request with body:', requestBody);
+    
     try {
       const {
         data,
         error
       } = await supabase.functions.invoke('create-payment', {
-        body: {
-          amount: 2000, // £20 in pence
-          serviceName: "Quick Purchase",
-          type: 'deposit',
-          customerInfo: {
-            fullName: "Guest User",
-            email: "guest@ldevelopment.co.uk",
-            phone: null,
-            company: null
-          }
-        }
+        body: requestBody
       });
+      
+      console.log('Payment response:', { data, error });
+      
       if (error) {
         throw error;
       }
