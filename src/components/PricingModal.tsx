@@ -108,7 +108,7 @@ export const PricingModal = ({ isOpen, onClose, service }: PricingModalProps) =>
             <CustomerInfoForm 
               onSubmit={handleCustomerInfoSubmit}
               isLoading={isProcessing}
-              service={service}
+              serviceName={service.title}
             />
           ) : (
             <>
