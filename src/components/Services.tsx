@@ -188,7 +188,7 @@ const Services = () => {
           return <div key={service.title} className={`service-card scroll-roll group w-full ${index < 4 ? 'max-w-sm mx-auto' : ''}`}>
                 <Card 
                   onClick={() => handleCardClick(service)} 
-                  className={`relative ${index < 4 ? 'h-[750px]' : 'h-[375px]'} w-full overflow-hidden border-0 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer ${service.popular ? 'ring-2 ring-primary ring-offset-4' : ''}`}
+                  className={`relative ${index < 4 ? 'min-h-[750px]' : 'min-h-[450px]'} w-full overflow-hidden border-0 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer ${service.popular ? 'ring-2 ring-primary ring-offset-4' : ''}`}
                 >
                   {/* Background with solid gradient */}
                   <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient}`}></div>
@@ -225,9 +225,9 @@ const Services = () => {
                     </div>
 
                     {/* Features list */}
-                    <div className={`flex-grow ${index < 4 ? 'mb-4' : 'mb-2'}`}>
+                    <div className={`${index < 4 ? 'mb-4' : 'mb-2'}`}>
                       <div className={`${index < 4 ? 'space-y-2' : 'space-y-1'}`}>
-                        {service.features.slice(0, index < 4 ? 6 : 3).map(feature => <div key={feature} className="flex items-center gap-3">
+                        {service.features.slice(0, index < 4 ? 4 : 3).map(feature => <div key={feature} className="flex items-center gap-3">
                             <div className={`${index < 4 ? 'w-4 h-4' : 'w-3 h-3'} rounded-full bg-green-400 flex items-center justify-center flex-shrink-0`}>
                               <CheckCircle className={`${index < 4 ? 'w-2.5 h-2.5' : 'w-2 h-2'} text-green-800`} />
                             </div>
