@@ -13,6 +13,7 @@ import { Badge } from "@/components/ui/badge";
 import { CheckCircle, CreditCard, Banknote, Shield, Clock, ArrowRight } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { CustomerInfoForm } from "@/components/CustomerInfoForm";
 
 interface Service {
   title: string;
@@ -35,34 +36,60 @@ interface PricingModalProps {
 
 export const PricingModal = ({ isOpen, onClose, service }: PricingModalProps) => {
   const [isProcessing, setIsProcessing] = useState(false);
+  const [showCustomerForm, setShowCustomerForm] = useState(false);
+  const [customerInfo, setCustomerInfo] = useState<any>(null);
   const { toast } = useToast();
 
   if (!service) return null;
 
-  const handleDepositPayment = async () => {
+  const handleCustomerInfoSubmit = (info: any) => {
+    setCustomerInfo(info);
+    handleDepositPayment(info);
+  };
+
+  const handleDepositPayment = async (info: any) => {
     setIsProcessing(true);
     try {
       const { data, error } = await supabase.functions.invoke('create-payment', {
         body: {
           amount: 2000, // £20 in pence
           serviceName: service.title,
-          type: 'deposit'
+          type: 'deposit',
+          customerInfo: info
         }
       });
 
       if (error) {
         console.error('Payment error:', error);
+        toast({
+          title: "Payment Error",
+          description: "There was an issue processing your payment. Please try again.",
+          variant: "destructive",
+        });
         return;
       }
 
       if (data?.url) {
         window.open(data.url, '_blank');
+        toast({
+          title: "Redirecting to Payment",
+          description: "Please complete your payment in the new tab.",
+        });
       }
     } catch (error) {
       console.error('Payment error:', error);
+      toast({
+        title: "Payment Error",
+        description: "There was an issue processing your payment. Please try again.",
+        variant: "destructive",
+      });
     } finally {
       setIsProcessing(false);
     }
+  };
+
+  const handlePayNowClick = () => {
+    setShowCustomerForm(true);
   };
 
   const isCustomPricing = service.price === "Custom";
@@ -85,22 +112,31 @@ export const PricingModal = ({ isOpen, onClose, service }: PricingModalProps) =>
         </DialogHeader>
 
         <div className="space-y-6">
-          {/* Service Features */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-lg">What's Included</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                {service.pricingFeatures.map((feature, index) => (
-                  <div key={index} className="flex items-start gap-3">
-                    <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
-                    <span className="text-sm">{feature}</span>
+          {/* Customer Information Form */}
+          {showCustomerForm ? (
+            <CustomerInfoForm 
+              onSubmit={handleCustomerInfoSubmit}
+              isLoading={isProcessing}
+              serviceName={service.title}
+            />
+          ) : (
+            <>
+              {/* Service Features */}
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-lg">What's Included</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    {service.pricingFeatures.map((feature, index) => (
+                      <div key={index} className="flex items-start gap-3">
+                        <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
+                        <span className="text-sm">{feature}</span>
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
+                </CardContent>
+              </Card>
 
           {/* Payment Plans - Only show for non-monthly and non-custom services */}
           {!isCustomPricing && !isMonthlyOnly && (
@@ -200,7 +236,7 @@ export const PricingModal = ({ isOpen, onClose, service }: PricingModalProps) =>
                       This is a monthly service billed at {service.price}. Contact us to get started.
                     </p>
                     <Button 
-                      onClick={handleDepositPayment}
+                      onClick={handlePayNowClick}
                       disabled={isProcessing}
                       className="w-full bg-primary hover:bg-primary/90 text-white font-semibold py-3"
                       size="lg"
@@ -218,7 +254,7 @@ export const PricingModal = ({ isOpen, onClose, service }: PricingModalProps) =>
                   </div>
                 ) : !isCustomPricing ? (
                   <Button 
-                    onClick={handleDepositPayment}
+                    onClick={handlePayNowClick}
                     disabled={isProcessing}
                     className="w-full bg-primary hover:bg-primary/90 text-white font-semibold py-3"
                     size="lg"
@@ -239,7 +275,7 @@ export const PricingModal = ({ isOpen, onClose, service }: PricingModalProps) =>
                       This service requires a custom quote. Contact us to discuss your specific needs.
                     </p>
                     <Button 
-                      onClick={handleDepositPayment}
+                      onClick={handlePayNowClick}
                       disabled={isProcessing}
                       className="w-full bg-primary hover:bg-primary/90 text-white font-semibold py-3"
                       size="lg"
@@ -263,6 +299,8 @@ export const PricingModal = ({ isOpen, onClose, service }: PricingModalProps) =>
               </div>
             </CardContent>
           </Card>
+            </>
+          )}
         </div>
       </DialogContent>
     </Dialog>
