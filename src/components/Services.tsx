@@ -216,7 +216,7 @@ const Services = () => {
                     </h3>
                     
                     {/* Description */}
-                    <p className={`text-white/90 ${index < 4 ? 'text-sm' : 'text-xs'} leading-relaxed ${index < 4 ? 'mb-4' : 'mb-2'}`}>
+                    <p className={`text-white/90 ${index < 4 ? 'text-sm h-16' : 'text-xs h-12'} leading-relaxed ${index < 4 ? 'mb-4' : 'mb-2'} overflow-hidden`}>
                       {service.description}
                     </p>
 
