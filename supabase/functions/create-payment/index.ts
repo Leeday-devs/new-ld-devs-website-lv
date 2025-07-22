@@ -6,6 +6,10 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2.45.0";
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
+  "X-Content-Type-Options": "nosniff",
+  "X-Frame-Options": "DENY",
+  "X-XSS-Protection": "1; mode=block",
+  "Referrer-Policy": "strict-origin-when-cross-origin",
 };
 
 // Input validation functions
@@ -22,7 +26,7 @@ const validatePaymentInput = (amount: any, serviceName: any, type: any) => {
     if (typeof serviceName !== 'string' || serviceName.length > 255) {
       errors.push("Service name must be a string with max 255 characters");
     }
-    // Basic XSS protection
+    // Enhanced XSS protection
     if (/<script|javascript:|on\w+=/i.test(serviceName)) {
       errors.push("Service name contains invalid characters");
     }
@@ -35,6 +39,66 @@ const validatePaymentInput = (amount: any, serviceName: any, type: any) => {
   }
   
   return errors;
+};
+
+// Customer information validation function
+const validateCustomerInfo = (customerInfo: any): string[] => {
+  const errors: string[] = [];
+  
+  if (!customerInfo) {
+    errors.push('Customer information is required');
+    return errors;
+  }
+  
+  // Validate full name
+  if (!customerInfo.fullName || typeof customerInfo.fullName !== 'string') {
+    errors.push('Full name is required');
+  } else if (customerInfo.fullName.trim().length < 2 || customerInfo.fullName.trim().length > 100) {
+    errors.push('Full name must be between 2 and 100 characters');
+  } else if (/<script|javascript:|on\w+=/i.test(customerInfo.fullName)) {
+    errors.push('Full name contains invalid characters');
+  }
+  
+  // Validate email
+  if (!customerInfo.email || typeof customerInfo.email !== 'string') {
+    errors.push('Email is required');
+  } else {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(customerInfo.email) || customerInfo.email.length > 254) {
+      errors.push('Valid email is required (max 254 characters)');
+    }
+  }
+  
+  // Validate phone (optional but if provided, must be valid)
+  if (customerInfo.phone && typeof customerInfo.phone === 'string') {
+    const phoneClean = customerInfo.phone.replace(/[\s\-\(\)]/g, '');
+    if (phoneClean.length > 0 && (phoneClean.length < 7 || phoneClean.length > 15 || !/^\+?[\d]+$/.test(phoneClean))) {
+      errors.push('Phone number must be 7-15 digits');
+    }
+  }
+  
+  // Validate company (optional but if provided, must be reasonable length)
+  if (customerInfo.company && typeof customerInfo.company === 'string') {
+    if (customerInfo.company.trim().length > 100) {
+      errors.push('Company name must not exceed 100 characters');
+    } else if (/<script|javascript:|on\w+=/i.test(customerInfo.company)) {
+      errors.push('Company name contains invalid characters');
+    }
+  }
+  
+  return errors;
+};
+
+// Sanitize customer information
+const sanitizeCustomerInfo = (customerInfo: any) => {
+  if (!customerInfo) return null;
+  
+  return {
+    fullName: customerInfo.fullName?.trim().substring(0, 100).replace(/[<>]/g, '') || '',
+    email: customerInfo.email?.trim().toLowerCase().substring(0, 254) || '',
+    phone: customerInfo.phone?.trim().replace(/[^\d\s\-\(\)\+]/g, '').substring(0, 20) || null,
+    company: customerInfo.company?.trim().substring(0, 100).replace(/[<>]/g, '') || null
+  };
 };
 
 // Rate limiting store (in production, use Redis or similar)
@@ -180,6 +244,19 @@ serve(async (req) => {
       });
     }
 
+    // Validate customer information
+    const customerValidationErrors = validateCustomerInfo(customerInfo);
+    if (customerValidationErrors.length > 0) {
+      logPaymentAttempt(clientIP, userAgent, user, paymentData, false, `Customer validation failed: ${customerValidationErrors.join(", ")}`);
+      return new Response(JSON.stringify({ error: customerValidationErrors.join(", ") }), {
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+        status: 400,
+      });
+    }
+
+    // Sanitize customer information
+    const sanitizedCustomerInfo = sanitizeCustomerInfo(customerInfo);
+
     // Security fraud detection
     const securityWarnings = detectSuspiciousActivity(req, paymentData);
     if (securityWarnings.length > 0) {
@@ -193,8 +270,7 @@ serve(async (req) => {
     }
     
     // Initialize Stripe with proper secret key from environment
-    // The secret is stored with the actual key as the name in Supabase
-    const stripeSecretKey = "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";
+    const stripeSecretKey = Deno.env.get("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");
     
     if (!stripeSecretKey) {
       console.error("Stripe secret key not found in environment");
@@ -295,10 +371,10 @@ serve(async (req) => {
         currency: "gbp",
         status: "pending",
         service_name: serviceName || (type === 'deposit' ? "Service Deposit" : "Premium Service"),
-        customer_name: customerInfo?.fullName || null,
-        customer_email: customerInfo?.email || customerEmail,
-        customer_phone: customerInfo?.phone || null,
-        customer_company: customerInfo?.company || null,
+        customer_name: sanitizedCustomerInfo?.fullName || null,
+        customer_email: sanitizedCustomerInfo?.email || customerEmail,
+        customer_phone: sanitizedCustomerInfo?.phone || null,
+        customer_company: sanitizedCustomerInfo?.company || null,
         created_at: new Date().toISOString()
       });
 
