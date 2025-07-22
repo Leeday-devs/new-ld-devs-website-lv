@@ -217,12 +217,6 @@ const Services = () => {
                       {service.description}
                     </p>
 
-                    {/* Technology badges */}
-                    <div className={`flex flex-wrap gap-2 ${index < 4 ? 'mb-6' : 'mb-2'}`}>
-                      {service.technologies.slice(0, 4).map(tech => <span key={tech} className={`px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full ${index < 4 ? 'text-xs' : 'text-xs'} font-medium text-white border border-white/30`}>
-                          {tech}
-                        </span>)}
-                    </div>
 
                     {/* Features list */}
                     <div className={`${index < 4 ? 'mb-4' : 'mb-2'}`}>
