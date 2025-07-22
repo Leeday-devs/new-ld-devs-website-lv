@@ -49,7 +49,7 @@ const Services = () => {
   }, {
     icon: ShoppingCart,
     title: "Create Me a Online Store",
-    description: "Build your dream online shop! Sell anything from cupcakes to custom art - we make it super easy for customers to buy from you!",
+    description: "Build your online store! Sell anything from cupcakes to custom art - we make it super easy for customers to buy from you!",
     features: ["Beautiful Product Pages", "Easy Shopping Cart", "Secure Payment System", "Order Management", "Customer Account Area", "Mobile Shopping Ready", "Inventory Tracking", "Sales Reports & Analytics"],
     price: "£800",
     monthlyPrice: "£60",
