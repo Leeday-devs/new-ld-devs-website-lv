@@ -253,10 +253,13 @@ const Services = () => {
                       {service.title === "Build Me a Website" ? (
                         <PaymentButton className={`w-full bg-white text-gray-900 hover:bg-gray-100 transition-all duration-200 rounded-xl font-semibold ${index < 4 ? 'py-3 text-sm' : 'py-2 text-xs'} shadow-lg border-0 flex items-center justify-center`} />
                       ) : (
-                        <Button onClick={() => console.log('See Details clicked for:', service.title)} className={`w-full bg-white text-gray-900 hover:bg-gray-100 transition-all duration-200 rounded-xl font-semibold ${index < 4 ? 'py-3 text-sm' : 'py-2 text-xs'} shadow-lg border-0 flex items-center justify-center`}>
-                          <ArrowRight className={`mr-2 ${index < 4 ? 'h-4 w-4' : 'h-3 w-3'}`} />
-                          See Details
-                        </Button>
+                         <Button onClick={() => {
+                           setSelectedService(service);
+                           setIsModalOpen(true);
+                         }} className={`w-full bg-white text-gray-900 hover:bg-gray-100 transition-all duration-200 rounded-xl font-semibold ${index < 4 ? 'py-3 text-sm' : 'py-2 text-xs'} shadow-lg border-0 flex items-center justify-center`}>
+                           <ArrowRight className={`mr-2 ${index < 4 ? 'h-4 w-4' : 'h-3 w-3'}`} />
+                           See Details
+                         </Button>
                       )}
                       <Button variant="outline" onClick={handleChatClick} className={`w-full bg-transparent border-2 border-white/40 text-white hover:bg-white hover:text-gray-900 transition-all duration-200 rounded-xl font-semibold ${index < 4 ? 'py-3 text-sm' : 'py-2 text-xs'}`}>
                         💬 Chat with Us
