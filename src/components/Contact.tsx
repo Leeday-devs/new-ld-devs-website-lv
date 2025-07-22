@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Mail, Phone, MapPin, Send, Loader2 } from "lucide-react";
+import { Mail, Phone, MapPin, Send, Loader2, MessageCircle } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 const Contact = () => {
@@ -143,6 +143,20 @@ const Contact = () => {
                 <Button type="submit" disabled={isLoading} className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
                   {isLoading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Send className="mr-2 h-4 w-4" />}
                   {isLoading ? "Sending..." : "Send Message"}
+                </Button>
+                
+                <Button 
+                  type="button"
+                  onClick={() => {
+                    const whatsappNumber = "447586266007";
+                    const message = "Hi! I'm interested in your web development services.";
+                    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+                    window.open(whatsappUrl, '_blank');
+                  }}
+                  className="w-full bg-green-600 hover:bg-green-700 text-white"
+                >
+                  <MessageCircle className="mr-2 h-4 w-4" />
+                  Contact via WhatsApp
                 </Button>
               </form>
             </div>
