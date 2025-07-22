@@ -20,7 +20,19 @@ export const PaymentButton = ({
       const {
         data,
         error
-      } = await supabase.functions.invoke('create-payment');
+      } = await supabase.functions.invoke('create-payment', {
+        body: {
+          amount: 2000, // £20 in pence
+          serviceName: "Quick Purchase",
+          type: 'deposit',
+          customerInfo: {
+            fullName: "Guest User",
+            email: "guest@ldevelopment.co.uk",
+            phone: null,
+            company: null
+          }
+        }
+      });
       if (error) {
         throw error;
       }
