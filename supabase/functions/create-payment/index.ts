@@ -168,7 +168,7 @@ serve(async (req) => {
       });
     }
 
-    const { amount, serviceName, type } = paymentData;
+    const { amount, serviceName, type, customerInfo } = paymentData;
     
     // Validate input
     const validationErrors = validatePaymentInput(amount, serviceName, type);
@@ -286,7 +286,7 @@ serve(async (req) => {
     // Create the checkout session
     const session = await stripe.checkout.sessions.create(sessionConfig);
 
-    // Record the payment attempt in Supabase with enhanced metadata
+    // Record the payment attempt in Supabase with enhanced metadata and customer info
     try {
       await supabaseClient.from("orders").insert({
         user_id: user?.id || null, // Allow null for guest payments
@@ -295,6 +295,10 @@ serve(async (req) => {
         currency: "gbp",
         status: "pending",
         service_name: serviceName || (type === 'deposit' ? "Service Deposit" : "Premium Service"),
+        customer_name: customerInfo?.fullName || null,
+        customer_email: customerInfo?.email || customerEmail,
+        customer_phone: customerInfo?.phone || null,
+        customer_company: customerInfo?.company || null,
         created_at: new Date().toISOString()
       });
 
