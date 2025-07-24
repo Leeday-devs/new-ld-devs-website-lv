@@ -43,9 +43,9 @@ const About = () => {
     description: "Smart AI features that make your website more powerful and user-friendly",
     color: "from-accent to-accent-glow"
   }, {
-    icon: Shield,
-    title: "Security",
-    description: "Advanced security measures to protect your website and user data",
+    icon: Zap,
+    title: "Automations",
+    description: "Smart automation features that save time and make your business run smoothly",
     color: "from-secondary to-accent"
   }];
   const stats = [{
