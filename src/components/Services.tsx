@@ -59,17 +59,17 @@ const Services = () => {
     icon2: ShoppingCart,
     pricingFeatures: ["Unlimited Products", "Payment Gateway Setup", "Customer Management", "Order Tracking System", "SEO Optimized Store"]
   }, {
-    icon: Brain,
-    title: "AI Automations",
-    description: "Smart AI helpers that work 24/7 to make your business run smoother - like having a super smart assistant!",
-    features: ["Smart Chatbots", "Auto Customer Support", "Data Analysis", "Task Automation", "AI Content Creation"],
+    icon: Zap,
+    title: "Automations",
+    description: "Smart automation features that make your website more powerful and user-friendly",
+    features: ["Smart Workflows", "Auto Responses", "Data Processing", "Task Automation", "AI Integration"],
     price: "£600",
     monthlyPrice: "£75",
-    gradient: "from-purple-600 via-indigo-600 to-blue-700",
+    gradient: "from-purple-600 via-pink-600 to-indigo-700",
     popular: false,
-    technologies: ["AI Magic", "Automation", "Smart Bots", "Machine Learning"],
-    icon2: Brain,
-    pricingFeatures: ["Custom AI Assistant", "Automated Workflows", "Data Processing", "Smart Integrations", "24/7 AI Support"]
+    technologies: ["Automation", "AI Integration", "Smart Features", "Workflows"],
+    icon2: Zap,
+    pricingFeatures: ["Custom Automation Setup", "Workflow Design", "Integration Services", "Smart Features", "Ongoing Support"]
   }, {
     icon: Smartphone,
     title: "Phone & Tablet Apps",
@@ -244,7 +244,7 @@ const Services = () => {
                       {service.monthlyPrice !== "Contact us" && <div className={`text-white/80 ${index < 4 ? 'text-sm' : 'text-xs'}`}>
                           Then {service.monthlyPrice}/month
                         </div>}
-                      {(service.title === "Build Me a Website" || service.title === "Create Me a Online Store" || service.title === "AI Automations") && <div className={`text-white/70 ${index < 4 ? 'text-xs' : 'text-xs'} mt-1`}>
+                       {(service.title === "Build Me a Website" || service.title === "Create Me a Online Store" || service.title === "Automations") && <div className={`text-white/70 ${index < 4 ? 'text-xs' : 'text-xs'} mt-1`}>
                           💳 Payment plans available
                         </div>}
                     </div>
