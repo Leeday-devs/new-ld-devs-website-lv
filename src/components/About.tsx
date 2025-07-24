@@ -51,7 +51,7 @@ const About = () => {
   const stats = [{
     icon: Users,
     label: "Happy Clients",
-    value: "50+",
+    value: "450+",
     suffix: ""
   }, {
     icon: Award,
