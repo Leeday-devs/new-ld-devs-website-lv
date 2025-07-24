@@ -51,22 +51,22 @@ const About = () => {
   const stats = [{
     icon: Users,
     label: "Happy Clients",
-    value: "500+",
+    value: "50+",
     suffix: ""
   }, {
     icon: Award,
-    label: "Projects Delivered",
-    value: "1000+",
+    label: "Complete Websites",
+    value: "200+",
     suffix: ""
   }, {
     icon: Rocket,
-    label: "Years Experience",
-    value: "10+",
+    label: "Automations",
+    value: "100+",
     suffix: ""
   }, {
     icon: CheckCircle,
     label: "Success Rate",
-    value: "99.9",
+    value: "98.9",
     suffix: "%"
   }];
   return <section className="py-24 bg-gradient-to-br from-background via-primary/5 to-accent/10 relative overflow-hidden">
