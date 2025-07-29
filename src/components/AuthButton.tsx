@@ -17,9 +17,9 @@ const AuthButton = () => {
     return (
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="outline" size="sm" className="gap-2">
+          <Button variant="outline" size="sm" className="gap-2 hover:bg-primary/10 hover:text-primary hover:border-primary">
             <User className="h-4 w-4" />
-            {user.user_metadata?.full_name || user.email}
+            Admin
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
@@ -39,9 +39,10 @@ const AuthButton = () => {
   }
 
   return (
-    <Link to="/auth">
-      <Button variant="outline" size="sm">
-        Sign in
+    <Link to="/admin/auth">
+      <Button variant="outline" size="sm" className="hover:bg-primary/10 hover:text-primary hover:border-primary">
+        <User className="h-4 w-4 mr-1" />
+        Admin Login
       </Button>
     </Link>
   );
