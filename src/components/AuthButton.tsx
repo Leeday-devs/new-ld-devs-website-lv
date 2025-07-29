@@ -29,6 +29,13 @@ const AuthButton = () => {
             </span>
           </DropdownMenuItem>
           <DropdownMenuSeparator />
+          <DropdownMenuItem asChild>
+            <Link to="/admin/panel" className="flex items-center gap-2 cursor-pointer">
+              <User className="h-4 w-4" />
+              Admin Panel
+            </Link>
+          </DropdownMenuItem>
+          <DropdownMenuSeparator />
           <DropdownMenuItem onClick={signOut} className="gap-2 text-destructive">
             <LogOut className="h-4 w-4" />
             Sign out
