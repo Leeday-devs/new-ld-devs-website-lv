@@ -49,7 +49,7 @@ const AuthButton = () => {
     <Link to="/admin/auth">
       <Button variant="outline" size="sm" className="hover:bg-primary/10 hover:text-primary hover:border-primary">
         <User className="h-4 w-4 mr-1" />
-        Admin Login
+        Login
       </Button>
     </Link>
   );
