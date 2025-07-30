@@ -5,83 +5,93 @@ import BlogPostCard from "@/components/BlogPostCard";
 import SEOHead from "@/components/SEOHead";
 import { Button } from "@/components/ui/button";
 import { Search } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { supabase } from "@/integrations/supabase/client";
 
-// Sample blog posts data - you can later replace this with API calls
-const blogPosts = [
-  {
-    id: 1,
-    title: "10 Essential Web Development Trends for 2024",
-    excerpt: "Discover the latest web development trends that are shaping the digital landscape in 2024. From AI integration to advanced CSS features, learn what's driving modern web development.",
-    image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=600&fit=crop",
-    author: "LD Development Team",
-    date: "March 15, 2024",
-    slug: "web-development-trends-2024",
-    category: "Web Development"
-  },
-  {
-    id: 2,
-    title: "Building Scalable React Applications: Best Practices",
-    excerpt: "Learn how to structure and build React applications that can grow with your business. Explore component patterns, state management, and performance optimization techniques.",
-    image: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=800&h=600&fit=crop",
-    author: "LD Development Team",
-    date: "March 10, 2024",
-    slug: "scalable-react-applications",
-    category: "React"
-  },
-  {
-    id: 3,
-    title: "The Power of Automation in Business Processes",
-    excerpt: "Discover how automation can transform your business operations, reduce costs, and improve efficiency. Real-world examples and implementation strategies included.",
-    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&h=600&fit=crop",
-    author: "LD Development Team",
-    date: "March 5, 2024",
-    slug: "business-process-automation",
-    category: "Automation"
-  },
-  {
-    id: 4,
-    title: "Modern UI/UX Design Principles That Convert",
-    excerpt: "Explore the fundamental design principles that create engaging user experiences and drive conversions. From color psychology to user journey optimization.",
-    image: "https://images.unsplash.com/photo-1470813740244-df37b8c11f?w=800&h=600&fit=crop",
-    author: "LD Development Team",
-    date: "February 28, 2024",
-    slug: "modern-ui-ux-design-principles",
-    category: "Design"
-  },
-  {
-    id: 5,
-    title: "Securing Your Web Applications: A Complete Guide",
-    excerpt: "Learn essential security practices to protect your web applications from common vulnerabilities. Comprehensive guide covering authentication, data protection, and more.",
-    image: "https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?w=800&h=600&fit=crop",
-    author: "LD Development Team",
-    date: "February 22, 2024",
-    slug: "web-application-security-guide",
-    category: "Security"
-  },
-  {
-    id: 6,
-    title: "E-commerce Optimization: Boosting Sales with Technology",
-    excerpt: "Discover how to leverage technology to optimize your e-commerce platform for better conversions, user experience, and sales performance.",
-    image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=600&fit=crop",
-    author: "LD Development Team",
-    date: "February 15, 2024",
-    slug: "ecommerce-optimization-technology",
-    category: "E-commerce"
-  }
-];
+interface BlogPost {
+  id: string;
+  title: string;
+  excerpt: string;
+  featured_image: string;
+  slug: string;
+  category: string;
+  created_at: string;
+  author_id: string;
+}
 
-const categories = ["All", "Web Development", "React", "Automation", "Design", "Security", "E-commerce"];
+const categories = ["All", "Web Development", "React", "Automation", "Design", "Security", "E-commerce", "Technology", "Business"];
 
 const Blog = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
+  const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    fetchBlogPosts();
+  }, []);
+
+  const fetchBlogPosts = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('blog_posts')
+        .select('*')
+        .eq('status', 'published')
+        .order('published_at', { ascending: false });
+
+      if (error) {
+        console.error('Error fetching blog posts:', error);
+        return;
+      }
+
+      setBlogPosts(data || []);
+    } catch (error) {
+      console.error('Error fetching blog posts:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  // Track blog post views
+  const trackView = async (postId: string) => {
+    try {
+      await supabase
+        .from('blog_post_views')
+        .insert({
+          post_id: postId,
+          ip_address: null, // Will be handled by the backend
+          user_agent: navigator.userAgent
+        });
+    } catch (error) {
+      // Silent fail for analytics
+      console.log('Analytics tracking failed:', error);
+    }
+  };
 
   const filteredPosts = blogPosts.filter(post => {
     const matchesCategory = selectedCategory === "All" || post.category === selectedCategory;
     const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         post.excerpt.toLowerCase().includes(searchTerm.toLowerCase());
+                         (post.excerpt && post.excerpt.toLowerCase().includes(searchTerm.toLowerCase()));
     return matchesCategory && matchesSearch;
+  });
+
+  const formatDate = (dateString: string) => {
+    return new Date(dateString).toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+  };
+
+  const transformPostForCard = (post: BlogPost) => ({
+    id: post.id,
+    title: post.title,
+    excerpt: post.excerpt || '',
+    image: post.featured_image || "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=600&fit=crop",
+    author: "LD Development Team",
+    date: formatDate(post.created_at),
+    slug: post.slug,
+    category: post.category
   });
 
   return (
@@ -145,18 +155,36 @@ const Blog = () => {
         {/* Blog Posts Grid */}
         <section className="py-16">
           <div className="container mx-auto px-4">
-            {filteredPosts.length > 0 ? (
+            {isLoading ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {[...Array(6)].map((_, index) => (
+                  <div key={index} className="animate-pulse">
+                    <div className="bg-muted rounded-lg h-64 mb-4"></div>
+                    <div className="h-4 bg-muted rounded mb-2"></div>
+                    <div className="h-4 bg-muted rounded w-3/4"></div>
+                  </div>
+                ))}
+              </div>
+            ) : filteredPosts.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {filteredPosts.map((post, index) => (
-                  <div key={post.id} className={`animate-fade-in-up stagger-delay-${Math.min(index + 1, 5)}`}>
-                    <BlogPostCard post={post} />
+                  <div 
+                    key={post.id} 
+                    className={`animate-fade-in-up stagger-delay-${Math.min(index + 1, 5)}`}
+                    onClick={() => trackView(post.id)}
+                  >
+                    <BlogPostCard post={transformPostForCard(post)} />
                   </div>
                 ))}
               </div>
             ) : (
               <div className="text-center py-16">
                 <h3 className="text-xl font-semibold text-muted-foreground mb-2">No articles found</h3>
-                <p className="text-muted-foreground">Try adjusting your search or category filter.</p>
+                <p className="text-muted-foreground">
+                  {blogPosts.length === 0 
+                    ? "No blog posts have been published yet." 
+                    : "Try adjusting your search or category filter."}
+                </p>
               </div>
             )}
           </div>

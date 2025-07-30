@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { CalendarDays, User, Tag } from "lucide-react";
 
 interface BlogPost {
-  id: number;
+  id: string;
   title: string;
   excerpt: string;
   image: string;

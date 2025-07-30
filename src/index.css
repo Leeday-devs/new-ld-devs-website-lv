@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;600;700&display=swap');
+@import 'react-quill/dist/quill.snow.css';
 
 @tailwind base;
 @tailwind components;
@@ -831,5 +832,74 @@
     .hover-glow:hover {
       transform: none;
     }
+  }
+
+  /* ReactQuill Editor Styling */
+  .ql-editor {
+    background: hsl(var(--background));
+    color: hsl(var(--foreground));
+    border: 1px solid hsl(var(--border));
+    border-radius: 0.5rem;
+    padding: 1rem;
+    min-height: 300px;
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+  }
+
+  .ql-toolbar {
+    border: 1px solid hsl(var(--border));
+    border-bottom: none;
+    border-radius: 0.5rem 0.5rem 0 0;
+    background: hsl(var(--card));
+  }
+
+  .ql-container {
+    border-radius: 0 0 0.5rem 0.5rem;
+  }
+
+  .ql-toolbar .ql-stroke {
+    fill: none;
+    stroke: hsl(var(--foreground));
+  }
+
+  .ql-toolbar .ql-fill {
+    fill: hsl(var(--foreground));
+    stroke: none;
+  }
+
+  .ql-toolbar .ql-picker-label {
+    color: hsl(var(--foreground));
+  }
+
+  .ql-toolbar button:hover,
+  .ql-toolbar button.ql-active {
+    color: hsl(var(--primary));
+  }
+
+  .ql-toolbar button:hover .ql-stroke,
+  .ql-toolbar button.ql-active .ql-stroke {
+    stroke: hsl(var(--primary));
+  }
+
+  .ql-toolbar button:hover .ql-fill,
+  .ql-toolbar button.ql-active .ql-fill {
+    fill: hsl(var(--primary));
+  }
+
+  .ql-editor h1, .ql-editor h2, .ql-editor h3 {
+    font-family: 'Playfair Display', serif;
+    color: hsl(var(--foreground));
+  }
+
+  .ql-editor a {
+    color: hsl(var(--primary));
+  }
+
+  .ql-editor blockquote {
+    border-left: 4px solid hsl(var(--primary));
+    background: hsl(var(--muted) / 0.3);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin: 1rem 0;
   }
 }
