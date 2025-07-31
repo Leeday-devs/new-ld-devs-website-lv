@@ -1,19 +1,20 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Code2 } from "lucide-react";
+import { Link } from "react-router-dom";
 import AuthButton from "./AuthButton";
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navItems = [
-    { label: "Home", href: "#home" },
-    { label: "About", href: "#about" },
-    { label: "Services", href: "#services" },
-    { label: "Portfolio", href: "#portfolio" },
-    { label: "Blog", href: "/blog" },
-    { label: "FAQ", href: "#faq" },
-    { label: "Contact", href: "#contact" }
+    { label: "Home", href: "/", isInternal: true },
+    { label: "About", href: "#about", isInternal: false },
+    { label: "Services", href: "#services", isInternal: false },
+    { label: "Portfolio", href: "#portfolio", isInternal: false },
+    { label: "Blog", href: "/blog", isInternal: true },
+    { label: "FAQ", href: "#faq", isInternal: false },
+    { label: "Contact", href: "#contact", isInternal: false }
   ];
 
   return (
@@ -41,13 +42,23 @@ const Navigation = () => {
           {/* Premium Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                className="link-premium text-muted-foreground hover:text-foreground transition-smooth relative group font-medium"
-              >
-                {item.label}
-              </a>
+              item.isInternal ? (
+                <Link
+                  key={item.label}
+                  to={item.href}
+                  className="link-premium text-muted-foreground hover:text-foreground transition-smooth relative group font-medium"
+                >
+                  {item.label}
+                </Link>
+              ) : (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  className="link-premium text-muted-foreground hover:text-foreground transition-smooth relative group font-medium"
+                >
+                  {item.label}
+                </a>
+              )
             ))}
           </div>
 
@@ -83,15 +94,27 @@ const Navigation = () => {
           <div className="md:hidden py-4 border-t border-border bg-background/95 backdrop-blur-md animate-fade-in-up">
             <div className="flex flex-col space-y-4">
               {navItems.map((item, index) => (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  className="link-premium text-muted-foreground hover:text-foreground transition-smooth px-4 py-2 animate-slide-in-left"
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {item.label}
-                </a>
+                item.isInternal ? (
+                  <Link
+                    key={item.label}
+                    to={item.href}
+                    className="link-premium text-muted-foreground hover:text-foreground transition-smooth px-4 py-2 animate-slide-in-left"
+                    style={{ animationDelay: `${index * 0.1}s` }}
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {item.label}
+                  </Link>
+                ) : (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    className="link-premium text-muted-foreground hover:text-foreground transition-smooth px-4 py-2 animate-slide-in-left"
+                    style={{ animationDelay: `${index * 0.1}s` }}
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {item.label}
+                  </a>
+                )
               ))}
               <div className="px-4 pt-2 animate-fade-in-up stagger-delay-5">
                 <Button 
