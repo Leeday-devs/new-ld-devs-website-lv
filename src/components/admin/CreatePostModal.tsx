@@ -9,6 +9,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { useToast } from "@/hooks/use-toast";
 import { Plus, Save, Upload, X, Image } from "lucide-react";
 import ReactQuill from 'react-quill';
+import { sanitizeInput, sanitizeHtml } from '@/utils/security';
 import 'react-quill/dist/quill.snow.css';
 
 interface CreatePostModalProps {
@@ -52,6 +53,7 @@ const CreatePostModal = ({ open, onClose, onSuccess }: CreatePostModalProps) => 
       .replace(/-+/g, '-')
       .trim();
   };
+
 
   const handleImageUpload = async (file: File) => {
     setIsUploading(true);
@@ -132,11 +134,11 @@ const CreatePostModal = ({ open, onClose, onSuccess }: CreatePostModalProps) => 
       const { error } = await supabase
         .from('blog_posts')
         .insert({
-          title: formData.title,
+          title: sanitizeInput(formData.title),
           slug,
-          excerpt: formData.excerpt || null,
-          content: formData.content,
-          category: formData.category,
+          excerpt: formData.excerpt ? sanitizeInput(formData.excerpt) : null,
+          content: sanitizeHtml(formData.content),
+          category: sanitizeInput(formData.category),
           featured_image: formData.featured_image || null,
           status: formData.status,
           author_id: user.id,
@@ -218,7 +220,7 @@ const CreatePostModal = ({ open, onClose, onSuccess }: CreatePostModalProps) => 
                 <Input
                   id="title"
                   value={formData.title}
-                  onChange={(e) => setFormData(prev => ({ ...prev, title: e.target.value }))}
+                  onChange={(e) => setFormData(prev => ({ ...prev, title: e.target.value.slice(0, 200) }))}
                   placeholder="Enter post title"
                   required
                 />
@@ -259,7 +261,7 @@ const CreatePostModal = ({ open, onClose, onSuccess }: CreatePostModalProps) => 
                 <textarea
                   id="excerpt"
                   value={formData.excerpt}
-                  onChange={(e) => setFormData(prev => ({ ...prev, excerpt: e.target.value }))}
+                  onChange={(e) => setFormData(prev => ({ ...prev, excerpt: e.target.value.slice(0, 500) }))}
                   placeholder="Brief description of the post (recommended: 30-50 words)"
                   rows={4}
                   className="w-full px-3 py-2 border border-input rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-ring"

@@ -8,6 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
 import { Edit, Save } from "lucide-react";
+import { sanitizeInput, sanitizeHtml } from '@/utils/security';
 
 interface BlogPost {
   id: string;
@@ -72,6 +73,7 @@ const EditPostModal = ({ post, open, onClose, onSuccess }: EditPostModalProps) =
       .trim();
   };
 
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
@@ -79,11 +81,11 @@ const EditPostModal = ({ post, open, onClose, onSuccess }: EditPostModalProps) =
     try {
       const slug = generateSlug(formData.title);
       const updateData: any = {
-        title: formData.title,
+        title: sanitizeInput(formData.title),
         slug,
-        excerpt: formData.excerpt || null,
-        content: formData.content,
-        category: formData.category,
+        excerpt: formData.excerpt ? sanitizeInput(formData.excerpt) : null,
+        content: sanitizeHtml(formData.content),
+        category: sanitizeInput(formData.category),
         featured_image: formData.featured_image || null,
         status: formData.status
       };
@@ -144,7 +146,7 @@ const EditPostModal = ({ post, open, onClose, onSuccess }: EditPostModalProps) =
               <Input
                 id="title"
                 value={formData.title}
-                onChange={(e) => setFormData(prev => ({ ...prev, title: e.target.value }))}
+                onChange={(e) => setFormData(prev => ({ ...prev, title: e.target.value.slice(0, 200) }))}
                 placeholder="Enter post title"
                 required
               />
@@ -187,7 +189,7 @@ const EditPostModal = ({ post, open, onClose, onSuccess }: EditPostModalProps) =
             <Textarea
               id="excerpt"
               value={formData.excerpt}
-              onChange={(e) => setFormData(prev => ({ ...prev, excerpt: e.target.value }))}
+              onChange={(e) => setFormData(prev => ({ ...prev, excerpt: e.target.value.slice(0, 500) }))}
               placeholder="Brief description of the post (30-50 words)"
               rows={3}
             />

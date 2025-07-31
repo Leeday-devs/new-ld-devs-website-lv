@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Mail, Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { isRateLimited, sanitizeInput, isValidEmail, logSecureError } from "@/utils/security";
 
 const Newsletter = () => {
   const { toast } = useToast();
@@ -13,10 +14,31 @@ const Newsletter = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!email) {
+    const sanitizedEmail = sanitizeInput(email.trim());
+    
+    if (!sanitizedEmail) {
       toast({
         title: "Error",
         description: "Please enter your email address",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (!isValidEmail(sanitizedEmail)) {
+      toast({
+        title: "Error",
+        description: "Please enter a valid email address",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Rate limiting
+    if (isRateLimited(`newsletter-${sanitizedEmail}`, 3, 60000)) {
+      toast({
+        title: "Error",
+        description: "Too many attempts. Please wait a minute before trying again.",
         variant: "destructive",
       });
       return;
@@ -26,7 +48,7 @@ const Newsletter = () => {
 
     try {
       const { data, error } = await supabase.functions.invoke('subscribe-newsletter', {
-        body: { email }
+        body: { email: sanitizedEmail }
       });
 
       if (error) throw error;
@@ -39,7 +61,7 @@ const Newsletter = () => {
       setEmail("");
 
     } catch (error: any) {
-      console.error('Error subscribing to newsletter:', error);
+      logSecureError('Newsletter subscription', error);
       toast({
         title: "Error",
         description: "Failed to subscribe. Please try again.",
@@ -66,9 +88,10 @@ const Newsletter = () => {
             <Input
               type="email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value.slice(0, 100))}
               placeholder="Enter your email"
               className="bg-background text-foreground border-border"
+              maxLength={100}
               required
             />
             <Button 

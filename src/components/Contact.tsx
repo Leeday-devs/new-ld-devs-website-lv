@@ -6,6 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Mail, Phone, MapPin, Send, Loader2, MessageCircle } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { isRateLimited, sanitizeInput, isValidEmail, logSecureError } from "@/utils/security";
 const Contact = () => {
   const {
     toast
@@ -45,7 +46,16 @@ const Contact = () => {
   };
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.name || !formData.email || !formData.message) {
+    
+    // Sanitize and validate inputs
+    const sanitizedData = {
+      name: sanitizeInput(formData.name.trim()),
+      email: sanitizeInput(formData.email.trim()),
+      subject: sanitizeInput(formData.subject.trim()),
+      message: sanitizeInput(formData.message.trim())
+    };
+    
+    if (!sanitizedData.name || !sanitizedData.email || !sanitizedData.message) {
       toast({
         title: "Error",
         description: "Please fill in all required fields",
@@ -53,12 +63,41 @@ const Contact = () => {
       });
       return;
     }
+
+    if (!isValidEmail(sanitizedData.email)) {
+      toast({
+        title: "Error",
+        description: "Please enter a valid email address",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    if (sanitizedData.message.length > 2000) {
+      toast({
+        title: "Error",
+        description: "Message is too long. Please keep it under 2000 characters.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    // Rate limiting
+    if (isRateLimited(`contact-${sanitizedData.email}`, 3, 300000)) { // 5 minutes
+      toast({
+        title: "Error",
+        description: "Too many attempts. Please wait 5 minutes before trying again.",
+        variant: "destructive"
+      });
+      return;
+    }
+
     setIsLoading(true);
     try {
       // Store in database
       const {
         error: dbError
-      } = await supabase.from('contact_submissions').insert([formData]);
+      } = await supabase.from('contact_submissions').insert([sanitizedData]);
       if (dbError) throw dbError;
 
       // Send email
@@ -66,9 +105,10 @@ const Contact = () => {
         data,
         error
       } = await supabase.functions.invoke('send-contact-email', {
-        body: formData
+        body: sanitizedData
       });
       if (error) throw error;
+      
       toast({
         title: "Message sent!",
         description: "Thank you for your message. We'll get back to you soon!"
@@ -82,7 +122,7 @@ const Contact = () => {
         message: ""
       });
     } catch (error: any) {
-      console.error('Error sending message:', error);
+      logSecureError('Contact form submission', error);
       toast({
         title: "Error",
         description: "Failed to send message. Please try again or email us directly.",
@@ -132,13 +172,45 @@ const Contact = () => {
                 <h3 className="text-lg font-semibold text-foreground mb-4">Send Message</h3>
                 
                 <div className="grid grid-cols-2 gap-3">
-                  <Input name="name" value={formData.name} onChange={handleInputChange} placeholder="Name" className="text-sm" required />
-                  <Input name="email" type="email" value={formData.email} onChange={handleInputChange} placeholder="Email" className="text-sm" required />
+                <Input 
+                    name="name" 
+                    value={formData.name} 
+                    onChange={handleInputChange} 
+                    placeholder="Name" 
+                    className="text-sm" 
+                    maxLength={100}
+                    required 
+                  />
+                  <Input 
+                    name="email" 
+                    type="email" 
+                    value={formData.email} 
+                    onChange={handleInputChange} 
+                    placeholder="Email" 
+                    className="text-sm" 
+                    maxLength={100}
+                    required 
+                  />
                 </div>
                 
-                <Input name="subject" value={formData.subject} onChange={handleInputChange} placeholder="Subject" className="text-sm" />
+                <Input 
+                    name="subject" 
+                    value={formData.subject} 
+                    onChange={handleInputChange} 
+                    placeholder="Subject" 
+                    className="text-sm" 
+                    maxLength={200}
+                  />
                 
-                <Textarea name="message" value={formData.message} onChange={handleInputChange} placeholder="Tell me about your project..." className="text-sm min-h-24 resize-none" required />
+                <Textarea 
+                    name="message" 
+                    value={formData.message} 
+                    onChange={handleInputChange} 
+                    placeholder="Tell me about your project..." 
+                    className="text-sm min-h-24 resize-none" 
+                    maxLength={2000}
+                    required 
+                  />
                 
                 <Button type="submit" disabled={isLoading} className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
                   {isLoading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Send className="mr-2 h-4 w-4" />}

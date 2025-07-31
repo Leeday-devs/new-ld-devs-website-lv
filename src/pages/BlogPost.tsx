@@ -7,6 +7,7 @@ import { CalendarDays, User, ArrowLeft, Share2, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import DOMPurify from 'dompurify';
 
 interface BlogPostData {
   id: string;
@@ -43,7 +44,8 @@ const BlogPost = () => {
         .single();
 
       if (error) {
-        console.error('Error fetching blog post:', error);
+        // Don't log detailed error information
+        console.error('Error fetching blog post');
         setPost(null);
         return;
       }
@@ -59,7 +61,8 @@ const BlogPost = () => {
       // Track view
       trackView(data.id);
     } catch (error) {
-      console.error('Error fetching blog post:', error);
+      // Don't log detailed error information
+      console.error('Error fetching blog post');
       setPost(null);
     } finally {
       setIsLoading(false);
@@ -223,7 +226,13 @@ const BlogPost = () => {
                   '--tw-prose-bold': 'hsl(var(--foreground))',
                   '--tw-prose-quotes': 'hsl(var(--muted-foreground))',
                 } as React.CSSProperties}
-                dangerouslySetInnerHTML={{ __html: post.content }}
+                dangerouslySetInnerHTML={{ 
+                  __html: DOMPurify.sanitize(post.content, {
+                    ALLOWED_TAGS: ['p', 'br', 'strong', 'em', 'u', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'ul', 'ol', 'li', 'blockquote', 'a', 'img', 'code', 'pre'],
+                    ALLOWED_ATTR: ['href', 'src', 'alt', 'title', 'target', 'rel'],
+                    ALLOW_DATA_ATTR: false
+                  })
+                }}
               />
               
               {/* Call to Action */}
