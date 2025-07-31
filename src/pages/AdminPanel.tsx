@@ -214,8 +214,9 @@ const AdminPanel = () => {
               </div>
             </div>
 
-            <div className="flex justify-between items-center">
-              <AdminStats posts={posts} />
+            <AdminStats posts={posts} onRefresh={fetchBlogPosts} />
+            
+            <div className="flex justify-end mb-6">
               <Button 
                 onClick={() => setShowCreateModal(true)}
                 className="btn-premium gap-2"
