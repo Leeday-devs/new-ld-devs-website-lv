@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
-import { Plus, Edit, ExternalLink, Calendar, DollarSign } from "lucide-react";
+import { Plus, Edit, ExternalLink, Calendar, DollarSign, Trash2 } from "lucide-react";
 import CreateCustomerModal from "./CreateCustomerModal";
 import EditCustomerModal from "./EditCustomerModal";
 
@@ -79,6 +79,40 @@ const CustomersManagement = () => {
       title: "Success",
       description: "Customer updated successfully!",
     });
+  };
+
+  const handleDeleteCustomer = async (customerId: string, customerName: string) => {
+    if (!confirm(`Are you sure you want to delete ${customerName}? This action cannot be undone and will also delete all associated work requests.`)) {
+      return;
+    }
+
+    try {
+      const { error } = await supabase
+        .from('customers')
+        .delete()
+        .eq('id', customerId);
+
+      if (error) {
+        toast({
+          title: "Error",
+          description: "Failed to delete customer.",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      fetchCustomers();
+      toast({
+        title: "Success",
+        description: "Customer deleted successfully.",
+      });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "An unexpected error occurred.",
+        variant: "destructive",
+      });
+    }
   };
 
   const formatCurrency = (amount: number) => {
@@ -200,6 +234,14 @@ const CustomersManagement = () => {
                             onClick={() => setEditingCustomer(customer)}
                           >
                             <Edit className="h-4 w-4" />
+                          </Button>
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => handleDeleteCustomer(customer.id, customer.name)}
+                            className="hover:bg-destructive hover:text-destructive-foreground hover:border-destructive"
+                          >
+                            <Trash2 className="h-4 w-4" />
                           </Button>
                         </div>
                       </div>
