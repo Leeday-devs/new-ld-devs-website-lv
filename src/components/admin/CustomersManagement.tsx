@@ -4,10 +4,11 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
-import { Plus, Edit, ExternalLink, Calendar, DollarSign, Trash2, Settings } from "lucide-react";
+import { Plus, Edit, ExternalLink, Calendar, DollarSign, Trash2, Settings, KeyRound } from "lucide-react";
 import CreateCustomerModal from "./CreateCustomerModal";
 import EditCustomerModal from "./EditCustomerModal";
 import CustomerServicesModal from "./CustomerServicesModal";
+import PasswordResetDialog from "./PasswordResetDialog";
 
 interface Customer {
   id: string;
@@ -31,6 +32,7 @@ const CustomersManagement = () => {
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [editingCustomer, setEditingCustomer] = useState<Customer | null>(null);
   const [servicesCustomer, setServicesCustomer] = useState<Customer | null>(null);
+  const [resetPasswordCustomer, setResetPasswordCustomer] = useState<Customer | null>(null);
 
   useEffect(() => {
     fetchCustomers();
@@ -247,6 +249,14 @@ const CustomersManagement = () => {
                           <Button
                             variant="outline"
                             size="sm"
+                            onClick={() => setResetPasswordCustomer(customer)}
+                            title="Reset Password"
+                          >
+                            <KeyRound className="h-4 w-4" />
+                          </Button>
+                          <Button
+                            variant="outline"
+                            size="sm"
                             onClick={() => setEditingCustomer(customer)}
                           >
                             <Edit className="h-4 w-4" />
@@ -291,6 +301,15 @@ const CustomersManagement = () => {
           onClose={() => setServicesCustomer(null)}
           customerId={servicesCustomer.id}
           customerName={servicesCustomer.name}
+        />
+      )}
+
+      {resetPasswordCustomer && (
+        <PasswordResetDialog 
+          open={!!resetPasswordCustomer}
+          onClose={() => setResetPasswordCustomer(null)}
+          customerEmail={resetPasswordCustomer.email}
+          customerName={resetPasswordCustomer.name}
         />
       )}
     </>

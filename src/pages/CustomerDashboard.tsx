@@ -5,6 +5,7 @@ import { supabase } from "@/integrations/supabase/client";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import CustomerProfileModal from "@/components/CustomerProfileModal";
+import ChangePasswordModal from "@/components/customer/ChangePasswordModal";
 import ProjectAnalytics from "@/components/customer/ProjectAnalytics";
 import NotificationCenter from "@/components/customer/NotificationCenter";
 import BillingHistory from "@/components/customer/BillingHistory";
@@ -29,7 +30,8 @@ import {
   BarChart3,
   Bell,
   FileText,
-  Package
+  Package,
+  Lock
 } from "lucide-react";
 
 interface Customer {
@@ -66,6 +68,7 @@ const CustomerDashboard = () => {
   const [workRequests, setWorkRequests] = useState<WorkRequest[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [showEditProfile, setShowEditProfile] = useState(false);
+  const [showChangePassword, setShowChangePassword] = useState(false);
 
   useEffect(() => {
     if (!loading && !user) {
@@ -297,15 +300,26 @@ const CustomerDashboard = () => {
                 <User className="h-5 w-5 text-primary" />
                 Profile Information
               </CardTitle>
-              <Button 
-                onClick={() => setShowEditProfile(true)}
-                variant="outline"
-                size="sm"
-                className="gap-2"
-              >
-                <Edit className="h-4 w-4" />
-                Edit Profile
-              </Button>
+              <div className="flex gap-2">
+                <Button 
+                  onClick={() => setShowChangePassword(true)}
+                  variant="outline"
+                  size="sm"
+                  className="gap-2"
+                >
+                  <Lock className="h-4 w-4" />
+                  Change Password
+                </Button>
+                <Button 
+                  onClick={() => setShowEditProfile(true)}
+                  variant="outline"
+                  size="sm"
+                  className="gap-2"
+                >
+                  <Edit className="h-4 w-4" />
+                  Edit Profile
+                </Button>
+              </div>
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -553,7 +567,7 @@ const CustomerDashboard = () => {
 
       <Footer />
 
-      {/* Edit Profile Modal */}
+      {/* Modals */}
       {customer && (
         <CustomerProfileModal 
           open={showEditProfile}
@@ -562,6 +576,11 @@ const CustomerDashboard = () => {
           onSuccess={handleProfileUpdated}
         />
       )}
+
+      <ChangePasswordModal 
+        open={showChangePassword}
+        onClose={() => setShowChangePassword(false)}
+      />
     </div>
   );
 };
