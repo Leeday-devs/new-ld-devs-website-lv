@@ -12,10 +12,11 @@ import CustomersManagement from "@/components/admin/CustomersManagement";
 import WorkRequestsManagement from "@/components/admin/WorkRequestsManagement";
 import PendingCustomersManagement from "@/components/admin/PendingCustomersManagement";
 import BannedEmailsManagement from "@/components/admin/BannedEmailsManagement";
+import DiscordWebhookSettings from "@/components/DiscordWebhookSettings";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
-import { Plus, Shield, BarChart3, Users, Clock, AlertTriangle } from "lucide-react";
+import { Plus, Shield, BarChart3, Users, Clock, AlertTriangle, Settings } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 interface BlogPost {
@@ -224,7 +225,7 @@ const AdminPanel = () => {
 
           {/* Admin Tabs */}
           <Tabs defaultValue="customers" className="w-full">
-            <TabsList className="grid w-full grid-cols-5">
+            <TabsList className="grid w-full grid-cols-6">
               <TabsTrigger value="customers" className="flex items-center gap-2">
                 <Users className="h-4 w-4" />
                 Customers
@@ -240,6 +241,10 @@ const AdminPanel = () => {
               <TabsTrigger value="work-requests" className="flex items-center gap-2">
                 <BarChart3 className="h-4 w-4" />
                 Work Requests
+              </TabsTrigger>
+              <TabsTrigger value="discord" className="flex items-center gap-2">
+                <Settings className="h-4 w-4" />
+                Discord
               </TabsTrigger>
               <TabsTrigger value="blog" className="flex items-center gap-2">
                 <Plus className="h-4 w-4" />
@@ -261,6 +266,10 @@ const AdminPanel = () => {
 
             <TabsContent value="work-requests" className="mt-6">
               <WorkRequestsManagement />
+            </TabsContent>
+
+            <TabsContent value="discord" className="mt-6">
+              <DiscordWebhookSettings />
             </TabsContent>
 
             <TabsContent value="blog" className="mt-6">

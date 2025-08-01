@@ -405,6 +405,34 @@ serve(async (req) => {
       userType: user ? "authenticated" : "guest"
     }));
 
+    // Send Discord notification for purchase
+    try {
+      const discordWebhookUrl = Deno.env.get('DISCORD_WEBHOOK_URL');
+      if (discordWebhookUrl) {
+        await fetch(`${Deno.env.get('SUPABASE_URL')}/functions/v1/send-discord-notification`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+           body: JSON.stringify({
+             webhookUrl: discordWebhookUrl,
+             eventType: 'purchase',
+             data: {
+               customerName: sanitizedCustomerInfo?.fullName,
+               customerEmail: sanitizedCustomerInfo?.email,
+               customerCompany: sanitizedCustomerInfo?.company,
+               customerPhone: sanitizedCustomerInfo?.phone,
+               serviceName: serviceName,
+               amount: type === 'deposit' ? 2000 : (amount || 2000)
+             }
+           })
+        });
+      }
+    } catch (error) {
+      console.error('Failed to send Discord notification:', error);
+      // Don't fail the payment if Discord notification fails
+    }
+
     return new Response(JSON.stringify({ url: session.url }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
       status: 200,

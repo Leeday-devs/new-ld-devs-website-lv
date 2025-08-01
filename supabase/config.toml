@@ -2,3 +2,6 @@ project_id = "hhfiawskggxnvffcpaxu"
 
 [functions.admin-reset-password]
 verify_jwt = false
+
+[functions.send-discord-notification]
+verify_jwt = false

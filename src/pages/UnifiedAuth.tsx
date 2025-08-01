@@ -125,6 +125,23 @@ const UnifiedAuth = () => {
         } else {
           // Create customer profile after successful signup
           await createCustomerProfile();
+          
+          // Send Discord notification for new customer signup
+          try {
+            await supabase.functions.invoke('send-discord-notification', {
+              body: {
+                eventType: 'signup',
+                data: {
+                  name: fullName,
+                  email: email,
+                  company: company || 'N/A'
+                }
+              }
+            });
+          } catch (error) {
+            console.error('Failed to send Discord signup notification:', error);
+          }
+          
           toast({
             title: 'Account created!',
             description: 'Your account has been created successfully. You can now sign in.',
