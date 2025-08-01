@@ -5,9 +5,13 @@ import { supabase } from "@/integrations/supabase/client";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import CustomerProfileModal from "@/components/CustomerProfileModal";
+import ProjectAnalytics from "@/components/customer/ProjectAnalytics";
+import NotificationCenter from "@/components/customer/NotificationCenter";
+import BillingHistory from "@/components/customer/BillingHistory";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
 import { 
   User, 
@@ -20,7 +24,10 @@ import {
   Plus,
   ExternalLink,
   AlertCircle,
-  Edit
+  Edit,
+  BarChart3,
+  Bell,
+  FileText
 } from "lucide-react";
 
 interface Customer {
@@ -43,6 +50,7 @@ interface WorkRequest {
   notes: string | null;
   status: 'pending' | 'approved' | 'declined' | 'completed';
   hours_logged: number;
+  quote_price: number | null;
   requested_at: string;
 }
 
@@ -101,14 +109,14 @@ const CustomerDashboard = () => {
       // Fetch work requests
       const { data: requestsData, error: requestsError } = await supabase
         .from('work_requests')
-        .select('*')
+        .select('id, title, description, notes, status, hours_logged, quote_price, requested_at')
         .eq('customer_id', customerData.id)
         .order('requested_at', { ascending: false });
 
       if (requestsError) {
         console.error('Error fetching work requests:', requestsError);
       } else {
-        setWorkRequests((requestsData || []) as WorkRequest[]);
+        setWorkRequests((requestsData || []) as any);
       }
     } catch (error) {
       console.error('Error:', error);
@@ -331,73 +339,131 @@ const CustomerDashboard = () => {
             </Card>
           </div>
 
-          {/* Work Requests Section */}
-          <Card className="card-premium">
-            <CardHeader className="flex flex-row items-center justify-between">
-              <CardTitle className="flex items-center gap-2">
-                <AlertCircle className="h-5 w-5 text-primary" />
-                Your Work Requests
-              </CardTitle>
-              <Button 
-                onClick={() => navigate("/request-work")}
-                className="btn-premium gap-2"
-              >
-                <Plus className="h-4 w-4" />
-                New Request
-              </Button>
-            </CardHeader>
-            <CardContent>
-              {workRequests.length === 0 ? (
-                <div className="text-center py-12">
-                  <AlertCircle className="h-12 w-12 mx-auto mb-4 text-muted-foreground" />
-                  <h3 className="text-lg font-medium mb-2">No work requests yet</h3>
-                  <p className="text-muted-foreground mb-4">
-                    Submit your first work request to get started.
-                  </p>
-                  <Button onClick={() => navigate("/request-work")} className="btn-premium">
-                    <Plus className="h-4 w-4 mr-2" />
-                    Submit Request
+          {/* Customer Portal Features */}
+          <Tabs defaultValue="requests" className="w-full">
+            <TabsList className="grid w-full grid-cols-4">
+              <TabsTrigger value="requests" className="flex items-center gap-2">
+                <FileText className="h-4 w-4" />
+                Work Requests
+              </TabsTrigger>
+              <TabsTrigger value="analytics" className="flex items-center gap-2">
+                <BarChart3 className="h-4 w-4" />
+                Analytics
+              </TabsTrigger>
+              <TabsTrigger value="notifications" className="flex items-center gap-2">
+                <Bell className="h-4 w-4" />
+                Notifications
+              </TabsTrigger>
+              <TabsTrigger value="billing" className="flex items-center gap-2">
+                <CreditCard className="h-4 w-4" />
+                Billing
+              </TabsTrigger>
+            </TabsList>
+
+            <TabsContent value="requests" className="mt-6">
+              <Card className="card-premium">
+                <CardHeader className="flex flex-row items-center justify-between">
+                  <CardTitle className="flex items-center gap-2">
+                    <FileText className="h-5 w-5 text-primary" />
+                    Your Work Requests
+                  </CardTitle>
+                  <Button 
+                    onClick={() => navigate("/request-work")}
+                    className="btn-premium gap-2"
+                  >
+                    <Plus className="h-4 w-4" />
+                    New Request
                   </Button>
-                </div>
-              ) : (
-                <div className="space-y-4">
-                  {workRequests.map((request) => (
-                    <Card key={request.id} className="card-subtle">
-                      <CardContent className="p-6">
-                        <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
-                          <div className="flex-1">
-                            <div className="flex items-center gap-3 mb-2">
-                              <h3 className="font-semibold text-lg">{request.title}</h3>
-                              <Badge variant={getStatusVariant(request.status)} className="flex items-center gap-1">
-                                {getStatusIcon(request.status)}
-                                {request.status}
-                              </Badge>
-                            </div>
-                            
-                            {request.description && (
-                              <p className="text-sm text-muted-foreground mb-2">{request.description}</p>
-                            )}
-                            
-                            {request.notes && (
-                              <div className="mb-2">
-                                <p className="text-sm font-medium">Notes:</p>
-                                <p className="text-sm text-muted-foreground">{request.notes}</p>
+                </CardHeader>
+                <CardContent>
+                  {workRequests.length === 0 ? (
+                    <div className="text-center py-12">
+                      <FileText className="h-12 w-12 mx-auto mb-4 text-muted-foreground" />
+                      <h3 className="text-lg font-medium mb-2">No work requests yet</h3>
+                      <p className="text-muted-foreground mb-4">
+                        Submit your first work request to get started.
+                      </p>
+                      <Button onClick={() => navigate("/request-work")} className="btn-premium">
+                        <Plus className="h-4 w-4 mr-2" />
+                        Submit Request
+                      </Button>
+                    </div>
+                  ) : (
+                    <div className="space-y-4">
+                      {workRequests.map((request) => (
+                        <Card key={request.id} className="card-subtle">
+                          <CardContent className="p-6">
+                            <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
+                              <div className="flex-1">
+                                <div className="flex items-center gap-3 mb-2">
+                                  <h3 className="font-semibold text-lg">{request.title}</h3>
+                                  <Badge variant={getStatusVariant(request.status)} className="flex items-center gap-1">
+                                    {getStatusIcon(request.status)}
+                                    {request.status}
+                                  </Badge>
+                                </div>
+                                
+                                {request.description && (
+                                  <p className="text-sm text-muted-foreground mb-2">{request.description}</p>
+                                )}
+                                
+                                {request.notes && (
+                                  <div className="mb-2">
+                                    <p className="text-sm font-medium">Notes:</p>
+                                    <p className="text-sm text-muted-foreground">{request.notes}</p>
+                                  </div>
+                                )}
+                                
+                                <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
+                                  <span>Requested: {new Date(request.requested_at).toLocaleDateString()}</span>
+                                  <span>Hours logged: {request.hours_logged}</span>
+                                  {request.quote_price && (
+                                    <span>Quote: {formatCurrency(request.quote_price)}</span>
+                                  )}
+                                </div>
                               </div>
-                            )}
-                            
-                            <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
-                              <span>Requested: {new Date(request.requested_at).toLocaleDateString()}</span>
-                              <span>Hours logged: {request.hours_logged}</span>
                             </div>
-                          </div>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  ))}
-                </div>
-              )}
-            </CardContent>
-          </Card>
+                          </CardContent>
+                        </Card>
+                      ))}
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+            </TabsContent>
+
+            <TabsContent value="analytics" className="mt-6">
+              <ProjectAnalytics 
+                workRequests={workRequests} 
+                customerData={{
+                  plan_price: customer.plan_price,
+                  payment_amount: customer.payment_amount,
+                  next_payment_date: customer.next_payment_date
+                }}
+              />
+            </TabsContent>
+
+            <TabsContent value="notifications" className="mt-6">
+              <NotificationCenter 
+                workRequests={workRequests}
+                customerData={{
+                  next_payment_date: customer.next_payment_date,
+                  plan_name: customer.plan_name
+                }}
+              />
+            </TabsContent>
+
+            <TabsContent value="billing" className="mt-6">
+              <BillingHistory 
+                customerData={{
+                  plan_name: customer.plan_name,
+                  plan_price: customer.plan_price,
+                  payment_amount: customer.payment_amount,
+                  next_payment_date: customer.next_payment_date
+                }}
+              />
+            </TabsContent>
+          </Tabs>
         </div>
       </div>
 
