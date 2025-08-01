@@ -179,10 +179,10 @@ const Auth = () => {
             <div className="mx-auto mb-4 w-16 h-16 bg-gradient-primary rounded-2xl flex items-center justify-center shadow-glow">
               <Shield className="h-8 w-8 text-white" />
             </div>
-            <CardTitle className="text-2xl font-serif text-white mb-2">
+            <CardTitle className="text-2xl font-serif text-gray-900 mb-2">
               LD Development
             </CardTitle>
-            <CardDescription className="text-white/70">
+            <CardDescription className="text-gray-700">
               LD Development Portal
             </CardDescription>
           </CardHeader>
@@ -192,13 +192,13 @@ const Auth = () => {
               <TabsList className="grid w-full grid-cols-2 mb-6 bg-white/10 border border-white/20">
                 <TabsTrigger 
                   value="login" 
-                  className="text-white/70 data-[state=active]:text-white data-[state=active]:bg-white/20"
+                  className="text-gray-700 data-[state=active]:text-gray-900 data-[state=active]:bg-white/20"
                 >
                   Login
                 </TabsTrigger>
                 <TabsTrigger 
                   value="signup"
-                  className="text-white/70 data-[state=active]:text-white data-[state=active]:bg-white/20"
+                  className="text-gray-700 data-[state=active]:text-gray-900 data-[state=active]:bg-white/20"
                 >
                   Sign Up
                 </TabsTrigger>
@@ -207,7 +207,7 @@ const Auth = () => {
               <TabsContent value="login">
                 <form onSubmit={handleLogin} className="space-y-4">
                   <div className="space-y-2">
-                    <Label htmlFor="email" className="text-white/90">
+                    <Label htmlFor="email" className="text-gray-900">
                       Email Address
                     </Label>
                     <div className="relative">
@@ -225,7 +225,7 @@ const Auth = () => {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="password" className="text-white/90">
+                    <Label htmlFor="password" className="text-gray-900">
                       Password
                     </Label>
                     <div className="relative">
@@ -261,7 +261,7 @@ const Auth = () => {
                     <button
                       type="button"
                       onClick={handleForgotPassword}
-                      className="text-sm text-white/70 hover:text-white transition-colors underline"
+                      className="text-sm text-gray-600 hover:text-gray-900 transition-colors underline"
                       disabled={isLoading}
                     >
                       Forgot your password?
@@ -273,7 +273,7 @@ const Auth = () => {
               <TabsContent value="signup">
                 <form onSubmit={handleSignUp} className="space-y-4">
                   <div className="space-y-2">
-                    <Label htmlFor="fullName" className="text-white/90">
+                    <Label htmlFor="fullName" className="text-gray-900">
                       Full Name
                     </Label>
                     <Input
@@ -288,7 +288,7 @@ const Auth = () => {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="signupEmail" className="text-white/90">
+                    <Label htmlFor="signupEmail" className="text-gray-900">
                       Email Address
                     </Label>
                     <div className="relative">
@@ -306,7 +306,7 @@ const Auth = () => {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="signupPassword" className="text-white/90">
+                    <Label htmlFor="signupPassword" className="text-gray-900">
                       Password
                     </Label>
                     <div className="relative">
