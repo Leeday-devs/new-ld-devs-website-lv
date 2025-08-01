@@ -23,6 +23,7 @@ interface WorkRequest {
   notes: string | null;
   status: 'pending' | 'approved' | 'declined' | 'completed';
   hours_logged: number;
+  quote_price: number | null;
   requested_at: string;
   customer: {
     name: string;
@@ -36,7 +37,7 @@ const WorkRequestsManagement = () => {
   const [requests, setRequests] = useState<WorkRequest[]>([]);
   const [loading, setLoading] = useState(true);
   const [editingRequest, setEditingRequest] = useState<string | null>(null);
-  const [editHours, setEditHours] = useState<string>("");
+  const [editPrice, setEditPrice] = useState<string>("");
 
   useEffect(() => {
     fetchWorkRequests();
@@ -53,6 +54,7 @@ const WorkRequestsManagement = () => {
           notes,
           status,
           hours_logged,
+          quote_price,
           requested_at,
           customer:customers(name, email, company)
         `)
@@ -68,7 +70,7 @@ const WorkRequestsManagement = () => {
         return;
       }
 
-      setRequests((data || []) as WorkRequest[]);
+      setRequests((data || []) as any);
     } catch (error) {
       console.error('Error:', error);
       toast({
@@ -121,17 +123,17 @@ const WorkRequestsManagement = () => {
     }
   };
 
-  const updateHours = async (requestId: string, hours: number) => {
+  const updateQuotePrice = async (requestId: string, price: number) => {
     try {
       const { error } = await supabase
         .from('work_requests')
-        .update({ hours_logged: hours })
+        .update({ quote_price: price } as any)
         .eq('id', requestId);
 
       if (error) {
         toast({
           title: "Error",
-          description: "Failed to update hours.",
+          description: "Failed to update quote price.",
           variant: "destructive",
         });
         return;
@@ -141,7 +143,7 @@ const WorkRequestsManagement = () => {
       setEditingRequest(null);
       toast({
         title: "Success",
-        description: "Hours updated successfully.",
+        description: "Quote price updated successfully.",
       });
     } catch (error) {
       console.error('Error:', error);
@@ -238,19 +240,21 @@ const WorkRequestsManagement = () => {
                       )}
                       
                       <div className="flex items-center gap-2 text-sm">
-                        <span className="font-medium">Hours logged:</span>
+                        <span className="font-medium">Quote Price:</span>
                         {editingRequest === request.id ? (
                           <div className="flex items-center gap-2">
+                            <span className="text-sm">£</span>
                             <Input
                               type="number"
-                              step="0.25"
-                              value={editHours}
-                              onChange={(e) => setEditHours(e.target.value)}
-                              className="w-20 h-8"
+                              step="0.01"
+                              value={editPrice}
+                              onChange={(e) => setEditPrice(e.target.value)}
+                              className="w-24 h-8"
+                              placeholder="0.00"
                             />
                             <Button
                               size="sm"
-                              onClick={() => updateHours(request.id, parseFloat(editHours))}
+                              onClick={() => updateQuotePrice(request.id, parseFloat(editPrice))}
                               className="h-8 px-2"
                             >
                               <Save className="h-4 w-4" />
@@ -266,13 +270,18 @@ const WorkRequestsManagement = () => {
                           </div>
                         ) : (
                           <div className="flex items-center gap-2">
-                            <span>{request.hours_logged} hours</span>
+                            <span>
+                              {request.quote_price 
+                                ? `£${request.quote_price.toFixed(2)}` 
+                                : 'No quote set'
+                              }
+                            </span>
                             <Button
                               size="sm"
                               variant="outline"
                               onClick={() => {
                                 setEditingRequest(request.id);
-                                setEditHours(request.hours_logged.toString());
+                                setEditPrice(request.quote_price?.toString() || "0.00");
                               }}
                               className="h-6 px-2"
                             >
