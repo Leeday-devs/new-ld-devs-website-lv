@@ -4,9 +4,10 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
-import { Plus, Edit, ExternalLink, Calendar, DollarSign, Trash2 } from "lucide-react";
+import { Plus, Edit, ExternalLink, Calendar, DollarSign, Trash2, Settings } from "lucide-react";
 import CreateCustomerModal from "./CreateCustomerModal";
 import EditCustomerModal from "./EditCustomerModal";
+import CustomerServicesModal from "./CustomerServicesModal";
 
 interface Customer {
   id: string;
@@ -28,6 +29,7 @@ const CustomersManagement = () => {
   const [loading, setLoading] = useState(true);
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [editingCustomer, setEditingCustomer] = useState<Customer | null>(null);
+  const [servicesCustomer, setServicesCustomer] = useState<Customer | null>(null);
 
   useEffect(() => {
     fetchCustomers();
@@ -231,6 +233,14 @@ const CustomersManagement = () => {
                           <Button
                             variant="outline"
                             size="sm"
+                            onClick={() => setServicesCustomer(customer)}
+                            title="Manage Services"
+                          >
+                            <Settings className="h-4 w-4" />
+                          </Button>
+                          <Button
+                            variant="outline"
+                            size="sm"
                             onClick={() => setEditingCustomer(customer)}
                           >
                             <Edit className="h-4 w-4" />
@@ -266,6 +276,15 @@ const CustomersManagement = () => {
           open={!!editingCustomer}
           onClose={() => setEditingCustomer(null)}
           onSuccess={handleCustomerUpdated}
+        />
+      )}
+
+      {servicesCustomer && (
+        <CustomerServicesModal 
+          open={!!servicesCustomer}
+          onClose={() => setServicesCustomer(null)}
+          customerId={servicesCustomer.id}
+          customerName={servicesCustomer.name}
         />
       )}
     </>
