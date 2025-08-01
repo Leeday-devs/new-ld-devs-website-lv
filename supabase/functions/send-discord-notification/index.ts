@@ -28,7 +28,10 @@ serve(async (req) => {
       'purchase': 0x00ff00,      // Green
       'signup': 0x0099ff,       // Blue  
       'login': 0xffaa00,        // Orange
-      'visit': 0x9966cc         // Purple
+      'visit': 0x9966cc,        // Purple
+      'contact': 0xff6600,      // Orange-red
+      'newsletter': 0x00ccff,   // Light blue
+      'work_request': 0xff9900  // Gold
     };
 
     // Create embed based on event type
@@ -85,6 +88,46 @@ serve(async (req) => {
           fields: [
             { name: 'Page', value: data.page || '/', inline: true },
             { name: 'User Agent', value: data.userAgent?.substring(0, 100) || 'Unknown', inline: false }
+          ],
+          timestamp: new Date().toISOString()
+        };
+        break;
+
+      case 'contact':
+        embed = {
+          title: '📧 New Contact Message!',
+          description: `**${data.name}** sent a message`,
+          color: eventColors.contact,
+          fields: [
+            { name: 'Email', value: data.email, inline: true },
+            { name: 'Subject', value: data.subject || 'No subject', inline: true },
+            { name: 'Message', value: data.message, inline: false }
+          ],
+          timestamp: new Date().toISOString()
+        };
+        break;
+
+      case 'newsletter':
+        embed = {
+          title: '📮 Newsletter Subscription!',
+          description: 'Someone subscribed to your newsletter',
+          color: eventColors.newsletter,
+          fields: [
+            { name: 'Email', value: data.email, inline: false }
+          ],
+          timestamp: new Date().toISOString()
+        };
+        break;
+
+      case 'work_request':
+        embed = {
+          title: '🔧 New Work Request!',
+          description: `**${data.customerName}** submitted a work request`,
+          color: eventColors.work_request,
+          fields: [
+            { name: 'Title', value: data.title, inline: false },
+            { name: 'Customer', value: data.customerEmail, inline: true },
+            { name: 'Description', value: data.description, inline: false }
           ],
           timestamp: new Date().toISOString()
         };

@@ -108,6 +108,24 @@ const Contact = () => {
         body: sanitizedData
       });
       if (error) throw error;
+
+      // Send Discord notification
+      try {
+        await supabase.functions.invoke('send-discord-notification', {
+          body: {
+            eventType: 'contact',
+            data: {
+              name: sanitizedData.name,
+              email: sanitizedData.email,
+              subject: sanitizedData.subject,
+              message: sanitizedData.message.substring(0, 200) + (sanitizedData.message.length > 200 ? '...' : '')
+            }
+          }
+        });
+      } catch (discordError) {
+        // Fail silently for Discord notifications
+        console.error('Failed to send Discord notification:', discordError);
+      }
       
       toast({
         title: "Message sent!",

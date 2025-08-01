@@ -126,6 +126,18 @@ const DiscordWebhookSettings = () => {
               <CheckCircle className="h-4 w-4 text-green-500" />
               Website visits
             </div>
+            <div className="flex items-center gap-2">
+              <CheckCircle className="h-4 w-4 text-green-500" />
+              Contact form submissions
+            </div>
+            <div className="flex items-center gap-2">
+              <CheckCircle className="h-4 w-4 text-green-500" />
+              Newsletter subscriptions
+            </div>
+            <div className="flex items-center gap-2">
+              <CheckCircle className="h-4 w-4 text-green-500" />
+              Work requests
+            </div>
           </div>
         </div>
 

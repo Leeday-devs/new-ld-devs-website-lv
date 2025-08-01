@@ -122,6 +122,25 @@ const RequestWork = () => {
         return;
       }
 
+      // Send Discord notification
+      try {
+        await supabase.functions.invoke('send-discord-notification', {
+          body: {
+            eventType: 'work_request',
+            data: {
+              customerEmail: user?.email,
+              customerName: user?.user_metadata?.full_name || user?.email,
+              title: data.title,
+              description: data.description.substring(0, 200) + (data.description.length > 200 ? '...' : ''),
+              notes: data.notes
+            }
+          }
+        });
+      } catch (discordError) {
+        // Fail silently for Discord notifications
+        console.error('Failed to send Discord notification:', discordError);
+      }
+
       toast({
         title: "Success",
         description: "Your work request has been submitted successfully!",

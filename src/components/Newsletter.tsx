@@ -53,6 +53,21 @@ const Newsletter = () => {
 
       if (error) throw error;
 
+      // Send Discord notification
+      try {
+        await supabase.functions.invoke('send-discord-notification', {
+          body: {
+            eventType: 'newsletter',
+            data: {
+              email: sanitizedEmail
+            }
+          }
+        });
+      } catch (discordError) {
+        // Fail silently for Discord notifications
+        console.error('Failed to send Discord notification:', discordError);
+      }
+
       toast({
         title: "Subscribed!",
         description: "Thank you for subscribing to our newsletter!",
