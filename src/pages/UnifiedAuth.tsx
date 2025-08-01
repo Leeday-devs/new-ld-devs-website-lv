@@ -223,6 +223,8 @@ const UnifiedAuth = () => {
         return null;
       }
 
+      console.log('Customer creation successful, customerData:', customerData);
+
       // Create profile with customer role using the secure function
       const { error: profileError } = await supabase.rpc('create_user_profile', {
         user_id_param: authData.user.id,
@@ -234,7 +236,9 @@ const UnifiedAuth = () => {
         console.error('Error creating user profile:', profileError);
       }
 
-      return customerData?.id || null;
+      const customerId = customerData?.id || null;
+      console.log('Returning customer ID:', customerId);
+      return customerId;
     } catch (error) {
       console.error('Error creating customer profile:', error);
       return null;
