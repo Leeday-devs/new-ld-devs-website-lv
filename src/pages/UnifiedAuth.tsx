@@ -30,32 +30,41 @@ const UnifiedAuth = () => {
   const checkUserRoleAndRedirect = async () => {
     if (!user) return;
     
+    console.log('Checking user role for user:', user.id);
+    
     try {
       // Check if user is admin
-      const { data: profile } = await supabase
+      const { data: profile, error: profileError } = await supabase
         .from('profiles')
         .select('role')
         .eq('user_id', user.id)
         .maybeSingle();
 
+      console.log('Profile data:', profile, 'Profile error:', profileError);
+
       if (profile?.role === 'admin') {
+        console.log('User is admin, redirecting to admin panel');
         navigate('/admin/panel');
         return;
       }
 
       // Check if user is customer
-      const { data: customer } = await supabase
+      const { data: customer, error: customerError } = await supabase
         .from('customers')
         .select('id')
         .eq('user_id', user.id)
         .maybeSingle();
       
+      console.log('Customer data:', customer, 'Customer error:', customerError);
+      
       if (customer) {
+        console.log('User is customer, redirecting to dashboard');
         navigate('/dashboard');
         return;
       }
 
       // If no specific role found, go to home
+      console.log('No specific role found, redirecting to home');
       navigate('/');
     } catch (error) {
       console.error('Error checking user role:', error);
