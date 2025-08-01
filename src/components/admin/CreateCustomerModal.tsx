@@ -67,40 +67,12 @@ const CreateCustomerModal = ({ open, onClose, onSuccess }: CreateCustomerModalPr
     setLoading(true);
     
     try {
-      // First, create the user account
-      const { data: authData, error: authError } = await supabase.auth.admin.createUser({
-        email: data.email,
-        password: data.password,
-        email_confirm: true,
-        user_metadata: {
-          full_name: data.name,
-        }
-      });
-
-      if (authError) {
-        console.error('Auth error:', authError);
-        toast({
-          title: "Error",
-          description: "Failed to create user account: " + authError.message,
-          variant: "destructive",
-        });
-        return;
-      }
-
-      if (!authData.user) {
-        toast({
-          title: "Error",
-          description: "Failed to create user account",
-          variant: "destructive",
-        });
-        return;
-      }
-
-      // Create customer record
+      // Create customer record without auth user for now
+      // Admin can provide login credentials separately if needed
       const { error: customerError } = await supabase
         .from('customers')
         .insert({
-          user_id: authData.user.id,
+          user_id: null, // No auth user linked initially
           name: data.name,
           email: data.email,
           company: data.company || null,
@@ -120,17 +92,6 @@ const CreateCustomerModal = ({ open, onClose, onSuccess }: CreateCustomerModalPr
           variant: "destructive",
         });
         return;
-      }
-
-      // Update the user's profile to set role as customer
-      const { error: profileError } = await supabase
-        .from('profiles')
-        .update({ role: 'customer' })
-        .eq('user_id', authData.user.id);
-
-      if (profileError) {
-        console.error('Profile error:', profileError);
-        // This is not critical, continue
       }
 
       form.reset();
