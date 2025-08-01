@@ -1,0 +1,346 @@
+import { useEffect, useState } from "react";
+import { useAuth } from "@/hooks/useAuth";
+import { useNavigate } from "react-router-dom";
+import { supabase } from "@/integrations/supabase/client";
+import Navigation from "@/components/Navigation";
+import Footer from "@/components/Footer";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { useToast } from "@/hooks/use-toast";
+import { 
+  User, 
+  Globe, 
+  CreditCard, 
+  Calendar, 
+  Clock, 
+  CheckCircle, 
+  XCircle,
+  Plus,
+  ExternalLink,
+  AlertCircle
+} from "lucide-react";
+
+interface Customer {
+  id: string;
+  name: string;
+  email: string;
+  company: string | null;
+  website_url: string | null;
+  plan_name: string;
+  plan_price: number;
+  payment_amount: number;
+  next_payment_date: string | null;
+}
+
+interface WorkRequest {
+  id: string;
+  title: string;
+  description: string | null;
+  notes: string | null;
+  status: 'pending' | 'approved' | 'declined' | 'completed';
+  hours_logged: number;
+  requested_at: string;
+}
+
+const CustomerDashboard = () => {
+  const { user, loading } = useAuth();
+  const navigate = useNavigate();
+  const { toast } = useToast();
+  const [customer, setCustomer] = useState<Customer | null>(null);
+  const [workRequests, setWorkRequests] = useState<WorkRequest[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    if (!loading && !user) {
+      navigate("/auth");
+      return;
+    }
+
+    if (user) {
+      fetchCustomerData();
+    }
+  }, [user, loading, navigate]);
+
+  const fetchCustomerData = async () => {
+    try {
+      // Fetch customer profile
+      const { data: customerData, error: customerError } = await supabase
+        .from('customers')
+        .select('*')
+        .eq('user_id', user?.id)
+        .maybeSingle();
+
+      if (customerError) {
+        console.error('Error fetching customer data:', customerError);
+        toast({
+          title: "Access Error",
+          description: "Unable to access customer dashboard.",
+          variant: "destructive",
+        });
+        navigate("/");
+        return;
+      }
+
+      if (!customerData) {
+        toast({
+          title: "Access Denied",
+          description: "You don't have customer access.",
+          variant: "destructive",
+        });
+        navigate("/");
+        return;
+      }
+
+      setCustomer(customerData);
+
+      // Fetch work requests
+      const { data: requestsData, error: requestsError } = await supabase
+        .from('work_requests')
+        .select('*')
+        .eq('customer_id', customerData.id)
+        .order('requested_at', { ascending: false });
+
+      if (requestsError) {
+        console.error('Error fetching work requests:', requestsError);
+      } else {
+        setWorkRequests((requestsData || []) as WorkRequest[]);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      navigate("/");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const formatCurrency = (amount: number) => {
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+    }).format(amount);
+  };
+
+  const formatDate = (dateString: string | null) => {
+    if (!dateString) return 'Not set';
+    return new Date(dateString).toLocaleDateString();
+  };
+
+  const getStatusIcon = (status: WorkRequest['status']) => {
+    switch (status) {
+      case 'pending': return <Clock className="h-4 w-4" />;
+      case 'approved': return <CheckCircle className="h-4 w-4" />;
+      case 'declined': return <XCircle className="h-4 w-4" />;
+      case 'completed': return <CheckCircle className="h-4 w-4" />;
+    }
+  };
+
+  const getStatusVariant = (status: WorkRequest['status']) => {
+    switch (status) {
+      case 'pending': return 'secondary' as const;
+      case 'approved': return 'default' as const;
+      case 'declined': return 'destructive' as const;
+      case 'completed': return 'secondary' as const;
+    }
+  };
+
+  const getPaymentStatus = (nextPaymentDate: string | null) => {
+    if (!nextPaymentDate) return { label: 'No date set', variant: 'secondary' as const };
+    
+    const today = new Date();
+    const paymentDate = new Date(nextPaymentDate);
+    const diffTime = paymentDate.getTime() - today.getTime();
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    
+    if (diffDays < 0) return { label: 'Overdue', variant: 'destructive' as const };
+    if (diffDays <= 7) return { label: 'Due soon', variant: 'default' as const };
+    return { label: 'Current', variant: 'secondary' as const };
+  };
+
+  if (loading || isLoading) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="text-center">
+          <User className="h-12 w-12 mx-auto mb-4 text-primary animate-pulse" />
+          <p className="text-muted-foreground">Loading your dashboard...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!customer) {
+    return null;
+  }
+
+  const paymentStatus = getPaymentStatus(customer.next_payment_date);
+
+  return (
+    <div className="min-h-screen bg-background">
+      <Navigation />
+      
+      <div className="pt-20 pb-16">
+        <div className="container mx-auto px-4">
+          {/* Header */}
+          <div className="mb-8">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="p-3 bg-gradient-primary rounded-lg shadow-glow">
+                <User className="h-6 w-6 text-white" />
+              </div>
+              <div>
+                <h1 className="text-3xl font-serif font-bold text-foreground">
+                  Welcome back, {customer.name}
+                </h1>
+                <p className="text-muted-foreground">
+                  Your customer dashboard
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Overview Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <Card className="card-premium">
+              <CardContent className="p-6">
+                <div className="flex items-center gap-3">
+                  <Globe className="h-8 w-8 text-primary" />
+                  <div>
+                    <p className="text-sm text-muted-foreground">Your Website</p>
+                    <div className="flex items-center gap-2">
+                      {customer.website_url ? (
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => window.open(customer.website_url!, '_blank')}
+                          className="p-0 h-auto text-primary hover:text-primary/80"
+                        >
+                          View Site <ExternalLink className="h-4 w-4 ml-1" />
+                        </Button>
+                      ) : (
+                        <span className="text-sm text-muted-foreground">Not set</span>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="card-premium">
+              <CardContent className="p-6">
+                <div className="flex items-center gap-3">
+                  <CreditCard className="h-8 w-8 text-primary" />
+                  <div>
+                    <p className="text-sm text-muted-foreground">Current Plan</p>
+                    <p className="font-semibold">{customer.plan_name}</p>
+                    <p className="text-sm text-muted-foreground">{formatCurrency(customer.plan_price)}/month</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="card-premium">
+              <CardContent className="p-6">
+                <div className="flex items-center gap-3">
+                  <Calendar className="h-8 w-8 text-primary" />
+                  <div>
+                    <p className="text-sm text-muted-foreground">Next Payment</p>
+                    <p className="font-semibold">{formatDate(customer.next_payment_date)}</p>
+                    <Badge variant={paymentStatus.variant} className="text-xs">
+                      {paymentStatus.label}
+                    </Badge>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="card-premium">
+              <CardContent className="p-6">
+                <div className="flex items-center gap-3">
+                  <AlertCircle className="h-8 w-8 text-primary" />
+                  <div>
+                    <p className="text-sm text-muted-foreground">Total Hours</p>
+                    <p className="font-semibold">
+                      {workRequests.reduce((total, req) => total + req.hours_logged, 0)} hours
+                    </p>
+                    <p className="text-sm text-muted-foreground">Completed work</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Work Requests Section */}
+          <Card className="card-premium">
+            <CardHeader className="flex flex-row items-center justify-between">
+              <CardTitle className="flex items-center gap-2">
+                <AlertCircle className="h-5 w-5 text-primary" />
+                Your Work Requests
+              </CardTitle>
+              <Button 
+                onClick={() => navigate("/request-work")}
+                className="btn-premium gap-2"
+              >
+                <Plus className="h-4 w-4" />
+                New Request
+              </Button>
+            </CardHeader>
+            <CardContent>
+              {workRequests.length === 0 ? (
+                <div className="text-center py-12">
+                  <AlertCircle className="h-12 w-12 mx-auto mb-4 text-muted-foreground" />
+                  <h3 className="text-lg font-medium mb-2">No work requests yet</h3>
+                  <p className="text-muted-foreground mb-4">
+                    Submit your first work request to get started.
+                  </p>
+                  <Button onClick={() => navigate("/request-work")} className="btn-premium">
+                    <Plus className="h-4 w-4 mr-2" />
+                    Submit Request
+                  </Button>
+                </div>
+              ) : (
+                <div className="space-y-4">
+                  {workRequests.map((request) => (
+                    <Card key={request.id} className="card-subtle">
+                      <CardContent className="p-6">
+                        <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
+                          <div className="flex-1">
+                            <div className="flex items-center gap-3 mb-2">
+                              <h3 className="font-semibold text-lg">{request.title}</h3>
+                              <Badge variant={getStatusVariant(request.status)} className="flex items-center gap-1">
+                                {getStatusIcon(request.status)}
+                                {request.status}
+                              </Badge>
+                            </div>
+                            
+                            {request.description && (
+                              <p className="text-sm text-muted-foreground mb-2">{request.description}</p>
+                            )}
+                            
+                            {request.notes && (
+                              <div className="mb-2">
+                                <p className="text-sm font-medium">Notes:</p>
+                                <p className="text-sm text-muted-foreground">{request.notes}</p>
+                              </div>
+                            )}
+                            
+                            <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
+                              <span>Requested: {new Date(request.requested_at).toLocaleDateString()}</span>
+                              <span>Hours logged: {request.hours_logged}</span>
+                            </div>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              )}
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+
+      <Footer />
+    </div>
+  );
+};
+
+export default CustomerDashboard;

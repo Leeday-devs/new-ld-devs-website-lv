@@ -8,10 +8,13 @@ import AdminStats from "@/components/admin/AdminStats";
 import BlogPostsList from "@/components/admin/BlogPostsList";
 import CreatePostModal from "@/components/admin/CreatePostModal";
 import EditPostModal from "@/components/admin/EditPostModal";
+import CustomersManagement from "@/components/admin/CustomersManagement";
+import WorkRequestsManagement from "@/components/admin/WorkRequestsManagement";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
-import { Plus, Shield, BarChart3 } from "lucide-react";
+import { Plus, Shield, BarChart3, Users } from "lucide-react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 interface BlogPost {
   id: string;
@@ -215,34 +218,61 @@ const AdminPanel = () => {
             </div>
 
             <AdminStats posts={posts} onRefresh={fetchBlogPosts} />
-            
-            <div className="flex justify-end mb-6">
-              <Button 
-                onClick={() => setShowCreateModal(true)}
-                className="btn-premium gap-2"
-              >
-                <Plus className="h-4 w-4" />
-                New Post
-              </Button>
-            </div>
           </div>
 
-          {/* Blog Posts List */}
-          <Card className="card-premium">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <BarChart3 className="h-5 w-5 text-primary" />
-                Blog Posts Management
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <BlogPostsList 
-                posts={posts}
-                onEdit={setEditingPost}
-                onDelete={handleDeletePost}
-              />
-            </CardContent>
-          </Card>
+          {/* Admin Tabs */}
+          <Tabs defaultValue="customers" className="w-full">
+            <TabsList className="grid w-full grid-cols-3">
+              <TabsTrigger value="customers" className="flex items-center gap-2">
+                <Users className="h-4 w-4" />
+                Customers
+              </TabsTrigger>
+              <TabsTrigger value="work-requests" className="flex items-center gap-2">
+                <BarChart3 className="h-4 w-4" />
+                Work Requests
+              </TabsTrigger>
+              <TabsTrigger value="blog" className="flex items-center gap-2">
+                <Plus className="h-4 w-4" />
+                Blog Posts
+              </TabsTrigger>
+            </TabsList>
+
+            <TabsContent value="customers" className="mt-6">
+              <CustomersManagement />
+            </TabsContent>
+
+            <TabsContent value="work-requests" className="mt-6">
+              <WorkRequestsManagement />
+            </TabsContent>
+
+            <TabsContent value="blog" className="mt-6">
+              <div className="flex justify-end mb-6">
+                <Button 
+                  onClick={() => setShowCreateModal(true)}
+                  className="btn-premium gap-2"
+                >
+                  <Plus className="h-4 w-4" />
+                  New Post
+                </Button>
+              </div>
+
+              <Card className="card-premium">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <BarChart3 className="h-5 w-5 text-primary" />
+                    Blog Posts Management
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <BlogPostsList 
+                    posts={posts}
+                    onEdit={setEditingPost}
+                    onDelete={handleDeletePost}
+                  />
+                </CardContent>
+              </Card>
+            </TabsContent>
+          </Tabs>
         </div>
       </div>
 

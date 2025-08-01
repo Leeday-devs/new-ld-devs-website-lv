@@ -121,6 +121,54 @@ export type Database = {
         }
         Relationships: []
       }
+      customers: {
+        Row: {
+          company: string | null
+          created_at: string
+          email: string
+          id: string
+          name: string
+          next_payment_date: string | null
+          payment_amount: number
+          phone: string | null
+          plan_name: string
+          plan_price: number
+          updated_at: string
+          user_id: string | null
+          website_url: string | null
+        }
+        Insert: {
+          company?: string | null
+          created_at?: string
+          email: string
+          id?: string
+          name: string
+          next_payment_date?: string | null
+          payment_amount?: number
+          phone?: string | null
+          plan_name?: string
+          plan_price?: number
+          updated_at?: string
+          user_id?: string | null
+          website_url?: string | null
+        }
+        Update: {
+          company?: string | null
+          created_at?: string
+          email?: string
+          id?: string
+          name?: string
+          next_payment_date?: string | null
+          payment_amount?: number
+          phone?: string | null
+          plan_name?: string
+          plan_price?: number
+          updated_at?: string
+          user_id?: string | null
+          website_url?: string | null
+        }
+        Relationships: []
+      }
       newsletter_subscriptions: {
         Row: {
           email: string
@@ -222,6 +270,59 @@ export type Database = {
           user_id?: string
         }
         Relationships: []
+      }
+      work_requests: {
+        Row: {
+          completed_at: string | null
+          created_at: string
+          customer_id: string
+          description: string | null
+          hours_logged: number | null
+          id: string
+          notes: string | null
+          requested_at: string
+          reviewed_at: string | null
+          status: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          completed_at?: string | null
+          created_at?: string
+          customer_id: string
+          description?: string | null
+          hours_logged?: number | null
+          id?: string
+          notes?: string | null
+          requested_at?: string
+          reviewed_at?: string | null
+          status?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          completed_at?: string | null
+          created_at?: string
+          customer_id?: string
+          description?: string | null
+          hours_logged?: number | null
+          id?: string
+          notes?: string | null
+          requested_at?: string
+          reviewed_at?: string | null
+          status?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "work_requests_customer_id_fkey"
+            columns: ["customer_id"]
+            isOneToOne: false
+            referencedRelation: "customers"
+            referencedColumns: ["id"]
+          },
+        ]
       }
     }
     Views: {

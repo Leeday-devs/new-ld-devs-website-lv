@@ -8,6 +8,8 @@ import Index from "./pages/Index";
 import Auth from "./pages/Auth";
 import AdminAuth from "./pages/AdminAuth";
 import AdminPanel from "./pages/AdminPanel";
+import CustomerDashboard from "./pages/CustomerDashboard";
+import RequestWork from "./pages/RequestWork";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import PaymentSuccess from "./pages/PaymentSuccess";
@@ -28,6 +30,8 @@ const App = () => (
             <Route path="/auth" element={<Auth />} />
             <Route path="/admin/auth" element={<AdminAuth />} />
             <Route path="/admin/panel" element={<AdminPanel />} />
+            <Route path="/dashboard" element={<CustomerDashboard />} />
+            <Route path="/request-work" element={<RequestWork />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<BlogPost />} />
             <Route path="/payment-success" element={<PaymentSuccess />} />
