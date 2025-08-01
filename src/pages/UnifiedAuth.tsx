@@ -199,7 +199,7 @@ const UnifiedAuth = () => {
             {/* Logo */}
             <div className="flex justify-center mb-6">
               <img 
-                src="/lovable-uploads/0e142c6a-9e04-42d2-833a-593d88a0f4e4.png" 
+                src="/lovable-uploads/878b9662-eea5-4ca8-9c6d-9cff0126c5eb.png" 
                 alt="Company Logo" 
                 className="h-16 w-auto object-contain"
               />
