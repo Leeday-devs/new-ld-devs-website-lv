@@ -217,7 +217,7 @@ const Auth = () => {
                         type="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        placeholder="admin@lddevelopment.com"
+                        placeholder="your.email@example.com"
                         className="pl-10 bg-white/10 border-white/20 text-white placeholder-white/50 focus:border-primary"
                         required
                       />
@@ -298,7 +298,7 @@ const Auth = () => {
                         type="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        placeholder="admin@lddevelopment.com"
+                        placeholder="your.email@example.com"
                         className="pl-10 bg-white/10 border-white/20 text-white placeholder-white/50 focus:border-primary"
                         required
                       />
