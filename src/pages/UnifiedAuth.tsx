@@ -196,6 +196,14 @@ const UnifiedAuth = () => {
 
         <Card className="card-premium shadow-premium">
           <CardHeader className="text-center">
+            {/* Logo */}
+            <div className="flex justify-center mb-6">
+              <img 
+                src="/lovable-uploads/0e142c6a-9e04-42d2-833a-593d88a0f4e4.png" 
+                alt="Company Logo" 
+                className="h-16 w-auto object-contain"
+              />
+            </div>
             <CardTitle className="text-2xl font-serif">
               {isLogin ? 'Welcome Back' : 'Request Access'}
             </CardTitle>
