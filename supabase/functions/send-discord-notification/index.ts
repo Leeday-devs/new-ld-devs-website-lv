@@ -166,6 +166,7 @@ serve(async (req) => {
 
     // Add approve/decline buttons for customer signups
     if (eventType === 'signup' && data.customerId) {
+      console.log('Adding buttons for signup event with customerId:', data.customerId);
       discordPayload.components = [
         {
           type: 1, // Action Row
@@ -187,6 +188,9 @@ serve(async (req) => {
           ]
         }
       ];
+      console.log('Buttons added to payload');
+    } else {
+      console.log('No buttons added - eventType:', eventType, 'customerId:', data.customerId);
     }
 
     console.log('Sending to Discord:', JSON.stringify(discordPayload, null, 2));
