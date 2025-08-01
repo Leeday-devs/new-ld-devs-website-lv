@@ -122,7 +122,7 @@ const CustomerAuth = () => {
       if (!authData.user) return;
 
       // Create customer record
-      const { error: customerError } = await supabase
+      const { data: customerData, error: customerError } = await supabase
         .from('customers')
         .insert({
           user_id: authData.user.id,
@@ -132,10 +132,13 @@ const CustomerAuth = () => {
           plan_name: 'Basic',
           plan_price: 0,
           payment_amount: 0,
-        });
+        })
+        .select()
+        .single();
 
       if (customerError) {
         console.error('Error creating customer profile:', customerError);
+        return;
       }
 
       // Update profile to customer role
@@ -146,6 +149,24 @@ const CustomerAuth = () => {
 
       if (profileError) {
         console.error('Error updating profile role:', profileError);
+      }
+
+      // Send Discord notification with customer ID for interactive buttons
+      try {
+        await supabase.functions.invoke('send-discord-notification', {
+          body: {
+            eventType: 'signup',
+            data: {
+              name: fullName,
+              email: email,
+              company: company || null,
+              planName: 'Basic',
+              customerId: customerData.id
+            }
+          }
+        });
+      } catch (discordError) {
+        console.error('Failed to send Discord notification:', discordError);
       }
     } catch (error) {
       console.error('Error in createCustomerProfile:', error);

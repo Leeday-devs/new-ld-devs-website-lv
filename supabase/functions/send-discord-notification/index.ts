@@ -61,6 +61,7 @@ serve(async (req) => {
           fields: [
             { name: 'Email', value: data.email, inline: true },
             { name: 'Company', value: data.company || 'N/A', inline: true },
+            { name: 'Plan', value: data.planName || 'Basic', inline: true },
             { name: 'Status', value: 'Pending Approval', inline: false }
           ],
           timestamp: new Date().toISOString()
@@ -155,10 +156,35 @@ serve(async (req) => {
         };
     }
 
-    // Send to Discord
-    const discordPayload = {
+    // Add interactive buttons for customer signups
+    let discordPayload: any = {
       embeds: [embed]
     };
+
+    // Add approve/decline buttons for customer signups
+    if (eventType === 'signup' && data.customerId) {
+      discordPayload.components = [
+        {
+          type: 1, // Action Row
+          components: [
+            {
+              type: 2, // Button
+              style: 3, // Success/Green
+              label: 'Approve',
+              custom_id: `approve_${data.customerId}`,
+              emoji: { name: '✅' }
+            },
+            {
+              type: 2, // Button
+              style: 4, // Danger/Red
+              label: 'Decline',
+              custom_id: `decline_${data.customerId}`,
+              emoji: { name: '❌' }
+            }
+          ]
+        }
+      ];
+    }
 
     console.log('Sending to Discord:', JSON.stringify(discordPayload, null, 2));
 
