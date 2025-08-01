@@ -79,6 +79,18 @@ const PendingCustomersManagement = () => {
   const handleApproveCustomer = async (customerId: string) => {
     setActionLoading(customerId);
     try {
+      // Find the customer to get their details
+      const customer = pendingCustomers.find(c => c.id === customerId);
+      if (!customer) {
+        toast({
+          title: "Error",
+          description: "Customer not found.",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      // Update customer status
       const { error } = await (supabase as any)
         .from('customers')
         .update({
@@ -98,9 +110,23 @@ const PendingCustomersManagement = () => {
         return;
       }
 
+      // Send approval email
+      try {
+        await supabase.functions.invoke('send-approval-email', {
+          body: {
+            customerEmail: customer.email,
+            customerName: customer.name,
+            status: 'approved'
+          }
+        });
+      } catch (emailError) {
+        console.error('Error sending approval email:', emailError);
+        // Don't fail the approval if email fails
+      }
+
       toast({
         title: "Success",
-        description: "Customer approved successfully.",
+        description: `${customer.name} has been approved and notified via email.`,
       });
 
       fetchPendingCustomers();
@@ -114,6 +140,18 @@ const PendingCustomersManagement = () => {
   const handleDeclineCustomer = async (customerId: string) => {
     setActionLoading(customerId);
     try {
+      // Find the customer to get their details
+      const customer = pendingCustomers.find(c => c.id === customerId);
+      if (!customer) {
+        toast({
+          title: "Error",
+          description: "Customer not found.",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      // Update customer status
       const { error } = await (supabase as any)
         .from('customers')
         .update({
@@ -133,9 +171,24 @@ const PendingCustomersManagement = () => {
         return;
       }
 
+      // Send decline email
+      try {
+        await supabase.functions.invoke('send-approval-email', {
+          body: {
+            customerEmail: customer.email,
+            customerName: customer.name,
+            status: 'declined',
+            reason: 'After review, we are unable to approve your registration at this time.'
+          }
+        });
+      } catch (emailError) {
+        console.error('Error sending decline email:', emailError);
+        // Don't fail the decline if email fails
+      }
+
       toast({
         title: "Customer Declined",
-        description: "Customer profile has been declined.",
+        description: `${customer.name} has been declined and notified via email.`,
       });
 
       fetchPendingCustomers();

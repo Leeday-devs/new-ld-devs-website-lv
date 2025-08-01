@@ -31,7 +31,10 @@ import {
   Bell,
   FileText,
   Package,
-  Lock
+  Lock,
+  Mail,
+  Building,
+  Shield
 } from "lucide-react";
 
 interface Customer {
@@ -234,30 +237,124 @@ const CustomerDashboard = () => {
         
         <div className="pt-20 pb-16">
           <div className="container mx-auto px-4">
-            <div className="max-w-2xl mx-auto text-center">
-              <div className="p-8 bg-gradient-primary rounded-2xl shadow-glow mb-8">
-                <Clock className="h-16 w-16 mx-auto mb-4 text-white" />
-                <h1 className="text-3xl font-serif font-bold text-white mb-4">
-                  Account Pending Approval
+            <div className="max-w-3xl mx-auto">
+              {/* Status Header */}
+              <div className="text-center mb-8">
+                <div className="inline-flex items-center gap-3 px-6 py-3 bg-yellow-500/10 border border-yellow-500/20 rounded-full mb-6">
+                  <Clock className="h-5 w-5 text-yellow-600" />
+                  <span className="text-yellow-700 font-medium">Profile Under Review</span>
+                </div>
+                
+                <h1 className="text-4xl font-serif font-bold text-foreground mb-4">
+                  Almost There, {customer.name}!
                 </h1>
-                <p className="text-white/90 text-lg">
-                  Thank you for registering! Your account is currently being reviewed by our team.
+                <p className="text-xl text-muted-foreground">
+                  Your account is currently being reviewed by our team
                 </p>
               </div>
-              
-              <div className="text-left space-y-4 text-muted-foreground">
-                <p>
-                  <strong>What happens next?</strong>
+
+              {/* Main Content Card */}
+              <div className="bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm border border-border rounded-2xl p-8 mb-8">
+                <div className="grid md:grid-cols-2 gap-8">
+                  {/* Status Timeline */}
+                  <div>
+                    <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
+                      <CheckCircle className="h-5 w-5 text-green-500" />
+                      Registration Complete
+                    </h3>
+                    
+                    <div className="space-y-4">
+                      <div className="flex items-start gap-3">
+                        <div className="w-2 h-2 rounded-full bg-green-500 mt-2"></div>
+                        <div>
+                          <p className="font-medium">Account Created</p>
+                          <p className="text-sm text-muted-foreground">Your registration was successful</p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-start gap-3">
+                        <div className="w-2 h-2 rounded-full bg-yellow-500 mt-2 animate-pulse"></div>
+                        <div>
+                          <p className="font-medium text-yellow-700">Under Review</p>
+                          <p className="text-sm text-muted-foreground">Our team is verifying your details</p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-start gap-3">
+                        <div className="w-2 h-2 rounded-full bg-gray-300 mt-2"></div>
+                        <div>
+                          <p className="font-medium text-muted-foreground">Dashboard Access</p>
+                          <p className="text-sm text-muted-foreground">Coming up next!</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* What's Being Reviewed */}
+                  <div>
+                    <h3 className="text-lg font-semibold mb-4">What We're Reviewing</h3>
+                    <div className="space-y-3">
+                      <div className="flex items-center gap-3 p-3 bg-accent/50 rounded-lg">
+                        <User className="h-4 w-4 text-primary" />
+                        <span className="text-sm">Profile Information</span>
+                      </div>
+                      <div className="flex items-center gap-3 p-3 bg-accent/50 rounded-lg">
+                        <Building className="h-4 w-4 text-primary" />
+                        <span className="text-sm">Business Details</span>
+                      </div>
+                      <div className="flex items-center gap-3 p-3 bg-accent/50 rounded-lg">
+                        <Shield className="h-4 w-4 text-primary" />
+                        <span className="text-sm">Security Verification</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Information Cards */}
+              <div className="grid md:grid-cols-2 gap-6 mb-8">
+                <div className="bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800 rounded-xl p-6">
+                  <div className="flex items-start gap-3">
+                    <Mail className="h-6 w-6 text-blue-600 mt-1" />
+                    <div>
+                      <h3 className="font-semibold text-blue-900 dark:text-blue-100 mb-2">
+                        You'll Be Notified
+                      </h3>
+                      <p className="text-blue-700 dark:text-blue-300 text-sm">
+                        We'll send an email to <strong>{customer.email}</strong> as soon as your account is approved.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-800 rounded-xl p-6">
+                  <div className="flex items-start gap-3">
+                    <Clock className="h-6 w-6 text-green-600 mt-1" />
+                    <div>
+                      <h3 className="font-semibold text-green-900 dark:text-green-100 mb-2">
+                        Quick Review Process
+                      </h3>
+                      <p className="text-green-700 dark:text-green-300 text-sm">
+                        Most accounts are reviewed within <strong>1-2 business days</strong> during weekdays.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Contact Support */}
+              <div className="text-center">
+                <p className="text-muted-foreground mb-4">
+                  Need immediate assistance or have questions about your account?
                 </p>
-                <ul className="list-disc list-inside space-y-2 ml-4">
-                  <li>Our team will review your registration details</li>
-                  <li>You'll receive an email notification once approved</li>
-                  <li>This usually takes 1-2 business days</li>
-                </ul>
-                
-                <p className="mt-6">
-                  If you have any questions, please contact our support team.
-                </p>
+                <Button 
+                  onClick={() => navigate("/contact")}
+                  variant="outline"
+                  className="gap-2"
+                >
+                  <Mail className="h-4 w-4" />
+                  Contact Support
+                </Button>
               </div>
             </div>
           </div>
@@ -278,17 +375,25 @@ const CustomerDashboard = () => {
         <div className="container mx-auto px-4">
           {/* Header */}
           <div className="mb-8">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="p-3 bg-gradient-primary rounded-lg shadow-glow">
-                <User className="h-6 w-6 text-white" />
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
+              <div className="flex items-center gap-3">
+                <div className="p-3 bg-gradient-primary rounded-lg shadow-glow">
+                  <User className="h-6 w-6 text-white" />
+                </div>
+                <div>
+                  <h1 className="text-3xl font-serif font-bold text-foreground">
+                    Welcome back, {customer.name}
+                  </h1>
+                  <p className="text-muted-foreground">
+                    Your customer dashboard
+                  </p>
+                </div>
               </div>
-              <div>
-                <h1 className="text-3xl font-serif font-bold text-foreground">
-                  Welcome back, {customer.name}
-                </h1>
-                <p className="text-muted-foreground">
-                  Your customer dashboard
-                </p>
+              
+              {/* Status Badge */}
+              <div className="flex items-center gap-2 px-4 py-2 bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-800 rounded-full">
+                <CheckCircle className="h-4 w-4 text-green-600" />
+                <span className="text-sm font-medium text-green-700 dark:text-green-300">Profile Approved</span>
               </div>
             </div>
           </div>
