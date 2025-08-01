@@ -31,17 +31,22 @@ serve(async (req) => {
       Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? ''
     );
 
-    const testResponse = await supabaseClient.functions.invoke('send-discord-notification', {
-      body: {
-        eventType: 'signup',
-        data: {
-          name: 'Test User',
-          email: 'test@example.com',
-          company: 'Test Company',
-          customerId: 'ccdc55c7-07e0-465f-a2ab-54f2f0b0bdf6', // Use the actual latest customer ID
-          planName: 'Basic'
-        }
+    // Use the exact same data format as the real signup
+    const signupData = {
+      eventType: 'signup',
+      data: {
+        name: 'leelee',
+        email: 'leelee@gmail.com',
+        company: 'N/A',
+        customerId: 'ccdc55c7-07e0-465f-a2ab-54f2f0b0bdf6',
+        planName: 'Basic'
       }
+    };
+
+    console.log('Sending signup data:', JSON.stringify(signupData, null, 2));
+
+    const testResponse = await supabaseClient.functions.invoke('send-discord-notification', {
+      body: signupData
     });
 
     console.log('Response from send-discord-notification:', testResponse);
