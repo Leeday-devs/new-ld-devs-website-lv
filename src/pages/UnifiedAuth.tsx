@@ -124,22 +124,26 @@ const UnifiedAuth = () => {
           }
         } else {
           // Create customer profile after successful signup
-          await createCustomerProfile();
+          const customerId = await createCustomerProfile();
           
-          // Send Discord notification for new customer signup
-          try {
-            await supabase.functions.invoke('send-discord-notification', {
-              body: {
-                eventType: 'signup',
-                data: {
-                  name: fullName,
-                  email: email,
-                  company: company || 'N/A'
+          // Send Discord notification for new customer signup with buttons
+          if (customerId) {
+            try {
+              await supabase.functions.invoke('send-discord-notification', {
+                body: {
+                  eventType: 'signup',
+                  data: {
+                    name: fullName,
+                    email: email,
+                    company: company || 'N/A',
+                    customerId: customerId,
+                    planName: 'Basic'
+                  }
                 }
-              }
-            });
-          } catch (error) {
-            console.error('Failed to send Discord signup notification:', error);
+              });
+            } catch (error) {
+              console.error('Failed to send Discord signup notification:', error);
+            }
           }
           
           toast({
@@ -163,13 +167,13 @@ const UnifiedAuth = () => {
     }
   };
 
-  const createCustomerProfile = async () => {
+  const createCustomerProfile = async (): Promise<string | null> => {
     try {
       const { data: authData } = await supabase.auth.getUser();
-      if (!authData.user) return;
+      if (!authData.user) return null;
 
-      // Create customer record
-      const { error: customerError } = await supabase
+      // Create customer record and get the ID
+      const { data: customerData, error: customerError } = await supabase
         .from('customers')
         .insert({
           user_id: authData.user.id,
@@ -179,10 +183,13 @@ const UnifiedAuth = () => {
           plan_name: 'Basic',
           plan_price: 0,
           payment_amount: 0,
-        });
+        })
+        .select('id')
+        .single();
 
       if (customerError) {
         console.error('Error creating customer profile:', customerError);
+        return null;
       }
 
       // Update profile to customer role
@@ -194,8 +201,11 @@ const UnifiedAuth = () => {
       if (profileError) {
         console.error('Error updating profile role:', profileError);
       }
+
+      return customerData?.id || null;
     } catch (error) {
       console.error('Error creating customer profile:', error);
+      return null;
     }
   };
 
