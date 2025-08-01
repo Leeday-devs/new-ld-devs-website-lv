@@ -125,10 +125,21 @@ const UnifiedAuth = () => {
         } else {
           // Create customer profile after successful signup
           const customerId = await createCustomerProfile();
+          console.log('Customer ID created:', customerId);
           
           // Send Discord notification for new customer signup with buttons
           if (customerId) {
             try {
+              console.log('Sending Discord notification with data:', {
+                eventType: 'signup',
+                data: {
+                  name: fullName,
+                  email: email,
+                  company: company || 'N/A',
+                  customerId: customerId,
+                  planName: 'Basic'
+                }
+              });
               await supabase.functions.invoke('send-discord-notification', {
                 body: {
                   eventType: 'signup',
@@ -144,6 +155,8 @@ const UnifiedAuth = () => {
             } catch (error) {
               console.error('Failed to send Discord signup notification:', error);
             }
+          } else {
+            console.log('No customer ID found, not sending Discord notification');
           }
           
           toast({
