@@ -149,9 +149,6 @@ const BillingHistory = ({ customerData }: BillingHistoryProps) => {
                         {getStatusIcon(invoice.status)}
                         <div>
                           <h3 className="font-semibold text-sm">{invoice.description}</h3>
-                          <p className="text-xs text-muted-foreground">
-                            Invoice #{invoice.invoice_number} • {invoice.payment_method}
-                          </p>
                         </div>
                       </div>
                       
