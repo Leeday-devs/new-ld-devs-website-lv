@@ -8,6 +8,7 @@ import CustomerProfileModal from "@/components/CustomerProfileModal";
 import ProjectAnalytics from "@/components/customer/ProjectAnalytics";
 import NotificationCenter from "@/components/customer/NotificationCenter";
 import BillingHistory from "@/components/customer/BillingHistory";
+import CustomerServices from "@/components/customer/CustomerServices";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -27,7 +28,8 @@ import {
   Edit,
   BarChart3,
   Bell,
-  FileText
+  FileText,
+  Package
 } from "lucide-react";
 
 interface Customer {
@@ -340,11 +342,15 @@ const CustomerDashboard = () => {
           </div>
 
           {/* Customer Portal Features */}
-          <Tabs defaultValue="requests" className="w-full">
-            <TabsList className="grid w-full grid-cols-4">
+          <Tabs defaultValue="services" className="w-full">
+            <TabsList className="grid w-full grid-cols-5">
+              <TabsTrigger value="services" className="flex items-center gap-2">
+                <Package className="h-4 w-4" />
+                Services
+              </TabsTrigger>
               <TabsTrigger value="requests" className="flex items-center gap-2">
                 <FileText className="h-4 w-4" />
-                Work Requests
+                Requests
               </TabsTrigger>
               <TabsTrigger value="analytics" className="flex items-center gap-2">
                 <BarChart3 className="h-4 w-4" />
@@ -359,6 +365,10 @@ const CustomerDashboard = () => {
                 Billing
               </TabsTrigger>
             </TabsList>
+
+            <TabsContent value="services" className="mt-6">
+              <CustomerServices customerId={customer.id} />
+            </TabsContent>
 
             <TabsContent value="requests" className="mt-6">
               <Card className="card-premium">
