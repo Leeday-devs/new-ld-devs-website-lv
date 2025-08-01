@@ -44,6 +44,7 @@ interface Customer {
   payment_amount: number;
   next_payment_date: string | null;
   jobs_completed: number;
+  approval_status: 'pending' | 'approved' | 'declined';
 }
 
 interface WorkRequest {
@@ -107,10 +108,34 @@ const CustomerDashboard = () => {
         return;
       }
 
-      // Add fallback for jobs_completed if it doesn't exist yet
+      // Check if customer is approved
+      if ((customerData as any).approval_status === 'pending') {
+        // Set customer for pending state
+        const customerWithFallback = {
+          ...customerData,
+          jobs_completed: (customerData as any).jobs_completed || 0,
+          approval_status: (customerData as any).approval_status || 'pending'
+        } as Customer;
+        setCustomer(customerWithFallback);
+        setIsLoading(false);
+        return;
+      }
+
+      if ((customerData as any).approval_status === 'declined') {
+        toast({
+          title: "Access Denied",
+          description: "Your account has been declined.",
+          variant: "destructive",
+        });
+        navigate("/");
+        return;
+      }
+
+      // Add fallback for approval_status and jobs_completed if they don't exist yet
       const customerWithFallback = {
         ...customerData,
-        jobs_completed: (customerData as any).jobs_completed || 0
+        jobs_completed: (customerData as any).jobs_completed || 0,
+        approval_status: (customerData as any).approval_status || 'approved'
       } as Customer;
 
       setCustomer(customerWithFallback);
@@ -196,6 +221,48 @@ const CustomerDashboard = () => {
 
   if (!customer) {
     return null;
+  }
+
+  // Show pending approval message
+  if (customer.approval_status === 'pending') {
+    return (
+      <div className="min-h-screen bg-background">
+        <Navigation />
+        
+        <div className="pt-20 pb-16">
+          <div className="container mx-auto px-4">
+            <div className="max-w-2xl mx-auto text-center">
+              <div className="p-8 bg-gradient-primary rounded-2xl shadow-glow mb-8">
+                <Clock className="h-16 w-16 mx-auto mb-4 text-white" />
+                <h1 className="text-3xl font-serif font-bold text-white mb-4">
+                  Account Pending Approval
+                </h1>
+                <p className="text-white/90 text-lg">
+                  Thank you for registering! Your account is currently being reviewed by our team.
+                </p>
+              </div>
+              
+              <div className="text-left space-y-4 text-muted-foreground">
+                <p>
+                  <strong>What happens next?</strong>
+                </p>
+                <ul className="list-disc list-inside space-y-2 ml-4">
+                  <li>Our team will review your registration details</li>
+                  <li>You'll receive an email notification once approved</li>
+                  <li>This usually takes 1-2 business days</li>
+                </ul>
+                
+                <p className="mt-6">
+                  If you have any questions, please contact our support team.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <Footer />
+      </div>
+    );
   }
 
   const paymentStatus = getPaymentStatus(customer.next_payment_date);

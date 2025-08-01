@@ -85,6 +85,7 @@ const CreateCustomerModal = ({ open, onClose, onSuccess }: CreateCustomerModalPr
           payment_amount: parseFloat(data.payment_amount),
           next_payment_date: data.next_payment_date || null,
           jobs_completed: parseInt(data.jobs_completed),
+          approval_status: 'approved', // Admin-created customers are auto-approved
         });
 
       if (customerError) {
