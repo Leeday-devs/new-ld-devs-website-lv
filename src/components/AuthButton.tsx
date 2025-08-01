@@ -54,7 +54,7 @@ const AuthButton = () => {
         <DropdownMenuTrigger asChild>
           <Button variant="outline" size="sm" className="gap-2 hover:bg-primary/10 hover:text-primary hover:border-primary">
             <User className="h-4 w-4" />
-            Login
+            {dashboardLabel}
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
