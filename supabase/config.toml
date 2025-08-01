@@ -8,3 +8,6 @@ verify_jwt = false
 
 [functions.discord-bot-handler]
 verify_jwt = false
+
+[functions.test-discord-buttons]
+verify_jwt = false
