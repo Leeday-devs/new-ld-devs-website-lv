@@ -43,6 +43,7 @@ interface Customer {
   plan_price: number;
   payment_amount: number;
   next_payment_date: string | null;
+  jobs_completed: number;
 }
 
 interface WorkRequest {
@@ -106,7 +107,13 @@ const CustomerDashboard = () => {
         return;
       }
 
-      setCustomer(customerData);
+      // Add fallback for jobs_completed if it doesn't exist yet
+      const customerWithFallback = {
+        ...customerData,
+        jobs_completed: (customerData as any).jobs_completed || 0
+      } as Customer;
+
+      setCustomer(customerWithFallback);
 
       // Fetch work requests
       const { data: requestsData, error: requestsError } = await supabase
@@ -332,7 +339,7 @@ const CustomerDashboard = () => {
                   <div>
                     <p className="text-sm text-muted-foreground">Jobs Completed</p>
                     <p className="font-semibold">
-                      {workRequests.filter(req => req.status === 'completed').length}
+                      {customer.jobs_completed}
                     </p>
                     <p className="text-sm text-muted-foreground">Total completed projects</p>
                   </div>

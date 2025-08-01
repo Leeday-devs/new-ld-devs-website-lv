@@ -20,6 +20,7 @@ interface Customer {
   plan_price: number;
   payment_amount: number;
   next_payment_date: string | null;
+  jobs_completed: number;
   created_at: string;
 }
 
@@ -50,9 +51,14 @@ const CustomersManagement = () => {
           variant: "destructive",
         });
         return;
+      } else {
+        // Add fallback for jobs_completed if it doesn't exist yet
+        const customersWithFallback = (data || []).map(customer => ({
+          ...customer,
+          jobs_completed: (customer as any).jobs_completed || 0
+        })) as Customer[];
+        setCustomers(customersWithFallback);
       }
-
-      setCustomers(data || []);
     } catch (error) {
       console.error('Error:', error);
       toast({

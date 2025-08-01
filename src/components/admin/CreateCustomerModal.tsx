@@ -33,6 +33,7 @@ const customerSchema = z.object({
   plan_price: z.string().min(1, "Plan price is required"),
   payment_amount: z.string().min(1, "Payment amount is required"),
   next_payment_date: z.string().optional(),
+  jobs_completed: z.string().min(0, "Jobs completed must be 0 or greater"),
 });
 
 type CustomerFormData = z.infer<typeof customerSchema>;
@@ -60,6 +61,7 @@ const CreateCustomerModal = ({ open, onClose, onSuccess }: CreateCustomerModalPr
       plan_price: "99.00",
       payment_amount: "99.00",
       next_payment_date: "",
+      jobs_completed: "0",
     },
   });
 
@@ -82,6 +84,7 @@ const CreateCustomerModal = ({ open, onClose, onSuccess }: CreateCustomerModalPr
           plan_price: parseFloat(data.plan_price),
           payment_amount: parseFloat(data.payment_amount),
           next_payment_date: data.next_payment_date || null,
+          jobs_completed: parseInt(data.jobs_completed),
         });
 
       if (customerError) {
@@ -244,7 +247,7 @@ const CreateCustomerModal = ({ open, onClose, onSuccess }: CreateCustomerModalPr
                 )}
               />
 
-              <FormField
+               <FormField
                 control={form.control}
                 name="next_payment_date"
                 render={({ field }) => (
@@ -252,6 +255,20 @@ const CreateCustomerModal = ({ open, onClose, onSuccess }: CreateCustomerModalPr
                     <FormLabel>Next Payment Date (Optional)</FormLabel>
                     <FormControl>
                       <Input type="date" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="jobs_completed"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Jobs Completed</FormLabel>
+                    <FormControl>
+                      <Input type="number" min="0" placeholder="0" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
