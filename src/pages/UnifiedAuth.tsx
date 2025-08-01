@@ -203,6 +203,9 @@ const UnifiedAuth = () => {
       const { data: authData } = await supabase.auth.getUser();
       if (!authData.user) return null;
 
+      console.log('Auth user data:', authData.user);
+      console.log('About to insert customer with user_id:', authData.user.id);
+
       // Create customer record and get the ID
       const { data: customerData, error: customerError } = await supabase
         .from('customers')
