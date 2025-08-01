@@ -4,6 +4,7 @@ import HowWeBuild from "@/components/HowWeBuild";
 import About from "@/components/About";
 import Process from "@/components/Process";
 import Services from "@/components/Services";
+import CustomerPortal from "@/components/CustomerPortal";
 import CaseStudies from "@/components/CaseStudies";
 import Portfolio from "@/components/Portfolio";
 import Testimonials from "@/components/Testimonials";
@@ -35,6 +36,7 @@ const Index = () => {
           <section id="services">
             <Services />
           </section>
+          <CustomerPortal />
           <section id="case-studies">
             <CaseStudies />
           </section>
