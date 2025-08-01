@@ -181,36 +181,6 @@ const BillingHistory = ({ customerData }: BillingHistoryProps) => {
           </div>
         </CardContent>
       </Card>
-
-      {/* Payment Methods */}
-      <Card className="card-premium">
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <CreditCard className="h-5 w-5 text-primary" />
-            Payment Methods
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-3">
-            <div className="flex items-center justify-between p-3 bg-accent/5 rounded-lg">
-              <div className="flex items-center gap-3">
-                <CreditCard className="h-5 w-5 text-primary" />
-                <div>
-                  <p className="font-medium">Credit Card</p>
-                  <p className="text-sm text-muted-foreground">**** **** **** 4242</p>
-                  <p className="text-xs text-muted-foreground">Expires 12/25</p>
-                </div>
-              </div>
-              <Badge variant="default" className="text-xs">Primary</Badge>
-            </div>
-            
-            <Button variant="outline" className="w-full gap-2">
-              <CreditCard className="h-4 w-4" />
-              Add Payment Method
-            </Button>
-          </div>
-        </CardContent>
-      </Card>
     </div>
   );
 };
