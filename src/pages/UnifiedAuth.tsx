@@ -204,29 +204,22 @@ const UnifiedAuth = () => {
       if (!authData.user) return null;
 
       console.log('Auth user data:', authData.user);
-      console.log('About to insert customer with user_id:', authData.user.id);
+      console.log('About to create customer using RLS-bypassing function');
 
-      // Create customer record and get the ID
-      const { data: customerData, error: customerError } = await supabase
-        .from('customers')
-        .insert({
-          user_id: authData.user.id,
-          name: fullName,
-          email: email,
-          company: company || null,
-          plan_name: 'Basic',
-          plan_price: 0,
-          payment_amount: 0,
-        })
-        .select('id')
-        .single();
+      // Use the RLS-bypassing function to create customer
+      const { data: customerId, error: customerError } = await supabase.rpc('create_customer_bypassing_rls', {
+        p_user_id: authData.user.id,
+        p_name: fullName,
+        p_email: email,
+        p_company: company || null
+      });
 
       if (customerError) {
         console.error('Error creating customer profile:', customerError);
         return null;
       }
 
-      console.log('Customer creation successful, customerData:', customerData);
+      console.log('Customer creation successful via function, customerId:', customerId);
 
       // Create profile with customer role using the secure function
       const { error: profileError } = await supabase.rpc('create_user_profile', {
@@ -239,7 +232,6 @@ const UnifiedAuth = () => {
         console.error('Error creating user profile:', profileError);
       }
 
-      const customerId = customerData?.id || null;
       console.log('Returning customer ID:', customerId);
       return customerId;
     } catch (error) {

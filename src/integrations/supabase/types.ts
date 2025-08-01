@@ -421,6 +421,15 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      create_customer_bypassing_rls: {
+        Args: {
+          p_user_id: string
+          p_name: string
+          p_email: string
+          p_company?: string
+        }
+        Returns: string
+      }
       create_user_profile: {
         Args: {
           user_id_param: string
