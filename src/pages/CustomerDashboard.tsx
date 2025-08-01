@@ -328,13 +328,13 @@ const CustomerDashboard = () => {
             <Card className="card-premium">
               <CardContent className="p-6">
                 <div className="flex items-center gap-3">
-                  <AlertCircle className="h-8 w-8 text-primary" />
+                  <CheckCircle className="h-8 w-8 text-primary" />
                   <div>
-                    <p className="text-sm text-muted-foreground">Total Hours</p>
+                    <p className="text-sm text-muted-foreground">Jobs Completed</p>
                     <p className="font-semibold">
-                      {workRequests.reduce((total, req) => total + req.hours_logged, 0)} hours
+                      {workRequests.filter(req => req.status === 'completed').length}
                     </p>
-                    <p className="text-sm text-muted-foreground">Completed work</p>
+                    <p className="text-sm text-muted-foreground">Total completed projects</p>
                   </div>
                 </div>
               </CardContent>
