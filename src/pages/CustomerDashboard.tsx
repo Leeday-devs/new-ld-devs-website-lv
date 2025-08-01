@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import CustomerProfileModal from "@/components/CustomerProfileModal";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -18,7 +19,8 @@ import {
   XCircle,
   Plus,
   ExternalLink,
-  AlertCircle
+  AlertCircle,
+  Edit
 } from "lucide-react";
 
 interface Customer {
@@ -26,6 +28,7 @@ interface Customer {
   name: string;
   email: string;
   company: string | null;
+  phone: string | null;
   website_url: string | null;
   plan_name: string;
   plan_price: number;
@@ -50,6 +53,7 @@ const CustomerDashboard = () => {
   const [customer, setCustomer] = useState<Customer | null>(null);
   const [workRequests, setWorkRequests] = useState<WorkRequest[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [showEditProfile, setShowEditProfile] = useState(false);
 
   useEffect(() => {
     if (!loading && !user) {
@@ -157,6 +161,11 @@ const CustomerDashboard = () => {
     return { label: 'Current', variant: 'secondary' as const };
   };
 
+  const handleProfileUpdated = () => {
+    setShowEditProfile(false);
+    fetchCustomerData();
+  };
+
   if (loading || isLoading) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
@@ -196,6 +205,60 @@ const CustomerDashboard = () => {
               </div>
             </div>
           </div>
+
+          {/* Profile Section */}
+          <Card className="card-premium mb-8">
+            <CardHeader className="flex flex-row items-center justify-between">
+              <CardTitle className="flex items-center gap-2">
+                <User className="h-5 w-5 text-primary" />
+                Profile Information
+              </CardTitle>
+              <Button 
+                onClick={() => setShowEditProfile(true)}
+                variant="outline"
+                size="sm"
+                className="gap-2"
+              >
+                <Edit className="h-4 w-4" />
+                Edit Profile
+              </Button>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <p className="text-sm text-muted-foreground mb-1">Full Name</p>
+                  <p className="font-medium">{customer.name}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-muted-foreground mb-1">Email</p>
+                  <p className="font-medium">{customer.email}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-muted-foreground mb-1">Company</p>
+                  <p className="font-medium">{customer.company || 'Not specified'}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-muted-foreground mb-1">Phone</p>
+                  <p className="font-medium">{customer.phone || 'Not specified'}</p>
+                </div>
+                <div className="md:col-span-2">
+                  <p className="text-sm text-muted-foreground mb-1">Website</p>
+                  {customer.website_url ? (
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => window.open(customer.website_url!, '_blank')}
+                      className="p-0 h-auto text-primary hover:text-primary/80 font-medium"
+                    >
+                      {customer.website_url} <ExternalLink className="h-4 w-4 ml-1" />
+                    </Button>
+                  ) : (
+                    <p className="font-medium">Not specified</p>
+                  )}
+                </div>
+              </div>
+            </CardContent>
+          </Card>
 
           {/* Overview Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
@@ -339,6 +402,16 @@ const CustomerDashboard = () => {
       </div>
 
       <Footer />
+
+      {/* Edit Profile Modal */}
+      {customer && (
+        <CustomerProfileModal 
+          open={showEditProfile}
+          onClose={() => setShowEditProfile(false)}
+          customer={customer}
+          onSuccess={handleProfileUpdated}
+        />
+      )}
     </div>
   );
 };
