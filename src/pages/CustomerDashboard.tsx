@@ -60,6 +60,10 @@ interface WorkRequest {
   status: 'pending' | 'approved' | 'declined' | 'completed';
   hours_logged: number;
   quote_price: number | null;
+  estimated_timeline: number | null;
+  timeline_unit: 'days' | 'weeks' | 'months';
+  customer_response: 'pending' | 'accepted' | 'declined';
+  customer_responded_at: string | null;
   requested_at: string;
 }
 
@@ -149,7 +153,7 @@ const CustomerDashboard = () => {
       // Fetch work requests
       const { data: requestsData, error: requestsError } = await supabase
         .from('work_requests')
-        .select('id, title, description, notes, status, hours_logged, quote_price, requested_at')
+        .select('id, title, description, notes, status, hours_logged, quote_price, estimated_timeline, timeline_unit, customer_response, customer_responded_at, requested_at')
         .eq('customer_id', customerData.id)
         .order('requested_at', { ascending: false });
 
@@ -207,6 +211,40 @@ const CustomerDashboard = () => {
     if (diffDays < 0) return { label: 'Overdue', variant: 'destructive' as const };
     if (diffDays <= 7) return { label: 'Due soon', variant: 'default' as const };
     return { label: 'Current', variant: 'secondary' as const };
+  };
+
+  const respondToProposal = async (requestId: string, response: 'accepted' | 'declined') => {
+    try {
+      const { error } = await supabase
+        .from('work_requests')
+        .update({ 
+          customer_response: response,
+          customer_responded_at: new Date().toISOString()
+        } as any)
+        .eq('id', requestId);
+
+      if (error) {
+        toast({
+          title: "Error",
+          description: "Failed to update your response.",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      fetchCustomerData();
+      toast({
+        title: "Success",
+        description: `Proposal ${response} successfully.`,
+      });
+    } catch (error) {
+      console.error('Error:', error);
+      toast({
+        title: "Error",
+        description: "An unexpected error occurred.",
+        variant: "destructive",
+      });
+    }
   };
 
   const handleProfileUpdated = () => {
@@ -617,13 +655,89 @@ const CustomerDashboard = () => {
                                   </div>
                                 )}
                                 
-                                <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
+                                <div className="flex flex-wrap gap-4 text-sm text-muted-foreground mb-3">
                                   <span>Requested: {new Date(request.requested_at).toLocaleDateString()}</span>
                                   <span>Hours logged: {request.hours_logged}</span>
                                   {request.quote_price && (
                                     <span>Quote: {formatCurrency(request.quote_price)}</span>
                                   )}
+                                  {request.estimated_timeline && (
+                                    <span>Timeline: {request.estimated_timeline} {request.timeline_unit}</span>
+                                  )}
                                 </div>
+                                
+                                {/* Proposal Response Section */}
+                                {request.status === 'approved' && request.quote_price && request.estimated_timeline && (
+                                  <div className="mt-4 p-4 bg-accent/50 rounded-lg border">
+                                    <h4 className="font-semibold mb-3 flex items-center gap-2">
+                                      <AlertCircle className="h-4 w-4 text-primary" />
+                                      Proposal Ready for Review
+                                    </h4>
+                                    
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                                      <div className="bg-background/50 p-3 rounded-lg">
+                                        <p className="text-sm font-medium text-muted-foreground">Quote Price</p>
+                                        <p className="text-lg font-semibold text-primary">{formatCurrency(request.quote_price)}</p>
+                                      </div>
+                                      <div className="bg-background/50 p-3 rounded-lg">
+                                        <p className="text-sm font-medium text-muted-foreground">Estimated Timeline</p>
+                                        <p className="text-lg font-semibold text-primary">
+                                          {request.estimated_timeline} {request.timeline_unit}
+                                        </p>
+                                      </div>
+                                    </div>
+                                    
+                                    <div className="flex items-center gap-2 mb-3">
+                                      <span className="text-sm font-medium">Your Response:</span>
+                                      <Badge variant={
+                                        request.customer_response === 'accepted' ? 'default' :
+                                        request.customer_response === 'declined' ? 'destructive' : 'secondary'
+                                      }>
+                                        {request.customer_response}
+                                      </Badge>
+                                      {request.customer_responded_at && (
+                                        <span className="text-xs text-muted-foreground">
+                                          ({new Date(request.customer_responded_at).toLocaleDateString()})
+                                        </span>
+                                      )}
+                                    </div>
+                                    
+                                    {request.customer_response === 'pending' && (
+                                      <div className="flex gap-3">
+                                        <Button
+                                          size="sm"
+                                          onClick={() => respondToProposal(request.id, 'accepted')}
+                                          className="btn-premium"
+                                        >
+                                          <CheckCircle className="h-4 w-4 mr-2" />
+                                          Accept Proposal
+                                        </Button>
+                                        <Button
+                                          size="sm"
+                                          variant="destructive"
+                                          onClick={() => respondToProposal(request.id, 'declined')}
+                                        >
+                                          <XCircle className="h-4 w-4 mr-2" />
+                                          Decline Proposal
+                                        </Button>
+                                      </div>
+                                    )}
+                                    
+                                    {request.customer_response === 'accepted' && (
+                                      <p className="text-sm text-green-600 dark:text-green-400 flex items-center gap-2">
+                                        <CheckCircle className="h-4 w-4" />
+                                        Great! We'll start working on your project soon.
+                                      </p>
+                                    )}
+                                    
+                                    {request.customer_response === 'declined' && (
+                                      <p className="text-sm text-muted-foreground flex items-center gap-2">
+                                        <XCircle className="h-4 w-4" />
+                                        This proposal was declined. We'll work on a revised proposal.
+                                      </p>
+                                    )}
+                                  </div>
+                                )}
                               </div>
                             </div>
                           </CardContent>

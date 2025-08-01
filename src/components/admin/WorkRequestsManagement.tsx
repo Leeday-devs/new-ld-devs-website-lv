@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { 
   Clock, 
@@ -13,7 +14,8 @@ import {
   AlertCircle, 
   Edit,
   Save,
-  X
+  X,
+  Calendar
 } from "lucide-react";
 
 interface WorkRequest {
@@ -24,6 +26,10 @@ interface WorkRequest {
   status: 'pending' | 'approved' | 'declined' | 'completed';
   hours_logged: number;
   quote_price: number | null;
+  estimated_timeline: number | null;
+  timeline_unit: 'days' | 'weeks' | 'months';
+  customer_response: 'pending' | 'accepted' | 'declined';
+  customer_responded_at: string | null;
   requested_at: string;
   customer: {
     name: string;
@@ -38,6 +44,9 @@ const WorkRequestsManagement = () => {
   const [loading, setLoading] = useState(true);
   const [editingRequest, setEditingRequest] = useState<string | null>(null);
   const [editPrice, setEditPrice] = useState<string>("");
+  const [editingTimeline, setEditingTimeline] = useState<string | null>(null);
+  const [editTimeline, setEditTimeline] = useState<string>("");
+  const [editTimelineUnit, setEditTimelineUnit] = useState<string>("days");
 
   useEffect(() => {
     fetchWorkRequests();
@@ -55,6 +64,10 @@ const WorkRequestsManagement = () => {
           status,
           hours_logged,
           quote_price,
+          estimated_timeline,
+          timeline_unit,
+          customer_response,
+          customer_responded_at,
           requested_at,
           customer:customers(name, email, company)
         `)
@@ -144,6 +157,41 @@ const WorkRequestsManagement = () => {
       toast({
         title: "Success",
         description: "Quote price updated successfully.",
+      });
+    } catch (error) {
+      console.error('Error:', error);
+      toast({
+        title: "Error",
+        description: "An unexpected error occurred.",
+        variant: "destructive",
+      });
+    }
+  };
+
+  const updateTimeline = async (requestId: string, timeline: number, unit: string) => {
+    try {
+      const { error } = await supabase
+        .from('work_requests')
+        .update({ 
+          estimated_timeline: timeline,
+          timeline_unit: unit
+        } as any)
+        .eq('id', requestId);
+
+      if (error) {
+        toast({
+          title: "Error",
+          description: "Failed to update timeline.",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      fetchWorkRequests();
+      setEditingTimeline(null);
+      toast({
+        title: "Success",
+        description: "Timeline updated successfully.",
       });
     } catch (error) {
       console.error('Error:', error);
@@ -290,6 +338,90 @@ const WorkRequestsManagement = () => {
                           </div>
                         )}
                       </div>
+                      
+                      <div className="flex items-center gap-2 text-sm mt-2">
+                        <span className="font-medium">Timeline:</span>
+                        {editingTimeline === request.id ? (
+                          <div className="flex items-center gap-2">
+                            <Input
+                              type="number"
+                              min="1"
+                              value={editTimeline}
+                              onChange={(e) => setEditTimeline(e.target.value)}
+                              className="w-16 h-8"
+                              placeholder="1"
+                            />
+                            <Select
+                              value={editTimelineUnit}
+                              onValueChange={setEditTimelineUnit}
+                            >
+                              <SelectTrigger className="w-20 h-8">
+                                <SelectValue />
+                              </SelectTrigger>
+                              <SelectContent>
+                                <SelectItem value="days">Days</SelectItem>
+                                <SelectItem value="weeks">Weeks</SelectItem>
+                                <SelectItem value="months">Months</SelectItem>
+                              </SelectContent>
+                            </Select>
+                            <Button
+                              size="sm"
+                              onClick={() => updateTimeline(request.id, parseInt(editTimeline), editTimelineUnit)}
+                              className="h-8 px-2"
+                            >
+                              <Save className="h-4 w-4" />
+                            </Button>
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              onClick={() => setEditingTimeline(null)}
+                              className="h-8 px-2"
+                            >
+                              <X className="h-4 w-4" />
+                            </Button>
+                          </div>
+                        ) : (
+                          <div className="flex items-center gap-2">
+                            <span>
+                              {request.estimated_timeline 
+                                ? `${request.estimated_timeline} ${request.timeline_unit}` 
+                                : 'No timeline set'
+                              }
+                            </span>
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              onClick={() => {
+                                setEditingTimeline(request.id);
+                                setEditTimeline(request.estimated_timeline?.toString() || "1");
+                                setEditTimelineUnit(request.timeline_unit || "days");
+                              }}
+                              className="h-6 px-2"
+                            >
+                              <Calendar className="h-3 w-3" />
+                            </Button>
+                          </div>
+                        )}
+                      </div>
+                      
+                      {request.status === 'approved' && request.quote_price && request.estimated_timeline && (
+                        <div className="mt-3 p-3 bg-muted/50 rounded-lg">
+                          <div className="flex items-center gap-2 text-sm">
+                            <span className="font-medium">Customer Response:</span>
+                            <Badge variant={
+                              request.customer_response === 'accepted' ? 'default' :
+                              request.customer_response === 'declined' ? 'destructive' : 'secondary'
+                            }>
+                              {request.customer_response}
+                            </Badge>
+                          </div>
+                          {request.customer_responded_at && (
+                            <p className="text-xs text-muted-foreground mt-1">
+                              Responded: {new Date(request.customer_responded_at).toLocaleDateString()}
+                            </p>
+                          )}
+                        </div>
+                      )}
                     </div>
                     
                     <div className="flex flex-col gap-2 min-w-[140px]">
