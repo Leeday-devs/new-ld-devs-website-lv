@@ -14,6 +14,8 @@ serve(async (req) => {
   try {
     const { eventType, data } = await req.json();
     
+    console.log('Received request:', { eventType, data });
+    
     const webhookUrl = Deno.env.get('DISCORD_WEBHOOK_URL');
     if (!webhookUrl) {
       console.log('Discord webhook URL not configured, skipping notification');
