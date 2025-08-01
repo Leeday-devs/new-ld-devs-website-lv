@@ -3,12 +3,13 @@ import { supabase } from "@/integrations/supabase/client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
-import { DollarSign, Package, Calendar, CheckCircle, XCircle } from "lucide-react";
+import { DollarSign, Package, Calendar, CheckCircle, XCircle, CreditCard, Clock } from "lucide-react";
 
 interface CustomerService {
   id: string;
   service_name: string;
   service_price: number;
+  payment_type: string;
   status: string;
   created_at: string;
 }
@@ -78,7 +79,7 @@ const CustomerServices = ({ customerId }: CustomerServicesProps) => {
   };
 
   const totalMonthlyValue = services
-    .filter(service => service.status === 'active')
+    .filter(service => service.status === 'active' && service.payment_type === 'monthly')
     .reduce((total, service) => total + service.service_price, 0);
 
   if (loading) {
@@ -162,12 +163,31 @@ const CustomerServices = ({ customerId }: CustomerServicesProps) => {
                             {getStatusIcon(service.status)}
                             {service.status}
                           </Badge>
+                          <Badge 
+                            variant="outline"
+                            className="flex items-center gap-1"
+                          >
+                            {service.payment_type === 'monthly' ? (
+                              <>
+                                <CreditCard className="h-3 w-3" />
+                                Monthly
+                              </>
+                            ) : (
+                              <>
+                                <Clock className="h-3 w-3" />
+                                One-time
+                              </>
+                            )}
+                          </Badge>
                         </div>
                         
                         <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
                           <div className="flex items-center gap-1">
                             <DollarSign className="h-4 w-4" />
-                            <span>{formatCurrency(service.service_price)}/month</span>
+                            <span>
+                              {formatCurrency(service.service_price)}
+                              {service.payment_type === 'monthly' ? '/month' : ''}
+                            </span>
                           </div>
                           <div className="flex items-center gap-1">
                             <Calendar className="h-4 w-4" />
@@ -180,7 +200,9 @@ const CustomerServices = ({ customerId }: CustomerServicesProps) => {
                         <p className="text-2xl font-bold text-primary">
                           {formatCurrency(service.service_price)}
                         </p>
-                        <p className="text-sm text-muted-foreground">per month</p>
+                        <p className="text-sm text-muted-foreground">
+                          {service.payment_type === 'monthly' ? 'per month' : 'one-time'}
+                        </p>
                       </div>
                     </div>
                   </CardContent>

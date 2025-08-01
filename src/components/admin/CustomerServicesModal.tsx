@@ -6,13 +6,15 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
-import { Plus, Edit, Trash2, DollarSign } from "lucide-react";
+import { Plus, Edit, Trash2, DollarSign, CreditCard, Calendar } from "lucide-react";
 
 interface CustomerService {
   id: string;
   service_name: string;
   service_price: number;
+  payment_type: string;
   status: string;
   created_at: string;
 }
@@ -32,6 +34,7 @@ const CustomerServicesModal = ({ open, onClose, customerId, customerName }: Cust
   const [editingService, setEditingService] = useState<CustomerService | null>(null);
   const [serviceName, setServiceName] = useState("");
   const [servicePrice, setServicePrice] = useState("");
+  const [paymentType, setPaymentType] = useState("monthly");
 
   useEffect(() => {
     if (open && customerId) {
@@ -88,6 +91,7 @@ const CustomerServicesModal = ({ open, onClose, customerId, customerName }: Cust
           customer_id: customerId,
           service_name: serviceName.trim(),
           service_price: parseFloat(servicePrice),
+          payment_type: paymentType,
           status: 'active'
         });
 
@@ -133,7 +137,8 @@ const CustomerServicesModal = ({ open, onClose, customerId, customerName }: Cust
         .from('customer_services')
         .update({
           service_name: serviceName.trim(),
-          service_price: parseFloat(servicePrice)
+          service_price: parseFloat(servicePrice),
+          payment_type: paymentType
         })
         .eq('id', editingService.id);
 
@@ -243,6 +248,7 @@ const CustomerServicesModal = ({ open, onClose, customerId, customerName }: Cust
     setEditingService(service);
     setServiceName(service.service_name);
     setServicePrice(service.service_price.toString());
+    setPaymentType(service.payment_type);
     setShowAddForm(false);
   };
 
@@ -250,6 +256,7 @@ const CustomerServicesModal = ({ open, onClose, customerId, customerName }: Cust
     setEditingService(null);
     setServiceName("");
     setServicePrice("");
+    setPaymentType("monthly");
   };
 
   const startAdd = () => {
@@ -257,6 +264,7 @@ const CustomerServicesModal = ({ open, onClose, customerId, customerName }: Cust
     setEditingService(null);
     setServiceName("");
     setServicePrice("");
+    setPaymentType("monthly");
   };
 
   return (
@@ -298,6 +306,18 @@ const CustomerServicesModal = ({ open, onClose, customerId, customerName }: Cust
                     onChange={(e) => setServicePrice(e.target.value)}
                     placeholder="0.00"
                   />
+                </div>
+                <div>
+                  <Label htmlFor="paymentType">Payment Type</Label>
+                  <Select value={paymentType} onValueChange={setPaymentType}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select payment type" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="monthly">Monthly Recurring</SelectItem>
+                      <SelectItem value="one-time">One-time Payment</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
                 <div className="flex gap-2">
                   <Button 
@@ -365,9 +385,26 @@ const CustomerServicesModal = ({ open, onClose, customerId, customerName }: Cust
                           >
                             {service.status}
                           </Badge>
+                          <Badge 
+                            variant="outline"
+                            className="flex items-center gap-1"
+                          >
+                            {service.payment_type === 'monthly' ? (
+                              <>
+                                <CreditCard className="h-3 w-3" />
+                                Monthly
+                              </>
+                            ) : (
+                              <>
+                                <Calendar className="h-3 w-3" />
+                                One-time
+                              </>
+                            )}
+                          </Badge>
                         </div>
                         <p className="text-sm text-muted-foreground">
                           {formatCurrency(service.service_price)}
+                          {service.payment_type === 'monthly' ? '/month' : ''}
                         </p>
                         <p className="text-xs text-muted-foreground">
                           Added: {new Date(service.created_at).toLocaleDateString()}
