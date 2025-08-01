@@ -3,7 +3,6 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { 
   CreditCard, 
-  Download, 
   Calendar,
   DollarSign,
   CheckCircle,
@@ -169,19 +168,6 @@ const BillingHistory = ({ customerData }: BillingHistoryProps) => {
                           {invoice.status}
                         </Badge>
                       </div>
-                      
-                      {invoice.status === 'paid' && (
-                        <Button variant="outline" size="sm" className="gap-1">
-                          <Download className="h-3 w-3" />
-                          PDF
-                        </Button>
-                      )}
-                      
-                      {invoice.status === 'pending' && (
-                        <Button size="sm" className="btn-premium">
-                          Pay Now
-                        </Button>
-                      )}
                     </div>
                   </div>
                 </CardContent>
