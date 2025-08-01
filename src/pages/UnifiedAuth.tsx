@@ -205,14 +205,15 @@ const UnifiedAuth = () => {
         return null;
       }
 
-      // Update profile to customer role
-      const { error: profileError } = await supabase
-        .from('profiles')
-        .update({ role: 'customer' })
-        .eq('user_id', authData.user.id);
+      // Create profile with customer role using the secure function
+      const { error: profileError } = await supabase.rpc('create_user_profile', {
+        user_id_param: authData.user.id,
+        full_name_param: fullName,
+        role_param: 'customer'
+      });
 
       if (profileError) {
-        console.error('Error updating profile role:', profileError);
+        console.error('Error creating user profile:', profileError);
       }
 
       return customerData?.id || null;

@@ -14,6 +14,30 @@ export type Database = {
   }
   public: {
     Tables: {
+      banned_emails: {
+        Row: {
+          banned_by: string | null
+          created_at: string
+          email: string
+          id: string
+          reason: string | null
+        }
+        Insert: {
+          banned_by?: string | null
+          created_at?: string
+          email: string
+          id?: string
+          reason?: string | null
+        }
+        Update: {
+          banned_by?: string | null
+          created_at?: string
+          email?: string
+          id?: string
+          reason?: string | null
+        }
+        Relationships: []
+      }
       blog_post_views: {
         Row: {
           id: string
@@ -121,12 +145,57 @@ export type Database = {
         }
         Relationships: []
       }
+      customer_services: {
+        Row: {
+          created_at: string
+          customer_id: string
+          id: string
+          payment_type: string
+          service_name: string
+          service_price: number
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          customer_id: string
+          id?: string
+          payment_type?: string
+          service_name: string
+          service_price?: number
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          customer_id?: string
+          id?: string
+          payment_type?: string
+          service_name?: string
+          service_price?: number
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "customer_services_customer_id_fkey"
+            columns: ["customer_id"]
+            isOneToOne: false
+            referencedRelation: "customers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       customers: {
         Row: {
+          approval_status: string
+          approved_at: string | null
+          approved_by: string | null
           company: string | null
           created_at: string
           email: string
           id: string
+          jobs_completed: number
           name: string
           next_payment_date: string | null
           payment_amount: number
@@ -138,10 +207,14 @@ export type Database = {
           website_url: string | null
         }
         Insert: {
+          approval_status?: string
+          approved_at?: string | null
+          approved_by?: string | null
           company?: string | null
           created_at?: string
           email: string
           id?: string
+          jobs_completed?: number
           name: string
           next_payment_date?: string | null
           payment_amount?: number
@@ -153,10 +226,14 @@ export type Database = {
           website_url?: string | null
         }
         Update: {
+          approval_status?: string
+          approved_at?: string | null
+          approved_by?: string | null
           company?: string | null
           created_at?: string
           email?: string
           id?: string
+          jobs_completed?: number
           name?: string
           next_payment_date?: string | null
           payment_amount?: number
@@ -276,13 +353,18 @@ export type Database = {
           completed_at: string | null
           created_at: string
           customer_id: string
+          customer_responded_at: string | null
+          customer_response: string | null
           description: string | null
+          estimated_timeline: number | null
           hours_logged: number | null
           id: string
           notes: string | null
+          quote_price: number | null
           requested_at: string
           reviewed_at: string | null
           status: string
+          timeline_unit: string | null
           title: string
           updated_at: string
         }
@@ -290,13 +372,18 @@ export type Database = {
           completed_at?: string | null
           created_at?: string
           customer_id: string
+          customer_responded_at?: string | null
+          customer_response?: string | null
           description?: string | null
+          estimated_timeline?: number | null
           hours_logged?: number | null
           id?: string
           notes?: string | null
+          quote_price?: number | null
           requested_at?: string
           reviewed_at?: string | null
           status?: string
+          timeline_unit?: string | null
           title: string
           updated_at?: string
         }
@@ -304,13 +391,18 @@ export type Database = {
           completed_at?: string | null
           created_at?: string
           customer_id?: string
+          customer_responded_at?: string | null
+          customer_response?: string | null
           description?: string | null
+          estimated_timeline?: number | null
           hours_logged?: number | null
           id?: string
           notes?: string | null
+          quote_price?: number | null
           requested_at?: string
           reviewed_at?: string | null
           status?: string
+          timeline_unit?: string | null
           title?: string
           updated_at?: string
         }
@@ -329,6 +421,14 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      create_user_profile: {
+        Args: {
+          user_id_param: string
+          full_name_param?: string
+          role_param?: string
+        }
+        Returns: undefined
+      }
       generate_slug: {
         Args: { title_text: string }
         Returns: string

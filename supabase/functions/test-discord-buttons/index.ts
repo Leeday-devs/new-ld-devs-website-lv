@@ -38,7 +38,7 @@ serve(async (req) => {
           name: 'Test User',
           email: 'test@example.com',
           company: 'Test Company',
-          customerId: 'test-customer-id-12345',
+          customerId: 'ccdc55c7-07e0-465f-a2ab-54f2f0b0bdf6', // Use the actual latest customer ID
           planName: 'Basic'
         }
       }
