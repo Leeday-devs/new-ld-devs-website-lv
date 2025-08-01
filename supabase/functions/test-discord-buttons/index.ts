@@ -22,57 +22,32 @@ serve(async (req) => {
 
     console.log('Testing Discord buttons with webhook URL:', webhookUrl);
 
-    // Test payload with buttons
-    const testPayload = {
-      embeds: [{
-        title: '🎉 Test Customer Signup!',
-        description: '**Test User** just signed up for the customer portal!',
-        color: 0x0099ff,
-        fields: [
-          { name: 'Email', value: 'test@example.com', inline: true },
-          { name: 'Company', value: 'Test Company', inline: true },
-          { name: 'Plan', value: 'Basic', inline: true },
-          { name: 'Status', value: 'Pending Approval', inline: false }
-        ],
-        timestamp: new Date().toISOString()
-      }],
-      components: [
-        {
-          type: 1, // Action Row
-          components: [
-            {
-              type: 2, // Button
-              style: 3, // Success/Green
-              label: 'Approve',
-              custom_id: 'approve_test-customer-id',
-              emoji: { name: '✅' }
-            },
-            {
-              type: 2, // Button
-              style: 4, // Danger/Red
-              label: 'Decline',
-              custom_id: 'decline_test-customer-id',
-              emoji: { name: '❌' }
-            }
-          ]
+    // Test the actual signup notification by calling send-discord-notification
+    console.log('Testing signup notification through send-discord-notification function...');
+    
+    const { supabase } = await import("https://esm.sh/@supabase/supabase-js@2");
+    const supabaseClient = supabase(
+      Deno.env.get('SUPABASE_URL') ?? '',
+      Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? ''
+    );
+
+    const testResponse = await supabaseClient.functions.invoke('send-discord-notification', {
+      body: {
+        eventType: 'signup',
+        data: {
+          name: 'Test User',
+          email: 'test@example.com',
+          company: 'Test Company',
+          customerId: 'test-customer-id-12345',
+          planName: 'Basic'
         }
-      ]
-    };
-
-    console.log('Sending test Discord payload:', JSON.stringify(testPayload, null, 2));
-
-    const response = await fetch(webhookUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(testPayload),
+      }
     });
 
-    if (!response.ok) {
-      const errorText = await response.text();
-      console.error('Discord webhook error:', response.status, errorText);
-      throw new Error(`Discord webhook failed: ${response.status} ${errorText}`);
+    console.log('Response from send-discord-notification:', testResponse);
+
+    if (testResponse.error) {
+      throw new Error(`Function call failed: ${JSON.stringify(testResponse.error)}`);
     }
 
     console.log('Test Discord notification sent successfully');
