@@ -218,7 +218,7 @@ const Auth = () => {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="your.email@example.com"
-                        className="pl-10 bg-white/20 border-white/40 text-white placeholder-white/60 focus:border-primary focus:bg-white/25"
+                        className="pl-10 bg-white/20 border-white/40 text-gray-900 placeholder-gray-600 focus:border-primary focus:bg-white/30"
                         required
                       />
                     </div>
@@ -236,7 +236,7 @@ const Auth = () => {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         placeholder="Enter your password"
-                        className="pl-10 pr-10 bg-white/20 border-white/40 text-white placeholder-white/60 focus:border-primary focus:bg-white/25"
+                        className="pl-10 pr-10 bg-white/20 border-white/40 text-gray-900 placeholder-gray-600 focus:border-primary focus:bg-white/30"
                         required
                       />
                       <button
@@ -282,7 +282,7 @@ const Auth = () => {
                       value={fullName}
                       onChange={(e) => setFullName(e.target.value)}
                       placeholder="Your full name"
-                      className="bg-white/20 border-white/40 text-white placeholder-white/60 focus:border-primary focus:bg-white/25"
+                      className="bg-white/20 border-white/40 text-gray-900 placeholder-gray-600 focus:border-primary focus:bg-white/30"
                       required
                     />
                   </div>
@@ -299,7 +299,7 @@ const Auth = () => {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="your.email@example.com"
-                        className="pl-10 bg-white/20 border-white/40 text-white placeholder-white/60 focus:border-primary focus:bg-white/25"
+                        className="pl-10 bg-white/20 border-white/40 text-gray-900 placeholder-gray-600 focus:border-primary focus:bg-white/30"
                         required
                       />
                     </div>
@@ -317,7 +317,7 @@ const Auth = () => {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         placeholder="Create a strong password"
-                        className="pl-10 pr-10 bg-white/20 border-white/40 text-white placeholder-white/60 focus:border-primary focus:bg-white/25"
+                        className="pl-10 pr-10 bg-white/20 border-white/40 text-gray-900 placeholder-gray-600 focus:border-primary focus:bg-white/30"
                         required
                         minLength={6}
                       />
