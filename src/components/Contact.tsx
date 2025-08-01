@@ -100,31 +100,22 @@ const Contact = () => {
       } = await supabase.from('contact_submissions').insert([sanitizedData]);
       if (dbError) throw dbError;
 
-      // Send Discord notification first (this is the primary notification method)
-      try {
-        await supabase.functions.invoke('send-discord-notification', {
-          body: {
-            eventType: 'contact',
-            data: {
-              name: sanitizedData.name,
-              email: sanitizedData.email,
-              subject: sanitizedData.subject,
-              message: sanitizedData.message.substring(0, 200) + (sanitizedData.message.length > 200 ? '...' : '')
-            }
+      // Send Discord notification
+      const { error: discordError } = await supabase.functions.invoke('send-discord-notification', {
+        body: {
+          eventType: 'contact',
+          data: {
+            name: sanitizedData.name,
+            email: sanitizedData.email,
+            subject: sanitizedData.subject,
+            message: sanitizedData.message.substring(0, 200) + (sanitizedData.message.length > 200 ? '...' : '')
           }
-        });
-      } catch (discordError) {
-        console.error('Failed to send Discord notification:', discordError);
-      }
+        }
+      });
 
-      // Try to send email (optional - won't fail if Resend isn't configured)
-      try {
-        await supabase.functions.invoke('send-contact-email', {
-          body: sanitizedData
-        });
-      } catch (emailError) {
-        console.log('Email sending failed (this is optional):', emailError);
-        // Don't throw error - Discord notification is sufficient
+      if (discordError) {
+        console.error('Discord notification failed:', discordError);
+        // Don't throw error - form submission was successful
       }
       
       toast({
