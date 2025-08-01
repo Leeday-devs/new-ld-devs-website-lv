@@ -46,12 +46,29 @@ const AuthButton = () => {
   }
 
   return (
-    <Link to="/admin/auth">
-      <Button variant="outline" size="sm" className="hover:bg-primary/10 hover:text-primary hover:border-primary">
-        <User className="h-4 w-4 mr-1" />
-        Login
-      </Button>
-    </Link>
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="outline" size="sm" className="hover:bg-primary/10 hover:text-primary hover:border-primary">
+          <User className="h-4 w-4 mr-1" />
+          Login
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end">
+        <DropdownMenuItem asChild>
+          <Link to="/auth" className="flex items-center gap-2 cursor-pointer">
+            <User className="h-4 w-4" />
+            Customer Portal
+          </Link>
+        </DropdownMenuItem>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem asChild>
+          <Link to="/admin/auth" className="flex items-center gap-2 cursor-pointer">
+            <User className="h-4 w-4" />
+            Admin Login
+          </Link>
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 };
 
