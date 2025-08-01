@@ -48,19 +48,37 @@ const UnifiedAuth = () => {
         return;
       }
 
-      // Check if user is customer
+      // Check if user is customer and their approval status
       const { data: customer, error: customerError } = await supabase
         .from('customers')
-        .select('id')
+        .select('id, approval_status')
         .eq('user_id', user.id)
         .maybeSingle();
       
       console.log('Customer data:', customer, 'Customer error:', customerError);
       
       if (customer) {
-        console.log('User is customer, redirecting to dashboard');
-        navigate('/dashboard');
-        return;
+        if (customer.approval_status === 'approved') {
+          console.log('User is approved customer, redirecting to dashboard');
+          navigate('/dashboard');
+          return;
+        } else if (customer.approval_status === 'pending') {
+          console.log('User is pending approval');
+          toast({
+            title: 'Account Pending Approval',
+            description: 'Your account is awaiting admin approval. You will be notified once approved.',
+            variant: 'default',
+          });
+          return;
+        } else if (customer.approval_status === 'declined') {
+          console.log('User account was declined');
+          toast({
+            title: 'Account Declined',
+            description: 'Your account request has been declined. Please contact support for more information.',
+            variant: 'destructive',
+          });
+          return;
+        }
       }
 
       // If no specific role found, go to home
