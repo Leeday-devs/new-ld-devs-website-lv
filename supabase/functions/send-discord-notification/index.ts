@@ -55,20 +55,6 @@ serve(async (req) => {
         };
         break;
         
-      case 'signup':
-        embed = {
-          title: '🎉 New Customer Signup!',
-          description: `**${data.name}** just signed up for the customer portal!`,
-          color: eventColors.signup,
-          fields: [
-            { name: 'Email', value: data.email, inline: true },
-            { name: 'Company', value: data.company || 'N/A', inline: true },
-            { name: 'Plan', value: data.planName || 'Basic', inline: true },
-            { name: 'Status', value: 'Pending Approval', inline: false }
-          ],
-          timestamp: new Date().toISOString()
-        };
-        break;
         
       case 'login':
         embed = {
@@ -144,6 +130,21 @@ serve(async (req) => {
           fields: [
             { name: 'Message', value: data.message || 'Test successful', inline: false },
             { name: 'Configured at', value: data.timestamp || new Date().toISOString(), inline: true }
+          ],
+          timestamp: new Date().toISOString()
+        };
+        break;
+
+      case 'signup':
+        embed = {
+          title: '🎉 New Customer Signup!',
+          description: `**${data.name}** just signed up for the customer portal!`,
+          color: eventColors.signup,
+          fields: [
+            { name: 'Email', value: data.email, inline: true },
+            { name: 'Company', value: data.company || 'Not specified', inline: true },
+            { name: 'Plan', value: data.planName || 'Basic', inline: true },
+            { name: 'Status', value: 'Pending Approval', inline: false }
           ],
           timestamp: new Date().toISOString()
         };
