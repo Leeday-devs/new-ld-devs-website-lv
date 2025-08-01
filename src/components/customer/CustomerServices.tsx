@@ -69,13 +69,25 @@ const CustomerServices = ({ customerId }: CustomerServicesProps) => {
   };
 
   const getStatusIcon = (status: string) => {
-    return status === 'active' ? 
-      <CheckCircle className="h-4 w-4 text-green-500" /> : 
-      <XCircle className="h-4 w-4 text-red-500" />;
+    switch (status) {
+      case 'active': 
+        return <CheckCircle className="h-4 w-4 text-green-500" />;
+      case 'complete': 
+        return <CheckCircle className="h-4 w-4 text-blue-500" />;
+      case 'cancelled': 
+        return <XCircle className="h-4 w-4 text-red-500" />;
+      default: 
+        return <Clock className="h-4 w-4 text-gray-500" />;
+    }
   };
 
   const getStatusVariant = (status: string) => {
-    return status === 'active' ? 'default' : 'secondary';
+    switch (status) {
+      case 'active': return 'default' as const;
+      case 'complete': return 'secondary' as const;
+      case 'cancelled': return 'destructive' as const;
+      default: return 'secondary' as const;
+    }
   };
 
   const totalMonthlyValue = services

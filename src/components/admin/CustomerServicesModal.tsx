@@ -204,9 +204,7 @@ const CustomerServicesModal = ({ open, onClose, customerId, customerName }: Cust
     }
   };
 
-  const toggleServiceStatus = async (serviceId: string, currentStatus: string) => {
-    const newStatus = currentStatus === 'active' ? 'inactive' : 'active';
-
+  const updateServiceStatus = async (serviceId: string, newStatus: string) => {
     try {
       const { error } = await (supabase as any)
         .from('customer_services')
@@ -242,6 +240,15 @@ const CustomerServicesModal = ({ open, onClose, customerId, customerName }: Cust
       style: 'currency',
       currency: 'GBP',
     }).format(amount);
+  };
+
+  const getStatusVariant = (status: string) => {
+    switch (status) {
+      case 'active': return 'default' as const;
+      case 'complete': return 'secondary' as const;
+      case 'cancelled': return 'destructive' as const;
+      default: return 'secondary' as const;
+    }
   };
 
   const startEdit = (service: CustomerService) => {
@@ -378,13 +385,26 @@ const CustomerServicesModal = ({ open, onClose, customerId, customerName }: Cust
                       <div className="flex-1">
                         <div className="flex items-center gap-3 mb-1">
                           <h4 className="font-medium">{service.service_name}</h4>
-                          <Badge 
-                            variant={service.status === 'active' ? 'default' : 'secondary'}
-                            className="cursor-pointer"
-                            onClick={() => toggleServiceStatus(service.id, service.status)}
-                          >
-                            {service.status}
-                          </Badge>
+                          <Select value={service.status} onValueChange={(newStatus) => updateServiceStatus(service.id, newStatus)}>
+                            <SelectTrigger className="w-32">
+                              <SelectValue>
+                                <Badge variant={getStatusVariant(service.status)}>
+                                  {service.status}
+                                </Badge>
+                              </SelectValue>
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="active">
+                                <Badge variant="default">Active</Badge>
+                              </SelectItem>
+                              <SelectItem value="complete">
+                                <Badge variant="secondary">Complete</Badge>
+                              </SelectItem>
+                              <SelectItem value="cancelled">
+                                <Badge variant="destructive">Cancelled</Badge>
+                              </SelectItem>
+                            </SelectContent>
+                          </Select>
                           <Badge 
                             variant="outline"
                             className="flex items-center gap-1"
