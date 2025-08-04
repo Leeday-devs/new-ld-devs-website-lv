@@ -69,13 +69,14 @@ const CreateCustomerModal = ({ open, onClose, onSuccess }: CreateCustomerModalPr
     setLoading(true);
     
     try {
-      // First, create the auth user
-      const { data: authData, error: authError } = await supabase.auth.admin.createUser({
+      // First, create the auth user using regular signup
+      const { data: authData, error: authError } = await supabase.auth.signUp({
         email: data.email,
         password: data.password,
-        email_confirm: true, // Auto-confirm email for admin-created users
-        user_metadata: {
-          full_name: data.name
+        options: {
+          data: {
+            full_name: data.name
+          }
         }
       });
 
