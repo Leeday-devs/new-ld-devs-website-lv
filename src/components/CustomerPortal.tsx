@@ -9,7 +9,6 @@ import {
   Clock,
   CheckCircle,
   Shield,
-  Bell,
   BarChart3,
   Activity
 } from "lucide-react";
@@ -30,11 +29,6 @@ const CustomerPortal = () => {
       icon: <CreditCard className="h-6 w-6" />,
       title: "Billing & Payments",
       description: "Manage invoices, view payment history, and handle subscriptions"
-    },
-    {
-      icon: <Bell className="h-6 w-6" />,
-      title: "Instant Notifications",
-      description: "Get notified when project status changes or updates are available"
     },
     {
       icon: <BarChart3 className="h-6 w-6" />,
