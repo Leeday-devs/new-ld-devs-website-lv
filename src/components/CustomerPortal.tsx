@@ -10,7 +10,8 @@ import {
   CheckCircle,
   Shield,
   Bell,
-  BarChart3
+  BarChart3,
+  Activity
 } from "lucide-react";
 
 const CustomerPortal = () => {
@@ -39,6 +40,11 @@ const CustomerPortal = () => {
       icon: <BarChart3 className="h-6 w-6" />,
       title: "Project Analytics",
       description: "Access detailed reports and insights about your projects"
+    },
+    {
+      icon: <Activity className="h-6 w-6" />,
+      title: "Live Build Progress",
+      description: "Watch your website being built every step of the way with real-time progress tracking"
     },
     {
       icon: <Shield className="h-6 w-6" />,
