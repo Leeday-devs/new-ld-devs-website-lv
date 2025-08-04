@@ -69,24 +69,54 @@ const CreateCustomerModal = ({ open, onClose, onSuccess }: CreateCustomerModalPr
     setLoading(true);
     
     try {
-      // Create customer record without auth user for now
-      // Admin can provide login credentials separately if needed
-      const { error: customerError } = await supabase
-        .from('customers')
-        .insert({
-          user_id: null, // No auth user linked initially
-          name: data.name,
-          email: data.email,
-          company: data.company || null,
-          phone: data.phone || null,
-          website_url: data.website_url || null,
-          plan_name: data.plan_name,
-          plan_price: parseFloat(data.plan_price),
-          payment_amount: parseFloat(data.payment_amount),
-          next_payment_date: data.next_payment_date || null,
-          jobs_completed: parseInt(data.jobs_completed),
-          approval_status: 'approved', // Admin-created customers are auto-approved
+      // First, create the auth user
+      const { data: authData, error: authError } = await supabase.auth.admin.createUser({
+        email: data.email,
+        password: data.password,
+        email_confirm: true, // Auto-confirm email for admin-created users
+        user_metadata: {
+          full_name: data.name
+        }
+      });
+
+      if (authError) {
+        console.error('Auth error:', authError);
+        toast({
+          title: "Error",
+          description: "Failed to create user account: " + authError.message,
+          variant: "destructive",
         });
+        return;
+      }
+
+      if (!authData.user) {
+        toast({
+          title: "Error",
+          description: "Failed to create user account.",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      // Create user profile
+      const { error: profileError } = await supabase.rpc('create_user_profile', {
+        user_id_param: authData.user.id,
+        full_name_param: data.name,
+        role_param: 'customer'
+      });
+
+      if (profileError) {
+        console.error('Profile error:', profileError);
+        // Don't return here, still try to create customer record
+      }
+
+      // Create customer record with the auth user ID
+      const { error: customerError } = await supabase.rpc('create_customer_bypassing_rls', {
+        p_user_id: authData.user.id,
+        p_name: data.name,
+        p_email: data.email,
+        p_company: data.company || null
+      });
 
       if (customerError) {
         console.error('Customer error:', customerError);
@@ -97,6 +127,31 @@ const CreateCustomerModal = ({ open, onClose, onSuccess }: CreateCustomerModalPr
         });
         return;
       }
+
+      // Update customer with additional fields
+      const { error: updateError } = await supabase
+        .from('customers')
+        .update({
+          phone: data.phone || null,
+          website_url: data.website_url || null,
+          plan_name: data.plan_name,
+          plan_price: parseFloat(data.plan_price),
+          payment_amount: parseFloat(data.payment_amount),
+          next_payment_date: data.next_payment_date || null,
+          jobs_completed: parseInt(data.jobs_completed),
+          approval_status: 'approved', // Admin-created customers are auto-approved
+        })
+        .eq('user_id', authData.user.id);
+
+      if (updateError) {
+        console.error('Update error:', updateError);
+        // Don't fail the whole process for this
+      }
+
+      toast({
+        title: "Customer Created Successfully",
+        description: `Customer account created for ${data.name}. They can now login with email: ${data.email}`,
+      });
 
       form.reset();
       onSuccess();

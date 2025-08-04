@@ -59,19 +59,41 @@ const PasswordResetDialog = ({ open, onClose, customerEmail, customerName }: Pas
     setLoading(true);
     
     try {
-      // Use the admin function to reset password
-      const { error } = await supabase.functions.invoke('admin-reset-password', {
-        body: {
-          email: customerEmail,
-          newPassword: newPassword
-        }
-      });
-
-      if (error) {
-        console.error('Error resetting password:', error);
+      // Get user by email first
+      const { data: users, error: getUserError } = await supabase.auth.admin.listUsers();
+      
+      if (getUserError) {
+        console.error('Error fetching users:', getUserError);
         toast({
           title: "Error",
-          description: "Failed to reset password. Please try again.",
+          description: "Failed to find user.",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      const user = users.users.find((u: any) => u.email === customerEmail);
+      
+      if (!user) {
+        toast({
+          title: "Error",
+          description: "User not found.",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      // Update user password using admin API
+      const { error: updateError } = await supabase.auth.admin.updateUserById(
+        user.id,
+        { password: newPassword }
+      );
+
+      if (updateError) {
+        console.error('Error updating password:', updateError);
+        toast({
+          title: "Error",
+          description: "Failed to reset password: " + updateError.message,
           variant: "destructive",
         });
         return;
