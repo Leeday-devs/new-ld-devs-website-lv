@@ -3,6 +3,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import BlogPostCard from "@/components/BlogPostCard";
 import SEOHead from "@/components/SEOHead";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import { Button } from "@/components/ui/button";
 import { Search } from "lucide-react";
 import { useState, useEffect } from "react";
@@ -103,6 +104,13 @@ const Blog = () => {
       />
       <div className="min-h-screen bg-background">
         <Navigation />
+        
+        <div className="container mx-auto px-4 pt-20">
+          <Breadcrumbs items={[
+            { label: 'Home', href: '/' },
+            { label: 'Blog' }
+          ]} />
+        </div>
         
         {/* Hero Section */}
         <section className="pt-20 pb-16 bg-gradient-hero">

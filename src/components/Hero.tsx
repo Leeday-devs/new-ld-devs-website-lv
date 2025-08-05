@@ -123,7 +123,14 @@ const Hero = () => {
               
               {/* Main image */}
               <div className="relative bg-gradient-card rounded-3xl p-8 backdrop-blur-md border border-white/20 shadow-premium hover:shadow-glow transition-all duration-500 card-float">
-                <img src={heroImage} alt="Professional Web Development" className="w-full h-auto rounded-2xl shadow-2xl" />
+                <img 
+                  src={heroImage} 
+                  alt="Professional web development services showcasing modern website design, custom development, and digital solutions by LD Development" 
+                  className="w-full h-auto rounded-2xl shadow-2xl" 
+                  loading="eager"
+                  width="600"
+                  height="400"
+                />
                 
                 {/* Floating tech badges */}
                 <div className="absolute -top-4 -left-4 bg-gradient-primary text-white px-4 py-2 rounded-xl font-semibold shadow-lg animate-float">

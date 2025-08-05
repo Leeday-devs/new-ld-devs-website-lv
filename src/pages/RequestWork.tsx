@@ -7,6 +7,7 @@ import * as z from "zod";
 import { supabase } from "@/integrations/supabase/client";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import SEOHead from "@/components/SEOHead";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -175,8 +176,15 @@ const RequestWork = () => {
   }
 
   return (
-    <div className="min-h-screen bg-background">
-      <Navigation />
+    <>
+      <SEOHead 
+        title="Submit Work Request - LD Development Customer Portal"
+        description="Submit a new work request through our customer portal. Get professional web development services with transparent project management and secure communication."
+        keywords="work request, customer portal, web development services, project management, LD Development"
+        url="https://leedaydevs.com/request-work"
+      />
+      <div className="min-h-screen bg-background">
+        <Navigation />
       
       <div className="pt-20 pb-16">
         <div className="container mx-auto px-4 max-w-2xl">
@@ -291,8 +299,9 @@ const RequestWork = () => {
         </div>
       </div>
 
-      <Footer />
-    </div>
+        <Footer />
+      </div>
+    </>
   );
 };
 

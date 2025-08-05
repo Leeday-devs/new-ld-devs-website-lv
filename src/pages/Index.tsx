@@ -19,36 +19,47 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 const Index = () => {
   return (
     <>
-      <SEOHead />
+      <SEOHead 
+        title="LD Development - Professional Web Development & Hosting Services UK"
+        description="Expert web development and hosting services in London. We build custom websites, e-commerce platforms, AI automation solutions, and customer portals for UK businesses. Fast, secure, mobile-optimized websites with ongoing support."
+        keywords="web development UK, website design London, web hosting UK, e-commerce development, AI automation small business, customer portal development, responsive web design, React development, web security, mobile-first design"
+        url="https://leedaydevs.com"
+      />
       <div className="min-h-screen">
         <Navigation />
         <main>
-          <section id="home">
+          <section id="home" aria-label="Homepage hero and statistics">
             <Hero />
             <StatsBar />
           </section>
-          <section id="how-we-build">
+          <section id="how-we-build" aria-label="Our development process">
             <HowWeBuild />
           </section>
-          <section id="about">
+          <section id="about" aria-label="About LD Development team">
             <About />
           </section>
-          <section id="services">
+          <section id="services" aria-label="Web development services and plans">
             <Services />
           </section>
-          <CustomerPortal />
-          <section id="case-studies">
+          <section aria-label="Customer portal information">
+            <CustomerPortal />
+          </section>
+          <section id="case-studies" aria-label="Client case studies and success stories">
             <CaseStudies />
           </section>
-          <section id="portfolio">
+          <section id="portfolio" aria-label="Portfolio of completed projects">
             <Portfolio />
           </section>
-          <Testimonials />
-          <Newsletter />
-          <section id="faq">
+          <section aria-label="Client testimonials and reviews">
+            <Testimonials />
+          </section>
+          <section aria-label="Newsletter subscription">
+            <Newsletter />
+          </section>
+          <section id="faq" aria-label="Frequently asked questions">
             <FAQ />
           </section>
-          <section id="contact">
+          <section id="contact" aria-label="Contact information and form">
             <Contact />
           </section>
         </main>

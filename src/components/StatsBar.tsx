@@ -5,8 +5,9 @@ const StatsBar = () => {
     {
       icon: Star,
       value: "5.0",
-      label: "Rating",
-      color: "text-yellow-500"
+      label: "Google Rating",
+      color: "text-yellow-500",
+      isGoogle: true
     },
     {
       icon: Users,
@@ -34,7 +35,22 @@ const StatsBar = () => {
         <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
           {stats.map((stat, index) => (
             <div key={index} className="flex items-center gap-2 text-center">
-              <stat.icon className={`h-5 w-5 ${stat.color}`} />
+              {stat.isGoogle ? (
+                <div className="flex items-center gap-1">
+                  <img 
+                    src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" 
+                    alt="Google"
+                    className="h-4 w-4"
+                  />
+                  <div className="flex">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <stat.icon className={`h-5 w-5 ${stat.color}`} />
+              )}
               <div className="flex items-baseline gap-1">
                 <span className="text-lg md:text-xl font-bold">{stat.value}</span>
                 <span className="text-sm opacity-90">{stat.label}</span>

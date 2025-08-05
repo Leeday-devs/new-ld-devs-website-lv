@@ -33,6 +33,19 @@ const Testimonials = () => {
     <section className="py-16 bg-gradient-to-br from-background via-accent/5 to-primary/10">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
+          <div className="flex items-center justify-center gap-2 mb-4">
+            <img 
+              src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" 
+              alt="Google"
+              className="h-6 w-6"
+            />
+            <div className="flex">
+              {[...Array(5)].map((_, i) => (
+                <Star key={i} className="h-5 w-5 fill-yellow-400 text-yellow-400" />
+              ))}
+            </div>
+            <span className="text-sm font-medium text-muted-foreground">5.0 Google Rating</span>
+          </div>
           <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
             What Our Clients Say
           </h2>
@@ -60,8 +73,9 @@ const Testimonials = () => {
                 <div className="flex items-center gap-3">
                   <img
                     src={testimonial.image}
-                    alt={testimonial.name}
+                    alt={`${testimonial.name} - ${testimonial.role} at ${testimonial.company}, satisfied customer of LD Development web design services`}
                     className="w-12 h-12 rounded-full object-cover"
+                    loading="lazy"
                   />
                   <div>
                     <h4 className="font-semibold text-foreground">{testimonial.name}</h4>
@@ -77,14 +91,25 @@ const Testimonials = () => {
 
         <div className="text-center mt-12">
           <p className="text-muted-foreground mb-4">
-            Join our happy clients and transform your online presence today
+            Join our 150+ satisfied clients and transform your online presence with our expert web development services
           </p>
-          <a 
-            href="#contact"
-            className="text-primary hover:text-primary/80 font-medium underline underline-offset-4"
-          >
-            Get Your Free Consultation
-          </a>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a 
+              href="#contact"
+              className="text-primary hover:text-primary/80 font-medium underline underline-offset-4"
+              title="Contact LD Development for web design consultation"
+            >
+              Get Your Free Consultation
+            </a>
+            <span className="text-muted-foreground">•</span>
+            <a 
+              href="#services"
+              className="text-primary hover:text-primary/80 font-medium underline underline-offset-4"
+              title="View our web development and hosting services"
+            >
+              View Our Services
+            </a>
+          </div>
         </div>
       </div>
     </section>

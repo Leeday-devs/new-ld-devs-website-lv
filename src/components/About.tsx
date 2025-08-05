@@ -116,13 +116,13 @@ const About = () => {
             <span className="text-sm font-medium text-primary">About Our Team</span>
           </div>
           
-          <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold font-serif mb-6">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold font-serif mb-6">
             <span className="block">WE MAKE</span>
             <span className="bg-gradient-to-r from-primary via-accent to-orange-400 bg-clip-text text-transparent animate-text-glow">
               AWESOME
             </span>
             <span className="block">STUFF</span>
-          </h2>
+          </h1>
           
           <p className="text-xl text-muted-foreground leading-relaxed mb-8">
             We're like digital builders who love making cool websites and apps! We use the newest technology 
