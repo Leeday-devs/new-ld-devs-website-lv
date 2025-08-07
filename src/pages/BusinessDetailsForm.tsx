@@ -153,13 +153,50 @@ const BusinessDetailsForm = () => {
         submittedAt: new Date().toISOString()
       };
 
-      // Send details via edge function
-      const { error: submitError } = await supabase.functions.invoke('submit-business-details', {
-        body: businessDetails
+      // Send Discord notification instead of email
+      const { error: discordError } = await supabase.functions.invoke('send-discord-notification', {
+        body: {
+          eventType: 'business_details',
+          data: {
+            templateName,
+            name: formData.name,
+            businessName: formData.businessName,
+            email: formData.email,
+            phone: formData.phone,
+            servicesOffered: formData.servicesOffered,
+            colorPreferences: formData.colorPreferences,
+            hasLogo: !!logoUrl,
+            imageCount: imageUrls.length,
+            sessionId
+          }
+        }
       });
 
-      if (submitError) {
-        throw submitError;
+      if (discordError) {
+        console.error('Discord notification failed:', discordError);
+        // Don't throw here as the form submission was successful
+      }
+
+      // Store in database for tracking
+      const { error: dbError } = await supabase
+        .from('template_purchases')
+        .insert({
+          template_name: templateName,
+          business_name: formData.businessName,
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          services_offered: formData.servicesOffered,
+          color_preferences: formData.colorPreferences,
+          logo_url: logoUrl,
+          image_urls: imageUrls,
+          stripe_session_id: sessionId,
+          submitted_at: new Date().toISOString()
+        });
+
+      if (dbError) {
+        console.error('Database storage failed:', dbError);
+        // Don't throw here as the notification was successful
       }
 
       toast({

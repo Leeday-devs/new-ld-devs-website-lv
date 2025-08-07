@@ -92,17 +92,25 @@ const WebsiteSetupForm = () => {
 
       if (dbError) throw dbError;
 
-      // Send email notification
-      const { error: emailError } = await supabase.functions.invoke('send-website-setup-email', {
+      // Send Discord notification
+      const { error: discordError } = await supabase.functions.invoke('send-discord-notification', {
         body: {
-          ...formData,
-          logoUrl,
-          imageUrls
+          eventType: 'website_setup',
+          data: {
+            name: formData.name,
+            businessName: formData.businessName,
+            email: formData.email,
+            phone: formData.phone,
+            servicesOffered: formData.servicesOffered,
+            stylePreferences: formData.stylePreferences,
+            hasLogo: !!logoUrl,
+            imageCount: imageUrls.length
+          }
         }
       });
 
-      if (emailError) {
-        console.error('Email sending failed:', emailError);
+      if (discordError) {
+        console.error('Discord notification failed:', discordError);
         // Don't throw here as the form submission was successful
       }
 
