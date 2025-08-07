@@ -375,19 +375,19 @@ const WebsiteTemplates = () => {
                   <div className="space-y-4 mb-6">
                     <div className="flex justify-between items-center p-3 bg-background/50 rounded-lg">
                       <span className="text-sm text-muted-foreground">Blog page</span>
-                      <span className="font-semibold text-primary">£75</span>
+                      <span className="font-semibold text-primary">from £75</span>
                     </div>
                     <div className="flex justify-between items-center p-3 bg-background/50 rounded-lg">
                       <span className="text-sm text-muted-foreground">Online shop</span>
-                      <span className="font-semibold text-primary">£150</span>
+                      <span className="font-semibold text-primary">from £150</span>
                     </div>
                     <div className="flex justify-between items-center p-3 bg-background/50 rounded-lg">
                       <span className="text-sm text-muted-foreground">Booking system</span>
-                      <span className="font-semibold text-primary">£125</span>
+                      <span className="font-semibold text-primary">from £125</span>
                     </div>
                     <div className="flex justify-between items-center p-3 bg-background/50 rounded-lg">
                       <span className="text-sm text-muted-foreground">Custom page</span>
-                      <span className="font-semibold text-primary">£75</span>
+                      <span className="font-semibold text-primary">from £75</span>
                     </div>
                   </div>
                 </Card>
