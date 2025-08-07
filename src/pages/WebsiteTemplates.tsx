@@ -132,49 +132,69 @@ const WebsiteTemplates = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
               {templates.map((template) => (
-                <Card key={template.id} className="group overflow-hidden hover:shadow-lg transition-all duration-300">
-                  <div className="aspect-video bg-muted relative overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
-                      <Palette className="h-16 w-16 text-muted-foreground" />
-                    </div>
-                    <Badge className="absolute top-4 left-4 bg-primary text-primary-foreground">
+                <Card key={template.id} className="group overflow-hidden hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/20">
+                  {/* Live Preview Iframe */}
+                  <div className="relative aspect-video overflow-hidden bg-muted">
+                    {template.demoUrl !== "#" ? (
+                      <iframe
+                        src={template.demoUrl}
+                        width="100%"
+                        height="100%"
+                        style={{
+                          border: "none",
+                          borderRadius: "0",
+                          transform: "scale(0.5)",
+                          transformOrigin: "top left",
+                          width: "200%",
+                          height: "200%",
+                          pointerEvents: "none"
+                        }}
+                        title={`${template.name} Preview`}
+                        loading="lazy"
+                      />
+                    ) : (
+                      <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
+                        <div className="text-center">
+                          <Palette className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
+                          <p className="text-muted-foreground">Preview Coming Soon</p>
+                        </div>
+                      </div>
+                    )}
+                    <Badge className="absolute top-4 left-4 bg-primary text-primary-foreground shadow-lg">
                       {template.category}
                     </Badge>
                   </div>
                   
-                  <CardHeader>
-                    <CardTitle className="flex items-center justify-between">
-                      {template.name}
-                      <div className="text-right">
-                        <div className="text-lg font-bold text-primary">{template.price}</div>
-                        <div className="text-sm text-muted-foreground">+ {template.monthlyPrice}</div>
+                  {/* Template Details */}
+                  <CardContent className="p-6">
+                    <div className="space-y-4">
+                      <div className="text-center">
+                        <h3 className="text-xl font-bold text-foreground mb-2">{template.name}</h3>
+                        <div className="text-2xl font-bold text-primary">{template.price}</div>
+                        <div className="text-sm text-muted-foreground">+ {template.monthlyPrice} hosting</div>
                       </div>
-                    </CardTitle>
-                    <CardDescription className="text-sm">
-                      {template.description}
-                    </CardDescription>
-                  </CardHeader>
-                  
-                  <CardContent className="space-y-3">
-                    <div className="flex gap-2">
-                      <Button 
-                        variant="outline" 
-                        className="flex-1 hover:bg-primary/10 transition-colors"
-                        onClick={() => window.open(template.demoUrl, '_blank')}
-                        disabled={template.demoUrl === "#"}
-                      >
-                        <Eye className="mr-2 h-4 w-4" />
-                        Preview
-                      </Button>
-                      <Button 
-                        className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold"
-                        onClick={() => window.open(template.stripeCheckoutUrl, '_blank')}
-                      >
-                        <CreditCard className="mr-2 h-4 w-4" />
-                        Buy Now – {template.price}
-                      </Button>
+                      
+                      <div className="flex flex-col gap-3">
+                        <Button 
+                          variant="outline" 
+                          className="w-full hover:bg-primary/10 transition-colors border-primary/20"
+                          onClick={() => window.open(template.demoUrl, '_blank')}
+                          disabled={template.demoUrl === "#"}
+                        >
+                          <Eye className="mr-2 h-4 w-4" />
+                          Preview Full Site
+                        </Button>
+                        
+                        <Button 
+                          className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold"
+                          onClick={() => window.open(template.stripeCheckoutUrl, '_blank')}
+                        >
+                          <CreditCard className="mr-2 h-4 w-4" />
+                          Buy Now – {template.price}
+                        </Button>
+                      </div>
                     </div>
                   </CardContent>
                 </Card>
