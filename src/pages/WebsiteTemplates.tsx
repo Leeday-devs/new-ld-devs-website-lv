@@ -15,6 +15,8 @@ import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const WebsiteTemplates = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
+  const [isBusinessDetailsOpen, setIsBusinessDetailsOpen] = useState(false);
+  const [selectedTemplate, setSelectedTemplate] = useState<any>(null);
   const [formData, setFormData] = useState({
     businessName: '',
     industry: '',
@@ -22,6 +24,38 @@ const WebsiteTemplates = () => {
     phone: '',
     description: ''
   });
+
+  const [businessDetails, setBusinessDetails] = useState({
+    businessName: '',
+    ownerName: '',
+    email: '',
+    phone: '',
+    address: '',
+    businessType: '',
+    services: '',
+    targetAudience: '',
+    preferredColors: '',
+    logoDetails: '',
+    contentRequirements: '',
+    specialFeatures: '',
+    launchDate: '',
+    socialMedia: '',
+    additionalInfo: ''
+  });
+
+  const handleBusinessDetailsSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Here you would send the business details to your backend and then redirect to Stripe
+    console.log('Business details submitted:', businessDetails, 'for template:', selectedTemplate);
+    // For now, we'll just close the modal - this is where Stripe integration would happen
+    setIsBusinessDetailsOpen(false);
+    alert('Thank you! You would now be redirected to secure payment. (Stripe integration needed)');
+  };
+
+  const handleBuyNow = (template: any) => {
+    setSelectedTemplate(template);
+    setIsBusinessDetailsOpen(true);
+  };
 
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -573,7 +607,7 @@ const WebsiteTemplates = () => {
                           
                           <Button 
                             className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 group/buy"
-                            onClick={() => window.open(template.stripeCheckoutUrl, '_blank')}
+                            onClick={() => handleBuyNow(template)}
                           >
                             <CreditCard className="mr-2 h-4 w-4 group-hover/buy:scale-110 transition-transform" />
                             Buy Now – {template.price}
@@ -703,6 +737,190 @@ const WebsiteTemplates = () => {
             </div>
           </section>
         </main>
+
+        {/* Business Details Form Modal */}
+        <Dialog open={isBusinessDetailsOpen} onOpenChange={setIsBusinessDetailsOpen}>
+          <DialogContent className="sm:max-w-[600px] max-h-[80vh] overflow-y-auto">
+            <DialogHeader>
+              <DialogTitle className="text-2xl">Business Details for {selectedTemplate?.name}</DialogTitle>
+              <DialogDescription>
+                Please provide your business details so we can customize your {selectedTemplate?.name} website perfectly for your needs.
+              </DialogDescription>
+            </DialogHeader>
+            
+            <form onSubmit={handleBusinessDetailsSubmit} className="space-y-6">
+              {/* Business Information */}
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold text-foreground border-b pb-2">Business Information</h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <Input
+                    placeholder="Business/Company Name *"
+                    value={businessDetails.businessName}
+                    onChange={(e) => setBusinessDetails({...businessDetails, businessName: e.target.value})}
+                    required
+                  />
+                  <Input
+                    placeholder="Owner/Manager Name *"
+                    value={businessDetails.ownerName}
+                    onChange={(e) => setBusinessDetails({...businessDetails, ownerName: e.target.value})}
+                    required
+                  />
+                </div>
+                
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <Input
+                    type="email"
+                    placeholder="Email Address *"
+                    value={businessDetails.email}
+                    onChange={(e) => setBusinessDetails({...businessDetails, email: e.target.value})}
+                    required
+                  />
+                  <Input
+                    type="tel"
+                    placeholder="Phone Number *"
+                    value={businessDetails.phone}
+                    onChange={(e) => setBusinessDetails({...businessDetails, phone: e.target.value})}
+                    required
+                  />
+                </div>
+                
+                <Input
+                  placeholder="Business Address"
+                  value={businessDetails.address}
+                  onChange={(e) => setBusinessDetails({...businessDetails, address: e.target.value})}
+                />
+              </div>
+
+              {/* Business Details */}
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold text-foreground border-b pb-2">Business Details</h3>
+                <Input
+                  placeholder="Type of Business (e.g., Plumbing Services, Hair Salon) *"
+                  value={businessDetails.businessType}
+                  onChange={(e) => setBusinessDetails({...businessDetails, businessType: e.target.value})}
+                  required
+                />
+                
+                <Textarea
+                  placeholder="Main Services/Products (describe what you offer) *"
+                  value={businessDetails.services}
+                  onChange={(e) => setBusinessDetails({...businessDetails, services: e.target.value})}
+                  rows={3}
+                  required
+                />
+                
+                <Textarea
+                  placeholder="Target Audience (who are your ideal customers?)"
+                  value={businessDetails.targetAudience}
+                  onChange={(e) => setBusinessDetails({...businessDetails, targetAudience: e.target.value})}
+                  rows={2}
+                />
+              </div>
+
+              {/* Design Preferences */}
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold text-foreground border-b pb-2">Design Preferences</h3>
+                <Input
+                  placeholder="Preferred Colors (e.g., Blue and white, Professional black/gold)"
+                  value={businessDetails.preferredColors}
+                  onChange={(e) => setBusinessDetails({...businessDetails, preferredColors: e.target.value})}
+                />
+                
+                <Textarea
+                  placeholder="Logo Details (Do you have a logo? Describe it or mention if you need one created)"
+                  value={businessDetails.logoDetails}
+                  onChange={(e) => setBusinessDetails({...businessDetails, logoDetails: e.target.value})}
+                  rows={2}
+                />
+              </div>
+
+              {/* Content & Features */}
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold text-foreground border-b pb-2">Content & Features</h3>
+                <Textarea
+                  placeholder="Content Requirements (What specific text, pages, or information do you need on your site?)"
+                  value={businessDetails.contentRequirements}
+                  onChange={(e) => setBusinessDetails({...businessDetails, contentRequirements: e.target.value})}
+                  rows={3}
+                />
+                
+                <Textarea
+                  placeholder="Special Features (Online booking, contact forms, gallery, testimonials, etc.)"
+                  value={businessDetails.specialFeatures}
+                  onChange={(e) => setBusinessDetails({...businessDetails, specialFeatures: e.target.value})}
+                  rows={2}
+                />
+                
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <Input
+                    type="date"
+                    placeholder="Preferred Launch Date"
+                    value={businessDetails.launchDate}
+                    onChange={(e) => setBusinessDetails({...businessDetails, launchDate: e.target.value})}
+                  />
+                  <Input
+                    placeholder="Social Media Handles"
+                    value={businessDetails.socialMedia}
+                    onChange={(e) => setBusinessDetails({...businessDetails, socialMedia: e.target.value})}
+                  />
+                </div>
+              </div>
+
+              {/* Additional Information */}
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold text-foreground border-b pb-2">Additional Information</h3>
+                <Textarea
+                  placeholder="Anything else you'd like us to know? Any specific requirements or questions?"
+                  value={businessDetails.additionalInfo}
+                  onChange={(e) => setBusinessDetails({...businessDetails, additionalInfo: e.target.value})}
+                  rows={3}
+                />
+              </div>
+
+              {/* Order Summary */}
+              <div className="bg-gradient-to-r from-primary/5 to-secondary/5 p-6 rounded-xl border border-primary/20">
+                <h3 className="text-lg font-semibold text-foreground mb-4">Order Summary</h3>
+                <div className="space-y-2">
+                  <div className="flex justify-between items-center">
+                    <span className="text-muted-foreground">Template:</span>
+                    <span className="font-medium">{selectedTemplate?.name}</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-muted-foreground">Category:</span>
+                    <span className="font-medium">{selectedTemplate?.category}</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-muted-foreground">Setup Fee:</span>
+                    <span className="font-bold text-primary text-lg">{selectedTemplate?.price}</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-muted-foreground">Monthly Hosting:</span>
+                    <span className="font-medium">{selectedTemplate?.monthlyPrice}</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Form Actions */}
+              <div className="flex gap-4 pt-4">
+                <Button 
+                  type="button" 
+                  variant="outline" 
+                  onClick={() => setIsBusinessDetailsOpen(false)} 
+                  className="flex-1"
+                >
+                  Cancel
+                </Button>
+                <Button 
+                  type="submit" 
+                  className="flex-1 bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90"
+                >
+                  <CreditCard className="mr-2 h-4 w-4" />
+                  Proceed to Payment
+                </Button>
+              </div>
+            </form>
+          </DialogContent>
+        </Dialog>
 
         <Footer />
       </div>
