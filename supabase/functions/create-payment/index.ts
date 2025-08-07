@@ -232,16 +232,19 @@ serve(async (req) => {
       });
     }
 
-    const { amount, serviceName, type, customerInfo } = paymentData;
+    const { amount, serviceName, type, customerInfo, stripeProductKey } = paymentData;
+    console.log("Payment data received:", { amount, serviceName, type, stripeProductKey, customerInfo });
     
-    // Validate input
-    const validationErrors = validatePaymentInput(amount, serviceName, type);
-    if (validationErrors.length > 0) {
-      logPaymentAttempt(clientIP, userAgent, user, paymentData, false, `Validation failed: ${validationErrors.join(", ")}`);
-      return new Response(JSON.stringify({ error: validationErrors.join(", ") }), {
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-        status: 400,
-      });
+    // Validate input - skip amount validation if using Stripe product key
+    if (!stripeProductKey) {
+      const validationErrors = validatePaymentInput(amount, serviceName, type);
+      if (validationErrors.length > 0) {
+        logPaymentAttempt(clientIP, userAgent, user, paymentData, false, `Validation failed: ${validationErrors.join(", ")}`);
+        return new Response(JSON.stringify({ error: validationErrors.join(", ") }), {
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+          status: 400,
+        });
+      }
     }
 
     // Validate customer information
@@ -297,9 +300,44 @@ serve(async (req) => {
 
     let sessionConfig;
 
-    if (type === 'deposit') {
+    if (stripeProductKey) {
+      // For payments with Stripe product key, use the product directly
+      console.log("Using Stripe product key:", stripeProductKey);
+      
+      const prices = await stripe.prices.list({
+        product: stripeProductKey,
+        active: true,
+        limit: 1,
+      });
+
+      if (prices.data.length === 0) {
+        throw new Error(`No active price found for product ${stripeProductKey}`);
+      }
+
+      const priceId = prices.data[0].id;
+      console.log("Found price ID:", priceId);
+
+      sessionConfig = {
+        customer: customerId,
+        customer_email: customerId ? undefined : customerEmail,
+        line_items: [
+          {
+            price: priceId,
+            quantity: 1,
+          },
+        ],
+        mode: "payment",
+        success_url: paymentData.successUrl || `${req.headers.get("origin")}/payment-success?session_id={CHECKOUT_SESSION_ID}`,
+        cancel_url: paymentData.cancelUrl || `${req.headers.get("origin")}/payment-canceled`,
+        metadata: {
+          service_name: serviceName || "Website Template",
+          payment_type: "template_purchase",
+          user_id: user?.id || "guest",
+          stripe_product_key: stripeProductKey,
+        },
+      };
+    } else if (type === 'deposit') {
       // For deposit payments, use the provided Stripe product
-      // First, get the prices for the product
       const prices = await stripe.prices.list({
         product: 'prod_SikyUQfqEguRP8',
         active: true,

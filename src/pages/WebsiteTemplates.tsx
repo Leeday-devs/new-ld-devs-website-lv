@@ -211,7 +211,6 @@ const WebsiteTemplates = () => {
       image: "/api/placeholder/400/300",
       category: "Trades",
       demoUrl: "/demo/electrician-expert",
-      stripeCheckoutUrl: "[Paste your Stripe checkout link here]",
       features: ["Emergency hotline", "Safety certificates", "Project showcase", "Free estimates"]
     },
     {
@@ -223,7 +222,6 @@ const WebsiteTemplates = () => {
       image: "/api/placeholder/400/300",
       category: "Food & Beverage",
       demoUrl: "/demo/restaurant-deluxe",
-      stripeCheckoutUrl: "[Paste your Stripe checkout link here]",
       features: ["Table reservations", "Digital menu", "Chef profiles", "Wine pairings"]
     },
     {
@@ -235,7 +233,6 @@ const WebsiteTemplates = () => {
       image: "/api/placeholder/400/300",
       category: "Health & Fitness",
       demoUrl: "/demo/fitness-studio",
-      stripeCheckoutUrl: "[Paste your Stripe checkout link here]",
       features: ["Class schedules", "Member portal", "Workout tracker", "Nutrition plans"]
     },
     {
@@ -247,7 +244,6 @@ const WebsiteTemplates = () => {
       image: "/api/placeholder/400/300",
       category: "Automotive",
       demoUrl: "/demo/auto-repair",
-      stripeCheckoutUrl: "[Paste your Stripe checkout link here]",
       features: ["MOT booking", "Service tracker", "Warranty info", "Parts catalog"]
     }
   ];
