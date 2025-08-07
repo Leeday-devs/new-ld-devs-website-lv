@@ -68,12 +68,15 @@ const WebsiteTemplates = () => {
         console.error('Discord notification error:', discordError);
       }
 
-      // Convert price string to amount in pence (remove £ and convert to number)
-      const priceValue = parseInt(selectedTemplate.price.replace('£', '')) * 100;
-      
       const requestBody = {
-        amount: priceValue,
-        serviceName: `${selectedTemplate.name} Website Template`,
+        // Use Stripe product key if available, otherwise fall back to price
+        ...(selectedTemplate.stripeProductKey 
+          ? { stripeProductKey: selectedTemplate.stripeProductKey }
+          : { 
+              amount: parseInt(selectedTemplate.price.replace('£', '')) * 100,
+              serviceName: `${selectedTemplate.name} Website Template`
+            }
+        ),
         type: 'payment',
         customerInfo: {
           fullName: businessDetails.ownerName,
@@ -185,6 +188,7 @@ const WebsiteTemplates = () => {
       image: "/api/placeholder/400/300",
       category: "Trades",
       demoUrl: "/demo/plumber-pro",
+      stripeProductKey: "prod_Sp898QrbxrSHIr",
       features: ["Emergency booking", "Service gallery", "Quote calculator", "Customer reviews"]
     },
     {
