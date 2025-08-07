@@ -350,64 +350,55 @@ export type Database = {
       }
       template_purchases: {
         Row: {
-          additional_requests: string | null
-          brand_colors: string | null
-          business_description: string | null
           business_name: string
+          color_preferences: string | null
           created_at: string
           email: string
           id: string
+          image_urls: string[] | null
           logo_url: string | null
+          name: string | null
           phone: string | null
-          preferred_style: string | null
           services_offered: string | null
           status: string
           stripe_session_id: string | null
           submitted_at: string
-          target_audience: string | null
           template_name: string
           updated_at: string
-          website: string | null
         }
         Insert: {
-          additional_requests?: string | null
-          brand_colors?: string | null
-          business_description?: string | null
           business_name: string
+          color_preferences?: string | null
           created_at?: string
           email: string
           id?: string
+          image_urls?: string[] | null
           logo_url?: string | null
+          name?: string | null
           phone?: string | null
-          preferred_style?: string | null
           services_offered?: string | null
           status?: string
           stripe_session_id?: string | null
           submitted_at?: string
-          target_audience?: string | null
           template_name: string
           updated_at?: string
-          website?: string | null
         }
         Update: {
-          additional_requests?: string | null
-          brand_colors?: string | null
-          business_description?: string | null
           business_name?: string
+          color_preferences?: string | null
           created_at?: string
           email?: string
           id?: string
+          image_urls?: string[] | null
           logo_url?: string | null
+          name?: string | null
           phone?: string | null
-          preferred_style?: string | null
           services_offered?: string | null
           status?: string
           stripe_session_id?: string | null
           submitted_at?: string
-          target_audience?: string | null
           template_name?: string
           updated_at?: string
-          website?: string | null
         }
         Relationships: []
       }

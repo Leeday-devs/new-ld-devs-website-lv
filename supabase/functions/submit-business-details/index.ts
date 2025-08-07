@@ -29,17 +29,14 @@ serve(async (req) => {
       .insert({
         stripe_session_id: body.sessionId,
         template_name: body.templateName,
+        name: body.name,
         business_name: body.businessName,
         email: body.email,
         phone: body.phone,
-        website: body.website,
-        business_description: body.businessDescription,
         services_offered: body.servicesOffered,
-        target_audience: body.targetAudience,
-        brand_colors: body.brandColors,
-        preferred_style: body.preferredStyle,
-        additional_requests: body.additionalRequests,
+        color_preferences: body.colorPreferences,
         logo_url: body.logoUrl,
+        image_urls: body.imageUrls,
         status: 'submitted',
         submitted_at: body.submittedAt
       });
@@ -59,27 +56,30 @@ serve(async (req) => {
         html: `
           <h2>New Template Purchase Details</h2>
           <p><strong>Template:</strong> ${body.templateName}</p>
+          <p><strong>Customer Name:</strong> ${body.name}</p>
           <p><strong>Business Name:</strong> ${body.businessName}</p>
           <p><strong>Email:</strong> ${body.email}</p>
           <p><strong>Phone:</strong> ${body.phone || 'Not provided'}</p>
-          <p><strong>Website:</strong> ${body.website || 'Not provided'}</p>
           
-          <h3>Business Details</h3>
-          <p><strong>Description:</strong> ${body.businessDescription || 'Not provided'}</p>
-          <p><strong>Services:</strong> ${body.servicesOffered || 'Not provided'}</p>
-          <p><strong>Target Audience:</strong> ${body.targetAudience || 'Not provided'}</p>
+          <h3>Services & Preferences</h3>
+          <p><strong>Services Offered:</strong> ${body.servicesOffered || 'Not provided'}</p>
+          <p><strong>Color/Style Preferences:</strong> ${body.colorPreferences || 'Not specified'}</p>
           
-          <h3>Branding</h3>
-          <p><strong>Brand Colors:</strong> ${body.brandColors || 'Not specified'}</p>
-          <p><strong>Preferred Style:</strong> ${body.preferredStyle || 'Not specified'}</p>
+          <h3>Assets</h3>
           <p><strong>Logo URL:</strong> ${body.logoUrl || 'No logo uploaded'}</p>
-          
-          <h3>Additional Requests</h3>
-          <p>${body.additionalRequests || 'None'}</p>
+          <p><strong>Additional Images:</strong> ${body.imageUrls?.length ? `${body.imageUrls.length} image(s) uploaded` : 'No additional images'}</p>
+          ${body.imageUrls?.length ? `
+            <h4>Image URLs:</h4>
+            <ul>
+              ${body.imageUrls.map(url => `<li><a href="${url}" target="_blank">${url}</a></li>`).join('')}
+            </ul>
+          ` : ''}
           
           <hr>
           <p><strong>Stripe Session ID:</strong> ${body.sessionId}</p>
           <p><strong>Submitted At:</strong> ${body.submittedAt}</p>
+          
+          <p><strong>Contact:</strong> leedaydevs@gmail.com or 07586 266007</p>
         `
       };
 
