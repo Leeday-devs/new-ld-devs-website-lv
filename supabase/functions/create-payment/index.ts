@@ -305,13 +305,26 @@ serve(async (req) => {
       console.log("Using Stripe product key:", stripeProductKey);
       
       try {
+        // First verify the product exists
+        try {
+          const product = await stripe.products.retrieve(stripeProductKey);
+          console.log("Product found:", product.name, "Active:", product.active);
+          
+          if (!product.active) {
+            throw new Error(`Product ${stripeProductKey} is not active in Stripe`);
+          }
+        } catch (productRetrieveError) {
+          console.error("Failed to retrieve product:", productRetrieveError);
+          throw new Error(`Product ${stripeProductKey} not found in Stripe: ${productRetrieveError.message}`);
+        }
+
         const prices = await stripe.prices.list({
           product: stripeProductKey,
           active: true,
           limit: 1,
         });
 
-        console.log("Found prices for product:", prices.data.length);
+        console.log("Found prices for product:", prices.data.length, "Prices:", prices.data.map(p => ({ id: p.id, amount: p.unit_amount, currency: p.currency })));
         
         if (prices.data.length === 0) {
           console.error(`No active price found for product ${stripeProductKey}`);
