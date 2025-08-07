@@ -5,7 +5,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import { ArrowRight, Check, Clock, Palette, Zap, Shield } from "lucide-react";
+import { ArrowRight, Check, Clock, Palette, Zap, Shield, Eye, CreditCard } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const WebsiteTemplates = () => {
@@ -14,49 +14,67 @@ const WebsiteTemplates = () => {
       id: 1,
       name: "Plumber Pro",
       description: "Professional plumbing services template with booking system and service showcase",
-      price: "£350 + £40/month",
+      price: "£350",
+      monthlyPrice: "£40/month",
       image: "/api/placeholder/400/300",
-      category: "Trades"
+      category: "Trades",
+      demoUrl: "/demo/plumber-pro",
+      stripeCheckoutUrl: "[Paste your Stripe checkout link here]"
     },
     {
       id: 2,
       name: "Modern Barber",
       description: "Stylish barbershop template with appointment booking and gallery",
-      price: "£350 + £40/month",
+      price: "£350",
+      monthlyPrice: "£40/month",
       image: "/api/placeholder/400/300",
-      category: "Beauty & Wellness"
+      category: "Beauty & Wellness",
+      demoUrl: "/demo/modern-barber",
+      stripeCheckoutUrl: "[Paste your Stripe checkout link here]"
     },
     {
       id: 3,
-      name: "Electrician Lite",
+      name: "Electrician Expert",
       description: "Clean, professional electrical services template with contact forms",
-      price: "£350 + £40/month",
+      price: "£350",
+      monthlyPrice: "£40/month",
       image: "/api/placeholder/400/300",
-      category: "Trades"
+      category: "Trades",
+      demoUrl: "/demo/electrician-expert",
+      stripeCheckoutUrl: "[Paste your Stripe checkout link here]"
     },
     {
       id: 4,
       name: "Restaurant Deluxe",
       description: "Full-featured restaurant template with menu, reservations, and online ordering",
-      price: "£450 + £40/month",
+      price: "£450",
+      monthlyPrice: "£40/month",
       image: "/api/placeholder/400/300",
-      category: "Food & Beverage"
+      category: "Food & Beverage",
+      demoUrl: "#",
+      stripeCheckoutUrl: "[Paste your Stripe checkout link here]"
     },
     {
       id: 5,
       name: "Fitness Studio",
       description: "Dynamic fitness center template with class schedules and membership plans",
-      price: "£400 + £40/month",
+      price: "£400",
+      monthlyPrice: "£40/month",
       image: "/api/placeholder/400/300",
-      category: "Health & Fitness"
+      category: "Health & Fitness",
+      demoUrl: "#",
+      stripeCheckoutUrl: "[Paste your Stripe checkout link here]"
     },
     {
       id: 6,
       name: "Auto Repair",
       description: "Professional automotive services template with service booking",
-      price: "£350 + £40/month",
+      price: "£350",
+      monthlyPrice: "£40/month",
       image: "/api/placeholder/400/300",
-      category: "Automotive"
+      category: "Automotive",
+      demoUrl: "#",
+      stripeCheckoutUrl: "[Paste your Stripe checkout link here]"
     }
   ];
 
@@ -129,20 +147,35 @@ const WebsiteTemplates = () => {
                   <CardHeader>
                     <CardTitle className="flex items-center justify-between">
                       {template.name}
-                      <span className="text-lg font-bold text-primary">{template.price}</span>
+                      <div className="text-right">
+                        <div className="text-lg font-bold text-primary">{template.price}</div>
+                        <div className="text-sm text-muted-foreground">+ {template.monthlyPrice}</div>
+                      </div>
                     </CardTitle>
                     <CardDescription className="text-sm">
                       {template.description}
                     </CardDescription>
                   </CardHeader>
                   
-                  <CardContent>
-                    <Button className="w-full group-hover:bg-primary/90 transition-colors" asChild>
-                      <Link to={`/templates/${template.name.toLowerCase().replace(/\s+/g, '-')}`}>
-                        Preview & Buy
-                        <ArrowRight className="ml-2 h-4 w-4" />
-                      </Link>
-                    </Button>
+                  <CardContent className="space-y-3">
+                    <div className="flex gap-2">
+                      <Button 
+                        variant="outline" 
+                        className="flex-1 hover:bg-primary/10 transition-colors"
+                        onClick={() => window.open(template.demoUrl, '_blank')}
+                        disabled={template.demoUrl === "#"}
+                      >
+                        <Eye className="mr-2 h-4 w-4" />
+                        Preview
+                      </Button>
+                      <Button 
+                        className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold"
+                        onClick={() => window.open(template.stripeCheckoutUrl, '_blank')}
+                      >
+                        <CreditCard className="mr-2 h-4 w-4" />
+                        Buy Now – {template.price}
+                      </Button>
+                    </div>
                   </CardContent>
                 </Card>
               ))}
