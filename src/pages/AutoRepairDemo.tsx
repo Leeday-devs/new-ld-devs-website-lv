@@ -1,185 +1,316 @@
-import { Phone, Clock, Star, MapPin, Mail, Wrench, Car, Shield, Settings, Award, Users } from "lucide-react";
+import { 
+  Phone, Clock, Star, MapPin, Mail, Wrench, Car, Shield, Settings, Award, Users,
+  Gauge, Fuel, Battery, Cog, Calendar, CheckCircle, AlertTriangle, 
+  FileText, CreditCard, Timer, Zap, KeyRound, Wind, Thermometer
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
 
 const AutoRepairDemo = () => {
+  const diagnosticServices = [
+    { icon: Gauge, title: "Engine Diagnostics", time: "30 mins", price: "£89" },
+    { icon: Battery, title: "Electrical Testing", time: "45 mins", price: "£65" },
+    { icon: Thermometer, title: "Cooling System", time: "60 mins", price: "£95" },
+    { icon: Wind, title: "AC System Check", time: "40 mins", price: "£75" }
+  ];
+
   const services = [
     {
-      icon: Settings,
-      title: "Engine Diagnostics",
-      description: "Advanced computer diagnostics to identify and resolve engine issues quickly and accurately.",
-      price: "From £89"
-    },
-    {
       icon: Wrench,
-      title: "Brake Services",
-      description: "Complete brake system inspection, repair, and replacement using quality parts.",
-      price: "From £120"
-    },
-    {
-      icon: Car,
-      title: "MOT Testing",
-      description: "Official MOT testing with same-day results and comprehensive safety checks.",
-      price: "£54.85"
+      title: "Complete Service",
+      description: "Full vehicle inspection, oil change, fluid top-ups, and safety checks",
+      price: "From £149",
+      duration: "2-3 hours",
+      warranty: "12 months",
+      popular: true
     },
     {
       icon: Shield,
-      title: "Transmission Repair",
-      description: "Expert transmission services from fluid changes to complete rebuilds.",
-      price: "From £200"
+      title: "MOT Testing", 
+      description: "Official government test with comprehensive safety and emissions check",
+      price: "£54.85",
+      duration: "1 hour",
+      warranty: "Certificate valid 12 months",
+      popular: false
     },
     {
-      icon: Settings,
-      title: "Oil Changes",
-      description: "Quick and professional oil changes using premium lubricants for all vehicle types.",
-      price: "From £45"
+      icon: Gauge,
+      title: "Brake Service",
+      description: "Complete brake system inspection, pad replacement, and performance testing",
+      price: "From £120",
+      duration: "2-4 hours", 
+      warranty: "24 months",
+      popular: false
+    },
+    {
+      icon: Cog,
+      title: "Transmission Service",
+      description: "Fluid changes, filter replacement, and diagnostic testing for smooth operation",
+      price: "From £200",
+      duration: "3-5 hours",
+      warranty: "18 months",
+      popular: false
+    },
+    {
+      icon: Battery,
+      title: "Electrical Repairs",
+      description: "Battery testing, alternator checks, starter motor repair, and wiring diagnostics",
+      price: "From £85",
+      duration: "1-3 hours",
+      warranty: "12 months", 
+      popular: false
     },
     {
       icon: Car,
       title: "Tyre Services",
-      description: "Tyre fitting, balancing, alignment, and puncture repairs by trained technicians.",
-      price: "From £60"
+      description: "New tyres, puncture repairs, wheel alignment, and balancing services",
+      price: "From £60",
+      duration: "30-90 mins",
+      warranty: "Manufacturer warranty",
+      popular: false
     }
+  ];
+
+  const quickServices = [
+    { title: "Oil Change", icon: Fuel, price: "£45", time: "20 mins" },
+    { title: "Battery Test", icon: Battery, price: "Free", time: "10 mins" },
+    { title: "Brake Check", icon: Shield, price: "Free", time: "15 mins" },
+    { title: "Tyre Check", icon: Car, price: "Free", time: "10 mins" }
   ];
 
   const testimonials = [
     {
-      name: "David Wilson",
-      location: "Birmingham",
+      name: "Sarah Johnson",
+      location: "Erdington", 
       rating: 5,
-      text: "Excellent service! Fixed my car quickly and the price was very reasonable. Highly recommend AutoCare Pro."
+      text: "Brilliant service! They diagnosed my engine problem in minutes and had it fixed the same day. Fair pricing and honest advice.",
+      service: "Engine Diagnostics",
+      date: "Last week"
     },
     {
-      name: "Lisa Parker",
-      location: "Solihull",
+      name: "Mark Stevens",
+      location: "Kings Heath",
       rating: 5,
-      text: "Honest, reliable mechanics who explain everything clearly. Been using them for 3 years - never disappointed."
+      text: "Been using AutoTech Masters for 5 years. Always professional, never try to sell you things you don't need. Highly recommended!",
+      service: "Regular Service",
+      date: "2 weeks ago"
     },
     {
-      name: "Michael Brown",
-      location: "Coventry",
+      name: "Jenny Wilson", 
+      location: "Moseley",
       rating: 5,
-      text: "Fast turnaround on my MOT and service. Great customer service and competitive pricing. Will definitely return."
+      text: "Emergency brake repair on Saturday morning. They fitted me in immediately and had me back on the road safely. Excellent!",
+      service: "Brake Service",
+      date: "1 month ago"
     }
   ];
 
-  const brands = ["BMW", "Mercedes", "Audi", "Volkswagen", "Ford", "Vauxhall", "Toyota", "Honda", "Nissan", "Peugeot"];
+  const certifications = [
+    { title: "MOT Approved", icon: FileText, desc: "Official testing station" },
+    { title: "ASE Certified", icon: Award, desc: "Qualified technicians" },
+    { title: "AA Approved", icon: CheckCircle, desc: "Trusted garage network" },
+    { title: "Fully Insured", icon: Shield, desc: "£2M public liability" }
+  ];
+
+  const brands = ["BMW", "Mercedes", "Audi", "Volkswagen", "Ford", "Vauxhall", "Toyota", "Honda", "Nissan", "Peugeot", "Skoda", "SEAT"];
 
   return (
-    <div className="min-h-screen bg-gray-100">
-      {/* Header */}
-      <header className="bg-red-600 text-white py-4 shadow-lg">
-        <div className="container mx-auto px-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold">AutoCare Pro</h1>
+    <div className="min-h-screen bg-background">
+      {/* Top Bar */}
+      <div className="bg-muted/50 py-2 border-b">
+        <div className="container mx-auto px-4 flex justify-between items-center text-sm">
+          <div className="flex items-center gap-6">
+            <span className="flex items-center gap-2 text-muted-foreground">
+              <Clock className="h-4 w-4" />
+              Mon-Fri: 8AM-6PM | Sat: 8AM-4PM
+            </span>
+            <span className="flex items-center gap-2 text-muted-foreground">
+              <MapPin className="h-4 w-4" />
+              Serving Birmingham & West Midlands
+            </span>
+          </div>
           <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2">
-              <Phone className="h-4 w-4" />
-              <span className="font-medium">0121 456 7890</span>
-            </div>
-            <Button className="bg-white text-red-600 hover:bg-gray-100 font-bold">
-              Book Service
-            </Button>
+            <Badge variant="secondary" className="text-xs">
+              <Award className="mr-1 h-3 w-3" />
+              MOT Approved Testing Station
+            </Badge>
           </div>
         </div>
-      </header>
+      </div>
 
-      {/* Hero Section */}
-      <section className="bg-gradient-to-r from-red-600 to-red-800 text-white py-20">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-5xl font-bold mb-6">Expert Auto Repair Services</h2>
-          <p className="text-xl mb-8 max-w-2xl mx-auto">
-            Professional automotive repairs and maintenance in Birmingham. Over 25 years of experience serving the West Midlands with honest, reliable service.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-white text-red-600 hover:bg-gray-100 text-lg px-8 py-4 font-bold">
-              <Car className="mr-2 h-5 w-5" />
-              Book MOT
-            </Button>
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-red-600 text-lg px-8 py-4 font-bold">
-              Free Quote
-            </Button>
-          </div>
-          <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            <div className="bg-white/10 p-6 rounded-lg backdrop-blur-sm">
-              <Award className="h-12 w-12 mx-auto mb-4 text-red-200" />
-              <h3 className="text-xl font-semibold mb-2">25+ Years Experience</h3>
-              <p className="text-red-100">Trusted by thousands of satisfied customers</p>
-            </div>
-            <div className="bg-white/10 p-6 rounded-lg backdrop-blur-sm">
-              <Shield className="h-12 w-12 mx-auto mb-4 text-red-200" />
-              <h3 className="text-xl font-semibold mb-2">12 Month Warranty</h3>
-              <p className="text-red-100">All repairs covered by comprehensive warranty</p>
-            </div>
-            <div className="bg-white/10 p-6 rounded-lg backdrop-blur-sm">
-              <Users className="h-12 w-12 mx-auto mb-4 text-red-200" />
-              <h3 className="text-xl font-semibold mb-2">Qualified Technicians</h3>
-              <p className="text-red-100">ASE certified mechanics you can trust</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Services Section */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Services</h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              From routine maintenance to major repairs, we provide comprehensive automotive services for all makes and models.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow border-l-4 border-l-red-600">
-                <CardContent className="p-6">
-                  <service.icon className="h-12 w-12 text-red-600 mb-4" />
-                  <h3 className="text-xl font-bold mb-3 text-gray-900">{service.title}</h3>
-                  <p className="text-gray-600 mb-4">{service.description}</p>
-                  <div className="text-lg font-bold text-red-600">{service.price}</div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Brands We Service */}
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8">We Service All Major Brands</h2>
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
-            {brands.map((brand, index) => (
-              <div key={index} className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
-                <span className="text-lg font-semibold text-gray-700">{brand}</span>
+      {/* Navigation */}
+      <nav className="bg-card shadow-lg sticky top-0 z-50 border-b">
+        <div className="container mx-auto px-4 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <div className="flex items-center justify-center w-12 h-12 bg-destructive rounded-xl">
+                <Wrench className="h-7 w-7 text-destructive-foreground" />
               </div>
-            ))}
+              <div>
+                <h1 className="text-2xl font-bold text-foreground">AutoTech Masters</h1>
+                <p className="text-xs text-muted-foreground">Expert Auto Repair Since 1995</p>
+              </div>
+            </div>
+            <div className="hidden md:flex items-center gap-6">
+              <div className="text-center">
+                <div className="text-destructive font-bold text-lg">0121 789 4560</div>
+                <div className="text-xs text-muted-foreground">24/7 Breakdown Service</div>
+              </div>
+              <Button variant="destructive" size="lg">
+                <Calendar className="mr-2 h-4 w-4" />
+                Book Now
+              </Button>
+            </div>
           </div>
-          <p className="mt-8 text-gray-600">And many more! If you don't see your vehicle's make, just ask - we likely service it too.</p>
         </div>
-      </section>
-
-      {/* Testimonials Section */}
-      <section className="py-20 bg-white">
+      </nav>
+      {/* Hero Section - Asymmetric Layout */}
+      <section className="pt-8 pb-20 bg-gradient-to-br from-background via-muted/30 to-background">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">What Our Customers Say</h2>
-            <p className="text-xl text-gray-600">Don't just take our word for it - see what our satisfied customers have to say.</p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <Card key={index} className="text-center shadow-lg">
-                <CardContent className="p-8">
-                  <div className="flex justify-center mb-4">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="h-5 w-5 fill-yellow-400 text-yellow-400" />
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            {/* Left Content - 7 columns */}
+            <div className="lg:col-span-7 space-y-8">
+              <div className="space-y-6">
+                <Badge variant="destructive" className="w-fit">
+                  <FileText className="mr-1 h-3 w-3" />
+                  MOT Approved Testing Station
+                </Badge>
+                <h1 className="text-5xl lg:text-6xl font-bold text-foreground leading-tight">
+                  Your Car
+                  <span className="text-destructive block">Deserves the</span>
+                  Best Care
+                </h1>
+                <p className="text-xl text-muted-foreground max-w-lg">
+                  Professional automotive repair with 30+ years expertise. From MOT testing to complete engine rebuilds - 
+                  we keep Birmingham moving with honest, reliable service.
+                </p>
+              </div>
+              
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button size="lg" variant="destructive" className="text-lg">
+                  <Calendar className="mr-2 h-5 w-5" />
+                  Book Service Online
+                </Button>
+                <Button size="lg" variant="outline" className="text-lg">
+                  <Phone className="mr-2 h-5 w-5" />
+                  Call for Quote
+                </Button>
+              </div>
+
+              <div className="grid grid-cols-4 gap-4 pt-8">
+                {quickServices.map((quick, index) => (
+                  <div key={index} className="text-center p-4 bg-card border rounded-lg hover-scale">
+                    <quick.icon className="h-6 w-6 text-destructive mx-auto mb-2" />
+                    <div className="text-sm font-medium text-foreground">{quick.title}</div>
+                    <div className="text-xs text-muted-foreground">{quick.time}</div>
+                    <div className="text-sm font-bold text-destructive">{quick.price}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Right Content - 5 columns */}
+            <div className="lg:col-span-5 space-y-6">
+              {/* Diagnostic Services Card */}
+              <Card className="border-2 border-destructive/20 shadow-xl">
+                <CardContent className="p-6">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-10 h-10 bg-destructive rounded-lg flex items-center justify-center">
+                      <Gauge className="h-6 w-6 text-destructive-foreground" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold text-foreground">Quick Diagnostics</h3>
+                      <p className="text-sm text-muted-foreground">Professional testing available</p>
+                    </div>
+                  </div>
+                  <div className="space-y-3">
+                    {diagnosticServices.map((diag, index) => (
+                      <div key={index} className="flex items-center justify-between p-3 bg-muted/50 rounded-lg">
+                        <div className="flex items-center gap-3">
+                          <diag.icon className="h-4 w-4 text-destructive" />
+                          <span className="font-medium text-foreground">{diag.title}</span>
+                        </div>
+                        <div className="text-right">
+                          <div className="text-sm font-bold text-destructive">{diag.price}</div>
+                          <div className="text-xs text-muted-foreground">{diag.time}</div>
+                        </div>
+                      </div>
                     ))}
                   </div>
-                  <p className="text-gray-600 mb-6 italic">"{testimonial.text}"</p>
-                  <div>
-                    <h4 className="font-bold text-gray-900">{testimonial.name}</h4>
-                    <p className="text-red-600">{testimonial.location}</p>
+                  <Button className="w-full mt-4" variant="destructive">
+                    Book Diagnostic Test
+                  </Button>
+                </CardContent>
+              </Card>
+
+              {/* Trust Indicators */}
+              <div className="grid grid-cols-2 gap-4">
+                {certifications.map((cert, index) => (
+                  <div key={index} className="text-center p-4 bg-card border rounded-lg">
+                    <cert.icon className="h-8 w-8 text-destructive mx-auto mb-2" />
+                    <div className="text-sm font-bold text-foreground">{cert.title}</div>
+                    <div className="text-xs text-muted-foreground">{cert.desc}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Services Section - Enhanced with warranty info */}
+      <section className="py-20 bg-muted/30">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <Badge variant="outline" className="mb-4">
+              <Wrench className="mr-1 h-3 w-3" />
+              Complete Auto Services
+            </Badge>
+            <h2 className="text-4xl font-bold text-foreground mb-4">Professional Car Services</h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              From routine maintenance to complex repairs, our certified technicians deliver quality workmanship with transparent pricing.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {services.map((service, index) => (
+              <Card key={index} className={`group hover:shadow-xl transition-all duration-300 border-2 ${
+                service.popular ? 'border-destructive bg-destructive/5' : 'hover:border-destructive/50'
+              }`}>
+                <CardContent className="p-8">
+                  <div className="flex items-start justify-between mb-6">
+                    <service.icon className="h-12 w-12 text-destructive" />
+                    {service.popular && (
+                      <Badge variant="destructive" className="text-xs">
+                        POPULAR
+                      </Badge>
+                    )}
+                  </div>
+                  <h3 className="text-xl font-bold text-foreground mb-3">{service.title}</h3>
+                  <p className="text-muted-foreground mb-4">{service.description}</p>
+                  
+                  <Separator className="my-4" />
+                  
+                  <div className="space-y-2 mb-6">
+                    <div className="flex justify-between text-sm">
+                      <span className="text-muted-foreground">Duration:</span>
+                      <span className="font-medium text-foreground">{service.duration}</span>
+                    </div>
+                    <div className="flex justify-between text-sm">
+                      <span className="text-muted-foreground">Warranty:</span>
+                      <span className="font-medium text-foreground">{service.warranty}</span>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center justify-between">
+                    <span className="font-bold text-lg text-destructive">{service.price}</span>
+                    <Button size="sm" variant={service.popular ? "destructive" : "outline"}>
+                      Book Now
+                    </Button>
                   </div>
                 </CardContent>
               </Card>
@@ -188,94 +319,258 @@ const AutoRepairDemo = () => {
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section className="py-20 bg-red-600 text-white">
+      {/* Brands Section - Carousel Style */}
+      <section className="py-16 bg-card border-y">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <div>
-              <h2 className="text-4xl font-bold mb-6">Get Your Car Serviced Today</h2>
-              <p className="text-xl mb-8 text-red-100">
-                Need automotive service you can trust? Contact AutoCare Pro today for honest, professional service at competitive prices.
-              </p>
+          <div className="text-center mb-12">
+            <h3 className="text-2xl font-bold text-foreground mb-4">We Service All Vehicle Makes</h3>
+            <p className="text-muted-foreground">Specialized expertise across European, Japanese, and domestic brands</p>
+          </div>
+          
+          <div className="grid grid-cols-3 md:grid-cols-6 lg:grid-cols-12 gap-4">
+            {brands.map((brand, index) => (
+              <div key={index} className="text-center p-4 bg-background border rounded-lg hover-scale cursor-pointer transition-all">
+                <span className="text-sm font-bold text-foreground">{brand}</span>
+              </div>
+            ))}
+          </div>
+          
+          <div className="text-center mt-8">
+            <p className="text-sm text-muted-foreground">
+              Don't see your vehicle's make? <span className="text-destructive font-medium cursor-pointer">Contact us</span> - we likely service it too!
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Customer Reviews with Service Tags */}
+      <section className="py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <Badge variant="outline" className="mb-4">
+              <Star className="mr-1 h-3 w-3" />
+              Customer Reviews
+            </Badge>
+            <h2 className="text-4xl font-bold text-foreground mb-4">What Our Customers Say</h2>
+            <p className="text-xl text-muted-foreground">Real feedback from Birmingham drivers who trust us with their vehicles</p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {testimonials.map((testimonial, index) => (
+              <Card key={index} className="border-2 hover:border-destructive/50 transition-colors">
+                <CardContent className="p-8">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex">
+                      {[...Array(testimonial.rating)].map((_, i) => (
+                        <Star key={i} className="h-4 w-4 fill-destructive text-destructive" />
+                      ))}
+                    </div>
+                    <Badge variant="secondary" className="text-xs">
+                      {testimonial.service}
+                    </Badge>
+                  </div>
+                  <p className="text-muted-foreground mb-6 italic">"{testimonial.text}"</p>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-destructive/10 rounded-full flex items-center justify-center">
+                        <span className="text-destructive font-bold text-sm">
+                          {testimonial.name.split(' ').map(n => n[0]).join('')}
+                        </span>
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-foreground">{testimonial.name}</h4>
+                        <p className="text-xs text-muted-foreground flex items-center gap-1">
+                          <MapPin className="h-3 w-3" />
+                          {testimonial.location}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="text-xs text-muted-foreground">{testimonial.date}</div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section - Garage-focused */}
+      <section className="py-20 bg-destructive text-destructive-foreground relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-destructive via-destructive/95 to-destructive"></div>
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="space-y-8">
+              <div>
+                <Badge variant="secondary" className="mb-4 bg-destructive-foreground text-destructive">
+                  <Timer className="mr-1 h-3 w-3" />
+                  Same Day Service Available
+                </Badge>
+                <h2 className="text-4xl font-bold mb-4">
+                  Ready to Book Your Service?
+                </h2>
+                <p className="text-xl opacity-90 mb-8">
+                  Get your vehicle back on the road with confidence. Our experienced technicians are ready to help with honest advice and fair pricing.
+                </p>
+              </div>
+              
               <div className="space-y-6">
-                <div className="flex items-center gap-4">
-                  <div className="bg-white p-3 rounded-full">
-                    <Phone className="h-6 w-6 text-red-600" />
-                  </div>
-                  <span className="text-lg">0121 456 7890</span>
-                </div>
-                <div className="flex items-center gap-4">
-                  <div className="bg-white p-3 rounded-full">
-                    <Mail className="h-6 w-6 text-red-600" />
-                  </div>
-                  <span className="text-lg">info@autocarepro.co.uk</span>
-                </div>
-                <div className="flex items-center gap-4">
-                  <div className="bg-white p-3 rounded-full">
-                    <MapPin className="h-6 w-6 text-red-600" />
-                  </div>
-                  <span className="text-lg">456 Garage Street, Birmingham B1 2CD</span>
-                </div>
-                <div className="flex items-center gap-4">
-                  <div className="bg-white p-3 rounded-full">
-                    <Clock className="h-6 w-6 text-red-600" />
-                  </div>
+                <div className="flex items-center gap-4 p-4 bg-destructive-foreground/10 rounded-lg backdrop-blur-sm">
+                  <Phone className="h-8 w-8 text-destructive-foreground" />
                   <div>
-                    <p className="text-lg">Mon-Fri: 8:00 AM - 6:00 PM</p>
-                    <p className="text-red-200">Sat: 8:00 AM - 4:00 PM</p>
-                    <p className="text-red-200">Sun: Emergency service only</p>
+                    <div className="text-2xl font-bold">0121 789 4560</div>
+                    <div className="text-sm opacity-75">Call for immediate assistance</div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-4 p-4 bg-destructive-foreground/10 rounded-lg backdrop-blur-sm">
+                  <Mail className="h-8 w-8 text-destructive-foreground" />
+                  <div>
+                    <div className="text-lg font-medium">service@autotechmasters.co.uk</div>
+                    <div className="text-sm opacity-75">Email for quotes and inquiries</div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-4 p-4 bg-destructive-foreground/10 rounded-lg backdrop-blur-sm">
+                  <MapPin className="h-8 w-8 text-destructive-foreground" />
+                  <div>
+                    <div className="text-lg font-medium">123 Garage Lane, Birmingham B12 9XY</div>
+                    <div className="text-sm opacity-75">Easy parking & public transport links</div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-4 p-4 bg-destructive-foreground/10 rounded-lg backdrop-blur-sm">
+                  <Clock className="h-8 w-8 text-destructive-foreground" />
+                  <div>
+                    <div className="text-lg font-medium">Mon-Fri: 8AM-6PM | Sat: 8AM-4PM</div>
+                    <div className="text-sm opacity-75">Emergency breakdown service 24/7</div>
                   </div>
                 </div>
               </div>
             </div>
-            <div>
-              <Card className="bg-white text-gray-900">
-                <CardContent className="p-8">
-                  <h3 className="text-2xl font-bold mb-6 text-red-600">Book Your Service</h3>
-                  <form className="space-y-4">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <Input placeholder="First Name" />
-                      <Input placeholder="Last Name" />
-                    </div>
-                    <Input placeholder="Email Address" type="email" />
-                    <Input placeholder="Phone Number" type="tel" />
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <Input placeholder="Vehicle Make" />
-                      <Input placeholder="Vehicle Model" />
-                    </div>
-                    <Input placeholder="Registration Number" />
-                    <select className="w-full p-3 rounded-md border">
-                      <option>Select Service Type</option>
-                      <option>MOT Test</option>
-                      <option>Service & MOT</option>
-                      <option>Brake Repair</option>
-                      <option>Engine Diagnostics</option>
-                      <option>Tyre Services</option>
-                      <option>Other</option>
-                    </select>
-                    <Textarea placeholder="Describe the issue or service needed..." rows={3} />
-                    <Button className="w-full bg-red-600 hover:bg-red-700 text-white font-bold">
-                      Book Service
-                    </Button>
-                  </form>
-                </CardContent>
-              </Card>
+
+            <div className="bg-card/95 backdrop-blur-sm border rounded-2xl p-8 shadow-2xl">
+              <h3 className="text-2xl font-bold text-foreground mb-6">Book Your Service</h3>
+              <form className="space-y-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <Input placeholder="First Name" className="bg-background" />
+                  <Input placeholder="Last Name" className="bg-background" />
+                </div>
+                <Input placeholder="Email Address" type="email" className="bg-background" />
+                <Input placeholder="Phone Number" type="tel" className="bg-background" />
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <Input placeholder="Vehicle Make" className="bg-background" />
+                  <Input placeholder="Vehicle Model" className="bg-background" />
+                </div>
+                <Input placeholder="Registration Number" className="bg-background" />
+                <select className="w-full p-3 rounded-md border bg-background text-foreground">
+                  <option>Select Service Type</option>
+                  <option>MOT Test (£54.85)</option>
+                  <option>Service + MOT (from £199)</option>
+                  <option>Brake Service (from £120)</option>
+                  <option>Engine Diagnostics (£89)</option>
+                  <option>Tyre Services (from £60)</option>
+                  <option>Electrical Repair (from £85)</option>
+                  <option>Other</option>
+                </select>
+                <Textarea 
+                  placeholder="Describe any issues or specific requirements..." 
+                  rows={3} 
+                  className="bg-background"
+                />
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <Button variant="destructive" className="bg-destructive hover:bg-destructive/90">
+                    <Calendar className="mr-2 h-4 w-4" />
+                    Book Service
+                  </Button>
+                  <Button variant="outline" className="border-foreground text-foreground hover:bg-foreground hover:text-background">
+                    <Phone className="mr-2 h-4 w-4" />
+                    Call Instead
+                  </Button>
+                </div>
+              </form>
             </div>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12">
-        <div className="container mx-auto px-4 text-center">
-          <h3 className="text-2xl font-bold mb-4">AutoCare Pro</h3>
-          <p className="text-gray-400 mb-6">Professional automotive service since 1998</p>
-          <div className="flex justify-center gap-8 text-sm">
-            <span>© 2024 AutoCare Pro</span>
-            <span>•</span>
-            <span>Licensed & Insured</span>
-            <span>•</span>
-            <span>12 Month Warranty</span>
+      <footer className="bg-muted py-16">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+            <div className="md:col-span-2">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="flex items-center justify-center w-12 h-12 bg-destructive rounded-xl">
+                  <Wrench className="h-8 w-8 text-destructive-foreground" />
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold text-foreground">AutoTech Masters</h3>
+                  <p className="text-sm text-muted-foreground">Birmingham's Trusted Auto Experts</p>
+                </div>
+              </div>
+              <p className="text-muted-foreground mb-4 max-w-md">
+                Serving Birmingham's automotive needs since 1995. Professional repairs, honest advice, competitive pricing. 
+                Your satisfaction is our guarantee.
+              </p>
+              <div className="flex gap-4">
+                <Badge variant="outline" className="text-xs">
+                  <FileText className="mr-1 h-3 w-3" />
+                  MOT Approved
+                </Badge>
+                <Badge variant="outline" className="text-xs">
+                  <Award className="mr-1 h-3 w-3" />
+                  ASE Certified
+                </Badge>
+                <Badge variant="outline" className="text-xs">
+                  <Shield className="mr-1 h-3 w-3" />
+                  Fully Insured
+                </Badge>
+              </div>
+            </div>
+            
+            <div>
+              <h4 className="font-bold text-foreground mb-4">Services</h4>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li>MOT Testing</li>
+                <li>Full Service</li>
+                <li>Brake Repairs</li>
+                <li>Engine Diagnostics</li>
+                <li>Electrical Repairs</li>
+                <li>Tyre Services</li>
+                <li>Transmission Service</li>
+              </ul>
+            </div>
+            
+            <div>
+              <h4 className="font-bold text-foreground mb-4">Contact</h4>
+              <div className="space-y-2 text-sm">
+                <div className="flex items-center gap-2 text-muted-foreground">
+                  <Phone className="h-4 w-4 text-destructive" />
+                  <span>0121 789 4560</span>
+                </div>
+                <div className="flex items-center gap-2 text-muted-foreground">
+                  <Mail className="h-4 w-4 text-destructive" />
+                  <span>service@autotechmasters.co.uk</span>
+                </div>
+                <div className="flex items-center gap-2 text-muted-foreground">
+                  <MapPin className="h-4 w-4 text-destructive" />
+                  <span>123 Garage Lane, Birmingham</span>
+                </div>
+                <div className="flex items-center gap-2 text-muted-foreground">
+                  <Clock className="h-4 w-4 text-destructive" />
+                  <span>Mon-Fri: 8AM-6PM</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div className="border-t pt-8 text-center">
+            <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-muted-foreground">
+              <span>© 2024 AutoTech Masters. All rights reserved.</span>
+              <div className="flex gap-4">
+                <span>MOT Approved Testing Station</span>
+                <span>•</span>
+                <span>ASE Certified Technicians</span>
+                <span>•</span>
+                <span>12 Month Warranty</span>
+              </div>
+            </div>
           </div>
         </div>
       </footer>
