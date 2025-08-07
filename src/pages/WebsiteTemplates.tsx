@@ -46,13 +46,71 @@ const WebsiteTemplates = () => {
     additionalInfo: ''
   });
 
-  const handleBusinessDetailsSubmit = (e: React.FormEvent) => {
+  const handleBusinessDetailsSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would send the business details to your backend and then redirect to Stripe
-    console.log('Business details submitted:', businessDetails, 'for template:', selectedTemplate);
-    // For now, we'll just close the modal - this is where Stripe integration would happen
-    setIsBusinessDetailsOpen(false);
-    alert('Thank you! You would now be redirected to secure payment. (Stripe integration needed)');
+    
+    if (!selectedTemplate) return;
+    
+    try {
+      // Send Discord notification first
+      const { error: discordError } = await supabase.functions.invoke('send-discord-notification', {
+        body: {
+          eventType: 'business_details',
+          data: {
+            ...businessDetails,
+            templateName: selectedTemplate.name,
+            templatePrice: selectedTemplate.price
+          }
+        }
+      });
+
+      if (discordError) {
+        console.error('Discord notification error:', discordError);
+      }
+
+      // Convert price string to amount in pence (remove £ and convert to number)
+      const priceValue = parseInt(selectedTemplate.price.replace('£', '')) * 100;
+      
+      const requestBody = {
+        amount: priceValue,
+        serviceName: `${selectedTemplate.name} Website Template`,
+        type: 'payment',
+        customerInfo: {
+          fullName: businessDetails.ownerName,
+          email: businessDetails.email,
+          phone: businessDetails.phone,
+          company: businessDetails.businessName
+        },
+        successUrl: `${window.location.origin}/payment-success?template=${encodeURIComponent(selectedTemplate.name)}`,
+        cancelUrl: `${window.location.origin}/payment-canceled`
+      };
+      
+      const { data, error } = await supabase.functions.invoke('create-payment', {
+        body: requestBody
+      });
+      
+      if (error) {
+        throw error;
+      }
+      
+      if (data?.url) {
+        // Open Stripe checkout in a new tab
+        window.open(data.url, '_blank');
+        setIsBusinessDetailsOpen(false);
+        
+        toast({
+          title: "Redirecting to Payment",
+          description: "Opening secure payment window..."
+        });
+      }
+    } catch (error) {
+      console.error('Payment error:', error);
+      toast({
+        title: "Payment Error",
+        description: "Failed to process payment. Please try again.",
+        variant: "destructive"
+      });
+    }
   };
 
   const handleBuyNow = (template: any) => {
@@ -127,7 +185,6 @@ const WebsiteTemplates = () => {
       image: "/api/placeholder/400/300",
       category: "Trades",
       demoUrl: "/demo/plumber-pro",
-      stripeCheckoutUrl: "[Paste your Stripe checkout link here]",
       features: ["Emergency booking", "Service gallery", "Quote calculator", "Customer reviews"]
     },
     {
@@ -139,7 +196,6 @@ const WebsiteTemplates = () => {
       image: "/api/placeholder/400/300",
       category: "Beauty & Wellness",
       demoUrl: "/demo/modern-barber",
-      stripeCheckoutUrl: "[Paste your Stripe checkout link here]",
       features: ["Online booking", "Style gallery", "Team profiles", "Price list"]
     },
     {
