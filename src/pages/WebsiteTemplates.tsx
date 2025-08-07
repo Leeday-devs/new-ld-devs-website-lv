@@ -5,7 +5,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import { ArrowRight, Check, Clock, Palette, Zap, Shield, Eye, CreditCard } from "lucide-react";
+import { ArrowRight, Check, Clock, Palette, Zap, Shield, Eye, CreditCard, Lock, Users, Star } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const WebsiteTemplates = () => {
@@ -13,7 +13,7 @@ const WebsiteTemplates = () => {
     {
       id: 1,
       name: "Plumber Pro",
-      description: "Professional plumbing services template with booking system and service showcase",
+      description: "Professional plumbing services website with booking system and service showcase",
       price: "£350",
       monthlyPrice: "£40/month",
       image: "/api/placeholder/400/300",
@@ -85,9 +85,9 @@ const WebsiteTemplates = () => {
   return (
     <>
       <SEOHead 
-        title="Website Templates - Professional Designs Ready in 48 Hours | L-Development"
-        description="Browse our professionally designed website templates for small businesses and tradesmen. Choose your template and get online fast with £350 setup + £40/month hosting."
-        keywords="website templates, small business websites, tradesman websites, professional web design templates, ready-made websites UK"
+        title="Pre-Built Websites - Unique Professional Designs | L-Development"
+        description="Browse our professionally designed pre-built websites for small businesses and tradesmen. One-time purchase ensures your site is unique - no duplicates available after purchase."
+        keywords="pre-built websites, unique website designs, small business websites, tradesman websites, professional web design, ready-made websites UK"
       />
       
       <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted">
@@ -98,7 +98,7 @@ const WebsiteTemplates = () => {
             <Breadcrumbs 
               items={[
                 { label: "Home", href: "/" },
-                { label: "Website Templates", href: "/templates" }
+                { label: "Pre-Built Websites", href: "/templates" }
               ]}
             />
           </div>
@@ -107,28 +107,74 @@ const WebsiteTemplates = () => {
           <section className="container mx-auto px-4 py-16 text-center">
             <div className="max-w-4xl mx-auto">
               <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
-                Professionally Built Websites — Ready to Launch in 48 Hours
+                Professional Pre-Built Websites — Ready to Launch
               </h1>
               <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
-                Browse our range of industry-focused templates, designed to help small businesses and tradesmen get online fast. Simply choose your template, checkout, and we'll do the rest.
+                Browse our range of industry-focused pre-built websites, designed to help small businesses and tradesmen get online fast. Simply choose your design, purchase, and we'll customize it for your business.
               </p>
               <Button 
                 onClick={scrollToTemplates}
                 size="lg" 
                 className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-3"
               >
-                Explore Templates
+                Explore Pre-Built Sites
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </div>
           </section>
 
-          {/* Templates Grid */}
+          {/* Uniqueness Guarantee Section */}
+          <section className="container mx-auto px-4 py-16">
+            <div className="bg-gradient-to-r from-destructive/10 via-primary/10 to-secondary/10 rounded-3xl p-8 md:p-12 border-2 border-primary/20">
+              <div className="max-w-4xl mx-auto text-center">
+                <div className="flex items-center justify-center mb-6">
+                  <div className="bg-primary/20 rounded-full w-16 h-16 flex items-center justify-center">
+                    <Lock className="h-8 w-8 text-primary" />
+                  </div>
+                </div>
+                <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">
+                  Your Site Will Be 100% Unique
+                </h2>
+                <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
+                  These are <strong>one-time purchases</strong>. Once you buy a pre-built website, we immediately remove it from our catalog and fully customize it for your business. 
+                  This means <strong>no one else will ever have the same website as you</strong>.
+                </p>
+                
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+                  <div className="text-center">
+                    <div className="bg-primary/10 rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4">
+                      <Check className="h-6 w-6 text-primary" />
+                    </div>
+                    <h3 className="font-semibold text-lg mb-2 text-foreground">One-Time Purchase</h3>
+                    <p className="text-muted-foreground text-sm">Buy once, removed forever from our catalog</p>
+                  </div>
+                  
+                  <div className="text-center">
+                    <div className="bg-primary/10 rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4">
+                      <Star className="h-6 w-6 text-primary" />
+                    </div>
+                    <h3 className="font-semibold text-lg mb-2 text-foreground">Fully Customized</h3>
+                    <p className="text-muted-foreground text-sm">Personalized with your branding and content</p>
+                  </div>
+                  
+                  <div className="text-center">
+                    <div className="bg-primary/10 rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4">
+                      <Users className="h-6 w-6 text-primary" />
+                    </div>
+                    <h3 className="font-semibold text-lg mb-2 text-foreground">Exclusive to You</h3>
+                    <p className="text-muted-foreground text-sm">No other business will have your design</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Pre-Built Sites Grid */}
           <section id="templates-grid" className="container mx-auto px-4 py-16">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">Choose Your Perfect Template</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">Choose Your Perfect Pre-Built Website</h2>
               <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                Each template is professionally designed and optimized for your industry
+                Each design is professionally crafted and optimized for your industry
               </p>
             </div>
 
