@@ -7,6 +7,8 @@ import SEOHead from "@/components/SEOHead";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { ArrowRight, Check, Clock, Palette, Zap, Shield, Eye, CreditCard } from "lucide-react";
 import { Link } from "react-router-dom";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "@/hooks/use-toast";
 
 const WebsiteTemplates = () => {
   const templates = [
@@ -19,67 +21,36 @@ const WebsiteTemplates = () => {
       image: "/api/placeholder/400/300",
       category: "Trades",
       demoUrl: "/demo/plumber-pro",
-      stripeCheckoutUrl: "[Paste your Stripe checkout link here]"
-    },
-    {
-      id: 2,
-      name: "Modern Barber",
-      description: "Stylish barbershop template with appointment booking and gallery",
-      price: "£350",
-      monthlyPrice: "£40/month",
-      image: "/api/placeholder/400/300",
-      category: "Beauty & Wellness",
-      demoUrl: "/demo/modern-barber",
-      stripeCheckoutUrl: "[Paste your Stripe checkout link here]"
-    },
-    {
-      id: 3,
-      name: "Electrician Expert",
-      description: "Clean, professional electrical services template with contact forms",
-      price: "£350",
-      monthlyPrice: "£40/month",
-      image: "/api/placeholder/400/300",
-      category: "Trades",
-      demoUrl: "/demo/electrician-expert",
-      stripeCheckoutUrl: "[Paste your Stripe checkout link here]"
-    },
-    {
-      id: 4,
-      name: "Restaurant Deluxe",
-      description: "Full-featured restaurant template with menu, reservations, and online ordering",
-      price: "£450",
-      monthlyPrice: "£40/month",
-      image: "/api/placeholder/400/300",
-      category: "Food & Beverage",
-      demoUrl: "#",
-      stripeCheckoutUrl: "[Paste your Stripe checkout link here]"
-    },
-    {
-      id: 5,
-      name: "Fitness Studio",
-      description: "Dynamic fitness center template with class schedules and membership plans",
-      price: "£400",
-      monthlyPrice: "£40/month",
-      image: "/api/placeholder/400/300",
-      category: "Health & Fitness",
-      demoUrl: "#",
-      stripeCheckoutUrl: "[Paste your Stripe checkout link here]"
-    },
-    {
-      id: 6,
-      name: "Auto Repair",
-      description: "Professional automotive services template with service booking",
-      price: "£350",
-      monthlyPrice: "£40/month",
-      image: "/api/placeholder/400/300",
-      category: "Automotive",
-      demoUrl: "#",
-      stripeCheckoutUrl: "[Paste your Stripe checkout link here]"
     }
   ];
 
   const scrollToTemplates = () => {
     document.getElementById('templates-grid')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const handleBuyNow = async (template: any) => {
+    try {
+      const { data, error } = await supabase.functions.invoke('create-template-payment', {
+        body: {
+          templateId: template.id,
+          templateName: template.name,
+          price: template.price
+        }
+      });
+
+      if (error) throw error;
+
+      if (data.url) {
+        window.open(data.url, '_blank');
+      }
+    } catch (error) {
+      console.error('Payment error:', error);
+      toast({
+        title: "Payment Error",
+        description: "Failed to create payment session. Please try again.",
+        variant: "destructive",
+      });
+    }
   };
 
   return (
@@ -189,7 +160,7 @@ const WebsiteTemplates = () => {
                         
                         <Button 
                           className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold"
-                          onClick={() => window.open(template.stripeCheckoutUrl, '_blank')}
+                          onClick={() => handleBuyNow(template)}
                         >
                           <CreditCard className="mr-2 h-4 w-4" />
                           Buy Now – {template.price}
