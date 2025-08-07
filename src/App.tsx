@@ -20,6 +20,9 @@ import TemplateDetail from "./pages/TemplateDetail";
 import PlumberProDemo from "./pages/PlumberProDemo";
 import ElectricianExpertDemo from "./pages/ElectricianExpertDemo";
 import ModernBarberDemo from "./pages/ModernBarberDemo";
+import RestaurantDeluxeDemo from "./pages/RestaurantDeluxeDemo";
+import FitnessStudioDemo from "./pages/FitnessStudioDemo";
+import AutoRepairDemo from "./pages/AutoRepairDemo";
 import BusinessDetailsForm from "./pages/BusinessDetailsForm";
 import BusinessDetailsSuccess from "./pages/BusinessDetailsSuccess";
 import WebsiteSetupForm from "./pages/WebsiteSetupForm";
@@ -50,6 +53,9 @@ const App = () => (
             <Route path="/demo/plumber-pro" element={<PlumberProDemo />} />
             <Route path="/demo/electrician-expert" element={<ElectricianExpertDemo />} />
             <Route path="/demo/modern-barber" element={<ModernBarberDemo />} />
+            <Route path="/demo/restaurant-deluxe" element={<RestaurantDeluxeDemo />} />
+            <Route path="/demo/fitness-studio" element={<FitnessStudioDemo />} />
+            <Route path="/demo/auto-repair" element={<AutoRepairDemo />} />
             <Route path="/business-details" element={<BusinessDetailsForm />} />
             <Route path="/business-details-success" element={<BusinessDetailsSuccess />} />
             <Route path="/website-setup" element={<WebsiteSetupForm />} />

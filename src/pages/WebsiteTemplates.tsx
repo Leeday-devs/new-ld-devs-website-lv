@@ -51,7 +51,7 @@ const WebsiteTemplates = () => {
       monthlyPrice: "£40/month",
       image: "/api/placeholder/400/300",
       category: "Food & Beverage",
-      demoUrl: "#",
+      demoUrl: "/demo/restaurant-deluxe",
       stripeCheckoutUrl: "[Paste your Stripe checkout link here]"
     },
     {
@@ -62,7 +62,7 @@ const WebsiteTemplates = () => {
       monthlyPrice: "£40/month",
       image: "/api/placeholder/400/300",
       category: "Health & Fitness",
-      demoUrl: "#",
+      demoUrl: "/demo/fitness-studio",
       stripeCheckoutUrl: "[Paste your Stripe checkout link here]"
     },
     {
@@ -73,7 +73,7 @@ const WebsiteTemplates = () => {
       monthlyPrice: "£40/month",
       image: "/api/placeholder/400/300",
       category: "Automotive",
-      demoUrl: "#",
+      demoUrl: "/demo/auto-repair",
       stripeCheckoutUrl: "[Paste your Stripe checkout link here]"
     }
   ];
