@@ -348,6 +348,69 @@ export type Database = {
         }
         Relationships: []
       }
+      template_purchases: {
+        Row: {
+          additional_requests: string | null
+          brand_colors: string | null
+          business_description: string | null
+          business_name: string
+          created_at: string
+          email: string
+          id: string
+          logo_url: string | null
+          phone: string | null
+          preferred_style: string | null
+          services_offered: string | null
+          status: string
+          stripe_session_id: string | null
+          submitted_at: string
+          target_audience: string | null
+          template_name: string
+          updated_at: string
+          website: string | null
+        }
+        Insert: {
+          additional_requests?: string | null
+          brand_colors?: string | null
+          business_description?: string | null
+          business_name: string
+          created_at?: string
+          email: string
+          id?: string
+          logo_url?: string | null
+          phone?: string | null
+          preferred_style?: string | null
+          services_offered?: string | null
+          status?: string
+          stripe_session_id?: string | null
+          submitted_at?: string
+          target_audience?: string | null
+          template_name: string
+          updated_at?: string
+          website?: string | null
+        }
+        Update: {
+          additional_requests?: string | null
+          brand_colors?: string | null
+          business_description?: string | null
+          business_name?: string
+          created_at?: string
+          email?: string
+          id?: string
+          logo_url?: string | null
+          phone?: string | null
+          preferred_style?: string | null
+          services_offered?: string | null
+          status?: string
+          stripe_session_id?: string | null
+          submitted_at?: string
+          target_audience?: string | null
+          template_name?: string
+          updated_at?: string
+          website?: string | null
+        }
+        Relationships: []
+      }
       work_requests: {
         Row: {
           completed_at: string | null

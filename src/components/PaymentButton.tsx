@@ -26,7 +26,9 @@ export const PaymentButton = ({
         email: "guest@ldevelopment.co.uk",
         phone: null,
         company: null
-      }
+      },
+      successUrl: `${window.location.origin}/business-details?session_id={CHECKOUT_SESSION_ID}&template=Quick Purchase`,
+      cancelUrl: `${window.location.origin}/payment-canceled`
     };
     
     console.log('Sending payment request with body:', requestBody);

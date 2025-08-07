@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { ArrowRight, Check, Clock, Palette, Zap, Shield } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const WebsiteTemplates = () => {
   const templates = [
@@ -159,9 +160,11 @@ const WebsiteTemplates = () => {
                   </CardHeader>
                   
                   <CardContent>
-                    <Button className="w-full group-hover:bg-primary/90 transition-colors">
-                      Preview & Buy
-                      <ArrowRight className="ml-2 h-4 w-4" />
+                    <Button className="w-full group-hover:bg-primary/90 transition-colors" asChild>
+                      <Link to={`/templates/${template.name.toLowerCase().replace(/\s+/g, '-')}`}>
+                        Preview & Buy
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                      </Link>
                     </Button>
                   </CardContent>
                 </Card>
