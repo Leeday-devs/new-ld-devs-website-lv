@@ -22,6 +22,8 @@ import ElectricianExpertDemo from "./pages/ElectricianExpertDemo";
 import ModernBarberDemo from "./pages/ModernBarberDemo";
 import BusinessDetailsForm from "./pages/BusinessDetailsForm";
 import BusinessDetailsSuccess from "./pages/BusinessDetailsSuccess";
+import WebsiteSetupForm from "./pages/WebsiteSetupForm";
+import WebsiteSetupThankYou from "./pages/WebsiteSetupThankYou";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -50,6 +52,8 @@ const App = () => (
             <Route path="/demo/modern-barber" element={<ModernBarberDemo />} />
             <Route path="/business-details" element={<BusinessDetailsForm />} />
             <Route path="/business-details-success" element={<BusinessDetailsSuccess />} />
+            <Route path="/website-setup" element={<WebsiteSetupForm />} />
+            <Route path="/website-setup-thank-you" element={<WebsiteSetupThankYou />} />
             <Route path="/payment-success" element={<PaymentSuccess />} />
             <Route path="/payment-canceled" element={<PaymentCanceled />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
