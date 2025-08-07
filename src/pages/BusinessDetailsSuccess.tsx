@@ -28,12 +28,12 @@ const BusinessDetailsSuccess = () => {
 
               {/* Success Message */}
               <h1 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">
-                Details Submitted Successfully!
+                Thanks for your order!
               </h1>
               
               <p className="text-lg text-muted-foreground mb-12 leading-relaxed">
-                Thank you for providing your business details. We've received everything we need 
-                to start building your professional website.
+                We've received your details and will now begin customising your website. 
+                You'll receive your first mockup within 24–48 hours.
               </p>
 
               {/* Next Steps */}
@@ -102,15 +102,15 @@ const BusinessDetailsSuccess = () => {
                   <h3 className="font-semibold mb-4">Need to Contact Us?</h3>
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
                     <Button variant="outline" size="sm" asChild>
-                      <a href="mailto:hello@ldevelopment.co.uk" className="flex items-center gap-2">
+                      <a href="mailto:leedaydevs@gmail.com" className="flex items-center gap-2">
                         <Mail className="h-4 w-4" />
-                        hello@ldevelopment.co.uk
+                        leedaydevs@gmail.com
                       </a>
                     </Button>
                     <Button variant="outline" size="sm" asChild>
-                      <a href="https://wa.me/447586266007" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                      <a href="tel:07586266007" className="flex items-center gap-2">
                         <Phone className="h-4 w-4" />
-                        WhatsApp Us
+                        07586 266007
                       </a>
                     </Button>
                   </div>

@@ -16,12 +16,8 @@ import {
   Upload, 
   CheckCircle, 
   Building, 
-  Mail, 
-  Phone, 
-  Globe,
-  Palette,
-  FileText,
-  Loader2
+  Loader2,
+  Zap
 } from "lucide-react";
 
 const BusinessDetailsForm = () => {
@@ -34,34 +30,32 @@ const BusinessDetailsForm = () => {
   const templateName = searchParams.get('template') || 'Website Template';
 
   const [formData, setFormData] = useState({
+    name: '',
     businessName: '',
     email: '',
     phone: '',
-    website: '',
-    businessDescription: '',
     servicesOffered: '',
-    targetAudience: '',
-    brandColors: '',
-    preferredStyle: '',
-    additionalRequests: '',
-    logoFile: null as File | null
+    colorPreferences: '',
+    logoFile: null as File | null,
+    imagesFiles: [] as File[]
   });
 
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      // Validate file type and size
-      const validTypes = ['image/jpeg', 'image/png', 'image/svg+xml', 'image/gif'];
-      const maxSize = 5 * 1024 * 1024; // 5MB
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>, type: 'logo' | 'images') => {
+    const files = Array.from(e.target.files || []);
+    
+    // Validate file types and sizes
+    const validTypes = ['image/jpeg', 'image/png', 'image/svg+xml', 'image/gif'];
+    const maxSize = 5 * 1024 * 1024; // 5MB
 
+    for (const file of files) {
       if (!validTypes.includes(file.type)) {
         toast({
           title: "Invalid file type",
-          description: "Please upload a JPEG, PNG, SVG, or GIF file.",
+          description: "Please upload JPEG, PNG, SVG, or GIF files only.",
           variant: "destructive"
         });
         return;
@@ -70,13 +64,17 @@ const BusinessDetailsForm = () => {
       if (file.size > maxSize) {
         toast({
           title: "File too large", 
-          description: "Please upload a file smaller than 5MB.",
+          description: "Please upload files smaller than 5MB each.",
           variant: "destructive"
         });
         return;
       }
+    }
 
-      setFormData(prev => ({ ...prev, logoFile: file }));
+    if (type === 'logo' && files[0]) {
+      setFormData(prev => ({ ...prev, logoFile: files[0] }));
+    } else if (type === 'images') {
+      setFormData(prev => ({ ...prev, imagesFiles: files }));
     }
   };
 
@@ -86,10 +84,10 @@ const BusinessDetailsForm = () => {
 
     try {
       // Validate required fields
-      if (!formData.businessName || !formData.email) {
+      if (!formData.name || !formData.businessName || !formData.email) {
         toast({
           title: "Missing information",
-          description: "Please fill in your business name and email address.",
+          description: "Please fill in your name, business name, and email address.",
           variant: "destructive"
         });
         setLoading(false);
@@ -97,15 +95,16 @@ const BusinessDetailsForm = () => {
       }
 
       let logoUrl = null;
+      let imageUrls = [];
 
       // Upload logo if provided
       if (formData.logoFile) {
         const fileExt = formData.logoFile.name.split('.').pop();
-        const fileName = `${Date.now()}-${Math.random().toString(36).substring(2)}.${fileExt}`;
+        const fileName = `${Date.now()}-logo.${fileExt}`;
         
         const { data: uploadData, error: uploadError } = await supabase.storage
           .from('blog-images')
-          .upload(`logos/${fileName}`, formData.logoFile);
+          .upload(`business-assets/${fileName}`, formData.logoFile);
 
         if (uploadError) {
           throw new Error('Failed to upload logo');
@@ -118,21 +117,39 @@ const BusinessDetailsForm = () => {
         logoUrl = publicUrl;
       }
 
+      // Upload additional images if provided
+      if (formData.imagesFiles.length > 0) {
+        for (let i = 0; i < formData.imagesFiles.length; i++) {
+          const file = formData.imagesFiles[i];
+          const fileExt = file.name.split('.').pop();
+          const fileName = `${Date.now()}-image-${i}.${fileExt}`;
+          
+          const { data: uploadData, error: uploadError } = await supabase.storage
+            .from('blog-images')
+            .upload(`business-assets/${fileName}`, file);
+
+          if (!uploadError) {
+            const { data: { publicUrl } } = supabase.storage
+              .from('blog-images')
+              .getPublicUrl(uploadData.path);
+            
+            imageUrls.push(publicUrl);
+          }
+        }
+      }
+
       // Submit business details
       const businessDetails = {
         sessionId,
         templateName,
+        name: formData.name,
         businessName: formData.businessName,
         email: formData.email,
         phone: formData.phone,
-        website: formData.website,
-        businessDescription: formData.businessDescription,
         servicesOffered: formData.servicesOffered,
-        targetAudience: formData.targetAudience,
-        brandColors: formData.brandColors,
-        preferredStyle: formData.preferredStyle,
-        additionalRequests: formData.additionalRequests,
+        colorPreferences: formData.colorPreferences,
         logoUrl,
+        imageUrls,
         submittedAt: new Date().toISOString()
       };
 
@@ -147,7 +164,7 @@ const BusinessDetailsForm = () => {
 
       toast({
         title: "Details submitted successfully!",
-        description: "We'll start working on your website and contact you within 24 hours."
+        description: "We'll start working on your website and send you a mockup within 24-48 hours."
       });
 
       // Redirect to success page
@@ -174,7 +191,7 @@ const BusinessDetailsForm = () => {
   return (
     <>
       <SEOHead 
-        title="Business Details - Complete Your Website Setup | L-Development"
+        title="Business Details - Let's Get Started on Your Website | L-Development"
         description="Provide your business details to customize your new website template. We'll have your professional site live within 48 hours."
         keywords="website customization, business details form, website setup, professional web design"
       />
@@ -213,28 +230,38 @@ const BusinessDetailsForm = () => {
             <div className="max-w-4xl mx-auto">
               <div className="text-center mb-8">
                 <h1 className="text-3xl md:text-4xl font-bold mb-4">
-                  Complete Your Website Setup
+                  Let's Get Started on Your Website
                 </h1>
                 <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                  Provide your business details below so we can customize your {templateName} template. 
-                  We'll have your website live within 24-48 hours.
+                  Please provide your details below so we can customize your {templateName} template. 
+                  We'll send you a mockup within 24-48 hours.
                 </p>
               </div>
 
               <form onSubmit={handleSubmit} className="space-y-8">
-                {/* Business Information */}
+                {/* Personal & Business Information */}
                 <Card>
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
                       <Building className="h-5 w-5" />
-                      Business Information
+                      Your Information
                     </CardTitle>
                     <CardDescription>
-                      Tell us about your business so we can customize your website accordingly.
+                      Tell us about yourself and your business.
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <Label htmlFor="name">Your Name *</Label>
+                        <Input
+                          id="name"
+                          value={formData.name}
+                          onChange={(e) => handleInputChange('name', e.target.value)}
+                          placeholder="John Smith"
+                          required
+                        />
+                      </div>
                       <div>
                         <Label htmlFor="businessName">Business Name *</Label>
                         <Input
@@ -245,6 +272,9 @@ const BusinessDetailsForm = () => {
                           required
                         />
                       </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
                         <Label htmlFor="email">Email Address *</Label>
                         <Input
@@ -256,9 +286,6 @@ const BusinessDetailsForm = () => {
                           required
                         />
                       </div>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
                         <Label htmlFor="phone">Phone Number</Label>
                         <Input
@@ -268,63 +295,43 @@ const BusinessDetailsForm = () => {
                           placeholder="+44 7123 456789"
                         />
                       </div>
-                      <div>
-                        <Label htmlFor="website">Current Website (if any)</Label>
-                        <Input
-                          id="website"
-                          value={formData.website}
-                          onChange={(e) => handleInputChange('website', e.target.value)}
-                          placeholder="www.yourwebsite.com"
-                        />
-                      </div>
                     </div>
 
                     <div>
-                      <Label htmlFor="businessDescription">Business Description</Label>
-                      <Textarea
-                        id="businessDescription"
-                        value={formData.businessDescription}
-                        onChange={(e) => handleInputChange('businessDescription', e.target.value)}
-                        placeholder="Briefly describe what your business does and what makes it unique..."
-                        rows={3}
-                      />
-                    </div>
-
-                    <div>
-                      <Label htmlFor="servicesOffered">Services/Products Offered</Label>
+                      <Label htmlFor="servicesOffered">Services Offered</Label>
                       <Textarea
                         id="servicesOffered"
                         value={formData.servicesOffered}
                         onChange={(e) => handleInputChange('servicesOffered', e.target.value)}
-                        placeholder="List your main services or products (e.g., Emergency plumbing, Bathroom installations, Leak repairs...)"
+                        placeholder="What services do you provide? (e.g., Web Design, Plumbing, Hair Cutting, etc.)"
                         rows={3}
                       />
                     </div>
 
                     <div>
-                      <Label htmlFor="targetAudience">Target Audience</Label>
+                      <Label htmlFor="colorPreferences">Colors or Style Preferences</Label>
                       <Input
-                        id="targetAudience"
-                        value={formData.targetAudience}
-                        onChange={(e) => handleInputChange('targetAudience', e.target.value)}
-                        placeholder="Who are your ideal customers? (e.g., Homeowners, Businesses, etc.)"
+                        id="colorPreferences"
+                        value={formData.colorPreferences}
+                        onChange={(e) => handleInputChange('colorPreferences', e.target.value)}
+                        placeholder="e.g., Blue and white, Modern style, Traditional look, etc."
                       />
                     </div>
                   </CardContent>
                 </Card>
 
-                {/* Branding */}
+                {/* File Uploads */}
                 <Card>
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
-                      <Palette className="h-5 w-5" />
-                      Branding & Design
+                      <Upload className="h-5 w-5" />
+                      Upload Your Assets
                     </CardTitle>
                     <CardDescription>
-                      Help us match your brand style and preferences.
+                      Upload your logo and any images you'd like us to include on your website.
                     </CardDescription>
                   </CardHeader>
-                  <CardContent className="space-y-4">
+                  <CardContent className="space-y-6">
                     <div>
                       <Label htmlFor="logoUpload">Business Logo</Label>
                       <div className="mt-2">
@@ -350,55 +357,58 @@ const BusinessDetailsForm = () => {
                           id="logoUpload"
                           type="file"
                           accept="image/*"
-                          onChange={handleFileChange}
+                          onChange={(e) => handleFileChange(e, 'logo')}
                           className="hidden"
                         />
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div>
-                        <Label htmlFor="brandColors">Brand Colors</Label>
-                        <Input
-                          id="brandColors"
-                          value={formData.brandColors}
-                          onChange={(e) => handleInputChange('brandColors', e.target.value)}
-                          placeholder="e.g., Blue and white, #FF5733, etc."
-                        />
-                      </div>
-                      <div>
-                        <Label htmlFor="preferredStyle">Preferred Style</Label>
-                        <Input
-                          id="preferredStyle"
-                          value={formData.preferredStyle}
-                          onChange={(e) => handleInputChange('preferredStyle', e.target.value)}
-                          placeholder="e.g., Modern, Traditional, Bold, Minimal"
+                    <div>
+                      <Label htmlFor="imagesUpload">Additional Images (Optional)</Label>
+                      <div className="mt-2">
+                        <label 
+                          htmlFor="imagesUpload"
+                          className="flex items-center justify-center w-full h-32 border-2 border-dashed border-muted-foreground/25 rounded-lg cursor-pointer hover:border-primary/50 transition-colors"
+                        >
+                          {formData.imagesFiles.length > 0 ? (
+                            <div className="text-center">
+                              <CheckCircle className="h-8 w-8 text-green-600 mx-auto mb-2" />
+                              <p className="text-sm font-medium">{formData.imagesFiles.length} image(s) selected</p>
+                              <p className="text-xs text-muted-foreground">Click to change</p>
+                            </div>
+                          ) : (
+                            <div className="text-center">
+                              <Upload className="h-8 w-8 text-muted-foreground mx-auto mb-2" />
+                              <p className="text-sm font-medium">Upload business images</p>
+                              <p className="text-xs text-muted-foreground">Photos of your work, team, location, etc.</p>
+                            </div>
+                          )}
+                        </label>
+                        <input
+                          id="imagesUpload"
+                          type="file"
+                          accept="image/*"
+                          multiple
+                          onChange={(e) => handleFileChange(e, 'images')}
+                          className="hidden"
                         />
                       </div>
                     </div>
                   </CardContent>
                 </Card>
 
-                {/* Additional Requests */}
-                <Card>
+                {/* Hosting Upsell */}
+                <Card className="bg-gradient-to-r from-primary/10 to-secondary/10 border-primary/20">
                   <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
-                      <FileText className="h-5 w-5" />
-                      Additional Requests
+                    <CardTitle className="flex items-center gap-2 text-primary">
+                      <Zap className="h-5 w-5" />
+                      Need Hosting & Ongoing Support?
                     </CardTitle>
                     <CardDescription>
-                      Any special requests or specific features you'd like included?
+                      All our sites include optional hosting, backups, support, updates and a business email for just £40/month. 
+                      You can add this during checkout or anytime after launch.
                     </CardDescription>
                   </CardHeader>
-                  <CardContent>
-                    <Textarea
-                      id="additionalRequests"
-                      value={formData.additionalRequests}
-                      onChange={(e) => handleInputChange('additionalRequests', e.target.value)}
-                      placeholder="Any specific features, pages, or customizations you'd like us to include..."
-                      rows={4}
-                    />
-                  </CardContent>
                 </Card>
 
                 {/* Submit */}
@@ -412,14 +422,14 @@ const BusinessDetailsForm = () => {
                     {loading ? (
                       <>
                         <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                        Submitting Details...
+                        Sending Your Info...
                       </>
                     ) : (
-                      'Submit Details & Start Build'
+                      'Send My Info'
                     )}
                   </Button>
                   <p className="text-sm text-muted-foreground mt-4">
-                    We'll contact you within 24 hours to confirm details and start building your website.
+                    We'll send you a mockup within 24-48 hours and contact you to confirm details.
                   </p>
                 </div>
               </form>

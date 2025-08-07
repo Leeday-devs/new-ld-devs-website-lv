@@ -60,29 +60,6 @@ const WebsiteTemplates = () => {
     }
   ];
 
-  const faqs = [
-    {
-      question: "How quickly can my website be live?",
-      answer: "Most templates can be customized and deployed within 48 hours of purchase. Complex customizations may take 3-5 business days."
-    },
-    {
-      question: "What's included in the monthly hosting fee?",
-      answer: "Your £40/month includes premium hosting, SSL certificate, regular backups, security monitoring, updates, and technical support."
-    },
-    {
-      question: "Can I customize the template after purchase?",
-      answer: "Absolutely! We include basic customization (colors, logo, content) in the initial price. Additional design changes can be quoted separately."
-    },
-    {
-      question: "Do I own the website after purchase?",
-      answer: "Yes, you own the website and all its content. The monthly fee covers hosting and ongoing support services."
-    },
-    {
-      question: "What if I need additional features?",
-      answer: "We can add custom features like e-commerce, advanced booking systems, or integrations. Contact us for a quote on additional functionality."
-    }
-  ];
-
   const scrollToTemplates = () => {
     document.getElementById('templates-grid')?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -180,12 +157,33 @@ const WebsiteTemplates = () => {
             </div>
 
             <div className="max-w-3xl mx-auto space-y-6">
-              {faqs.map((faq, index) => (
-                <Card key={index} className="p-6">
-                  <h3 className="font-semibold text-lg mb-3 text-foreground">{faq.question}</h3>
-                  <p className="text-muted-foreground leading-relaxed">{faq.answer}</p>
-                </Card>
-              ))}
+              <Card className="p-6">
+                <h3 className="font-semibold text-lg mb-3 text-foreground">What happens after I buy?</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  You'll fill out a short form so we can customise your new website. We'll then send you a mockup in 24–48 hours.
+                </p>
+              </Card>
+
+              <Card className="p-6">
+                <h3 className="font-semibold text-lg mb-3 text-foreground">Can I change text, images and branding?</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Yes — we'll customise it all for your business including your logo, colors, content, and images.
+                </p>
+              </Card>
+
+              <Card className="p-6">
+                <h3 className="font-semibold text-lg mb-3 text-foreground">Do I get access to edit my site?</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Yes, you'll get full access after delivery — or we can manage everything for you if you prefer.
+                </p>
+              </Card>
+
+              <Card className="p-6">
+                <h3 className="font-semibold text-lg mb-3 text-foreground">What's included in hosting?</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Hosting includes backups, updates, SSL, one business email and support for just £40/month.
+                </p>
+              </Card>
             </div>
           </section>
 
@@ -193,9 +191,10 @@ const WebsiteTemplates = () => {
           <section className="container mx-auto px-4 py-16">
             <div className="bg-gradient-to-r from-primary to-primary/80 rounded-3xl p-8 md:p-12 text-white">
               <div className="text-center mb-12">
-                <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Choose Our Templates?</h2>
+                <h2 className="text-3xl md:text-4xl font-bold mb-4">Need Hosting & Ongoing Support?</h2>
                 <p className="text-lg opacity-90 max-w-2xl mx-auto">
-                  Get more than just a website - get a complete digital solution for your business
+                  All our sites include optional hosting, backups, support, updates and a business email for just £40/month. 
+                  You can add this during checkout or anytime after launch.
                 </p>
               </div>
 
