@@ -17,6 +17,9 @@ import PaymentSuccess from "./pages/PaymentSuccess";
 import PaymentCanceled from "./pages/PaymentCanceled";
 import WebsiteTemplates from "./pages/WebsiteTemplates";
 import TemplateDetail from "./pages/TemplateDetail";
+import PlumberProDemo from "./pages/PlumberProDemo";
+import ElectricianExpertDemo from "./pages/ElectricianExpertDemo";
+import ModernBarberDemo from "./pages/ModernBarberDemo";
 import BusinessDetailsForm from "./pages/BusinessDetailsForm";
 import BusinessDetailsSuccess from "./pages/BusinessDetailsSuccess";
 import NotFound from "./pages/NotFound";
@@ -42,6 +45,9 @@ const App = () => (
             <Route path="/blog/:slug" element={<BlogPost />} />
             <Route path="/templates" element={<WebsiteTemplates />} />
             <Route path="/templates/:templateId" element={<TemplateDetail />} />
+            <Route path="/demo/plumber-pro" element={<PlumberProDemo />} />
+            <Route path="/demo/electrician-expert" element={<ElectricianExpertDemo />} />
+            <Route path="/demo/modern-barber" element={<ModernBarberDemo />} />
             <Route path="/business-details" element={<BusinessDetailsForm />} />
             <Route path="/business-details-success" element={<BusinessDetailsSuccess />} />
             <Route path="/payment-success" element={<PaymentSuccess />} />
