@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { supabase } from "@/integrations/supabase/client";
+import { useAuth } from "@/hooks/useAuth";
 import {
   Dialog,
   DialogContent,
@@ -45,6 +46,7 @@ interface CreateCustomerModalProps {
 }
 
 const CreateCustomerModal = ({ open, onClose, onSuccess }: CreateCustomerModalProps) => {
+  const { user } = useAuth();
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
 
@@ -153,6 +155,27 @@ const CreateCustomerModal = ({ open, onClose, onSuccess }: CreateCustomerModalPr
         title: "Customer Created Successfully",
         description: `Customer account created for ${data.name}. They can now login with email: ${data.email}`,
       });
+
+      // Send Discord notification
+      try {
+        await supabase.functions.invoke('send-discord-notification', {
+          body: {
+            eventType: 'admin_action',
+            data: {
+              action: 'Customer Created',
+              adminEmail: user.email,
+              details: `New customer: ${data.name} (${data.email})`,
+              customerName: data.name,
+              customerEmail: data.email,
+              company: data.company || 'Not specified',
+              planName: data.plan_name,
+              planPrice: data.plan_price
+            }
+          }
+        });
+      } catch (discordError) {
+        console.error('Failed to send Discord notification:', discordError);
+      }
 
       form.reset();
       onSuccess();

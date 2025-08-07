@@ -178,6 +178,26 @@ const CreatePostModal = ({ open, onClose, onSuccess }: CreatePostModalProps) => 
         description: `Blog post ${formData.status === 'published' ? 'published' : 'saved as draft'} successfully!`,
       });
 
+      // Send Discord notification
+      try {
+        await supabase.functions.invoke('send-discord-notification', {
+          body: {
+            eventType: 'admin_action',
+            data: {
+              action: 'Blog Post Created',
+              adminEmail: user?.email || 'Unknown Admin',
+              details: `${formData.status === 'published' ? 'Published' : 'Created draft'}: "${formData.title}"`,
+              postTitle: formData.title,
+              category: formData.category,
+              status: formData.status,
+              excerpt: formData.excerpt?.substring(0, 100) + (formData.excerpt && formData.excerpt.length > 100 ? '...' : '')
+            }
+          }
+        });
+      } catch (discordError) {
+        console.error('Failed to send Discord notification:', discordError);
+      }
+
       onSuccess();
     } catch (error) {
       toast({

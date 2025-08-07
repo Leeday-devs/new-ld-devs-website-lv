@@ -36,7 +36,10 @@ serve(async (req) => {
       'work_request': 0xff9900, // Gold
       'custom_request': 0xff3366, // Pink
       'website_setup': 0x66ff99, // Light green
-      'business_details': 0x3366ff // Royal blue
+      'business_details': 0x3366ff, // Royal blue
+      'admin_action': 0x9933cc, // Purple
+      'customer_inquiry': 0x33ccff, // Light blue
+      'security_action': 0xff3333 // Red
     };
 
     // Create embed based on event type
@@ -201,6 +204,56 @@ serve(async (req) => {
             { name: 'Color Preferences', value: data.colorPreferences || 'Not specified', inline: false },
             { name: 'Assets', value: `Logo: ${data.hasLogo ? 'Yes' : 'No'}, Images: ${data.imageCount || 0}`, inline: false },
             { name: 'Session ID', value: data.sessionId || 'N/A', inline: true }
+          ],
+          timestamp: new Date().toISOString()
+        };
+        break;
+
+      case 'admin_action':
+        embed = {
+          title: '⚙️ Admin Action',
+          description: `Admin performed: **${data.action}**`,
+          color: eventColors.admin_action,
+          fields: [
+            { name: 'Admin', value: data.adminEmail, inline: true },
+            { name: 'Action', value: data.action, inline: true },
+            { name: 'Details', value: data.details, inline: false },
+            ...(data.customerName ? [{ name: 'Customer', value: `${data.customerName} (${data.customerEmail})`, inline: true }] : []),
+            ...(data.planName ? [{ name: 'Plan', value: `${data.planName} - £${data.planPrice}`, inline: true }] : [])
+          ],
+          timestamp: new Date().toISOString()
+        };
+        break;
+
+      case 'customer_inquiry':
+        embed = {
+          title: '💬 Customer Inquiry',
+          description: `New inquiry for **${data.serviceName}**`,
+          color: eventColors.customer_inquiry,
+          fields: [
+            { name: 'Customer', value: data.customerName, inline: true },
+            { name: 'Email', value: data.customerEmail, inline: true },
+            { name: 'Phone', value: data.customerPhone || 'Not provided', inline: true },
+            { name: 'Company', value: data.company, inline: true },
+            { name: 'Service', value: data.serviceName, inline: false },
+            { name: 'Inquiry Type', value: data.inquiryType, inline: true }
+          ],
+          timestamp: new Date().toISOString()
+        };
+        break;
+
+      case 'security_action':
+        embed = {
+          title: '🔒 Security Action',
+          description: `Security event: **${data.action}**`,
+          color: eventColors.security_action,
+          fields: [
+            { name: 'Action', value: data.action, inline: true },
+            { name: 'User', value: data.userEmail || data.customerEmail, inline: true },
+            { name: 'Timestamp', value: data.timestamp, inline: true },
+            { name: 'Details', value: data.details, inline: false },
+            ...(data.adminEmail ? [{ name: 'Admin', value: data.adminEmail, inline: true }] : []),
+            ...(data.customerName ? [{ name: 'Customer', value: data.customerName, inline: true }] : [])
           ],
           timestamp: new Date().toISOString()
         };

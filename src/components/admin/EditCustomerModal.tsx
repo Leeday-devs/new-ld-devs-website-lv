@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useAuth } from "@/hooks/useAuth";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -59,6 +60,7 @@ interface EditCustomerModalProps {
 }
 
 const EditCustomerModal = ({ customer, open, onClose, onSuccess }: EditCustomerModalProps) => {
+  const { user } = useAuth();
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
 
@@ -106,6 +108,32 @@ const EditCustomerModal = ({ customer, open, onClose, onSuccess }: EditCustomerM
           variant: "destructive",
         });
         return;
+      }
+
+      toast({
+        title: "Customer Updated",
+        description: `Successfully updated customer: ${data.name}`,
+      });
+
+      // Send Discord notification
+      try {
+        await supabase.functions.invoke('send-discord-notification', {
+          body: {
+            eventType: 'admin_action',
+            data: {
+              action: 'Customer Updated',
+              adminEmail: user?.email || 'Unknown Admin',
+              details: `Updated customer: ${data.name} (${data.email})`,
+              customerName: data.name,
+              customerEmail: data.email,
+              company: data.company || 'Not specified',
+              planName: data.plan_name,
+              planPrice: data.plan_price
+            }
+          }
+        });
+      } catch (discordError) {
+        console.error('Failed to send Discord notification:', discordError);
       }
 
       onSuccess();

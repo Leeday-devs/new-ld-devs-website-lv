@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -24,6 +25,7 @@ interface PasswordResetDialogProps {
 }
 
 const PasswordResetDialog = ({ open, onClose, customerEmail, customerName }: PasswordResetDialogProps) => {
+  const { user } = useAuth();
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
   const [newPassword, setNewPassword] = useState("");
@@ -72,9 +74,9 @@ const PasswordResetDialog = ({ open, onClose, customerEmail, customerName }: Pas
         return;
       }
 
-      const user = users.users.find((u: any) => u.email === customerEmail);
+      const targetUser = users.users.find((u: any) => u.email === customerEmail);
       
-      if (!user) {
+      if (!targetUser) {
         toast({
           title: "Error",
           description: "User not found.",
@@ -85,7 +87,7 @@ const PasswordResetDialog = ({ open, onClose, customerEmail, customerName }: Pas
 
       // Update user password using admin API
       const { error: updateError } = await supabase.auth.admin.updateUserById(
-        user.id,
+        targetUser.id,
         { password: newPassword }
       );
 
@@ -103,6 +105,25 @@ const PasswordResetDialog = ({ open, onClose, customerEmail, customerName }: Pas
         title: "Password Reset Successfully",
         description: `Password has been reset for ${customerName}. Make sure to share the new password securely.`,
       });
+
+      // Send Discord notification for security purposes
+      try {
+        await supabase.functions.invoke('send-discord-notification', {
+          body: {
+            eventType: 'security_action',
+            data: {
+              action: 'Password Reset (Admin)',
+               adminEmail: user?.email || 'Unknown Admin',
+              customerEmail: customerEmail,
+              customerName: customerName,
+              timestamp: new Date().toISOString(),
+              details: `Admin reset password for customer: ${customerName} (${customerEmail})`
+            }
+          }
+        });
+      } catch (discordError) {
+        console.error('Failed to send Discord notification:', discordError);
+      }
 
       setNewPassword("");
       onClose();

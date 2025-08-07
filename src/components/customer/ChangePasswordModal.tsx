@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useAuth } from "@/hooks/useAuth";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -39,6 +40,7 @@ interface ChangePasswordModalProps {
 }
 
 const ChangePasswordModal = ({ open, onClose }: ChangePasswordModalProps) => {
+  const { user } = useAuth();
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
   const [showCurrentPassword, setShowCurrentPassword] = useState(false);
@@ -101,6 +103,24 @@ const ChangePasswordModal = ({ open, onClose }: ChangePasswordModalProps) => {
         title: "Success",
         description: "Your password has been updated successfully.",
       });
+
+      // Send Discord notification for security purposes
+      try {
+        const { data: currentUser } = await supabase.auth.getUser();
+        await supabase.functions.invoke('send-discord-notification', {
+          body: {
+            eventType: 'security_action',
+            data: {
+              action: 'Password Changed',
+              userEmail: currentUser.user?.email || 'Unknown User',
+              timestamp: new Date().toISOString(),
+              details: 'Customer changed their password via dashboard'
+            }
+          }
+        });
+      } catch (discordError) {
+        console.error('Failed to send Discord notification:', discordError);
+      }
 
     } catch (error) {
       console.error('Error:', error);
