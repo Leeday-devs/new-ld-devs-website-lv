@@ -1,14 +1,41 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import { ArrowRight, Check, Clock, Palette, Zap, Shield, Eye, CreditCard, Lock, Users, Star } from "lucide-react";
+import { ArrowRight, Check, Clock, Palette, Zap, Shield, Eye, CreditCard, Lock, Users, Star, FileText, Globe, Mail, Phone, MessageSquare } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const WebsiteTemplates = () => {
+  const [isFormOpen, setIsFormOpen] = useState(false);
+  const [formData, setFormData] = useState({
+    businessName: '',
+    industry: '',
+    email: '',
+    phone: '',
+    description: ''
+  });
+
+  const handleFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Here you would typically send the form data to your backend
+    console.log('Form submitted:', formData);
+    setIsFormOpen(false);
+    // Reset form
+    setFormData({
+      businessName: '',
+      industry: '',
+      email: '',
+      phone: '',
+      description: ''
+    });
+  };
   const templates = [
     {
       id: 1,
@@ -165,6 +192,187 @@ const WebsiteTemplates = () => {
                     <p className="text-muted-foreground text-sm">No other business will have your design</p>
                   </div>
                 </div>
+              </div>
+            </div>
+          </section>
+
+          {/* What You Get Section */}
+          <section className="container mx-auto px-4 py-16">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">What's Included in Your Pre-Built Website</h2>
+              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+                Every pre-built website comes as a complete 5-page package, professionally designed and ready to customize for your business.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+              {/* Left Side - What's Included */}
+              <div className="space-y-8">
+                <div className="space-y-6">
+                  <div className="flex items-start gap-4">
+                    <div className="bg-primary/10 rounded-full w-10 h-10 flex items-center justify-center mt-1">
+                      <FileText className="h-5 w-5 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-lg mb-2 text-foreground">5 Complete Pages</h3>
+                      <p className="text-muted-foreground">Home, About, Services, Portfolio/Gallery, and Contact pages — everything you need to showcase your business professionally.</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="bg-primary/10 rounded-full w-10 h-10 flex items-center justify-center mt-1">
+                      <Globe className="h-5 w-5 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-lg mb-2 text-foreground">Mobile Responsive Design</h3>
+                      <p className="text-muted-foreground">Your website will look perfect on all devices — desktop, tablet, and mobile phones.</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="bg-primary/10 rounded-full w-10 h-10 flex items-center justify-center mt-1">
+                      <Mail className="h-5 w-5 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-lg mb-2 text-foreground">Contact Forms & Integration</h3>
+                      <p className="text-muted-foreground">Working contact forms, Google Maps integration, and social media links to connect with your customers.</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="bg-primary/10 rounded-full w-10 h-10 flex items-center justify-center mt-1">
+                      <Zap className="h-5 w-5 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-lg mb-2 text-foreground">SEO Optimized</h3>
+                      <p className="text-muted-foreground">Built with search engine optimization in mind to help your business get found online.</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="bg-primary/10 rounded-full w-10 h-10 flex items-center justify-center mt-1">
+                      <Star className="h-5 w-5 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-lg mb-2 text-foreground">Full Customization</h3>
+                      <p className="text-muted-foreground">We'll customize everything — your logo, colors, content, images, and branding to match your business perfectly.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right Side - Additional Pages & Custom Request */}
+              <div className="space-y-8">
+                <Card className="p-8 border-2 border-primary/20 bg-gradient-to-br from-primary/5 to-secondary/5">
+                  <div className="text-center mb-6">
+                    <div className="bg-primary/20 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                      <ArrowRight className="h-8 w-8 text-primary" />
+                    </div>
+                    <h3 className="text-2xl font-bold mb-2 text-foreground">Need More Pages?</h3>
+                    <p className="text-muted-foreground">
+                      Start with 5 pages, expand as you grow. Additional pages can be added for £75 each.
+                    </p>
+                  </div>
+                  
+                  <div className="space-y-4 mb-6">
+                    <div className="flex justify-between items-center p-3 bg-background/50 rounded-lg">
+                      <span className="text-sm text-muted-foreground">Blog page</span>
+                      <span className="font-semibold text-primary">£75</span>
+                    </div>
+                    <div className="flex justify-between items-center p-3 bg-background/50 rounded-lg">
+                      <span className="text-sm text-muted-foreground">Online shop</span>
+                      <span className="font-semibold text-primary">£150</span>
+                    </div>
+                    <div className="flex justify-between items-center p-3 bg-background/50 rounded-lg">
+                      <span className="text-sm text-muted-foreground">Booking system</span>
+                      <span className="font-semibold text-primary">£125</span>
+                    </div>
+                    <div className="flex justify-between items-center p-3 bg-background/50 rounded-lg">
+                      <span className="text-sm text-muted-foreground">Custom page</span>
+                      <span className="font-semibold text-primary">£75</span>
+                    </div>
+                  </div>
+                </Card>
+
+                <Card className="p-8 border-2 border-secondary/20 bg-gradient-to-br from-secondary/5 to-accent/5">
+                  <div className="text-center mb-6">
+                    <div className="bg-secondary/20 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                      <MessageSquare className="h-8 w-8 text-secondary" />
+                    </div>
+                    <h3 className="text-2xl font-bold mb-2 text-foreground">Don't See Your Industry?</h3>
+                    <p className="text-muted-foreground mb-6">
+                      We can create a custom pre-built website example specifically for your niche. Request a demo and we'll show you what's possible.
+                    </p>
+                  </div>
+
+                  <Dialog open={isFormOpen} onOpenChange={setIsFormOpen}>
+                    <DialogTrigger asChild>
+                      <Button className="w-full bg-secondary hover:bg-secondary/90 text-secondary-foreground">
+                        <MessageSquare className="mr-2 h-4 w-4" />
+                        Request Custom Example
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent className="sm:max-w-[425px]">
+                      <DialogHeader>
+                        <DialogTitle>Request a Custom Pre-Built Example</DialogTitle>
+                        <DialogDescription>
+                          Tell us about your business and we'll create a custom website example for your industry.
+                        </DialogDescription>
+                      </DialogHeader>
+                      <form onSubmit={handleFormSubmit} className="space-y-4">
+                        <div>
+                          <Input
+                            placeholder="Business Name"
+                            value={formData.businessName}
+                            onChange={(e) => setFormData({...formData, businessName: e.target.value})}
+                            required
+                          />
+                        </div>
+                        <div>
+                          <Input
+                            placeholder="Industry/Niche (e.g., Dental Practice, Law Firm, etc.)"
+                            value={formData.industry}
+                            onChange={(e) => setFormData({...formData, industry: e.target.value})}
+                            required
+                          />
+                        </div>
+                        <div>
+                          <Input
+                            type="email"
+                            placeholder="Email Address"
+                            value={formData.email}
+                            onChange={(e) => setFormData({...formData, email: e.target.value})}
+                            required
+                          />
+                        </div>
+                        <div>
+                          <Input
+                            type="tel"
+                            placeholder="Phone Number"
+                            value={formData.phone}
+                            onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                          />
+                        </div>
+                        <div>
+                          <Textarea
+                            placeholder="Tell us about your business and what features you'd like to see..."
+                            value={formData.description}
+                            onChange={(e) => setFormData({...formData, description: e.target.value})}
+                            rows={4}
+                          />
+                        </div>
+                        <div className="flex gap-3">
+                          <Button type="button" variant="outline" onClick={() => setIsFormOpen(false)} className="flex-1">
+                            Cancel
+                          </Button>
+                          <Button type="submit" className="flex-1">
+                            Submit Request
+                          </Button>
+                        </div>
+                      </form>
+                    </DialogContent>
+                  </Dialog>
+                </Card>
               </div>
             </div>
           </section>
