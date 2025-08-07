@@ -215,6 +215,7 @@ const WebsiteTemplates = () => {
       image: "/api/placeholder/400/300",
       category: "Beauty & Wellness",
       demoUrl: "/demo/modern-barber",
+      stripeProductKey: "prod_Sp8DEMM15r3PWO",
       features: ["Online booking", "Style gallery", "Team profiles", "Price list"]
     },
     {
@@ -226,6 +227,7 @@ const WebsiteTemplates = () => {
       image: "/api/placeholder/400/300",
       category: "Trades",
       demoUrl: "/demo/electrician-expert",
+      stripeProductKey: "prod_Sp8HzQm1jVBRsR",
       features: ["Emergency hotline", "Safety certificates", "Project showcase", "Free estimates"]
     },
     {
@@ -237,6 +239,7 @@ const WebsiteTemplates = () => {
       image: "/api/placeholder/400/300",
       category: "Food & Beverage",
       demoUrl: "/demo/restaurant-deluxe",
+      stripeProductKey: "prod_Sp8J4uU6DrIdW4",
       features: ["Table reservations", "Digital menu", "Chef profiles", "Wine pairings"]
     },
     {
@@ -248,6 +251,7 @@ const WebsiteTemplates = () => {
       image: "/api/placeholder/400/300",
       category: "Health & Fitness",
       demoUrl: "/demo/fitness-studio",
+      stripeProductKey: "prod_Sp8KJiZUErHYDS",
       features: ["Class schedules", "Member portal", "Workout tracker", "Nutrition plans"]
     },
     {
@@ -259,6 +263,7 @@ const WebsiteTemplates = () => {
       image: "/api/placeholder/400/300",
       category: "Automotive",
       demoUrl: "/demo/auto-repair",
+      stripeProductKey: "prod_Sp8KzS8aPeskRq",
       features: ["MOT booking", "Service tracker", "Warranty info", "Parts catalog"]
     }
   ];
