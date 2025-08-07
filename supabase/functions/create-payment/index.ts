@@ -304,38 +304,47 @@ serve(async (req) => {
       // For payments with Stripe product key, use the product directly
       console.log("Using Stripe product key:", stripeProductKey);
       
-      const prices = await stripe.prices.list({
-        product: stripeProductKey,
-        active: true,
-        limit: 1,
-      });
+      try {
+        const prices = await stripe.prices.list({
+          product: stripeProductKey,
+          active: true,
+          limit: 1,
+        });
 
-      if (prices.data.length === 0) {
-        throw new Error(`No active price found for product ${stripeProductKey}`);
-      }
+        console.log("Found prices for product:", prices.data.length);
+        
+        if (prices.data.length === 0) {
+          console.error(`No active price found for product ${stripeProductKey}`);
+          throw new Error(`No active price found for product ${stripeProductKey}. Please ensure the product has an active price in Stripe.`);
+        }
 
-      const priceId = prices.data[0].id;
-      console.log("Found price ID:", priceId);
+        const priceId = prices.data[0].id;
+        console.log("Found price ID:", priceId);
 
-      sessionConfig = {
-        customer: customerId,
-        customer_email: customerId ? undefined : customerEmail,
-        line_items: [
-          {
-            price: priceId,
-            quantity: 1,
+        sessionConfig = {
+          customer: customerId,
+          customer_email: customerId ? undefined : customerEmail,
+          line_items: [
+            {
+              price: priceId,
+              quantity: 1,
+            },
+          ],
+          mode: "payment",
+          success_url: paymentData.successUrl || `${req.headers.get("origin")}/payment-success?session_id={CHECKOUT_SESSION_ID}`,
+          cancel_url: paymentData.cancelUrl || `${req.headers.get("origin")}/payment-canceled`,
+          metadata: {
+            service_name: serviceName || "Website Template",
+            payment_type: "template_purchase",
+            user_id: user?.id || "guest",
+            stripe_product_key: stripeProductKey,
           },
-        ],
-        mode: "payment",
-        success_url: paymentData.successUrl || `${req.headers.get("origin")}/payment-success?session_id={CHECKOUT_SESSION_ID}`,
-        cancel_url: paymentData.cancelUrl || `${req.headers.get("origin")}/payment-canceled`,
-        metadata: {
-          service_name: serviceName || "Website Template",
-          payment_type: "template_purchase",
-          user_id: user?.id || "guest",
-          stripe_product_key: stripeProductKey,
-        },
-      };
+        };
+      } catch (productError) {
+        console.error("Error with Stripe product key:", productError);
+        logPaymentAttempt(clientIP, userAgent, user, paymentData, false, `Stripe product error: ${productError.message}`);
+        throw new Error(`Payment setup failed: ${productError.message}`);
+      }
     } else if (type === 'deposit') {
       // For deposit payments, use the provided Stripe product
       const prices = await stripe.prices.list({
