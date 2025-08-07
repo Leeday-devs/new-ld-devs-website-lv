@@ -402,6 +402,45 @@ export type Database = {
         }
         Relationships: []
       }
+      website_setup_submissions: {
+        Row: {
+          business_name: string
+          created_at: string
+          email: string
+          id: string
+          images_urls: string[] | null
+          logo_url: string | null
+          name: string
+          phone: string | null
+          services_offered: string | null
+          style_preferences: string | null
+        }
+        Insert: {
+          business_name: string
+          created_at?: string
+          email: string
+          id?: string
+          images_urls?: string[] | null
+          logo_url?: string | null
+          name: string
+          phone?: string | null
+          services_offered?: string | null
+          style_preferences?: string | null
+        }
+        Update: {
+          business_name?: string
+          created_at?: string
+          email?: string
+          id?: string
+          images_urls?: string[] | null
+          logo_url?: string | null
+          name?: string
+          phone?: string | null
+          services_offered?: string | null
+          style_preferences?: string | null
+        }
+        Relationships: []
+      }
       work_requests: {
         Row: {
           completed_at: string | null
