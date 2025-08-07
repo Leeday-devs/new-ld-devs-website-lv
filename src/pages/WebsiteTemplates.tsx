@@ -51,6 +51,9 @@ const WebsiteTemplates = () => {
     
     if (!selectedTemplate) return;
     
+    console.log('Starting payment process for template:', selectedTemplate.name);
+    console.log('Template data:', selectedTemplate);
+    
     try {
       // Send Discord notification first
       const { error: discordError } = await supabase.functions.invoke('send-discord-notification', {
@@ -71,7 +74,10 @@ const WebsiteTemplates = () => {
       const requestBody = {
         // Use Stripe product key if available, otherwise fall back to price
         ...(selectedTemplate.stripeProductKey 
-          ? { stripeProductKey: selectedTemplate.stripeProductKey }
+          ? { 
+              stripeProductKey: selectedTemplate.stripeProductKey,
+              serviceName: `${selectedTemplate.name} Website Template`
+            }
           : { 
               amount: parseInt(selectedTemplate.price.replace('£', '')) * 100,
               serviceName: `${selectedTemplate.name} Website Template`
@@ -88,15 +94,21 @@ const WebsiteTemplates = () => {
         cancelUrl: `${window.location.origin}/payment-canceled`
       };
       
+      console.log('Sending payment request:', requestBody);
+      
       const { data, error } = await supabase.functions.invoke('create-payment', {
         body: requestBody
       });
       
+      console.log('Payment response:', { data, error });
+      
       if (error) {
+        console.error('Payment function error:', error);
         throw error;
       }
       
       if (data?.url) {
+        console.log('Redirecting to Stripe checkout:', data.url);
         // Open Stripe checkout in a new tab
         window.open(data.url, '_blank');
         setIsBusinessDetailsOpen(false);
@@ -105,6 +117,9 @@ const WebsiteTemplates = () => {
           title: "Redirecting to Payment",
           description: "Opening secure payment window..."
         });
+      } else {
+        console.error('No checkout URL received from payment function');
+        throw new Error('No checkout URL received');
       }
     } catch (error) {
       console.error('Payment error:', error);
