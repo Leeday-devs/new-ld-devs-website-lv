@@ -11,7 +11,7 @@ const Navigation = () => {
     { label: "Home", href: "/", isInternal: true },
     { label: "About", href: "#about", isInternal: false },
     { label: "Services", href: "#services", isInternal: false },
-    { label: "Templates", href: "/templates", isInternal: true },
+    { label: "Pre-Built", href: "/templates", isInternal: true },
     { label: "Portfolio", href: "#portfolio", isInternal: false },
     { label: "Blog", href: "/blog", isInternal: true },
     { label: "FAQ", href: "#faq", isInternal: false },

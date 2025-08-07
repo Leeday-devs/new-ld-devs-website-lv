@@ -259,7 +259,7 @@ const WebsiteTemplates = () => {
               <Card className="p-6">
                 <h3 className="font-semibold text-lg mb-3 text-foreground">What happens after I buy?</h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  You'll fill out a short form so we can customise your new website. We'll then send you a mockup in 24–48 hours.
+                  You'll fill out a short form so we can customise your new website. We'll then send you a mockup within 2 business days.
                 </p>
               </Card>
 
@@ -302,8 +302,8 @@ const WebsiteTemplates = () => {
                   <div className="bg-white/20 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                     <Clock className="h-8 w-8" />
                   </div>
-                  <h3 className="font-semibold text-xl mb-2">48-Hour Turnaround</h3>
-                  <p className="opacity-90">Get your website live in just 2 days, not weeks</p>
+                  <h3 className="font-semibold text-xl mb-2">Fast Delivery</h3>
+                  <p className="opacity-90">Get your website live quickly with our streamlined process</p>
                 </div>
 
                 <div className="text-center">
