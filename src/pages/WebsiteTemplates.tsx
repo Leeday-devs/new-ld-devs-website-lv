@@ -76,7 +76,8 @@ const WebsiteTemplates = () => {
         ...(selectedTemplate.stripeProductKey 
           ? { 
               stripeProductKey: selectedTemplate.stripeProductKey,
-              serviceName: `${selectedTemplate.name} Website Template`
+              serviceName: `${selectedTemplate.name} Website Template`,
+              templatePrice: selectedTemplate.price // Pass the actual price
             }
           : { 
               amount: parseInt(selectedTemplate.price.replace('£', '')) * 100,

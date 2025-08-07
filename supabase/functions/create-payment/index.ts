@@ -232,7 +232,7 @@ serve(async (req) => {
       });
     }
 
-    const { amount, serviceName, type, customerInfo, stripeProductKey } = paymentData;
+    const { amount, serviceName, type, customerInfo, stripeProductKey, templatePrice } = paymentData;
     console.log("Payment data received:", { amount, serviceName, type, stripeProductKey, customerInfo });
     
     // Validate input - skip amount validation if using Stripe product key
@@ -469,6 +469,19 @@ serve(async (req) => {
     try {
       const discordWebhookUrl = Deno.env.get('DISCORD_WEBHOOK_URL');
       if (discordWebhookUrl) {
+        // Calculate the actual amount based on the payment type
+        let actualAmount;
+        if (stripeProductKey && templatePrice) {
+          // Use the template price passed from frontend
+          actualAmount = parseInt(templatePrice.replace('£', '')) * 100;
+        } else if (stripeProductKey) {
+          // For template purchases, parse the price from serviceName or use a default
+          const priceMatch = serviceName?.match(/£(\d+)/);
+          actualAmount = priceMatch ? parseInt(priceMatch[1]) * 100 : 35000; // Default to £350
+        } else {
+          actualAmount = type === 'deposit' ? 2000 : (amount || 2000);
+        }
+
         await fetch(`${Deno.env.get('SUPABASE_URL')}/functions/v1/send-discord-notification`, {
           method: 'POST',
           headers: {
@@ -483,7 +496,7 @@ serve(async (req) => {
                customerCompany: sanitizedCustomerInfo?.company,
                customerPhone: sanitizedCustomerInfo?.phone,
                serviceName: serviceName,
-               amount: type === 'deposit' ? 2000 : (amount || 2000)
+               amount: actualAmount
              }
            })
         });
