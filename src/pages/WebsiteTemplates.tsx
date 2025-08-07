@@ -9,8 +9,9 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import { ArrowRight, Check, Clock, Palette, Zap, Shield, Eye, CreditCard, Lock, Users, Star, FileText, Globe, Mail, Phone, MessageSquare } from "lucide-react";
+import { ArrowRight, Check, Clock, Palette, Zap, Shield, Eye, CreditCard, Lock, Users, Star, FileText, Globe, Mail, Phone, MessageSquare, Wrench, Scissors, Car, UtensilsCrossed, Dumbbell, Stethoscope, Code, Sparkles, Layers, Monitor } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const WebsiteTemplates = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -36,6 +37,18 @@ const WebsiteTemplates = () => {
       description: ''
     });
   };
+  const getTemplateIcon = (category: string) => {
+    const iconMap: { [key: string]: any } = {
+      'Trades': Wrench,
+      'Beauty & Wellness': Scissors,
+      'Automotive': Car,
+      'Food & Beverage': UtensilsCrossed,
+      'Health & Fitness': Dumbbell,
+      'Healthcare': Stethoscope
+    };
+    return iconMap[category] || Code;
+  };
+
   const templates = [
     {
       id: 1,
@@ -46,62 +59,68 @@ const WebsiteTemplates = () => {
       image: "/api/placeholder/400/300",
       category: "Trades",
       demoUrl: "/demo/plumber-pro",
-      stripeCheckoutUrl: "[Paste your Stripe checkout link here]"
+      stripeCheckoutUrl: "[Paste your Stripe checkout link here]",
+      features: ["Emergency booking", "Service gallery", "Quote calculator", "Customer reviews"]
     },
     {
       id: 2,
       name: "Modern Barber",
-      description: "Stylish barbershop template with appointment booking and gallery",
+      description: "Stylish barbershop website with appointment booking and gallery",
       price: "£350",
       monthlyPrice: "£40/month",
       image: "/api/placeholder/400/300",
       category: "Beauty & Wellness",
       demoUrl: "/demo/modern-barber",
-      stripeCheckoutUrl: "[Paste your Stripe checkout link here]"
+      stripeCheckoutUrl: "[Paste your Stripe checkout link here]",
+      features: ["Online booking", "Style gallery", "Team profiles", "Price list"]
     },
     {
       id: 3,
       name: "Electrician Expert",
-      description: "Clean, professional electrical services template with contact forms",
+      description: "Clean, professional electrical services website with contact forms",
       price: "£350",
       monthlyPrice: "£40/month",
       image: "/api/placeholder/400/300",
       category: "Trades",
       demoUrl: "/demo/electrician-expert",
-      stripeCheckoutUrl: "[Paste your Stripe checkout link here]"
+      stripeCheckoutUrl: "[Paste your Stripe checkout link here]",
+      features: ["Emergency hotline", "Safety certificates", "Project showcase", "Free estimates"]
     },
     {
       id: 4,
       name: "Restaurant Deluxe",
-      description: "Full-featured restaurant template with menu, reservations, and online ordering",
+      description: "Full-featured restaurant website with menu, reservations, and online ordering",
       price: "£450",
       monthlyPrice: "£40/month",
       image: "/api/placeholder/400/300",
       category: "Food & Beverage",
       demoUrl: "/demo/restaurant-deluxe",
-      stripeCheckoutUrl: "[Paste your Stripe checkout link here]"
+      stripeCheckoutUrl: "[Paste your Stripe checkout link here]",
+      features: ["Table reservations", "Digital menu", "Chef profiles", "Wine pairings"]
     },
     {
       id: 5,
       name: "Fitness Studio",
-      description: "Dynamic fitness center template with class schedules and membership plans",
+      description: "Dynamic fitness center website with class schedules and membership plans",
       price: "£400",
       monthlyPrice: "£40/month",
       image: "/api/placeholder/400/300",
       category: "Health & Fitness",
       demoUrl: "/demo/fitness-studio",
-      stripeCheckoutUrl: "[Paste your Stripe checkout link here]"
+      stripeCheckoutUrl: "[Paste your Stripe checkout link here]",
+      features: ["Class schedules", "Member portal", "Workout tracker", "Nutrition plans"]
     },
     {
       id: 6,
       name: "Auto Repair",
-      description: "Professional automotive services template with service booking",
+      description: "Professional automotive services website with service booking",
       price: "£350",
       monthlyPrice: "£40/month",
       image: "/api/placeholder/400/300",
       category: "Automotive",
       demoUrl: "/demo/auto-repair",
-      stripeCheckoutUrl: "[Paste your Stripe checkout link here]"
+      stripeCheckoutUrl: "[Paste your Stripe checkout link here]",
+      features: ["MOT booking", "Service tracker", "Warranty info", "Parts catalog"]
     }
   ];
 
@@ -117,36 +136,81 @@ const WebsiteTemplates = () => {
         keywords="pre-built websites, unique website designs, small business websites, tradesman websites, professional web design, ready-made websites UK"
       />
       
-      <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted">
+      <div className="min-h-screen bg-background">
         <Navigation />
         
         <main>
-          <div className="container mx-auto px-4 pt-20">
-            <Breadcrumbs 
-              items={[
-                { label: "Home", href: "/" },
-                { label: "Pre-Built Websites", href: "/templates" }
-              ]}
-            />
-          </div>
+          {/* Hero Section with Background Graphics */}
+          <section className="relative pt-32 pb-20 overflow-hidden">
+            {/* Animated Background Elements */}
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-secondary/5">
+              <div className="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl animate-pulse"></div>
+              <div className="absolute bottom-20 right-10 w-96 h-96 bg-secondary/10 rounded-full blur-3xl animate-pulse delay-700"></div>
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-accent/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+            </div>
+            
+            {/* Floating Elements */}
+            <div className="absolute top-40 left-1/4 animate-float">
+              <div className="bg-primary/20 rounded-2xl p-4 backdrop-blur-sm border border-primary/30">
+                <Monitor className="h-8 w-8 text-primary" />
+              </div>
+            </div>
+            <div className="absolute top-60 right-1/4 animate-float delay-500">
+              <div className="bg-secondary/20 rounded-2xl p-4 backdrop-blur-sm border border-secondary/30">
+                <Layers className="h-8 w-8 text-secondary" />
+              </div>
+            </div>
+            <div className="absolute top-80 left-1/3 animate-float delay-1000">
+              <div className="bg-accent/20 rounded-2xl p-4 backdrop-blur-sm border border-accent/30">
+                <Sparkles className="h-8 w-8 text-accent" />
+              </div>
+            </div>
 
-          {/* Hero Section */}
-          <section className="container mx-auto px-4 py-16 text-center">
-            <div className="max-w-4xl mx-auto">
-              <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
-                Professional Pre-Built Websites — Ready to Launch
-              </h1>
-              <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
-                Browse our range of industry-focused pre-built websites, designed to help small businesses and tradesmen get online fast. Simply choose your design, purchase, and we'll customize it for your business.
-              </p>
-              <Button 
-                onClick={scrollToTemplates}
-                size="lg" 
-                className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-3"
-              >
-                Explore Pre-Built Sites
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
+            <div className="container mx-auto px-4 relative z-10">
+              <Breadcrumbs 
+                items={[
+                  { label: "Home", href: "/" },
+                  { label: "Pre-Built Websites", href: "/templates" }
+                ]}
+              />
+              
+              <div className="text-center mt-16 mb-16">
+                <div className="inline-flex items-center gap-2 bg-primary/10 px-6 py-3 rounded-full mb-8 border border-primary/20">
+                  <Sparkles className="h-5 w-5 text-primary" />
+                  <span className="text-primary font-semibold">One-Time Purchase • 100% Unique</span>
+                </div>
+                
+                <h1 className="text-5xl md:text-7xl font-bold mb-8 leading-tight">
+                  <span className="bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent">
+                    Professional
+                  </span>
+                  <br />
+                  <span className="text-foreground">Pre-Built Websites</span>
+                </h1>
+                
+                <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-4xl mx-auto leading-relaxed">
+                  Industry-focused designs that get <strong className="text-primary">removed from our catalog</strong> once purchased. 
+                  Your business deserves a unique online presence that stands out from the competition.
+                </p>
+                
+                <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                  <Button 
+                    onClick={scrollToTemplates}
+                    size="lg" 
+                    className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white px-10 py-4 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
+                  >
+                    <Eye className="mr-3 h-6 w-6" />
+                    Browse Unique Designs
+                    <ArrowRight className="ml-3 h-6 w-6" />
+                  </Button>
+                  
+                  <div className="text-center sm:text-left">
+                    <div className="text-sm text-muted-foreground">Starting from</div>
+                    <div className="text-3xl font-bold text-primary">£350</div>
+                    <div className="text-sm text-muted-foreground">+ £40/month hosting</div>
+                  </div>
+                </div>
+              </div>
             </div>
           </section>
 
@@ -377,82 +441,181 @@ const WebsiteTemplates = () => {
             </div>
           </section>
 
-          {/* Pre-Built Sites Grid */}
-          <section id="templates-grid" className="container mx-auto px-4 py-16">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">Choose Your Perfect Pre-Built Website</h2>
-              <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                Each design is professionally crafted and optimized for your industry
+          {/* Pre-Built Sites Grid - Enhanced Design */}
+          <section id="templates-grid" className="container mx-auto px-4 py-20 bg-gradient-to-b from-background to-muted/20">
+            <div className="text-center mb-16">
+              <div className="inline-flex items-center gap-2 bg-secondary/10 px-6 py-3 rounded-full mb-6 border border-secondary/20">
+                <Palette className="h-5 w-5 text-secondary" />
+                <span className="text-secondary font-semibold">Industry-Specific Designs</span>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                Choose Your Perfect Pre-Built Website
+              </h2>
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+                Each design is professionally crafted and optimized for your specific industry, 
+                ensuring maximum impact and conversion for your business type.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
-              {templates.map((template) => (
-                <Card key={template.id} className="group overflow-hidden hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/20">
-                  {/* Live Preview Iframe */}
-                  <div className="relative aspect-video overflow-hidden bg-muted">
-                    {template.demoUrl !== "#" ? (
-                      <iframe
-                        src={template.demoUrl}
-                        width="100%"
-                        height="100%"
-                        style={{
-                          border: "none",
-                          borderRadius: "0",
-                          transform: "scale(0.5)",
-                          transformOrigin: "top left",
-                          width: "200%",
-                          height: "200%",
-                          pointerEvents: "none"
-                        }}
-                        title={`${template.name} Preview`}
-                        loading="lazy"
-                      />
-                    ) : (
-                      <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
+            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-10">
+              {templates.map((template, index) => {
+                const IconComponent = getTemplateIcon(template.category);
+                return (
+                  <Card 
+                    key={template.id} 
+                    className="group relative overflow-hidden bg-gradient-to-br from-card to-card/50 border-2 border-border/50 hover:border-primary/30 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 hover:scale-105 rounded-2xl"
+                    style={{ animationDelay: `${index * 100}ms` }}
+                  >
+                    {/* Gradient Overlay for Premium Feel */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                    
+                    {/* Category Icon & Badge */}
+                    <div className="absolute top-4 left-4 z-10 flex items-center gap-2">
+                      <div className="bg-primary/20 backdrop-blur-sm rounded-full p-2 border border-primary/30">
+                        <IconComponent className="h-4 w-4 text-primary" />
+                      </div>
+                      <Badge className="bg-primary/90 text-primary-foreground shadow-lg backdrop-blur-sm">
+                        {template.category}
+                      </Badge>
+                    </div>
+
+                    {/* Live Preview with Enhanced Overlay */}
+                    <div className="relative aspect-video overflow-hidden bg-gradient-to-br from-muted to-muted/50 rounded-t-2xl">
+                      {template.demoUrl !== "#" ? (
+                        <>
+                          <iframe
+                            src={template.demoUrl}
+                            width="100%"
+                            height="100%"
+                            style={{
+                              border: "none",
+                              borderRadius: "0",
+                              transform: "scale(0.5)",
+                              transformOrigin: "top left",
+                              width: "200%",
+                              height: "200%",
+                              pointerEvents: "none"
+                            }}
+                            title={`${template.name} Preview`}
+                            loading="lazy"
+                          />
+                          {/* Preview Overlay */}
+                          <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <div className="bg-white/90 backdrop-blur-sm rounded-full p-4 border border-white/50 opacity-0 group-hover:opacity-100 transform scale-75 group-hover:scale-100 transition-all duration-300">
+                              <Eye className="h-6 w-6 text-primary" />
+                            </div>
+                          </div>
+                        </>
+                      ) : (
+                        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
+                          <div className="text-center">
+                            <IconComponent className="h-16 w-16 text-primary mx-auto mb-4 opacity-50" />
+                            <p className="text-muted-foreground font-medium">Preview Coming Soon</p>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                    
+                    {/* Enhanced Template Details */}
+                    <CardContent className="p-8 relative z-10">
+                      <div className="space-y-6">
+                        {/* Header with Icon */}
                         <div className="text-center">
-                          <Palette className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
-                          <p className="text-muted-foreground">Preview Coming Soon</p>
+                          <div className="flex items-center justify-center gap-3 mb-4">
+                            <div className="bg-primary/10 rounded-full p-3">
+                              <IconComponent className="h-6 w-6 text-primary" />
+                            </div>
+                            <div className="text-left">
+                              <h3 className="text-2xl font-bold text-foreground">{template.name}</h3>
+                              <p className="text-sm text-muted-foreground">{template.category}</p>
+                            </div>
+                          </div>
+                          <p className="text-muted-foreground leading-relaxed mb-4">{template.description}</p>
+                        </div>
+
+                        {/* Features List */}
+                        <div className="space-y-2">
+                          <h4 className="font-semibold text-sm text-foreground mb-3 flex items-center gap-2">
+                            <Check className="h-4 w-4 text-primary" />
+                            Key Features:
+                          </h4>
+                          <div className="grid grid-cols-2 gap-2">
+                            {template.features.map((feature, idx) => (
+                              <div key={idx} className="flex items-center gap-2 text-xs text-muted-foreground">
+                                <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
+                                <span>{feature}</span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* Pricing with Enhanced Styling */}
+                        <div className="text-center p-4 bg-gradient-to-r from-primary/5 to-secondary/5 rounded-xl border border-primary/10">
+                          <div className="text-3xl font-bold text-primary mb-1">{template.price}</div>
+                          <div className="text-sm text-muted-foreground mb-3">+ {template.monthlyPrice} hosting</div>
+                          <div className="text-xs text-primary font-medium bg-primary/10 px-3 py-1 rounded-full inline-block">
+                            One-time purchase • Becomes yours forever
+                          </div>
+                        </div>
+                        
+                        {/* Enhanced Action Buttons */}
+                        <div className="flex flex-col gap-3">
+                          <Button 
+                            variant="outline" 
+                            className="w-full border-2 border-primary/20 hover:border-primary/40 hover:bg-primary/5 transition-all duration-300 group/btn"
+                            onClick={() => window.open(template.demoUrl, '_blank')}
+                            disabled={template.demoUrl === "#"}
+                          >
+                            <Eye className="mr-2 h-4 w-4 group-hover/btn:scale-110 transition-transform" />
+                            Preview Full Website
+                            <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
+                          </Button>
+                          
+                          <Button 
+                            className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 group/buy"
+                            onClick={() => window.open(template.stripeCheckoutUrl, '_blank')}
+                          >
+                            <CreditCard className="mr-2 h-4 w-4 group-hover/buy:scale-110 transition-transform" />
+                            Buy Now – {template.price}
+                            <Sparkles className="ml-2 h-4 w-4 group-hover/buy:rotate-12 transition-transform" />
+                          </Button>
                         </div>
                       </div>
-                    )}
-                    <Badge className="absolute top-4 left-4 bg-primary text-primary-foreground shadow-lg">
-                      {template.category}
-                    </Badge>
-                  </div>
-                  
-                  {/* Template Details */}
-                  <CardContent className="p-6">
-                    <div className="space-y-4">
-                      <div className="text-center">
-                        <h3 className="text-xl font-bold text-foreground mb-2">{template.name}</h3>
-                        <div className="text-2xl font-bold text-primary">{template.price}</div>
-                        <div className="text-sm text-muted-foreground">+ {template.monthlyPrice} hosting</div>
-                      </div>
-                      
-                      <div className="flex flex-col gap-3">
-                        <Button 
-                          variant="outline" 
-                          className="w-full hover:bg-primary/10 transition-colors border-primary/20"
-                          onClick={() => window.open(template.demoUrl, '_blank')}
-                          disabled={template.demoUrl === "#"}
-                        >
-                          <Eye className="mr-2 h-4 w-4" />
-                          Preview Full Site
-                        </Button>
-                        
-                        <Button 
-                          className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold"
-                          onClick={() => window.open(template.stripeCheckoutUrl, '_blank')}
-                        >
-                          <CreditCard className="mr-2 h-4 w-4" />
-                          Buy Now – {template.price}
-                        </Button>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
+                    </CardContent>
+
+                    {/* Premium Glow Effect on Hover */}
+                    <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 via-secondary/20 to-primary/20 rounded-2xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
+                  </Card>
+                );
+              })}
+            </div>
+
+            {/* Call-to-Action after grid */}
+            <div className="text-center mt-16 p-8 bg-gradient-to-r from-primary/10 via-secondary/10 to-primary/10 rounded-3xl border border-primary/20">
+              <h3 className="text-2xl font-bold mb-4 text-foreground">Don't See What You're Looking For?</h3>
+              <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
+                We create new industry-specific designs regularly. Contact us to discuss your requirements 
+                or request a custom pre-built website for your niche.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button 
+                  variant="outline" 
+                  size="lg"
+                  className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+                  onClick={() => window.open('https://wa.me/447586266007', '_blank')}
+                >
+                  <Phone className="mr-2 h-5 w-5" />
+                  Speak to Our Team
+                </Button>
+                <Button 
+                  size="lg"
+                  className="bg-secondary hover:bg-secondary/90"
+                  onClick={() => setIsFormOpen(true)}
+                >
+                  <MessageSquare className="mr-2 h-5 w-5" />
+                  Request Custom Design
+                </Button>
+              </div>
             </div>
           </section>
 
