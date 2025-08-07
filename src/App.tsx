@@ -40,6 +40,7 @@ const App = () => (
             <Route path="/request-work" element={<RequestWork />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<BlogPost />} />
+            <Route path="/templates" element={<WebsiteTemplates />} />
             <Route path="/templates/:templateId" element={<TemplateDetail />} />
             <Route path="/business-details" element={<BusinessDetailsForm />} />
             <Route path="/business-details-success" element={<BusinessDetailsSuccess />} />
