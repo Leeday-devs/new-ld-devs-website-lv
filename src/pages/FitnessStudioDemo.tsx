@@ -1,257 +1,298 @@
-import { Phone, Clock, Star, MapPin, Mail, Dumbbell, Users, Target, Heart, Trophy, Calendar } from "lucide-react";
+import { Phone, Clock, Star, MapPin, Mail, Dumbbell, Users, Target, Heart, Trophy, Calendar, Zap, TrendingUp, Timer, Activity, Award, CheckCircle, ArrowRight, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 
 const FitnessStudioDemo = () => {
-  const classes = [
+  const workoutPrograms = [
     {
       icon: Dumbbell,
-      name: "Strength Training",
-      time: "Mon, Wed, Fri - 7:00 AM",
-      description: "Build muscle and strength with our expert-led weightlifting sessions.",
-      intensity: "High"
+      title: "Strength Training",
+      description: "Build lean muscle and increase power with progressive weight training programs.",
+      duration: "45-60 min",
+      intensity: "High",
+      color: "from-orange-500 to-red-500"
     },
     {
       icon: Heart,
-      name: "HIIT Cardio",
-      time: "Tue, Thu - 6:30 PM",
-      description: "High-intensity interval training to boost your cardiovascular fitness.",
-      intensity: "Very High"
-    },
-    {
-      icon: Users,
-      name: "Group Fitness",
-      time: "Mon-Fri - 7:30 PM",
-      description: "Fun, energetic group workouts that keep you motivated and engaged.",
-      intensity: "Medium"
+      title: "HIIT Cardio",
+      description: "High-intensity interval training to torch calories and boost metabolism.",
+      duration: "30-45 min", 
+      intensity: "Very High",
+      color: "from-green-500 to-emerald-500"
     },
     {
       icon: Target,
-      name: "Personal Training",
-      time: "By Appointment",
-      description: "One-on-one sessions tailored to your specific fitness goals.",
-      intensity: "Custom"
+      title: "Functional Fitness",
+      description: "Real-world movement patterns that improve daily life performance.",
+      duration: "40-50 min",
+      intensity: "Medium",
+      color: "from-blue-500 to-cyan-500"
     },
     {
-      icon: Heart,
-      name: "Yoga Flow",
-      time: "Sat, Sun - 9:00 AM",
-      description: "Mindful movement and flexibility training for body and mind.",
-      intensity: "Low"
-    },
-    {
-      icon: Trophy,
-      name: "CrossFit",
-      time: "Mon-Sat - 6:00 AM",
-      description: "Functional fitness combining cardio, strength, and flexibility training.",
-      intensity: "Very High"
+      icon: Users,
+      title: "Group Classes",
+      description: "Energizing group workouts that keep you motivated and accountable.",
+      duration: "45 min",
+      intensity: "Variable",
+      color: "from-purple-500 to-pink-500"
     }
+  ];
+
+  const successStats = [
+    { number: "2,500+", label: "Members Transformed", icon: Users },
+    { number: "95%", label: "Goal Achievement Rate", icon: Target },
+    { number: "50+", label: "Expert Trainers", icon: Award },
+    { number: "24/7", label: "Gym Access", icon: Clock }
+  ];
+
+  const transformations = [
+    {
+      name: "Sarah M.",
+      age: 28,
+      achievement: "Lost 35 lbs, Gained Confidence",
+      timeframe: "6 months",
+      program: "Strength + Cardio"
+    },
+    {
+      name: "Mike R.",
+      age: 34,
+      achievement: "Built 15 lbs Muscle",
+      timeframe: "8 months", 
+      program: "Powerlifting Focus"
+    },
+    {
+      name: "Jenny L.", 
+      age: 42,
+      achievement: "Completed First Marathon",
+      timeframe: "12 months",
+      program: "Endurance Training"
+    }
+  ];
+
+  const classSchedule = [
+    { time: "6:00 AM", class: "Morning HIIT", trainer: "Alex", spots: "3 left" },
+    { time: "7:30 AM", class: "Strength Circuit", trainer: "Maya", spots: "Full" },
+    { time: "9:00 AM", class: "Yoga Flow", trainer: "Sarah", spots: "8 left" },
+    { time: "12:00 PM", class: "Lunch Break Burn", trainer: "Jake", spots: "5 left" },
+    { time: "6:00 PM", class: "Evening Power", trainer: "Chris", spots: "2 left" },
+    { time: "7:30 PM", class: "Functional Fit", trainer: "Emma", spots: "6 left" }
   ];
 
   const testimonials = [
     {
-      name: "Jessica Thompson",
-      location: "6 months member",
+      name: "David Chen",
+      achievement: "Lost 40 lbs",
       rating: 5,
-      text: "Amazing transformation! Lost 20kg and gained so much confidence. The trainers are incredibly supportive."
+      text: "FitCore changed my life completely. The trainers pushed me beyond what I thought was possible.",
+      timeframe: "8 months"
     },
     {
-      name: "Mark Williams",
-      location: "1 year member",
+      name: "Rachel Torres",
+      achievement: "PR in Deadlift: 200 lbs",
       rating: 5,
-      text: "Best gym I've ever joined. Great equipment, fantastic community, and results speak for themselves."
+      text: "The community here is incredible. Everyone supports each other's fitness journey.",
+      timeframe: "1 year"
     },
     {
-      name: "Sarah Chen",
-      location: "2 years member",
+      name: "James Wilson",
+      achievement: "Ran First 10K",
       rating: 5,
-      text: "The variety of classes keeps workouts interesting. I've never been fitter or happier with my body."
-    }
-  ];
-
-  const plans = [
-    {
-      name: "Basic",
-      price: "£29",
-      period: "/month",
-      features: ["Gym Access", "Basic Equipment", "Locker Room", "Mobile App"]
-    },
-    {
-      name: "Premium",
-      price: "£49",
-      period: "/month",
-      features: ["Everything in Basic", "All Group Classes", "Nutrition Guidance", "Progress Tracking", "Guest Passes"],
-      popular: true
-    },
-    {
-      name: "Elite",
-      price: "£79",
-      period: "/month",
-      features: ["Everything in Premium", "Personal Training Session", "Meal Planning", "Priority Booking", "Wellness Coaching"]
+      text: "From couch to 10K in 6 months. The personalized training plan made all the difference.",
+      timeframe: "6 months"
     }
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
-      {/* Header */}
-      <header className="bg-black/90 backdrop-blur-sm text-white py-4 shadow-lg fixed w-full top-0 z-50">
-        <div className="container mx-auto px-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold">
-            <span className="text-purple-400">APEX</span> FITNESS
-          </h1>
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2 text-purple-400">
-              <Phone className="h-4 w-4" />
-              <span className="font-medium">020 8765 4321</span>
+    <div className="min-h-screen bg-black text-white font-bold">
+      {/* Sticky Navigation */}
+      <nav className="fixed top-0 w-full bg-black/90 backdrop-blur-md z-50 border-b border-green-500/30">
+        <div className="container mx-auto px-4 py-4">
+          <div className="flex justify-between items-center">
+            <div className="flex items-center gap-3">
+              <div className="bg-gradient-to-r from-green-500 to-emerald-500 p-2 rounded-lg">
+                <Dumbbell className="h-8 w-8 text-white" />
+              </div>
+              <div>
+                <h1 className="text-2xl font-black">FIT<span className="text-green-500">CORE</span></h1>
+                <p className="text-xs text-gray-400 font-normal">TRANSFORM YOUR LIFE</p>
+              </div>
             </div>
-            <Button className="bg-purple-600 hover:bg-purple-700 font-bold">
-              Join Now
-            </Button>
-          </div>
-        </div>
-      </header>
-
-      {/* Hero Section */}
-      <section className="relative pt-20 pb-20 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-pink-600/20"></div>
-        <div className="container mx-auto px-4 text-center relative z-10 text-white">
-          <h2 className="text-6xl font-bold mb-6">
-            Transform Your <span className="text-purple-400">Body</span>
-          </h2>
-          <p className="text-xl mb-8 max-w-2xl mx-auto text-gray-300">
-            Join London's premier fitness destination. State-of-the-art equipment, expert trainers, and a community that will push you to achieve your goals.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-purple-600 hover:bg-purple-700 text-lg px-8 py-4 font-bold">
-              <Dumbbell className="mr-2 h-5 w-5" />
-              Start Free Trial
-            </Button>
-            <Button size="lg" variant="outline" className="border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-black text-lg px-8 py-4 font-bold">
-              View Classes
-            </Button>
-          </div>
-          <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            <div className="bg-black/30 p-6 rounded-lg border border-purple-400/20 backdrop-blur-sm">
-              <Trophy className="h-12 w-12 mx-auto mb-4 text-purple-400" />
-              <h3 className="text-xl font-semibold mb-2">Expert Trainers</h3>
-              <p className="text-gray-400">Certified professionals with years of experience</p>
+            
+            <div className="hidden md:flex items-center gap-6 text-sm">
+              <a href="#programs" className="text-gray-300 hover:text-green-500 transition-colors font-medium">Programs</a>
+              <a href="#schedule" className="text-gray-300 hover:text-green-500 transition-colors font-medium">Schedule</a>
+              <a href="#results" className="text-gray-300 hover:text-green-500 transition-colors font-medium">Results</a>
+              <a href="#join" className="text-gray-300 hover:text-green-500 transition-colors font-medium">Join Now</a>
             </div>
-            <div className="bg-black/30 p-6 rounded-lg border border-purple-400/20 backdrop-blur-sm">
-              <Users className="h-12 w-12 mx-auto mb-4 text-purple-400" />
-              <h3 className="text-xl font-semibold mb-2">Community Driven</h3>
-              <p className="text-gray-400">Supportive environment that motivates success</p>
-            </div>
-            <div className="bg-black/30 p-6 rounded-lg border border-purple-400/20 backdrop-blur-sm">
-              <Clock className="h-12 w-12 mx-auto mb-4 text-purple-400" />
-              <h3 className="text-xl font-semibold mb-2">24/7 Access</h3>
-              <p className="text-gray-400">Train on your schedule, any time of day</p>
+            
+            <div className="flex items-center gap-4">
+              <div className="text-right hidden sm:block">
+                <div className="text-xs text-gray-400 font-normal">Ready to Start?</div>
+                <div className="text-sm font-bold text-green-500">020 8901 2345</div>
+              </div>
+              <Button className="bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white font-bold">
+                FREE TRIAL
+              </Button>
             </div>
           </div>
         </div>
-      </section>
+      </nav>
 
-      {/* Classes Section */}
-      <section className="py-20 bg-black/50 backdrop-blur-sm">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4 text-white">
-              Our <span className="text-purple-400">Classes</span>
-            </h2>
-            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-              From beginner-friendly sessions to advanced training, we have classes for every fitness level and goal.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {classes.map((classItem, index) => (
-              <Card key={index} className="bg-gray-900/80 border-purple-400/20 hover:border-purple-400 transition-all duration-300 hover:shadow-lg hover:shadow-purple-400/20 backdrop-blur-sm">
-                <CardContent className="p-6">
-                  <classItem.icon className="h-12 w-12 text-purple-400 mb-4" />
-                  <h3 className="text-xl font-bold mb-2 text-white">{classItem.name}</h3>
-                  <p className="text-purple-400 font-medium mb-3">{classItem.time}</p>
-                  <p className="text-gray-400 mb-4">{classItem.description}</p>
-                  <span className={`inline-block px-3 py-1 rounded-full text-xs font-bold ${
-                    classItem.intensity === 'Low' ? 'bg-green-600 text-white' :
-                    classItem.intensity === 'Medium' ? 'bg-yellow-600 text-white' :
-                    classItem.intensity === 'High' ? 'bg-orange-600 text-white' :
-                    classItem.intensity === 'Very High' ? 'bg-red-600 text-white' :
-                    'bg-purple-600 text-white'
-                  }`}>
-                    {classItem.intensity} Intensity
+      {/* Hero Section - Full Screen */}
+      <section className="relative min-h-screen flex items-center overflow-hidden pt-20">
+        {/* Animated Background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"></div>
+        <div className="absolute inset-0 opacity-30">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2310b981' fill-opacity='0.1'%3E%3Cpath d='M30 30c0-16.569-13.431-30-30-30v60c16.569 0 30-13.431 30-30zM0 30c0 16.569 13.431 30 30 30V0C13.431 0 0 13.431 0 30z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          }}></div>
+        </div>
+        
+        {/* Content Grid */}
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="grid lg:grid-cols-12 gap-8 items-center">
+            {/* Left Content */}
+            <div className="lg:col-span-7">
+              <div className="mb-6">
+                <span className="inline-block bg-gradient-to-r from-green-500 to-emerald-500 text-black px-4 py-2 rounded-full text-sm font-black uppercase tracking-wider mb-4">
+                  🔥 Transform Your Body
+                </span>
+                <h2 className="text-6xl lg:text-7xl font-black leading-tight mb-6">
+                  UNLOCK YOUR
+                  <span className="block bg-gradient-to-r from-green-400 via-emerald-400 to-cyan-400 bg-clip-text text-transparent">
+                    POTENTIAL
                   </span>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
+                </h2>
+                <p className="text-xl text-gray-300 mb-8 leading-relaxed font-normal max-w-lg">
+                  Join 2,500+ members who've transformed their lives at London's most results-driven fitness studio. Your strongest self is waiting.
+                </p>
+              </div>
 
-      {/* Membership Plans */}
-      <section className="py-20 bg-gray-900">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4 text-white">
-              Membership <span className="text-purple-400">Plans</span>
-            </h2>
-            <p className="text-xl text-gray-400">Choose the plan that fits your fitness journey</p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {plans.map((plan, index) => (
-              <Card key={index} className={`relative ${plan.popular ? 'bg-purple-600 border-purple-400 scale-105' : 'bg-gray-800 border-gray-600'} text-center`}>
-                {plan.popular && (
-                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <span className="bg-yellow-400 text-black px-4 py-1 rounded-full text-sm font-bold">
-                      MOST POPULAR
-                    </span>
+              <div className="flex flex-col sm:flex-row gap-4 mb-12">
+                <Button size="lg" className="bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white px-8 py-4 text-lg font-bold">
+                  <Play className="mr-2 h-6 w-6" />
+                  START FREE TRIAL
+                </Button>
+                <Button size="lg" variant="outline" className="border-2 border-green-500 text-green-500 hover:bg-green-500 hover:text-black px-8 py-4 text-lg font-bold">
+                  <Calendar className="mr-2 h-6 w-6" />
+                  BOOK CONSULTATION
+                </Button>
+              </div>
+
+              {/* Live Stats */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                {successStats.map((stat, index) => (
+                  <div key={index} className="text-center">
+                    <div className="bg-gradient-to-r from-green-500/20 to-emerald-500/20 rounded-lg p-4 mb-3 border border-green-500/30">
+                      <stat.icon className="h-6 w-6 text-green-400 mx-auto mb-2" />
+                      <div className="text-2xl font-black text-green-400">{stat.number}</div>
+                    </div>
+                    <div className="text-xs text-gray-400 font-normal uppercase tracking-wide">{stat.label}</div>
                   </div>
-                )}
+                ))}
+              </div>
+            </div>
+
+            {/* Right Side - Workout Tracker Card */}
+            <div className="lg:col-span-5">
+              <Card className="bg-gradient-to-br from-gray-900/80 to-black/80 border-2 border-green-500/30 backdrop-blur-md">
                 <CardContent className="p-8">
-                  <h3 className="text-2xl font-bold mb-2 text-white">{plan.name}</h3>
-                  <div className="mb-6">
-                    <span className="text-4xl font-bold text-white">{plan.price}</span>
-                    <span className="text-gray-300">{plan.period}</span>
+                  <div className="text-center mb-6">
+                    <div className="bg-gradient-to-r from-green-500 to-emerald-500 text-black px-4 py-2 rounded-full text-sm font-black uppercase tracking-wide mb-4">
+                      TODAY'S CHALLENGE
+                    </div>
+                    <h3 className="text-2xl font-black text-white mb-2">Torch 500 Calories</h3>
+                    <p className="text-gray-400 font-normal">Join 47 members completing today's challenge</p>
                   </div>
-                  <ul className="space-y-3 mb-8">
-                    {plan.features.map((feature, idx) => (
-                      <li key={idx} className="text-gray-300 flex items-center justify-center">
-                        <span className="mr-2">✓</span>
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                  <Button className={`w-full ${plan.popular ? 'bg-white text-purple-600 hover:bg-gray-100' : 'bg-purple-600 hover:bg-purple-700 text-white'} font-bold`}>
-                    Choose Plan
+                  
+                  <div className="space-y-4 mb-6">
+                    <div className="bg-black/50 rounded-lg p-4 border border-green-500/20">
+                      <div className="flex justify-between items-center mb-2">
+                        <span className="text-white font-bold">Strength Circuit</span>
+                        <span className="text-green-400 text-sm font-bold">15 MIN</span>
+                      </div>
+                      <div className="w-full bg-gray-700 rounded-full h-2">
+                        <div className="bg-gradient-to-r from-green-500 to-emerald-500 h-2 rounded-full w-3/4"></div>
+                      </div>
+                    </div>
+                    
+                    <div className="bg-black/50 rounded-lg p-4 border border-green-500/20">
+                      <div className="flex justify-between items-center mb-2">
+                        <span className="text-white font-bold">HIIT Cardio</span>
+                        <span className="text-orange-400 text-sm font-bold">20 MIN</span>
+                      </div>
+                      <div className="w-full bg-gray-700 rounded-full h-2">
+                        <div className="bg-gradient-to-r from-orange-500 to-red-500 h-2 rounded-full w-1/2"></div>
+                      </div>
+                    </div>
+                    
+                    <div className="bg-black/50 rounded-lg p-4 border border-green-500/20">
+                      <div className="flex justify-between items-center mb-2">
+                        <span className="text-white font-bold">Cool Down</span>
+                        <span className="text-blue-400 text-sm font-bold">10 MIN</span>
+                      </div>
+                      <div className="w-full bg-gray-700 rounded-full h-2">
+                        <div className="bg-gradient-to-r from-blue-500 to-cyan-500 h-2 rounded-full w-1/4"></div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <Button className="w-full bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white font-bold py-4 text-lg">
+                    <Zap className="mr-2 h-5 w-5" />
+                    START WORKOUT
                   </Button>
                 </CardContent>
               </Card>
-            ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <section className="py-20 bg-black/50 backdrop-blur-sm">
+      {/* Programs Section */}
+      <section id="programs" className="py-24 bg-gradient-to-br from-gray-900 to-black">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4 text-white">
-              Success <span className="text-purple-400">Stories</span>
-            </h2>
-            <p className="text-xl text-gray-400">Real transformations from our amazing members</p>
+          <div className="text-center mb-20">
+            <span className="inline-block bg-gradient-to-r from-green-500 to-emerald-500 text-black px-4 py-2 rounded-full text-sm font-black uppercase tracking-wider mb-4">
+              TRAINING PROGRAMS
+            </span>
+            <h2 className="text-5xl font-black mb-6">Choose Your <span className="text-green-400">Transformation</span></h2>
+            <p className="text-xl text-gray-400 max-w-3xl mx-auto font-normal">
+              Scientifically designed programs that deliver real results. Each workout is crafted to push your limits and unlock your potential.
+            </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <Card key={index} className="bg-gray-900/80 border-purple-400/20 text-center backdrop-blur-sm">
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {workoutPrograms.map((program, index) => (
+              <Card key={index} className="group bg-black/50 border-2 border-gray-700 hover:border-green-500 transition-all duration-300 overflow-hidden">
                 <CardContent className="p-8">
-                  <div className="flex justify-center mb-4">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="h-5 w-5 fill-purple-400 text-purple-400" />
-                    ))}
-                  </div>
-                  <p className="text-gray-300 mb-6 italic">"{testimonial.text}"</p>
-                  <div>
-                    <h4 className="font-bold text-white">{testimonial.name}</h4>
-                    <p className="text-purple-400">{testimonial.location}</p>
+                  <div className="flex items-start gap-6">
+                    <div className={`bg-gradient-to-r ${program.color} p-4 rounded-xl group-hover:scale-110 transition-transform duration-300`}>
+                      <program.icon className="h-10 w-10 text-white" />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-2xl font-black text-white mb-3 group-hover:text-green-400 transition-colors">
+                        {program.title}
+                      </h3>
+                      <p className="text-gray-400 mb-6 leading-relaxed font-normal">{program.description}</p>
+                      
+                      <div className="flex items-center gap-6 mb-6">
+                        <div className="flex items-center gap-2">
+                          <Timer className="h-4 w-4 text-green-400" />
+                          <span className="text-sm font-bold text-gray-300">{program.duration}</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Activity className="h-4 w-4 text-orange-400" />
+                          <span className="text-sm font-bold text-gray-300">{program.intensity}</span>
+                        </div>
+                      </div>
+                      
+                      <Button className="bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white font-bold">
+                        START PROGRAM
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                      </Button>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
@@ -260,69 +301,179 @@ const FitnessStudioDemo = () => {
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section className="py-20 bg-gradient-to-r from-purple-900 to-slate-900">
+      {/* Live Schedule Section */}
+      <section id="schedule" className="py-24 bg-black">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <div className="text-white">
-              <h2 className="text-4xl font-bold mb-6">
-                Start Your <span className="text-purple-400">Journey</span>
-              </h2>
-              <p className="text-xl mb-8 text-gray-300">
-                Ready to transform your life? Join APEX FITNESS today and discover what you're truly capable of achieving.
-              </p>
-              <div className="space-y-6">
-                <div className="flex items-center gap-4">
-                  <div className="bg-purple-600 p-3 rounded-full">
-                    <Phone className="h-6 w-6" />
+          <div className="text-center mb-16">
+            <span className="inline-block bg-gradient-to-r from-green-500 to-emerald-500 text-black px-4 py-2 rounded-full text-sm font-black uppercase tracking-wider mb-4">
+              LIVE SCHEDULE
+            </span>
+            <h2 className="text-5xl font-black mb-6">Today's <span className="text-green-400">Classes</span></h2>
+            <p className="text-xl text-gray-400 font-normal">Real-time availability • Book instantly</p>
+          </div>
+
+          <div className="max-w-4xl mx-auto">
+            <div className="grid gap-4">
+              {classSchedule.map((session, index) => (
+                <Card key={index} className="bg-gray-900/50 border border-gray-700 hover:border-green-500 transition-all duration-300">
+                  <CardContent className="p-6">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-6">
+                        <div className="text-center">
+                          <div className="text-2xl font-black text-green-400">{session.time}</div>
+                        </div>
+                        <div>
+                          <h3 className="text-xl font-black text-white mb-1">{session.class}</h3>
+                          <p className="text-gray-400 font-normal">with {session.trainer}</p>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-4">
+                        <div className="text-right">
+                          <div className={`text-sm font-bold ${
+                            session.spots === "Full" ? "text-red-400" : "text-green-400"
+                          }`}>
+                            {session.spots}
+                          </div>
+                        </div>
+                        <Button 
+                          disabled={session.spots === "Full"}
+                          className="bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white font-bold disabled:from-gray-600 disabled:to-gray-700"
+                        >
+                          {session.spots === "Full" ? "FULL" : "BOOK"}
+                        </Button>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Transformation Results */}
+      <section id="results" className="py-24 bg-gradient-to-br from-green-900/20 via-black to-emerald-900/20">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-20">
+            <span className="inline-block bg-gradient-to-r from-green-500 to-emerald-500 text-black px-4 py-2 rounded-full text-sm font-black uppercase tracking-wider mb-4">
+              REAL RESULTS
+            </span>
+            <h2 className="text-5xl font-black mb-6">Amazing <span className="text-green-400">Transformations</span></h2>
+            <p className="text-xl text-gray-400 max-w-2xl mx-auto font-normal">
+              These are real FitCore members who've achieved incredible results. Your transformation starts here.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8 mb-16">
+            {transformations.map((transformation, index) => (
+              <Card key={index} className="bg-black/70 border-2 border-green-500/30 hover:border-green-500 transition-all duration-300">
+                <CardContent className="p-8 text-center">
+                  <div className="w-20 h-20 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full mx-auto mb-6 flex items-center justify-center">
+                    <Trophy className="h-10 w-10 text-white" />
                   </div>
-                  <span className="text-lg">020 8765 4321</span>
-                </div>
-                <div className="flex items-center gap-4">
-                  <div className="bg-purple-600 p-3 rounded-full">
-                    <Mail className="h-6 w-6" />
+                  <h3 className="text-2xl font-black text-white mb-2">{transformation.name}</h3>
+                  <p className="text-green-400 font-bold text-lg mb-3">{transformation.achievement}</p>
+                  <div className="space-y-2 text-sm">
+                    <div className="flex justify-between">
+                      <span className="text-gray-400 font-normal">Time:</span>
+                      <span className="text-white font-bold">{transformation.timeframe}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-400 font-normal">Program:</span>
+                      <span className="text-white font-bold">{transformation.program}</span>
+                    </div>
                   </div>
-                  <span className="text-lg">info@apexfitness.co.uk</span>
-                </div>
-                <div className="flex items-center gap-4">
-                  <div className="bg-purple-600 p-3 rounded-full">
-                    <MapPin className="h-6 w-6" />
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          {/* Member Testimonials */}
+          <div className="grid md:grid-cols-3 gap-8">
+            {testimonials.map((testimonial, index) => (
+              <Card key={index} className="bg-gray-900/50 border border-gray-700">
+                <CardContent className="p-8">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex">
+                      {[...Array(testimonial.rating)].map((_, i) => (
+                        <Star key={i} className="h-5 w-5 fill-green-400 text-green-400" />
+                      ))}
+                    </div>
+                    <span className="bg-green-500 text-black px-3 py-1 rounded-full text-xs font-black">
+                      {testimonial.achievement}
+                    </span>
                   </div>
-                  <span className="text-lg">789 Fitness Boulevard, Canary Wharf, London E14 5AB</span>
-                </div>
-                <div className="flex items-center gap-4">
-                  <div className="bg-purple-600 p-3 rounded-full">
-                    <Clock className="h-6 w-6" />
+                  <p className="text-gray-300 mb-6 italic leading-relaxed font-normal">"{testimonial.text}"</p>
+                  <div className="flex justify-between items-center">
+                    <div>
+                      <h4 className="font-black text-white">{testimonial.name}</h4>
+                      <p className="text-green-400 text-sm font-bold">{testimonial.timeframe} member</p>
+                    </div>
+                    <CheckCircle className="h-6 w-6 text-green-400" />
                   </div>
-                  <div>
-                    <p className="text-lg">24/7 Gym Access</p>
-                    <p className="text-gray-400">Classes: 6AM-10PM Daily</p>
-                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section id="join" className="py-24 bg-gradient-to-r from-green-600 via-emerald-600 to-green-600">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-6xl font-black text-white mb-6">
+              Ready to <span className="text-black">TRANSFORM?</span>
+            </h2>
+            <p className="text-xl text-green-100 mb-12 max-w-2xl mx-auto font-normal">
+              Join thousands of members who've achieved their fitness goals. Start your 7-day free trial today - no contracts, no commitments.
+            </p>
+
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <div className="text-left">
+                <h3 className="text-2xl font-black text-white mb-8">What's Included:</h3>
+                <div className="space-y-4">
+                  {[
+                    "Unlimited access to all classes",
+                    "Personal fitness assessment", 
+                    "Nutrition guidance & meal plans",
+                    "24/7 gym access",
+                    "Progress tracking app",
+                    "Community support group"
+                  ].map((feature, index) => (
+                    <div key={index} className="flex items-center gap-3">
+                      <CheckCircle className="h-6 w-6 text-white" />
+                      <span className="text-white font-medium">{feature}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
-            </div>
-            <div>
+
               <Card className="bg-white text-gray-900">
                 <CardContent className="p-8">
-                  <h3 className="text-2xl font-bold mb-6 text-purple-900">Start Your Free Trial</h3>
-                  <form className="space-y-4">
+                  <h3 className="text-2xl font-black mb-6">Start Your Free Trial</h3>
+                  <form className="space-y-6">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <Input placeholder="First Name" />
-                      <Input placeholder="Last Name" />
+                      <Input placeholder="First Name" className="border-2 border-gray-300 font-medium" />
+                      <Input placeholder="Last Name" className="border-2 border-gray-300 font-medium" />
                     </div>
-                    <Input placeholder="Email Address" type="email" />
-                    <Input placeholder="Phone Number" type="tel" />
-                    <select className="w-full p-3 rounded-md border">
-                      <option>Select Fitness Goal</option>
-                      <option>Weight Loss</option>
-                      <option>Muscle Building</option>
+                    <Input placeholder="Email Address" type="email" className="border-2 border-gray-300 font-medium" />
+                    <Input placeholder="Phone Number" type="tel" className="border-2 border-gray-300 font-medium" />
+                    <select className="w-full p-3 rounded-md border-2 border-gray-300 font-medium">
+                      <option>Primary Fitness Goal</option>
+                      <option>Lose Weight</option>
+                      <option>Build Muscle</option>
+                      <option>Improve Cardio</option>
                       <option>General Fitness</option>
-                      <option>Athletic Performance</option>
+                      <option>Sport Performance</option>
                     </select>
-                    <Textarea placeholder="Tell us about your fitness experience..." rows={3} />
-                    <Button className="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold text-lg py-3">
-                      Claim Free Trial
+                    <Button className="w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-black py-4 text-lg">
+                      <Zap className="mr-2 h-5 w-5" />
+                      START FREE TRIAL
                     </Button>
+                    <p className="text-center text-sm text-gray-600 font-normal">
+                      No credit card required • Cancel anytime
+                    </p>
                   </form>
                 </CardContent>
               </Card>
@@ -332,18 +483,68 @@ const FitnessStudioDemo = () => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-black text-white py-12">
-        <div className="container mx-auto px-4 text-center">
-          <h3 className="text-3xl font-bold mb-4">
-            <span className="text-purple-400">APEX</span> FITNESS
-          </h3>
-          <p className="text-gray-400 mb-6">Transform your body, transform your life</p>
-          <div className="flex justify-center gap-8 text-sm text-gray-500">
-            <span>© 2024 APEX FITNESS</span>
-            <span>•</span>
-            <span>24/7 Access</span>
-            <span>•</span>
-            <span>Expert Training</span>
+      <footer className="bg-black text-white py-12 border-t border-green-500/20">
+        <div className="container mx-auto px-4">
+          <div className="grid md:grid-cols-4 gap-8 mb-8">
+            <div>
+              <div className="flex items-center gap-3 mb-4">
+                <div className="bg-gradient-to-r from-green-500 to-emerald-500 p-2 rounded-lg">
+                  <Dumbbell className="h-6 w-6 text-white" />
+                </div>
+                <h3 className="text-2xl font-black">FIT<span className="text-green-500">CORE</span></h3>
+              </div>
+              <p className="text-gray-400 mb-4 font-normal">Transform your body, transform your life. London's premier fitness destination.</p>
+              <div className="flex gap-4">
+                <span className="bg-green-600 text-white px-3 py-1 rounded text-sm font-bold">OPEN 24/7</span>
+                <span className="bg-gray-700 text-white px-3 py-1 rounded text-sm font-bold">50+ TRAINERS</span>
+              </div>
+            </div>
+            
+            <div>
+              <h4 className="text-lg font-black mb-4 text-green-400">Programs</h4>
+              <ul className="space-y-2 text-gray-400 font-normal">
+                <li>Strength Training</li>
+                <li>HIIT Cardio</li>
+                <li>Functional Fitness</li>
+                <li>Group Classes</li>
+                <li>Personal Training</li>
+                <li>Nutrition Coaching</li>
+              </ul>
+            </div>
+            
+            <div>
+              <h4 className="text-lg font-black mb-4 text-green-400">Facilities</h4>
+              <ul className="space-y-2 text-gray-400 font-normal">
+                <li>Cardio Zone</li>
+                <li>Free Weights</li>
+                <li>Functional Training</li>
+                <li>Group Exercise Studios</li>
+                <li>Recovery Lounge</li>
+                <li>Nutrition Bar</li>
+              </ul>
+            </div>
+            
+            <div>
+              <h4 className="text-lg font-black mb-4 text-green-400">Contact</h4>
+              <div className="space-y-3">
+                <div className="flex items-center gap-2">
+                  <Phone className="h-4 w-4 text-green-500" />
+                  <span className="font-bold">020 8901 2345</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Mail className="h-4 w-4 text-green-500" />
+                  <span className="font-normal">hello@fitcorestudio.co.uk</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <MapPin className="h-4 w-4 text-green-500" />
+                  <span className="font-normal">789 Power Street, Shoreditch, London E2 7DJ</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div className="border-t border-gray-800 pt-8 text-center">
+            <p className="text-gray-400 font-normal">© 2024 FitCore Studio. All rights reserved. Transform your limits.</p>
           </div>
         </div>
       </footer>
