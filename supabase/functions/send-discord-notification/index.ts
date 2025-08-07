@@ -33,7 +33,10 @@ serve(async (req) => {
       'visit': 0x9966cc,        // Purple
       'contact': 0xff6600,      // Orange-red
       'newsletter': 0x00ccff,   // Light blue
-      'work_request': 0xff9900  // Gold
+      'work_request': 0xff9900, // Gold
+      'custom_request': 0xff3366, // Pink
+      'website_setup': 0x66ff99, // Light green
+      'business_details': 0x3366ff // Royal blue
     };
 
     // Create embed based on event type
@@ -145,6 +148,59 @@ serve(async (req) => {
             { name: 'Company', value: data.company || 'Not specified', inline: true },
             { name: 'Plan', value: data.planName || 'Basic', inline: true },
             { name: 'Status', value: 'Pending Approval', inline: false }
+          ],
+          timestamp: new Date().toISOString()
+        };
+        break;
+
+      case 'custom_request':
+        embed = {
+          title: '🎨 Custom Website Request!',
+          description: `**${data.businessName}** requested a custom website example`,
+          color: eventColors.custom_request,
+          fields: [
+            { name: 'Business', value: data.businessName, inline: true },
+            { name: 'Industry', value: data.industry, inline: true },
+            { name: 'Email', value: data.email, inline: true },
+            { name: 'Phone', value: data.phone || 'Not provided', inline: true },
+            { name: 'Description', value: data.description || 'No description provided', inline: false }
+          ],
+          timestamp: new Date().toISOString()
+        };
+        break;
+
+      case 'website_setup':
+        embed = {
+          title: '🚀 Website Setup Request!',
+          description: `**${data.businessName}** submitted website setup details`,
+          color: eventColors.website_setup,
+          fields: [
+            { name: 'Contact', value: data.name, inline: true },
+            { name: 'Business', value: data.businessName, inline: true },
+            { name: 'Email', value: data.email, inline: true },
+            { name: 'Phone', value: data.phone || 'Not provided', inline: true },
+            { name: 'Services', value: data.servicesOffered || 'Not specified', inline: false },
+            { name: 'Style Preferences', value: data.stylePreferences || 'Not specified', inline: false },
+            { name: 'Assets', value: `Logo: ${data.hasLogo ? 'Yes' : 'No'}, Images: ${data.imageCount || 0}`, inline: false }
+          ],
+          timestamp: new Date().toISOString()
+        };
+        break;
+
+      case 'business_details':
+        embed = {
+          title: '💼 Business Details Submitted!',
+          description: `**${data.businessName}** submitted details for ${data.templateName}`,
+          color: eventColors.business_details,
+          fields: [
+            { name: 'Template', value: data.templateName, inline: true },
+            { name: 'Contact', value: data.name, inline: true },
+            { name: 'Email', value: data.email, inline: true },
+            { name: 'Phone', value: data.phone || 'Not provided', inline: true },
+            { name: 'Services', value: data.servicesOffered || 'Not specified', inline: false },
+            { name: 'Color Preferences', value: data.colorPreferences || 'Not specified', inline: false },
+            { name: 'Assets', value: `Logo: ${data.hasLogo ? 'Yes' : 'No'}, Images: ${data.imageCount || 0}`, inline: false },
+            { name: 'Session ID', value: data.sessionId || 'N/A', inline: true }
           ],
           timestamp: new Date().toISOString()
         };

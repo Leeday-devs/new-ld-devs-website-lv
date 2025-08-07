@@ -12,8 +12,11 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import { ArrowRight, Check, Clock, Palette, Zap, Shield, Eye, CreditCard, Lock, Users, Star, FileText, Globe, Mail, Phone, MessageSquare, Wrench, Scissors, Car, UtensilsCrossed, Dumbbell, Stethoscope, Code, Sparkles, Layers, Monitor } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
 
 const WebsiteTemplates = () => {
+  const { toast } = useToast();
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [isBusinessDetailsOpen, setIsBusinessDetailsOpen] = useState(false);
   const [selectedTemplate, setSelectedTemplate] = useState<any>(null);
@@ -57,19 +60,50 @@ const WebsiteTemplates = () => {
     setIsBusinessDetailsOpen(true);
   };
 
-  const handleFormSubmit = (e: React.FormEvent) => {
+  const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would typically send the form data to your backend
-    console.log('Form submitted:', formData);
-    setIsFormOpen(false);
-    // Reset form
-    setFormData({
-      businessName: '',
-      industry: '',
-      email: '',
-      phone: '',
-      description: ''
-    });
+    
+    try {
+      // Send Discord notification
+      const { error: discordError } = await supabase.functions.invoke('send-discord-notification', {
+        body: {
+          eventType: 'custom_request',
+          data: {
+            businessName: formData.businessName,
+            industry: formData.industry,
+            email: formData.email,
+            phone: formData.phone,
+            description: formData.description
+          }
+        }
+      });
+
+      if (discordError) {
+        throw discordError;
+      }
+
+      toast({
+        title: "Request Submitted!",
+        description: "We've received your custom example request and will get back to you soon."
+      });
+
+      setIsFormOpen(false);
+      // Reset form
+      setFormData({
+        businessName: '',
+        industry: '',
+        email: '',
+        phone: '',
+        description: ''
+      });
+    } catch (error) {
+      console.error('Form submission error:', error);
+      toast({
+        title: "Submission Failed",
+        description: "Failed to submit your request. Please try again or contact us directly.",
+        variant: "destructive"
+      });
+    }
   };
   const getTemplateIcon = (category: string) => {
     const iconMap: { [key: string]: any } = {
