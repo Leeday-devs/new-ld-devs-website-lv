@@ -8,6 +8,7 @@ import AdminStats from "@/components/admin/AdminStats";
 import BlogPostsList from "@/components/admin/BlogPostsList";
 import CreatePostModal from "@/components/admin/CreatePostModal";
 import EditPostModal from "@/components/admin/EditPostModal";
+import CreateCategoryModal from "@/components/admin/CreateCategoryModal";
 import CustomersManagement from "@/components/admin/CustomersManagement";
 import WorkRequestsManagement from "@/components/admin/WorkRequestsManagement";
 import PendingCustomersManagement from "@/components/admin/PendingCustomersManagement";
@@ -42,6 +43,7 @@ const AdminPanel = () => {
   const [isAdmin, setIsAdmin] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [showCreateModal, setShowCreateModal] = useState(false);
+  const [showCreateCategoryModal, setShowCreateCategoryModal] = useState(false);
   const [editingPost, setEditingPost] = useState<BlogPost | null>(null);
 
   useEffect(() => {
@@ -274,13 +276,23 @@ const AdminPanel = () => {
 
             <TabsContent value="blog" className="mt-6">
               <div className="flex justify-end mb-6">
-                <Button 
-                  onClick={() => setShowCreateModal(true)}
-                  className="btn-premium gap-2"
-                >
-                  <Plus className="h-4 w-4" />
-                  New Post
-                </Button>
+                <div className="flex gap-2">
+                  <Button 
+                    variant="outline"
+                    onClick={() => setShowCreateCategoryModal(true)}
+                    className="gap-2"
+                  >
+                    <Plus className="h-4 w-4" />
+                    New Category
+                  </Button>
+                  <Button 
+                    onClick={() => setShowCreateModal(true)}
+                    className="btn-premium gap-2"
+                  >
+                    <Plus className="h-4 w-4" />
+                    New Post
+                  </Button>
+                </div>
               </div>
 
               <Card className="card-premium">
@@ -308,6 +320,15 @@ const AdminPanel = () => {
         open={showCreateModal}
         onClose={() => setShowCreateModal(false)}
         onSuccess={handlePostCreated}
+      />
+
+      <CreateCategoryModal
+        open={showCreateCategoryModal}
+        onClose={() => setShowCreateCategoryModal(false)}
+        onSuccess={() => {
+          setShowCreateCategoryModal(false);
+          toast({ title: "Success", description: "Category created successfully!" });
+        }}
       />
 
       {editingPost && (

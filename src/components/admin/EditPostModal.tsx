@@ -162,7 +162,7 @@ const EditPostModal = ({ post, open, onClose, onSuccess }: EditPostModalProps) =
                 <SelectTrigger>
                   <SelectValue placeholder="Select category" />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="z-50">
                   {categories.map(category => (
                     <SelectItem key={category} value={category}>
                       {category}

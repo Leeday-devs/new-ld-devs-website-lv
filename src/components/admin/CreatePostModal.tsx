@@ -256,7 +256,7 @@ const CreatePostModal = ({ open, onClose, onSuccess }: CreatePostModalProps) => 
                   <SelectTrigger>
                     <SelectValue placeholder="Select category" />
                   </SelectTrigger>
-                  <SelectContent>
+                  <SelectContent className="z-50">
                     {categories.map(category => (
                       <SelectItem key={category} value={category}>
                         {category}
