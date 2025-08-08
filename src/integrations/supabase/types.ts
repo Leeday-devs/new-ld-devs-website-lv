@@ -38,6 +38,39 @@ export type Database = {
         }
         Relationships: []
       }
+      blog_categories: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          description: string | null
+          id: string
+          name: string
+          slug: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          id?: string
+          name: string
+          slug: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          id?: string
+          name?: string
+          slug?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       blog_post_views: {
         Row: {
           id: string
@@ -74,6 +107,7 @@ export type Database = {
         Row: {
           author_id: string | null
           category: string
+          category_id: string | null
           content: string
           created_at: string
           excerpt: string | null
@@ -88,6 +122,7 @@ export type Database = {
         Insert: {
           author_id?: string | null
           category: string
+          category_id?: string | null
           content: string
           created_at?: string
           excerpt?: string | null
@@ -102,6 +137,7 @@ export type Database = {
         Update: {
           author_id?: string | null
           category?: string
+          category_id?: string | null
           content?: string
           created_at?: string
           excerpt?: string | null
@@ -113,7 +149,15 @@ export type Database = {
           title?: string
           updated_at?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "blog_posts_category_id_fkey"
+            columns: ["category_id"]
+            isOneToOne: false
+            referencedRelation: "blog_categories"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       contact_submissions: {
         Row: {
