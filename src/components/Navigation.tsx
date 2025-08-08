@@ -36,7 +36,7 @@ const Navigation = () => {
               <span className="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
                 Development
               </span>
-              <span className="text-xs text-muted-foreground font-medium">Digital Innovation</span>
+              <span className="text-xs text-muted-foreground font-medium">Your Online Future Starts Here</span>
             </div>
           </div>
 
