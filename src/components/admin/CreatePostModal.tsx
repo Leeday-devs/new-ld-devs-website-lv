@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
@@ -18,16 +18,6 @@ interface CreatePostModalProps {
   onSuccess: () => void;
 }
 
-const categories = [
-  "Web Development",
-  "React", 
-  "Automation",
-  "Design",
-  "Security",
-  "E-commerce",
-  "Technology",
-  "Business"
-];
 
 const CreatePostModal = ({ open, onClose, onSuccess }: CreatePostModalProps) => {
   const { user } = useAuth();
@@ -44,6 +34,20 @@ const CreatePostModal = ({ open, onClose, onSuccess }: CreatePostModalProps) => 
     status: "draft",
     tags: ""
   });
+
+  // Dynamic categories from DB
+  const [categories, setCategories] = useState<{ id: string; name: string }[]>([]);
+  useEffect(() => {
+    const fetchCategories = async () => {
+      const { data, error } = await supabase
+        .from('blog_categories')
+        .select('id,name')
+        .eq('status', 'active')
+        .order('name', { ascending: true });
+      if (!error) setCategories(data || []);
+    };
+    if (open) fetchCategories();
+  }, [open]);
 
   const generateSlug = (title: string) => {
     return title
@@ -130,6 +134,7 @@ const CreatePostModal = ({ open, onClose, onSuccess }: CreatePostModalProps) => 
     try {
       const slug = generateSlug(formData.title);
       const publishedAt = formData.status === 'published' ? new Date().toISOString() : null;
+      const selectedCategory = categories.find((c) => c.name === formData.category);
 
       const { error } = await supabase
         .from('blog_posts')
@@ -139,6 +144,7 @@ const CreatePostModal = ({ open, onClose, onSuccess }: CreatePostModalProps) => 
           excerpt: formData.excerpt ? sanitizeInput(formData.excerpt) : null,
           content: sanitizeHtml(formData.content),
           category: sanitizeInput(formData.category),
+          category_id: selectedCategory?.id || null,
           featured_image: formData.featured_image || null,
           status: formData.status,
           author_id: user.id,
@@ -256,10 +262,10 @@ const CreatePostModal = ({ open, onClose, onSuccess }: CreatePostModalProps) => 
                   <SelectTrigger>
                     <SelectValue placeholder="Select category" />
                   </SelectTrigger>
-                  <SelectContent className="z-50">
-                    {categories.map(category => (
-                      <SelectItem key={category} value={category}>
-                        {category}
+                  <SelectContent className="z-50 bg-popover">
+                    {categories.map((c) => (
+                      <SelectItem key={c.id} value={c.name}>
+                        {c.name}
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -297,7 +303,7 @@ const CreatePostModal = ({ open, onClose, onSuccess }: CreatePostModalProps) => 
                   <SelectTrigger>
                     <SelectValue />
                   </SelectTrigger>
-                  <SelectContent>
+                  <SelectContent className="z-50 bg-popover">
                     <SelectItem value="draft">Save as Draft</SelectItem>
                     <SelectItem value="published">Publish Now</SelectItem>
                   </SelectContent>

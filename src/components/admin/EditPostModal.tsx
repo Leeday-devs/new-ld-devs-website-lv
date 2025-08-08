@@ -28,16 +28,6 @@ interface EditPostModalProps {
   onSuccess: () => void;
 }
 
-const categories = [
-  "Web Development",
-  "React", 
-  "Automation",
-  "Design",
-  "Security",
-  "E-commerce",
-  "Technology",
-  "Business"
-];
 
 const EditPostModal = ({ post, open, onClose, onSuccess }: EditPostModalProps) => {
   const { toast } = useToast();
@@ -50,6 +40,20 @@ const EditPostModal = ({ post, open, onClose, onSuccess }: EditPostModalProps) =
     featured_image: "",
     status: "draft"
   });
+
+  // Dynamic categories from DB
+  const [categories, setCategories] = useState<{ id: string; name: string }[]>([]);
+  useEffect(() => {
+    const fetchCategories = async () => {
+      const { data, error } = await supabase
+        .from('blog_categories')
+        .select('id,name')
+        .eq('status', 'active')
+        .order('name', { ascending: true });
+      if (!error) setCategories(data || []);
+    };
+    if (open) fetchCategories();
+  }, [open]);
 
   useEffect(() => {
     if (post) {
@@ -80,12 +84,14 @@ const EditPostModal = ({ post, open, onClose, onSuccess }: EditPostModalProps) =
 
     try {
       const slug = generateSlug(formData.title);
+      const selectedCategory = categories.find((c) => c.name === formData.category);
       const updateData: any = {
         title: sanitizeInput(formData.title),
         slug,
         excerpt: formData.excerpt ? sanitizeInput(formData.excerpt) : null,
         content: sanitizeHtml(formData.content),
         category: sanitizeInput(formData.category),
+        category_id: selectedCategory?.id || null,
         featured_image: formData.featured_image || null,
         status: formData.status
       };
@@ -162,10 +168,10 @@ const EditPostModal = ({ post, open, onClose, onSuccess }: EditPostModalProps) =
                 <SelectTrigger>
                   <SelectValue placeholder="Select category" />
                 </SelectTrigger>
-                <SelectContent className="z-50">
-                  {categories.map(category => (
-                    <SelectItem key={category} value={category}>
-                      {category}
+                <SelectContent className="z-50 bg-popover">
+                  {categories.map((c) => (
+                    <SelectItem key={c.id} value={c.name}>
+                      {c.name}
                     </SelectItem>
                   ))}
                 </SelectContent>
@@ -216,7 +222,7 @@ const EditPostModal = ({ post, open, onClose, onSuccess }: EditPostModalProps) =
               <SelectTrigger>
                 <SelectValue />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="z-50 bg-popover">
                 <SelectItem value="draft">Draft</SelectItem>
                 <SelectItem value="published">Published</SelectItem>
                 <SelectItem value="archived">Archived</SelectItem>
