@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-
+import WatermarkOverlay from "@/components/WatermarkOverlay";
 const PlumberProDemo = () => {
   const services = [
     {
@@ -104,7 +104,8 @@ const PlumberProDemo = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50 font-sans">
+    <div className="min-h-screen bg-slate-50 font-sans" onContextMenu={(e) => e.preventDefault()}>
+      <WatermarkOverlay text="LD Development" />
       {/* Emergency Banner */}
       <div className="bg-gradient-to-r from-red-600 to-orange-600 text-white py-2 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-[shimmer_3s_ease-in-out_infinite]"></div>

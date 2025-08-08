@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-
+import WatermarkOverlay from "@/components/WatermarkOverlay";
 const ModernBarberDemo = () => {
   const services = [
     {
@@ -73,7 +73,8 @@ const ModernBarberDemo = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-red-50 font-serif">
+    <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-red-50 font-serif" onContextMenu={(e) => e.preventDefault()}>
+      <WatermarkOverlay text="LD Development" />
       {/* Floating Navigation */}
       <nav className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 bg-black/90 backdrop-blur-md rounded-full px-8 py-3 border border-amber-600/30">
         <div className="flex items-center gap-8">

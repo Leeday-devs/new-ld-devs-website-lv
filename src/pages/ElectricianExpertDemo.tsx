@@ -8,7 +8,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
-
+import WatermarkOverlay from "@/components/WatermarkOverlay";
 const ElectricianExpertDemo = () => {
   const emergencyServices = [
     { icon: AlertTriangle, title: "Power Outages", response: "< 30 mins" },
@@ -94,7 +94,8 @@ const ElectricianExpertDemo = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background" onContextMenu={(e) => e.preventDefault()}>
+      <WatermarkOverlay text="LD Development" />
       {/* Emergency Header Bar */}
       <div className="bg-destructive text-destructive-foreground py-2">
         <div className="container mx-auto px-4 text-center">

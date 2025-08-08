@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import WatermarkOverlay from "@/components/WatermarkOverlay";
 
 const AutoRepairDemo = () => {
   const diagnosticServices = [
@@ -119,7 +120,8 @@ const AutoRepairDemo = () => {
   const brands = ["BMW", "Mercedes", "Audi", "Volkswagen", "Ford", "Vauxhall", "Toyota", "Honda", "Nissan", "Peugeot", "Skoda", "SEAT"];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background" onContextMenu={(e) => e.preventDefault()}>
+      <WatermarkOverlay text="LD Development" />
       {/* Top Bar */}
       <div className="bg-muted/50 py-2 border-b">
         <div className="container mx-auto px-4 flex justify-between items-center text-sm">
