@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
-import { Plus, Edit, ExternalLink, Calendar, DollarSign, Trash2, Settings, KeyRound } from "lucide-react";
+import { Plus, Edit, ExternalLink, Calendar, DollarSign, Trash2, Settings, KeyRound, CheckCircle } from "lucide-react";
 import CreateCustomerModal from "./CreateCustomerModal";
 import EditCustomerModal from "./EditCustomerModal";
 import CustomerServicesModal from "./CustomerServicesModal";
@@ -150,6 +150,44 @@ const CustomersManagement = () => {
     return { label: 'Current', variant: 'secondary' as const };
   };
 
+  const handleMarkAsPaid = async (customer: Customer) => {
+    try {
+      const baseDate = customer.next_payment_date ? new Date(customer.next_payment_date) : new Date();
+      const newDate = new Date(baseDate);
+      newDate.setMonth(newDate.getMonth() + 1);
+      const isoDate = newDate.toISOString().slice(0, 10);
+
+      const { error } = await supabase
+        .from('customers')
+        .update({
+          next_payment_date: isoDate,
+          payment_amount: customer.plan_price,
+        })
+        .eq('id', customer.id);
+
+      if (error) {
+        toast({
+          title: 'Error',
+          description: 'Failed to mark as paid.',
+          variant: 'destructive',
+        });
+        return;
+      }
+
+      toast({
+        title: 'Marked as paid',
+        description: `Next payment set to ${newDate.toLocaleDateString()}`,
+      });
+
+      fetchCustomers();
+    } catch (error) {
+      toast({
+        title: 'Error',
+        description: 'An unexpected error occurred.',
+        variant: 'destructive',
+      });
+    }
+  };
   if (loading) {
     return (
       <Card className="card-premium">
@@ -253,6 +291,15 @@ const CustomersManagement = () => {
                             title="Reset Password"
                           >
                             <KeyRound className="h-4 w-4" />
+                          </Button>
+                          <Button
+                            size="sm"
+                            className="btn-premium gap-1"
+                            onClick={() => handleMarkAsPaid(customer)}
+                            title="Mark as Paid"
+                          >
+                            <CheckCircle className="h-4 w-4" />
+                            Mark Paid
                           </Button>
                           <Button
                             variant="outline"
