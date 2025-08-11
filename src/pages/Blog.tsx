@@ -16,21 +16,25 @@ interface BlogPost {
   featured_image: string;
   slug: string;
   category: string;
+  category_id?: string | null;
   created_at: string;
   author_id: string;
 }
 
-const categories = ["All", "Web Development", "React", "Automation", "Design", "Security", "E-commerce", "Technology", "Business"];
+type CategoryRecord = { id: string; name: string };
 
 const Blog = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [categories, setCategories] = useState<string[]>(["All"]);
+  const [categoryMap, setCategoryMap] = useState<Record<string, string>>({});
 
-  useEffect(() => {
-    fetchBlogPosts();
-  }, []);
+useEffect(() => {
+  fetchBlogPosts();
+  fetchCategories();
+}, []);
 
   const fetchBlogPosts = async () => {
     try {
@@ -53,6 +57,36 @@ const Blog = () => {
     }
   };
 
+  const fetchCategories = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('blog_categories')
+        .select('id, name, status')
+        .eq('status', 'active')
+        .order('name', { ascending: true });
+
+      if (error) {
+        console.error('Error fetching categories:', error);
+        return;
+      }
+
+      const map: Record<string, string> = {};
+      const names: string[] = ['All'];
+      (data || []).forEach((c: any) => {
+        map[c.id] = c.name;
+        names.push(c.name);
+      });
+
+      setCategoryMap(map);
+      setCategories(names);
+      if (!names.includes(selectedCategory)) {
+        setSelectedCategory('All');
+      }
+    } catch (e) {
+      console.error('Error fetching categories:', e);
+    }
+  };
+
   // Track blog post views
   const trackView = async (postId: string) => {
     try {
@@ -69,12 +103,16 @@ const Blog = () => {
     }
   };
 
-  const filteredPosts = blogPosts.filter(post => {
-    const matchesCategory = selectedCategory === "All" || post.category === selectedCategory;
-    const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         (post.excerpt && post.excerpt.toLowerCase().includes(searchTerm.toLowerCase()));
-    return matchesCategory && matchesSearch;
-  });
+const getCategoryName = (post: BlogPost) =>
+  (post.category_id && categoryMap[post.category_id]) || post.category || "";
+
+const filteredPosts = blogPosts.filter(post => {
+  const postCategory = getCategoryName(post);
+  const matchesCategory = selectedCategory === "All" || postCategory === selectedCategory;
+  const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                       (post.excerpt && post.excerpt.toLowerCase().includes(searchTerm.toLowerCase()));
+  return matchesCategory && matchesSearch;
+});
 
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('en-US', {
@@ -84,16 +122,16 @@ const Blog = () => {
     });
   };
 
-  const transformPostForCard = (post: BlogPost) => ({
-    id: post.id,
-    title: post.title,
-    excerpt: post.excerpt || '',
-    image: post.featured_image || "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=600&fit=crop",
-    author: "LD Development Team",
-    date: formatDate(post.created_at),
-    slug: post.slug,
-    category: post.category
-  });
+const transformPostForCard = (post: BlogPost) => ({
+  id: post.id,
+  title: post.title,
+  excerpt: post.excerpt || '',
+  image: post.featured_image || "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=600&fit=crop",
+  author: "LD Development Team",
+  date: formatDate(post.created_at),
+  slug: post.slug,
+  category: getCategoryName(post)
+});
 
   return (
     <>
