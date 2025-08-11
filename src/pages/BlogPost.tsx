@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import DOMPurify from 'dompurify';
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 interface BlogPostData {
   id: string;
@@ -155,6 +156,13 @@ const BlogPost = () => {
         {/* Hero Section */}
         <section className="pt-20 pb-8">
           <div className="container mx-auto px-4">
+            <div className="mb-6">
+              <Breadcrumbs items={[
+                { label: 'Home', href: '/' },
+                { label: 'Blog', href: '/blog' },
+                { label: post.title }
+              ]} />
+            </div>
             <div className="max-w-4xl mx-auto">
               {/* Back Button */}
               <Link to="/blog" className="inline-flex items-center gap-2 text-primary hover:text-primary-dark transition-colors mb-8">

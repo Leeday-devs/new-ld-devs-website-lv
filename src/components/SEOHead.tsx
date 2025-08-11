@@ -8,6 +8,9 @@ interface SEOHeadProps {
   url?: string;
   structuredData?: any | any[];
   noindex?: boolean;
+  organizationSameAs?: string[];
+  siteName?: string;
+  locale?: string;
 }
 
 const SEOHead = ({
@@ -20,6 +23,9 @@ const SEOHead = ({
   url,
   structuredData,
   noindex = false,
+  organizationSameAs,
+  siteName = "LD Development",
+  locale = "en_GB",
 }: SEOHeadProps) => {
   const currentUrl = url || (typeof window !== "undefined" ? window.location.href : "https://leedaydevs.com");
   const originUrl = typeof window !== "undefined" ? window.location.origin : "https://leedaydevs.com";
@@ -41,6 +47,8 @@ const SEOHead = ({
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={ogImage} />
+      <meta property="og:site_name" content={siteName} />
+      <meta property="og:locale" content={locale} />
 
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />
@@ -60,6 +68,7 @@ const SEOHead = ({
           url: currentUrl,
           logo: `${originUrl}/lovable-uploads/c05ee520-dfce-4d37-9abd-2ecb7430e4da.png`,
           image: `${originUrl}/lovable-uploads/c05ee520-dfce-4d37-9abd-2ecb7430e4da.png`,
+          sameAs: organizationSameAs && organizationSameAs.length ? organizationSameAs : undefined,
           telephone: "+447586266007",
           email: "LeeDayDevs@gmail.com",
           address: {
