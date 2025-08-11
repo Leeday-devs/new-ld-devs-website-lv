@@ -132,12 +132,21 @@ const BlogPost = () => {
         structuredData={{
           "@context": "https://schema.org",
           "@type": "BlogPosting",
-          "headline": post.title,
-          "image": post.featured_image ? [post.featured_image] : undefined,
-          "datePublished": post.published_at || post.created_at,
-          "author": { "@type": "Organization", "name": "LD Development" },
-          "publisher": { "@type": "Organization", "name": "LD Development" },
-          "description": post.excerpt || post.title,
+          headline: post.title,
+          image: post.featured_image ? [post.featured_image] : [
+            `${typeof window !== 'undefined' ? window.location.origin : 'https://leedaydevs.com'}/lovable-uploads/c05ee520-dfce-4d37-9abd-2ecb7430e4da.png`
+          ],
+          datePublished: post.published_at || post.created_at,
+          dateModified: post.published_at || post.created_at,
+          author: { "@type": "Organization", name: "LD Development" },
+          publisher: { 
+            "@type": "Organization", 
+            name: "LD Development",
+            logo: { "@type": "ImageObject", url: `${typeof window !== 'undefined' ? window.location.origin : 'https://leedaydevs.com'}/lovable-uploads/c05ee520-dfce-4d37-9abd-2ecb7430e4da.png` }
+          },
+          description: post.excerpt || post.title,
+          mainEntityOfPage: { "@type": "WebPage", "@id": typeof window !== 'undefined' ? window.location.href : 'https://leedaydevs.com' },
+          articleSection: post.category
         }}
       />
       <div className="min-h-screen bg-background">

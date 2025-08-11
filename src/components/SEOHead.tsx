@@ -16,12 +16,13 @@ const SEOHead = ({
     "Expert web development and hosting services in London. We build custom websites, e-commerce platforms, AI automation solutions, and customer portals for UK businesses. Fast, secure, mobile-optimized websites with ongoing support.",
   keywords =
     "web development UK, website design London, web hosting UK, e-commerce development, AI automation small business, customer portal development, responsive web design, React development, web security, mobile-first design",
-  ogImage = "/hero-image.jpg",
+  ogImage = "/lovable-uploads/c05ee520-dfce-4d37-9abd-2ecb7430e4da.png",
   url,
   structuredData,
   noindex = false,
 }: SEOHeadProps) => {
   const currentUrl = url || (typeof window !== "undefined" ? window.location.href : "https://leedaydevs.com");
+  const originUrl = typeof window !== "undefined" ? window.location.origin : "https://leedaydevs.com";
   const sdArray = structuredData ? (Array.isArray(structuredData) ? structuredData : [structuredData]) : [];
 
   return (
@@ -57,8 +58,8 @@ const SEOHead = ({
           alternateName: "Lee Day Devs",
           description,
           url: currentUrl,
-          logo: `${currentUrl.replace(/\/$/, "")}/hero-image.jpg`,
-          image: `${currentUrl.replace(/\/$/, "")}/hero-image.jpg`,
+          logo: `${originUrl}/lovable-uploads/c05ee520-dfce-4d37-9abd-2ecb7430e4da.png`,
+          image: `${originUrl}/lovable-uploads/c05ee520-dfce-4d37-9abd-2ecb7430e4da.png`,
           telephone: "+447586266007",
           email: "LeeDayDevs@gmail.com",
           address: {

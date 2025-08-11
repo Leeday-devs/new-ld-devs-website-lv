@@ -24,6 +24,12 @@ const Index = () => {
         description="Expert web development and hosting services in London. We build custom websites, e-commerce platforms, AI automation solutions, and customer portals for UK businesses. Fast, secure, mobile-optimized websites with ongoing support."
         keywords="web development UK, website design London, web hosting UK, e-commerce development, AI automation small business, customer portal development, responsive web design, React development, web security, mobile-first design"
         url="https://leedaydevs.com"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          name: "LD Development",
+          url: "https://leedaydevs.com"
+        }}
       />
       <div className="min-h-screen">
         <Navigation />
