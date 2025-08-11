@@ -152,6 +152,9 @@ const transformPostForCard = (post: BlogPost) => ({
             "datePublished": p.created_at,
           }))
         }}
+        organizationSameAs={[
+          "https://www.facebook.com/profile.php?id=61563893127712"
+        ]}
       />
       <div className="min-h-screen bg-background">
         <Navigation />

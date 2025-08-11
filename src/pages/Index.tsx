@@ -30,6 +30,9 @@ const Index = () => {
           name: "LD Development",
           url: "https://leedaydevs.com"
         }}
+        organizationSameAs={[
+          "https://www.facebook.com/profile.php?id=61563893127712"
+        ]}
       />
       <div className="min-h-screen">
         <Navigation />

@@ -149,6 +149,9 @@ const BlogPost = () => {
           mainEntityOfPage: { "@type": "WebPage", "@id": typeof window !== 'undefined' ? window.location.href : 'https://leedaydevs.com' },
           articleSection: post.category
         }}
+        organizationSameAs={[
+          "https://www.facebook.com/profile.php?id=61563893127712"
+        ]}
       />
       <div className="min-h-screen bg-background">
         <Navigation />
