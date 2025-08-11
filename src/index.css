@@ -83,6 +83,18 @@
     --sidebar-accent-foreground: 222 84% 15%;
     --sidebar-border: 214 32% 90%;
     --sidebar-ring: 214 100% 59%;
+
+    /* Category color tokens */
+    --category-1: 14 100% 57%;   /* Orange */
+    --category-2: 199 89% 48%;   /* Blue */
+    --category-3: 142 72% 45%;   /* Green */
+    --category-4: 271 91% 65%;   /* Purple */
+    --category-5: 340 82% 60%;   /* Pink/Red */
+    --category-6: 43 96% 56%;    /* Gold */
+    --category-7: 189 94% 42%;   /* Teal */
+    --category-8: 220 13% 46%;   /* Slate */
+    --category-9: 25 95% 53%;    /* Amber */
+    --category-10: 330 81% 66%;  /* Magenta */
   }
 
   .dark {
@@ -436,6 +448,30 @@
 
   .stagger-delay-5 {
     animation-delay: 0.5s;
+  }
+
+  /* Category badge and pill styles using semantic tokens */
+  .category-badge-1, .category-pill-1 { background: linear-gradient(135deg, hsl(var(--category-1)) 0%, hsl(var(--category-1) / 0.9) 100%); color: white; }
+  .category-badge-2, .category-pill-2 { background: linear-gradient(135deg, hsl(var(--category-2)) 0%, hsl(var(--category-2) / 0.9) 100%); color: white; }
+  .category-badge-3, .category-pill-3 { background: linear-gradient(135deg, hsl(var(--category-3)) 0%, hsl(var(--category-3) / 0.9) 100%); color: white; }
+  .category-badge-4, .category-pill-4 { background: linear-gradient(135deg, hsl(var(--category-4)) 0%, hsl(var(--category-4) / 0.9) 100%); color: white; }
+  .category-badge-5, .category-pill-5 { background: linear-gradient(135deg, hsl(var(--category-5)) 0%, hsl(var(--category-5) / 0.9) 100%); color: white; }
+  .category-badge-6, .category-pill-6 { background: linear-gradient(135deg, hsl(var(--category-6)) 0%, hsl(var(--category-6) / 0.9) 100%); color: white; }
+  .category-badge-7, .category-pill-7 { background: linear-gradient(135deg, hsl(var(--category-7)) 0%, hsl(var(--category-7) / 0.9) 100%); color: white; }
+  .category-badge-8, .category-pill-8 { background: linear-gradient(135deg, hsl(var(--category-8)) 0%, hsl(var(--category-8) / 0.9) 100%); color: white; }
+  .category-badge-9, .category-pill-9 { background: linear-gradient(135deg, hsl(var(--category-9)) 0%, hsl(var(--category-9) / 0.9) 100%); color: white; }
+  .category-badge-10, .category-pill-10 { background: linear-gradient(135deg, hsl(var(--category-10)) 0%, hsl(var(--category-10) / 0.9) 100%); color: white; }
+
+  .category-badge-1, .category-badge-2, .category-badge-3,
+  .category-badge-4, .category-badge-5, .category-badge-6,
+  .category-badge-7, .category-badge-8, .category-badge-9, .category-badge-10 {
+    padding: 0.25rem 0.75rem; border-radius: 9999px; font-weight: 600; box-shadow: var(--shadow-button);
+  }
+
+  .category-pill-1, .category-pill-2, .category-pill-3,
+  .category-pill-4, .category-pill-5, .category-pill-6,
+  .category-pill-7, .category-pill-8, .category-pill-9, .category-pill-10 {
+    padding: 0.5rem 1rem; border-radius: 9999px; font-weight: 600; box-shadow: var(--shadow-button);
   }
 }
 

@@ -139,6 +139,19 @@ const transformPostForCard = (post: BlogPost) => ({
         title="Our Blog - LD Development | Web Development Insights & Tips"
         description="Stay updated with the latest web development trends, tips, and insights from LD Development. Expert articles on React, automation, design, and more."
         keywords="web development blog, React tutorials, business automation, UI UX design, web security, e-commerce optimization"
+        url={typeof window !== 'undefined' ? window.location.href : undefined}
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "Blog",
+          "name": "LD Development Blog",
+          "url": typeof window !== 'undefined' ? window.location.href : 'https://leedaydevs.com/blog',
+          "blogPost": (blogPosts || []).slice(0, 10).map(p => ({
+            "@type": "BlogPosting",
+            "headline": p.title,
+            "url": `${(typeof window !== 'undefined' ? window.location.origin : 'https://leedaydevs.com')}/blog/${p.slug}`,
+            "datePublished": p.created_at,
+          }))
+        }}
       />
       <div className="min-h-screen bg-background">
         <Navigation />
@@ -170,6 +183,7 @@ const transformPostForCard = (post: BlogPost) => ({
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="w-full pl-10 pr-4 py-3 rounded-lg border border-white/20 bg-white/10 backdrop-blur-md text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-primary"
+                  aria-label="Search articles"
                 />
               </div>
             </div>
@@ -180,20 +194,26 @@ const transformPostForCard = (post: BlogPost) => ({
         <section className="py-8 border-b border-border">
           <div className="container mx-auto px-4">
             <div className="flex flex-wrap justify-center gap-2">
-              {categories.map((category) => (
-                <Button
-                  key={category}
-                  variant={selectedCategory === category ? "default" : "outline"}
-                  onClick={() => setSelectedCategory(category)}
-                  className={`${
-                    selectedCategory === category 
-                      ? "btn-premium" 
-                      : "hover:bg-primary/10 hover:text-primary hover:border-primary"
-                  }`}
-                >
-                  {category}
-                </Button>
-              ))}
+              {categories.map((category) => {
+                const isSelected = selectedCategory === category;
+                const getPillClass = (name: string) => {
+                  if (name === 'All') return 'btn-premium';
+                  let hash = 0; for (let i = 0; i < name.length; i++) hash = (hash << 5) - hash + name.charCodeAt(i);
+                  const idx = (Math.abs(hash) % 10) + 1;
+                  return `category-pill-${idx}`;
+                };
+                return (
+                  <Button
+                    key={category}
+                    variant={isSelected ? "default" : "outline"}
+                    onClick={() => setSelectedCategory(category)}
+                    className={`${isSelected ? getPillClass(category) : "hover:bg-primary/10 hover:text-primary hover:border-primary"}`}
+                    aria-pressed={isSelected}
+                  >
+                    {category}
+                  </Button>
+                );
+              })}
             </div>
           </div>
         </section>
@@ -206,7 +226,7 @@ const transformPostForCard = (post: BlogPost) => ({
                 {[...Array(6)].map((_, index) => (
                   <div key={index} className="animate-pulse">
                     <div className="bg-muted rounded-lg h-64 mb-4"></div>
-                    <div className="h-4 bg-muted rounded mb-2"></div>
+                    <div className="h-4 bg-muted rounded mb-2" role="status" aria-label="Loading"/>
                     <div className="h-4 bg-muted rounded w-3/4"></div>
                   </div>
                 ))}

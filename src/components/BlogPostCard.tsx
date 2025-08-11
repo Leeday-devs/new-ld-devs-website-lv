@@ -19,16 +19,25 @@ interface BlogPostCardProps {
 }
 
 const BlogPostCard = ({ post }: BlogPostCardProps) => {
+  const getCategoryClass = (name: string) => {
+    if (!name) return "bg-gradient-secondary";
+    let hash = 0;
+    for (let i = 0; i < name.length; i++) hash = (hash << 5) - hash + name.charCodeAt(i);
+    const idx = (Math.abs(hash) % 10) + 1; // 1..10
+    return `category-badge-${idx}`;
+  };
+
   return (
     <Card className="card-premium h-full overflow-hidden group">
       <div className="relative overflow-hidden">
         <img 
           src={post.image} 
           alt={post.title}
+          loading="lazy"
           className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
         />
         <div className="absolute top-4 left-4">
-          <span className="bg-gradient-secondary text-white px-3 py-1 rounded-full text-sm font-medium">
+          <span className={`${getCategoryClass(post.category)} text-white text-sm font-medium`}>
             {post.category}
           </span>
         </div>

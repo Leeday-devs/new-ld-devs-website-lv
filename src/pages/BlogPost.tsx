@@ -139,6 +139,18 @@ const BlogPost = () => {
         title={`${post.title} - LD Development Blog`}
         description={post.excerpt || post.title}
         keywords={`${post.category.toLowerCase()}, web development, ${post.title.toLowerCase()}`}
+        url={typeof window !== 'undefined' ? window.location.href : undefined}
+        ogImage={post.featured_image}
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "BlogPosting",
+          "headline": post.title,
+          "image": post.featured_image ? [post.featured_image] : undefined,
+          "datePublished": post.published_at || post.created_at,
+          "author": { "@type": "Organization", "name": "LD Development" },
+          "publisher": { "@type": "Organization", "name": "LD Development" },
+          "description": post.excerpt || post.title,
+        }}
       />
       <div className="min-h-screen bg-background">
         <Navigation />
@@ -155,9 +167,13 @@ const BlogPost = () => {
 
               {/* Category Badge */}
               <div className="mb-4">
-                <span className="bg-gradient-secondary text-white px-4 py-2 rounded-full text-sm font-medium">
-                  {post.category}
-                </span>
+                {(() => {
+                  const name = post.category || '';
+                  let hash = 0; for (let i = 0; i < name.length; i++) hash = (hash << 5) - hash + name.charCodeAt(i);
+                  const idx = (Math.abs(hash) % 10) + 1;
+                  const cls = `category-badge-${idx}`;
+                  return <span className={`${cls} text-white text-sm`}>{post.category}</span>;
+                })()}
               </div>
 
               {/* Title */}
@@ -205,6 +221,7 @@ const BlogPost = () => {
                   <img 
                     src={post.featured_image} 
                     alt={post.title}
+                    loading="lazy"
                     className="w-full h-64 md:h-96 object-cover"
                   />
                 </div>
