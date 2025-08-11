@@ -2,8 +2,9 @@ import { useParams, Navigate } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
+import ShareMenu from "@/components/ShareMenu";
 import { Button } from "@/components/ui/button";
-import { CalendarDays, User, ArrowLeft, Share2, Clock } from "lucide-react";
+import { CalendarDays, User, ArrowLeft, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
@@ -92,19 +93,6 @@ const BlogPost = () => {
     });
   };
 
-  const handleShare = () => {
-    if (navigator.share) {
-      navigator.share({
-        title: post?.title,
-        text: post?.excerpt,
-        url: window.location.href,
-      });
-    } else {
-      // Fallback to copy to clipboard
-      navigator.clipboard.writeText(window.location.href);
-      // You could add a toast notification here
-    }
-  };
 
   if (isLoading) {
     return (
@@ -198,15 +186,12 @@ const BlogPost = () => {
               </div>
 
               {/* Share Button */}
-              <div className="mb-8 animate-fade-in-up">
-                <Button 
-                  variant="outline" 
-                  className="hover:bg-primary/10 hover:text-primary hover:border-primary"
-                  onClick={handleShare}
-                >
-                  <Share2 className="h-4 w-4 mr-2" />
-                  Share Article
-                </Button>
+<div className="mb-8 animate-fade-in-up">
+                <ShareMenu 
+                  title={post.title}
+                  excerpt={post.excerpt || post.title}
+                  url={typeof window !== 'undefined' ? window.location.href : ''}
+                />
               </div>
             </div>
           </div>
