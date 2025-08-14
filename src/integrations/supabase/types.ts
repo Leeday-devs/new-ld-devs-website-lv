@@ -189,6 +189,60 @@ export type Database = {
         }
         Relationships: []
       }
+      cookie_consents: {
+        Row: {
+          analytics_cookies: boolean
+          consent_given: boolean
+          consent_timestamp: string
+          consent_version: string
+          essential_cookies: boolean
+          id: string
+          ip_address: unknown | null
+          marketing_cookies: boolean
+          page_url: string | null
+          preferences_cookies: boolean
+          referrer: string | null
+          session_id: string | null
+          updated_at: string
+          user_agent: string | null
+          user_id: string | null
+        }
+        Insert: {
+          analytics_cookies?: boolean
+          consent_given?: boolean
+          consent_timestamp?: string
+          consent_version?: string
+          essential_cookies?: boolean
+          id?: string
+          ip_address?: unknown | null
+          marketing_cookies?: boolean
+          page_url?: string | null
+          preferences_cookies?: boolean
+          referrer?: string | null
+          session_id?: string | null
+          updated_at?: string
+          user_agent?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          analytics_cookies?: boolean
+          consent_given?: boolean
+          consent_timestamp?: string
+          consent_version?: string
+          essential_cookies?: boolean
+          id?: string
+          ip_address?: unknown | null
+          marketing_cookies?: boolean
+          page_url?: string | null
+          preferences_cookies?: boolean
+          referrer?: string | null
+          session_id?: string | null
+          updated_at?: string
+          user_agent?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       customer_services: {
         Row: {
           created_at: string
