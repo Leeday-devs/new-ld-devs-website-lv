@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/hooks/useAuth";
 import DiscordNotificationTracker from "./components/DiscordNotificationTracker";
+import { CookieBanner } from "./components/CookieBanner";
 import Index from "./pages/Index";
 import UnifiedAuth from "./pages/UnifiedAuth";
 import AdminAuth from "./pages/AdminAuth";
@@ -39,6 +40,7 @@ const App = () => (
         <Sonner />
         <BrowserRouter>
           <DiscordNotificationTracker />
+          <CookieBanner />
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/auth" element={<UnifiedAuth />} />
