@@ -1,35 +1,41 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { Link } from "react-router-dom";
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from "@/components/ui/navigation-menu";
 import AuthButton from "./AuthButton";
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const primaryNavItems = [
     { label: "Home", href: "/", isInternal: true },
     { label: "Services", href: "#services", isInternal: false },
     { label: "Pre-Built", href: "/templates", isInternal: true },
+    { label: "Blog", href: "/blog", isInternal: true },
     { label: "About", href: "#about", isInternal: false }
   ];
 
   const dropdownItems = [
     { label: "Portfolio", href: "#portfolio", isInternal: false },
-    { label: "Blog", href: "/blog", isInternal: true },
     { label: "FAQ", href: "#faq", isInternal: false },
     { label: "Contact", href: "#contact", isInternal: false }
   ];
 
   const allNavItems = [...primaryNavItems, ...dropdownItems];
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      if (isDropdownOpen && !target.closest('.dropdown-container')) {
+        setIsDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [isDropdownOpen]);
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-xl border-b border-border/50 shadow-premium">
@@ -54,59 +60,68 @@ const Navigation = () => {
           </div>
 
           {/* Premium Desktop Navigation */}
-          <NavigationMenu className="hidden md:flex">
-            <NavigationMenuList className="space-x-8">
-              {primaryNavItems.map((item) => (
-                <NavigationMenuItem key={item.label}>
-                  {item.isInternal ? (
-                    <Link
-                      to={item.href}
-                      className="link-premium text-muted-foreground hover:text-foreground transition-smooth relative group font-medium px-3 py-2"
-                    >
-                      {item.label}
-                    </Link>
-                  ) : (
-                    <a
-                      href={item.href}
-                      className="link-premium text-muted-foreground hover:text-foreground transition-smooth relative group font-medium px-3 py-2"
-                    >
-                      {item.label}
-                    </a>
-                  )}
-                </NavigationMenuItem>
-              ))}
-              <NavigationMenuItem>
-                <NavigationMenuTrigger className="link-premium text-muted-foreground hover:text-foreground transition-smooth relative group font-medium bg-transparent hover:bg-transparent data-[state=open]:bg-transparent focus:bg-transparent data-[state=open]:text-foreground">
-                  More
-                </NavigationMenuTrigger>
-                <NavigationMenuContent className="absolute top-full left-0 mt-1 min-w-[200px] p-1 bg-background/95 backdrop-blur-md border border-border shadow-lg rounded-md z-[9999] data-[motion^=from-]:animate-in data-[motion^=to-]:animate-out data-[motion^=from-]:fade-in data-[motion^=to-]:fade-out data-[motion=from-end]:slide-in-from-right-52 data-[motion=from-start]:slide-in-from-left-52 data-[motion=to-end]:slide-out-to-right-52 data-[motion=to-start]:slide-out-to-left-52">
+          <div className="hidden md:flex items-center space-x-8">
+            {primaryNavItems.map((item) => (
+              item.isInternal ? (
+                <Link
+                  key={item.label}
+                  to={item.href}
+                  className="link-premium text-muted-foreground hover:text-foreground transition-smooth relative group font-medium"
+                >
+                  {item.label}
+                </Link>
+              ) : (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  className="link-premium text-muted-foreground hover:text-foreground transition-smooth relative group font-medium"
+                >
+                  {item.label}
+                </a>
+              )
+            ))}
+            
+            {/* Custom More Dropdown */}
+            <div className="relative dropdown-container">
+              <button
+                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                className="flex items-center gap-1 link-premium text-muted-foreground hover:text-foreground transition-smooth relative group font-medium"
+              >
+                More
+                <ChevronDown className={`h-4 w-4 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
+              </button>
+              
+              {isDropdownOpen && (
+                <div className="absolute top-full right-0 mt-2 min-w-[200px] p-1 bg-background/95 backdrop-blur-md border border-border shadow-lg rounded-md z-[9999]">
                   {dropdownItems.map((item) => (
-                    <NavigationMenuLink key={item.label} asChild>
-                      {item.isInternal ? (
-                        <Link
-                          to={item.href}
-                          className="block px-3 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-muted rounded-sm transition-smooth"
-                        >
-                          {item.label}
-                        </Link>
-                      ) : (
-                        <a
-                          href={item.href}
-                          className="block px-3 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-muted rounded-sm transition-smooth"
-                        >
-                          {item.label}
-                        </a>
-                      )}
-                    </NavigationMenuLink>
+                    item.isInternal ? (
+                      <Link
+                        key={item.label}
+                        to={item.href}
+                        className="block px-3 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-muted rounded-sm transition-smooth"
+                        onClick={() => setIsDropdownOpen(false)}
+                      >
+                        {item.label}
+                      </Link>
+                    ) : (
+                      <a
+                        key={item.label}
+                        href={item.href}
+                        className="block px-3 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-muted rounded-sm transition-smooth"
+                        onClick={() => setIsDropdownOpen(false)}
+                      >
+                        {item.label}
+                      </a>
+                    )
                   ))}
                   <div className="border-t border-border my-1"></div>
                   <div className="px-3 py-2">
                     <AuthButton />
                   </div>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-            </NavigationMenuList>
-          </NavigationMenu>
+                </div>
+              )}
+            </div>
+          </div>
 
           {/* CTA Button */}
           <div className="hidden md:flex items-center">
