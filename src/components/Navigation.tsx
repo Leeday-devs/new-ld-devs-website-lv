@@ -76,30 +76,30 @@ const Navigation = () => {
                 </NavigationMenuItem>
               ))}
               <NavigationMenuItem>
-                <NavigationMenuTrigger className="link-premium text-muted-foreground hover:text-foreground transition-smooth relative group font-medium bg-transparent hover:bg-transparent data-[state=open]:bg-transparent">
+                <NavigationMenuTrigger className="link-premium text-muted-foreground hover:text-foreground transition-smooth relative group font-medium bg-transparent hover:bg-transparent data-[state=open]:bg-transparent focus:bg-transparent data-[state=open]:text-foreground">
                   More
                 </NavigationMenuTrigger>
-                <NavigationMenuContent className="min-w-[200px] p-2 bg-background/95 backdrop-blur-md border border-border shadow-premium z-50">
+                <NavigationMenuContent className="absolute top-full left-0 mt-1 min-w-[200px] p-1 bg-background/95 backdrop-blur-md border border-border shadow-lg rounded-md z-[9999] data-[motion^=from-]:animate-in data-[motion^=to-]:animate-out data-[motion^=from-]:fade-in data-[motion^=to-]:fade-out data-[motion=from-end]:slide-in-from-right-52 data-[motion=from-start]:slide-in-from-left-52 data-[motion=to-end]:slide-out-to-right-52 data-[motion=to-start]:slide-out-to-left-52">
                   {dropdownItems.map((item) => (
-                    <div key={item.label}>
+                    <NavigationMenuLink key={item.label} asChild>
                       {item.isInternal ? (
                         <Link
                           to={item.href}
-                          className="block px-3 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-muted rounded-md transition-smooth"
+                          className="block px-3 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-muted rounded-sm transition-smooth"
                         >
                           {item.label}
                         </Link>
                       ) : (
                         <a
                           href={item.href}
-                          className="block px-3 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-muted rounded-md transition-smooth"
+                          className="block px-3 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-muted rounded-sm transition-smooth"
                         >
                           {item.label}
                         </a>
                       )}
-                    </div>
+                    </NavigationMenuLink>
                   ))}
-                  <div className="border-t border-border my-2"></div>
+                  <div className="border-t border-border my-1"></div>
                   <div className="px-3 py-2">
                     <AuthButton />
                   </div>
