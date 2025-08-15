@@ -1,22 +1,35 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Code2 } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { Link } from "react-router-dom";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "@/components/ui/navigation-menu";
 import AuthButton from "./AuthButton";
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const navItems = [
+  const primaryNavItems = [
     { label: "Home", href: "/", isInternal: true },
-    { label: "About", href: "#about", isInternal: false },
     { label: "Services", href: "#services", isInternal: false },
     { label: "Pre-Built", href: "/templates", isInternal: true },
+    { label: "About", href: "#about", isInternal: false }
+  ];
+
+  const dropdownItems = [
     { label: "Portfolio", href: "#portfolio", isInternal: false },
     { label: "Blog", href: "/blog", isInternal: true },
     { label: "FAQ", href: "#faq", isInternal: false },
     { label: "Contact", href: "#contact", isInternal: false }
   ];
+
+  const allNavItems = [...primaryNavItems, ...dropdownItems];
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-xl border-b border-border/50 shadow-premium">
@@ -41,27 +54,55 @@ const Navigation = () => {
           </div>
 
           {/* Premium Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            {navItems.map((item) => (
-              item.isInternal ? (
-                <Link
-                  key={item.label}
-                  to={item.href}
-                  className="link-premium text-muted-foreground hover:text-foreground transition-smooth relative group font-medium"
-                >
-                  {item.label}
-                </Link>
-              ) : (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  className="link-premium text-muted-foreground hover:text-foreground transition-smooth relative group font-medium"
-                >
-                  {item.label}
-                </a>
-              )
-            ))}
-          </div>
+          <NavigationMenu className="hidden md:flex">
+            <NavigationMenuList className="space-x-8">
+              {primaryNavItems.map((item) => (
+                <NavigationMenuItem key={item.label}>
+                  {item.isInternal ? (
+                    <Link
+                      to={item.href}
+                      className="link-premium text-muted-foreground hover:text-foreground transition-smooth relative group font-medium px-3 py-2"
+                    >
+                      {item.label}
+                    </Link>
+                  ) : (
+                    <a
+                      href={item.href}
+                      className="link-premium text-muted-foreground hover:text-foreground transition-smooth relative group font-medium px-3 py-2"
+                    >
+                      {item.label}
+                    </a>
+                  )}
+                </NavigationMenuItem>
+              ))}
+              <NavigationMenuItem>
+                <NavigationMenuTrigger className="link-premium text-muted-foreground hover:text-foreground transition-smooth relative group font-medium bg-transparent hover:bg-transparent">
+                  More
+                </NavigationMenuTrigger>
+                <NavigationMenuContent className="min-w-[200px] p-2 bg-background border border-border shadow-lg">
+                  {dropdownItems.map((item) => (
+                    <div key={item.label}>
+                      {item.isInternal ? (
+                        <Link
+                          to={item.href}
+                          className="block px-3 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-muted rounded-md transition-smooth"
+                        >
+                          {item.label}
+                        </Link>
+                      ) : (
+                        <a
+                          href={item.href}
+                          className="block px-3 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-muted rounded-md transition-smooth"
+                        >
+                          {item.label}
+                        </a>
+                      )}
+                    </div>
+                  ))}
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+            </NavigationMenuList>
+          </NavigationMenu>
 
           {/* Auth and CTA */}
           <div className="hidden md:flex items-center gap-3">
@@ -94,7 +135,7 @@ const Navigation = () => {
         {isMenuOpen && (
           <div className="md:hidden py-4 border-t border-border bg-background/95 backdrop-blur-md animate-fade-in-up">
             <div className="flex flex-col space-y-4">
-              {navItems.map((item, index) => (
+              {allNavItems.map((item, index) => (
                 item.isInternal ? (
                   <Link
                     key={item.label}
