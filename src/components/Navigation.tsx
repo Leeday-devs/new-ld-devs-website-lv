@@ -76,10 +76,10 @@ const Navigation = () => {
                 </NavigationMenuItem>
               ))}
               <NavigationMenuItem>
-                <NavigationMenuTrigger className="link-premium text-muted-foreground hover:text-foreground transition-smooth relative group font-medium bg-transparent hover:bg-transparent">
+                <NavigationMenuTrigger className="link-premium text-muted-foreground hover:text-foreground transition-smooth relative group font-medium bg-transparent hover:bg-transparent data-[state=open]:bg-transparent">
                   More
                 </NavigationMenuTrigger>
-                <NavigationMenuContent className="min-w-[200px] p-2 bg-background border border-border shadow-lg">
+                <NavigationMenuContent className="min-w-[200px] p-2 bg-background/95 backdrop-blur-md border border-border shadow-premium z-50">
                   {dropdownItems.map((item) => (
                     <div key={item.label}>
                       {item.isInternal ? (
@@ -99,14 +99,17 @@ const Navigation = () => {
                       )}
                     </div>
                   ))}
+                  <div className="border-t border-border my-2"></div>
+                  <div className="px-3 py-2">
+                    <AuthButton />
+                  </div>
                 </NavigationMenuContent>
               </NavigationMenuItem>
             </NavigationMenuList>
           </NavigationMenu>
 
-          {/* Auth and CTA */}
-          <div className="hidden md:flex items-center gap-3">
-            <AuthButton />
+          {/* CTA Button */}
+          <div className="hidden md:flex items-center">
             <Button 
               className="btn-premium hover-glow"
               onClick={() => window.open('https://wa.me/447586266007', '_blank')}
