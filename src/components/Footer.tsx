@@ -56,7 +56,7 @@ const Footer = () => {
               <img 
                 src="/lovable-uploads/ad9d84ce-4f33-408f-a0e5-a6439e818048.png" 
                 alt="LD Development - Premium Web Development Company" 
-                className="w-16 h-16 object-contain hover-scale"
+                className="w-20 h-20 object-contain hover-scale"
               />
               <div>
                 <span className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent">LD Development</span>

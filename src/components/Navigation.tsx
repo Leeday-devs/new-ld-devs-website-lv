@@ -63,7 +63,7 @@ const Navigation = () => {
               <img 
                 src="/lovable-uploads/ad9d84ce-4f33-408f-a0e5-a6439e818048.png" 
                 alt="LD Development - Premium Web Development Company" 
-                className="h-16 w-auto transition-transform duration-300 group-hover:scale-110"
+                className="h-20 w-auto transition-transform duration-300 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-gradient-primary rounded-lg blur-lg opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
             </div>
