@@ -52,7 +52,7 @@ const Navigation = () => {
           </div>
           <div className="flex items-center gap-1">
             <Award className="h-3 w-3" />
-            <span>Trusted by 150+ Businesses</span>
+            <span>Quality Guaranteed</span>
           </div>
         </div>
         
@@ -63,13 +63,9 @@ const Navigation = () => {
               <img 
                 src="/lovable-uploads/ad9d84ce-4f33-408f-a0e5-a6439e818048.png" 
                 alt="LD Development - Premium Web Development Company" 
-                className="h-14 w-auto transition-transform duration-300 group-hover:scale-110"
+                className="h-16 w-auto transition-transform duration-300 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-gradient-primary rounded-lg blur-lg opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
-            </div>
-            <div className="hidden sm:flex flex-col">
-              <span className="text-sm text-muted-foreground font-medium uppercase tracking-wider">Premium</span>
-              <span className="text-xs text-muted-foreground font-medium">Web Development Excellence</span>
             </div>
           </Link>
 
@@ -189,7 +185,7 @@ const Navigation = () => {
                   </div>
                   <div className="flex items-center gap-1">
                     <Award className="h-3 w-3" />
-                    <span>150+ Projects</span>
+                    <span>Quality Assured</span>
                   </div>
                 </div>
               </div>

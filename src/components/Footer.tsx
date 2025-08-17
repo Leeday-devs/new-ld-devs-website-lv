@@ -43,8 +43,8 @@ const Footer = () => {
           <div className="flex items-center gap-2">
             <Award className="h-6 w-6" />
             <div className="text-left">
-              <div className="font-bold">150+ Projects</div>
-              <div className="text-xs opacity-90">Successfully Delivered</div>
+              <div className="font-bold">Quality Focused</div>
+              <div className="text-xs opacity-90">Every Project Matters</div>
             </div>
           </div>
         </div>
