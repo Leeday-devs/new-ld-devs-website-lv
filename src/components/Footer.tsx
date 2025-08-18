@@ -49,7 +49,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="grid lg:grid-cols-5 md:grid-cols-3 gap-12">
+        <div className="grid lg:grid-cols-4 md:grid-cols-3 gap-12">
           {/* Premium Brand Section */}
           <div className="lg:col-span-2 space-y-6">
             <div className="flex items-center gap-4">
@@ -148,23 +148,6 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Premium Support */}
-          <div>
-            <h3 className="text-lg font-bold mb-6 text-foreground flex items-center gap-2">
-              Support
-              <div className="w-8 h-0.5 bg-gradient-primary"></div>
-            </h3>
-            <div className="space-y-4">
-              <div className="p-4 bg-gradient-card rounded-xl border border-border/30 hover-lift">
-                <div className="text-sm font-semibold text-foreground mb-1">24/7 Support</div>
-                <div className="text-xs text-muted-foreground">We're always here to help</div>
-              </div>
-              <div className="p-4 bg-gradient-card rounded-xl border border-border/30 hover-lift">
-                <div className="text-sm font-semibold text-foreground mb-1">Free Consultation</div>
-                <div className="text-xs text-muted-foreground">Let's discuss your project</div>
-              </div>
-            </div>
-          </div>
         </div>
 
         {/* Premium Bottom Bar */}
