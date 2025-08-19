@@ -57,27 +57,42 @@ const Hero = () => {
         <div ref={heroRef} className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center scroll-in">
           {/* Left side - Content */}
           <div className="text-white space-y-8">
-            {/* Badge */}
+            {/* Premium Badge with Trust Indicators */}
             <div className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-primary backdrop-blur-md rounded-full border border-white/20 shadow-glow animate-pulse-glow">
-              <Sparkles className="h-5 w-5 animate-spin" />
-              <span className="font-semibold">
-            </span>
+              <Sparkles className="h-5 w-5 animate-spin text-secondary" />
+              <span className="font-bold font-serif">Premium Web Development Excellence</span>
             </div>
             
-            {/* Main Heading */}
+            {/* Main Heading with Premium Typography */}
             <div className="space-y-4">
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold font-serif leading-tight">
-                <span className="block text-shimmer animate-fade-in">WE BUILD</span>
-                <span className="block text-shimmer animate-fade-in stagger-delay-1">AMAZING</span>
-                <span className="block bg-gradient-primary bg-clip-text text-transparent animate-fade-in stagger-delay-2">WEBSITES</span>
+                <span className="block text-white animate-fade-in">WE BUILD</span>
+                <span className="block text-white animate-fade-in stagger-delay-1">AMAZING</span>
+                <span className="block bg-gradient-to-r from-secondary via-accent to-secondary bg-clip-text text-transparent animate-fade-in stagger-delay-2">WEBSITES</span>
               </h1>
             </div>
             
-            {/* Description */}
-            <p className="text-lg sm:text-xl md:text-2xl text-gray-300 leading-relaxed max-w-2xl animate-fade-in-up stagger-delay-3">
+            {/* Premium Description */}
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-300 leading-relaxed max-w-2xl animate-fade-in-up stagger-delay-3 font-medium">
               Transform your business with stunning, lightning-fast websites that captivate users 
               and drive results. We craft digital experiences that make your brand unforgettable.
             </p>
+
+            {/* Trust Badges */}
+            <div className="flex flex-wrap gap-4 animate-fade-in-up stagger-delay-4">
+              <div className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-lg border border-white/20 hover-lift">
+                <Star className="h-4 w-4 text-yellow-400 fill-yellow-400" />
+                <span className="text-sm font-medium">Google Certified</span>
+              </div>
+              <div className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-lg border border-white/20 hover-lift">
+                <Shield className="h-4 w-4 text-secondary" />
+                <span className="text-sm font-medium">Stripe Secure</span>
+              </div>
+              <div className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-lg border border-white/20 hover-lift">
+                <Users className="h-4 w-4 text-accent-glow" />
+                <span className="text-sm font-medium">150+ Happy Clients</span>
+              </div>
+            </div>
 
             {/* Feature highlights */}
             <div className="flex flex-wrap gap-4 animate-fade-in-up stagger-delay-4">
@@ -89,7 +104,7 @@ const Hero = () => {
               label: "Ultra Secure"
             }, {
               icon: Rocket,
-              label: "Modern Design"
+              label: "Premium Design"
             }].map((feature, index) => <div key={feature.label} className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-lg border border-white/20 hover-lift" style={{
               animationDelay: `${index * 0.1}s`
             }}>
@@ -98,18 +113,18 @@ const Hero = () => {
                 </div>)}
             </div>
             
-            {/* Action buttons */}
+            {/* Premium Action buttons with enhanced styling */}
             <div className="flex flex-col sm:flex-row gap-4 pt-4 animate-fade-in-up stagger-delay-5">
               <Button 
                 onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
-                className="btn-premium text-lg px-8 py-4 rounded-2xl font-bold shadow-button hover:shadow-glow transition-all duration-300"
+                className="bg-gradient-secondary text-primary hover:shadow-coral text-lg px-8 py-4 rounded-full font-bold shadow-button transition-all duration-300 hover:scale-105"
               >
                 <CreditCard className="mr-2 h-5 w-5" />
-                Buy Now
+                Get Started Now
               </Button>
-              <Button variant="outline" size="lg" onClick={() => window.open('https://wa.me/447586266007', '_blank')} className="text-lg px-8 py-4 rounded-2xl font-bold bg-white/10 backdrop-blur-md border-2 border-white/30 text-white hover:bg-white hover:text-slate-900 transition-all duration-300 hover-scale">
+              <Button variant="outline" size="lg" onClick={() => window.open('https://wa.me/447586266007', '_blank')} className="text-lg px-8 py-4 rounded-full font-bold bg-white/10 backdrop-blur-md border-2 border-secondary/50 text-white hover:bg-secondary hover:text-primary transition-all duration-300 hover-scale">
                 <ArrowRight className="mr-2 h-5 w-5" />
-                Let's Talk
+                Free Consultation
               </Button>
             </div>
           </div>

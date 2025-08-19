@@ -195,15 +195,17 @@ const Services = () => {
                 
                 <Card 
                   onClick={() => handleCardClick(service)} 
-                  className={`relative ${index < 4 ? 'h-[620px]' : 'h-[380px]'} w-full overflow-hidden border-0 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer ${service.popular ? 'ring-2 ring-primary ring-offset-4' : ''}`}
+                  className={`relative ${index < 4 ? 'h-[650px]' : 'h-[400px]'} w-full overflow-hidden border-0 shadow-premium hover:shadow-glow hover:scale-105 transition-all duration-500 cursor-pointer ${service.popular ? 'ring-2 ring-secondary ring-offset-4 shadow-coral' : ''} group`}
                 >
-                  {/* Background with solid gradient */}
+                  {/* Background with luxury gradient and texture */}
                   <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient}`}></div>
+                  <div className="absolute inset-0 bg-texture-noise opacity-30"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent group-hover:from-black/10 transition-all duration-500"></div>
                   
-                  {/* Popular badge */}
+                  {/* Popular badge with enhanced styling */}
                   {service.popular && <div className="absolute top-4 right-4 z-20">
-                      <Badge className="bg-orange-500 text-white border-0 shadow-lg">
-                        ⭐ Popular
+                      <Badge className="bg-gradient-secondary text-primary border-0 shadow-coral font-bold text-sm px-4 py-2 rounded-full">
+                        🏆 Most Popular
                       </Badge>
                     </div>}
 
@@ -249,17 +251,17 @@ const Services = () => {
                         </div>}
                     </div>
                     
-                    {/* Buttons */}
-                    <div className={`${index < 4 ? 'space-y-3' : 'space-y-1'} mt-auto`}>
+                    {/* Premium Buttons */}
+                    <div className={`${index < 4 ? 'space-y-3' : 'space-y-2'} mt-auto`}>
                       <Button onClick={() => {
                         setSelectedService(service);
                         setIsModalOpen(true);
-                      }} className={`w-full bg-white text-gray-900 hover:bg-gray-100 transition-all duration-200 rounded-xl font-semibold ${index < 4 ? 'py-3 text-sm' : 'py-2 text-xs'} shadow-lg border-0 flex items-center justify-center`}>
+                      }} className={`w-full bg-gradient-secondary text-primary hover:shadow-coral hover:scale-105 transition-all duration-300 rounded-full font-bold ${index < 4 ? 'py-3 text-sm' : 'py-2 text-xs'} shadow-button border-0 flex items-center justify-center`}>
                         <ArrowRight className={`mr-2 ${index < 4 ? 'h-4 w-4' : 'h-3 w-3'}`} />
                         See Details
                       </Button>
-                      <Button variant="outline" onClick={handleChatClick} className={`w-full bg-transparent border-2 border-white/40 text-white hover:bg-white hover:text-gray-900 transition-all duration-200 rounded-xl font-semibold ${index < 4 ? 'py-3 text-sm' : 'py-2 text-xs'}`}>
-                        💬 Chat with Us
+                      <Button variant="outline" onClick={handleChatClick} className={`w-full bg-white/10 backdrop-blur-md border-2 border-secondary/40 text-white hover:bg-secondary hover:text-primary hover:scale-105 transition-all duration-300 rounded-full font-bold ${index < 4 ? 'py-3 text-sm' : 'py-2 text-xs'}`}>
+                        💬 Free Consultation
                       </Button>
                     </div>
                   </div>

@@ -81,92 +81,191 @@ const Portfolio = () => {
     featured: false
   }];
   return (
-    <section className="py-24 bg-gradient-to-br from-gray-50 via-white to-blue-50 relative overflow-hidden">
-      <div className="container mx-auto px-4">
+    <section className="py-24 bg-gradient-to-br from-background via-muted/20 to-primary/5 relative overflow-hidden">
+      {/* Premium textured background */}
+      <div className="absolute inset-0 bg-texture-dots opacity-10"></div>
+      <div className="absolute inset-0 bg-gradient-mesh"></div>
+      
+      <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-100 to-purple-100 backdrop-blur-sm rounded-full mb-6 border border-blue-200">
-            <Sparkles className="h-4 w-4 text-blue-600 animate-pulse" />
-            <span className="text-sm font-medium text-blue-700">Our Work</span>
+          <div className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-primary backdrop-blur-sm rounded-full mb-6 border border-secondary/20 shadow-glow">
+            <Award className="h-4 w-4 text-secondary animate-pulse" />
+            <span className="text-sm font-bold text-white">Featured Client Work</span>
           </div>
           
-          <h2 className="text-4xl md:text-6xl font-bold mb-6">
-            <span className="block text-gray-900">PORTFOLIO</span>
-            <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-6xl font-bold font-serif mb-6">
+            <span className="block text-foreground">PORTFOLIO</span>
+            <span className="bg-gradient-to-r from-secondary via-accent to-accent-glow bg-clip-text text-transparent">
               SHOWCASE
             </span>
           </h2>
           
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Real projects, real results. See how we've helped businesses transform their online presence.
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto font-medium leading-relaxed">
+            Real projects, real results. See how we've helped businesses transform their online presence and achieve remarkable growth.
           </p>
         </div>
 
-        {/* Filter Buttons */}
-        <div className="flex flex-wrap justify-center gap-2 mb-12">
+        {/* Premium Filter Buttons */}
+        <div className="flex flex-wrap justify-center gap-3 mb-16">
           {filters.map((filter) => (
             <Button
               key={filter}
               variant={activeFilter === filter ? "default" : "outline"}
               size="sm"
               onClick={() => setActiveFilter(filter)}
-              className="transition-all duration-200"
+              className={`transition-all duration-300 rounded-full px-6 py-3 font-semibold ${
+                activeFilter === filter 
+                  ? "bg-gradient-secondary text-primary shadow-coral hover:shadow-glow" 
+                  : "border-primary/20 hover:bg-primary/5 hover:border-primary/40"
+              }`}
             >
               {filter}
             </Button>
           ))}
         </div>
 
-        <div ref={containerRef} className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
+        <div ref={containerRef} className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {projects
             .filter(project => activeFilter === "All" || project.category === activeFilter)
             .map((project, index) => (
-            <Card key={project.title} className="portfolio-card scroll-roll group hover:shadow-xl transition-all duration-300 overflow-hidden">
-              <div className="relative overflow-hidden">
+            <Card key={project.title} className="portfolio-card scroll-roll group hover:shadow-premium transition-all duration-500 overflow-hidden bg-card border-0 shadow-card">
+              <div className="relative overflow-hidden h-80">
                 <img 
                   src={project.image} 
-                  alt={project.title}
-                  className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                  alt={`${project.title} - ${project.category} project showcasing modern web development`}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                
+                {/* Enhanced overlay with project details */}
+                <div className="absolute inset-0 p-6 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  <div className="space-y-2">
+                    <h4 className="text-white font-bold text-lg">{project.title}</h4>
+                    <p className="text-white/90 text-sm line-clamp-2">{project.description}</p>
+                    <div className="flex gap-2">
+                      <Button size="sm" className="bg-secondary text-primary hover:bg-secondary/90">
+                        <ExternalLink className="h-3 w-3 mr-1" />
+                        View Live
+                      </Button>
+                      <Button size="sm" variant="outline" className="border-white/20 text-white hover:bg-white hover:text-primary">
+                        Case Study
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+                
                 {project.featured && (
-                  <Badge className="absolute top-4 left-4 bg-gradient-to-r from-orange-500 to-red-500 text-white">
-                    Featured
+                  <Badge className="absolute top-4 left-4 bg-gradient-secondary text-primary font-bold shadow-coral">
+                    🌟 Featured Work
                   </Badge>
                 )}
+                
+                {/* Results badge */}
+                <Badge className="absolute top-4 right-4 bg-gradient-accent text-white font-bold">
+                  {project.stats.revenue} Revenue ↗
+                </Badge>
               </div>
               
-              <CardContent className="p-6">
-                <div className="flex items-center gap-2 mb-3">
-                  <Badge variant="outline">{project.category}</Badge>
+              <CardContent className="p-8">
+                <div className="flex items-center justify-between mb-4">
+                  <Badge variant="outline" className="border-primary/20 text-primary font-medium">{project.category}</Badge>
                   {project.stats.verified && (
-                    <CheckCircle className="h-4 w-4 text-green-500" />
+                    <div className="flex items-center gap-1">
+                      <CheckCircle className="h-4 w-4 text-green-500" />
+                      <span className="text-xs text-muted-foreground">Verified Client</span>
+                    </div>
                   )}
                 </div>
                 
-                <h3 className="text-xl font-bold mb-3">{project.title}</h3>
-                <p className="text-gray-600 mb-4 line-clamp-3">{project.description}</p>
+                <h3 className="text-2xl font-bold font-serif mb-3 text-foreground">{project.title}</h3>
+                <p className="text-muted-foreground mb-6 leading-relaxed">{project.description}</p>
                 
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.technologies.slice(0, 3).map((tech) => (
-                    <Badge key={tech} variant="secondary" className="text-xs">
+                {/* Key Results */}
+                <div className="space-y-2 mb-6">
+                  <h4 className="font-semibold text-sm text-primary mb-3">Key Results:</h4>
+                  {project.results.slice(0, 2).map((result) => (
+                    <div key={result} className="flex items-center gap-2">
+                      <TrendingUp className="h-3 w-3 text-green-500" />
+                      <span className="text-xs text-muted-foreground">{result}</span>
+                    </div>
+                  ))}
+                </div>
+                
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {project.technologies.slice(0, 4).map((tech) => (
+                    <Badge key={tech} variant="secondary" className="text-xs font-medium bg-primary/5 text-primary border-primary/10">
                       {tech}
                     </Badge>
                   ))}
                 </div>
                 
-                <div className="grid grid-cols-2 gap-4 mb-4 text-sm">
-                  <div className="flex items-center gap-1">
-                    <Users className="h-4 w-4 text-blue-500" />
-                    <span>{project.stats.users}</span>
+                <div className="grid grid-cols-3 gap-4 mb-6 text-sm">
+                  <div className="text-center">
+                    <div className="flex items-center justify-center gap-1 mb-1">
+                      <Users className="h-4 w-4 text-primary" />
+                    </div>
+                    <div className="font-bold text-foreground">{project.stats.users}</div>
+                    <div className="text-xs text-muted-foreground">Active Users</div>
                   </div>
-                  <div className="flex items-center gap-1">
-                    <Star className="h-4 w-4 text-yellow-500" />
-                    <span>{project.stats.rating}</span>
+                  <div className="text-center">
+                    <div className="flex items-center justify-center gap-1 mb-1">
+                      <Star className="h-4 w-4 text-secondary" />
+                    </div>
+                    <div className="font-bold text-foreground">{project.stats.rating}</div>
+                    <div className="text-xs text-muted-foreground">Client Rating</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="flex items-center justify-center gap-1 mb-1">
+                      <Calendar className="h-4 w-4 text-accent" />
+                    </div>
+                    <div className="font-bold text-foreground">{project.stats.completion}</div>
+                    <div className="text-xs text-muted-foreground">Delivered</div>
+                  </div>
+                </div>
+                
+                {/* Client Testimonial */}
+                <div className="bg-muted/30 rounded-lg p-4 border border-border/50">
+                  <p className="text-sm text-muted-foreground italic mb-2">"{project.clientTestimonial.quote}"</p>
+                  <div className="text-xs font-medium text-primary">
+                    — {project.clientTestimonial.name}, {project.clientTestimonial.company}
                   </div>
                 </div>
                 
               </CardContent>
             </Card>
           ))}
+        </div>
+
+        {/* Premium CTA Section */}
+        <div className="mt-20 text-center">
+          <div className="bg-gradient-primary rounded-3xl p-12 shadow-premium relative overflow-hidden">
+            <div className="absolute inset-0 bg-texture-noise opacity-20"></div>
+            <div className="relative z-10">
+              <h3 className="text-3xl font-bold font-serif mb-4 text-white">
+                Ready to Join Our Success Stories?
+              </h3>
+              <p className="text-white/90 mb-8 max-w-2xl mx-auto text-lg leading-relaxed">
+                Let's create something extraordinary together. From concept to launch, we'll turn your vision into reality.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button 
+                  size="lg" 
+                  className="bg-gradient-secondary text-primary hover:shadow-coral hover:scale-105 transition-all duration-300 text-lg px-8 py-4 rounded-full font-bold"
+                  onClick={() => window.open('https://wa.me/447586266007', '_blank')}
+                >
+                  Start Your Project
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+                <Button 
+                  size="lg" 
+                  variant="outline" 
+                  className="border-2 border-secondary/40 text-white hover:bg-secondary hover:text-primary hover:scale-105 transition-all duration-300 text-lg px-8 py-4 rounded-full font-bold bg-white/10 backdrop-blur-md"
+                >
+                  View More Work
+                </Button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
