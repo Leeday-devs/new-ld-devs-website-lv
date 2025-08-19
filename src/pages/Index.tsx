@@ -15,6 +15,7 @@ import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
 import StatsBar from "@/components/StatsBar";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import CTABars from "@/components/CTABars";
 
 const Index = () => {
   return (
@@ -50,6 +51,7 @@ const Index = () => {
           <section id="services" aria-label="Web development services and plans">
             <Services />
           </section>
+          <CTABars />
           <section aria-label="Customer portal information">
             <CustomerPortal />
           </section>
@@ -59,6 +61,7 @@ const Index = () => {
           <section id="portfolio" aria-label="Portfolio of completed projects">
             <Portfolio />
           </section>
+          <CTABars />
           <section aria-label="Client testimonials and reviews">
             <Testimonials />
           </section>

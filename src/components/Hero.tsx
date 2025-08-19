@@ -1,15 +1,37 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Code, Zap, Sparkles, Layers, Palette, Database, Shield, Rocket, Star, Users, CreditCard } from "lucide-react";
+import { ArrowRight, Code, Zap, Sparkles, Layers, Palette, Database, Shield, Rocket, Star, Users, CreditCard, Play, CheckCircle } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import heroImage from "@/assets/hero-image-no-bg.png";
 const Hero = () => {
   const heroRef = useScrollAnimation();
-  return <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800">
-      {/* Modern layered background with mesh gradient */}
+  return <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Cinematic Background with Video-like Effect */}
       <div className="absolute inset-0">
-        {/* Modern gradient mesh */}
-        <div className="absolute inset-0 bg-mesh opacity-60"></div>
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-secondary/5 to-accent/10"></div>
+        {/* Primary cinematic background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-navy via-navy/90 to-primary opacity-95"></div>
+        
+        {/* Animated overlay with particles */}
+        <div className="absolute inset-0">
+          {[...Array(50)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-1 h-1 bg-gold/30 rounded-full animate-float"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 5}s`,
+                animationDuration: `${3 + Math.random() * 4}s`
+              }}
+            />
+          ))}
+        </div>
+        
+        {/* Geometric moving lines */}
+        <div className="absolute inset-0 overflow-hidden opacity-20">
+          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-gold to-transparent animate-slide-across"></div>
+          <div className="absolute top-1/3 left-0 w-full h-1 bg-gradient-to-r from-transparent via-secondary to-transparent animate-slide-across-delayed"></div>
+          <div className="absolute top-2/3 left-0 w-full h-1 bg-gradient-to-r from-transparent via-gold to-transparent animate-slide-across-slow"></div>
+        </div>
         
         {/* Floating geometric elements */}
         <div className="absolute inset-0">
@@ -58,24 +80,23 @@ const Hero = () => {
           {/* Left side - Content */}
           <div className="text-white space-y-8">
             {/* Premium Badge with Trust Indicators */}
-            <div className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-primary backdrop-blur-md rounded-full border border-white/20 shadow-glow animate-pulse-glow">
-              <Sparkles className="h-5 w-5 animate-spin text-secondary" />
-              <span className="font-bold font-serif">Premium Web Development Excellence</span>
+            <div className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-gold/20 to-transparent backdrop-blur-md rounded-full border border-gold/30 shadow-elegant animate-pulse-glow mb-8">
+              <CheckCircle className="h-6 w-6 text-gold" />
+              <span className="font-bold text-white tracking-wide">PREMIUM WEB DEVELOPMENT EXCELLENCE</span>
             </div>
             
-            {/* Main Heading with Premium Typography */}
-            <div className="space-y-4">
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold font-serif leading-tight">
-                <span className="block text-white animate-fade-in">WE BUILD</span>
-                <span className="block text-white animate-fade-in stagger-delay-1">AMAZING</span>
-                <span className="block bg-gradient-to-r from-secondary via-accent to-secondary bg-clip-text text-transparent animate-fade-in stagger-delay-2">WEBSITES</span>
+            {/* Cinematic Main Heading */}
+            <div className="space-y-6">
+              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black font-serif leading-none tracking-tight">
+                <span className="block text-white animate-fade-in drop-shadow-2xl">WE CREATE</span>
+                <span className="block bg-gradient-to-r from-gold via-yellow-300 to-gold bg-clip-text text-transparent animate-fade-in stagger-delay-1 drop-shadow-2xl">LEGENDARY</span>
+                <span className="block text-white animate-fade-in stagger-delay-2 drop-shadow-2xl">WEBSITES</span>
               </h1>
             </div>
             
-            {/* Premium Description */}
-            <p className="text-lg sm:text-xl md:text-2xl text-gray-300 leading-relaxed max-w-2xl animate-fade-in-up stagger-delay-3 font-medium">
-              Transform your business with stunning, lightning-fast websites that captivate users 
-              and drive results. We craft digital experiences that make your brand unforgettable.
+            {/* Powerful Single Description */}
+            <p className="text-xl sm:text-2xl md:text-3xl text-gray-200 leading-relaxed max-w-3xl animate-fade-in-up stagger-delay-3 font-light">
+              Transform your business into a <span className="text-gold font-semibold">digital powerhouse</span> with websites that don't just look amazing—they deliver results that exceed expectations.
             </p>
 
             {/* Trust Badges */}
@@ -113,19 +134,31 @@ const Hero = () => {
                 </div>)}
             </div>
             
-            {/* Premium Action buttons with enhanced styling */}
-            <div className="flex flex-col sm:flex-row gap-4 pt-4 animate-fade-in-up stagger-delay-5">
+            {/* Single Powerful CTA Button */}
+            <div className="pt-8 animate-fade-in-up stagger-delay-5">
               <Button 
                 onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
-                className="bg-gradient-secondary text-primary hover:shadow-coral text-lg px-8 py-4 rounded-full font-bold shadow-button transition-all duration-300 hover:scale-105"
+                className="bg-gradient-to-r from-gold via-yellow-400 to-gold text-navy hover:shadow-[0_0_40px_rgba(212,175,55,0.5)] text-xl px-12 py-6 rounded-full font-black tracking-wide shadow-elegant transition-all duration-500 hover:scale-110 animate-pulse-glow group relative overflow-hidden"
               >
-                <CreditCard className="mr-2 h-5 w-5" />
-                Get Started Now
+                <span className="relative z-10 flex items-center gap-3">
+                  <Rocket className="h-6 w-6 group-hover:animate-bounce" />
+                  START YOUR LEGENDARY PROJECT
+                  <ArrowRight className="h-6 w-6 group-hover:translate-x-1 transition-transform" />
+                </span>
+                <div className="absolute inset-0 bg-gradient-to-r from-yellow-300 to-gold opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               </Button>
-              <Button variant="outline" size="lg" onClick={() => window.open('https://wa.me/447586266007', '_blank')} className="text-lg px-8 py-4 rounded-full font-bold bg-white/10 backdrop-blur-md border-2 border-secondary/50 text-white hover:bg-secondary hover:text-primary transition-all duration-300 hover-scale">
-                <ArrowRight className="mr-2 h-5 w-5" />
-                Free Consultation
-              </Button>
+              
+              {/* Secondary subtle link */}
+              <div className="mt-6 text-center">
+                <button 
+                  onClick={() => window.open('https://wa.me/447586266007', '_blank')}
+                  className="text-gray-300 hover:text-gold transition-colors duration-300 font-medium text-lg group"
+                >
+                  <Play className="inline h-5 w-5 mr-2 group-hover:scale-110 transition-transform" />
+                  Free Strategy Session
+                  <span className="ml-2 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
+                </button>
+              </div>
             </div>
           </div>
           
