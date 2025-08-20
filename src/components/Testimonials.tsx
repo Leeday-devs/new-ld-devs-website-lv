@@ -1,5 +1,10 @@
 import { useState } from "react";
 import { Star, ChevronLeft, ChevronRight, Quote } from "lucide-react";
+import sarahImage from "@/assets/testimonial-sarah.jpg";
+import michaelImage from "@/assets/testimonial-michael.jpg";
+import emmaImage from "@/assets/testimonial-emma.jpg";
+import davidImage from "@/assets/testimonial-david.jpg";
+import lisaImage from "@/assets/testimonial-lisa.jpg";
 
 const Testimonials = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -12,7 +17,7 @@ const Testimonials = () => {
       role: "CEO",
       quote: "Lee Day Devs transformed our entire business. Our conversion rate increased by 400% in just 3 months. The results speak for themselves.",
       rating: 5,
-      avatar: "SJ"
+      image: sarahImage
     },
     {
       id: 2,
@@ -21,7 +26,7 @@ const Testimonials = () => {
       role: "Founder",
       quote: "From £50K to £200K monthly revenue in 6 months. Their e-commerce platform doesn't just look amazing—it sells. The ROI has been incredible.",
       rating: 5,
-      avatar: "MC"
+      image: michaelImage
     },
     {
       id: 3,
@@ -30,7 +35,7 @@ const Testimonials = () => {
       role: "Marketing Director",
       quote: "We went from 2 client inquiries per week to 20+. The website they built positions us as the premium choice in our market. Absolute game-changer.",
       rating: 5,
-      avatar: "EW"
+      image: emmaImage
     },
     {
       id: 4,
@@ -39,7 +44,7 @@ const Testimonials = () => {
       role: "Owner",
       quote: "Our online orders increased by 300% after the new website launch. The booking system works flawlessly and customers love the modern design.",
       rating: 5,
-      avatar: "DR"
+      image: davidImage
     },
     {
       id: 5,
@@ -48,16 +53,7 @@ const Testimonials = () => {
       role: "Founder",
       quote: "The member portal and class booking system streamlined our entire operation. We've saved 20 hours per week on admin tasks.",
       rating: 5,
-      avatar: "LT"
-    },
-    {
-      id: 6,
-      name: "James Wilson",
-      company: "Legal Associates",
-      role: "Partner",
-      quote: "Professional, responsive, and delivered exactly what we needed. Our new website has significantly improved our credibility with potential clients.",
-      rating: 5,
-      avatar: "JW"
+      image: lisaImage
     }
   ];
 
@@ -70,24 +66,24 @@ const Testimonials = () => {
   };
 
   return (
-    <section className="section-grey py-20" aria-label="Client testimonials and reviews">
+    <section className="bg-navy py-20" aria-label="Client testimonials and reviews">
       <div className="container mx-auto px-6">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="heading-primary heading-lg mb-6 text-navy">
+          <h2 className="heading-primary heading-lg mb-6 text-white">
             What Our <span className="text-orange">Clients Say</span>
           </h2>
-          <p className="text-body max-w-3xl mx-auto text-text-secondary">
+          <p className="text-body max-w-3xl mx-auto text-white/70">
             Don't just take our word for it. Here's what our satisfied clients have to say about working with us
           </p>
         </div>
 
         {/* Desktop Grid */}
-        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {testimonials.map((testimonial) => (
+        <div className="hidden md:grid md:grid-cols-3 lg:grid-cols-3 gap-8">
+          {testimonials.slice(0, 5).map((testimonial) => (
             <div
               key={testimonial.id}
-              className="bg-white rounded-xl p-8 shadow-sm hover:shadow-md transition-shadow duration-300"
+              className="bg-white rounded-xl p-8 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
             >
               {/* Quote Icon */}
               <Quote className="h-8 w-8 text-orange mb-6" />
@@ -100,20 +96,22 @@ const Testimonials = () => {
               </div>
 
               {/* Quote */}
-              <blockquote className="text-text-secondary leading-relaxed mb-8 text-lg">
+              <blockquote className="text-text-secondary leading-relaxed mb-8 text-base">
                 "{testimonial.quote}"
               </blockquote>
 
               {/* Client Info */}
               <div className="flex items-center">
-                <div className="w-12 h-12 bg-orange rounded-full flex items-center justify-center text-white font-bold mr-4">
-                  {testimonial.avatar}
-                </div>
+                <img 
+                  src={testimonial.image} 
+                  alt={testimonial.name}
+                  className="w-12 h-12 rounded-full object-cover mr-4"
+                />
                 <div>
-                  <div className="font-semibold text-navy text-lg">
+                  <div className="font-semibold text-navy text-base">
                     {testimonial.name}
                   </div>
-                  <div className="text-text-muted text-sm">
+                  <div className="text-text-secondary text-sm">
                     {testimonial.role}, {testimonial.company}
                   </div>
                 </div>
@@ -135,19 +133,21 @@ const Testimonials = () => {
                 ))}
               </div>
 
-              <blockquote className="text-text-secondary leading-relaxed mb-8 text-lg">
+              <blockquote className="text-text-secondary leading-relaxed mb-8 text-base">
                 "{testimonials[currentSlide].quote}"
               </blockquote>
 
               <div className="flex items-center">
-                <div className="w-12 h-12 bg-orange rounded-full flex items-center justify-center text-white font-bold mr-4">
-                  {testimonials[currentSlide].avatar}
-                </div>
+                <img 
+                  src={testimonials[currentSlide].image} 
+                  alt={testimonials[currentSlide].name}
+                  className="w-12 h-12 rounded-full object-cover mr-4"
+                />
                 <div>
-                  <div className="font-semibold text-navy text-lg">
+                  <div className="font-semibold text-navy text-base">
                     {testimonials[currentSlide].name}
                   </div>
-                  <div className="text-text-muted text-sm">
+                  <div className="text-text-secondary text-sm">
                     {testimonials[currentSlide].role}, {testimonials[currentSlide].company}
                   </div>
                 </div>
@@ -179,29 +179,11 @@ const Testimonials = () => {
                 key={index}
                 onClick={() => setCurrentSlide(index)}
                 className={`w-3 h-3 rounded-full transition-colors duration-200 ${
-                  index === currentSlide ? 'bg-orange' : 'bg-bg-grey border-2 border-orange'
+                  index === currentSlide ? 'bg-orange' : 'bg-white/30 border-2 border-orange'
                 }`}
                 aria-label={`Go to testimonial ${index + 1}`}
               />
             ))}
-          </div>
-        </div>
-
-        {/* Call to Action */}
-        <div className="text-center mt-16">
-          <div className="bg-white rounded-2xl p-8 max-w-2xl mx-auto">
-            <h3 className="heading-primary text-2xl mb-4 text-navy">
-              Ready to Join Our Success Stories?
-            </h3>
-            <p className="text-text-secondary mb-6">
-              Let's create something amazing together and get results like these.
-            </p>
-            <button 
-              className="bg-orange hover:bg-orange/90 text-white font-semibold px-8 py-3 rounded-lg transition-all duration-200 hover:-translate-y-1 shadow-lg hover:shadow-xl"
-              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-            >
-              Start Your Success Story
-            </button>
           </div>
         </div>
       </div>

@@ -50,34 +50,32 @@ const Index = () => {
           <section id="about" aria-label="About LD Development team" className="bg-white">
             <About />
           </section>
-          <section id="services" aria-label="Web development services and plans" className="bg-navy text-primary-foreground">
+          <section id="services" aria-label="Web development services and plans" className="bg-white">
             <Services />
           </section>
           <section id="pricing" aria-label="Pricing plans and packages" className="bg-white">
             <Pricing />
           </section>
-          <TrustBadges />
-          <CTABars />
-          <section aria-label="Customer portal information" className="bg-white">
+          <section aria-label="Customer portal information" className="bg-navy text-primary-foreground">
             <CustomerPortal />
           </section>
           <section id="portfolio" aria-label="Portfolio of completed projects" className="bg-white">
             <Portfolio />
           </section>
-          <CTABars />
-          <section aria-label="Client testimonials and reviews" className="bg-white">
+          <section aria-label="Client testimonials and reviews" className="bg-navy">
             <Testimonials />
           </section>
-          <section aria-label="Newsletter subscription" className="bg-navy text-primary-foreground">
+          <section aria-label="Newsletter subscription" className="bg-white">
             <Newsletter />
           </section>
           <section id="faq" aria-label="Frequently asked questions" className="bg-white">
             <FAQ />
           </section>
-          <section id="contact" aria-label="Contact information and form" className="bg-white">
+          <section id="contact" aria-label="Contact information and form" className="bg-navy text-primary-foreground">
             <Contact />
           </section>
         </main>
+        <TrustBadges />
         <FinalCTA />
         <Footer />
         <WhatsAppButton />

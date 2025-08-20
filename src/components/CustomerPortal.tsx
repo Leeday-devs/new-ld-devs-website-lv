@@ -57,14 +57,14 @@ const CustomerPortal = () => {
   ];
 
   return (
-    <section className="py-20 px-4 bg-white">
+    <section className="bg-navy py-20 px-4">
       <div className="container mx-auto max-w-7xl">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-navy">
+          <h2 className="heading-primary heading-lg mb-6 text-white">
             Your Project Command Center
           </h2>
-          <p className="text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed">
+          <p className="text-body max-w-3xl mx-auto text-white/70">
             Experience complete transparency and control over your projects with our powerful customer portal. 
             Stay connected, informed, and in control every step of the way.
           </p>
@@ -94,12 +94,12 @@ const CustomerPortal = () => {
         {/* Benefits Section */}
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div>
-            <h3 className="text-3xl font-bold mb-6 text-navy">Why Our Customers Love It</h3>
+            <h3 className="heading-primary heading-md mb-6 text-white">Why Our Customers Love It</h3>
             <div className="grid gap-4">
               {benefits.map((benefit, index) => (
                 <div key={index} className="flex items-center gap-3">
                   <CheckCircle className="h-5 w-5 text-orange flex-shrink-0" />
-                  <span className="text-text-secondary">{benefit}</span>
+                  <span className="text-white/80">{benefit}</span>
                 </div>
               ))}
             </div>
@@ -111,13 +111,13 @@ const CustomerPortal = () => {
                 <div className="inline-flex p-4 rounded-full bg-orange/10 mb-4">
                   <Clock className="h-8 w-8 text-orange" />
                 </div>
-                <h4 className="text-2xl font-bold mb-2 text-navy">Save 40% of Your Time</h4>
+                <h4 className="heading-primary heading-md mb-2 text-navy">Save 40% of Your Time</h4>
                 <p className="text-text-secondary">
                   Our portal eliminates back-and-forth emails and phone calls, 
                   giving you instant access to everything you need.
                 </p>
               </div>
-              <Button className="bg-orange hover:bg-orange/90 text-white w-full">
+              <Button className="btn-primary w-full">
                 Access Your Portal
               </Button>
             </CardContent>

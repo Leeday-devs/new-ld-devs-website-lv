@@ -141,38 +141,38 @@ const Contact = () => {
       setIsLoading(false);
     }
   };
-  return <section className="py-12 bg-background">
-      <div className="container mx-auto px-4">
-        <div className="max-w-2xl mx-auto text-center mb-8 animate-fade-in">
-          <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+  return <section className="py-20 bg-navy">
+      <div className="container mx-auto px-6 max-w-4xl">
+        <div className="text-center mb-12">
+          <h2 className="heading-primary heading-lg mb-6 text-white">
             Let's Build Something Amazing
           </h2>
-          <p className="text-muted-foreground">
+          <p className="text-body text-white/70 max-w-2xl mx-auto">
             Ready to start your project? Get in touch and let's discuss how we can bring your vision to life.
           </p>
         </div>
 
         <div className="max-w-4xl mx-auto">
           {/* Contact Form - Modern Card Design */}
-          <div className="bg-card border border-border rounded-xl p-6 shadow-sm">
-            <div className="grid md:grid-cols-2 gap-6">
+          <div className="bg-white border border-border-light rounded-xl p-8 shadow-lg">
+            <div className="grid md:grid-cols-2 gap-8">
               {/* Contact Info - Compact */}
               <div className="space-y-4">
-                <h3 className="text-lg font-semibold text-foreground mb-4">Get in Touch</h3>
+                <h3 className="heading-primary heading-md text-navy mb-6">Get in Touch</h3>
                 
-                {contactInfo.map(info => <a key={info.label} href={info.href} className="flex items-center gap-3 p-3 rounded-lg hover:bg-accent/50 transition-colors group">
-                    <div className="bg-primary/10 rounded-lg w-10 h-10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                      <info.icon className="h-4 w-4 text-primary" />
+                {contactInfo.map(info => <a key={info.label} href={info.href} className="flex items-center gap-4 p-4 rounded-lg hover:bg-bg-grey transition-colors group">
+                    <div className="bg-orange/10 rounded-lg w-12 h-12 flex items-center justify-center group-hover:bg-orange/20 transition-colors">
+                      <info.icon className="h-5 w-5 text-orange" />
                     </div>
                     <div>
-                      <div className="text-xs text-muted-foreground">{info.label}</div>
-                      <div className="text-sm font-medium text-foreground">{info.value}</div>
+                      <div className="text-sm text-text-secondary">{info.label}</div>
+                      <div className="text-base font-medium text-navy">{info.value}</div>
                     </div>
                   </a>)}
 
-                <div className="bg-accent/30 rounded-lg p-4 mt-4">
-                  <h4 className="text-sm font-semibold text-foreground mb-2">Quick Response</h4>
-                  <p className="text-xs text-muted-foreground">I typically respond within 1 hour.</p>
+                <div className="bg-orange/5 rounded-lg p-6 mt-6">
+                  <h4 className="text-base font-semibold text-navy mb-2">Quick Response</h4>
+                  <p className="text-sm text-text-secondary">I typically respond within 1 hour.</p>
                 </div>
               </div>
 

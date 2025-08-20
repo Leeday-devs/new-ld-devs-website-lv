@@ -123,22 +123,35 @@
      CLEAN PREMIUM COMPONENT SYSTEM
      ========================================== */
 
-  /* Typography - Clean System */
+  /* Typography - Premium Scale */
   .heading-primary {
     font-family: 'Playfair Display', serif;
     font-weight: 700;
-    line-height: 1.2;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
     color: hsl(var(--text-primary));
   }
 
-  .heading-xl { font-size: clamp(2.5rem, 5vw, 4rem); }
-  .heading-lg { font-size: clamp(2rem, 4vw, 3rem); }
-  .heading-md { font-size: clamp(1.5rem, 3vw, 2rem); }
+  /* Typography Scale - H1: 56/64, H2: 40/48, H3: 28/36, Body: 18/28 */
+  .heading-xl { 
+    font-size: 3.5rem; /* 56px */
+    line-height: 4rem; /* 64px */
+  }
+  
+  .heading-lg { 
+    font-size: 2.5rem; /* 40px */
+    line-height: 3rem; /* 48px */
+  }
+  
+  .heading-md { 
+    font-size: 1.75rem; /* 28px */
+    line-height: 2.25rem; /* 36px */
+  }
 
   .text-body {
     font-family: 'Inter', sans-serif;
-    font-size: 1.125rem;
-    line-height: 1.7;
+    font-size: 1.125rem; /* 18px */
+    line-height: 1.75rem; /* 28px */
     color: hsl(var(--text-secondary));
   }
 
@@ -199,35 +212,37 @@
     background: hsl(var(--orange));
   }
 
-  /* Button Styles - Clean System */
+  /* Button System - Unified Design */
   .btn-primary {
     background: hsl(var(--orange));
-    color: hsl(var(--text-white));
+    color: hsl(var(--bg-white));
     border: none;
     border-radius: 0.5rem;
-    padding: 0.75rem 1.5rem;
     font-weight: 600;
     transition: all 0.2s ease;
+    box-shadow: 0 2px 8px hsl(var(--orange) / 0.2);
   }
 
   .btn-primary:hover {
     background: hsl(var(--orange) / 0.9);
     transform: translateY(-1px);
+    box-shadow: 0 4px 16px hsl(var(--orange) / 0.3);
   }
 
   .btn-secondary {
-    background: hsl(var(--navy));
-    color: hsl(var(--text-white));
+    background: hsl(var(--bg-navy));
+    color: hsl(var(--bg-white));
     border: none;
     border-radius: 0.5rem;
-    padding: 0.75rem 1.5rem;
     font-weight: 600;
     transition: all 0.2s ease;
+    box-shadow: 0 2px 8px hsl(var(--bg-navy) / 0.2);
   }
 
   .btn-secondary:hover {
-    background: hsl(var(--navy) / 0.9);
+    background: hsl(var(--bg-navy) / 0.9);
     transform: translateY(-1px);
+    box-shadow: 0 4px 16px hsl(var(--bg-navy) / 0.3);
   }
 
   .btn-outline {
