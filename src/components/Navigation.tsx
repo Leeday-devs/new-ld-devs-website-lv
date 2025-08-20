@@ -91,7 +91,7 @@ const Navigation = () => {
                 <Link
                   key={item.label}
                   to={item.href}
-                  className="relative px-4 py-2 text-muted-foreground hover:text-foreground transition-smooth font-semibold tracking-wide group"
+                  className="relative px-4 py-2 text-muted-foreground hover:text-primary transition-smooth font-semibold tracking-wide group"
                 >
                   {item.label}
                   <span className="absolute inset-x-0 -bottom-1 h-0.5 bg-gradient-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
@@ -100,7 +100,7 @@ const Navigation = () => {
                 <a
                   key={item.label}
                   href={item.href}
-                  className="relative px-4 py-2 text-muted-foreground hover:text-foreground transition-smooth font-semibold tracking-wide group"
+                  className="relative px-4 py-2 text-muted-foreground hover:text-primary transition-smooth font-semibold tracking-wide group"
                 >
                   {item.label}
                   <span className="absolute inset-x-0 -bottom-1 h-0.5 bg-gradient-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
@@ -112,7 +112,7 @@ const Navigation = () => {
             <div className="relative dropdown-container">
               <button
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                className="flex items-center gap-2 px-4 py-2 text-muted-foreground hover:text-foreground transition-smooth font-semibold tracking-wide group relative"
+                className="flex items-center gap-2 px-4 py-2 text-muted-foreground hover:text-primary transition-smooth font-semibold tracking-wide group relative"
               >
                 More
                 <ChevronDown className={`h-4 w-4 transition-all duration-300 ${isDropdownOpen ? 'rotate-180 text-primary' : ''}`} />
@@ -126,7 +126,7 @@ const Navigation = () => {
                       <Link
                         key={item.label}
                         to={item.href}
-                        className="flex items-center px-4 py-3 text-sm text-muted-foreground hover:text-foreground hover:bg-primary/5 rounded-lg transition-smooth font-medium animate-slide-in-left"
+                        className="flex items-center px-4 py-3 text-sm text-muted-foreground hover:text-primary hover:bg-primary/5 rounded-lg transition-smooth font-medium animate-slide-in-left"
                         style={{ animationDelay: `${index * 0.1}s` }}
                         onClick={() => setIsDropdownOpen(false)}
                       >
@@ -136,7 +136,7 @@ const Navigation = () => {
                       <a
                         key={item.label}
                         href={item.href}
-                        className="flex items-center px-4 py-3 text-sm text-muted-foreground hover:text-foreground hover:bg-primary/5 rounded-lg transition-smooth font-medium animate-slide-in-left"
+                        className="flex items-center px-4 py-3 text-sm text-muted-foreground hover:text-primary hover:bg-primary/5 rounded-lg transition-smooth font-medium animate-slide-in-left"
                         style={{ animationDelay: `${index * 0.1}s` }}
                         onClick={() => setIsDropdownOpen(false)}
                       >
@@ -210,7 +210,7 @@ const Navigation = () => {
                   <Link
                     key={item.label}
                     to={item.href}
-                    className="block px-6 py-3 text-muted-foreground hover:text-foreground hover:bg-primary/5 transition-smooth font-semibold tracking-wide animate-slide-in-left rounded-lg mx-2"
+                    className="block px-6 py-3 text-muted-foreground hover:text-primary hover:bg-primary/5 transition-smooth font-semibold tracking-wide animate-slide-in-left rounded-lg mx-2"
                     style={{ animationDelay: `${index * 0.1}s` }}
                     onClick={() => setIsMenuOpen(false)}
                   >
@@ -220,7 +220,7 @@ const Navigation = () => {
                   <a
                     key={item.label}
                     href={item.href}
-                    className="block px-6 py-3 text-muted-foreground hover:text-foreground hover:bg-primary/5 transition-smooth font-semibold tracking-wide animate-slide-in-left rounded-lg mx-2"
+                    className="block px-6 py-3 text-muted-foreground hover:text-primary hover:bg-primary/5 transition-smooth font-semibold tracking-wide animate-slide-in-left rounded-lg mx-2"
                     style={{ animationDelay: `${index * 0.1}s` }}
                     onClick={() => setIsMenuOpen(false)}
                   >
