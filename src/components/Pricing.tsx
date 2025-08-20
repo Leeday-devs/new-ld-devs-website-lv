@@ -9,7 +9,7 @@ const Pricing = () => {
     { id: 'websites', label: 'Websites', icon: Monitor },
     { id: 'ai', label: 'AI Automations', icon: Brain },
     { id: 'mobile', label: 'Apps', icon: Smartphone },
-    { id: 'software', label: 'Software', icon: Code }
+    { id: 'software', label: 'Hosting', icon: Code }
   ];
 
   const allPlans = {
