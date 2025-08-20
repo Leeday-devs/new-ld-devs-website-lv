@@ -37,15 +37,22 @@ const FinalCTA = () => {
             <div className="font-medium">99.9% Uptime</div>
           </div>
 
-          {/* CTA Button */}
+          {/* Email Input and CTA */}
           <div className="mb-8">
-            <button 
-              className="bg-gold hover:bg-gold/90 text-navy font-bold text-xl px-12 py-5 rounded-xl transition-all duration-300 hover:-translate-y-1 shadow-2xl hover:shadow-gold/20 inline-flex items-center gap-3"
-              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-            >
-              Start Your Project Today
-              <ArrowRight className="h-6 w-6" />
-            </button>
+            <div className="flex flex-col sm:flex-row gap-4 max-w-2xl mx-auto">
+              <input
+                type="email"
+                placeholder="Enter your email address"
+                className="flex-1 px-6 py-4 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent text-lg"
+              />
+              <button 
+                className="bg-gold hover:bg-gold/90 text-navy font-bold text-lg px-8 py-4 rounded-xl transition-all duration-300 hover:-translate-y-1 shadow-2xl hover:shadow-gold/20 inline-flex items-center gap-3 whitespace-nowrap"
+                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+              >
+                Get Started
+                <ArrowRight className="h-5 w-5" />
+              </button>
+            </div>
           </div>
 
           {/* Additional Info */}
