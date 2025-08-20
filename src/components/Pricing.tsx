@@ -60,7 +60,11 @@ const Pricing = () => {
   ];
 
   return (
-    <section id="pricing" className="py-20 bg-white" aria-label="Pricing plans and packages">
+    <section 
+      id="pricing" 
+      className="py-20 bg-white" 
+      aria-label="Pricing plans and packages"
+    >
       <div className="container mx-auto px-6">
         {/* Section Header */}
         <div className="text-center mb-16">

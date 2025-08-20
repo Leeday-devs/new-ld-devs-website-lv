@@ -9,6 +9,7 @@ import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
 import StatsBar from "@/components/StatsBar";
+import TrustedByLogos from "@/components/TrustedByLogos";
 import WhatsAppButton from "@/components/WhatsAppButton";
 
 const Index = () => {
@@ -42,23 +43,26 @@ const Index = () => {
             <StatsBar />
           </section>
           
-          {/* Services (white cards) */}
-          <section id="services" aria-label="Web development services" className="bg-white">
+          {/* Trusted By Logos - Social Proof */}
+          <TrustedByLogos />
+          
+          {/* Services (white cards) - Luxury spacing */}
+          <section id="services" aria-label="Web development services" className="bg-white py-32">
             <Services />
           </section>
           
-          {/* Portfolio / Case Studies (white, 3-column grid) */}
-          <section id="portfolio" aria-label="Portfolio of completed projects" className="bg-white">
+          {/* Portfolio / Case Studies (white, 3-column grid) - Luxury spacing */}
+          <section id="portfolio" aria-label="Portfolio of completed projects" className="bg-white py-32">
             <Portfolio />
           </section>
           
-          {/* Testimonials (navy band, cards with headshots) */}
-          <section aria-label="Client testimonials and reviews" className="bg-navy">
+          {/* Testimonials (navy band, cards with headshots) - Luxury spacing */}
+          <section aria-label="Client testimonials and reviews" className="bg-navy py-32">
             <Testimonials />
           </section>
           
-          {/* Pricing (white cards, one highlighted) */}
-          <section id="pricing" aria-label="Pricing plans and packages" className="bg-white">
+          {/* Pricing (white cards, one highlighted) - Luxury spacing */}
+          <section id="pricing" aria-label="Pricing plans and packages" className="bg-white py-32">
             <Pricing />
           </section>
           
