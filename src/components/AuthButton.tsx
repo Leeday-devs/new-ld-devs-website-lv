@@ -49,6 +49,16 @@ const AuthButton = () => {
     }
   };
 
+  const handleGoDashboard = () => {
+    console.log('[AuthButton] navigate to', dashboardLink);
+    navigate(dashboardLink);
+  };
+
+  const handleSignOut = async () => {
+    console.log('[AuthButton] sign out clicked');
+    await signOut();
+    navigate('/');
+  };
   if (user) {
     return (
       <DropdownMenu>
@@ -64,7 +74,7 @@ const AuthButton = () => {
         </DropdownMenuTrigger>
         <DropdownMenuContent 
           align="end" 
-          className="bg-navy/95 backdrop-blur-xl border border-orange/20 shadow-luxury rounded-xl z-[9999] min-w-[200px]"
+          className="bg-navy/95 pointer-events-auto backdrop-blur-xl border border-orange/20 shadow-luxury rounded-xl z-[9999] min-w-[200px]"
         >
           <DropdownMenuItem className="text-white/60 cursor-default hover:bg-transparent focus:bg-transparent">
             <span className="text-sm truncate">
@@ -73,7 +83,8 @@ const AuthButton = () => {
           </DropdownMenuItem>
           <DropdownMenuSeparator className="bg-white/10" />
           <DropdownMenuItem
-            onSelect={() => navigate(dashboardLink)}
+            onSelect={handleGoDashboard}
+            onClick={handleGoDashboard}
             className="flex items-center gap-2 cursor-pointer text-white/80 hover:text-orange hover:bg-orange/10 transition-all duration-200 px-3 py-2 rounded-lg"
           >
             <User className="h-4 w-4" />
@@ -81,7 +92,8 @@ const AuthButton = () => {
           </DropdownMenuItem>
           <DropdownMenuSeparator className="bg-white/10" />
           <DropdownMenuItem 
-            onSelect={async () => { await signOut(); navigate('/'); }} 
+            onSelect={handleSignOut}
+            onClick={handleSignOut}
             className="gap-2 text-red-400 hover:text-red-300 hover:bg-red-500/10 transition-all duration-200 cursor-pointer px-3 py-2 rounded-lg"
           >
             <LogOut className="h-4 w-4" />
