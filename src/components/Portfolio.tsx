@@ -146,18 +146,18 @@ const Portfolio = () => {
         </div>
 
         {/* Portfolio Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {projects.map((project) => (
+        <div className="grid lg:grid-cols-3 gap-8 mb-16">
+          {projects.slice(0, 6).map((project) => (
             <div
               key={project.id}
               className="group cursor-pointer overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300"
               onClick={() => openCaseStudy(project)}
             >
-              <div className="relative overflow-hidden">
+              <div className="relative overflow-hidden h-80">
                 <img
                   src={project.image}
                   alt={`${project.title} preview`}
-                  className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 
                 {/* Orange Overlay */}
@@ -165,44 +165,10 @@ const Portfolio = () => {
                 
                 {/* Overlay Content */}
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="text-center text-white">
-                    <ExternalLink className="h-10 w-10 mx-auto mb-3" />
-                    <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-                    <p className="text-sm opacity-90 mb-4 px-4">{project.description}</p>
-                    <span className="text-xs bg-white/20 px-3 py-1 rounded-full">
-                      View Case Study
-                    </span>
+                  <div className="text-center text-white p-6">
+                    <h3 className="text-2xl font-bold mb-3">{project.title}</h3>
+                    <p className="text-sm opacity-90">{project.category}</p>
                   </div>
-                </div>
-              </div>
-
-              {/* Project Info */}
-              <div className="p-6 bg-white">
-                <div className="flex items-center justify-between mb-2">
-                  <h3 className="text-xl font-bold text-navy group-hover:text-orange transition-colors duration-300">
-                    {project.title}
-                  </h3>
-                  <span className="text-xs text-orange bg-orange/10 px-2 py-1 rounded-full">
-                    {project.category}
-                  </span>
-                </div>
-                <p className="text-text-secondary text-sm mb-4">
-                  {project.description}
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {project.technologies.slice(0, 3).map((tech, index) => (
-                    <span
-                      key={index}
-                      className="text-xs bg-bg-grey text-text-secondary px-2 py-1 rounded-full"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                  {project.technologies.length > 3 && (
-                    <span className="text-xs text-orange">
-                      +{project.technologies.length - 3} more
-                    </span>
-                  )}
                 </div>
               </div>
             </div>
@@ -224,75 +190,57 @@ const Portfolio = () => {
       {/* Case Study Modal */}
       {selectedProject && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="p-6">
+          <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto animate-scale-in">
+            <div className="p-8">
               {/* Modal Header */}
               <div className="flex items-center justify-between mb-6">
-                <h3 className="text-2xl font-bold text-navy">{selectedProject.title}</h3>
+                <h3 className="text-3xl font-bold text-navy">{selectedProject.title}</h3>
                 <button
                   onClick={closeCaseStudy}
-                  className="text-text-muted hover:text-navy transition-colors"
+                  className="text-text-secondary hover:text-navy transition-colors"
                 >
                   <X className="h-6 w-6" />
                 </button>
               </div>
 
-              {/* Project Image */}
-              <img
-                src={selectedProject.image}
-                alt={selectedProject.title}
-                className="w-full h-48 object-cover rounded-xl mb-6"
-              />
-
               {/* Case Study Content */}
-              <div className="space-y-6">
+              <div className="space-y-8">
                 {/* Challenge */}
                 <div>
-                  <h4 className="text-lg font-bold text-navy mb-3">The Challenge</h4>
-                  <p className="text-text-secondary leading-relaxed">
+                  <h4 className="text-xl font-bold text-orange mb-4">Challenge</h4>
+                  <p className="text-text-secondary leading-relaxed text-lg">
                     {selectedProject.caseStudy.challenge}
                   </p>
                 </div>
 
                 {/* Solution */}
                 <div>
-                  <h4 className="text-lg font-bold text-navy mb-3">Our Solution</h4>
-                  <p className="text-text-secondary leading-relaxed">
+                  <h4 className="text-xl font-bold text-orange mb-4">Solution</h4>
+                  <p className="text-text-secondary leading-relaxed text-lg">
                     {selectedProject.caseStudy.solution}
                   </p>
                 </div>
 
                 {/* Results */}
                 <div>
-                  <h4 className="text-lg font-bold text-navy mb-3">The Results</h4>
-                  <ul className="space-y-2">
+                  <h4 className="text-xl font-bold text-orange mb-4">Results</h4>
+                  <div className="grid md:grid-cols-2 gap-4">
                     {selectedProject.caseStudy.results.map((result, index) => (
-                      <li key={index} className="flex items-center text-text-secondary">
-                        <div className="w-2 h-2 bg-orange rounded-full mr-3"></div>
-                        {result}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Technologies */}
-                <div>
-                  <h4 className="text-lg font-bold text-navy mb-3">Technologies Used</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {selectedProject.technologies.map((tech, index) => (
-                      <span
-                        key={index}
-                        className="bg-orange/10 text-orange px-3 py-1 rounded-full text-sm font-medium"
-                      >
-                        {tech}
-                      </span>
+                      <div key={index} className="bg-orange/5 rounded-lg p-4 border border-orange/20">
+                        <div className="text-2xl font-bold text-orange mb-1">
+                          {result.split(' ')[0]}
+                        </div>
+                        <p className="text-text-secondary text-sm">
+                          {result.split(' ').slice(1).join(' ')}
+                        </p>
+                      </div>
                     ))}
                   </div>
                 </div>
               </div>
 
               {/* Modal Footer */}
-              <div className="mt-8 pt-6 border-t border-bg-grey">
+              <div className="mt-8 pt-6 border-t border-border-light">
                 <button
                   onClick={closeCaseStudy}
                   className="w-full bg-orange hover:bg-orange/90 text-white font-semibold py-3 rounded-lg transition-colors duration-200"
