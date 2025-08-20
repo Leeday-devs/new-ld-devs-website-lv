@@ -95,7 +95,7 @@ const Services = () => {
     icon2: Globe,
     pricingFeatures: ["Unlimited Pages", "Custom Design & Development", "E-commerce Integration", "Advanced User Authentication", "Multi-language Support"]
   }];
-  return <section className="py-24 bg-gradient-to-br from-background via-muted/20 to-accent/5 relative overflow-hidden">
+  return <section className="section-light-grey py-24 relative overflow-hidden">
       {/* Modern animated background */}
       <div className="absolute inset-0">
         <div className="absolute top-20 right-20 w-72 h-72 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-full blur-3xl animate-float"></div>
@@ -148,12 +148,12 @@ const Services = () => {
             <span className="text-sm font-medium text-primary">Cool Things We Make</span>
           </div>
           
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold font-serif mb-6">
+          <h2 className="text-heading text-heading-light text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl mb-6">
             <span className="block">OUR</span>
-            <span className="bg-gradient-to-r from-primary via-accent to-orange-400 bg-clip-text text-transparent animate-text-glow">WEB DEVELOPMENT PLANS</span>
+            <span className="text-accent animate-text-glow">WEB DEVELOPMENT PLANS</span>
           </h2>
           
-          <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed mb-8">
+          <p className="text-body text-body-light text-lg sm:text-xl max-w-3xl mx-auto leading-relaxed mb-8">
             Choose the perfect plan for your project! From simple websites to powerful online stores and smart AI solutions - 
             we've got everything you need to succeed online.
           </p>
@@ -176,7 +176,7 @@ const Services = () => {
             animationDelay: `${index * 0.1}s`
           }}>
                 <cap.icon className="h-4 w-4 text-accent" />
-                <span className="text-sm text-muted-foreground font-medium">{cap.label}</span>
+                <span className="text-sm text-muted-light font-medium">{cap.label}</span>
               </div>)}
           </div>
         </div>
@@ -272,19 +272,19 @@ const Services = () => {
 
         {/* Enhanced CTA section */}
         <div className="text-center bg-gradient-to-r from-primary/5 via-accent/5 to-primary/5 rounded-3xl p-12 glass animate-fade-in-up stagger-delay-4">
-          <h3 className="text-3xl font-bold font-serif mb-4 text-glow">
+          <h3 className="text-heading text-heading-light text-3xl mb-4">
             Ready to Build Something Amazing?
           </h3>
-          <p className="text-muted-foreground mb-6 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-body text-muted-light mb-6 max-w-2xl mx-auto leading-relaxed">
             Got a cool idea? Want to make something awesome for your school, family, or friends? Let's chat about it!
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" onClick={() => window.open('https://wa.me/447586266007', '_blank')} className="bg-gradient-button hover:shadow-button transition-all duration-300 hover:scale-105 text-lg px-8 py-6">
+            <Button size="lg" onClick={() => window.open('https://wa.me/447586266007', '_blank')} className="text-lg px-8 py-6">
               <Zap className="mr-2 h-5 w-5" />
               Let's Talk About Your Idea!
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
-            <Button size="lg" variant="outline" className="text-lg px-8 py-6 hover-lift border-primary/20 hover:border-primary/40">
+            <Button size="lg" variant="ghost" className="text-lg px-8 py-6 hover-lift">
               Show Me Cool Examples
             </Button>
           </div>

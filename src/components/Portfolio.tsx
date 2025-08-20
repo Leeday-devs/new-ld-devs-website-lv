@@ -81,17 +81,17 @@ const Portfolio = () => {
     featured: false
   }];
   return (
-    <section className="py-24 bg-gradient-to-br from-background via-muted/20 to-primary/5 relative overflow-hidden">
+    <section className="section-light-grey py-24 relative overflow-hidden">
       {/* Premium textured background */}
       <div className="absolute inset-0 bg-texture-dots opacity-10"></div>
       <div className="absolute inset-0 bg-gradient-mesh"></div>
       
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-black font-serif text-foreground mb-6">
+          <h2 className="text-heading text-heading-light text-4xl md:text-5xl mb-6">
             Case Studies & Transformations
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-body text-body-light text-xl max-w-3xl mx-auto">
             Real results for real businesses. See how we've helped our clients achieve remarkable growth.
           </p>
         </div>
@@ -125,10 +125,10 @@ const Portfolio = () => {
                     <div className="w-3 h-3 bg-secondary rounded-full animate-pulse"></div>
                     <span className="text-sm font-bold text-secondary uppercase tracking-wide">Case Study</span>
                   </div>
-                  <h3 className="text-2xl font-bold text-foreground mb-3 group-hover:text-secondary transition-colors">
+                  <h3 className="text-heading text-heading-light text-2xl mb-3 group-hover:text-secondary transition-colors">
                     {project.title}
                   </h3>
-                  <p className="text-muted-foreground">
+                  <p className="text-body text-body-light">
                     {project.description}
                   </p>
                 </div>
@@ -158,28 +158,28 @@ const Portfolio = () => {
                 <div className="p-8">
                   <div className="grid grid-cols-3 gap-4 mb-6">
                     <div className="text-center">
-                      <div className="text-2xl font-bold text-secondary mb-1">+250%</div>
-                      <div className="text-sm text-muted-foreground">Traffic Increase</div>
+                      <div className="text-2xl font-bold text-accent mb-1">+250%</div>
+                      <div className="text-sm text-muted-light">Traffic Increase</div>
                     </div>
                     <div className="text-center">
-                      <div className="text-2xl font-bold text-secondary mb-1">+180%</div>
-                      <div className="text-sm text-muted-foreground">Conversions</div>
+                      <div className="text-2xl font-bold text-accent mb-1">+180%</div>
+                      <div className="text-sm text-muted-light">Conversions</div>
                     </div>
                     <div className="text-center">
-                      <div className="text-2xl font-bold text-secondary mb-1">98%</div>
-                      <div className="text-sm text-muted-foreground">Uptime</div>
+                      <div className="text-2xl font-bold text-accent mb-1">98%</div>
+                      <div className="text-sm text-muted-light">Uptime</div>
                     </div>
                   </div>
                   
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium text-secondary bg-secondary/10 px-3 py-1 rounded-full">
-                      {project.category}
-                    </span>
-                    <div className="flex items-center gap-2 text-muted-foreground group-hover:text-secondary transition-colors cursor-pointer">
-                      <span className="text-sm font-medium">View Live Site</span>
-                      <ExternalLink className="h-4 w-4" />
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm font-medium text-accent bg-secondary/10 px-3 py-1 rounded-full">
+                        {project.category}
+                      </span>
+                      <div className="flex items-center gap-2 text-muted-light group-hover:text-secondary transition-colors cursor-pointer">
+                        <span className="text-sm font-medium">View Live Site</span>
+                        <ExternalLink className="h-4 w-4" />
+                      </div>
                     </div>
-                  </div>
                 </div>
               </div>
             </div>
@@ -188,19 +188,19 @@ const Portfolio = () => {
 
         {/* Premium CTA Section */}
         <div className="mt-20 text-center">
-          <div className="bg-gradient-primary rounded-3xl p-12 shadow-premium relative overflow-hidden">
+          <div className="section-dark rounded-3xl p-12 shadow-premium relative overflow-hidden">
             <div className="absolute inset-0 bg-texture-noise opacity-20"></div>
             <div className="relative z-10">
-              <h3 className="text-3xl font-bold font-serif mb-4 text-white">
+              <h3 className="text-heading text-heading-dark text-3xl mb-4">
                 Ready to Join Our Success Stories?
               </h3>
-              <p className="text-white/90 mb-8 max-w-2xl mx-auto text-lg leading-relaxed">
+              <p className="text-body text-body-dark mb-8 max-w-2xl mx-auto text-lg leading-relaxed">
                 Let's create something extraordinary together. From concept to launch, we'll turn your vision into reality.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button 
                   size="lg" 
-                  className="bg-gradient-secondary text-primary hover:shadow-coral hover:scale-105 transition-all duration-300 text-lg px-8 py-4 rounded-full font-bold"
+                  className="text-lg px-8 py-4 rounded-full font-bold"
                   onClick={() => window.open('https://wa.me/447586266007', '_blank')}
                 >
                   Start Your Project
@@ -208,8 +208,8 @@ const Portfolio = () => {
                 </Button>
                 <Button 
                   size="lg" 
-                  variant="outline" 
-                  className="border-2 border-secondary/40 text-white hover:bg-secondary hover:text-primary hover:scale-105 transition-all duration-300 text-lg px-8 py-4 rounded-full font-bold bg-white/10 backdrop-blur-md"
+                  variant="ghost" 
+                  className="text-lg px-8 py-4 rounded-full font-bold"
                 >
                   View More Work
                 </Button>

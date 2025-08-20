@@ -68,7 +68,15 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+				// Premium text styling tokens
+				'text-heading-light': 'hsl(var(--text-heading-light))',
+				'text-heading-dark': 'hsl(var(--text-heading-dark))',
+				'text-body-light': 'hsl(var(--text-body-light))',
+				'text-body-dark': 'hsl(var(--text-body-dark))',
+				'text-muted-light': 'hsl(var(--text-muted-light))',
+				'text-muted-dark': 'hsl(var(--text-muted-dark))',
+				'text-accent': 'hsl(var(--text-accent))'
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

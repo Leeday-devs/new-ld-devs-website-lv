@@ -84,40 +84,40 @@ const Hero = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div ref={heroRef} className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center scroll-in">
           {/* Left side - Content */}
-          <div className="text-white space-y-8">
+          <div className="space-y-8">
             {/* Premium Badge with Trust Indicators */}
             <div className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-gold/20 to-transparent backdrop-blur-md rounded-full border border-gold/30 shadow-elegant animate-pulse-glow mb-8">
-              <CheckCircle className="h-6 w-6 text-gold" />
-              <span className="font-bold text-white tracking-wide">PREMIUM WEB DEVELOPMENT EXCELLENCE</span>
+              <CheckCircle className="h-6 w-6 text-secondary" />
+              <span className="font-bold text-heading-dark tracking-wide">PREMIUM WEB DEVELOPMENT EXCELLENCE</span>
             </div>
             
             {/* Cinematic Main Heading */}
             <div className="space-y-6">
               <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black font-serif leading-none tracking-tight">
-                <span className="block text-white animate-fade-in drop-shadow-2xl">WE CREATE</span>
-                <span className="block bg-gradient-to-r from-gold via-yellow-300 to-gold bg-clip-text text-transparent animate-fade-in stagger-delay-1 drop-shadow-2xl">LEGENDARY</span>
-                <span className="block text-white animate-fade-in stagger-delay-2 drop-shadow-2xl">WEBSITES</span>
+                <span className="block text-heading-dark animate-fade-in text-shadow-dark">WE CREATE</span>
+                <span className="block text-accent animate-fade-in stagger-delay-1 text-shadow-dark">LEGENDARY</span>
+                <span className="block text-heading-dark animate-fade-in stagger-delay-2 text-shadow-dark">WEBSITES</span>
               </h1>
             </div>
             
             {/* Powerful Single Description */}
-            <p className="text-xl sm:text-2xl md:text-3xl text-gray-200 leading-relaxed max-w-3xl animate-fade-in-up stagger-delay-3 font-light">
-              Transform your business into a <span className="text-gold font-semibold">digital powerhouse</span> with websites that don't just look amazing—they deliver results that exceed expectations.
+            <p className="text-xl sm:text-2xl md:text-3xl text-body-dark leading-relaxed max-w-3xl animate-fade-in-up stagger-delay-3 font-light text-shadow-light">
+              Transform your business into a <span className="text-accent font-semibold">digital powerhouse</span> with websites that don't just look amazing—they deliver results that exceed expectations.
             </p>
 
             {/* Trust Badges */}
             <div className="flex flex-wrap gap-4 animate-fade-in-up stagger-delay-4">
               <div className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-lg border border-white/20 hover-lift">
-                <Star className="h-4 w-4 text-yellow-400 fill-yellow-400" />
-                <span className="text-sm font-medium">Google Certified</span>
+                <Star className="h-4 w-4 text-secondary fill-secondary" />
+                <span className="text-sm font-medium text-body-dark">Google Certified</span>
               </div>
               <div className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-lg border border-white/20 hover-lift">
                 <Shield className="h-4 w-4 text-secondary" />
-                <span className="text-sm font-medium">Stripe Secure</span>
+                <span className="text-sm font-medium text-body-dark">Stripe Secure</span>
               </div>
               <div className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-lg border border-white/20 hover-lift">
                 <Users className="h-4 w-4 text-accent-glow" />
-                <span className="text-sm font-medium">150+ Happy Clients</span>
+                <span className="text-sm font-medium text-body-dark">150+ Happy Clients</span>
               </div>
             </div>
 
@@ -136,7 +136,7 @@ const Hero = () => {
               animationDelay: `${index * 0.1}s`
             }}>
                   <feature.icon className="h-4 w-4 text-secondary" />
-                  <span className="text-sm font-medium">{feature.label}</span>
+                  <span className="text-sm font-medium text-body-dark">{feature.label}</span>
                 </div>)}
             </div>
             
@@ -159,7 +159,7 @@ const Hero = () => {
               <div className="mt-6 text-center">
                 <button 
                   onClick={() => window.open('https://wa.me/447586266007', '_blank')}
-                  className="text-gray-300 hover:text-gold transition-colors duration-300 font-medium text-lg group"
+                  className="text-body-dark hover:text-accent transition-colors duration-300 font-medium text-lg group text-shadow-light"
                 >
                   <Play className="inline h-5 w-5 mr-2 group-hover:scale-110 transition-transform" />
                   Free Strategy Session

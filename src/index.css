@@ -80,6 +80,17 @@
   /* Special Effects */
   --parallax-speed: 0.5;
 
+    /* Premium Text Styling Tokens */
+    --text-heading-light: 210 100% 12%;     /* Navy headings on light backgrounds */
+    --text-heading-dark: 0 0% 100%;         /* White headings on dark backgrounds */
+    --text-body-light: 0 0% 20%;            /* Dark grey body text on light */
+    --text-body-dark: 0 0% 95%;             /* Light grey body text on dark */
+    --text-muted-light: 0 0% 40%;           /* Muted text on light */
+    --text-muted-dark: 0 0% 70%;            /* Muted text on dark */
+    --text-accent: 45 75% 52%;              /* Gold accent text */
+    --text-shadow-light: 0px 2px 6px rgba(0, 0, 0, 0.15);
+    --text-shadow-dark: 0px 2px 6px rgba(0, 0, 0, 0.8);
+
     /* Animation Variables */
     --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
@@ -173,6 +184,93 @@
 }
 
 @layer components {
+  /* Premium Typography Classes */
+  .text-heading {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+
+  .text-heading-light {
+    color: hsl(var(--text-heading-light));
+  }
+
+  .text-heading-dark {
+    color: hsl(var(--text-heading-dark));
+    text-shadow: var(--text-shadow-dark);
+  }
+
+  .text-body {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+  }
+
+  .text-body-light {
+    color: hsl(var(--text-body-light));
+  }
+
+  .text-body-dark {
+    color: hsl(var(--text-body-dark));
+  }
+
+  .text-muted-light {
+    color: hsl(var(--text-muted-light));
+  }
+
+  .text-muted-dark {
+    color: hsl(var(--text-muted-dark));
+  }
+
+  .text-accent {
+    color: hsl(var(--text-accent));
+    font-weight: 600;
+  }
+
+  .text-shadow-light {
+    text-shadow: var(--text-shadow-light);
+  }
+
+  .text-shadow-dark {
+    text-shadow: var(--text-shadow-dark);
+  }
+
+  /* Section Background Classes */
+  .section-light {
+    background: hsl(0 0% 100%);
+    color: hsl(var(--text-body-light));
+  }
+
+  .section-light-grey {
+    background: hsl(0 0% 97%);
+    color: hsl(var(--text-body-light));
+  }
+
+  .section-dark {
+    background: hsl(var(--primary));
+    color: hsl(var(--text-body-dark));
+  }
+
+  .section-gradient {
+    background: var(--gradient-hero);
+    color: hsl(var(--text-body-dark));
+    position: relative;
+  }
+
+  .section-gradient::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+  }
+
+  .section-gradient > * {
+    position: relative;
+    z-index: 2;
+  }
+
   /* Premium Glass Morphism */
   .glass {
     background: var(--gradient-glass);
@@ -307,6 +405,80 @@
 
   .card-premium:hover::before {
     opacity: 0.8;
+  }
+
+  /* Premium Button System */
+  .btn-primary {
+    background: hsl(var(--secondary));
+    color: hsl(var(--primary));
+    border: none;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 0.75rem 2rem;
+    border-radius: 9999px;
+    transition: var(--transition-smooth);
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-button);
+  }
+
+  .btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, hsl(0 0% 100% / 0.3), transparent);
+    transition: left 0.5s;
+  }
+
+  .btn-primary:hover::before {
+    left: 100%;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-glow);
+    background: hsl(var(--secondary-glow));
+  }
+
+  .btn-secondary {
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+    border: 2px solid hsl(var(--primary));
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 0.75rem 2rem;
+    border-radius: 9999px;
+    transition: var(--transition-smooth);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-secondary:hover {
+    background: hsl(var(--primary-glow));
+    border-color: hsl(var(--secondary));
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-elegant);
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: hsl(var(--primary));
+    border: 2px solid hsl(var(--secondary));
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 0.75rem 2rem;
+    border-radius: 9999px;
+    transition: var(--transition-smooth);
+  }
+
+  .btn-ghost:hover {
+    background: hsl(var(--secondary) / 0.1);
+    color: hsl(var(--secondary));
+    border-color: hsl(var(--secondary-glow));
+    transform: translateY(-2px);
   }
 
   /* Enhanced Premium Buttons */
