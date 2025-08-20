@@ -120,13 +120,13 @@ const Navigation = () => {
               </button>
               
               {isDropdownOpen && (
-                <div className="absolute top-full right-0 mt-3 min-w-[220px] p-2 bg-white/95 backdrop-blur-xl border border-border/30 shadow-premium rounded-xl z-[9999] animate-fade-in">
+                <div className="absolute top-full right-0 mt-3 min-w-[220px] p-2 bg-navy/95 backdrop-blur-xl border border-orange/20 shadow-luxury rounded-xl z-[9999] animate-fade-in">
                   {dropdownItems.map((item, index) => (
                     item.isInternal ? (
                       <Link
                         key={item.label}
                         to={item.href}
-                        className="flex items-center px-4 py-3 text-sm text-muted-foreground hover:text-primary hover:bg-primary/5 rounded-lg transition-smooth font-medium animate-slide-in-left"
+                        className="flex items-center px-4 py-3 text-sm text-white/80 hover:text-orange hover:bg-orange/10 rounded-lg transition-smooth font-medium animate-slide-in-left"
                         style={{ animationDelay: `${index * 0.1}s` }}
                         onClick={() => setIsDropdownOpen(false)}
                       >
@@ -136,7 +136,7 @@ const Navigation = () => {
                       <a
                         key={item.label}
                         href={item.href}
-                        className="flex items-center px-4 py-3 text-sm text-muted-foreground hover:text-primary hover:bg-primary/5 rounded-lg transition-smooth font-medium animate-slide-in-left"
+                        className="flex items-center px-4 py-3 text-sm text-white/80 hover:text-orange hover:bg-orange/10 rounded-lg transition-smooth font-medium animate-slide-in-left"
                         style={{ animationDelay: `${index * 0.1}s` }}
                         onClick={() => setIsDropdownOpen(false)}
                       >
@@ -144,7 +144,7 @@ const Navigation = () => {
                       </a>
                     )
                   ))}
-                  <div className="border-t border-border/30 my-2"></div>
+                  <div className="border-t border-white/10 my-2"></div>
                   <div className="px-2">
                     <AuthButton />
                   </div>
