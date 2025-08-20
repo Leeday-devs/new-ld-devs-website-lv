@@ -1,47 +1,39 @@
-import { Star, Users, Clock, Shield, Award, TrendingUp } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import React, { useState, useEffect, useRef } from 'react';
+import { Users, Globe, Shield, Award, CheckCircle, Star } from 'lucide-react';
 
 const StatsBar = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [counters, setCounters] = useState([0, 0, 0, 0]);
   const statsRef = useRef<HTMLDivElement>(null);
 
   const stats = [
     {
       icon: Users,
-      value: 450,
-      suffix: "+",
-      label: "Projects Delivered",
-      description: "to happy clients worldwide",
-      color: "text-gold"
+      value: 250,
+      label: "Happy Clients",
+      description: "Businesses Served"
+    },
+    {
+      icon: Globe,
+      value: 500,
+      label: "Websites Built",
+      description: "Projects Delivered"
     },
     {
       icon: Award,
-      value: 98.9,
-      suffix: "%",
+      value: 99,
       label: "Success Rate",
-      description: "guaranteed project delivery",
-      color: "text-gold"
+      description: "Client Satisfaction",
+      suffix: "%"
     },
     {
-      icon: TrendingUp,
-      value: 300,
-      suffix: "%",
-      label: "Average Growth",
-      description: "client revenue increase",
-      color: "text-gold"
-    },
-    {
-      icon: Shield,
+      icon: CheckCircle,
       value: 24,
-      suffix: "/7",
       label: "Support",
-      description: "UK-based assistance",
-      color: "text-gold"
+      description: "Hours Available",
+      suffix: "/7"
     }
   ];
-
-  // Counter animation hook
-  const [counters, setCounters] = useState(stats.map(() => 0));
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -59,19 +51,24 @@ const StatsBar = () => {
             const timer = setInterval(() => {
               start += increment;
               if (start >= end) {
-                start = end;
+                setCounters(prev => {
+                  const newCounters = [...prev];
+                  newCounters[index] = end;
+                  return newCounters;
+                });
                 clearInterval(timer);
+              } else {
+                setCounters(prev => {
+                  const newCounters = [...prev];
+                  newCounters[index] = Math.floor(start);
+                  return newCounters;
+                });
               }
-              setCounters(prev => {
-                const newCounters = [...prev];
-                newCounters[index] = Math.floor(start * 10) / 10;
-                return newCounters;
-              });
             }, 16);
           });
         }
       },
-      { threshold: 0.5 }
+      { threshold: 0.3 }
     );
 
     if (statsRef.current) {
@@ -82,22 +79,81 @@ const StatsBar = () => {
   }, [isVisible]);
 
   return (
-    <section className="section-stats" aria-label="Company statistics and achievements">
+    <section className="section-navy py-16" ref={statsRef}>
       <div className="container mx-auto px-6">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
-          {stats.map((stat, index) => (
-            <div key={index} className="group" ref={index === 0 ? statsRef : undefined}>
-              <div className="mb-4 text-gold">
-                <stat.icon className="h-10 w-10 mx-auto" />
+        {/* Stats Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
+          {stats.map((stat, index) => {
+            const IconComponent = stat.icon;
+            return (
+              <div 
+                key={index} 
+                className={`text-center transition-all duration-700 delay-${index * 100} ${
+                  isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                }`}
+              >
+                <IconComponent className="h-8 w-8 text-orange mx-auto mb-4" />
+                <div className="text-4xl md:text-5xl font-bold text-orange mb-2 font-serif">
+                  {counters[index]?.toLocaleString()}{stat.suffix || ''}
+                </div>
+                <div className="text-white font-semibold text-lg mb-1">
+                  {stat.label}
+                </div>
+                <div className="text-white/60 text-sm">
+                  {stat.description}
+                </div>
               </div>
-              <div className="stat-number mb-3">
-                {counters[index] || 0}{stat.suffix}
+            );
+          })}
+        </div>
+
+        {/* Trust Badges */}
+        <div className="border-t border-white/20 pt-12">
+          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
+            {/* Google Certified */}
+            <div className="flex items-center gap-3 text-white/80 hover:text-white transition-colors">
+              <div className="w-10 h-10 rounded-full bg-orange/20 flex items-center justify-center">
+                <Shield className="h-5 w-5 text-orange" />
               </div>
-              <div className="stat-label">
-                {stat.label}
+              <div>
+                <div className="font-semibold text-sm">Google Certified</div>
+                <div className="text-xs text-white/60">Partner Agency</div>
               </div>
             </div>
-          ))}
+
+            {/* SSL Secured */}
+            <div className="flex items-center gap-3 text-white/80 hover:text-white transition-colors">
+              <div className="w-10 h-10 rounded-full bg-orange/20 flex items-center justify-center">
+                <CheckCircle className="h-5 w-5 text-orange" />
+              </div>
+              <div>
+                <div className="font-semibold text-sm">SSL Secured</div>
+                <div className="text-xs text-white/60">256-bit Encryption</div>
+              </div>
+            </div>
+
+            {/* Stripe Verified */}
+            <div className="flex items-center gap-3 text-white/80 hover:text-white transition-colors">
+              <div className="w-10 h-10 rounded-full bg-orange/20 flex items-center justify-center">
+                <Award className="h-5 w-5 text-orange" />
+              </div>
+              <div>
+                <div className="font-semibold text-sm">Stripe Verified</div>
+                <div className="text-xs text-white/60">Secure Payments</div>
+              </div>
+            </div>
+
+            {/* 5-Star Rating */}
+            <div className="flex items-center gap-3 text-white/80 hover:text-white transition-colors">
+              <div className="w-10 h-10 rounded-full bg-orange/20 flex items-center justify-center">
+                <Star className="h-5 w-5 text-orange fill-orange" />
+              </div>
+              <div>
+                <div className="font-semibold text-sm">5-Star Rated</div>
+                <div className="text-xs text-white/60">Client Reviews</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
