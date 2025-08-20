@@ -36,8 +36,8 @@ const Hero = () => {
             </h1>
             
             <p className="text-body mb-12 max-w-3xl mx-auto text-white/80 text-xl leading-relaxed">
-              Premium web development and hosting services for UK businesses. 
-              We create <span className="text-orange font-semibold">fast, secure, and beautiful</span> websites that drive real results.
+              Premium web development and <span className="text-orange font-semibold">AI Automation</span> services for UK businesses. 
+              We create fast, secure, and beautiful websites that drive real results.
             </p>
             
             <div className="mb-16">
