@@ -49,14 +49,16 @@ const Testimonials = () => {
   ];
 
   return (
-    <section className="py-24 bg-gradient-to-br from-background via-primary/5 to-accent/10 relative overflow-hidden">
+    <section className="py-24 bg-gradient-testimonials relative overflow-hidden">
       {/* Background Effects */}
       <div className="absolute inset-0">
+        {/* Dark overlay for text readability */}  
+        <div className="absolute inset-0 bg-black/20"></div>
         <div className="absolute inset-0 bg-texture-dots opacity-20"></div>
         {[...Array(12)].map((_, i) => (
           <div
             key={i}
-            className="absolute w-2 h-2 bg-gold/20 rounded-full animate-float"
+            className="absolute w-2 h-2 bg-white/30 rounded-full animate-float"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
@@ -69,21 +71,21 @@ const Testimonials = () => {
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-gold/20 to-transparent backdrop-blur-md rounded-full border border-gold/30 mb-6">
-            <Award className="h-5 w-5 text-gold" />
-            <span className="text-gold font-semibold">CLIENT SUCCESS STORIES</span>
+          <div className="inline-flex items-center gap-3 px-6 py-3 bg-white/20 backdrop-blur-md rounded-full border border-white/30 mb-6">
+            <Award className="h-5 w-5 text-white" />
+            <span className="text-white font-semibold">CLIENT SUCCESS STORIES</span>
           </div>
           
-          <h2 className="text-4xl md:text-6xl font-black font-serif text-foreground mb-6">
+          <h2 className="text-heading text-heading-dark text-4xl md:text-6xl mb-6 text-shadow-dark">
             Real Results, Real Impact
           </h2>
           
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+          <p className="text-body text-body-dark text-xl max-w-3xl mx-auto leading-relaxed text-shadow-light">
             See how we've transformed businesses across the UK with websites that don't just look great—they deliver extraordinary results.
           </p>
           
           {/* Google Rating Display */}
-          <div className="flex items-center justify-center gap-4 mt-8 p-4 bg-white/50 backdrop-blur-md rounded-xl border border-gray-200 inline-flex">
+          <div className="flex items-center justify-center gap-4 mt-8 p-4 bg-white/20 backdrop-blur-md rounded-xl border border-white/20 inline-flex">
             <img 
               src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" 
               alt="Google"
@@ -91,19 +93,19 @@ const Testimonials = () => {
             />
             <div className="flex">
               {[...Array(5)].map((_, i) => (
-                <Star key={i} className="h-6 w-6 fill-yellow-400 text-yellow-400" />
+                <Star key={i} className="h-6 w-6 fill-secondary text-secondary" />
               ))}
             </div>
-            <span className="text-lg font-bold text-foreground">5.0</span>
-            <div className="text-muted-foreground">•</div>
-            <span className="text-muted-foreground font-medium">47+ Reviews</span>
+            <span className="text-lg font-bold text-white">5.0</span>
+            <div className="text-white/70">•</div>
+            <span className="text-white/90 font-medium">47+ Reviews</span>
           </div>
         </div>
 
-        {/* Video Testimonials */}
+        {/* Video Testimonials - White cards with orange/gold accents */}
         <div className="grid lg:grid-cols-3 gap-8 max-w-7xl mx-auto mb-20">
           {videoTestimonials.map((testimonial, index) => (
-            <Card key={index} className="bg-gradient-card hover:shadow-glow transition-all duration-500 hover:scale-105 border border-primary/10 group overflow-hidden">
+            <Card key={index} className="bg-white hover:shadow-gold transition-all duration-500 hover:scale-105 border border-secondary/20 group overflow-hidden">
               <CardContent className="p-0">
                 {/* Video Thumbnail */}
                 <div className="relative aspect-video overflow-hidden">
@@ -112,15 +114,15 @@ const Testimonials = () => {
                     alt={`${testimonial.company} Success Story`}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-accent opacity-50 group-hover:opacity-40 transition-opacity duration-300"></div>
                   <button className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-20 h-20 bg-gold/90 rounded-full flex items-center justify-center backdrop-blur-md group-hover:scale-110 transition-transform duration-300">
-                      <Play className="h-10 w-10 text-navy ml-1" fill="currentColor" />
+                    <div className="w-20 h-20 bg-secondary/90 rounded-full flex items-center justify-center backdrop-blur-md group-hover:scale-110 transition-transform duration-300">
+                      <Play className="h-10 w-10 text-primary ml-1" fill="currentColor" />
                     </div>
                   </button>
                   
-                  {/* Results Badge */}
-                  <div className="absolute top-4 right-4 bg-gold text-navy px-4 py-2 rounded-full text-sm font-bold shadow-elegant">
+                  {/* Results Badge - Orange accent */}
+                  <div className="absolute top-4 right-4 bg-accent text-white px-4 py-2 rounded-full text-sm font-bold shadow-elegant">
                     {testimonial.results}
                   </div>
                 </div>
@@ -129,13 +131,13 @@ const Testimonials = () => {
                 <div className="p-8">
                   <div className="flex items-center gap-1 mb-4">
                     {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="h-5 w-5 fill-yellow-400 text-yellow-400" />
+                      <Star key={i} className="h-5 w-5 fill-secondary text-secondary" />
                     ))}
                   </div>
                   
-                  <Quote className="h-8 w-8 text-gold mb-4" />
+                  <Quote className="h-8 w-8 text-accent mb-4" />
                   
-                  <p className="text-muted-foreground mb-6 leading-relaxed text-lg">
+                  <p className="text-body text-body-light mb-6 leading-relaxed text-lg">
                     "{testimonial.content}"
                   </p>
                   
@@ -143,15 +145,15 @@ const Testimonials = () => {
                     <img
                       src={testimonial.image}
                       alt={`${testimonial.name} - ${testimonial.role} at ${testimonial.company}`}
-                      className="w-16 h-16 rounded-full object-cover border-2 border-gold/20"
+                      className="w-16 h-16 rounded-full object-cover border-2 border-secondary/20"
                       loading="lazy"
                     />
                     <div>
-                      <h4 className="font-bold text-foreground text-lg">{testimonial.name}</h4>
-                      <p className="text-sm text-gold font-medium">
+                      <h4 className="font-bold text-heading-light text-lg">{testimonial.name}</h4>
+                      <p className="text-sm text-accent font-medium">
                         {testimonial.role}
                       </p>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-sm text-muted-light">
                         {testimonial.company}
                       </p>
                     </div>
@@ -164,10 +166,10 @@ const Testimonials = () => {
 
         {/* Company Logos Strip */}
         <div className="mb-16">
-          <h3 className="text-center text-2xl font-bold text-muted-foreground mb-8">
+          <h3 className="text-center text-2xl font-bold text-body-dark mb-8 text-shadow-light">
             Trusted by Leading UK Businesses
           </h3>
-          <div className="flex flex-wrap items-center justify-center gap-8 opacity-60 hover:opacity-100 transition-opacity duration-300">
+          <div className="flex flex-wrap items-center justify-center gap-8 opacity-80 hover:opacity-100 transition-opacity duration-300">
             {companyLogos.map((company, index) => (
               <div key={index} className="grayscale hover:grayscale-0 transition-all duration-300 hover:scale-110">
                 <img
@@ -182,21 +184,21 @@ const Testimonials = () => {
         </div>
 
         <div className="text-center mt-12">
-          <p className="text-muted-foreground mb-4">
+          <p className="text-body text-body-dark mb-4 text-shadow-light">
             Join our 150+ satisfied clients and transform your online presence with our expert web development services
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a 
               href="#contact"
-              className="text-primary hover:text-primary/80 font-medium underline underline-offset-4"
+              className="text-white hover:text-secondary font-medium underline underline-offset-4 text-shadow-light"
               title="Contact LD Development for web design consultation"
             >
               Get Your Free Consultation
             </a>
-            <span className="text-muted-foreground">•</span>
+            <span className="text-white/70">•</span>
             <a 
               href="#services"
-              className="text-primary hover:text-primary/80 font-medium underline underline-offset-4"
+              className="text-white hover:text-secondary font-medium underline underline-offset-4 text-shadow-light"
               title="View our web development and hosting services"
             >
               View Our Services

@@ -204,7 +204,7 @@ const Services = () => {
                   
                   {/* Popular badge with enhanced styling */}
                   {service.popular && <div className="absolute top-4 right-4 z-20">
-                      <Badge className="bg-gradient-secondary text-primary border-0 shadow-coral font-bold text-sm px-4 py-2 rounded-full">
+                      <Badge className="bg-gradient-accent text-white border-0 shadow-orange font-bold text-sm px-4 py-2 rounded-full">
                         🏆 Most Popular
                       </Badge>
                     </div>}
@@ -213,12 +213,12 @@ const Services = () => {
                   <div className={`relative z-10 h-full flex flex-col text-white ${index < 4 ? 'p-6 pt-12' : 'p-3 pt-8'}`}>
                     
                     {/* Title */}
-                    <h3 className={`${index < 4 ? 'text-2xl' : 'text-lg'} font-bold ${index < 4 ? 'mb-3' : 'mb-1'} text-white`}>
+                    <h3 className={`${index < 4 ? 'text-2xl' : 'text-lg'} font-bold ${index < 4 ? 'mb-3' : 'mb-1'} text-heading-dark`}>
                       {service.title}
                     </h3>
                     
                     {/* Description */}
-                    <p className={`text-white/90 ${index < 4 ? 'text-sm h-16' : 'text-xs h-12'} leading-relaxed ${index < 4 ? 'mb-4' : 'mb-2'} overflow-hidden`}>
+                    <p className={`text-body-dark ${index < 4 ? 'text-sm h-16' : 'text-xs h-12'} leading-relaxed ${index < 4 ? 'mb-4' : 'mb-2'} overflow-hidden`}>
                       {service.description}
                     </p>
 
@@ -256,7 +256,7 @@ const Services = () => {
                       <Button onClick={() => {
                         setSelectedService(service);
                         setIsModalOpen(true);
-                      }} className={`w-full bg-gradient-secondary text-primary hover:shadow-coral hover:scale-105 transition-all duration-300 rounded-full font-bold ${index < 4 ? 'py-3 text-sm' : 'py-2 text-xs'} shadow-button border-0 flex items-center justify-center`}>
+                      }} className={`w-full bg-accent text-white hover:shadow-orange hover:scale-105 transition-all duration-300 rounded-full font-bold ${index < 4 ? 'py-3 text-sm' : 'py-2 text-xs'} shadow-button border-0 flex items-center justify-center`}>
                         <ArrowRight className={`mr-2 ${index < 4 ? 'h-4 w-4' : 'h-3 w-3'}`} />
                         See Details
                       </Button>

@@ -140,16 +140,17 @@ const Portfolio = () => {
                     alt={`${project.title} website design`}
                     className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  {/* Hover Overlay on project thumbnails: Orange → Gold gradient fade */}
+                  <div className="absolute inset-0 bg-gradient-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   
                   {/* Tech Stack Overlay */}
                   <div className="absolute bottom-4 left-4 right-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 opacity-0 group-hover:opacity-100">
                     <div className="flex flex-wrap gap-2">
-                      {project.technologies.map((tech) => (
-                        <span key={tech} className="px-3 py-1 bg-secondary text-primary rounded-full text-sm font-bold shadow-lg">
-                          {tech}
-                        </span>
-                      ))}
+                        {project.technologies.map((tech) => (
+                          <span key={tech} className="px-3 py-1 bg-accent text-white rounded-full text-sm font-bold shadow-lg">
+                            {tech}
+                          </span>
+                        ))}
                     </div>
                   </div>
                 </div>

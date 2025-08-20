@@ -89,6 +89,9 @@ export default {
 				'gradient-card': 'var(--gradient-card)',
 				'gradient-button': 'var(--gradient-button)',
 				'gradient-accent': 'var(--gradient-accent)',
+				'gradient-cta': 'var(--gradient-cta)',
+				'gradient-testimonials': 'var(--gradient-testimonials)',
+				'gradient-premium': 'var(--gradient-premium)',
 				'gradient-glass': 'var(--gradient-glass)'
 			},
 			boxShadow: {
@@ -96,6 +99,8 @@ export default {
 				'glow': 'var(--shadow-glow)',
 				'card': 'var(--shadow-card)',
 				'button': 'var(--shadow-button)',
+				'orange': 'var(--shadow-orange)',
+				'gold': 'var(--shadow-gold)',
 				'inner': 'var(--shadow-inner)'
 			},
 			transitionTimingFunction: {

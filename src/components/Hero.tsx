@@ -6,15 +6,12 @@ import cinematicBg from "@/assets/hero-cinematic.jpg";
 const Hero = () => {
   const heroRef = useScrollAnimation();
   return <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Cinematic Background with Real Image */}
+      {/* Premium Orange → Gold Gradient Background */}
       <div className="absolute inset-0">
-        {/* Hero background image */}
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url(${cinematicBg})` }}
-        />
-        {/* Dark overlay for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-br from-navy/80 via-navy/70 to-primary/80"></div>
+        {/* Orange → Gold gradient base */}
+        <div className="absolute inset-0 bg-gradient-hero"></div>
+        {/* Dark overlay for text readability (30% opacity as specified) */}
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/30 via-black/30 to-primary/30"></div>
         
         {/* Animated overlay with particles */}
         <div className="absolute inset-0">
@@ -142,9 +139,9 @@ const Hero = () => {
             
             {/* Single Powerful CTA Button */}
             <div className="pt-8 animate-fade-in-up stagger-delay-5">
-              <Button 
+            <Button 
                 onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
-                className="bg-gradient-to-r from-secondary via-secondary-glow to-secondary text-primary hover:shadow-[0_0_60px_hsl(var(--secondary)/0.6)] text-xl px-16 py-8 rounded-full font-black tracking-wide shadow-elegant transition-all duration-500 hover:scale-110 hover:shadow-glow group relative overflow-hidden border-2 border-secondary/20"
+                className="bg-secondary text-primary hover:shadow-glow hover:shadow-gold text-xl px-16 py-8 rounded-full font-black tracking-wide shadow-gold transition-all duration-500 hover:scale-110 group relative overflow-hidden border-2 border-secondary/20"
               >
                 <span className="relative z-10 flex items-center gap-4">
                   <Rocket className="h-7 w-7 group-hover:animate-bounce" />
