@@ -4,6 +4,7 @@ import HowWeBuild from "@/components/HowWeBuild";
 import About from "@/components/About";
 import Process from "@/components/Process";
 import Services from "@/components/Services";
+import Pricing from "@/components/Pricing";
 import CustomerPortal from "@/components/CustomerPortal";
 import CaseStudies from "@/components/CaseStudies";
 import Portfolio from "@/components/Portfolio";
@@ -51,6 +52,9 @@ const Index = () => {
           </section>
           <section id="services" aria-label="Web development services and plans" className="bg-primary text-primary-foreground">
             <Services />
+          </section>
+          <section id="pricing" aria-label="Pricing plans and packages" className="bg-background">
+            <Pricing />
           </section>
           <TrustBadges />
           <CTABars />
