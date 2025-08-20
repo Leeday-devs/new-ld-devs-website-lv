@@ -86,22 +86,13 @@ const Portfolio = () => {
       <div className="absolute inset-0 bg-texture-dots opacity-10"></div>
       <div className="absolute inset-0 bg-gradient-mesh"></div>
       
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-primary backdrop-blur-sm rounded-full mb-6 border border-secondary/20 shadow-glow">
-            <Award className="h-4 w-4 text-secondary animate-pulse" />
-            <span className="text-sm font-bold text-white">Featured Client Work</span>
-          </div>
-          
-          <h2 className="text-4xl md:text-6xl font-bold font-serif mb-6">
-            <span className="block text-foreground">PORTFOLIO</span>
-            <span className="bg-gradient-to-r from-secondary via-accent to-accent-glow bg-clip-text text-transparent">
-              SHOWCASE
-            </span>
+          <h2 className="text-4xl md:text-5xl font-black font-serif text-foreground mb-6">
+            Case Studies & Transformations
           </h2>
-          
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto font-medium leading-relaxed">
-            Real projects, real results. See how we've helped businesses transform their online presence and achieve remarkable growth.
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            Real results for real businesses. See how we've helped our clients achieve remarkable growth.
           </p>
         </div>
 
@@ -124,115 +115,74 @@ const Portfolio = () => {
           ))}
         </div>
 
-        <div ref={containerRef} className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {projects
-            .filter(project => activeFilter === "All" || project.category === activeFilter)
-            .map((project, index) => (
-            <Card key={project.title} className="portfolio-card scroll-roll group hover:shadow-premium transition-all duration-500 overflow-hidden bg-card border-0 shadow-card">
-              <div className="relative overflow-hidden h-80">
-                <img 
-                  src={project.image} 
-                  alt={`${project.title} - ${project.category} project showcasing modern web development`}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                
-                {/* Enhanced overlay with project details */}
-                <div className="absolute inset-0 p-6 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                  <div className="space-y-2">
-                    <h4 className="text-white font-bold text-lg">{project.title}</h4>
-                    <p className="text-white/90 text-sm line-clamp-2">{project.description}</p>
-                    <div className="flex gap-2">
-                      <Button size="sm" className="bg-secondary text-primary hover:bg-secondary/90">
-                        <ExternalLink className="h-3 w-3 mr-1" />
-                        View Live
-                      </Button>
-                      <Button size="sm" variant="outline" className="border-white/20 text-white hover:bg-white hover:text-primary">
-                        Case Study
-                      </Button>
+        <div className="grid md:grid-cols-2 gap-12">
+          {projects.map((project, index) => (
+            <div key={project.title} className="group">
+              <div className="bg-gradient-card rounded-2xl overflow-hidden shadow-card hover:shadow-elegant transition-all duration-500 hover:scale-105">
+                {/* Case Study Header */}
+                <div className="p-8 border-b border-border">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-3 h-3 bg-secondary rounded-full animate-pulse"></div>
+                    <span className="text-sm font-bold text-secondary uppercase tracking-wide">Case Study</span>
+                  </div>
+                  <h3 className="text-2xl font-bold text-foreground mb-3 group-hover:text-secondary transition-colors">
+                    {project.title}
+                  </h3>
+                  <p className="text-muted-foreground">
+                    {project.description}
+                  </p>
+                </div>
+
+                {/* Before/After Images */}
+                <div className="relative overflow-hidden">
+                  <img 
+                    src={project.image} 
+                    alt={`${project.title} website design`}
+                    className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  
+                  {/* Tech Stack Overlay */}
+                  <div className="absolute bottom-4 left-4 right-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 opacity-0 group-hover:opacity-100">
+                    <div className="flex flex-wrap gap-2">
+                      {project.technologies.map((tech) => (
+                        <span key={tech} className="px-3 py-1 bg-secondary text-primary rounded-full text-sm font-bold shadow-lg">
+                          {tech}
+                        </span>
+                      ))}
                     </div>
                   </div>
                 </div>
                 
-                {project.featured && (
-                  <Badge className="absolute top-4 left-4 bg-gradient-secondary text-primary font-bold shadow-coral">
-                    🌟 Featured Work
-                  </Badge>
-                )}
-                
-                {/* Results badge */}
-                <Badge className="absolute top-4 right-4 bg-gradient-accent text-white font-bold">
-                  {project.stats.revenue} Revenue ↗
-                </Badge>
+                {/* Results Section */}
+                <div className="p-8">
+                  <div className="grid grid-cols-3 gap-4 mb-6">
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-secondary mb-1">+250%</div>
+                      <div className="text-sm text-muted-foreground">Traffic Increase</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-secondary mb-1">+180%</div>
+                      <div className="text-sm text-muted-foreground">Conversions</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-secondary mb-1">98%</div>
+                      <div className="text-sm text-muted-foreground">Uptime</div>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm font-medium text-secondary bg-secondary/10 px-3 py-1 rounded-full">
+                      {project.category}
+                    </span>
+                    <div className="flex items-center gap-2 text-muted-foreground group-hover:text-secondary transition-colors cursor-pointer">
+                      <span className="text-sm font-medium">View Live Site</span>
+                      <ExternalLink className="h-4 w-4" />
+                    </div>
+                  </div>
+                </div>
               </div>
-              
-              <CardContent className="p-8">
-                <div className="flex items-center justify-between mb-4">
-                  <Badge variant="outline" className="border-primary/20 text-primary font-medium">{project.category}</Badge>
-                  {project.stats.verified && (
-                    <div className="flex items-center gap-1">
-                      <CheckCircle className="h-4 w-4 text-green-500" />
-                      <span className="text-xs text-muted-foreground">Verified Client</span>
-                    </div>
-                  )}
-                </div>
-                
-                <h3 className="text-2xl font-bold font-serif mb-3 text-foreground">{project.title}</h3>
-                <p className="text-muted-foreground mb-6 leading-relaxed">{project.description}</p>
-                
-                {/* Key Results */}
-                <div className="space-y-2 mb-6">
-                  <h4 className="font-semibold text-sm text-primary mb-3">Key Results:</h4>
-                  {project.results.slice(0, 2).map((result) => (
-                    <div key={result} className="flex items-center gap-2">
-                      <TrendingUp className="h-3 w-3 text-green-500" />
-                      <span className="text-xs text-muted-foreground">{result}</span>
-                    </div>
-                  ))}
-                </div>
-                
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {project.technologies.slice(0, 4).map((tech) => (
-                    <Badge key={tech} variant="secondary" className="text-xs font-medium bg-primary/5 text-primary border-primary/10">
-                      {tech}
-                    </Badge>
-                  ))}
-                </div>
-                
-                <div className="grid grid-cols-3 gap-4 mb-6 text-sm">
-                  <div className="text-center">
-                    <div className="flex items-center justify-center gap-1 mb-1">
-                      <Users className="h-4 w-4 text-primary" />
-                    </div>
-                    <div className="font-bold text-foreground">{project.stats.users}</div>
-                    <div className="text-xs text-muted-foreground">Active Users</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="flex items-center justify-center gap-1 mb-1">
-                      <Star className="h-4 w-4 text-secondary" />
-                    </div>
-                    <div className="font-bold text-foreground">{project.stats.rating}</div>
-                    <div className="text-xs text-muted-foreground">Client Rating</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="flex items-center justify-center gap-1 mb-1">
-                      <Calendar className="h-4 w-4 text-accent" />
-                    </div>
-                    <div className="font-bold text-foreground">{project.stats.completion}</div>
-                    <div className="text-xs text-muted-foreground">Delivered</div>
-                  </div>
-                </div>
-                
-                {/* Client Testimonial */}
-                <div className="bg-muted/30 rounded-lg p-4 border border-border/50">
-                  <p className="text-sm text-muted-foreground italic mb-2">"{project.clientTestimonial.quote}"</p>
-                  <div className="text-xs font-medium text-primary">
-                    — {project.clientTestimonial.name}, {project.clientTestimonial.company}
-                  </div>
-                </div>
-                
-              </CardContent>
-            </Card>
+            </div>
           ))}
         </div>
 

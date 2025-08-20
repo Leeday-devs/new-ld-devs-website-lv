@@ -16,6 +16,7 @@ import SEOHead from "@/components/SEOHead";
 import StatsBar from "@/components/StatsBar";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import CTABars from "@/components/CTABars";
+import TrustBadges from "@/components/TrustBadges";
 
 const Index = () => {
   return (
@@ -42,36 +43,37 @@ const Index = () => {
             <Hero />
             <StatsBar />
           </section>
-          <section id="how-we-build" aria-label="Our development process">
+          <section id="how-we-build" aria-label="Our development process" className="bg-background">
             <HowWeBuild />
           </section>
-          <section id="about" aria-label="About LD Development team">
+          <section id="about" aria-label="About LD Development team" className="bg-gradient-to-br from-muted/30 to-background">
             <About />
           </section>
-          <section id="services" aria-label="Web development services and plans">
+          <section id="services" aria-label="Web development services and plans" className="bg-primary text-primary-foreground">
             <Services />
           </section>
+          <TrustBadges />
           <CTABars />
-          <section aria-label="Customer portal information">
+          <section aria-label="Customer portal information" className="bg-background">
             <CustomerPortal />
           </section>
-          <section id="case-studies" aria-label="Client case studies and success stories">
+          <section id="case-studies" aria-label="Client case studies and success stories" className="bg-gradient-to-br from-accent/5 to-background">
             <CaseStudies />
           </section>
-          <section id="portfolio" aria-label="Portfolio of completed projects">
+          <section id="portfolio" aria-label="Portfolio of completed projects" className="bg-background">
             <Portfolio />
           </section>
           <CTABars />
-          <section aria-label="Client testimonials and reviews">
+          <section aria-label="Client testimonials and reviews" className="bg-gradient-to-br from-secondary/5 to-background">
             <Testimonials />
           </section>
-          <section aria-label="Newsletter subscription">
+          <section aria-label="Newsletter subscription" className="bg-primary text-primary-foreground">
             <Newsletter />
           </section>
-          <section id="faq" aria-label="Frequently asked questions">
+          <section id="faq" aria-label="Frequently asked questions" className="bg-background">
             <FAQ />
           </section>
-          <section id="contact" aria-label="Contact information and form">
+          <section id="contact" aria-label="Contact information and form" className="bg-gradient-to-br from-muted/30 to-background">
             <Contact />
           </section>
         </main>

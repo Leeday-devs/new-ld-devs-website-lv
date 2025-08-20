@@ -2,13 +2,19 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Code, Zap, Sparkles, Layers, Palette, Database, Shield, Rocket, Star, Users, CreditCard, Play, CheckCircle } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import heroImage from "@/assets/hero-image-no-bg.png";
+import cinematicBg from "@/assets/hero-cinematic.jpg";
 const Hero = () => {
   const heroRef = useScrollAnimation();
   return <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Cinematic Background with Video-like Effect */}
+      {/* Cinematic Background with Real Image */}
       <div className="absolute inset-0">
-        {/* Primary cinematic background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-navy via-navy/90 to-primary opacity-95"></div>
+        {/* Hero background image */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: `url(${cinematicBg})` }}
+        />
+        {/* Dark overlay for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-br from-navy/80 via-navy/70 to-primary/80"></div>
         
         {/* Animated overlay with particles */}
         <div className="absolute inset-0">
@@ -138,14 +144,15 @@ const Hero = () => {
             <div className="pt-8 animate-fade-in-up stagger-delay-5">
               <Button 
                 onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
-                className="bg-gradient-to-r from-gold via-yellow-400 to-gold text-navy hover:shadow-[0_0_40px_rgba(212,175,55,0.5)] text-xl px-12 py-6 rounded-full font-black tracking-wide shadow-elegant transition-all duration-500 hover:scale-110 animate-pulse-glow group relative overflow-hidden"
+                className="bg-gradient-to-r from-secondary via-secondary-glow to-secondary text-primary hover:shadow-[0_0_60px_hsl(var(--secondary)/0.6)] text-xl px-16 py-8 rounded-full font-black tracking-wide shadow-elegant transition-all duration-500 hover:scale-110 hover:shadow-glow group relative overflow-hidden border-2 border-secondary/20"
               >
-                <span className="relative z-10 flex items-center gap-3">
-                  <Rocket className="h-6 w-6 group-hover:animate-bounce" />
+                <span className="relative z-10 flex items-center gap-4">
+                  <Rocket className="h-7 w-7 group-hover:animate-bounce" />
                   START YOUR LEGENDARY PROJECT
-                  <ArrowRight className="h-6 w-6 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="h-7 w-7 group-hover:translate-x-2 transition-transform duration-300" />
                 </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-yellow-300 to-gold opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-secondary via-secondary-glow to-secondary opacity-0 group-hover:opacity-20 transition-opacity duration-500 rounded-full"></div>
+                <div className="absolute inset-0 animate-shimmer bg-gradient-to-r from-transparent via-white/20 to-transparent rounded-full"></div>
               </Button>
               
               {/* Secondary subtle link */}

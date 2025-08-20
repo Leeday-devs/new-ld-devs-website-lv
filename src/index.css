@@ -65,17 +65,20 @@
     --texture-lines: repeating-linear-gradient(90deg, transparent, transparent 2px, hsl(210 100% 12% / 0.03) 2px, hsl(210 100% 12% / 0.03) 4px);
     --texture-grid: linear-gradient(hsl(210 100% 12% / 0.03) 1px, transparent 1px), linear-gradient(90deg, hsl(210 100% 12% / 0.03) 1px, transparent 1px);
     
-    /* Luxury Multi-Layered Shadows - Rich Navy, Metallic Gold, Purple-Blue */
-    --shadow-elegant: 0 4px 15px -3px hsl(210 100% 12% / 0.12), 0 2px 6px -2px hsl(210 100% 12% / 0.05);
-    --shadow-glow: 0 0 25px hsl(210 100% 12% / 0.15), 0 0 50px hsl(210 100% 12% / 0.1);
-    --shadow-button: 0 4px 15px -2px hsl(210 100% 12% / 0.25), 0 2px 8px -1px hsl(210 100% 12% / 0.1), inset 0 1px 0 hsl(0 0% 100% / 0.1);
-    --shadow-card: 0 2px 8px -1px hsl(210 100% 12% / 0.08), 0 4px 16px -4px hsl(210 100% 12% / 0.04);
-    --shadow-premium: 0 8px 30px -4px hsl(210 100% 12% / 0.15), 0 4px 16px -2px hsl(210 100% 12% / 0.08), 0 0 0 1px hsl(210 100% 12% / 0.04);
-    --shadow-coral: 0 4px 20px -2px hsl(45 75% 52% / 0.25), 0 2px 8px -1px hsl(45 75% 52% / 0.1);
-    --shadow-purple: 0 4px 20px -2px hsl(257 89% 44% / 0.25), 0 2px 8px -1px hsl(257 89% 44% / 0.1);
-    --shadow-inset: inset 0 2px 4px 0 hsl(210 100% 12% / 0.06);
-    --shadow-brutal: 8px 8px 0px hsl(210 100% 12%), 16px 16px 0px hsl(210 100% 8%);
-    --shadow-neumorphism: 8px 8px 16px hsl(210 20% 85%), -8px -8px 16px hsl(0 0% 100%);
+  /* Luxury Multi-Layered Shadows - Rich Navy, Metallic Gold, Purple-Blue */
+  --shadow-elegant: 0 4px 15px -3px hsl(210 100% 12% / 0.12), 0 2px 6px -2px hsl(210 100% 12% / 0.05);
+  --shadow-glow: 0 0 25px hsl(210 100% 12% / 0.15), 0 0 50px hsl(210 100% 12% / 0.1);
+  --shadow-button: 0 4px 15px -2px hsl(210 100% 12% / 0.25), 0 2px 8px -1px hsl(210 100% 12% / 0.1), inset 0 1px 0 hsl(0 0% 100% / 0.1);
+  --shadow-card: 0 2px 8px -1px hsl(210 100% 12% / 0.08), 0 4px 16px -4px hsl(210 100% 12% / 0.04);
+  --shadow-premium: 0 8px 30px -4px hsl(210 100% 12% / 0.15), 0 4px 16px -2px hsl(210 100% 12% / 0.08), 0 0 0 1px hsl(210 100% 12% / 0.04);
+  --shadow-coral: 0 4px 20px -2px hsl(45 75% 52% / 0.25), 0 2px 8px -1px hsl(45 75% 52% / 0.1);
+  --shadow-purple: 0 4px 20px -2px hsl(257 89% 44% / 0.25), 0 2px 8px -1px hsl(257 89% 44% / 0.1);
+  --shadow-inset: inset 0 2px 4px 0 hsl(210 100% 12% / 0.06);
+  --shadow-brutal: 8px 8px 0px hsl(210 100% 12%), 16px 16px 0px hsl(210 100% 8%);
+  --shadow-neumorphism: 8px 8px 16px hsl(210 20% 85%), -8px -8px 16px hsl(0 0% 100%);
+
+  /* Special Effects */
+  --parallax-speed: 0.5;
 
     /* Animation Variables */
     --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -417,6 +420,35 @@
   .link-premium:hover {
     color: hsl(var(--primary-dark));
     transform: translateY(-1px);
+  }
+
+  /* Scroll-triggered animations */
+  .scroll-reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+  }
+
+  .scroll-reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Parallax containers */
+  .parallax {
+    will-change: transform;
+  }
+
+  /* Shimmer effect for buttons */
+  .shimmer {
+    background: linear-gradient(
+      110deg,
+      transparent 40%,
+      rgba(255, 255, 255, 0.3) 50%,
+      transparent 60%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2s linear infinite;
   }
 
   /* Background Utilities */
