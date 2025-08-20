@@ -9,33 +9,30 @@
 
 @layer base {
   :root {
-    /* Clean Premium Color System */
+    /* Premium Color System - Exact Specification */
     --brand-orange: 25 100% 50%;          /* #FF7A00 - Primary accent */
-    --brand-navy: 210 55% 11%;            /* #0A192F - Secondary contrast */
+    --brand-navy: 210 67% 12%;            /* #0A192F - Dark bands */
     --brand-white: 0 0% 100%;             /* #FFFFFF - Clean base */
-    --brand-grey: 220 13% 97%;            /* #F5F7FA - Light neutral */
-    --brand-gold: 43 74% 52%;             /* #D4AF37 - Optional accent */
+    --brand-grey: 219 20% 97%;            /* #F5F7FA - Light sections */
     
-    /* Text Colors */
-    --text-primary: 210 55% 11%;          /* Navy for headers */
+    /* Text Colors - Premium Hierarchy */
+    --text-primary: 210 67% 12%;          /* Navy for headers */
     --text-secondary: 215 16% 46%;        /* Grey for body */
     --text-muted: 220 9% 58%;             /* Light grey for captions */
     --text-white: 0 0% 100%;              /* White on dark backgrounds */
     
-    /* Background Colors - Clean & Simple */
+    /* Background Colors - Clean System */
     --bg-white: 0 0% 100%;                /* Pure white sections */
-    --bg-grey: 220 13% 97%;               /* Light grey sections */
-    --bg-navy: 210 55% 11%;               /* Navy sections */
+    --bg-grey: 219 20% 97%;               /* Light grey sections */
+    --bg-navy: 210 67% 12%;               /* Navy sections */
     
     /* Interactive Elements */
-    --orange: 25 100% 50%;                /* Orange buttons/links */
-    --navy: 210 55% 11%;                  /* Navy buttons */
-    --gold: 43 74% 52%;                   /* Gold accents */
+    --orange: 25 100% 50%;                /* #FF7A00 Orange buttons/accents */
+    --navy: 210 67% 12%;                  /* #0A192F Navy buttons */
     
     /* Border Colors */
-    --border-light: 220 13% 91%;          /* Light borders */
+    --border-light: 220 13% 91%;          /* #E5E7EB Light borders */
     --border-orange: 25 100% 50%;         /* Orange borders */
-    --border-navy: 210 55% 11%;           /* Navy borders */
 
     /* Clean Theme Mapping */
     --background: var(--bg-white);
@@ -50,14 +47,14 @@
     --secondary-foreground: var(--text-primary);
     --muted: var(--bg-grey);
     --muted-foreground: var(--text-muted);
-    --accent: var(--gold);
-    --accent-foreground: var(--text-primary);
+    --accent: var(--orange);
+    --accent-foreground: var(--text-white);
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: var(--text-white);
     --border: var(--border-light);
     --input: var(--border-light);
     --ring: var(--orange);
-    --radius: 0.5rem;
+    --radius: 1rem;
 
     /* Sidebar theme */
     --sidebar-background: 0 0% 100%;
@@ -71,7 +68,7 @@
   }
 
   .dark {
-    /* Dark Mode - Clean Navy Theme */
+    /* Dark Mode - Navy Theme */
     --background: var(--bg-navy);
     --foreground: var(--text-white);
     --card: var(--bg-navy);
@@ -84,7 +81,7 @@
     --secondary-foreground: var(--text-primary);
     --muted: var(--bg-grey);
     --muted-foreground: var(--text-muted);
-    --accent: var(--gold);
+    --accent: var(--orange);
     --accent-foreground: var(--text-white);
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: var(--text-white);
@@ -123,7 +120,7 @@
      CLEAN PREMIUM COMPONENT SYSTEM
      ========================================== */
 
-  /* Typography - Premium Scale */
+  /* Typography - Premium System */
   .heading-primary {
     font-family: 'Playfair Display', serif;
     font-weight: 700;
@@ -132,7 +129,7 @@
     color: hsl(var(--text-primary));
   }
 
-  /* Typography Scale - H1: 56/64, H2: 40/48, H3: 28/36, Body: 18/28 */
+  /* Typography Scale - Exact Sizes */
   .heading-xl { 
     font-size: 3.5rem; /* 56px */
     line-height: 4rem; /* 64px */
@@ -181,68 +178,60 @@
     padding: 6rem 0;
   }
 
-  /* Card Styles - Clean System */
-  .card-white {
+  /* Premium Card System */
+  .card-premium {
     background: hsl(var(--bg-white));
-    border: 1px solid hsl(var(--border-light));
-    border-radius: 0.5rem;
-    padding: 1.5rem;
-    transition: all 0.2s ease;
+    border: 1px solid #E5E7EB;
+    border-radius: 1rem;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
   }
 
-  .card-white:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  .card-premium:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 25px 0 rgba(0, 0, 0, 0.15);
   }
 
   .card-featured {
     background: hsl(var(--bg-white));
     border: 2px solid hsl(var(--orange));
-    border-radius: 0.5rem;
-    padding: 1.5rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 12px 0 hsl(var(--orange) / 0.2);
     position: relative;
   }
 
-  .card-featured::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: hsl(var(--orange));
-  }
-
-  /* Button System - Unified Design */
+  /* Button System - Two Styles Only */
   .btn-primary {
     background: hsl(var(--orange));
     color: hsl(var(--bg-white));
     border: none;
-    border-radius: 0.5rem;
+    border-radius: 1rem;
     font-weight: 600;
-    transition: all 0.2s ease;
-    box-shadow: 0 2px 8px hsl(var(--orange) / 0.2);
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px hsl(var(--orange) / 0.3);
   }
 
   .btn-primary:hover {
-    background: hsl(var(--orange) / 0.9);
+    background: hsl(25 100% 45%); /* Darker orange */
     transform: translateY(-1px);
-    box-shadow: 0 4px 16px hsl(var(--orange) / 0.3);
+    box-shadow: 0 8px 20px hsl(var(--orange) / 0.4);
   }
 
   .btn-secondary {
-    background: hsl(var(--bg-navy));
+    background: hsl(var(--navy));
     color: hsl(var(--bg-white));
-    border: none;
-    border-radius: 0.5rem;
+    border: 1px solid transparent;
+    border-radius: 1rem;
     font-weight: 600;
-    transition: all 0.2s ease;
-    box-shadow: 0 2px 8px hsl(var(--bg-navy) / 0.2);
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px hsl(var(--navy) / 0.3);
   }
 
   .btn-secondary:hover {
-    background: hsl(var(--bg-navy) / 0.9);
+    background: hsl(210 67% 20%); /* Lighter navy */
+    border-color: hsl(var(--orange));
     transform: translateY(-1px);
-    box-shadow: 0 4px 16px hsl(var(--bg-navy) / 0.3);
+    box-shadow: 0 8px 20px hsl(var(--navy) / 0.4);
   }
 
   .btn-outline {

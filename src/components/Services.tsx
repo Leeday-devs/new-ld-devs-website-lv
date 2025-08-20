@@ -58,27 +58,27 @@ const Services = () => {
           {services.map((service, index) => (
             <div
               key={index}
-              className="bg-white rounded-xl p-8 border border-border-light shadow-sm hover:shadow-lg hover:-translate-y-2 transition-all duration-300 group"
+              className="card-premium p-8 group"
             >
               {/* Icon */}
               <div className="mb-6">
-                <service.icon className="h-12 w-12 text-orange transition-transform duration-300" />
+                <service.icon className="h-12 w-12 text-orange" />
               </div>
 
               {/* Title */}
-              <h3 className="text-xl font-bold mb-4 text-navy">
+              <h3 className="heading-primary heading-md mb-4 text-navy">
                 {service.title}
               </h3>
 
               {/* Description */}
-              <p className="text-text-secondary mb-6 leading-relaxed">
+              <p className="text-body mb-6">
                 {service.description}
               </p>
 
               {/* Features List */}
               <ul className="space-y-3">
                 {service.features.map((feature, featureIndex) => (
-                  <li key={featureIndex} className="flex items-center text-text-secondary text-sm">
+                  <li key={featureIndex} className="flex items-center text-text-secondary text-base">
                     <CheckCircle className="h-4 w-4 text-orange mr-3 flex-shrink-0" />
                     {feature}
                   </li>
@@ -90,20 +90,12 @@ const Services = () => {
 
         {/* CTA Section */}
         <div className="text-center mt-16">
-          <div className="bg-bg-grey rounded-2xl p-8">
-            <h3 className="heading-primary text-2xl mb-4 text-navy">
-              Ready to Get Started?
-            </h3>
-            <p className="text-text-secondary mb-6 max-w-2xl mx-auto">
-              Let's discuss your project and create something amazing together. Get in touch for a free consultation.
-            </p>
-            <button 
-              className="bg-orange hover:bg-orange/90 text-white font-semibold px-8 py-3 rounded-lg transition-all duration-200 hover:-translate-y-1 shadow-lg hover:shadow-xl"
-              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-            >
-              Start Your Project
-            </button>
-          </div>
+          <button 
+            className="btn-primary px-10 py-4 text-lg font-semibold rounded-2xl"
+            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+          >
+            Start Your Project
+          </button>
         </div>
       </div>
     </section>

@@ -150,10 +150,10 @@ const Portfolio = () => {
           {projects.slice(0, 6).map((project) => (
             <div
               key={project.id}
-              className="group cursor-pointer overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300"
+              className="card-premium overflow-hidden cursor-pointer group"
               onClick={() => openCaseStudy(project)}
             >
-              <div className="relative overflow-hidden h-80">
+              <div className="relative h-80 overflow-hidden">
                 <img
                   src={project.image}
                   alt={`${project.title} preview`}
@@ -166,8 +166,8 @@ const Portfolio = () => {
                 {/* Overlay Content */}
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <div className="text-center text-white p-6">
-                    <h3 className="text-2xl font-bold mb-3">{project.title}</h3>
-                    <p className="text-sm opacity-90">{project.category}</p>
+                    <h3 className="heading-primary heading-md mb-3 text-white">{project.title}</h3>
+                    <p className="text-lg opacity-90">{project.category}</p>
                   </div>
                 </div>
               </div>
@@ -178,11 +178,10 @@ const Portfolio = () => {
         {/* CTA Section */}
         <div className="text-center">
           <button 
-            className="bg-orange hover:bg-orange/90 text-white font-semibold px-8 py-3 rounded-lg transition-all duration-200 hover:-translate-y-1 shadow-lg hover:shadow-xl"
+            className="btn-primary px-10 py-4 text-lg font-semibold rounded-2xl"
             onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
           >
             Start Your Project
-            <ArrowRight className="ml-2 h-5 w-5 inline" />
           </button>
         </div>
       </div>
@@ -207,30 +206,30 @@ const Portfolio = () => {
               <div className="space-y-8">
                 {/* Challenge */}
                 <div>
-                  <h4 className="text-xl font-bold text-orange mb-4">Challenge</h4>
-                  <p className="text-text-secondary leading-relaxed text-lg">
+                  <h4 className="heading-primary heading-md text-orange mb-4">Challenge</h4>
+                  <p className="text-body">
                     {selectedProject.caseStudy.challenge}
                   </p>
                 </div>
 
                 {/* Solution */}
                 <div>
-                  <h4 className="text-xl font-bold text-orange mb-4">Solution</h4>
-                  <p className="text-text-secondary leading-relaxed text-lg">
+                  <h4 className="heading-primary heading-md text-orange mb-4">Solution</h4>
+                  <p className="text-body">
                     {selectedProject.caseStudy.solution}
                   </p>
                 </div>
 
                 {/* Results */}
                 <div>
-                  <h4 className="text-xl font-bold text-orange mb-4">Results</h4>
+                  <h4 className="heading-primary heading-md text-orange mb-4">Results</h4>
                   <div className="grid md:grid-cols-2 gap-4">
                     {selectedProject.caseStudy.results.map((result, index) => (
-                      <div key={index} className="bg-orange/5 rounded-lg p-4 border border-orange/20">
-                        <div className="text-2xl font-bold text-orange mb-1">
+                      <div key={index} className="card-premium p-6 border-orange/20">
+                        <div className="text-2xl font-bold text-orange mb-2">
                           {result.split(' ')[0]}
                         </div>
-                        <p className="text-text-secondary text-sm">
+                        <p className="text-text-secondary">
                           {result.split(' ').slice(1).join(' ')}
                         </p>
                       </div>
@@ -243,7 +242,7 @@ const Portfolio = () => {
               <div className="mt-8 pt-6 border-t border-border-light">
                 <button
                   onClick={closeCaseStudy}
-                  className="w-full bg-orange hover:bg-orange/90 text-white font-semibold py-3 rounded-lg transition-colors duration-200"
+                  className="btn-primary w-full py-4 rounded-2xl"
                 >
                   Close Case Study
                 </button>

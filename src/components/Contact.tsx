@@ -154,25 +154,25 @@ const Contact = () => {
 
         <div className="max-w-4xl mx-auto">
           {/* Contact Form - Modern Card Design */}
-          <div className="bg-white border border-border-light rounded-xl p-8 shadow-lg">
+          <div className="card-premium p-8">
             <div className="grid md:grid-cols-2 gap-8">
               {/* Contact Info - Compact */}
               <div className="space-y-4">
-                <h3 className="heading-primary heading-md text-navy mb-6">Get in Touch</h3>
+                <h3 className="heading-primary heading-md text-white mb-6">Get in Touch</h3>
                 
-                {contactInfo.map(info => <a key={info.label} href={info.href} className="flex items-center gap-4 p-4 rounded-lg hover:bg-bg-grey transition-colors group">
-                    <div className="bg-orange/10 rounded-lg w-12 h-12 flex items-center justify-center group-hover:bg-orange/20 transition-colors">
+                {contactInfo.map(info => <a key={info.label} href={info.href} className="flex items-center gap-4 p-4 rounded-lg hover:bg-white/10 transition-colors group">
+                    <div className="bg-orange/20 rounded-lg w-12 h-12 flex items-center justify-center group-hover:bg-orange/30 transition-colors">
                       <info.icon className="h-5 w-5 text-orange" />
                     </div>
                     <div>
-                      <div className="text-sm text-text-secondary">{info.label}</div>
-                      <div className="text-base font-medium text-navy">{info.value}</div>
+                      <div className="text-sm text-white/70">{info.label}</div>
+                      <div className="text-base font-medium text-white">{info.value}</div>
                     </div>
                   </a>)}
 
-                <div className="bg-orange/5 rounded-lg p-6 mt-6">
-                  <h4 className="text-base font-semibold text-navy mb-2">Quick Response</h4>
-                  <p className="text-sm text-text-secondary">I typically respond within 1 hour.</p>
+                <div className="bg-orange/10 rounded-lg p-6 mt-6">
+                  <h4 className="text-base font-semibold text-white mb-2">Quick Response</h4>
+                  <p className="text-sm text-white/70">I typically respond within 1 hour.</p>
                 </div>
               </div>
 

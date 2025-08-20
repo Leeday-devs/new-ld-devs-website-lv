@@ -83,7 +83,7 @@ const Testimonials = () => {
           {testimonials.slice(0, 5).map((testimonial) => (
             <div
               key={testimonial.id}
-              className="bg-white rounded-xl p-8 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+              className="card-premium p-8"
             >
               {/* Quote Icon */}
               <Quote className="h-8 w-8 text-orange mb-6" />
@@ -96,7 +96,7 @@ const Testimonials = () => {
               </div>
 
               {/* Quote */}
-              <blockquote className="text-text-secondary leading-relaxed mb-8 text-base">
+              <blockquote className="text-body mb-8">
                 "{testimonial.quote}"
               </blockquote>
 
@@ -124,7 +124,7 @@ const Testimonials = () => {
         <div className="md:hidden">
           <div className="relative">
             {/* Testimonial Card */}
-            <div className="bg-white rounded-xl p-8 shadow-sm mx-4">
+            <div className="card-premium p-8 mx-4">
               <Quote className="h-8 w-8 text-orange mb-6" />
               
               <div className="flex items-center mb-6">
@@ -133,7 +133,7 @@ const Testimonials = () => {
                 ))}
               </div>
 
-              <blockquote className="text-text-secondary leading-relaxed mb-8 text-base">
+              <blockquote className="text-body mb-8">
                 "{testimonials[currentSlide].quote}"
               </blockquote>
 

@@ -1,23 +1,15 @@
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
-import HowWeBuild from "@/components/HowWeBuild";
-import About from "@/components/About";
-import Process from "@/components/Process";
 import Services from "@/components/Services";
 import Pricing from "@/components/Pricing";
-import CustomerPortal from "@/components/CustomerPortal";
 import Portfolio from "@/components/Portfolio";
 import Testimonials from "@/components/Testimonials";
-import Newsletter from "@/components/Newsletter";
-import FAQ from "@/components/FAQ";
 import Contact from "@/components/Contact";
 import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
 import StatsBar from "@/components/StatsBar";
 import WhatsAppButton from "@/components/WhatsAppButton";
-import CTABars from "@/components/CTABars";
-import TrustBadges from "@/components/TrustBadges";
 
 const Index = () => {
   return (
@@ -40,43 +32,46 @@ const Index = () => {
       <div className="min-h-screen">
         <Navigation />
         <main>
-          <section id="home" aria-label="Homepage hero and statistics">
+          {/* Hero (navy) */}
+          <section id="home" aria-label="Homepage hero">
             <Hero />
+          </section>
+          
+          {/* Trust/Stats (navy band, count-up) */}
+          <section aria-label="Company statistics and trust indicators">
             <StatsBar />
           </section>
-          <section id="how-we-build" aria-label="Our development process" className="bg-background">
-            <HowWeBuild />
-          </section>
-          <section id="about" aria-label="About LD Development team" className="bg-white">
-            <About />
-          </section>
-          <section id="services" aria-label="Web development services and plans" className="bg-white">
+          
+          {/* Services (white cards) */}
+          <section id="services" aria-label="Web development services" className="bg-white">
             <Services />
           </section>
-          <section id="pricing" aria-label="Pricing plans and packages" className="bg-white">
-            <Pricing />
-          </section>
-          <section aria-label="Customer portal information" className="bg-navy text-primary-foreground">
-            <CustomerPortal />
-          </section>
+          
+          {/* Portfolio / Case Studies (white, 3-column grid) */}
           <section id="portfolio" aria-label="Portfolio of completed projects" className="bg-white">
             <Portfolio />
           </section>
+          
+          {/* Testimonials (navy band, cards with headshots) */}
           <section aria-label="Client testimonials and reviews" className="bg-navy">
             <Testimonials />
           </section>
-          <section aria-label="Newsletter subscription" className="bg-white">
-            <Newsletter />
+          
+          {/* Pricing (white cards, one highlighted) */}
+          <section id="pricing" aria-label="Pricing plans and packages" className="bg-white">
+            <Pricing />
           </section>
-          <section id="faq" aria-label="Frequently asked questions" className="bg-white">
-            <FAQ />
-          </section>
-          <section id="contact" aria-label="Contact information and form" className="bg-navy text-primary-foreground">
+          
+          {/* Final CTA (navy band) */}
+          <FinalCTA />
+          
+          {/* Contact form if needed */}
+          <section id="contact" aria-label="Contact information and form" className="bg-navy">
             <Contact />
           </section>
         </main>
-        <TrustBadges />
-        <FinalCTA />
+        
+        {/* Footer (navy) */}
         <Footer />
         <WhatsAppButton />
       </div>
