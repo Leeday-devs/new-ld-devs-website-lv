@@ -1,63 +1,237 @@
-import { CheckCircle, Star, Crown, Code, ShoppingCart, Server } from "lucide-react";
+import { CheckCircle, Star, Crown, Code, ShoppingCart, Server, Smartphone, Brain, Monitor } from "lucide-react";
+import { Switch } from "@/components/ui/switch";
+import { useState } from "react";
 
 const Pricing = () => {
-  const plans = [
-    {
-      id: 1,
-      name: "Starter Website",
-      icon: Code,
-      description: "Perfect for small businesses and personal brands",
-      price: "£500",
-      monthlyPrice: "£40",
-      popular: false,
-      features: [
-        "Up to 5 pages",
-        "Mobile responsive design",
-        "Basic SEO setup",
-        "Contact form",
-        "SSL certificate",
-        "3 months support"
-      ]
-    },
-    {
-      id: 2,
-      name: "Business Pro",
-      icon: Crown,
-      description: "Most popular choice for growing businesses",
-      price: "£800",
-      monthlyPrice: "£60",
-      popular: true,
-      features: [
-        "Up to 10 pages",
-        "Premium design",
-        "Advanced SEO",
-        "Contact & booking forms",
-        "Analytics integration",
-        "6 months support",
-        "Blog functionality",
-        "Social media integration"
-      ]
-    },
-    {
-      id: 3,
-      name: "E-commerce Store",
-      icon: ShoppingCart, 
-      description: "Complete online store solution",
-      price: "£1,200",
-      monthlyPrice: "£80",
-      popular: false,
-      features: [
-        "Unlimited products",
-        "Payment gateway setup",
-        "Inventory management",
-        "Customer accounts",
-        "Order tracking",
-        "12 months support",
-        "Marketing tools",
-        "Advanced analytics"
-      ]
-    }
+  const [activeCategory, setActiveCategory] = useState('websites');
+
+  const categories = [
+    { id: 'websites', label: 'Websites', icon: Monitor },
+    { id: 'ai', label: 'AI Automations', icon: Brain },
+    { id: 'mobile', label: 'Mobile Apps', icon: Smartphone },
+    { id: 'software', label: 'Software', icon: Code }
   ];
+
+  const allPlans = {
+    websites: [
+      {
+        id: 1,
+        name: "Starter Website",
+        icon: Code,
+        description: "Perfect for small businesses and personal brands",
+        price: "£500",
+        monthlyPrice: "£40",
+        features: [
+          "Up to 5 pages",
+          "Mobile responsive design",
+          "Basic SEO setup",
+          "Contact form",
+          "SSL certificate",
+          "3 months support"
+        ]
+      },
+      {
+        id: 2,
+        name: "Business Pro",
+        icon: Crown,
+        description: "Most popular choice for growing businesses",
+        price: "£800",
+        monthlyPrice: "£60",
+        features: [
+          "Up to 10 pages",
+          "Premium design",
+          "Advanced SEO",
+          "Contact & booking forms",
+          "Analytics integration",
+          "6 months support",
+          "Blog functionality",
+          "Social media integration"
+        ]
+      },
+      {
+        id: 3,
+        name: "E-commerce Store",
+        icon: ShoppingCart, 
+        description: "Complete online store solution",
+        price: "£1,200",
+        monthlyPrice: "£80",
+        features: [
+          "Unlimited products",
+          "Payment gateway setup",
+          "Inventory management",
+          "Customer accounts",
+          "Order tracking",
+          "12 months support",
+          "Marketing tools",
+          "Advanced analytics"
+        ]
+      }
+    ],
+    ai: [
+      {
+        id: 1,
+        name: "AI Starter",
+        icon: Brain,
+        description: "Basic AI automation for small businesses",
+        price: "£800",
+        monthlyPrice: "£80",
+        features: [
+          "Chatbot integration",
+          "Email automation",
+          "Lead qualification",
+          "Basic analytics",
+          "3 months support",
+          "Training included"
+        ]
+      },
+      {
+        id: 2,
+        name: "AI Business Pro",
+        icon: Server,
+        description: "Advanced AI solutions for growing companies",
+        price: "£1,500",
+        monthlyPrice: "£120",
+        features: [
+          "Custom AI models",
+          "Process automation",
+          "Data analysis",
+          "API integrations",
+          "6 months support",
+          "Advanced training",
+          "Performance monitoring",
+          "Custom workflows"
+        ]
+      },
+      {
+        id: 3,
+        name: "AI Enterprise",
+        icon: Crown,
+        description: "Full AI transformation solution",
+        price: "£3,000",
+        monthlyPrice: "£200",
+        features: [
+          "Multi-department AI",
+          "Predictive analytics",
+          "Custom integrations",
+          "Dedicated support",
+          "12 months support",
+          "Staff training",
+          "Performance optimization",
+          "Scalable infrastructure"
+        ]
+      }
+    ],
+    mobile: [
+      {
+        id: 1,
+        name: "Mobile Starter",
+        icon: Smartphone,
+        description: "Simple mobile app for small businesses",
+        price: "£1,000",
+        monthlyPrice: "£60",
+        features: [
+          "iOS & Android apps",
+          "Basic features",
+          "App store submission",
+          "3 months support",
+          "Push notifications",
+          "Basic analytics"
+        ]
+      },
+      {
+        id: 2,
+        name: "Mobile Pro",
+        icon: Crown,
+        description: "Feature-rich mobile solution",
+        price: "£2,000",
+        monthlyPrice: "£100",
+        features: [
+          "Cross-platform apps",
+          "Custom features",
+          "Backend integration",
+          "User accounts",
+          "Payment processing",
+          "6 months support",
+          "Advanced analytics",
+          "Push notifications"
+        ]
+      },
+      {
+        id: 3,
+        name: "Mobile Enterprise",
+        icon: Server,
+        description: "Complete mobile ecosystem",
+        price: "£4,000",
+        monthlyPrice: "£150",
+        features: [
+          "Multiple apps",
+          "Complex integrations",
+          "Admin dashboard",
+          "Real-time features",
+          "Scalable backend",
+          "12 months support",
+          "Performance monitoring",
+          "Custom API development"
+        ]
+      }
+    ],
+    software: [
+      {
+        id: 1,
+        name: "Software Starter",
+        icon: Code,
+        description: "Custom software for small businesses",
+        price: "£1,200",
+        monthlyPrice: "£80",
+        features: [
+          "Custom application",
+          "Basic functionality",
+          "Database integration",
+          "User management",
+          "3 months support",
+          "Documentation"
+        ]
+      },
+      {
+        id: 2,
+        name: "Software Pro",
+        icon: Server,
+        description: "Advanced software solution",
+        price: "£2,500",
+        monthlyPrice: "£150",
+        features: [
+          "Complex workflows",
+          "API integrations",
+          "Advanced features",
+          "Multi-user support",
+          "Security features",
+          "6 months support",
+          "Training included",
+          "Performance optimization"
+        ]
+      },
+      {
+        id: 3,
+        name: "Software Enterprise",
+        icon: Crown,
+        description: "Enterprise-grade software platform",
+        price: "£5,000",
+        monthlyPrice: "£250",
+        features: [
+          "Scalable architecture",
+          "Enterprise integrations",
+          "Advanced security",
+          "Custom modules",
+          "24/7 monitoring",
+          "12 months support",
+          "Dedicated team",
+          "Ongoing maintenance"
+        ]
+      }
+    ]
+  };
+
+  const currentPlans = allPlans[activeCategory];
 
   return (
     <section 
@@ -76,23 +250,38 @@ const Pricing = () => {
           </p>
         </div>
 
+        {/* Category Switcher */}
+        <div className="flex justify-center mb-12">
+          <div className="inline-flex items-center space-x-6 bg-gray-50 p-2 rounded-2xl">
+            {categories.map((category) => {
+              const IconComponent = category.icon;
+              return (
+                <button
+                  key={category.id}
+                  onClick={() => setActiveCategory(category.id)}
+                  className={`flex items-center space-x-2 px-6 py-3 rounded-xl font-medium transition-all duration-300 ${
+                    activeCategory === category.id
+                      ? 'bg-orange text-white shadow-lg'
+                      : 'text-navy hover:bg-white hover:shadow-md'
+                  }`}
+                >
+                  <IconComponent className="h-5 w-5" />
+                  <span>{category.label}</span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
         {/* Pricing Cards */}
         <div className="grid md:grid-cols-3 gap-8 mb-16">
-          {plans.map((plan) => {
+          {currentPlans.map((plan) => {
             const IconComponent = plan.icon;
             return (
               <div
                 key={plan.id}
-                className={`${plan.popular ? 'card-featured' : 'card-premium'} p-8 relative`}
+                className="card-premium p-8"
               >
-                {plan.popular && (
-                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <span className="bg-orange text-white px-6 py-2 rounded-full text-sm font-semibold">
-                      Most Popular
-                    </span>
-                  </div>
-                )}
-
                 <div className="text-center mb-8">
                   <IconComponent className="h-12 w-12 text-orange mx-auto mb-4" />
                   <h3 className="heading-primary heading-md mb-4 text-navy">
@@ -121,9 +310,7 @@ const Pricing = () => {
                 </ul>
 
                 <button 
-                  className={`w-full py-4 rounded-2xl font-semibold text-lg transition-all duration-300 ${
-                    plan.popular ? 'btn-primary' : 'btn-secondary'
-                  }`}
+                  className="w-full py-4 rounded-2xl font-semibold text-lg transition-all duration-300 btn-secondary"
                   onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
                 >
                   Get Started
