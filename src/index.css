@@ -129,26 +129,26 @@
     color: hsl(var(--text-primary));
   }
 
-  /* Typography Scale - Luxury Hierarchy */
+  /* Typography Scale - Premium Luxury Hierarchy */
   .heading-xl { 
-    font-size: 4rem; /* 64px - Hero H1 */
-    line-height: 4rem; /* 64px */
+    font-size: 4.5rem; /* 72px - Hero H1 Premium */
+    line-height: 4.25rem; /* 68px - Tight luxury spacing */
   }
   
   .heading-lg { 
     font-size: 3rem; /* 48px - H2 */
-    line-height: 3rem; /* 48px */
+    line-height: 3.25rem; /* 52px */
   }
   
   .heading-md { 
     font-size: 2rem; /* 32px - H3 */
-    line-height: 2.25rem; /* 36px */
+    line-height: 2.5rem; /* 40px */
   }
 
   .text-body {
     font-family: 'Inter', sans-serif;
     font-size: 1.125rem; /* 18px */
-    line-height: 1.75rem; /* 28px */
+    line-height: 1.6; /* 1.6 ratio for luxury readability */
     color: hsl(var(--text-secondary));
   }
 
@@ -159,69 +159,103 @@
     color: hsl(var(--text-muted));
   }
 
-  /* Section Styles - Clean Layout */
+  /* Section Styles - Premium Luxury Spacing */
   .section-white {
     background: hsl(var(--bg-white));
     color: hsl(var(--text-primary));
-    padding: 6rem 0;
+    padding: 8rem 0; /* 128px - Premium spacing */
   }
 
   .section-grey {
     background: hsl(var(--bg-grey));
     color: hsl(var(--text-primary));
-    padding: 6rem 0;
+    padding: 8rem 0; /* 128px - Premium spacing */
   }
 
   .section-navy {
     background: hsl(var(--bg-navy));
     color: hsl(var(--text-white));
-    padding: 6rem 0;
+    padding: 8rem 0; /* 128px - Premium spacing */
   }
 
-  /* Premium Card System - Enhanced with Lift & Shadow */
+  /* Premium Card System - Enhanced Luxury Effects */
   .card-premium {
     background: hsl(var(--bg-white));
     border: 1px solid #E5E7EB;
-    border-radius: 1rem;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border-radius: 1.25rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     position: relative;
+    overflow: hidden;
+  }
+
+  .card-premium::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, hsl(var(--orange)), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+  }
+
+  .card-premium:hover::before {
+    transform: translateX(100%);
   }
 
   .card-premium:hover {
-    transform: translateY(-8px) scale(1.02);
+    transform: translateY(-12px) scale(1.03);
     box-shadow: 
-      0 20px 40px rgba(0, 0, 0, 0.15),
-      0 0 30px hsl(var(--orange) / 0.1),
+      0 25px 50px rgba(0, 0, 0, 0.12),
+      0 0 40px hsl(var(--orange) / 0.15),
       0 0 0 1px hsl(var(--orange) / 0.1);
-    border-color: hsl(var(--orange) / 0.2);
+    border-color: hsl(var(--orange) / 0.3);
   }
 
   .card-featured {
     background: hsl(var(--bg-white));
     border: 2px solid hsl(var(--orange));
-    border-radius: 1rem;
-    box-shadow: 0 4px 12px 0 hsl(var(--orange) / 0.2);
+    border-radius: 1.25rem;
+    box-shadow: 0 8px 25px hsl(var(--orange) / 0.25);
     position: relative;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    overflow: hidden;
+  }
+
+  .card-featured::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, hsl(var(--orange) / 0.05), transparent);
+    z-index: 0;
+  }
+
+  .card-featured > * {
+    position: relative;
+    z-index: 1;
   }
 
   .card-featured:hover {
-    transform: translateY(-12px) scale(1.03);
+    transform: translateY(-15px) scale(1.04);
     box-shadow: 
-      0 25px 50px hsl(var(--orange) / 0.3),
-      0 0 40px hsl(var(--orange) / 0.2);
+      0 30px 60px hsl(var(--orange) / 0.35),
+      0 0 50px hsl(var(--orange) / 0.25);
   }
 
-  /* Button System - Enhanced with Glow & Ripple */
+  /* Button System - Premium Gradient & Ripple Effects */
   .btn-primary {
-    background: hsl(var(--orange));
+    background: linear-gradient(135deg, hsl(var(--orange)), hsl(25 100% 45%));
     color: hsl(var(--bg-white));
     border: none;
     border-radius: 1rem;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 8px hsl(var(--orange) / 0.3);
+    font-weight: 700;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 4px 15px hsl(var(--orange) / 0.4);
     position: relative;
     overflow: hidden;
   }
@@ -235,20 +269,23 @@
     height: 0;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.3);
-    transition: width 0.4s ease, height 0.4s ease;
+    transition: width 0.6s ease, height 0.6s ease;
     transform: translate(-50%, -50%);
     z-index: 0;
   }
 
   .btn-primary:hover::before {
-    width: 300px;
-    height: 300px;
+    width: 400px;
+    height: 400px;
   }
 
   .btn-primary:hover {
-    background: hsl(25 100% 45%); /* Darker orange */
-    transform: translateY(-2px);
-    box-shadow: 0 12px 30px hsl(var(--orange) / 0.5), 0 0 20px hsl(var(--orange) / 0.3);
+    background: linear-gradient(135deg, hsl(25 100% 45%), hsl(25 100% 35%));
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 
+      0 15px 35px hsl(var(--orange) / 0.6),
+      0 0 30px hsl(var(--orange) / 0.4),
+      0 0 0 1px hsl(var(--orange) / 0.1);
   }
 
   .btn-primary > * {
@@ -257,13 +294,13 @@
   }
 
   .btn-secondary {
-    background: hsl(var(--navy));
+    background: linear-gradient(135deg, hsl(var(--navy)), hsl(210 67% 20%));
     color: hsl(var(--bg-white));
     border: 1px solid transparent;
     border-radius: 1rem;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 8px hsl(var(--navy) / 0.3);
+    font-weight: 700;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 4px 15px hsl(var(--navy) / 0.4);
     position: relative;
     overflow: hidden;
   }
@@ -277,21 +314,23 @@
     height: 0;
     border-radius: 50%;
     background: rgba(255, 122, 0, 0.1);
-    transition: width 0.4s ease, height 0.4s ease;
+    transition: width 0.6s ease, height 0.6s ease;
     transform: translate(-50%, -50%);
     z-index: 0;
   }
 
   .btn-secondary:hover::before {
-    width: 300px;
-    height: 300px;
+    width: 400px;
+    height: 400px;
   }
 
   .btn-secondary:hover {
-    background: hsl(210 67% 20%); /* Lighter navy */
+    background: linear-gradient(135deg, hsl(210 67% 20%), hsl(210 67% 25%));
     border-color: hsl(var(--orange));
-    transform: translateY(-2px);
-    box-shadow: 0 12px 30px hsl(var(--navy) / 0.5), 0 0 20px hsl(var(--orange) / 0.2);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 
+      0 15px 35px hsl(var(--navy) / 0.6),
+      0 0 30px hsl(var(--orange) / 0.3);
   }
 
   .btn-secondary > * {

@@ -20,31 +20,34 @@ const Hero = () => {
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${heroBusiness})` }}
       />
-      <div className="absolute inset-0 bg-navy/85 backdrop-blur-[1px]" />
+      <div className="absolute inset-0 bg-gradient-to-br from-navy/90 via-navy/85 to-orange/20" />
+      
+      {/* Animated gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-r from-orange/10 via-transparent to-navy/20 animate-gradient bg-[length:200%_200%]" />
 
       <div className="container mx-auto px-6 relative z-20">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <h1 className="heading-primary heading-xl mb-8 text-white leading-tight">
-              Build Your Dream Website
-              <span className="block text-orange mt-4 font-bold">
-                That Actually Works
+        <div className="max-w-5xl mx-auto text-center">
+          <div className={`transition-all duration-1500 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
+            <h1 className="heading-primary heading-xl mb-8 text-white leading-tight font-bold">
+              Build Your <span className="text-orange">Dream Website</span>
+              <span className="block mt-4">
+                That Actually <span className="text-orange">Works</span>
               </span>
             </h1>
             
-            <p className="text-body mb-12 max-w-2xl mx-auto text-white/70 text-xl leading-relaxed">
-              Professional web development and hosting services for UK businesses. 
-              We create fast, secure, and beautiful websites that drive real results.
+            <p className="text-body mb-12 max-w-3xl mx-auto text-white/80 text-xl leading-relaxed">
+              Premium web development and hosting services for UK businesses. 
+              We create <span className="text-orange font-semibold">fast, secure, and beautiful</span> websites that drive real results.
             </p>
             
             <div className="mb-16">
               <Button 
                 size="lg" 
-                className="bg-orange hover:bg-orange/90 text-white font-semibold px-8 py-4 text-lg rounded-lg transition-all duration-200 hover:transform hover:-translate-y-1 shadow-lg hover:shadow-xl"
+                className="btn-primary px-10 py-5 text-xl font-bold rounded-2xl shadow-2xl"
                 onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
               >
                 Start Your Project
-                <ArrowRight className="ml-2 h-5 w-5" />
+                <ArrowRight className="ml-3 h-6 w-6" />
               </Button>
             </div>
           </div>

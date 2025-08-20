@@ -73,8 +73,8 @@ const Testimonials = () => {
           <h2 className="heading-primary heading-lg mb-6 text-white">
             What Our <span className="text-orange">Clients Say</span>
           </h2>
-          <p className="text-body max-w-3xl mx-auto text-white/70">
-            Don't just take our word for it. Here's what our satisfied clients have to say about working with us
+          <p className="text-body max-w-3xl mx-auto text-white/80">
+            Don't just take our word for it. Here's what our <span className="text-orange font-semibold">satisfied clients</span> have to say about working with us
           </p>
         </div>
 

@@ -72,7 +72,7 @@ const Pricing = () => {
             Simple, <span className="text-orange">Transparent</span> Pricing
           </h2>
           <p className="text-body max-w-3xl mx-auto">
-            Choose the perfect plan for your business. All plans include hosting, SSL, and our expert support.
+            Choose the perfect plan for your business. All plans include <span className="text-orange font-semibold">hosting, SSL, and expert support</span>.
           </p>
         </div>
 

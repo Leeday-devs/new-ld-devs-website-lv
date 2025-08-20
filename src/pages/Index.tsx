@@ -46,23 +46,23 @@ const Index = () => {
           {/* Trusted By Logos - Social Proof */}
           <TrustedByLogos />
           
-          {/* Services (white cards) - Luxury spacing */}
-          <section id="services" aria-label="Web development services" className="bg-white py-32">
+          {/* Services (white cards) - Premium spacing */}
+          <section id="services" aria-label="Web development services" className="section-white">
             <Services />
           </section>
           
-          {/* Portfolio / Case Studies (white, 3-column grid) - Luxury spacing */}
-          <section id="portfolio" aria-label="Portfolio of completed projects" className="bg-white py-32">
+          {/* Portfolio / Case Studies (white, 3-column grid) - Premium spacing */}
+          <section id="portfolio" aria-label="Portfolio of completed projects" className="section-white">
             <Portfolio />
           </section>
           
-          {/* Testimonials (navy band, cards with headshots) - Luxury spacing */}
-          <section aria-label="Client testimonials and reviews" className="bg-navy py-32">
+          {/* Testimonials (navy band, cards with headshots) - Premium spacing */}
+          <section aria-label="Client testimonials and reviews" className="section-navy">
             <Testimonials />
           </section>
           
-          {/* Pricing (white cards, one highlighted) - Luxury spacing */}
-          <section id="pricing" aria-label="Pricing plans and packages" className="bg-white py-32">
+          {/* Pricing (white cards, one highlighted) - Premium spacing */}
+          <section id="pricing" aria-label="Pricing plans and packages" className="section-white">
             <Pricing />
           </section>
           
