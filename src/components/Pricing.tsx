@@ -16,54 +16,52 @@ const Pricing = () => {
     websites: [
       {
         id: 1,
-        name: "Starter Website",
+        name: "Starter",
         icon: Code,
         description: "Perfect for small businesses and personal brands",
-        price: "£500",
+        price: "£695",
         monthlyPrice: "£40",
         features: [
           "Up to 5 pages",
-          "Mobile responsive design",
-          "Basic SEO setup",
-          "Contact form",
-          "SSL certificate",
-          "3 months support"
+          "Mobile-friendly design",
+          "1 business email",
+          "Basic SEO optimisation",
+          "Contact form integration",
+          "SSL & hosting"
         ]
       },
       {
         id: 2,
-        name: "Business Pro",
+        name: "Business Growth",
         icon: Crown,
         description: "Most popular choice for growing businesses",
-        price: "£800",
-        monthlyPrice: "£60",
+        price: "£1,250",
+        monthlyPrice: "£65",
         features: [
           "Up to 10 pages",
-          "Premium design",
-          "Advanced SEO",
-          "Contact & booking forms",
-          "Analytics integration",
-          "6 months support",
-          "Blog functionality",
-          "Social media integration"
+          "Blog setup",
+          "SEO optimisation & analytics",
+          "AI chatbot/contact assistant",
+          "2 rounds of revisions",
+          "2 business emails",
+          "Ongoing support"
         ]
       },
       {
         id: 3,
-        name: "E-commerce Store",
+        name: "Premium/Pro",
         icon: ShoppingCart, 
-        description: "Complete online store solution",
-        price: "£1,200",
-        monthlyPrice: "£80",
+        description: "Complete solution for established businesses",
+        price: "from £2,250",
+        monthlyPrice: "£95",
         features: [
-          "Unlimited products",
-          "Payment gateway setup",
-          "Inventory management",
-          "Customer accounts",
-          "Order tracking",
-          "12 months support",
-          "Marketing tools",
-          "Advanced analytics"
+          "Unlimited pages",
+          "E-commerce or booking system",
+          "Advanced SEO",
+          "CRM automation",
+          "Priority support (same-day)",
+          "5 business emails",
+          "Monthly performance report"
         ]
       }
     ],
