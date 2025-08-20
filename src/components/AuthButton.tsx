@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/hooks/useAuth';
 import { User, LogOut } from 'lucide-react';
@@ -14,6 +14,7 @@ import {
 
 const AuthButton = () => {
   const { user, signOut } = useAuth();
+  const navigate = useNavigate();
   const [dashboardLink, setDashboardLink] = useState('/dashboard');
   const [dashboardLabel, setDashboardLabel] = useState('Dashboard');
 
@@ -71,18 +72,16 @@ const AuthButton = () => {
             </span>
           </DropdownMenuItem>
           <DropdownMenuSeparator className="bg-white/10" />
-          <DropdownMenuItem asChild>
-            <Link 
-              to={dashboardLink} 
-              className="flex items-center gap-2 cursor-pointer text-white/80 hover:text-orange hover:bg-orange/10 transition-all duration-200 px-3 py-2 rounded-lg"
-            >
-              <User className="h-4 w-4" />
-              {dashboardLabel}
-            </Link>
+          <DropdownMenuItem
+            onSelect={() => navigate(dashboardLink)}
+            className="flex items-center gap-2 cursor-pointer text-white/80 hover:text-orange hover:bg-orange/10 transition-all duration-200 px-3 py-2 rounded-lg"
+          >
+            <User className="h-4 w-4" />
+            {dashboardLabel}
           </DropdownMenuItem>
           <DropdownMenuSeparator className="bg-white/10" />
           <DropdownMenuItem 
-            onClick={signOut} 
+            onSelect={async () => { await signOut(); navigate('/'); }} 
             className="gap-2 text-red-400 hover:text-red-300 hover:bg-red-500/10 transition-all duration-200 cursor-pointer px-3 py-2 rounded-lg"
           >
             <LogOut className="h-4 w-4" />
