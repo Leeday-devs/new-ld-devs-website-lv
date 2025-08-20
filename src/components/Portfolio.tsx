@@ -133,30 +133,30 @@ const Portfolio = () => {
   };
 
   return (
-    <section id="portfolio" className="section-white py-20" aria-label="Portfolio of completed projects">
+    <section id="portfolio" className="section-white py-20" aria-label="Case studies showing real business results">
       <div className="container mx-auto px-6">
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="heading-primary heading-lg mb-6 text-navy">
-            Our Recent <span className="text-orange">Projects</span>
+            Case <span className="text-orange">Studies</span>
           </h2>
           <p className="text-body max-w-3xl mx-auto text-text-secondary">
-            Explore some of our latest web development projects and see how we've helped businesses transform their online presence
+            Real business challenges we've solved. See how we transform problems into profitable solutions with measurable results.
           </p>
         </div>
 
-        {/* Portfolio Grid */}
+        {/* Case Studies Grid */}
         <div className="grid lg:grid-cols-3 gap-8 mb-16">
           {projects.slice(0, 6).map((project) => (
             <div
               key={project.id}
-              className="card-premium overflow-hidden cursor-pointer group"
+              className="card-premium overflow-hidden cursor-pointer group transform transition-all duration-300 hover:shadow-luxury hover:-translate-y-2"
               onClick={() => openCaseStudy(project)}
             >
               <div className="relative h-80 overflow-hidden">
                 <img
                   src={project.image}
-                  alt={`${project.title} preview`}
+                  alt={`${project.title} case study`}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 
@@ -164,10 +164,11 @@ const Portfolio = () => {
                 <div className="absolute inset-0 bg-orange opacity-0 group-hover:opacity-90 transition-opacity duration-300" />
                 
                 {/* Overlay Content */}
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
                   <div className="text-center text-white p-6">
                     <h3 className="heading-primary heading-md mb-3 text-white">{project.title}</h3>
-                    <p className="text-lg opacity-90">{project.category}</p>
+                    <p className="text-lg opacity-90 mb-2">{project.category}</p>
+                    <div className="text-sm opacity-75 font-medium">Click to view case study →</div>
                   </div>
                 </div>
               </div>
@@ -189,47 +190,56 @@ const Portfolio = () => {
       {/* Case Study Modal */}
       {selectedProject && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto animate-scale-in">
+          <div className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto animate-scale-in shadow-luxury">
             <div className="p-8">
               {/* Modal Header */}
-              <div className="flex items-center justify-between mb-6">
-                <h3 className="text-3xl font-bold text-navy">{selectedProject.title}</h3>
+              <div className="flex items-center justify-between mb-8">
+                <div>
+                  <h3 className="heading-primary heading-lg text-navy mb-2">{selectedProject.title}</h3>
+                  <p className="text-orange font-semibold text-lg">{selectedProject.category} • Case Study</p>
+                </div>
                 <button
                   onClick={closeCaseStudy}
-                  className="text-text-secondary hover:text-navy transition-colors"
+                  className="text-text-secondary hover:text-navy transition-colors p-2 hover:bg-gray-100 rounded-lg"
                 >
                   <X className="h-6 w-6" />
                 </button>
               </div>
 
               {/* Case Study Content */}
-              <div className="space-y-8">
+              <div className="space-y-10">
                 {/* Challenge */}
-                <div>
-                  <h4 className="heading-primary heading-md text-orange mb-4">Challenge</h4>
-                  <p className="text-body">
+                <div className="bg-red-50 p-8 rounded-2xl border-l-4 border-red-400">
+                  <h4 className="heading-primary heading-md text-red-600 mb-4 flex items-center">
+                    🎯 The Challenge
+                  </h4>
+                  <p className="text-body text-gray-700 leading-relaxed">
                     {selectedProject.caseStudy.challenge}
                   </p>
                 </div>
 
                 {/* Solution */}
-                <div>
-                  <h4 className="heading-primary heading-md text-orange mb-4">Solution</h4>
-                  <p className="text-body">
+                <div className="bg-blue-50 p-8 rounded-2xl border-l-4 border-blue-400">
+                  <h4 className="heading-primary heading-md text-blue-600 mb-4 flex items-center">
+                    🛠️ Our Solution
+                  </h4>
+                  <p className="text-body text-gray-700 leading-relaxed">
                     {selectedProject.caseStudy.solution}
                   </p>
                 </div>
 
                 {/* Results */}
-                <div>
-                  <h4 className="heading-primary heading-md text-orange mb-4">Results</h4>
-                  <div className="grid md:grid-cols-2 gap-4">
+                <div className="bg-green-50 p-8 rounded-2xl border-l-4 border-green-400">
+                  <h4 className="heading-primary heading-md text-green-600 mb-6 flex items-center">
+                    📈 Business Results
+                  </h4>
+                  <div className="grid md:grid-cols-2 gap-6">
                     {selectedProject.caseStudy.results.map((result, index) => (
-                      <div key={index} className="card-premium p-6 border-orange/20">
-                        <div className="text-2xl font-bold text-orange mb-2">
+                      <div key={index} className="bg-white p-6 rounded-xl shadow-subtle border border-green-200">
+                        <div className="text-3xl font-bold text-orange mb-2">
                           {result.split(' ')[0]}
                         </div>
-                        <p className="text-text-secondary">
+                        <p className="text-gray-600 font-medium">
                           {result.split(' ').slice(1).join(' ')}
                         </p>
                       </div>
@@ -239,13 +249,16 @@ const Portfolio = () => {
               </div>
 
               {/* Modal Footer */}
-              <div className="mt-8 pt-6 border-t border-border-light">
+              <div className="mt-10 pt-8 border-t border-gray-200 text-center">
                 <button
                   onClick={closeCaseStudy}
-                  className="btn-primary w-full py-4 rounded-2xl"
+                  className="btn-primary px-8 py-4 rounded-2xl font-semibold"
                 >
-                  Close Case Study
+                  Get Similar Results for Your Business
                 </button>
+                <p className="text-sm text-gray-500 mt-3">
+                  Ready to solve your business challenges? Let's discuss your project.
+                </p>
               </div>
             </div>
           </div>
