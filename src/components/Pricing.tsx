@@ -280,7 +280,7 @@ const Pricing = () => {
             return (
               <div
                 key={plan.id}
-                className="card-premium p-8"
+                className="card-premium p-8 flex flex-col h-full"
               >
                 <div className="text-center mb-8">
                   <IconComponent className="h-12 w-12 text-orange mx-auto mb-4" />
@@ -300,7 +300,7 @@ const Pricing = () => {
                   </div>
                 </div>
 
-                <ul className="space-y-4 mb-8">
+                <ul className="space-y-4 mb-8 flex-1">
                   {plan.features.map((feature, index) => (
                     <li key={index} className="flex items-center text-base">
                       <CheckCircle className="h-5 w-5 text-orange mr-3 flex-shrink-0" />
@@ -309,12 +309,14 @@ const Pricing = () => {
                   ))}
                 </ul>
 
-                <button 
-                  className="w-full py-4 rounded-2xl font-semibold text-lg transition-all duration-300 btn-secondary"
-                  onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-                >
-                  Get Started
-                </button>
+                <div className="mt-auto">
+                  <button 
+                    className="w-full py-4 rounded-2xl font-semibold text-lg transition-all duration-300 btn-secondary"
+                    onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                  >
+                    Get Started
+                  </button>
+                </div>
               </div>
             );
           })}
