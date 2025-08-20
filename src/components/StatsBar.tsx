@@ -9,9 +9,10 @@ const StatsBar = () => {
   const stats = [
     {
       icon: Users,
-      value: 250,
-      label: "Happy Clients",
-      description: "Businesses Served"
+      value: 100,
+      label: "Applications",
+      description: "Built & Deployed",
+      suffix: "+"
     },
     {
       icon: Globe,
