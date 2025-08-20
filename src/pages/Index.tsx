@@ -12,6 +12,7 @@ import Testimonials from "@/components/Testimonials";
 import Newsletter from "@/components/Newsletter";
 import FAQ from "@/components/FAQ";
 import Contact from "@/components/Contact";
+import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
 import StatsBar from "@/components/StatsBar";
@@ -81,6 +82,7 @@ const Index = () => {
             <Contact />
           </section>
         </main>
+        <FinalCTA />
         <Footer />
         <WhatsAppButton />
       </div>
