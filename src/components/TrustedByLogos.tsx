@@ -50,6 +50,14 @@ const TrustedByLogos = () => {
           <span className="text-white font-semibold text-sm">WordPress</span>
         </div>
       )
+    },
+    {
+      name: "OpenAI Partner",
+      logo: (
+        <div className="flex items-center justify-center h-12 w-24 bg-white/10 rounded-lg border border-white/20">
+          <span className="text-white font-semibold text-sm">OpenAI</span>
+        </div>
+      )
     }
   ];
 
