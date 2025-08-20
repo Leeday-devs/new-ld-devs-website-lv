@@ -69,10 +69,10 @@ const Index = () => {
           {/* Final CTA (navy band) */}
           <FinalCTA />
           
-          {/* Contact form if needed */}
-          <section id="contact" aria-label="Contact information and form" className="bg-navy">
-            <Contact />
-          </section>
+        {/* Contact form if needed */}
+        <section id="contact" aria-label="Contact information and form" className="section-navy">
+          <Contact />
+        </section>
         </main>
         
         {/* Footer (navy) */}

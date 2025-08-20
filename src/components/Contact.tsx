@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Mail, Phone, MapPin, Send, Loader2, MessageCircle } from "lucide-react";
+import { Mail, Phone, MapPin, Send, Loader2, MessageCircle, Zap } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { isRateLimited, sanitizeInput, isValidEmail, logSecureError } from "@/utils/security";
@@ -141,109 +140,179 @@ const Contact = () => {
       setIsLoading(false);
     }
   };
-  return <section className="py-20 bg-navy">
-      <div className="container mx-auto px-6 max-w-4xl">
-        <div className="text-center mb-12">
+  return (
+    <section className="section-navy">
+      <div className="container mx-auto px-6">
+        <div className="text-center mb-16">
           <h2 className="heading-primary heading-lg mb-6 text-white">
-            Let's Build Something Amazing
+            Let's Build Something <span className="text-orange">Amazing</span>
           </h2>
-          <p className="text-body text-white/70 max-w-2xl mx-auto">
-            Ready to start your project? Get in touch and let's discuss how we can bring your vision to life.
+          <p className="text-body text-white/80 max-w-3xl mx-auto">
+            Ready to start your project? Get in touch and let's discuss how we can bring your <span className="text-orange font-semibold">vision to life</span>.
           </p>
         </div>
 
-        <div className="max-w-4xl mx-auto">
-          {/* Contact Form - Modern Card Design */}
-          <div className="card-premium p-8">
-            <div className="grid md:grid-cols-2 gap-8">
-              {/* Contact Info - Compact */}
-              <div className="space-y-4">
-                <h3 className="heading-primary heading-md text-white mb-6">Get in Touch</h3>
-                
-                {contactInfo.map(info => <a key={info.label} href={info.href} className="flex items-center gap-4 p-4 rounded-lg hover:bg-white/10 transition-colors group">
-                    <div className="bg-orange/20 rounded-lg w-12 h-12 flex items-center justify-center group-hover:bg-orange/30 transition-colors">
-                      <info.icon className="h-5 w-5 text-orange" />
+        <div className="max-w-7xl mx-auto">
+          <div className="bg-white rounded-3xl shadow-luxury overflow-hidden">
+            <div className="grid lg:grid-cols-5 min-h-[600px]">
+              
+              {/* Left Sidebar - Contact Info */}
+              <div className="lg:col-span-2 bg-navy p-10 flex flex-col justify-between">
+                <div>
+                  <h3 className="heading-primary heading-md text-white mb-8 font-bold">
+                    Get in Touch
+                  </h3>
+                  
+                  <div className="space-y-8">
+                    {contactInfo.map((info) => (
+                      <a
+                        key={info.label}
+                        href={info.href}
+                        className="flex items-start gap-6 group transition-all duration-300 hover:transform hover:translate-x-2"
+                      >
+                        <div className="bg-orange/20 rounded-2xl w-16 h-16 flex items-center justify-center group-hover:bg-orange/30 transition-all duration-300 group-hover:scale-110">
+                          <info.icon className="h-7 w-7 text-orange" />
+                        </div>
+                        <div className="flex-1">
+                          <div className="text-sm text-white/60 uppercase tracking-wider font-medium mb-2">
+                            {info.label}
+                          </div>
+                          <div className="text-lg font-semibold text-white group-hover:text-orange transition-colors duration-300 leading-relaxed">
+                            {info.value}
+                          </div>
+                        </div>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Quick Response Box */}
+                <div className="bg-navy/50 border border-orange/20 rounded-2xl p-8 mt-8">
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="bg-orange/20 rounded-full w-12 h-12 flex items-center justify-center">
+                      <Zap className="h-6 w-6 text-orange" />
                     </div>
                     <div>
-                      <div className="text-sm text-white/70">{info.label}</div>
-                      <div className="text-base font-medium text-white">{info.value}</div>
+                      <h4 className="text-lg font-bold text-white">Quick Response</h4>
                     </div>
-                  </a>)}
-
-                <div className="bg-orange/10 rounded-lg p-6 mt-6">
-                  <h4 className="text-base font-semibold text-white mb-2">Quick Response</h4>
-                  <p className="text-sm text-white/70">I typically respond within 1 hour.</p>
+                  </div>
+                  <p className="text-white/80 leading-relaxed">
+                    ⚡ We usually reply within <span className="text-orange font-semibold">1 hour</span> during business hours.
+                  </p>
                 </div>
               </div>
 
-              {/* Contact Form - Streamlined */}
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <h3 className="text-lg font-semibold text-foreground mb-4">Send Message</h3>
-                
-                <div className="grid grid-cols-2 gap-3">
-                <Input 
-                    name="name" 
-                    value={formData.name} 
-                    onChange={handleInputChange} 
-                    placeholder="Name" 
-                    className="text-sm" 
-                    maxLength={100}
-                    required 
-                  />
-                  <Input 
-                    name="email" 
-                    type="email" 
-                    value={formData.email} 
-                    onChange={handleInputChange} 
-                    placeholder="Email" 
-                    className="text-sm" 
-                    maxLength={100}
-                    required 
-                  />
+              {/* Right Side - Contact Form */}
+              <div className="lg:col-span-3 p-12">
+                <div className="max-w-2xl">
+                  <h3 className="heading-primary heading-md text-navy mb-8 font-bold">
+                    Send us a <span className="text-orange">Message</span>
+                  </h3>
+                  
+                  <form onSubmit={handleSubmit} className="space-y-8">
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div className="space-y-3">
+                        <label className="text-base font-semibold text-navy">
+                          Full Name *
+                        </label>
+                        <Input
+                          name="name"
+                          value={formData.name}
+                          onChange={handleInputChange}
+                          placeholder="Enter your full name"
+                          className="premium-input"
+                          maxLength={100}
+                          required
+                        />
+                      </div>
+                      
+                      <div className="space-y-3">
+                        <label className="text-base font-semibold text-navy">
+                          Email Address *
+                        </label>
+                        <Input
+                          name="email"
+                          type="email"
+                          value={formData.email}
+                          onChange={handleInputChange}
+                          placeholder="Enter your email address"
+                          className="premium-input"
+                          maxLength={100}
+                          required
+                        />
+                      </div>
+                    </div>
+                    
+                    <div className="space-y-3">
+                      <label className="text-base font-semibold text-navy">
+                        Subject
+                      </label>
+                      <Input
+                        name="subject"
+                        value={formData.subject}
+                        onChange={handleInputChange}
+                        placeholder="What's your project about?"
+                        className="premium-input"
+                        maxLength={200}
+                      />
+                    </div>
+                    
+                    <div className="space-y-3">
+                      <label className="text-base font-semibold text-navy">
+                        Project Details *
+                      </label>
+                      <Textarea
+                        name="message"
+                        value={formData.message}
+                        onChange={handleInputChange}
+                        placeholder="Tell us about your project goals, timeline, and any specific requirements..."
+                        className="premium-input min-h-32 resize-none"
+                        maxLength={2000}
+                        required
+                      />
+                    </div>
+                    
+                    <div className="flex flex-col sm:flex-row gap-4 pt-6">
+                      <Button 
+                        type="submit" 
+                        disabled={isLoading} 
+                        className="btn-primary px-8 py-4 text-lg font-bold rounded-2xl flex-1"
+                      >
+                        {isLoading ? (
+                          <>
+                            <Loader2 className="mr-3 h-5 w-5 animate-spin" />
+                            Sending Message...
+                          </>
+                        ) : (
+                          <>
+                            <Send className="mr-3 h-5 w-5" />
+                            Send Message
+                          </>
+                        )}
+                      </Button>
+                      
+                      <Button
+                        type="button"
+                        onClick={() => {
+                          const whatsappNumber = "447586266007";
+                          const message = "Hi! I'm interested in your premium web development services.";
+                          const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+                          window.open(whatsappUrl, '_blank');
+                        }}
+                        className="btn-secondary px-8 py-4 text-lg font-bold rounded-2xl flex-1"
+                      >
+                        <MessageCircle className="mr-3 h-5 w-5" />
+                        WhatsApp
+                      </Button>
+                    </div>
+                  </form>
                 </div>
-                
-                <Input 
-                    name="subject" 
-                    value={formData.subject} 
-                    onChange={handleInputChange} 
-                    placeholder="Subject" 
-                    className="text-sm" 
-                    maxLength={200}
-                  />
-                
-                <Textarea 
-                    name="message" 
-                    value={formData.message} 
-                    onChange={handleInputChange} 
-                    placeholder="Tell me about your project..." 
-                    className="text-sm min-h-24 resize-none" 
-                    maxLength={2000}
-                    required 
-                  />
-                
-                <Button type="submit" disabled={isLoading} className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
-                  {isLoading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Send className="mr-2 h-4 w-4" />}
-                  {isLoading ? "Sending..." : "Send Message"}
-                </Button>
-                
-                <Button 
-                  type="button"
-                  onClick={() => {
-                    const whatsappNumber = "447586266007";
-                    const message = "Hi! I'm interested in your web development services.";
-                    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
-                    window.open(whatsappUrl, '_blank');
-                  }}
-                  className="w-full bg-green-600 hover:bg-green-700 text-white"
-                >
-                  <MessageCircle className="mr-2 h-4 w-4" />
-                  Contact via WhatsApp
-                </Button>
-              </form>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
 export default Contact;
