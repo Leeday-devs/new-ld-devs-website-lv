@@ -1,9 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Shield, Zap, Award } from "lucide-react";
 import { useState, useEffect } from "react";
+import heroBusiness from "@/assets/hero-business-tech.jpg";
 
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [backgroundOption, setBackgroundOption] = useState('gradient'); // 'photo' or 'gradient'
 
   useEffect(() => {
     setIsVisible(true);
@@ -11,14 +13,36 @@ const Hero = () => {
 
   return (
     <section 
-      className="bg-navy min-h-screen flex items-center justify-center"
+      className={`min-h-screen flex items-center justify-center relative overflow-hidden ${
+        backgroundOption === 'photo' 
+          ? 'bg-navy' 
+          : 'bg-gradient-to-br from-orange via-orange/80 to-navy animate-gradient bg-[length:400%_400%]'
+      }`}
       aria-label="Hero section with company introduction"
     >
+      {/* Option A: High-quality photo with navy overlay */}
+      {backgroundOption === 'photo' && (
+        <>
+          <div 
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{ backgroundImage: `url(${heroBusiness})` }}
+          />
+          <div className="absolute inset-0 bg-navy/85 backdrop-blur-[1px]" />
+        </>
+      )}
+      
+      {/* Background Demo Toggle */}
+      <button
+        onClick={() => setBackgroundOption(prev => prev === 'photo' ? 'gradient' : 'photo')}
+        className="absolute top-24 right-4 z-50 bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-lg text-sm font-medium border border-white/20 hover:bg-white/20 transition-all"
+      >
+        {backgroundOption === 'photo' ? '🌈 Animated Gradient' : '📸 Premium Photo'}
+      </button>
 
       <div className="container mx-auto px-6 relative z-20">
         <div className="max-w-4xl mx-auto text-center">
           <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <h1 className="font-serif text-6xl md:text-7xl mb-8 text-white leading-tight">
+            <h1 className="heading-primary heading-xl mb-8 text-white leading-tight">
               Build Your Dream Website
               <span className="block text-orange mt-4 font-bold">
                 That Actually Works
