@@ -156,7 +156,7 @@ const Footer = () => {
           
           <div className="mt-6 pt-6 border-t border-white/10 text-center">
             <p className="text-xs text-white/60">
-              Crafted with passion in the UK 🇬🇧 | Trusted by businesses worldwide
+              Built, Hosted & Maintained by LD Development
             </p>
           </div>
         </div>
