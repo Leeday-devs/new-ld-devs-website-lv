@@ -28,10 +28,10 @@ const TrustedByLogos = () => {
       )
     },
     {
-      name: "Shopify Partner",
+      name: "Lovable.ai Partner",
       logo: (
         <div className="flex items-center justify-center h-12 w-24 bg-white/10 rounded-lg border border-white/20">
-          <span className="text-white font-semibold text-sm">Shopify</span>
+          <span className="text-white font-semibold text-sm">Lovable.ai</span>
         </div>
       )
     },
