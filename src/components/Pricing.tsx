@@ -110,54 +110,43 @@ const Pricing = () => {
     mobile: [
       {
         id: 1,
-        name: "Mobile Starter",
+        name: "Starter App",
         icon: Smartphone,
         description: "Simple mobile app for small businesses",
-        price: "£1,000",
-        monthlyPrice: "£60",
+        price: "£1,500",
+        monthlyPrice: "£95",
         features: [
-          "iOS & Android apps",
-          "Basic features",
-          "App store submission",
-          "3 months support",
-          "Push notifications",
-          "Basic analytics"
+          "Basic booking/info app",
+          "Secure hosting",
+          "Ongoing updates"
         ]
       },
       {
         id: 2,
-        name: "Mobile Pro",
+        name: "Business App",
         icon: Crown,
         description: "Feature-rich mobile solution",
-        price: "£2,000",
-        monthlyPrice: "£100",
+        price: "£3,000",
+        monthlyPrice: "£150",
         features: [
-          "Cross-platform apps",
-          "Custom features",
-          "Backend integration",
-          "User accounts",
-          "Payment processing",
-          "6 months support",
-          "Advanced analytics",
-          "Push notifications"
+          "User accounts & forms",
+          "Admin dashboard",
+          "CRM & AI integrations",
+          "Priority support"
         ]
       },
       {
         id: 3,
-        name: "Mobile Enterprise",
+        name: "Premium App",
         icon: Server,
         description: "Complete mobile ecosystem",
-        price: "£4,000",
-        monthlyPrice: "£150",
+        price: "from £5,000",
+        monthlyPrice: "£250",
         features: [
-          "Multiple apps",
-          "Complex integrations",
-          "Admin dashboard",
-          "Real-time features",
-          "Scalable backend",
-          "12 months support",
-          "Performance monitoring",
-          "Custom API development"
+          "Fully custom app",
+          "Advanced backend (Supabase/API)",
+          "AI-powered features",
+          "Dedicated support team"
         ]
       }
     ],
