@@ -9,14 +9,12 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        // Luxury £10K Button System
         default: "btn-primary",
         secondary: "btn-secondary", 
-        ghost: "btn-ghost",
-        premium: "btn-premium",
-        outline: "border-2 border-brand-orange bg-transparent text-brand-orange hover:bg-brand-orange hover:text-white rounded-full transition-luxury",
-        destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90 rounded-full transition-luxury",
-        link: "text-brand-navy underline-offset-4 hover:underline hover:text-brand-orange bg-transparent border-none shadow-none transition-luxury",
+        outline: "btn-outline",
+        destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
+        ghost: "text-text-primary hover:bg-bg-grey hover:text-text-primary",
+        link: "text-orange underline-offset-4 hover:underline",
       },
       size: {
         default: "h-12 px-6 py-3 text-base",

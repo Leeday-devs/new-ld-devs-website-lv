@@ -23,69 +23,80 @@ export default {
 				'serif': ['Playfair Display', 'Georgia', 'serif'],
 				'elegant': ['Cormorant Garamond', 'Georgia', 'serif'],
 			},
-			colors: {
-				// £10K Luxury Brand System
-				'brand-orange': 'hsl(var(--brand-orange))',
-				'brand-orange-dark': 'hsl(var(--brand-orange-dark))',
-				'brand-orange-light': 'hsl(var(--brand-orange-light))',
-				'brand-gold': 'hsl(var(--brand-gold))',
-				'brand-navy': 'hsl(var(--brand-navy))',
-				'brand-navy-light': 'hsl(var(--brand-navy-light))',
-				'text-luxury': 'hsl(var(--text-luxury))',
-				'text-primary': 'hsl(var(--text-primary))',
-				'text-on-dark': 'hsl(var(--text-on-dark))',
-				'text-muted': 'hsl(var(--text-muted))',
-				'text-gold': 'hsl(var(--text-gold))',
-				'bg-luxury': 'hsl(var(--bg-luxury))',
-				'bg-premium': 'hsl(var(--bg-premium))',
-				'bg-dark': 'hsl(var(--bg-dark))',
-				'border-luxury': 'hsl(var(--border-luxury))',
+      colors: {
+        // Clean Brand Colors
+        'brand-orange': 'hsl(var(--brand-orange))',
+        'brand-navy': 'hsl(var(--brand-navy))',
+        'brand-white': 'hsl(var(--brand-white))',
+        'brand-grey': 'hsl(var(--brand-grey))',
+        'brand-gold': 'hsl(var(--brand-gold))',
+        
+        // Text Colors
+        'text-primary': 'hsl(var(--text-primary))',
+        'text-secondary': 'hsl(var(--text-secondary))',
+        'text-muted': 'hsl(var(--text-muted))',
+        'text-white': 'hsl(var(--text-white))',
+        
+        // Background Colors - Clean System
+        'bg-white': 'hsl(var(--bg-white))',
+        'bg-grey': 'hsl(var(--bg-grey))',
+        'bg-navy': 'hsl(var(--bg-navy))',
+        
+        // Interactive Colors
+        'orange': 'hsl(var(--orange))',
+        'navy': 'hsl(var(--navy))',
+        'gold': 'hsl(var(--gold))',
+        
+        // Border Colors
+        'border-light': 'hsl(var(--border-light))',
+        'border-orange': 'hsl(var(--border-orange))',
+        'border-navy': 'hsl(var(--border-navy))',
 
-				// Legacy Shadcn Tokens (mapped to brand system)
-				border: 'hsl(var(--border))',
-				input: 'hsl(var(--input))',
-				ring: 'hsl(var(--ring))',
-				background: 'hsl(var(--background))',
-				foreground: 'hsl(var(--foreground))',
-				primary: {
-					DEFAULT: 'hsl(var(--primary))',
-					foreground: 'hsl(var(--primary-foreground))'
-				},
-				secondary: {
-					DEFAULT: 'hsl(var(--secondary))',
-					foreground: 'hsl(var(--secondary-foreground))'
-				},
-				destructive: {
-					DEFAULT: 'hsl(var(--destructive))',
-					foreground: 'hsl(var(--destructive-foreground))'
-				},
-				muted: {
-					DEFAULT: 'hsl(var(--muted))',
-					foreground: 'hsl(var(--muted-foreground))'
-				},
-				accent: {
-					DEFAULT: 'hsl(var(--accent))',
-					foreground: 'hsl(var(--accent-foreground))'
-				},
-				popover: {
-					DEFAULT: 'hsl(var(--popover))',
-					foreground: 'hsl(var(--popover-foreground))'
-				},
-				card: {
-					DEFAULT: 'hsl(var(--card))',
-					foreground: 'hsl(var(--card-foreground))'
-				},
-				sidebar: {
-					DEFAULT: 'hsl(var(--sidebar-background))',
-					foreground: 'hsl(var(--sidebar-foreground))',
-					primary: 'hsl(var(--sidebar-primary))',
-					'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
-					accent: 'hsl(var(--sidebar-accent))',
-					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
-					border: 'hsl(var(--sidebar-border))',
-					ring: 'hsl(var(--sidebar-ring))'
-				}
-			},
+        // Legacy Shadcn Tokens (mapped to clean system)
+        border: 'hsl(var(--border))',
+        input: 'hsl(var(--input))',
+        ring: 'hsl(var(--ring))',
+        background: 'hsl(var(--background))',
+        foreground: 'hsl(var(--foreground))',
+        primary: {
+          DEFAULT: 'hsl(var(--primary))',
+          foreground: 'hsl(var(--primary-foreground))'
+        },
+        secondary: {
+          DEFAULT: 'hsl(var(--secondary))',
+          foreground: 'hsl(var(--secondary-foreground))'
+        },
+        destructive: {
+          DEFAULT: 'hsl(var(--destructive))',
+          foreground: 'hsl(var(--destructive-foreground))'
+        },
+        muted: {
+          DEFAULT: 'hsl(var(--muted))',
+          foreground: 'hsl(var(--muted-foreground))'
+        },
+        accent: {
+          DEFAULT: 'hsl(var(--accent))',
+          foreground: 'hsl(var(--accent-foreground))'
+        },
+        popover: {
+          DEFAULT: 'hsl(var(--popover))',
+          foreground: 'hsl(var(--popover-foreground))'
+        },
+        card: {
+          DEFAULT: 'hsl(var(--card))',
+          foreground: 'hsl(var(--card-foreground))'
+        },
+        sidebar: {
+          DEFAULT: 'hsl(var(--sidebar-background))',
+          foreground: 'hsl(var(--sidebar-foreground))',
+          primary: 'hsl(var(--sidebar-primary))',
+          'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
+          accent: 'hsl(var(--sidebar-accent))',
+          'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
+          border: 'hsl(var(--sidebar-border))',
+          ring: 'hsl(var(--sidebar-ring))'
+        }
+      },
 			borderRadius: {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
