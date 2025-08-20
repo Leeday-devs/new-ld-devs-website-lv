@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { ExternalLink, ArrowRight, X } from "lucide-react";
-import project1 from "@/assets/project-1.jpg";
-import project2 from "@/assets/project-2.jpg";
-import project3 from "@/assets/project-3.jpg";
+import fitnessImage from "@/assets/case-study-fitness.jpg";
+import enterpriseImage from "@/assets/case-study-enterprise.jpg";
+import restaurantImage from "@/assets/case-study-restaurant.jpg";
+import autoRepairImage from "@/assets/case-study-autorepair.jpg";
+import educationImage from "@/assets/case-study-education.jpg";
+import ecommerceImage from "@/assets/case-study-ecommerce.jpg";
 
 const Portfolio = () => {
   const [selectedProject, setSelectedProject] = useState(null);
@@ -13,7 +16,7 @@ const Portfolio = () => {
       title: "FitnessPro Studio",
       category: "Fitness Business",
       description: "Complete fitness business solution with member management and booking system.",
-      image: project1,
+      image: fitnessImage,
       technologies: ["React", "Node.js", "Stripe", "MongoDB"],
       liveUrl: "#",
       caseStudy: {
@@ -32,7 +35,7 @@ const Portfolio = () => {
       title: "TechCorp Dashboard",
       category: "Enterprise",
       description: "Enterprise analytics platform with real-time KPI tracking and reporting.",
-      image: project2,
+      image: enterpriseImage,
       technologies: ["TypeScript", "React", "D3.js", "PostgreSQL"],
       liveUrl: "#",
       caseStudy: {
@@ -51,7 +54,7 @@ const Portfolio = () => {
       title: "Bella Vista Restaurant",
       category: "Restaurant",
       description: "Modern restaurant website with online ordering and table reservations.",
-      image: project3,
+      image: restaurantImage,
       technologies: ["React", "Tailwind", "Supabase", "Stripe"],
       liveUrl: "#",
       caseStudy: {
@@ -70,7 +73,7 @@ const Portfolio = () => {
       title: "AutoRepair Pro",
       category: "Automotive",
       description: "Service booking platform for automotive repair shops.",
-      image: project1,
+      image: autoRepairImage,
       technologies: ["Vue.js", "Laravel", "MySQL", "PWA"],
       liveUrl: "#",
       caseStudy: {
@@ -89,7 +92,7 @@ const Portfolio = () => {
       title: "EduLearn Platform",
       category: "Education",
       description: "Online learning management system for educational institutions.",
-      image: project2,
+      image: educationImage,
       technologies: ["Next.js", "Prisma", "PostgreSQL", "WebRTC"],
       liveUrl: "#",
       caseStudy: {
@@ -108,7 +111,7 @@ const Portfolio = () => {
       title: "RetailMax E-commerce",
       category: "E-commerce",
       description: "Full-featured e-commerce platform with inventory management.",
-      image: project3,
+      image: ecommerceImage,
       technologies: ["Shopify", "React", "GraphQL", "AWS"],
       liveUrl: "#",
       caseStudy: {
