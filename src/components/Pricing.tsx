@@ -8,7 +8,7 @@ const Pricing = () => {
   const categories = [
     { id: 'websites', label: 'Websites', icon: Monitor },
     { id: 'ai', label: 'AI Automations', icon: Brain },
-    { id: 'mobile', label: 'Mobile Apps', icon: Smartphone },
+    { id: 'mobile', label: 'Apps', icon: Smartphone },
     { id: 'software', label: 'Software', icon: Code }
   ];
 
