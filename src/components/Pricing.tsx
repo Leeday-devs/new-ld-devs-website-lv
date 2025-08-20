@@ -19,7 +19,7 @@ const Pricing = () => {
         name: "Starter",
         icon: Code,
         description: "Perfect for small businesses and personal brands",
-        price: "£695",
+        price: "£500",
         monthlyPrice: "£40",
         features: [
           "Up to 5 pages",
