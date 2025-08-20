@@ -153,54 +153,44 @@ const Pricing = () => {
     software: [
       {
         id: 1,
-        name: "Software Starter",
+        name: "Starter",
         icon: Code,
-        description: "Custom software for small businesses",
-        price: "£1,200",
-        monthlyPrice: "£80",
+        description: "Essential hosting for small businesses",
+        price: "£40",
+        monthlyPrice: "/month",
         features: [
-          "Custom application",
-          "Basic functionality",
-          "Database integration",
-          "User management",
-          "3 months support",
-          "Documentation"
+          "1 business email",
+          "SSL & backups",
+          "Updates & security monitoring",
+          "Support during working hours"
         ]
       },
       {
         id: 2,
-        name: "Software Pro",
+        name: "Business",
         icon: Server,
-        description: "Advanced software solution",
-        price: "£2,500",
-        monthlyPrice: "£150",
+        description: "Professional hosting solution",
+        price: "£65",
+        monthlyPrice: "/month",
         features: [
-          "Complex workflows",
-          "API integrations",
-          "Advanced features",
-          "Multi-user support",
-          "Security features",
-          "6 months support",
-          "Training included",
-          "Performance optimization"
+          "3 business emails",
+          "Priority support",
+          "Monthly security & SEO report",
+          "Performance monitoring"
         ]
       },
       {
         id: 3,
-        name: "Software Enterprise",
+        name: "Premium",
         icon: Crown,
-        description: "Enterprise-grade software platform",
-        price: "£5,000",
-        monthlyPrice: "£250",
+        description: "Enterprise-grade hosting platform",
+        price: "£95",
+        monthlyPrice: "/month",
         features: [
-          "Scalable architecture",
-          "Enterprise integrations",
-          "Advanced security",
-          "Custom modules",
-          "24/7 monitoring",
-          "12 months support",
-          "Dedicated team",
-          "Ongoing maintenance"
+          "Unlimited emails",
+          "AI-powered monitoring",
+          "Monthly performance & marketing insights",
+          "24/7 priority support"
         ]
       }
     ]
