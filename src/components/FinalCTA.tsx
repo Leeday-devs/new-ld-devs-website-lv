@@ -6,7 +6,7 @@ const FinalCTA = () => {
       {/* Background Effects */}
       <div className="absolute inset-0">
         <div className="absolute top-0 left-0 w-32 h-32 bg-orange/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 right-0 w-48 h-48 bg-gold/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 right-0 w-48 h-48 bg-orange/10 rounded-full blur-3xl"></div>
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
@@ -14,7 +14,7 @@ const FinalCTA = () => {
           {/* Main Headline */}
           <h2 className="heading-primary text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
             Ready to Build Something
-            <span className="block text-gold mt-2">
+            <span className="block text-orange mt-2">
               Extraordinary?
             </span>
           </h2>
@@ -28,7 +28,7 @@ const FinalCTA = () => {
           {/* Trust Indicators */}
           <div className="flex flex-wrap justify-center items-center gap-8 mb-12 text-white/70">
             <div className="flex items-center gap-2">
-              <Star className="h-5 w-5 text-gold fill-gold" />
+              <Star className="h-5 w-5 text-orange fill-orange" />
               <span className="font-medium">5-Star Rated</span>
             </div>
             <div className="w-px h-6 bg-white/20"></div>
@@ -43,10 +43,10 @@ const FinalCTA = () => {
               <input
                 type="email"
                 placeholder="Enter your email address"
-                className="flex-1 px-6 py-4 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent text-lg"
+                className="flex-1 px-6 py-4 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-orange focus:border-transparent text-lg"
               />
               <button 
-                className="bg-gold hover:bg-gold/90 text-navy font-bold text-lg px-8 py-4 rounded-xl transition-all duration-300 hover:-translate-y-1 shadow-2xl hover:shadow-gold/20 inline-flex items-center gap-3 whitespace-nowrap"
+                className="bg-orange hover:bg-orange/90 text-white font-bold text-lg px-8 py-4 rounded-xl transition-all duration-300 hover:-translate-y-1 shadow-2xl hover:shadow-orange/20 inline-flex items-center gap-3 whitespace-nowrap"
                 onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
               >
                 Get Started
