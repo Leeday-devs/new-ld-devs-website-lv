@@ -150,7 +150,7 @@ const Portfolio = () => {
 
         {/* Case Studies Grid */}
         <div className="grid lg:grid-cols-3 gap-8 mb-16">
-          {projects.slice(0, 6).map((project) => (
+          {projects.slice(0, 3).map((project) => (
             <div
               key={project.id}
               className="card-premium overflow-hidden cursor-pointer group transform transition-all duration-500 hover:shadow-luxury"

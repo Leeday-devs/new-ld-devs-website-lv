@@ -79,8 +79,8 @@ const Testimonials = () => {
         </div>
 
         {/* Desktop Grid */}
-        <div className="hidden md:grid md:grid-cols-3 lg:grid-cols-3 gap-8">
-          {testimonials.slice(0, 5).map((testimonial) => (
+        <div className="hidden md:grid md:grid-cols-3 gap-8">
+          {testimonials.slice(0, 3).map((testimonial) => (
             <div
               key={testimonial.id}
               className="card-premium p-8"
