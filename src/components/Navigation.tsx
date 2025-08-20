@@ -76,7 +76,7 @@ const Navigation = () => {
           <Link to="/" className="flex items-center gap-4 hover-scale cursor-pointer group">
             <div className="relative hover-glow">
               <img 
-                src="/lovable-uploads/ad9d84ce-4f33-408f-a0e5-a6439e818048.png" 
+                src="/lovable-uploads/95a8e543-b54c-4dc4-b36a-5561bf01ed41.png" 
                 alt="LD Development - Premium Web Development Company" 
                 className="h-20 w-auto transition-transform duration-300 group-hover:scale-110"
               />
