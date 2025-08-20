@@ -3,13 +3,14 @@ const ChatButton = () => {
   const message = "Hi! I'm interested in your web development services.";
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
 
+  const handleClick = () => {
+    window.open(whatsappUrl, '_blank');
+  };
 
   return (
-    <a
-      href={whatsappUrl}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="fixed bottom-6 right-6 z-50 w-16 h-16 bg-white hover:bg-gray-50 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 flex items-center justify-center group relative"
+    <button
+      onClick={handleClick}
+      className="fixed bottom-6 right-6 z-50 w-16 h-16 bg-white hover:bg-gray-50 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 flex items-center justify-center group"
       aria-label="Chat to us now"
     >
       {/* Company Logo */}
@@ -26,7 +27,7 @@ const ChatButton = () => {
       <div className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 rounded-full flex items-center justify-center animate-pulse">
         <span className="text-xs text-white font-bold">1</span>
       </div>
-    </a>
+    </button>
   );
 };
 
