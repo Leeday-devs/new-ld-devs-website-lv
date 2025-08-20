@@ -24,6 +24,19 @@ export default {
 				'elegant': ['Cormorant Garamond', 'Georgia', 'serif'],
 			},
 			colors: {
+				// Premium Orange Brand System
+				'brand-orange': 'hsl(var(--brand-orange))',
+				'brand-orange-dark': 'hsl(var(--brand-orange-dark))',
+				'brand-gold': 'hsl(var(--brand-gold))',
+				'brand-navy': 'hsl(var(--brand-navy))',
+				'text-primary': 'hsl(var(--text-primary))',
+				'text-on-dark': 'hsl(var(--text-on-dark))',
+				'text-muted': 'hsl(var(--text-muted))',
+				'bg-base': 'hsl(var(--bg-base))',
+				'bg-subtle': 'hsl(var(--bg-subtle))',
+				'border-subtle': 'hsl(var(--border-subtle))',
+
+				// Legacy Shadcn Tokens (mapped to brand system)
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',
@@ -31,8 +44,7 @@ export default {
 				foreground: 'hsl(var(--foreground))',
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
-					foreground: 'hsl(var(--primary-foreground))',
-					glow: 'hsl(var(--primary-glow))'
+					foreground: 'hsl(var(--primary-foreground))'
 				},
 				secondary: {
 					DEFAULT: 'hsl(var(--secondary))',
@@ -48,8 +60,7 @@ export default {
 				},
 				accent: {
 					DEFAULT: 'hsl(var(--accent))',
-					foreground: 'hsl(var(--accent-foreground))',
-					glow: 'hsl(var(--accent-glow))'
+					foreground: 'hsl(var(--accent-foreground))'
 				},
 				popover: {
 					DEFAULT: 'hsl(var(--popover))',
@@ -68,15 +79,7 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				},
-				// Premium text styling tokens
-				'text-heading-light': 'hsl(var(--text-heading-light))',
-				'text-heading-dark': 'hsl(var(--text-heading-dark))',
-				'text-body-light': 'hsl(var(--text-body-light))',
-				'text-body-dark': 'hsl(var(--text-body-dark))',
-				'text-muted-light': 'hsl(var(--text-muted-light))',
-				'text-muted-dark': 'hsl(var(--text-muted-dark))',
-				'text-accent': 'hsl(var(--text-accent))'
+				}
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -84,6 +87,7 @@ export default {
 				sm: 'calc(var(--radius) - 4px)'
 			},
 			backgroundImage: {
+				'gradient-orange-gold': 'var(--grad-orange-gold)',
 				'gradient-primary': 'var(--gradient-primary)',
 				'gradient-hero': 'var(--gradient-hero)',
 				'gradient-card': 'var(--gradient-card)',

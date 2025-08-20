@@ -9,55 +9,61 @@
 
 @layer base {
   :root {
-    --background: 217 33% 97%;
-    --foreground: 222 84% 5%;
+    /* Premium Orange Brand System - Unified Colors */
+    --brand-orange: 16 100% 50%;      /* #FF7A00 - Primary brand color */
+    --brand-orange-dark: 16 100% 45%; /* #E66C00 - Hover/active state */
+    --brand-gold: 45 75% 52%;         /* #D4AF37 - Luxury accent */
+    --brand-navy: 210 100% 12%;       /* #0A192F - Dark contrast */
 
+    /* Text Colors */
+    --text-primary: 220 9% 20%;       /* #1F2937 - Deep grey body text */
+    --text-on-dark: 0 0% 100%;        /* #FFFFFF - White text on dark */
+    --text-muted: 218 11% 42%;        /* #667085 - Muted text */
+
+    /* Backgrounds */
+    --bg-base: 0 0% 100%;             /* #FFFFFF - Pure white */
+    --bg-subtle: 216 33% 97%;         /* #F5F7FA - Light grey */
+
+    /* Borders & Effects */
+    --border-subtle: 220 13% 91%;     /* #E5E7EB - Subtle borders */
+    --shadow-soft: 0 8px 24px rgba(10, 25, 47, 0.08); /* Soft shadow */
+
+    /* Gradients - Consistent 135° Orange → Gold */
+    --grad-orange-gold: linear-gradient(135deg, hsl(var(--brand-orange)) 0%, hsl(var(--brand-gold)) 100%);
+
+    /* Legacy Shadcn Tokens (mapped to brand system) */
+    --background: 0 0% 100%;          /* Maps to bg-base */
+    --foreground: 220 9% 20%;         /* Maps to text-primary */
     --card: 0 0% 100%;
-    --card-foreground: 222 84% 5%;
-
+    --card-foreground: 220 9% 20%;
     --popover: 0 0% 100%;
-    --popover-foreground: 222 84% 5%;
-
-    /* Premium Orange → Gold Luxury Brand Palette */
-    --primary: 210 100% 12%;        /* Deep Navy Blue #0a192f */
+    --popover-foreground: 220 9% 20%;
+    --primary: 210 100% 12%;          /* Brand navy */
     --primary-foreground: 0 0% 100%;
-    --primary-glow: 210 100% 20%;   /* Lighter Navy */
-    --primary-dark: 210 100% 8%;    /* Darker Navy */
-
-    --secondary: 45 75% 52%;        /* Metallic Gold #d4af37 */
-    --secondary-foreground: 210 100% 12%; /* Navy text on gold */
-    --secondary-glow: 45 75% 65%;   /* Lighter Gold */
-    --secondary-dark: 45 75% 40%;   /* Darker Gold */
-
-    --accent: 16 100% 50%;          /* Premium Orange #FF7A00 */
+    --secondary: 45 75% 52%;          /* Brand gold */
+    --secondary-foreground: 210 100% 12%;
+    --accent: 16 100% 50%;            /* Brand orange */
     --accent-foreground: 0 0% 100%;
-    --accent-glow: 45 75% 52%;      /* Gold end for gradient */
-    --accent-dark: 16 100% 40%;     /* Darker Orange */
-
-    --muted: 0 0% 96%;              /* Light Grey #f5f5f5 */
-    --muted-foreground: 215 16% 47%;
+    --muted: 216 33% 97%;
+    --muted-foreground: 218 11% 42%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 16 100% 50%;
 
-    --border: 215 20% 91%;
-    --input: 215 20% 91%;
-    --ring: 215 85% 35%;
-
-    /* Premium Orange → Gold Gradient System */
-    --gradient-primary: linear-gradient(135deg, hsl(210 100% 12%) 0%, hsl(210 100% 20%) 100%);
-    --gradient-secondary: linear-gradient(135deg, hsl(45 75% 52%) 0%, hsl(45 75% 65%) 100%);
-    --gradient-accent: linear-gradient(135deg, hsl(16 100% 50%) 0%, hsl(45 75% 52%) 100%); /* Orange → Gold */
-    --gradient-hero: linear-gradient(135deg, hsl(16 100% 50%) 0%, hsl(45 75% 52%) 100%); /* Orange → Gold Hero */
-    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(0 0% 98%) 100%);
-    --gradient-button: linear-gradient(135deg, hsl(16 100% 50%) 0%, hsl(45 75% 52%) 100%); /* Orange → Gold Buttons */
-    --gradient-cta: linear-gradient(135deg, hsl(16 100% 50%) 0%, hsl(45 75% 52%) 100%); /* Orange → Gold CTA */
-    --gradient-testimonials: linear-gradient(135deg, hsl(16 100% 50% / 0.9) 0%, hsl(45 75% 52% / 0.9) 100%); /* Subtle Orange → Gold */
-    --gradient-premium: linear-gradient(135deg, hsl(16 100% 50%) 0%, hsl(45 75% 52%) 50%, hsl(45 75% 65%) 100%); /* Orange → Gold Premium */
+    /* Unified Premium Gradients - All 135° Orange → Gold */
+    --gradient-primary: var(--grad-orange-gold);
+    --gradient-secondary: var(--grad-orange-gold);
+    --gradient-accent: var(--grad-orange-gold);
+    --gradient-hero: var(--grad-orange-gold);
+    --gradient-card: linear-gradient(145deg, hsl(var(--bg-base)) 0%, hsl(var(--bg-subtle)) 100%);
+    --gradient-button: var(--grad-orange-gold);
+    --gradient-cta: var(--grad-orange-gold);
+    --gradient-testimonials: linear-gradient(135deg, hsl(var(--brand-orange) / 0.9) 0%, hsl(var(--brand-gold) / 0.9) 100%);
+    --gradient-premium: var(--grad-orange-gold);
     --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.1) 100%);
-    --gradient-mesh: radial-gradient(circle at 20% 50%, hsl(210 100% 12% / 0.03) 0%, transparent 50%), 
-                     radial-gradient(circle at 80% 20%, hsl(45 75% 52% / 0.03) 0%, transparent 50%), 
-                     radial-gradient(circle at 40% 80%, hsl(257 89% 44% / 0.03) 0%, transparent 50%);
     
     /* Texture Patterns */
     --texture-noise: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.02'/%3E%3C/svg%3E");
@@ -65,31 +71,31 @@
     --texture-lines: repeating-linear-gradient(90deg, transparent, transparent 2px, hsl(210 100% 12% / 0.03) 2px, hsl(210 100% 12% / 0.03) 4px);
     --texture-grid: linear-gradient(hsl(210 100% 12% / 0.03) 1px, transparent 1px), linear-gradient(90deg, hsl(210 100% 12% / 0.03) 1px, transparent 1px);
     
-  /* Premium Orange → Gold Shadow System */
-  --shadow-elegant: 0 4px 15px -3px hsl(210 100% 12% / 0.12), 0 2px 6px -2px hsl(210 100% 12% / 0.05);
-  --shadow-glow: 0 0 25px hsl(45 75% 52% / 0.4), 0 0 50px hsl(45 75% 52% / 0.2); /* Gold glow */
-  --shadow-button: 0 4px 15px -2px hsl(45 75% 52% / 0.25), 0 2px 8px -1px hsl(45 75% 52% / 0.1), inset 0 1px 0 hsl(0 0% 100% / 0.1);
-  --shadow-card: 0 2px 8px -1px hsl(210 100% 12% / 0.08), 0 4px 16px -4px hsl(210 100% 12% / 0.04);
-  --shadow-premium: 0 8px 30px -4px hsl(210 100% 12% / 0.15), 0 4px 16px -2px hsl(210 100% 12% / 0.08), 0 0 0 1px hsl(210 100% 12% / 0.04);
-  --shadow-orange: 0 4px 20px -2px hsl(16 100% 50% / 0.25), 0 2px 8px -1px hsl(16 100% 50% / 0.1); /* Orange glow */
-  --shadow-gold: 0 4px 20px -2px hsl(45 75% 52% / 0.25), 0 2px 8px -1px hsl(45 75% 52% / 0.1); /* Gold shadow */
-  --shadow-inset: inset 0 2px 4px 0 hsl(210 100% 12% / 0.06);
-  --shadow-brutal: 8px 8px 0px hsl(210 100% 12%), 16px 16px 0px hsl(210 100% 8%);
-  --shadow-neumorphism: 8px 8px 16px hsl(210 20% 85%), -8px -8px 16px hsl(0 0% 100%);
+  /* Premium Orange Brand Shadow System */
+  --shadow-elegant: 0 4px 15px -3px hsl(var(--brand-navy) / 0.12), 0 2px 6px -2px hsl(var(--brand-navy) / 0.05);
+  --shadow-glow: 0 0 25px hsl(var(--brand-gold) / 0.4), 0 0 50px hsl(var(--brand-gold) / 0.2);
+  --shadow-button: 0 4px 15px -2px hsl(var(--brand-orange) / 0.25), 0 2px 8px -1px hsl(var(--brand-orange) / 0.1);
+  --shadow-card: 0 2px 8px -1px hsl(var(--brand-navy) / 0.08), 0 4px 16px -4px hsl(var(--brand-navy) / 0.04);
+  --shadow-premium: 0 8px 30px -4px hsl(var(--brand-navy) / 0.15), 0 4px 16px -2px hsl(var(--brand-navy) / 0.08);
+  --shadow-orange: 0 4px 20px -2px hsl(var(--brand-orange) / 0.25), 0 2px 8px -1px hsl(var(--brand-orange) / 0.1);
+  --shadow-gold: 0 4px 20px -2px hsl(var(--brand-gold) / 0.25), 0 2px 8px -1px hsl(var(--brand-gold) / 0.1);
+  --shadow-inset: inset 0 2px 4px 0 hsl(var(--brand-navy) / 0.06);
+  --shadow-brutal: 8px 8px 0px hsl(var(--brand-navy)), 16px 16px 0px hsl(var(--brand-navy) / 0.8);
+  --shadow-neumorphism: 8px 8px 16px hsl(220 13% 85%), -8px -8px 16px hsl(0 0% 100%);
 
   /* Special Effects */
   --parallax-speed: 0.5;
 
-    /* Premium Text Styling Tokens */
-    --text-heading-light: 210 100% 12%;     /* Navy headings on light backgrounds */
-    --text-heading-dark: 0 0% 100%;         /* White headings on dark backgrounds */
-    --text-body-light: 0 0% 20%;            /* Dark grey body text on light */
-    --text-body-dark: 0 0% 95%;             /* Light grey body text on dark */
-    --text-muted-light: 0 0% 40%;           /* Muted text on light */
-    --text-muted-dark: 0 0% 70%;            /* Muted text on dark */
-    --text-accent: 45 75% 52%;              /* Gold accent text */
-    --text-shadow-light: 0px 2px 6px rgba(0, 0, 0, 0.15);
-    --text-shadow-dark: 0px 2px 6px rgba(0, 0, 0, 0.8);
+    /* Brand-Aligned Text Tokens */
+    --text-heading-light: var(--brand-navy);
+    --text-heading-dark: var(--text-on-dark);
+    --text-body-light: var(--text-primary);
+    --text-body-dark: var(--text-on-dark);
+    --text-muted-light: var(--text-muted);
+    --text-muted-dark: 0 0% 70%;
+    --text-accent: var(--brand-gold);
+    --text-shadow-light: 0 2px 6px rgba(0, 0, 0, 0.15);
+    --text-shadow-dark: 0 2px 6px rgba(0, 0, 0, 0.35);
 
     /* Animation Variables */
     --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -407,19 +413,19 @@
     opacity: 0.8;
   }
 
-  /* Premium Button System - Orange → Gold Theme */
+  /* Unified Premium Button System */
   .btn-primary {
-    background: hsl(var(--secondary));  /* Gold */
-    color: hsl(var(--primary));        /* Navy text */
+    background: hsl(var(--brand-orange));
+    color: hsl(var(--text-on-dark));
     border: none;
     font-weight: 600;
     font-size: 1rem;
-    padding: 0.75rem 2rem;
+    padding: 12px 24px;
     border-radius: 9999px;
-    transition: var(--transition-smooth);
+    transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
-    box-shadow: var(--shadow-gold);
+    box-shadow: var(--shadow-orange);
   }
 
   .btn-primary::before {
@@ -438,47 +444,45 @@
   }
 
   .btn-primary:hover {
+    background: hsl(var(--brand-orange-dark));
     transform: translateY(-2px);
-    box-shadow: var(--shadow-glow);
-    background: hsl(var(--secondary-glow));
+    box-shadow: 0 4px 12px hsl(var(--brand-orange) / 0.3);
   }
 
   .btn-secondary {
-    background: hsl(var(--accent));    /* Orange */
-    color: hsl(var(--accent-foreground));
-    border: 2px solid hsl(var(--accent));
+    background: hsl(var(--brand-navy));
+    color: hsl(var(--text-on-dark));
+    border: 2px solid hsl(var(--brand-navy));
     font-weight: 600;
     font-size: 1rem;
-    padding: 0.75rem 2rem;
+    padding: 12px 24px;
     border-radius: 9999px;
-    transition: var(--transition-smooth);
-    position: relative;
-    overflow: hidden;
-    box-shadow: var(--shadow-orange);
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-elegant);
   }
 
   .btn-secondary:hover {
-    background: hsl(var(--accent-glow));  /* Gold on hover */
-    border-color: hsl(var(--accent-glow));
+    background: hsl(210 100% 15%);
+    border-color: hsl(var(--brand-gold));
     transform: translateY(-2px);
-    box-shadow: var(--shadow-gold);
+    box-shadow: var(--shadow-glow);
   }
 
   .btn-ghost {
     background: transparent;
-    color: hsl(var(--primary));
-    border: 2px solid hsl(var(--accent));  /* Orange border */
+    color: hsl(var(--brand-orange));
+    border: 2px solid hsl(var(--brand-orange));
     font-weight: 600;
     font-size: 1rem;
-    padding: 0.75rem 2rem;
+    padding: 12px 24px;
     border-radius: 9999px;
-    transition: var(--transition-smooth);
+    transition: all 0.3s ease;
   }
 
   .btn-ghost:hover {
-    background: hsl(var(--accent) / 0.1);
-    color: hsl(var(--accent));
-    border-color: hsl(var(--secondary));  /* Gold border on hover */
+    background: hsl(var(--brand-orange) / 0.1);
+    color: hsl(var(--brand-gold));
+    border-color: hsl(var(--brand-gold));
     transform: translateY(-2px);
   }
 
