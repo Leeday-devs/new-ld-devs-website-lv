@@ -68,54 +68,42 @@ const Pricing = () => {
     ai: [
       {
         id: 1,
-        name: "AI Starter",
+        name: "Starter Automation",
         icon: Brain,
         description: "Basic AI automation for small businesses",
-        price: "£800",
-        monthlyPrice: "£80",
+        price: "£350 setup",
+        monthlyPrice: "£75",
         features: [
-          "Chatbot integration",
-          "Email automation",
-          "Lead qualification",
-          "Basic analytics",
-          "3 months support",
-          "Training included"
+          "1 automation agent (email responder or lead capture bot)",
+          "1 month free support",
+          "Hosting included"
         ]
       },
       {
         id: 2,
-        name: "AI Business Pro",
+        name: "Business Automation",
         icon: Server,
         description: "Advanced AI solutions for growing companies",
-        price: "£1,500",
-        monthlyPrice: "£120",
+        price: "£750 setup",
+        monthlyPrice: "£150",
         features: [
-          "Custom AI models",
-          "Process automation",
-          "Data analysis",
-          "API integrations",
-          "6 months support",
-          "Advanced training",
-          "Performance monitoring",
-          "Custom workflows"
+          "3 automation agents (CRM pipeline, social media posting, chatbot)",
+          "AI dashboard access",
+          "Priority support"
         ]
       },
       {
         id: 3,
-        name: "AI Enterprise",
+        name: "Premium Automation",
         icon: Crown,
         description: "Full AI transformation solution",
-        price: "£3,000",
-        monthlyPrice: "£200",
+        price: "£1,500 setup",
+        monthlyPrice: "£250",
         features: [
-          "Multi-department AI",
-          "Predictive analytics",
-          "Custom integrations",
+          "Unlimited agents",
+          "Full CRM automation & custom dashboard",
           "Dedicated support",
-          "12 months support",
-          "Staff training",
-          "Performance optimization",
-          "Scalable infrastructure"
+          "Quarterly optimisation review"
         ]
       }
     ],
