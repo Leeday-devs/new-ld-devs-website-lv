@@ -1,17 +1,18 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Code, Zap, Sparkles, Layers, Palette, Database, Shield, Rocket, Star, Users, CreditCard, Play, CheckCircle } from "lucide-react";
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import heroImage from "@/assets/hero-image-no-bg.png";
-import cinematicBg from "@/assets/hero-cinematic.jpg";
+import { ArrowRight, Shield, Zap, Award } from "lucide-react";
+import { useState, useEffect } from "react";
 const Hero = () => {
-  const heroRef = useScrollAnimation();
-  return <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Premium Orange → Gold Gradient Background */}
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
+  return <section className="section-hero relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Luxury Background Elements */}
       <div className="absolute inset-0">
-        {/* Orange → Gold gradient base */}
-        <div className="absolute inset-0 bg-gradient-hero"></div>
-        {/* Dark overlay for text readability (30% opacity as specified) */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/30 via-black/30 to-primary/30"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-bg-luxury via-bg-premium to-bg-luxury" />
+        <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-gradient-to-bl from-brand-orange/5 via-transparent to-transparent rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-gradient-to-tr from-brand-gold/5 via-transparent to-transparent rounded-full blur-3xl" />
         
         {/* Animated overlay with particles */}
         <div className="absolute inset-0">
@@ -78,129 +79,59 @@ const Hero = () => {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 relative z-10">
-        <div ref={heroRef} className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center scroll-in">
-          {/* Left side - Content */}
+      <div className="container mx-auto px-6 relative z-20">
+        <div ref={heroRef} className="max-w-7xl mx-auto text-center scroll-in">
           <div className="space-y-8">
-            {/* Premium Badge with Trust Indicators */}
-            <div className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-gold/20 to-transparent backdrop-blur-md rounded-full border border-gold/30 shadow-elegant animate-pulse-glow mb-8">
-              <CheckCircle className="h-6 w-6 text-secondary" />
-              <span className="font-bold text-heading-dark tracking-wide">PREMIUM WEB DEVELOPMENT EXCELLENCE</span>
-            </div>
-            
-            {/* Cinematic Main Heading */}
-            <div className="space-y-6">
-              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black font-serif leading-none tracking-tight">
-                <span className="block text-heading-dark animate-fade-in text-shadow-dark">WE CREATE</span>
-                <span className="block text-accent animate-fade-in stagger-delay-1 text-shadow-dark">LEGENDARY</span>
-                <span className="block text-heading-dark animate-fade-in stagger-delay-2 text-shadow-dark">WEBSITES</span>
-              </h1>
-            </div>
-            
-            {/* Powerful Single Description */}
-            <p className="text-xl sm:text-2xl md:text-3xl text-body-dark leading-relaxed max-w-3xl animate-fade-in-up stagger-delay-3 font-light text-shadow-light">
-              Transform your business into a <span className="text-accent font-semibold">digital powerhouse</span> with websites that don't just look amazing—they deliver results that exceed expectations.
-            </p>
-
-            {/* Trust Badges */}
-            <div className="flex flex-wrap gap-4 animate-fade-in-up stagger-delay-4">
-              <div className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-lg border border-white/20 hover-lift">
-                <Star className="h-4 w-4 text-secondary fill-secondary" />
-                <span className="text-sm font-medium text-body-dark">Google Certified</span>
-              </div>
-              <div className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-lg border border-white/20 hover-lift">
-                <Shield className="h-4 w-4 text-secondary" />
-                <span className="text-sm font-medium text-body-dark">Stripe Secure</span>
-              </div>
-              <div className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-lg border border-white/20 hover-lift">
-                <Users className="h-4 w-4 text-accent-glow" />
-                <span className="text-sm font-medium text-body-dark">150+ Happy Clients</span>
-              </div>
-            </div>
-
-            {/* Feature highlights */}
-            <div className="flex flex-wrap gap-4 animate-fade-in-up stagger-delay-4">
-              {[{
-              icon: Zap,
-              label: "Lightning Fast"
-            }, {
-              icon: Shield,
-              label: "Ultra Secure"
-            }, {
-              icon: Rocket,
-              label: "Premium Design"
-            }].map((feature, index) => <div key={feature.label} className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-lg border border-white/20 hover-lift" style={{
-              animationDelay: `${index * 0.1}s`
-            }}>
-                  <feature.icon className="h-4 w-4 text-secondary" />
-                  <span className="text-sm font-medium text-body-dark">{feature.label}</span>
-                </div>)}
-            </div>
-            
-            {/* Single Powerful CTA Button */}
-            <div className="pt-8 animate-fade-in-up stagger-delay-5">
-            <Button 
-                onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
-                className="bg-secondary text-primary hover:shadow-glow hover:shadow-gold text-xl px-16 py-8 rounded-full font-black tracking-wide shadow-gold transition-all duration-500 hover:scale-110 group relative overflow-hidden border-2 border-secondary/20"
-              >
-                <span className="relative z-10 flex items-center gap-4">
-                  <Rocket className="h-7 w-7 group-hover:animate-bounce" />
-                  START YOUR LEGENDARY PROJECT
-                  <ArrowRight className="h-7 w-7 group-hover:translate-x-2 transition-transform duration-300" />
+            <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+              <h1 className="heading-luxury heading-xl mb-8 max-w-5xl mx-auto">
+                Build Your Dream Website
+                <span className="block text-gold mt-4">
+                  That Actually Works
                 </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-secondary via-secondary-glow to-secondary opacity-0 group-hover:opacity-20 transition-opacity duration-500 rounded-full"></div>
-                <div className="absolute inset-0 animate-shimmer bg-gradient-to-r from-transparent via-white/20 to-transparent rounded-full"></div>
-              </Button>
+              </h1>
               
-              {/* Secondary subtle link */}
-              <div className="mt-6 text-center">
-                <button 
-                  onClick={() => window.open('https://wa.me/447586266007', '_blank')}
-                  className="text-body-dark hover:text-accent transition-colors duration-300 font-medium text-lg group text-shadow-light"
+              <p className="text-luxury mb-12 max-w-3xl mx-auto text-muted-luxury">
+                Professional web development and hosting services for UK businesses. 
+                We create fast, secure, and beautiful websites that drive real results.
+              </p>
+              
+              <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
+                <Button 
+                  size="lg" 
+                  className="btn-primary"
+                  onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
                 >
-                  <Play className="inline h-5 w-5 mr-2 group-hover:scale-110 transition-transform" />
-                  Free Strategy Session
-                  <span className="ml-2 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
-                </button>
+                  Start Your Project
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+                <Button 
+                  variant="outline" 
+                  size="lg"
+                  className="btn-ghost"
+                  onClick={() => document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' })}
+                >
+                  View Our Work
+                </Button>
               </div>
-            </div>
-          </div>
-          
-          {/* Right side - Hero Image */}
-          <div className="relative animate-fade-in-right stagger-delay-2">
-            {/* Image container with advanced effects */}
-            <div className="relative">
-              {/* Glowing background */}
-              <div className="absolute inset-0 bg-gradient-primary rounded-3xl blur-3xl opacity-20 animate-pulse-glow"></div>
-              
-              {/* Main image */}
-              <div className="relative bg-gradient-card rounded-3xl p-8 backdrop-blur-md border border-white/20 shadow-premium hover:shadow-glow transition-all duration-500 card-float">
-                <img 
-                  src={heroImage} 
-                  alt="Professional web development services showcasing modern website design, custom development, and digital solutions by LD Development" 
-                  className="w-full h-auto rounded-2xl shadow-2xl" 
-                  loading="eager"
-                  width="600"
-                  height="400"
-                />
-                
-                {/* Floating tech badges */}
-                <div className="absolute -top-4 -left-4 bg-gradient-primary text-white px-4 py-2 rounded-xl font-semibold shadow-lg animate-float">
-                  React
+
+              {/* Premium Trust Indicators */}
+              <div className="flex flex-wrap justify-center items-center gap-12 text-muted-luxury">
+                <div className="flex items-center gap-3">
+                  <Shield className="h-6 w-6 text-gold" />
+                  <span className="font-medium">SSL Secured</span>
                 </div>
-                <div className="absolute -bottom-4 -right-4 bg-gradient-coral text-white px-4 py-2 rounded-xl font-semibold shadow-lg animate-float-delayed">
-                  AI Powered
+                <div className="flex items-center gap-3">
+                  <Zap className="h-6 w-6 text-gold" />
+                  <span className="font-medium">Lightning Fast</span>
                 </div>
-                <div className="absolute top-1/2 -right-6 bg-gradient-purple text-white px-3 py-2 rounded-xl font-semibold shadow-lg animate-bounce-gentle">
-                  Fast
+                <div className="flex items-center gap-3">
+                  <Award className="h-6 w-6 text-gold" />
+                  <span className="font-medium">5-Star Service</span>
                 </div>
               </div>
             </div>
           </div>
         </div>
-
-        {/* Trust indicators */}
-        
       </div>
     </section>;
 };

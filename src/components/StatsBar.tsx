@@ -82,62 +82,25 @@ const StatsBar = () => {
   }, [isVisible]);
 
   return (
-    <div ref={statsRef} className="section-dark py-20 relative overflow-hidden">
-      {/* Cinematic background effects */}
-      <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-texture-dots opacity-30"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-secondary/10 to-transparent"></div>
-        
-        {/* Animated elements */}
-        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-secondary to-transparent animate-pulse"></div>
-        <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-secondary to-transparent animate-pulse"></div>
-        
-        {/* Floating particles */}
-        {[...Array(15)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-1 h-1 bg-secondary/40 rounded-full animate-float"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 3}s`,
-              animationDuration: `${2 + Math.random() * 2}s`
-            }}
-          />
-        ))}
-      </div>
-      
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-12">
-          <h2 className="text-heading text-heading-dark text-3xl md:text-4xl mb-4">
-            The Numbers Speak for Themselves
-          </h2>
-          <p className="text-body text-body-dark text-xl max-w-2xl mx-auto">
-            Trusted by hundreds of businesses across the UK to deliver exceptional results
-          </p>
-        </div>
-        
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+    <section className="section-stats" aria-label="Company statistics and achievements">
+      <div className="container mx-auto px-6">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
           {stats.map((stat, index) => (
-            <div key={index} className="text-center group">
-              <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-secondary/20 shadow-elegant group-hover:shadow-glow group-hover:scale-105 transition-all duration-500">
-                <stat.icon className="h-12 w-12 text-accent mx-auto mb-6 group-hover:scale-110 transition-transform duration-300" />
-                
-                <div className="text-5xl md:text-6xl font-black text-secondary mb-2 font-serif">
-                  {counters[index] || 0}{stat.suffix}
-                </div>
-                
-                <div className="text-lg font-bold text-heading-dark mb-1">
-                  {stat.label}
-                </div>
-                
-                <div className="text-sm text-body-dark">
-                  {stat.description}
-                </div>
+            <div key={index} className="group">
+              <div className="mb-4 text-gold">
+                <stat.icon className="h-10 w-10 mx-auto" />
+              </div>
+              <div className="stat-number mb-3">
+                {counters[index] || 0}{stat.suffix}
+              </div>
+              <div className="stat-label">
+                {stat.label}
               </div>
             </div>
           ))}
         </div>
+      </div>
+    </section>
         
         {/* Trust badges */}
         <div className="flex flex-wrap gap-6 justify-center items-center mt-16 pt-8 border-t border-secondary/20">

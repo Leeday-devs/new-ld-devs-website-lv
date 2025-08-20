@@ -81,18 +81,14 @@ const Portfolio = () => {
     featured: false
   }];
   return (
-    <section className="section-light-grey py-24 relative overflow-hidden">
-      {/* Premium textured background */}
-      <div className="absolute inset-0 bg-texture-dots opacity-10"></div>
-      <div className="absolute inset-0 bg-gradient-mesh"></div>
-      
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-heading text-heading-light text-4xl md:text-5xl mb-6">
-            Case Studies & Transformations
+    <section id="portfolio" className="section-luxury py-20" aria-label="Portfolio of completed projects">
+      <div className="container mx-auto px-6">
+        <div className="text-center mb-20">
+          <h2 className="heading-luxury heading-lg mb-6">
+            Our Recent <span className="text-brand-orange">Projects</span>
           </h2>
-          <p className="text-body text-body-light text-xl max-w-3xl mx-auto">
-            Real results for real businesses. See how we've helped our clients achieve remarkable growth.
+          <p className="text-luxury max-w-3xl mx-auto">
+            Explore some of our latest web development projects and see how we've helped businesses transform their online presence
           </p>
         </div>
 
@@ -115,108 +111,57 @@ const Portfolio = () => {
           ))}
         </div>
 
-        <div className="grid md:grid-cols-2 gap-12">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10 mb-16">
           {projects.map((project, index) => (
-            <div key={project.title} className="group">
-              <div className="bg-gradient-card rounded-2xl overflow-hidden shadow-card hover:shadow-elegant transition-all duration-500 hover:scale-105">
-                {/* Case Study Header */}
-                <div className="p-8 border-b border-border">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-3 h-3 bg-secondary rounded-full animate-pulse"></div>
-                    <span className="text-sm font-bold text-secondary uppercase tracking-wide">Case Study</span>
-                  </div>
-                  <h3 className="text-heading text-heading-light text-2xl mb-3 group-hover:text-secondary transition-colors">
-                    {project.title}
-                  </h3>
-                  <p className="text-body text-body-light">
-                    {project.description}
-                  </p>
-                </div>
-
-                {/* Before/After Images */}
-                <div className="relative overflow-hidden">
-                  <img 
-                    src={project.image} 
-                    alt={`${project.title} website design`}
-                    className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                  {/* Hover Overlay on project thumbnails: Orange → Gold gradient fade */}
-                  <div className="absolute inset-0 bg-gradient-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  
-                  {/* Tech Stack Overlay */}
-                  <div className="absolute bottom-4 left-4 right-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 opacity-0 group-hover:opacity-100">
-                    <div className="flex flex-wrap gap-2">
-                        {project.technologies.map((tech) => (
-                          <span key={tech} className="px-3 py-1 bg-accent text-white rounded-full text-sm font-bold shadow-lg">
-                            {tech}
-                          </span>
-                        ))}
-                    </div>
+            <div
+              key={index}
+              className="card-luxury group cursor-pointer overflow-hidden"
+            >
+              <div className="relative overflow-hidden rounded-xl mb-6">
+                <img
+                  src={project.image}
+                  alt={`${project.title} preview`}
+                  className="w-full h-56 object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-luxury opacity-0 group-hover:opacity-90 transition-opacity duration-500" />
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  <div className="text-center text-on-dark">
+                    <ExternalLink className="h-8 w-8 mx-auto mb-2" />
+                    <span className="font-semibold">View Project</span>
                   </div>
                 </div>
-                
-                {/* Results Section */}
-                <div className="p-8">
-                  <div className="grid grid-cols-3 gap-4 mb-6">
-                    <div className="text-center">
-                      <div className="text-2xl font-bold text-accent mb-1">+250%</div>
-                      <div className="text-sm text-muted-light">Traffic Increase</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-2xl font-bold text-accent mb-1">+180%</div>
-                      <div className="text-sm text-muted-light">Conversions</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-2xl font-bold text-accent mb-1">98%</div>
-                      <div className="text-sm text-muted-light">Uptime</div>
-                    </div>
-                  </div>
-                  
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm font-medium text-accent bg-secondary/10 px-3 py-1 rounded-full">
-                        {project.category}
-                      </span>
-                      <div className="flex items-center gap-2 text-muted-light group-hover:text-secondary transition-colors cursor-pointer">
-                        <span className="text-sm font-medium">View Live Site</span>
-                        <ExternalLink className="h-4 w-4" />
-                      </div>
-                    </div>
+              </div>
+              <div className="space-y-4">
+                <h3 className="heading-luxury heading-md group-hover:text-brand-orange transition-colors">
+                  {project.title}
+                </h3>
+                <p className="text-muted-luxury leading-relaxed">
+                  {project.description}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {project.technologies.map((tech, techIndex) => (
+                    <span
+                      key={techIndex}
+                      className="px-3 py-1 bg-bg-premium text-text-muted text-sm rounded-full border border-border-luxury"
+                    >
+                      {tech}
+                    </span>
+                  ))}
                 </div>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Premium CTA Section */}
-        <div className="mt-20 text-center">
-          <div className="section-dark rounded-3xl p-12 shadow-premium relative overflow-hidden">
-            <div className="absolute inset-0 bg-texture-noise opacity-20"></div>
-            <div className="relative z-10">
-              <h3 className="text-heading text-heading-dark text-3xl mb-4">
-                Ready to Join Our Success Stories?
-              </h3>
-              <p className="text-body text-body-dark mb-8 max-w-2xl mx-auto text-lg leading-relaxed">
-                Let's create something extraordinary together. From concept to launch, we'll turn your vision into reality.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button 
-                  size="lg" 
-                  className="text-lg px-8 py-4 rounded-full font-bold"
-                  onClick={() => window.open('https://wa.me/447586266007', '_blank')}
-                >
-                  Start Your Project
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-                <Button 
-                  size="lg" 
-                  variant="ghost" 
-                  className="text-lg px-8 py-4 rounded-full font-bold"
-                >
-                  View More Work
-                </Button>
-              </div>
-            </div>
-          </div>
+        <div className="text-center">
+          <Button 
+            size="lg"
+            className="btn-primary"
+            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+          >
+            Start Your Project
+            <ArrowRight className="ml-2 h-5 w-5" />
+          </Button>
         </div>
       </div>
     </section>

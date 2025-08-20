@@ -95,199 +95,61 @@ const Services = () => {
     icon2: Globe,
     pricingFeatures: ["Unlimited Pages", "Custom Design & Development", "E-commerce Integration", "Advanced User Authentication", "Multi-language Support"]
   }];
-  return <section className="section-light-grey py-24 relative overflow-hidden">
-      {/* Modern animated background */}
-      <div className="absolute inset-0">
-        <div className="absolute top-20 right-20 w-72 h-72 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-full blur-3xl animate-float"></div>
-        <div className="absolute bottom-20 left-20 w-96 h-96 bg-gradient-to-l from-accent/10 to-primary/10 rounded-full blur-2xl animate-float-delayed"></div>
-        <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-gradient-to-br from-secondary/5 to-accent/5 rounded-full blur-xl animate-pulse"></div>
-        
-        {/* AI and Code themed elements */}
-        <div className="absolute top-10 left-10 text-primary/15 text-5xl font-mono animate-float">🤖</div>
-        <div className="absolute top-32 right-16 text-accent/15 text-4xl font-mono animate-float-delayed">console.log()</div>
-        <div className="absolute bottom-40 left-16 text-primary/15 text-3xl font-mono animate-pulse">npm install</div>
-        <div className="absolute bottom-20 right-20 text-accent/15 text-4xl font-mono animate-float">function()</div>
-        <div className="absolute top-1/3 left-1/4 text-primary/15 text-6xl font-mono animate-float-delayed">&lt;div&gt;</div>
-        <div className="absolute top-2/3 right-1/4 text-accent/15 text-5xl font-mono animate-pulse">API</div>
-        
-        {/* Neural network visualization */}
-        <div className="absolute top-1/4 right-1/3 w-40 h-40 opacity-10">
-          <svg viewBox="0 0 100 100" className="text-primary animate-pulse">
-            <circle cx="20" cy="20" r="3" fill="currentColor" />
-            <circle cx="50" cy="20" r="3" fill="currentColor" />
-            <circle cx="80" cy="20" r="3" fill="currentColor" />
-            <circle cx="35" cy="50" r="3" fill="currentColor" />
-            <circle cx="65" cy="50" r="3" fill="currentColor" />
-            <circle cx="50" cy="80" r="3" fill="currentColor" />
-            <line x1="20" y1="20" x2="35" y2="50" stroke="currentColor" strokeWidth="1" opacity="0.5" />
-            <line x1="50" y1="20" x2="35" y2="50" stroke="currentColor" strokeWidth="1" opacity="0.5" />
-            <line x1="50" y1="20" x2="65" y2="50" stroke="currentColor" strokeWidth="1" opacity="0.5" />
-            <line x1="80" y1="20" x2="65" y2="50" stroke="currentColor" strokeWidth="1" opacity="0.5" />
-            <line x1="35" y1="50" x2="50" y2="80" stroke="currentColor" strokeWidth="1" opacity="0.5" />
-            <line x1="65" y1="50" x2="50" y2="80" stroke="currentColor" strokeWidth="1" opacity="0.5" />
-          </svg>
-        </div>
-        
-        {/* Dynamic grid overlay */}
-        <div className="absolute inset-0 opacity-5">
-          <div className="grid grid-cols-8 h-full">
-            {Array.from({
-            length: 64
-          }).map((_, i) => <div key={i} className="border border-primary/20" style={{
-            animationDelay: `${i * 0.05}s`
-          }}></div>)}
-          </div>
-        </div>
-      </div>
-
-      <div className="container mx-auto px-4 relative z-10">
-        {/* Enhanced header with capabilities showcase */}
-        <div className="max-w-5xl mx-auto text-center mb-20 animate-fade-in">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-primary/10 to-accent/10 backdrop-blur-sm rounded-full mb-6 border border-primary/20">
-            <Sparkles className="h-4 w-4 text-primary animate-pulse" />
-            <span className="text-sm font-medium text-primary">Cool Things We Make</span>
-          </div>
-          
-          <h2 className="text-heading text-heading-light text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl mb-6">
-            <span className="block">OUR</span>
-            <span className="text-accent animate-text-glow">WEB DEVELOPMENT PLANS</span>
+  return <section id="services" className="section-luxury py-20" aria-label="Our web development services">
+      <div className="container mx-auto px-6">
+        <div className="text-center mb-20">
+          <h2 className="heading-luxury heading-lg mb-6">
+            Our <span className="text-gold">Premium</span> Services
           </h2>
-          
-          <p className="text-body text-body-light text-lg sm:text-xl max-w-3xl mx-auto leading-relaxed mb-8">
-            Choose the perfect plan for your project! From simple websites to powerful online stores and smart AI solutions - 
-            we've got everything you need to succeed online.
+          <p className="text-luxury max-w-3xl mx-auto">
+            From concept to launch, we provide everything you need to establish a powerful online presence
           </p>
-
-          {/* Capability highlights */}
-          <div className="flex flex-wrap justify-center gap-4 mb-8">
-            {[{
-            icon: Zap,
-            label: "Super Fast"
-          }, {
-            icon: Shield,
-            label: "Safe & Secure"
-          }, {
-            icon: Globe,
-            label: "Works Everywhere"
-          }, {
-            icon: Sparkles,
-            label: "Really Cool"
-          }].map((cap, index) => <div key={cap.label} className="flex items-center gap-2 px-4 py-2 bg-white/5 backdrop-blur-sm rounded-lg border border-white/10 hover:bg-white/10 transition-all duration-300" style={{
-            animationDelay: `${index * 0.1}s`
-          }}>
-                <cap.icon className="h-4 w-4 text-accent" />
-                <span className="text-sm text-muted-light font-medium">{cap.label}</span>
-              </div>)}
-          </div>
         </div>
-
-        {/* Enhanced services grid with rolling cards */}
-        <div ref={containerRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16 [&>*:nth-child(5)]:lg:col-span-2 [&>*:nth-child(6)]:lg:col-span-2">{/* Make last 2 cards span 2 columns each */}
-          {services.map((service, index) => {
-          const Icon = service.icon;
-          return <div key={service.title} className={`service-card scroll-roll group w-full ${index < 4 ? 'max-w-sm mx-auto' : ''} relative`}>
-                {/* Overlapping Icon */}
-                <div className={`absolute ${index < 4 ? '-top-8 left-6' : '-top-6 left-4'} z-30`}>
-                  <div className={`${index < 4 ? 'w-16 h-16' : 'w-12 h-12'} rounded-2xl bg-white shadow-lg ${index < 4 ? 'p-4' : 'p-3'} flex items-center justify-center`}>
-                    <Icon className={`${index < 4 ? 'h-8 w-8' : 'h-6 w-6'} text-gray-700`} />
-                  </div>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+          {services.map((service, index) => (
+            <div
+              key={index}
+              className={`card-luxury group cursor-pointer ${
+                service.featured ? 'featured' : ''
+              }`}
+            >
+              <div className="text-brand-orange mb-6 group-hover:text-brand-gold transition-colors">
+                <service.icon className="h-14 w-14" />
+              </div>
+              <h3 className="heading-luxury heading-md mb-4">
+                {service.title}
+              </h3>
+              <p className="text-muted-luxury mb-6 leading-relaxed">
+                {service.description}
+              </p>
+              <ul className="space-y-3">
+                {service.features.map((feature, featureIndex) => (
+                  <li key={featureIndex} className="flex items-center text-muted-luxury">
+                    <CheckCircle className="h-5 w-5 text-brand-orange mr-3 flex-shrink-0" />
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+              {service.badge && (
+                <div className="mt-6">
+                  <span className="bg-gradient-luxury text-on-dark px-4 py-2 rounded-full text-sm font-semibold uppercase tracking-wide">
+                    {service.badge}
+                  </span>
                 </div>
-                
-                <Card 
-                  onClick={() => handleCardClick(service)} 
-                  className={`relative ${index < 4 ? 'h-[650px]' : 'h-[400px]'} w-full overflow-hidden border-0 shadow-premium hover:shadow-glow hover:scale-105 transition-all duration-500 cursor-pointer ${service.popular ? 'ring-2 ring-secondary ring-offset-4 shadow-coral' : ''} group`}
-                >
-                  {/* Background with luxury gradient and texture */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient}`}></div>
-                  <div className="absolute inset-0 bg-texture-noise opacity-30"></div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent group-hover:from-black/10 transition-all duration-500"></div>
-                  
-                  {/* Popular badge with enhanced styling */}
-                  {service.popular && <div className="absolute top-4 right-4 z-20">
-                      <Badge className="bg-gradient-accent text-white border-0 shadow-orange font-bold text-sm px-4 py-2 rounded-full">
-                        🏆 Most Popular
-                      </Badge>
-                    </div>}
-
-                  {/* Content */}
-                  <div className={`relative z-10 h-full flex flex-col text-white ${index < 4 ? 'p-6 pt-12' : 'p-3 pt-8'}`}>
-                    
-                    {/* Title */}
-                    <h3 className={`${index < 4 ? 'text-2xl' : 'text-lg'} font-bold ${index < 4 ? 'mb-3' : 'mb-1'} text-heading-dark`}>
-                      {service.title}
-                    </h3>
-                    
-                    {/* Description */}
-                    <p className={`text-body-dark ${index < 4 ? 'text-sm h-16' : 'text-xs h-12'} leading-relaxed ${index < 4 ? 'mb-4' : 'mb-2'} overflow-hidden`}>
-                      {service.description}
-                    </p>
-
-
-                    {/* Features list */}
-                    <div className={`${index < 4 ? 'mb-4' : 'mb-2'} flex-grow`}>
-                      <div className={`${index < 4 ? 'space-y-2' : 'space-y-1'}`}>
-                        {service.features.slice(0, index < 4 ? 4 : 3).map(feature => <div key={feature} className="flex items-center gap-3">
-                            <div className={`${index < 4 ? 'w-4 h-4' : 'w-3 h-3'} rounded-full bg-green-400 flex items-center justify-center flex-shrink-0`}>
-                              <CheckCircle className={`${index < 4 ? 'w-2.5 h-2.5' : 'w-2 h-2'} text-green-800`} />
-                            </div>
-                            <span className={`text-white ${index < 4 ? 'text-xs' : 'text-xs'} font-medium`}>{feature}</span>
-                          </div>)}
-                      </div>
-                    </div>
-
-                    {/* FREE Migration Banner */}
-                    <div className="text-center mb-3">
-                      <span className="text-green-400 font-bold text-sm">FREE Migration</span>
-                    </div>
-
-                    {/* Price */}
-                    <div className={`${index < 4 ? 'mb-6' : 'mb-2'} text-center`}>
-                      <div className={`${index < 4 ? 'text-3xl' : 'text-xl'} font-bold text-white mb-1`}>{service.price}</div>
-                      {service.monthlyPrice !== "Contact us" && <div className={`text-white/80 ${index < 4 ? 'text-sm' : 'text-xs'}`}>
-                          Then {service.monthlyPrice}/month
-                        </div>}
-                      {(service.title === "Build Me a Website" || service.title === "Create Me a Online Store" || service.title === "AI Automations") && <div className={`text-white/70 ${index < 4 ? 'text-xs' : 'text-xs'} mt-1`}>
-                          💳 Payment plans available
-                        </div>}
-                    </div>
-                    
-                    {/* Premium Buttons */}
-                    <div className={`${index < 4 ? 'space-y-3' : 'space-y-2'} mt-auto`}>
-                      <Button onClick={() => {
-                        setSelectedService(service);
-                        setIsModalOpen(true);
-                      }} className={`w-full bg-accent text-white hover:shadow-orange hover:scale-105 transition-all duration-300 rounded-full font-bold ${index < 4 ? 'py-3 text-sm' : 'py-2 text-xs'} shadow-button border-0 flex items-center justify-center`}>
-                        <ArrowRight className={`mr-2 ${index < 4 ? 'h-4 w-4' : 'h-3 w-3'}`} />
-                        See Details
-                      </Button>
-                      <Button variant="outline" onClick={handleChatClick} className={`w-full bg-white/10 backdrop-blur-md border-2 border-secondary/40 text-white hover:bg-secondary hover:text-primary hover:scale-105 transition-all duration-300 rounded-full font-bold ${index < 4 ? 'py-3 text-sm' : 'py-2 text-xs'}`}>
-                        💬 Free Consultation
-                      </Button>
-                    </div>
-                  </div>
-                </Card>
-              </div>;
-        })}
+              )}
+            </div>
+          ))}
         </div>
 
-        {/* Enhanced CTA section */}
-        <div className="text-center bg-gradient-to-r from-primary/5 via-accent/5 to-primary/5 rounded-3xl p-12 glass animate-fade-in-up stagger-delay-4">
-          <h3 className="text-heading text-heading-light text-3xl mb-4">
-            Ready to Build Something Amazing?
-          </h3>
-          <p className="text-body text-muted-light mb-6 max-w-2xl mx-auto leading-relaxed">
-            Got a cool idea? Want to make something awesome for your school, family, or friends? Let's chat about it!
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" onClick={() => window.open('https://wa.me/447586266007', '_blank')} className="text-lg px-8 py-6">
-              <Zap className="mr-2 h-5 w-5" />
-              Let's Talk About Your Idea!
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-            <Button size="lg" variant="ghost" className="text-lg px-8 py-6 hover-lift">
-              Show Me Cool Examples
-            </Button>
-          </div>
+        <div className="text-center">
+          <Button 
+            size="lg" 
+            className="btn-premium"
+            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+          >
+            Get Started Today
+            <ArrowRight className="ml-2 h-5 w-5" />
+          </Button>
         </div>
       </div>
 

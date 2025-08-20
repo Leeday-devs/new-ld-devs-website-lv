@@ -24,17 +24,22 @@ export default {
 				'elegant': ['Cormorant Garamond', 'Georgia', 'serif'],
 			},
 			colors: {
-				// Premium Orange Brand System
+				// £10K Luxury Brand System
 				'brand-orange': 'hsl(var(--brand-orange))',
 				'brand-orange-dark': 'hsl(var(--brand-orange-dark))',
+				'brand-orange-light': 'hsl(var(--brand-orange-light))',
 				'brand-gold': 'hsl(var(--brand-gold))',
 				'brand-navy': 'hsl(var(--brand-navy))',
+				'brand-navy-light': 'hsl(var(--brand-navy-light))',
+				'text-luxury': 'hsl(var(--text-luxury))',
 				'text-primary': 'hsl(var(--text-primary))',
 				'text-on-dark': 'hsl(var(--text-on-dark))',
 				'text-muted': 'hsl(var(--text-muted))',
-				'bg-base': 'hsl(var(--bg-base))',
-				'bg-subtle': 'hsl(var(--bg-subtle))',
-				'border-subtle': 'hsl(var(--border-subtle))',
+				'text-gold': 'hsl(var(--text-gold))',
+				'bg-luxury': 'hsl(var(--bg-luxury))',
+				'bg-premium': 'hsl(var(--bg-premium))',
+				'bg-dark': 'hsl(var(--bg-dark))',
+				'border-luxury': 'hsl(var(--border-luxury))',
 
 				// Legacy Shadcn Tokens (mapped to brand system)
 				border: 'hsl(var(--border))',
@@ -87,30 +92,23 @@ export default {
 				sm: 'calc(var(--radius) - 4px)'
 			},
 			backgroundImage: {
-				'gradient-orange-gold': 'var(--grad-orange-gold)',
-				'gradient-primary': 'var(--gradient-primary)',
-				'gradient-hero': 'var(--gradient-hero)',
-				'gradient-card': 'var(--gradient-card)',
-				'gradient-button': 'var(--gradient-button)',
-				'gradient-accent': 'var(--gradient-accent)',
-				'gradient-cta': 'var(--gradient-cta)',
-				'gradient-testimonials': 'var(--gradient-testimonials)',
+				'gradient-luxury': 'var(--gradient-luxury)',
 				'gradient-premium': 'var(--gradient-premium)',
-				'gradient-glass': 'var(--gradient-glass)'
+				'gradient-accent': 'var(--gradient-accent)',
+				'gradient-overlay': 'var(--gradient-overlay)',
 			},
 			boxShadow: {
-				'elegant': 'var(--shadow-elegant)',
+				'luxury': 'var(--shadow-luxury)',
+				'premium': 'var(--shadow-premium)',
 				'glow': 'var(--shadow-glow)',
-				'card': 'var(--shadow-card)',
-				'button': 'var(--shadow-button)',
-				'orange': 'var(--shadow-orange)',
 				'gold': 'var(--shadow-gold)',
-				'inner': 'var(--shadow-inner)'
+				'subtle': 'var(--shadow-subtle)',
+				'button': 'var(--shadow-button)'
 			},
 			transitionTimingFunction: {
-				'smooth': 'var(--transition-smooth)',
-				'bounce': 'var(--transition-bounce)',
-				'fast': 'var(--transition-fast)'
+				'luxury': 'var(--transition-luxury)',
+				'premium': 'var(--transition-premium)',
+				'bounce': 'var(--transition-bounce)'
 			},
 			backdropBlur: {
 				xs: '2px',
