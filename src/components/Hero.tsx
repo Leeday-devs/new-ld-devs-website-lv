@@ -80,7 +80,7 @@ const Hero = () => {
       </div>
 
       <div className="container mx-auto px-6 relative z-20">
-        <div ref={heroRef} className="max-w-7xl mx-auto text-center scroll-in">
+        <div className="max-w-7xl mx-auto text-center">
           <div className="space-y-8">
             <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
               <h1 className="heading-luxury heading-xl mb-8 max-w-5xl mx-auto">

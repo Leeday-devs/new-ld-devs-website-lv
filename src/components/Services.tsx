@@ -110,7 +110,7 @@ const Services = () => {
             <div
               key={index}
               className={`card-luxury group cursor-pointer ${
-                service.featured ? 'featured' : ''
+                service.popular ? 'featured' : ''
               }`}
             >
               <div className="text-brand-orange mb-6 group-hover:text-brand-gold transition-colors">
@@ -130,10 +130,10 @@ const Services = () => {
                   </li>
                 ))}
               </ul>
-              {service.badge && (
+              {service.popular && (
                 <div className="mt-6">
                   <span className="bg-gradient-luxury text-on-dark px-4 py-2 rounded-full text-sm font-semibold uppercase tracking-wide">
-                    {service.badge}
+                    Most Popular
                   </span>
                 </div>
               )}

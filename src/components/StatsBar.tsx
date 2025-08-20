@@ -86,7 +86,7 @@ const StatsBar = () => {
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
           {stats.map((stat, index) => (
-            <div key={index} className="group">
+            <div key={index} className="group" ref={index === 0 ? statsRef : undefined}>
               <div className="mb-4 text-gold">
                 <stat.icon className="h-10 w-10 mx-auto" />
               </div>
@@ -101,35 +101,6 @@ const StatsBar = () => {
         </div>
       </div>
     </section>
-        
-        {/* Trust badges */}
-        <div className="flex flex-wrap gap-6 justify-center items-center mt-16 pt-8 border-t border-secondary/20">
-          <div className="flex items-center gap-2 text-body-dark">
-            <img 
-              src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" 
-              alt="Google"
-              className="h-6 w-6"
-            />
-            <div className="flex">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} className="h-5 w-5 fill-secondary text-secondary" />
-              ))}
-            </div>
-            <span className="font-semibold">5.0 Google Rating</span>
-          </div>
-          <div className="text-muted-dark">•</div>
-          <div className="flex items-center gap-2 text-body-dark">
-            <Shield className="h-5 w-5 text-secondary" />
-            <span className="font-semibold">Google Certified Partner</span>
-          </div>
-          <div className="text-muted-dark">•</div>
-          <div className="flex items-center gap-2 text-body-dark">
-            <Award className="h-5 w-5 text-secondary" />
-            <span className="font-semibold">Quality Guaranteed</span>
-          </div>
-        </div>
-      </div>
-    </div>
   );
 };
 
