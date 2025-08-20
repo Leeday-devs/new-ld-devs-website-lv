@@ -52,26 +52,39 @@ const AuthButton = () => {
     return (
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="outline" size="sm" className="gap-2 hover:bg-primary/10 hover:text-primary hover:border-primary">
+          <Button 
+            variant="outline" 
+            size="sm" 
+            className="gap-2 bg-navy/20 border-orange/20 text-white hover:bg-orange/10 hover:text-orange hover:border-orange/40 transition-all duration-200"
+          >
             <User className="h-4 w-4" />
             {dashboardLabel}
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="end">
-          <DropdownMenuItem asChild>
-            <span className="text-sm text-muted-foreground">
+        <DropdownMenuContent 
+          align="end" 
+          className="bg-navy/95 backdrop-blur-xl border border-orange/20 shadow-luxury rounded-xl z-[9999] min-w-[200px]"
+        >
+          <DropdownMenuItem className="text-white/60 cursor-default hover:bg-transparent focus:bg-transparent">
+            <span className="text-sm truncate">
               {user.email}
             </span>
           </DropdownMenuItem>
-          <DropdownMenuSeparator />
+          <DropdownMenuSeparator className="bg-white/10" />
           <DropdownMenuItem asChild>
-            <Link to={dashboardLink} className="flex items-center gap-2 cursor-pointer">
+            <Link 
+              to={dashboardLink} 
+              className="flex items-center gap-2 cursor-pointer text-white/80 hover:text-orange hover:bg-orange/10 transition-all duration-200 px-3 py-2 rounded-lg"
+            >
               <User className="h-4 w-4" />
               {dashboardLabel}
             </Link>
           </DropdownMenuItem>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem onClick={signOut} className="gap-2 text-destructive">
+          <DropdownMenuSeparator className="bg-white/10" />
+          <DropdownMenuItem 
+            onClick={signOut} 
+            className="gap-2 text-red-400 hover:text-red-300 hover:bg-red-500/10 transition-all duration-200 cursor-pointer px-3 py-2 rounded-lg"
+          >
             <LogOut className="h-4 w-4" />
             Sign out
           </DropdownMenuItem>
@@ -82,8 +95,12 @@ const AuthButton = () => {
 
   return (
     <Link to="/auth">
-      <Button variant="outline" size="sm" className="hover:bg-primary/10 hover:text-primary hover:border-primary">
-        <User className="h-4 w-4 mr-1" />
+      <Button 
+        variant="outline" 
+        size="sm" 
+        className="gap-2 bg-navy/20 border-orange/20 text-white hover:bg-orange/10 hover:text-orange hover:border-orange/40 transition-all duration-200"
+      >
+        <User className="h-4 w-4" />
         Login
       </Button>
     </Link>
