@@ -4,10 +4,10 @@ const TrustedByLogos = () => {
   // Sample trusted company logos - you can replace these with actual client logos
   const trustedLogos = [
     {
-      name: "Microsoft Partner",
+      name: "Supabase Partner",
       logo: (
         <div className="flex items-center justify-center h-12 w-24 bg-white/10 rounded-lg border border-white/20">
-          <span className="text-white font-semibold text-sm">Microsoft</span>
+          <span className="text-white font-semibold text-sm">Supabase</span>
         </div>
       )
     },
@@ -44,10 +44,10 @@ const TrustedByLogos = () => {
       )
     },
     {
-      name: "Webflow Expert",
+      name: "WordPress Expert",
       logo: (
         <div className="flex items-center justify-center h-12 w-24 bg-white/10 rounded-lg border border-white/20">
-          <span className="text-white font-semibold text-sm">Webflow</span>
+          <span className="text-white font-semibold text-sm">WordPress</span>
         </div>
       )
     }
