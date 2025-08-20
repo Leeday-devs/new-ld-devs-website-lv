@@ -11,14 +11,14 @@ const Hero = () => {
 
   return (
     <section 
-      className="section-navy min-h-screen flex items-center justify-center"
+      className="bg-navy min-h-screen flex items-center justify-center"
       aria-label="Hero section with company introduction"
     >
 
       <div className="container mx-auto px-6 relative z-20">
         <div className="max-w-4xl mx-auto text-center">
           <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <h1 className="heading-primary heading-xl mb-8 text-white leading-tight">
+            <h1 className="font-serif text-6xl md:text-7xl mb-8 text-white leading-tight">
               Build Your Dream Website
               <span className="block text-orange mt-4 font-bold">
                 That Actually Works
@@ -39,22 +39,6 @@ const Hero = () => {
                 Start Your Project
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
-            </div>
-
-            {/* Trust Indicators */}
-            <div className="flex flex-wrap justify-center items-center gap-12 text-white/60">
-              <div className="flex items-center gap-3 hover:text-white/80 transition-colors">
-                <Shield className="h-6 w-6 text-orange" />
-                <span className="font-medium">SSL Secured</span>
-              </div>
-              <div className="flex items-center gap-3 hover:text-white/80 transition-colors">
-                <Zap className="h-6 w-6 text-orange" />
-                <span className="font-medium">Lightning Fast</span>
-              </div>
-              <div className="flex items-center gap-3 hover:text-white/80 transition-colors">
-                <Award className="h-6 w-6 text-orange" />
-                <span className="font-medium">5-Star Service</span>
-              </div>
             </div>
           </div>
         </div>

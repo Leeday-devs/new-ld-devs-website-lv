@@ -57,18 +57,14 @@ const CustomerPortal = () => {
   ];
 
   return (
-    <section className="py-20 px-4 bg-gradient-to-br from-background via-background to-accent/5">
+    <section className="py-20 px-4 bg-white">
       <div className="container mx-auto max-w-7xl">
         {/* Header */}
         <div className="text-center mb-16">
-          <Badge variant="secondary" className="mb-4">
-            <Users className="h-4 w-4 mr-2" />
-            Customer Portal
-          </Badge>
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-primary bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-navy">
             Your Project Command Center
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed">
             Experience complete transparency and control over your projects with our powerful customer portal. 
             Stay connected, informed, and in control every step of the way.
           </p>
@@ -77,15 +73,15 @@ const CustomerPortal = () => {
         {/* Features Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {features.map((feature, index) => (
-            <Card key={index} className="card-premium group hover:scale-105 transition-all duration-300">
+            <Card key={index} className="bg-white border border-border-light shadow-sm hover:shadow-lg hover:scale-105 transition-all duration-300">
               <CardContent className="p-6">
                 <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 p-3 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                  <div className="flex-shrink-0 p-3 rounded-lg bg-orange text-white">
                     {feature.icon}
                   </div>
                   <div>
-                    <h3 className="font-semibold text-lg mb-2">{feature.title}</h3>
-                    <p className="text-muted-foreground text-sm leading-relaxed">
+                    <h3 className="font-semibold text-lg mb-2 text-navy">{feature.title}</h3>
+                    <p className="text-text-secondary text-sm leading-relaxed">
                       {feature.description}
                     </p>
                   </div>
@@ -98,30 +94,30 @@ const CustomerPortal = () => {
         {/* Benefits Section */}
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div>
-            <h3 className="text-3xl font-bold mb-6">Why Our Customers Love It</h3>
+            <h3 className="text-3xl font-bold mb-6 text-navy">Why Our Customers Love It</h3>
             <div className="grid gap-4">
               {benefits.map((benefit, index) => (
                 <div key={index} className="flex items-center gap-3">
-                  <CheckCircle className="h-5 w-5 text-primary flex-shrink-0" />
-                  <span className="text-muted-foreground">{benefit}</span>
+                  <CheckCircle className="h-5 w-5 text-orange flex-shrink-0" />
+                  <span className="text-text-secondary">{benefit}</span>
                 </div>
               ))}
             </div>
           </div>
           
-          <Card className="card-premium">
+          <Card className="bg-white border border-border-light shadow-lg">
             <CardContent className="p-8 text-center">
               <div className="mb-6">
-                <div className="inline-flex p-4 rounded-full bg-primary/10 mb-4">
-                  <Clock className="h-8 w-8 text-primary" />
+                <div className="inline-flex p-4 rounded-full bg-orange/10 mb-4">
+                  <Clock className="h-8 w-8 text-orange" />
                 </div>
-                <h4 className="text-2xl font-bold mb-2">Save 40% of Your Time</h4>
-                <p className="text-muted-foreground">
+                <h4 className="text-2xl font-bold mb-2 text-navy">Save 40% of Your Time</h4>
+                <p className="text-text-secondary">
                   Our portal eliminates back-and-forth emails and phone calls, 
                   giving you instant access to everything you need.
                 </p>
               </div>
-              <Button className="btn-premium w-full">
+              <Button className="bg-orange hover:bg-orange/90 text-white w-full">
                 Access Your Portal
               </Button>
             </CardContent>
