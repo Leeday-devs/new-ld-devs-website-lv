@@ -92,16 +92,29 @@ const Services = () => {
 
         {/* Services Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service, index) => (
-            <div
-              key={index}
-              className={`card-premium p-8 group ${service.pricingCategory || service.isTemplates ? 'cursor-pointer hover:shadow-xl transition-all duration-300' : ''}`}
-              onClick={() => handleServiceClick(service.pricingCategory, service.isTemplates)}
-            >
-              {/* Icon */}
-              <div className="mb-6">
-                <service.icon className="h-12 w-12 text-orange" />
-              </div>
+          {services.map((service, index) => {
+            // Define color schemes for each service
+            const colorSchemes = [
+              { bg: 'bg-gradient-to-br from-orange/5 to-orange/10', border: 'border-l-4 border-l-orange', icon: 'text-orange' },
+              { bg: 'bg-gradient-to-br from-blue-500/5 to-blue-600/10', border: 'border-l-4 border-l-blue-500', icon: 'text-blue-500' },
+              { bg: 'bg-gradient-to-br from-emerald-500/5 to-emerald-600/10', border: 'border-l-4 border-l-emerald-500', icon: 'text-emerald-500' },
+              { bg: 'bg-gradient-to-br from-purple-500/5 to-purple-600/10', border: 'border-l-4 border-l-purple-500', icon: 'text-purple-500' },
+              { bg: 'bg-gradient-to-br from-indigo-500/5 to-indigo-600/10', border: 'border-l-4 border-l-indigo-500', icon: 'text-indigo-500' },
+              { bg: 'bg-gradient-to-br from-pink-500/5 to-pink-600/10', border: 'border-l-4 border-l-pink-500', icon: 'text-pink-500' }
+            ];
+            
+            const colorScheme = colorSchemes[index % colorSchemes.length];
+            
+            return (
+              <div
+                key={index}
+                className={`card-premium p-8 group relative overflow-hidden ${colorScheme.bg} ${colorScheme.border} ${service.pricingCategory || service.isTemplates ? 'cursor-pointer hover:shadow-xl transition-all duration-300' : ''}`}
+                onClick={() => handleServiceClick(service.pricingCategory, service.isTemplates)}
+              >
+                {/* Icon */}
+                <div className="mb-6">
+                  <service.icon className={`h-12 w-12 ${colorScheme.icon}`} />
+                </div>
 
               {/* Title */}
               <h3 className="heading-primary heading-md mb-4 text-navy">
@@ -140,8 +153,9 @@ const Services = () => {
                   </span>
                 </div>
               )}
-            </div>
-          ))}
+              </div>
+            );
+          })}
         </div>
 
         {/* CTA Section */}
