@@ -645,11 +645,17 @@ const WebsiteTemplates = () => {
                             loading="lazy"
                           />
                           {/* Preview Overlay */}
-                          <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                          <a
+                            href={template.demoUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={`Open live preview of ${template.name}`}
+                            className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
+                          >
                             <div className="bg-white/90 backdrop-blur-sm rounded-full p-4 border border-white/50 opacity-0 group-hover:opacity-100 transform scale-75 group-hover:scale-100 transition-all duration-300">
                               <Eye className="h-6 w-6 text-primary" />
                             </div>
-                          </div>
+                          </a>
                         </>
                       ) : (
                         <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
@@ -706,14 +712,16 @@ const WebsiteTemplates = () => {
                         {/* Enhanced Action Buttons */}
                         <div className="flex flex-col gap-3">
                           <Button 
+                            asChild
                             variant="outline" 
                             className="w-full border-2 border-primary/20 hover:border-primary/40 hover:bg-primary/5 transition-all duration-300 group/btn"
-                            onClick={() => window.open(window.location.origin + template.demoUrl, '_blank')}
                             disabled={template.demoUrl === "#"}
                           >
-                            <Eye className="mr-2 h-4 w-4 group-hover/btn:scale-110 transition-transform" />
-                            Preview Full Website
-                            <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
+                            <a href={template.demoUrl === "#" ? undefined : template.demoUrl} target="_blank" rel="noopener noreferrer">
+                              <Eye className="mr-2 h-4 w-4 group-hover/btn:scale-110 transition-transform" />
+                              Preview Full Website
+                              <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
+                            </a>
                           </Button>
                           
                           <Button 
