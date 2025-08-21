@@ -1,8 +1,25 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, memo, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, ChevronDown, Star, Shield, Award } from "lucide-react";
 import { Link } from "react-router-dom";
 import AuthButton from "./AuthButton";
+
+// Move navigation items outside component to prevent recreating on every render
+const primaryNavItems = [
+  { label: "Home", href: "/", isInternal: true },
+  { label: "Services", href: "#services", isInternal: false },
+  { label: "Pre-Built", href: "/templates", isInternal: true },
+  { label: "Blog", href: "/blog", isInternal: true },
+  { label: "About", href: "#about", isInternal: false }
+];
+
+const dropdownItems = [
+  { label: "Portfolio", href: "#portfolio", isInternal: false },
+  { label: "FAQ", href: "#faq", isInternal: false },
+  { label: "Contact", href: "#contact", isInternal: false }
+];
+
+const allNavItems = [...primaryNavItems, ...dropdownItems];
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -15,25 +32,21 @@ const Navigation = () => {
       setIsScrolled(window.scrollY > 100);
     };
     
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    // Throttle scroll events for better performance
+    let ticking = false;
+    const throttledScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+    
+    window.addEventListener('scroll', throttledScroll, { passive: true });
+    return () => window.removeEventListener('scroll', throttledScroll);
   }, []);
-
-  const primaryNavItems = [
-    { label: "Home", href: "/", isInternal: true },
-    { label: "Services", href: "#services", isInternal: false },
-    { label: "Pre-Built", href: "/templates", isInternal: true },
-    { label: "Blog", href: "/blog", isInternal: true },
-    { label: "About", href: "#about", isInternal: false }
-  ];
-
-  const dropdownItems = [
-    { label: "Portfolio", href: "#portfolio", isInternal: false },
-    { label: "FAQ", href: "#faq", isInternal: false },
-    { label: "Contact", href: "#contact", isInternal: false }
-  ];
-
-  const allNavItems = [...primaryNavItems, ...dropdownItems];
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -44,9 +57,23 @@ const Navigation = () => {
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    if (isDropdownOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => document.removeEventListener('mousedown', handleClickOutside);
+    }
   }, [isDropdownOpen]);
+
+  const handleMenuClose = useCallback(() => {
+    setIsMenuOpen(false);
+  }, []);
+
+  const handleDropdownClose = useCallback(() => {
+    setIsDropdownOpen(false);
+  }, []);
+
+  const handleWhatsAppClick = useCallback(() => {
+    window.open('https://wa.me/447586266007', '_blank');
+  }, []);
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -128,7 +155,7 @@ const Navigation = () => {
                         to={item.href}
                         className="flex items-center px-4 py-3 text-sm text-white/80 hover:text-orange hover:bg-orange/10 rounded-lg transition-smooth font-medium animate-slide-in-left"
                         style={{ animationDelay: `${index * 0.1}s` }}
-                        onClick={() => setIsDropdownOpen(false)}
+                        onClick={handleDropdownClose}
                       >
                         {item.label}
                       </Link>
@@ -138,7 +165,7 @@ const Navigation = () => {
                         href={item.href}
                         className="flex items-center px-4 py-3 text-sm text-white/80 hover:text-orange hover:bg-orange/10 rounded-lg transition-smooth font-medium animate-slide-in-left"
                         style={{ animationDelay: `${index * 0.1}s` }}
-                        onClick={() => setIsDropdownOpen(false)}
+                        onClick={handleDropdownClose}
                       >
                         {item.label}
                       </a>
@@ -161,7 +188,7 @@ const Navigation = () => {
             </div>
             <Button 
               className="btn-premium hover-glow px-6 py-3 rounded-full font-bold text-sm tracking-wide shadow-button"
-              onClick={() => window.open('https://wa.me/447586266007', '_blank')}
+              onClick={handleWhatsAppClick}
             >
               Start Your Project
             </Button>
@@ -212,7 +239,7 @@ const Navigation = () => {
                     to={item.href}
                     className="block px-6 py-3 text-muted-foreground hover:text-primary hover:bg-primary/5 transition-smooth font-semibold tracking-wide animate-slide-in-left rounded-lg mx-2"
                     style={{ animationDelay: `${index * 0.1}s` }}
-                    onClick={() => setIsMenuOpen(false)}
+                    onClick={handleMenuClose}
                   >
                     {item.label}
                   </Link>
@@ -222,7 +249,7 @@ const Navigation = () => {
                     href={item.href}
                     className="block px-6 py-3 text-muted-foreground hover:text-primary hover:bg-primary/5 transition-smooth font-semibold tracking-wide animate-slide-in-left rounded-lg mx-2"
                     style={{ animationDelay: `${index * 0.1}s` }}
-                    onClick={() => setIsMenuOpen(false)}
+                    onClick={handleMenuClose}
                   >
                     {item.label}
                   </a>
@@ -232,7 +259,7 @@ const Navigation = () => {
               <div className="px-4 pt-4 mt-4 border-t border-border/30 animate-fade-in-up stagger-delay-5">
                 <Button 
                   className="btn-premium w-full py-4 rounded-full font-bold text-sm tracking-wide shadow-button"
-                  onClick={() => window.open('https://wa.me/447586266007', '_blank')}
+                  onClick={handleWhatsAppClick}
                 >
                   Start Your Project
                 </Button>
@@ -245,4 +272,4 @@ const Navigation = () => {
   );
 };
 
-export default Navigation;
+export default memo(Navigation);

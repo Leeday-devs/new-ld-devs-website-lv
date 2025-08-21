@@ -2,7 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/hooks/useAuth';
 import { User, LogOut } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, memo } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import {
   DropdownMenu,
@@ -50,12 +50,10 @@ const AuthButton = () => {
   };
 
   const handleGoDashboard = () => {
-    console.log('[AuthButton] navigate to', dashboardLink);
     navigate(dashboardLink);
   };
 
   const handleSignOut = async () => {
-    console.log('[AuthButton] sign out clicked');
     await signOut();
     navigate('/');
   };
@@ -121,4 +119,4 @@ const AuthButton = () => {
   );
 };
 
-export default AuthButton;
+export default memo(AuthButton);

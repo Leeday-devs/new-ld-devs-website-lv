@@ -22,7 +22,6 @@ export const PaymentButton = ({
     toast
   } = useToast();
   const handlePayment = async () => {
-    console.log('Payment button clicked');
     setLoading(true);
     
     // If a payment link is provided, redirect directly to it
@@ -62,9 +61,6 @@ export const PaymentButton = ({
       } = await supabase.functions.invoke('create-payment', {
         body: requestBody
       });
-      
-      console.log('Payment response:', { data, error });
-      
       if (error) {
         throw error;
       }

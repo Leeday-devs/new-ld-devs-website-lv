@@ -30,20 +30,15 @@ const UnifiedAuth = () => {
   const checkUserRoleAndRedirect = async () => {
     if (!user) return;
     
-    console.log('Checking user role for user:', user.id);
-    
     try {
       // Check if user is admin
       const { data: profile, error: profileError } = await supabase
         .from('profiles')
         .select('role')
-        .eq('user_id', user.id)
-        .maybeSingle();
-
-      console.log('Profile data:', profile, 'Profile error:', profileError);
+      .eq('user_id', user.id)
+      .maybeSingle();
 
       if (profile?.role === 'admin') {
-        console.log('User is admin, redirecting to admin panel');
         navigate('/admin/panel');
         return;
       }
@@ -52,18 +47,14 @@ const UnifiedAuth = () => {
       const { data: customer, error: customerError } = await supabase
         .from('customers')
         .select('id, approval_status')
-        .eq('user_id', user.id)
-        .maybeSingle();
-      
-      console.log('Customer data:', customer, 'Customer error:', customerError);
+      .eq('user_id', user.id)
+      .maybeSingle();
       
       if (customer) {
         if (customer.approval_status === 'approved') {
-          console.log('User is approved customer, redirecting to dashboard');
           navigate('/dashboard');
           return;
         } else if (customer.approval_status === 'pending') {
-          console.log('User is pending approval');
           toast({
             title: 'Account Pending Approval',
             description: 'Your account is awaiting admin approval. You will be notified once approved.',
@@ -71,7 +62,6 @@ const UnifiedAuth = () => {
           });
           return;
         } else if (customer.approval_status === 'declined') {
-          console.log('User account was declined');
           toast({
             title: 'Account Declined',
             description: 'Your account request has been declined. Please contact support for more information.',
@@ -80,9 +70,8 @@ const UnifiedAuth = () => {
           return;
         }
       }
-
+      
       // If no specific role found, go to home
-      console.log('No specific role found, redirecting to home');
       navigate('/');
     } catch (error) {
       console.error('Error checking user role:', error);
@@ -143,7 +132,6 @@ const UnifiedAuth = () => {
         } else {
           // Create customer profile after successful signup
           const customerId = await createCustomerProfile();
-          console.log('Customer ID created:', customerId);
           
           // Send Discord notification for new customer signup with buttons
           if (customerId) {

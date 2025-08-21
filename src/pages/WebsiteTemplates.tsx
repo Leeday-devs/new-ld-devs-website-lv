@@ -16,6 +16,7 @@ import { useToast } from "@/hooks/use-toast";
 
 const WebsiteTemplates = () => {
   const { toast } = useToast();
+  const [loading, setLoading] = useState(false);
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [isBusinessDetailsOpen, setIsBusinessDetailsOpen] = useState(false);
   const [selectedTemplate, setSelectedTemplate] = useState<any>(null);
@@ -50,8 +51,7 @@ const WebsiteTemplates = () => {
     
     if (!selectedTemplate) return;
     
-    console.log('Starting payment process for template:', selectedTemplate.name);
-    console.log('Template data:', selectedTemplate);
+    setLoading(true);
     
     try {
       // Send Discord notification first
@@ -71,12 +71,11 @@ const WebsiteTemplates = () => {
       }
 
       const requestBody = {
-        // Use Stripe product key if available, otherwise fall back to price
         ...(selectedTemplate.stripeProductKey 
           ? { 
               stripeProductKey: selectedTemplate.stripeProductKey,
               serviceName: `${selectedTemplate.name} Website Template`,
-              templatePrice: selectedTemplate.price // Pass the actual price
+              templatePrice: selectedTemplate.price
             }
           : { 
               amount: parseInt(selectedTemplate.price.replace('£', '')) * 100,
@@ -93,23 +92,16 @@ const WebsiteTemplates = () => {
         successUrl: `${window.location.origin}/payment-success?template=${encodeURIComponent(selectedTemplate.name)}`,
         cancelUrl: `${window.location.origin}/payment-canceled`
       };
-      
-      console.log('Sending payment request:', requestBody);
-      
+
       const { data, error } = await supabase.functions.invoke('create-payment', {
         body: requestBody
       });
       
-      console.log('Payment response:', { data, error });
-      
       if (error) {
-        console.error('Payment function error:', error);
         throw error;
       }
       
       if (data?.url) {
-        console.log('Redirecting to Stripe checkout:', data.url);
-        // Open Stripe checkout in a new tab
         window.open(data.url, '_blank');
         setIsBusinessDetailsOpen(false);
         
@@ -118,7 +110,6 @@ const WebsiteTemplates = () => {
           description: "Opening secure payment window..."
         });
       } else {
-        console.error('No checkout URL received from payment function');
         throw new Error('No checkout URL received');
       }
     } catch (error) {
@@ -128,6 +119,8 @@ const WebsiteTemplates = () => {
         description: "Failed to process payment. Please try again.",
         variant: "destructive"
       });
+    } finally {
+      setLoading(false);
     }
   };
 

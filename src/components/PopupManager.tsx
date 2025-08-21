@@ -26,10 +26,7 @@ export const PopupManager = () => {
     }
   });
 
-  // Cookie consent bar handles its own visibility; no need to queue
-  useEffect(() => {
-    // Intentionally left blank to avoid duplicate cookie prompts
-  }, []);
+  // Cookie consent handled by CookieConsentBar component
 
   // Promo modal - can be triggered programmatically
   // Example: queuePopup('promo-offer', { title: 'Special Deal!', offer: '50% off' });

@@ -1,6 +1,7 @@
 
-import { Code, Palette, Search, ShoppingCart, Server, BarChart, CheckCircle, Globe, Smartphone, Brain } from "lucide-react";
+import { Code, ShoppingCart, Server, CheckCircle, Globe, Smartphone, Brain } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { memo } from "react";
 
 const Services = () => {
   const navigate = useNavigate();
@@ -157,4 +158,4 @@ const Services = () => {
   );
 };
 
-export default Services;
+export default memo(Services);
