@@ -1,5 +1,5 @@
 // Simple Service Worker for Performance Optimization
-const CACHE_NAME = 'ld-development-v1';
+const CACHE_NAME = 'ld-development-v3';
 const STATIC_ASSETS = [
   '/',
   'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap'
@@ -36,56 +36,54 @@ self.addEventListener('activate', (event) => {
 });
 
 // Fetch event - serve from cache when possible
+// Fetch event - smarter strategy to avoid stale JS chunks
 self.addEventListener('fetch', (event) => {
-  // Only handle GET requests
-  if (event.request.method !== 'GET') {
+  // Only handle GET HTTP requests
+  if (event.request.method !== 'GET' || !event.request.url.startsWith('http')) {
     return;
   }
 
-  // Skip non-HTTP requests
-  if (!event.request.url.startsWith('http')) {
-    return;
-  }
+  const dest = event.request.destination;
 
-  event.respondWith(
-    caches.match(event.request)
-      .then((response) => {
-        // Return cached version or fetch from network
-        if (response) {
+  // Network-first for HTML documents and JS/Workers to prevent stale chunk errors
+  if (dest === 'document' || dest === 'script' || dest === 'worker') {
+    event.respondWith(
+      fetch(event.request)
+        .then((response) => {
+          // Optionally cache the root document for offline fallback
+          if (dest === 'document' && response && response.status === 200) {
+            const copy = response.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
+          }
           return response;
-        }
+        })
+        .catch(async () => {
+          // Fallback to cache only if network fails
+          const cached = await caches.match(event.request);
+          if (cached) return cached;
+          if (dest === 'document') return caches.match('/');
+        })
+    );
+    return;
+  }
 
+  // Cache-first for styles, images, and fonts
+  if (dest === 'style' || dest === 'image' || dest === 'font') {
+    event.respondWith(
+      caches.match(event.request).then((cached) => {
+        if (cached) return cached;
         return fetch(event.request).then((response) => {
-          // Don't cache non-successful responses
-          if (!response || response.status !== 200 || response.type !== 'basic') {
-            return response;
+          if (response && response.status === 200) {
+            const copy = response.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
           }
-
-          // Clone the response
-          const responseToCache = response.clone();
-
-          // Cache images and static assets
-          if (
-            event.request.url.includes('/assets/') ||
-            event.request.url.includes('.jpg') ||
-            event.request.url.includes('.png') ||
-            event.request.url.includes('.css') ||
-            event.request.url.includes('.js')
-          ) {
-            caches.open(CACHE_NAME)
-              .then((cache) => {
-                cache.put(event.request, responseToCache);
-              });
-          }
-
           return response;
         });
       })
-      .catch(() => {
-        // Fallback for offline scenarios
-        if (event.request.destination === 'document') {
-          return caches.match('/');
-        }
-      })
-  );
+    );
+    return;
+  }
+
+  // Default: just fetch from network
+  event.respondWith(fetch(event.request));
 });
