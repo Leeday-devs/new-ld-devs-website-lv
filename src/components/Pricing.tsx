@@ -263,6 +263,9 @@ const Pricing = () => {
                         + {plan.monthlyPrice}/month
                       </span>
                     )}
+                    <p className="text-sm text-text-secondary mt-2">
+                      Payment Options Available
+                    </p>
                   </div>
                 </div>
 
