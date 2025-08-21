@@ -239,7 +239,7 @@ const WebsiteTemplates = () => {
       id: 5,
       name: "Fitness Studio",
       description: "Dynamic fitness center website with class schedules and membership plans",
-      price: "£400",
+      price: "£800",
       monthlyPrice: "£40/month",
       image: "/api/placeholder/400/300",
       category: "Health & Fitness",
