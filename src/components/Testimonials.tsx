@@ -15,7 +15,7 @@ const Testimonials = () => {
       name: "Sarah Johnson",
       company: "TechStart Solutions",
       role: "CEO",
-      quote: "Lee Day Devs transformed our entire business. Our conversion rate increased by 400% in just 3 months. The results speak for themselves.",
+      quote: "Lee is fantastic! He is quick at responding and is always willing to try and find a solution to the problem, even if that means creating his own software/platform. We have been throughly impressed with Lee's work and very grateful for all his help. Highly recommend!",
       rating: 5,
       image: sarahImage
     },
