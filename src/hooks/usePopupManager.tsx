@@ -15,7 +15,6 @@ interface PopupQueueItem {
 }
 
 export const usePopupManager = () => {
-  console.log('usePopupManager called');
   const [activePopup, setActivePopup] = useState<PopupQueueItem | null>(null);
   const [popupQueue, setPopupQueue] = useState<PopupQueueItem[]>([]);
   const [isPopupOpen, setIsPopupOpen] = useState(false);

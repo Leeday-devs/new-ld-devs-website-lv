@@ -83,7 +83,6 @@ const AuthButton = () => {
           </DropdownMenuItem>
           <DropdownMenuSeparator className="bg-white/10" />
           <DropdownMenuItem
-            onSelect={handleGoDashboard}
             onClick={handleGoDashboard}
             className="flex items-center gap-2 cursor-pointer text-white/80 hover:text-orange hover:bg-orange/10 transition-all duration-200 px-3 py-2 rounded-lg"
           >
@@ -92,7 +91,6 @@ const AuthButton = () => {
           </DropdownMenuItem>
           <DropdownMenuSeparator className="bg-white/10" />
           <DropdownMenuItem 
-            onSelect={handleSignOut}
             onClick={handleSignOut}
             className="gap-2 text-red-400 hover:text-red-300 hover:bg-red-500/10 transition-all duration-200 cursor-pointer px-3 py-2 rounded-lg"
           >

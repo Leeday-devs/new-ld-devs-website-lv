@@ -9,9 +9,7 @@ import { PromoModal } from '@/components/PromoModal';
 import { CookieConsentBar } from '@/components/CookieConsentBar';
 
 export const PopupManager = () => {
-  console.log('PopupManager render');
   const { activePopup, isPopupOpen, queuePopup, closePopup, isFormPage, isMobile } = usePopupManager();
-  console.log('PopupManager hooks loaded');
 
   // Entry banner triggers (6-8s delay or 40% scroll)
   useScrollTrigger({
