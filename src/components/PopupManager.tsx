@@ -9,13 +9,7 @@ import { CookieConsentBar } from '@/components/CookieConsentBar';
 export const PopupManager = () => {
   const { activePopup, isPopupOpen, queuePopup, closePopup, isFormPage, isMobile } = usePopupManager();
 
-  // Entry banner triggers (6-8s delay or 40% scroll)
-  useScrollTrigger({
-    onTrigger: () => queuePopup('lead-capture'),
-    scrollPercent: 40,
-    timeDelay: Math.random() * 2000 + 6000, // Random between 6-8 seconds
-    enabled: !isFormPage,
-  });
+  // Lead capture popup removed
 
 
   // Cookie consent handled by CookieConsentBar component
@@ -30,11 +24,7 @@ export const PopupManager = () => {
 
       {/* Cookie Preferences Modal - Remove this line since CookiePreferences manages its own state */}
 
-      {/* Lead Capture Modal */}
-      <LeadCaptureModal
-        isOpen={isPopupOpen && activePopup?.type === 'lead-capture'}
-        onClose={closePopup}
-      />
+      {/* Lead Capture Modal - Removed */}
 
       {/* Contact Quote Modal */}
       <ContactQuoteModal
