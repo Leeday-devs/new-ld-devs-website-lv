@@ -36,7 +36,7 @@ const Hero = () => {
             </h1>
             
             <p className="text-body mb-12 max-w-3xl mx-auto text-white/80 text-xl leading-relaxed">
-              Premium <span className="text-orange font-semibold">website</span> development and <span className="text-orange font-semibold">AI</span> services from the <span className="text-orange font-semibold">UK</span> for businesses. 
+              Premium <span className="text-orange font-semibold">Website</span> development and <span className="text-orange font-semibold">AI</span> services from the <span className="text-orange font-semibold">UK</span> for businesses. 
               We create fast, secure, and beautiful websites that drive real results.
             </p>
             
