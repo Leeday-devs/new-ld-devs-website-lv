@@ -1,3 +1,4 @@
+
 import { Code, Palette, Search, ShoppingCart, Server, BarChart, CheckCircle, Globe, Smartphone, Brain } from "lucide-react";
 
 const Services = () => {
@@ -6,39 +7,65 @@ const Services = () => {
       icon: Code,
       title: "Website Development",
       description: "Custom websites built with modern technology. Fast, responsive, and optimized for your business needs.",
-      features: ["Responsive Design", "Fast Loading", "SEO Optimized", "Mobile Friendly", "SSL Secured"]
+      features: ["Responsive Design", "Fast Loading", "SEO Optimized", "Mobile Friendly", "SSL Secured"],
+      pricingCategory: "websites"
     },
     {
       icon: ShoppingCart,
       title: "E-commerce Solutions",  
       description: "Complete online stores with secure payments, inventory management, and customer accounts.",
-      features: ["Payment Integration", "Product Management", "Order Tracking", "Customer Accounts", "Analytics"]
+      features: ["Payment Integration", "Product Management", "Order Tracking", "Customer Accounts", "Analytics"],
+      pricingCategory: "websites"
     },
     {
-      icon: Search,
-      title: "SEO & Marketing",
-      description: "Get found online with our SEO services and digital marketing strategies that drive results.",
-      features: ["Keyword Research", "Content Strategy", "Local SEO", "Performance Tracking", "Monthly Reports"]
+      icon: BarChart,
+      title: "Web Analytics & Reporting",
+      description: "Comprehensive analytics and performance reports to track your website's success and user behavior.",
+      features: ["Traffic Analysis", "User Behavior Tracking", "Conversion Monitoring", "Monthly Reports", "ROI Insights"]
     },
     {
       icon: Server,
       title: "Hosting & Maintenance",
       description: "Reliable hosting with 24/7 monitoring, regular backups, and ongoing maintenance support.",
-      features: ["99.9% Uptime", "Daily Backups", "Security Updates", "Performance Monitoring", "Technical Support"]
+      features: ["99.9% Uptime", "Daily Backups", "Security Updates", "Performance Monitoring", "Technical Support"],
+      pricingCategory: "software"
     },
     {
       icon: Smartphone,
-      title: "Mobile Apps",
+      title: "Apps",
       description: "Native and cross-platform mobile applications that work seamlessly across all devices.",
-      features: ["iOS & Android", "Cross-Platform", "App Store Deployment", "Push Notifications", "Offline Support"]
+      features: ["iOS & Android", "Cross-Platform", "App Store Deployment", "Push Notifications", "Offline Support"],
+      pricingCategory: "mobile"
     },
     {
       icon: Brain,
       title: "AI Integration",
       description: "Smart automation and AI-powered features to streamline your business operations.",
-      features: ["Chatbots", "Process Automation", "Data Analysis", "Smart Workflows", "AI Content"]
+      features: ["Chatbots", "Process Automation", "Data Analysis", "Smart Workflows", "AI Content"],
+      pricingCategory: "ai"
     }
   ];
+
+  const handleServiceClick = (pricingCategory?: string) => {
+    if (pricingCategory) {
+      // First scroll to pricing section
+      const pricingSection = document.getElementById('pricing');
+      if (pricingSection) {
+        pricingSection.scrollIntoView({ behavior: 'smooth' });
+        
+        // Wait for scroll to complete, then trigger category switch
+        setTimeout(() => {
+          // Find and click the appropriate category button
+          const categoryButtons = document.querySelectorAll('[data-category]');
+          categoryButtons.forEach(button => {
+            if (button.getAttribute('data-category') === pricingCategory) {
+              (button as HTMLElement).click();
+            }
+          });
+        }, 1000);
+      }
+    }
+  };
 
   return (
     <section id="services" className="section-white py-20" aria-label="Our web development services">
@@ -58,7 +85,8 @@ const Services = () => {
           {services.map((service, index) => (
             <div
               key={index}
-              className="card-premium p-8 group"
+              className={`card-premium p-8 group ${service.pricingCategory ? 'cursor-pointer hover:shadow-xl transition-all duration-300' : ''}`}
+              onClick={() => handleServiceClick(service.pricingCategory)}
             >
               {/* Icon */}
               <div className="mb-6">
@@ -84,6 +112,15 @@ const Services = () => {
                   </li>
                 ))}
               </ul>
+
+              {/* Click indicator for cards with pricing */}
+              {service.pricingCategory && (
+                <div className="mt-6 text-center">
+                  <span className="text-sm text-orange font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    Click to see pricing →
+                  </span>
+                </div>
+              )}
             </div>
           ))}
         </div>

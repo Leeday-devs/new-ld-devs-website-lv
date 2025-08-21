@@ -223,6 +223,7 @@ const Pricing = () => {
               return (
                 <button
                   key={category.id}
+                  data-category={category.id}
                   onClick={() => setActiveCategory(category.id)}
                   className={`flex items-center space-x-2 px-6 py-3 rounded-xl font-medium transition-all duration-300 ${
                     activeCategory === category.id
