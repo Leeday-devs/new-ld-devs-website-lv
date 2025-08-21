@@ -26,14 +26,10 @@ export const PopupManager = () => {
     }
   });
 
-  // Cookie consent - show immediately if not given
+  // Cookie consent bar handles its own visibility; no need to queue
   useEffect(() => {
-    // Small delay to let page load
-    setTimeout(() => {
-      console.debug('[PopupManager] queuing cookie-consent');
-      queuePopup('cookie-consent');
-    }, 500);
-  }, [queuePopup]);
+    // Intentionally left blank to avoid duplicate cookie prompts
+  }, []);
 
   // Promo modal - can be triggered programmatically
   // Example: queuePopup('promo-offer', { title: 'Special Deal!', offer: '50% off' });
