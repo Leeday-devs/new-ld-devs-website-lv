@@ -641,26 +641,8 @@ const WebsiteTemplates = () => {
                               loading="lazy"
                             />
                             
-                            {/* Interactive Overlay */}
-                            <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center backdrop-blur-sm">
-                              <div className="flex gap-3">
-                                <Link
-                                  to={template.demoUrl}
-                                  target="_blank"
-                                  className="bg-white/90 hover:bg-white text-primary px-4 py-2 rounded-full font-semibold text-sm transition-all duration-200 hover:scale-105 shadow-lg"
-                                >
-                                  <Eye className="w-4 h-4 inline mr-2" />
-                                  View Demo
-                                </Link>
-                                <Button
-                                  onClick={() => handleBuyNow(template)}
-                                  size="sm"
-                                  className="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-full font-semibold text-sm transition-all duration-200 hover:scale-105 shadow-lg"
-                                >
-                                  <CreditCard className="w-4 h-4 inline mr-2" />
-                                  Buy Now
-                                </Button>
-                              </div>
+                            {/* Interactive Overlay - Removed buttons */}
+                            <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-all duration-300 backdrop-blur-sm">
                             </div>
                           </>
                         ) : (
@@ -725,40 +707,15 @@ const WebsiteTemplates = () => {
                           </div>
                         </div>
 
-                        {/* Pricing & CTA */}
-                        <div className="flex flex-col gap-3">
-                          <div className="flex justify-between items-center">
-                            <div>
-                              <div className="text-2xl font-bold text-primary">{template.price}</div>
-                              <div className="text-xs text-white/60">+ {template.monthlyPrice} hosting</div>
-                            </div>
-                            <div className="text-right">
-                              <div className="text-xs text-white/60">One-time purchase</div>
-                              <div className="text-xs font-semibold text-destructive">Removed after sale</div>
-                            </div>
+                        {/* Pricing Only - Buttons Removed */}
+                        <div className="flex justify-between items-center">
+                          <div>
+                            <div className="text-2xl font-bold text-primary">{template.price}</div>
+                            <div className="text-xs text-white/60">+ {template.monthlyPrice} hosting</div>
                           </div>
-                          
-                          <div className="flex gap-2">
-                            {template.demoUrl !== "#" && (
-                              <Link
-                                to={template.demoUrl}
-                                target="_blank"
-                                className="flex-1"
-                              >
-                                <Button variant="outline" size="sm" className="w-full border-primary text-primary hover:bg-primary hover:text-white transition-all duration-200">
-                                  <Eye className="w-4 h-4 mr-2" />
-                                  View Demo
-                                </Button>
-                              </Link>
-                            )}
-                            <Button
-                              onClick={() => handleBuyNow(template)}
-                              size="sm"
-                              className="flex-1 bg-primary hover:bg-primary/90 text-white transition-all duration-200 hover:shadow-lg"
-                            >
-                              <CreditCard className="w-4 h-4 mr-2" />
-                              Buy Now
-                            </Button>
+                          <div className="text-right">
+                            <div className="text-xs text-white/60">One-time purchase</div>
+                            <div className="text-xs font-semibold text-destructive">Removed after sale</div>
                           </div>
                         </div>
                       </CardContent>
