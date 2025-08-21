@@ -1,9 +1,16 @@
 import { CheckCircle, Star, Crown, Code, ShoppingCart, Server, Smartphone, Brain, Monitor } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { CustomerInfoForm } from "@/components/CustomerInfoForm";
 import { useState } from "react";
+import { useToast } from "@/hooks/use-toast";
 
 const Pricing = () => {
   const [activeCategory, setActiveCategory] = useState('websites');
+  const [isFormOpen, setIsFormOpen] = useState(false);
+  const [selectedPlan, setSelectedPlan] = useState<string>('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast();
 
   const categories = [
     { id: 'websites', label: 'Websites', icon: Monitor },
@@ -198,6 +205,35 @@ const Pricing = () => {
 
   const currentPlans = allPlans[activeCategory];
 
+  const handleGetStarted = (planName: string) => {
+    setSelectedPlan(`${planName} - ${activeCategory}`);
+    setIsFormOpen(true);
+  };
+
+  const handleFormSubmit = async (customerInfo: any) => {
+    setIsSubmitting(true);
+    try {
+      // Store customer info and redirect to payment/business details
+      console.log('Customer Info:', customerInfo, 'Selected Plan:', selectedPlan);
+      
+      toast({
+        title: "Information Received!",
+        description: "We'll contact you shortly to discuss your project details.",
+      });
+      
+      setIsFormOpen(false);
+      // Could redirect to business details form or payment here
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to submit information. Please try again.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <section 
       id="pricing" 
@@ -281,7 +317,7 @@ const Pricing = () => {
                 <div className="mt-auto">
                   <button 
                     className="w-full py-4 rounded-2xl font-semibold text-lg transition-all duration-300 btn-secondary"
-                    onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                    onClick={() => handleGetStarted(plan.name)}
                   >
                     Get Started
                   </button>
@@ -315,6 +351,20 @@ const Pricing = () => {
           </p>
         </div>
       </div>
+      
+      {/* Customer Info Modal */}
+      <Dialog open={isFormOpen} onOpenChange={setIsFormOpen}>
+        <DialogContent className="max-w-md">
+          <DialogHeader>
+            <DialogTitle>Get Started with {selectedPlan}</DialogTitle>
+          </DialogHeader>
+          <CustomerInfoForm
+            serviceName={selectedPlan}
+            onSubmit={handleFormSubmit}
+            isLoading={isSubmitting}
+          />
+        </DialogContent>
+      </Dialog>
     </section>
   );
 };
