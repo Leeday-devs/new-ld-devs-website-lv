@@ -358,8 +358,8 @@ const WebsiteTemplates = () => {
             </div>
           </section>
 
-          {/* Uniqueness Guarantee Section - White Background */}
-          <section className="section-white">
+          {/* Uniqueness Guarantee Section - Navy Background */}
+          <section className="section-navy">
             <div className="container mx-auto px-4">
               <div className="bg-gradient-to-r from-primary/5 via-primary/10 to-primary/5 rounded-3xl p-8 md:p-12 border-2 border-primary/20">
                 <div className="max-w-4xl mx-auto text-center">
@@ -406,12 +406,12 @@ const WebsiteTemplates = () => {
             </div>
           </section>
 
-          {/* What You Get Section - Grey Background */}
-          <section className="section-grey">
+          {/* What You Get Section - Navy Background */}
+          <section className="section-navy">
             <div className="container mx-auto px-4">
               <div className="text-center mb-16">
-                <h2 className="heading-primary heading-lg mb-6">What's Included in Your Pre-Built Website</h2>
-                <p className="text-body max-w-2xl mx-auto">
+                <h2 className="heading-primary heading-lg mb-6 text-white">What's Included in Your Pre-Built Website</h2>
+                <p className="text-xl text-white/90 max-w-2xl mx-auto">
                 Every pre-built website comes as a complete 5-page package, professionally designed and ready to customize for your business.
                 </p>
               </div>
@@ -425,8 +425,8 @@ const WebsiteTemplates = () => {
                         <FileText className="h-5 w-5 text-primary" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-lg mb-2 text-foreground">5 Complete Pages</h3>
-                        <p className="text-muted-foreground">Home, About, Services, Portfolio/Gallery, and Contact pages - everything your business needs to get started online.</p>
+                        <h3 className="font-semibold text-lg mb-2 text-white">5 Complete Pages</h3>
+                        <p className="text-white/70">Home, About, Services, Portfolio/Gallery, and Contact pages - everything your business needs to get started online.</p>
                       </div>
                     </div>
 
@@ -435,8 +435,8 @@ const WebsiteTemplates = () => {
                         <Globe className="h-5 w-5 text-primary" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-lg mb-2 text-foreground">Mobile Responsive</h3>
-                        <p className="text-muted-foreground">Looks perfect on all devices - desktop, tablet, and mobile. Your customers can access your site anywhere.</p>
+                        <h3 className="font-semibold text-lg mb-2 text-white">Mobile Responsive</h3>
+                        <p className="text-white/70">Looks perfect on all devices - desktop, tablet, and mobile. Your customers can access your site anywhere.</p>
                       </div>
                     </div>
 
@@ -445,8 +445,8 @@ const WebsiteTemplates = () => {
                         <Mail className="h-5 w-5 text-primary" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-lg mb-2 text-foreground">Contact Integration</h3>
-                        <p className="text-muted-foreground">Working contact forms, Google Maps integration, and social media links to connect with your customers.</p>
+                        <h3 className="font-semibold text-lg mb-2 text-white">Contact Integration</h3>
+                        <p className="text-white/70">Working contact forms, Google Maps integration, and social media links to connect with your customers.</p>
                       </div>
                     </div>
 
@@ -455,8 +455,8 @@ const WebsiteTemplates = () => {
                         <Zap className="h-5 w-5 text-primary" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-lg mb-2 text-foreground">SEO Optimized</h3>
-                        <p className="text-muted-foreground">Built with search engine optimization in mind to help your business get found online.</p>
+                        <h3 className="font-semibold text-lg mb-2 text-white">SEO Optimized</h3>
+                        <p className="text-white/70">Built with search engine optimization in mind to help your business get found online.</p>
                       </div>
                     </div>
 
@@ -465,8 +465,8 @@ const WebsiteTemplates = () => {
                         <Star className="h-5 w-5 text-primary" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-lg mb-2 text-foreground">Full Customization</h3>
-                        <p className="text-muted-foreground">We'll customize everything — your logo, colors, content, images, and branding to match your business perfectly.</p>
+                        <h3 className="font-semibold text-lg mb-2 text-white">Full Customization</h3>
+                        <p className="text-white/70">We'll customize everything — your logo, colors, content, images, and branding to match your business perfectly.</p>
                       </div>
                     </div>
                   </div>
@@ -580,18 +580,18 @@ const WebsiteTemplates = () => {
             </div>
           </section>
 
-          {/* Pre-Built Sites Grid - White Background */}
-          <section id="templates-grid" className="section-white">
+          {/* Pre-Built Sites Grid - Navy Background */}
+          <section id="templates-grid" className="section-navy">
             <div className="container mx-auto px-4">
               <div className="text-center mb-16">
                 <div className="inline-flex items-center gap-2 bg-primary/10 px-6 py-3 rounded-full mb-6 border border-primary/20">
                   <Palette className="h-5 w-5 text-primary" />
                   <span className="text-primary font-semibold">Industry-Specific Designs</span>
                 </div>
-                <h2 className="heading-primary heading-lg mb-6">
+                <h2 className="heading-primary heading-lg mb-6 text-white">
                   Choose Your Perfect Pre-Built Website
                 </h2>
-                <p className="text-body max-w-3xl mx-auto leading-relaxed">
+                <p className="text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
                 Each design is professionally crafted and optimized for your specific industry, 
                 ensuring maximum impact and conversion for your business type.
                 </p>
@@ -759,60 +759,60 @@ const WebsiteTemplates = () => {
             </div>
           </section>
 
-          {/* FAQ Section - Grey Background */}
-          <section className="section-grey">
+          {/* FAQ Section - Navy Background */}
+          <section className="section-navy">
             <div className="container mx-auto px-4">
               <div className="text-center mb-12">
-                <h2 className="heading-primary heading-lg mb-4">Frequently Asked Questions</h2>
-                <p className="text-body">Everything you need to know about our website templates</p>
+                <h2 className="heading-primary heading-lg mb-4 text-white">Frequently Asked Questions</h2>
+                <p className="text-xl text-white/90">Everything you need to know about our website templates</p>
               </div>
 
               <div className="max-w-3xl mx-auto space-y-6">
-                <Card className="p-6">
-                  <h3 className="font-semibold text-lg mb-3 text-foreground">What happens after I buy?</h3>
-                  <p className="text-muted-foreground leading-relaxed">
+                <Card className="p-6 bg-white/10 border-primary/20 backdrop-blur-sm">
+                  <h3 className="font-semibold text-lg mb-3 text-white">What happens after I buy?</h3>
+                  <p className="text-white/70 leading-relaxed">
                     You'll fill out a short form so we can customise your new website. We'll then send you a mockup within 2 business days.
                   </p>
                 </Card>
 
-                <Card className="p-6">
-                  <h3 className="font-semibold text-lg mb-3 text-foreground">Can I change text, images and branding?</h3>
-                  <p className="text-muted-foreground leading-relaxed">
+                <Card className="p-6 bg-white/10 border-primary/20 backdrop-blur-sm">
+                  <h3 className="font-semibold text-lg mb-3 text-white">Can I change text, images and branding?</h3>
+                  <p className="text-white/70 leading-relaxed">
                     Yes — we'll customise it all for your business including your logo, colors, content, and images.
                   </p>
                 </Card>
 
-                <Card className="p-6">
-                  <h3 className="font-semibold text-lg mb-3 text-foreground">Is hosting included?</h3>
-                  <p className="text-muted-foreground leading-relaxed">
+                <Card className="p-6 bg-white/10 border-primary/20 backdrop-blur-sm">
+                  <h3 className="font-semibold text-lg mb-3 text-white">Is hosting included?</h3>
+                  <p className="text-white/70 leading-relaxed">
                     Hosting is £40/month and includes SSL certificate, regular backups, updates, and technical support.
                   </p>
                 </Card>
 
-                <Card className="p-6">
-                  <h3 className="font-semibold text-lg mb-3 text-foreground">Will my website be mobile-friendly?</h3>
-                  <p className="text-muted-foreground leading-relaxed">
+                <Card className="p-6 bg-white/10 border-primary/20 backdrop-blur-sm">
+                  <h3 className="font-semibold text-lg mb-3 text-white">Will my website be mobile-friendly?</h3>
+                  <p className="text-white/70 leading-relaxed">
                     Absolutely! All our pre-built websites are fully responsive and optimized for mobile devices.
                   </p>
                 </Card>
 
-                <Card className="p-6">
-                  <h3 className="font-semibold text-lg mb-3 text-foreground">Can I add more pages later?</h3>
-                  <p className="text-muted-foreground leading-relaxed">
+                <Card className="p-6 bg-white/10 border-primary/20 backdrop-blur-sm">
+                  <h3 className="font-semibold text-lg mb-3 text-white">Can I add more pages later?</h3>
+                  <p className="text-white/70 leading-relaxed">
                     Yes, additional pages can be added anytime for £75 per page. We'll match your existing design perfectly.
                   </p>
                 </Card>
 
-                <Card className="p-6">
-                  <h3 className="font-semibold text-lg mb-3 text-foreground">What if I'm not happy with the design?</h3>
-                  <p className="text-muted-foreground leading-relaxed">
+                <Card className="p-6 bg-white/10 border-primary/20 backdrop-blur-sm">
+                  <h3 className="font-semibold text-lg mb-3 text-white">What if I'm not happy with the design?</h3>
+                  <p className="text-white/70 leading-relaxed">
                     We offer unlimited revisions until you're 100% satisfied. Your approval is required before we make your website live.
                   </p>
                 </Card>
               </div>
 
               <div className="text-center mt-12">
-                <Button size="lg" variant="secondary" className="bg-white text-primary hover:bg-gray-100">
+                <Button size="lg" variant="secondary" className="bg-primary hover:bg-primary/90 text-white">
                   Get Started Today
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
