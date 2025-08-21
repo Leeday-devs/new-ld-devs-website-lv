@@ -40,6 +40,11 @@
     --modal-radius: 1.5rem;               /* 24px radius */
     --modal-radius-mobile: 1.25rem;       /* 20px for mobile */
     --modal-backdrop-blur: blur(6px);
+    --modal-z-index: 9999;                /* Above chat widgets/toasts */
+    
+    /* Animation Timings */
+    --modal-content-duration: 200ms;      /* 150-220ms range */
+    --modal-overlay-duration: 120ms;      /* Overlay fade */
     
     /* Helper text color */
     --text-helper: 220 9% 46%;            /* #667085 */
@@ -388,9 +393,65 @@
   .modal-overlay {
     backdrop-filter: var(--modal-backdrop-blur);
     background: hsl(var(--modal-overlay));
+    z-index: var(--modal-z-index);
   }
 
-  /* Modal Container Sizes */
+  /* Modal Content */
+  .modal-content {
+    background: hsl(var(--bg-white));
+    border-radius: var(--modal-radius);
+    box-shadow: var(--modal-shadow);
+    position: relative;
+    overflow: hidden;
+    z-index: calc(var(--modal-z-index) + 1);
+  }
+
+  /* Prevent Background Scroll */
+  .modal-open {
+    overflow: hidden;
+    padding-right: var(--scrollbar-width, 0px);
+  }
+
+  /* Modal Animations */
+  @keyframes modal-overlay-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes modal-overlay-out {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+
+  @keyframes modal-content-in {
+    from {
+      opacity: 0;
+      transform: translate(-50%, -48%) scale(0.96);
+    }
+    to {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+  }
+
+  @keyframes modal-content-out {
+    from {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    to {
+      opacity: 0;
+      transform: translate(-50%, -48%) scale(0.96);
+    }
+  }
   .modal-default {
     width: 100%;
     max-width: 42rem; /* 672px - between 560-680px */

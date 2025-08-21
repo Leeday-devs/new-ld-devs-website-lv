@@ -7,6 +7,9 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { MessageCircle, Mail, Phone, MessageSquare } from "lucide-react";
+import { useModal } from "@/hooks/useModal";
+import { usePopupFrequency } from "@/hooks/usePopupFrequency";
+import { useEffect, useState } from "react";
 
 interface ContactOptionsModalProps {
   isOpen: boolean;
@@ -14,6 +17,20 @@ interface ContactOptionsModalProps {
 }
 
 export const ContactOptionsModal = ({ isOpen, onClose }: ContactOptionsModalProps) => {
+  const { modalRef } = useModal({ isOpen, onClose });
+  const { canShowPopup, markPopupShown } = usePopupFrequency();
+  const [shouldShow, setShouldShow] = useState(false);
+
+  // Check if we should show this popup (frequency control)
+  useEffect(() => {
+    if (isOpen && canShowPopup('contact-options')) {
+      setShouldShow(true);
+      markPopupShown('contact-options');
+    } else if (!isOpen) {
+      setShouldShow(false);
+    }
+  }, [isOpen, canShowPopup, markPopupShown]);
+
   const contactOptions = [
     {
       icon: MessageCircle,
@@ -54,14 +71,27 @@ export const ContactOptionsModal = ({ isOpen, onClose }: ContactOptionsModalProp
     onClose();
   };
 
+  // Don't render if frequency control blocks it
+  if (isOpen && !shouldShow) {
+    return null;
+  }
+
+  const titleId = "contact-options-title";
+  const descriptionId = "contact-options-description";
+
   return (
-    <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="modal-small">
+    <Dialog open={isOpen && shouldShow} onOpenChange={onClose}>
+      <DialogContent 
+        ref={modalRef}
+        className="modal-small"
+        aria-labelledby={titleId}
+        aria-describedby={descriptionId}
+      >
         <DialogHeader>
-          <DialogTitle>
+          <DialogTitle id={titleId}>
             How would you like to chat?
           </DialogTitle>
-          <DialogDescription>
+          <DialogDescription id={descriptionId}>
             Choose your preferred way to get in touch with us
           </DialogDescription>
         </DialogHeader>

@@ -19,7 +19,7 @@ const DialogOverlay = React.forwardRef<
   <DialogPrimitive.Overlay
     ref={ref}
     className={cn(
-      "fixed inset-0 z-50 modal-overlay data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
+      "fixed inset-0 z-50 modal-overlay data-[state=open]:animate-[modal-overlay-in_var(--modal-overlay-duration)_ease-out] data-[state=closed]:animate-[modal-overlay-out_var(--modal-overlay-duration)_ease-out]",
       className
     )}
     {...props}
@@ -35,10 +35,13 @@ const DialogContent = React.forwardRef<
     <DialogOverlay />
     <DialogPrimitive.Content
       ref={ref}
+      role="dialog"
+      aria-modal="true"
       className={cn(
-        "fixed left-[50%] top-[50%] z-50 translate-x-[-50%] translate-y-[-50%] modal-content modal-default duration-300 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]",
+        "fixed left-[50%] top-[50%] z-50 translate-x-[-50%] translate-y-[-50%] modal-content modal-default focus:outline-none data-[state=open]:animate-[modal-content-in_var(--modal-content-duration)_ease-out] data-[state=closed]:animate-[modal-content-out_var(--modal-content-duration)_ease-out]",
         className
       )}
+      tabIndex={-1}
       {...props}
     >
       {children}
@@ -82,9 +85,10 @@ DialogFooter.displayName = "DialogFooter"
 const DialogTitle = React.forwardRef<
   React.ElementRef<typeof DialogPrimitive.Title>,
   React.ComponentPropsWithoutRef<typeof DialogPrimitive.Title>
->(({ className, ...props }, ref) => (
+>(({ className, id, ...props }, ref) => (
   <DialogPrimitive.Title
     ref={ref}
+    id={id}
     className={cn(
       "modal-title",
       className
@@ -97,9 +101,10 @@ DialogTitle.displayName = DialogPrimitive.Title.displayName
 const DialogDescription = React.forwardRef<
   React.ElementRef<typeof DialogPrimitive.Description>,
   React.ComponentPropsWithoutRef<typeof DialogPrimitive.Description>
->(({ className, ...props }, ref) => (
+>(({ className, id, ...props }, ref) => (
   <DialogPrimitive.Description
     ref={ref}
+    id={id}
     className={cn("modal-subtitle", className)}
     {...props}
   />
