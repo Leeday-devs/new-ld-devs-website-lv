@@ -1,6 +1,7 @@
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import Services from "@/components/Services";
+import PreBuiltSites from "@/components/PreBuiltSites";
 import Pricing from "@/components/Pricing";
 import Portfolio from "@/components/Portfolio";
 import Testimonials from "@/components/Testimonials";
@@ -50,6 +51,9 @@ const Index = () => {
           <section id="services" aria-label="Web development services" className="section-white">
             <Services />
           </section>
+          
+          {/* Pre-Built Sites (light gray background) */}
+          <PreBuiltSites />
           
           {/* Portfolio / Case Studies (white, 3-column grid) - Premium spacing */}
           <section id="portfolio" aria-label="Portfolio of completed projects" className="section-white">
