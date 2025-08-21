@@ -14,6 +14,7 @@ import { Link } from "react-router-dom";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import heroBusinessTech from "@/assets/hero-business-tech.jpg";
 
 const WebsiteTemplates = () => {
   const { toast } = useToast();
@@ -286,7 +287,15 @@ const WebsiteTemplates = () => {
         
         <main>
           {/* Hero Section with Background Graphics */}
-          <section className="relative pt-32 pb-20 overflow-hidden bg-gradient-to-br from-blue-50 to-blue-100">
+          <section 
+            className="relative pt-32 pb-20 overflow-hidden bg-gradient-to-br from-blue-50 to-blue-100"
+            style={{
+              backgroundImage: `linear-gradient(to bottom right, rgba(239, 246, 255, 0.9), rgba(219, 234, 254, 0.9)), url(${heroBusinessTech})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat'
+            }}
+          >
             {/* Animated Background Elements */}
             <div className="absolute inset-0">
               <div className="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl animate-pulse"></div>
