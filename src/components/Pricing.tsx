@@ -291,12 +291,11 @@ const Pricing = () => {
         cancelUrl: `${window.location.origin}/payment-canceled`
       };
 
-      // Add Stripe product/price IDs if available
-      if (selectedPlanObj.stripeProductId && selectedPlanObj.stripeProductId !== "prod_YOUR_STRIPE_PRODUCT_ID_HERE") {
-        paymentBody.stripeProductId = selectedPlanObj.stripeProductId;
-      }
-      if (selectedPlanObj.stripePriceId && selectedPlanObj.stripePriceId !== "price_YOUR_STRIPE_PRICE_ID_HERE") {
-        paymentBody.stripePriceId = selectedPlanObj.stripePriceId;
+      // If a Stripe Product ID is provided, use it to create the checkout (edge function expects 'stripeProductKey')
+      if (selectedPlanObj.stripeProductId && !selectedPlanObj.stripeProductId.includes("YOUR_STRIPE_PRODUCT_ID")) {
+        paymentBody.stripeProductKey = selectedPlanObj.stripeProductId;
+        // Ensure we don't force the 'deposit' branch in the edge function
+        paymentBody.type = 'full';
       }
 
       const { data: paymentData, error: paymentError } = await supabase.functions.invoke('create-payment', {
