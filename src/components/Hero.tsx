@@ -7,8 +7,7 @@ import heroBusiness from "@/assets/hero-business-tech.jpg";
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
   const { isLoaded: isImageLoaded } = useImagePreload({ 
-    src: heroBusiness,
-    crossOrigin: "anonymous"
+    src: heroBusiness
   });
 
   useEffect(() => {

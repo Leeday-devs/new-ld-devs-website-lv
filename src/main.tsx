@@ -4,15 +4,15 @@ import App from './App.tsx'
 import ErrorBoundary from './components/ErrorBoundary'
 import './index.css'
 
-// Register service worker for performance
-if ('serviceWorker' in navigator) {
+// Register service worker for performance (production only)
+if ('serviceWorker' in navigator && process.env.NODE_ENV === 'production') {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('/sw.js')
-      .then((registration) => {
-        console.log('SW registered: ', registration);
+      .then(() => {
+        // Service worker registered successfully
       })
-      .catch((registrationError) => {
-        console.log('SW registration failed: ', registrationError);
+      .catch(() => {
+        // Service worker registration failed
       });
   });
 }

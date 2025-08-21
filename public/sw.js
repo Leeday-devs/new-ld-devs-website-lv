@@ -2,8 +2,6 @@
 const CACHE_NAME = 'ld-development-v1';
 const STATIC_ASSETS = [
   '/',
-  '/src/assets/hero-business-tech.jpg',
-  '/src/assets/hero-image.jpg',
   'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap'
 ];
 
