@@ -251,7 +251,7 @@ const WebsiteTemplates = () => {
       id: 6,
       name: "Auto Repair",
       description: "Professional automotive services website with service booking",
-      price: "£350",
+      price: "£850",
       monthlyPrice: "£40/month",
       image: "/api/placeholder/400/300",
       category: "Automotive",
