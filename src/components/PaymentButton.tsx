@@ -5,9 +5,15 @@ import { useToast } from "@/hooks/use-toast";
 import { CreditCard, Loader2 } from "lucide-react";
 interface PaymentButtonProps {
   className?: string;
+  stripeProductId?: string;
+  serviceName?: string;
+  amount?: number;
 }
 export const PaymentButton = ({
-  className
+  className,
+  stripeProductId,
+  serviceName = "Quick Purchase",
+  amount = 2000
 }: PaymentButtonProps) => {
   const [loading, setLoading] = useState(false);
   const {
@@ -17,19 +23,25 @@ export const PaymentButton = ({
     console.log('Payment button clicked');
     setLoading(true);
     
-    const requestBody = {
-      amount: 2000, // £20 in pence
-      serviceName: "Quick Purchase",
-      type: 'deposit',
+    const requestBody: any = {
+      serviceName: serviceName,
+      type: stripeProductId ? 'full' : 'deposit',
       customerInfo: {
         fullName: "Guest User",
         email: "guest@ldevelopment.co.uk",
         phone: null,
         company: null
       },
-      successUrl: `${window.location.origin}/business-details?session_id={CHECKOUT_SESSION_ID}&template=Quick Purchase`,
+      successUrl: `${window.location.origin}/business-details?session_id={CHECKOUT_SESSION_ID}&template=${encodeURIComponent(serviceName)}`,
       cancelUrl: `${window.location.origin}/payment-canceled`
     };
+
+    // Add Stripe product ID if provided, otherwise use amount
+    if (stripeProductId && !stripeProductId.includes("YOUR_STRIPE_PRODUCT_ID")) {
+      requestBody.stripeProductKey = stripeProductId;
+    } else {
+      requestBody.amount = amount;
+    }
     
     console.log('Sending payment request with body:', requestBody);
     
