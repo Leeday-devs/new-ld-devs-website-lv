@@ -1,7 +1,10 @@
 
 import { Code, Palette, Search, ShoppingCart, Server, BarChart, CheckCircle, Globe, Smartphone, Brain } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const Services = () => {
+  const navigate = useNavigate();
+  
   const services = [
     {
       icon: Code,
@@ -18,10 +21,11 @@ const Services = () => {
       pricingCategory: "websites"
     },
     {
-      icon: BarChart,
-      title: "Web Analytics & Reporting",
-      description: "Comprehensive analytics and performance reports to track your website's success and user behavior.",
-      features: ["Traffic Analysis", "User Behavior Tracking", "Conversion Monitoring", "Monthly Reports", "ROI Insights"]
+      icon: Globe,
+      title: "Pre-Built Sites",
+      description: "Professional website templates ready to launch. Get online quickly with our beautiful, responsive designs.",
+      features: ["Ready-Made Designs", "Fully Responsive", "Easy Customization", "Quick Setup", "Professional Look"],
+      isTemplates: true
     },
     {
       icon: Server,
@@ -46,7 +50,12 @@ const Services = () => {
     }
   ];
 
-  const handleServiceClick = (pricingCategory?: string) => {
+  const handleServiceClick = (pricingCategory?: string, isTemplates?: boolean) => {
+    if (isTemplates) {
+      navigate('/website-templates');
+      return;
+    }
+    
     if (pricingCategory) {
       // First scroll to pricing section
       const pricingSection = document.getElementById('pricing');
@@ -85,8 +94,8 @@ const Services = () => {
           {services.map((service, index) => (
             <div
               key={index}
-              className={`card-premium p-8 group ${service.pricingCategory ? 'cursor-pointer hover:shadow-xl transition-all duration-300' : ''}`}
-              onClick={() => handleServiceClick(service.pricingCategory)}
+              className={`card-premium p-8 group ${service.pricingCategory || service.isTemplates ? 'cursor-pointer hover:shadow-xl transition-all duration-300' : ''}`}
+              onClick={() => handleServiceClick(service.pricingCategory, service.isTemplates)}
             >
               {/* Icon */}
               <div className="mb-6">
@@ -118,6 +127,15 @@ const Services = () => {
                 <div className="mt-6 text-center">
                   <span className="text-sm text-orange font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     Click to see pricing →
+                  </span>
+                </div>
+              )}
+              
+              {/* Click indicator for templates */}
+              {service.isTemplates && (
+                <div className="mt-6 text-center">
+                  <span className="text-sm text-orange font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    View Templates →
                   </span>
                 </div>
               )}
