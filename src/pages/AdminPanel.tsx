@@ -19,7 +19,7 @@ import DiscordWebhookSettings from "@/components/DiscordWebhookSettings";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
-import { Plus, Shield, BarChart3, Users, Clock, AlertTriangle, Settings, Cookie, Mail } from "lucide-react";
+import { Plus, Shield, BarChart3, Users, Clock, AlertTriangle, Settings, Cookie, Mail, LogOut } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 interface BlogPost {
@@ -38,7 +38,7 @@ interface BlogPost {
 }
 
 const AdminPanel = () => {
-  const { user, loading } = useAuth();
+  const { user, loading, signOut } = useAuth();
   const navigate = useNavigate();
   const { toast } = useToast();
   const [posts, setPosts] = useState<BlogPost[]>([]);
@@ -47,6 +47,25 @@ const AdminPanel = () => {
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [showCreateCategoryModal, setShowCreateCategoryModal] = useState(false);
   const [editingPost, setEditingPost] = useState<BlogPost | null>(null);
+
+  const handleLogout = async () => {
+    if (confirm("Are you sure you want to logout?")) {
+      try {
+        await signOut();
+        toast({
+          title: "Logged out",
+          description: "You have been successfully logged out.",
+        });
+        navigate("/admin/auth");
+      } catch (error) {
+        toast({
+          title: "Error",
+          description: "Failed to logout. Please try again.",
+          variant: "destructive",
+        });
+      }
+    }
+  };
 
   useEffect(() => {
     if (!loading && !user) {
@@ -210,18 +229,30 @@ const AdminPanel = () => {
         <div className="container mx-auto px-4">
           {/* Header */}
           <div className="mb-8">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="p-3 bg-gradient-primary rounded-lg shadow-glow">
-                <BarChart3 className="h-6 w-6 text-white" />
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-3">
+                <div className="p-3 bg-gradient-primary rounded-lg shadow-glow">
+                  <BarChart3 className="h-6 w-6 text-white" />
+                </div>
+                <div>
+                  <h1 className="text-3xl font-serif font-bold text-foreground">
+                    Admin Panel
+                  </h1>
+                  <p className="text-muted-foreground">
+                    Manage your blog posts and view analytics
+                  </p>
+                </div>
               </div>
-              <div>
-                <h1 className="text-3xl font-serif font-bold text-foreground">
-                  Admin Panel
-                </h1>
-                <p className="text-muted-foreground">
-                  Manage your blog posts and view analytics
-                </p>
-              </div>
+              
+              {/* Logout Button */}
+              <Button 
+                variant="outline" 
+                onClick={handleLogout}
+                className="flex items-center gap-2 border-destructive text-destructive hover:bg-destructive hover:text-white"
+              >
+                <LogOut className="h-4 w-4" />
+                Logout
+              </Button>
             </div>
 
             <AdminStats posts={posts} onRefresh={fetchBlogPosts} />
