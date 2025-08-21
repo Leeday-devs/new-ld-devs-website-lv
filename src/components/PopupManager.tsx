@@ -1,10 +1,8 @@
 import { useEffect, useState } from 'react';
 import { usePopupManager } from '@/hooks/usePopupManager';
 import { useScrollTrigger } from '@/hooks/useScrollTrigger';
-import { useExitIntent } from '@/components/ExitIntentModal';
 import { LeadCaptureModal } from '@/components/LeadCaptureModal';
 import { ContactQuoteModal } from '@/components/ContactQuoteModal';
-import { ExitIntentModal } from '@/components/ExitIntentModal';
 import { PromoModal } from '@/components/PromoModal';
 import { CookieConsentBar } from '@/components/CookieConsentBar';
 
@@ -19,12 +17,6 @@ export const PopupManager = () => {
     enabled: !isFormPage,
   });
 
-  // Exit intent trigger (desktop only, not on form pages)
-  useExitIntent(() => {
-    if (!isMobile && !isFormPage) {
-      queuePopup('exit-intent');
-    }
-  });
 
   // Cookie consent handled by CookieConsentBar component
 
@@ -50,11 +42,6 @@ export const PopupManager = () => {
         onClose={closePopup}
       />
 
-      {/* Exit Intent Modal */}
-      <ExitIntentModal
-        isOpen={isPopupOpen && activePopup?.type === 'exit-intent'}
-        onClose={closePopup}
-      />
 
       {/* Promo Modal */}
       <PromoModal

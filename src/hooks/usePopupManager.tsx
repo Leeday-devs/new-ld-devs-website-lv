@@ -3,7 +3,6 @@ import { useState, useCallback, useEffect } from 'react';
 export type PopupType = 
   | 'lead-capture' 
   | 'contact-quote' 
-  | 'exit-intent' 
   | 'promo-offer'
   | 'cookie-consent';
 
@@ -23,7 +22,6 @@ export const usePopupManager = () => {
   const priorities: Record<PopupType, number> = {
     'cookie-consent': 100,
     'contact-quote': 90,
-    'exit-intent': 80,
     'promo-offer': 70,
     'lead-capture': 60,
   };
@@ -41,10 +39,6 @@ export const usePopupManager = () => {
 
   // Queue a popup
   const queuePopup = useCallback((type: PopupType, data?: any) => {
-    // Special rules for exit-intent
-    if (type === 'exit-intent' && (isMobile() || isFormPage())) {
-      return;
-    }
 
     const id = `${type}-${Date.now()}`;
     const newPopup: PopupQueueItem = {
