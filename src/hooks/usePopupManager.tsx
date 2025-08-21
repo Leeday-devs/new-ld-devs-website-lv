@@ -54,14 +54,23 @@ export const usePopupManager = () => {
       data,
     };
 
+    console.debug('[PopupManager] queuePopup called', {
+      type,
+      isMobile: isMobile(),
+      isFormPage: isFormPage(),
+    });
+
     setPopupQueue(prev => {
       // Don't add if same type already queued
       if (prev.some(popup => popup.type === type)) {
+        console.debug('[PopupManager] popup already queued, skipping', type);
         return prev;
       }
       
+      const nextQueue = [...prev, newPopup].sort((a, b) => b.priority - a.priority);
+      console.debug('[PopupManager] queued', type, 'queue size ->', nextQueue.length);
       // Add and sort by priority
-      return [...prev, newPopup].sort((a, b) => b.priority - a.priority);
+      return nextQueue;
     });
   }, [priorities, isMobile, isFormPage]);
 
@@ -69,20 +78,25 @@ export const usePopupManager = () => {
   const processQueue = useCallback(() => {
     if (!isPopupOpen && popupQueue.length > 0) {
       const nextPopup = popupQueue[0];
+      console.debug('[PopupManager] processQueue opening', nextPopup.type);
       setActivePopup(nextPopup);
       setIsPopupOpen(true);
       setPopupQueue(prev => prev.slice(1));
+    } else {
+      if (isPopupOpen) console.debug('[PopupManager] processQueue blocked because a popup is open');
+      if (popupQueue.length === 0) console.debug('[PopupManager] processQueue no items to process');
     }
   }, [isPopupOpen, popupQueue]);
 
   // Close current popup
   const closePopup = useCallback(() => {
+    console.debug('[PopupManager] closePopup called for', activePopup?.type);
     setIsPopupOpen(false);
     setActivePopup(null);
     
     // Process next popup after a brief delay
     setTimeout(processQueue, 300);
-  }, [processQueue]);
+  }, [processQueue, activePopup]);
 
   // Clear all popups (useful for emergencies)
   const clearQueue = useCallback(() => {

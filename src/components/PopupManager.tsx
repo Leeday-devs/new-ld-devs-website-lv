@@ -30,6 +30,7 @@ export const PopupManager = () => {
   useEffect(() => {
     // Small delay to let page load
     setTimeout(() => {
+      console.debug('[PopupManager] queuing cookie-consent');
       queuePopup('cookie-consent');
     }, 500);
   }, [queuePopup]);
