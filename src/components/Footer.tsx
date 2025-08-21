@@ -66,10 +66,18 @@ const Footer = () => {
               </div>
 
               <div className="flex items-center gap-4">
-                <Facebook className="h-6 w-6 text-white hover:text-gold transition-colors cursor-pointer hover:scale-110 transition-all duration-300" />
-                <Twitter className="h-6 w-6 text-white hover:text-gold transition-colors cursor-pointer hover:scale-110 transition-all duration-300" />
-                <Instagram className="h-6 w-6 text-white hover:text-gold transition-colors cursor-pointer hover:scale-110 transition-all duration-300" />
-                <Linkedin className="h-6 w-6 text-white hover:text-gold transition-colors cursor-pointer hover:scale-110 transition-all duration-300" />
+                <a href="https://www.facebook.com/profile.php?id=61563893127712" target="_blank" rel="noopener noreferrer">
+                  <Facebook className="h-6 w-6 text-white hover:text-gold transition-colors cursor-pointer hover:scale-110 transition-all duration-300" />
+                </a>
+                <a href="https://twitter.com/leedaydevs" target="_blank" rel="noopener noreferrer">
+                  <Twitter className="h-6 w-6 text-white hover:text-gold transition-colors cursor-pointer hover:scale-110 transition-all duration-300" />
+                </a>
+                <a href="https://instagram.com/leedaydevs" target="_blank" rel="noopener noreferrer">
+                  <Instagram className="h-6 w-6 text-white hover:text-gold transition-colors cursor-pointer hover:scale-110 transition-all duration-300" />
+                </a>
+                <a href="https://linkedin.com/company/lddevelopment" target="_blank" rel="noopener noreferrer">
+                  <Linkedin className="h-6 w-6 text-white hover:text-gold transition-colors cursor-pointer hover:scale-110 transition-all duration-300" />
+                </a>
               </div>
             </div>
 
@@ -89,7 +97,7 @@ const Footer = () => {
             <div className="space-y-4">
               <h4 className="text-lg font-bold text-white">Contact Info</h4>
               <div className="space-y-4">
-                <div className="flex items-center gap-3 group cursor-pointer">
+                <a href="tel:+447586266007" className="flex items-center gap-3 group cursor-pointer">
                   <div className="p-2 bg-white/10 rounded-lg group-hover:bg-orange/20 transition-colors">
                     <Phone className="h-4 w-4 text-orange" />
                   </div>
@@ -97,8 +105,8 @@ const Footer = () => {
                     <div className="text-white/80 group-hover:text-orange transition-colors">+44 7586 266007</div>
                     <div className="text-xs text-white/60">24/7 Support Line</div>
                   </div>
-                </div>
-                <div className="flex items-center gap-3 group cursor-pointer">
+                </a>
+                <a href="mailto:lee@leedaydevs.com?subject=Free Quote Request" className="flex items-center gap-3 group cursor-pointer">
                   <div className="p-2 bg-white/10 rounded-lg group-hover:bg-orange/20 transition-colors">
                     <Mail className="h-4 w-4 text-orange" />
                   </div>
@@ -106,7 +114,7 @@ const Footer = () => {
                     <div className="text-white/80 group-hover:text-orange transition-colors">lee@leedaydevs.com</div>
                     <div className="text-xs text-white/60">Get Free Quote</div>
                   </div>
-                </div>
+                </a>
                 <div className="flex items-center gap-3 group">
                   <div className="p-2 bg-white/10 rounded-lg">
                     <MapPin className="h-4 w-4 text-orange" />
@@ -123,7 +131,7 @@ const Footer = () => {
             <div className="space-y-4">
               <h4 className="text-lg font-bold text-white">Quick Links</h4>
               <ul className="space-y-3">
-                <li><a href="#about" className="text-white/80 hover:text-orange transition-colors hover:translate-x-1 inline-block">About Us</a></li>
+                <li><a href="#home" className="text-white/80 hover:text-orange transition-colors hover:translate-x-1 inline-block">About Us</a></li>
                 <li><a href="#portfolio" className="text-white/80 hover:text-orange transition-colors hover:translate-x-1 inline-block">Case Studies</a></li>
                 <li><a href="#contact" className="text-white/80 hover:text-orange transition-colors hover:translate-x-1 inline-block">Get Quote</a></li>
                 <li><a href="/auth" className="text-white/80 hover:text-orange transition-colors hover:translate-x-1 inline-block">Client Portal</a></li>
