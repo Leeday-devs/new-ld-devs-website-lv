@@ -4,6 +4,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { CustomerInfoForm } from "@/components/CustomerInfoForm";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const Pricing = () => {
   const [activeCategory, setActiveCategory] = useState('websites');
@@ -214,20 +215,57 @@ const Pricing = () => {
   const handleFormSubmit = async (customerInfo: any) => {
     setIsSubmitting(true);
     try {
-      // Store customer info and redirect to payment/business details
-      console.log('Customer Info:', customerInfo, 'Selected Plan:', selectedPlan);
-      
-      toast({
-        title: "Information Received!",
-        description: "We'll contact you shortly to discuss your project details.",
+      // Save customer info to database for admin panel
+      const { error: dbError } = await supabase.from('orders').insert({
+        customer_name: customerInfo.fullName,
+        customer_email: customerInfo.email,
+        customer_phone: customerInfo.phone,
+        customer_company: customerInfo.company,
+        service_name: selectedPlan,
+        amount: 0, // Will be set after payment
+        status: 'inquiry'
       });
-      
-      setIsFormOpen(false);
-      // Could redirect to business details form or payment here
+
+      if (dbError) {
+        console.error('Database error:', dbError);
+        throw new Error('Failed to save customer information');
+      }
+
+      // Create Stripe payment session
+      const { data: paymentData, error: paymentError } = await supabase.functions.invoke('create-payment', {
+        body: {
+          amount: 2000, // £20 deposit in pence
+          serviceName: selectedPlan,
+          type: 'deposit',
+          customerInfo: {
+            fullName: customerInfo.fullName,
+            email: customerInfo.email,
+            phone: customerInfo.phone,
+            company: customerInfo.company
+          },
+          successUrl: `${window.location.origin}/payment-success`,
+          cancelUrl: `${window.location.origin}/payment-canceled`
+        }
+      });
+
+      if (paymentError) {
+        console.error('Payment error:', paymentError);
+        throw new Error('Failed to create payment session');
+      }
+
+      if (paymentData?.url) {
+        // Redirect to Stripe checkout
+        window.open(paymentData.url, '_blank');
+        setIsFormOpen(false);
+        toast({
+          title: "Redirecting to Payment",
+          description: "Opening Stripe checkout in a new tab...",
+        });
+      }
     } catch (error) {
       toast({
         title: "Error",
-        description: "Failed to submit information. Please try again.",
+        description: error.message || "Failed to submit information. Please try again.",
         variant: "destructive"
       });
     } finally {
