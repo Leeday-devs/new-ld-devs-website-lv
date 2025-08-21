@@ -29,6 +29,9 @@ const Pricing = () => {
         description: "Perfect for small businesses and personal brands",
         price: "£500",
         monthlyPrice: "£40",
+        stripeProductId: "prod_YOUR_STRIPE_PRODUCT_ID_HERE", // Add your Stripe product ID
+        stripePriceId: "price_YOUR_STRIPE_PRICE_ID_HERE", // Add your Stripe price ID
+        depositAmount: 5000, // £50 deposit in pence
         features: [
           "Up to 5 pages",
           "Mobile-friendly design",
@@ -45,6 +48,9 @@ const Pricing = () => {
         description: "Most popular choice for growing businesses",
         price: "£1,250",
         monthlyPrice: "£65",
+        stripeProductId: "prod_YOUR_STRIPE_PRODUCT_ID_HERE", // Add your Stripe product ID
+        stripePriceId: "price_YOUR_STRIPE_PRICE_ID_HERE", // Add your Stripe price ID
+        depositAmount: 12500, // £125 deposit in pence
         features: [
           "Up to 10 pages",
           "Blog setup",
@@ -62,6 +68,9 @@ const Pricing = () => {
         description: "Complete solution for established businesses",
         price: "from £2,250",
         monthlyPrice: "£95",
+        stripeProductId: "prod_YOUR_STRIPE_PRODUCT_ID_HERE", // Add your Stripe product ID
+        stripePriceId: "price_YOUR_STRIPE_PRICE_ID_HERE", // Add your Stripe price ID
+        depositAmount: 22500, // £225 deposit in pence
         features: [
           "Unlimited pages",
           "E-commerce or booking system",
@@ -81,6 +90,9 @@ const Pricing = () => {
         description: "Basic AI automation for small businesses",
         price: "£350 setup",
         monthlyPrice: "£75",
+        stripeProductId: "prod_YOUR_STRIPE_PRODUCT_ID_HERE", // Add your Stripe product ID
+        stripePriceId: "price_YOUR_STRIPE_PRICE_ID_HERE", // Add your Stripe price ID
+        depositAmount: 3500, // £35 deposit in pence
         features: [
           "1 automation agent (email responder or lead capture bot)",
           "1 month free support",
@@ -94,6 +106,9 @@ const Pricing = () => {
         description: "Advanced AI solutions for growing companies",
         price: "£750 setup",
         monthlyPrice: "£150",
+        stripeProductId: "prod_YOUR_STRIPE_PRODUCT_ID_HERE", // Add your Stripe product ID
+        stripePriceId: "price_YOUR_STRIPE_PRICE_ID_HERE", // Add your Stripe price ID
+        depositAmount: 7500, // £75 deposit in pence
         features: [
           "3 automation agents (CRM pipeline, social media posting, chatbot)",
           "AI dashboard access",
@@ -107,6 +122,9 @@ const Pricing = () => {
         description: "Full AI transformation solution",
         price: "£1,500 setup",
         monthlyPrice: "£250",
+        stripeProductId: "prod_YOUR_STRIPE_PRODUCT_ID_HERE", // Add your Stripe product ID
+        stripePriceId: "price_YOUR_STRIPE_PRICE_ID_HERE", // Add your Stripe price ID
+        depositAmount: 15000, // £150 deposit in pence
         features: [
           "Unlimited agents",
           "Full CRM automation & custom dashboard",
@@ -123,6 +141,9 @@ const Pricing = () => {
         description: "Simple mobile app for small businesses",
         price: "£1,500",
         monthlyPrice: "£95",
+        stripeProductId: "prod_YOUR_STRIPE_PRODUCT_ID_HERE", // Add your Stripe product ID
+        stripePriceId: "price_YOUR_STRIPE_PRICE_ID_HERE", // Add your Stripe price ID
+        depositAmount: 15000, // £150 deposit in pence
         features: [
           "Basic booking/info app",
           "Secure hosting",
@@ -136,6 +157,9 @@ const Pricing = () => {
         description: "Feature-rich mobile solution",
         price: "£3,000",
         monthlyPrice: "£150",
+        stripeProductId: "prod_YOUR_STRIPE_PRODUCT_ID_HERE", // Add your Stripe product ID
+        stripePriceId: "price_YOUR_STRIPE_PRICE_ID_HERE", // Add your Stripe price ID
+        depositAmount: 30000, // £300 deposit in pence
         features: [
           "User accounts & forms",
           "Admin dashboard",
@@ -150,6 +174,9 @@ const Pricing = () => {
         description: "Complete mobile ecosystem",
         price: "from £5,000",
         monthlyPrice: "£250",
+        stripeProductId: "prod_YOUR_STRIPE_PRODUCT_ID_HERE", // Add your Stripe product ID
+        stripePriceId: "price_YOUR_STRIPE_PRICE_ID_HERE", // Add your Stripe price ID
+        depositAmount: 50000, // £500 deposit in pence
         features: [
           "Fully custom app",
           "Advanced backend (Supabase/API)",
@@ -166,6 +193,9 @@ const Pricing = () => {
         description: "Essential hosting for small businesses",
         price: "£40",
         monthlyPrice: "/month",
+        stripeProductId: "prod_YOUR_STRIPE_PRODUCT_ID_HERE", // Add your Stripe product ID
+        stripePriceId: "price_YOUR_STRIPE_PRICE_ID_HERE", // Add your Stripe price ID
+        depositAmount: 4000, // £40 first month in pence
         features: [
           "1 business email",
           "SSL & backups",
@@ -180,6 +210,9 @@ const Pricing = () => {
         description: "Professional hosting solution",
         price: "£65",
         monthlyPrice: "/month",
+        stripeProductId: "prod_YOUR_STRIPE_PRODUCT_ID_HERE", // Add your Stripe product ID
+        stripePriceId: "price_YOUR_STRIPE_PRICE_ID_HERE", // Add your Stripe price ID
+        depositAmount: 6500, // £65 first month in pence
         features: [
           "3 business emails",
           "Priority support",
@@ -194,6 +227,9 @@ const Pricing = () => {
         description: "Enterprise-grade hosting platform",
         price: "£95",
         monthlyPrice: "/month",
+        stripeProductId: "prod_YOUR_STRIPE_PRODUCT_ID_HERE", // Add your Stripe product ID
+        stripePriceId: "price_YOUR_STRIPE_PRICE_ID_HERE", // Add your Stripe price ID
+        depositAmount: 9500, // £95 first month in pence
         features: [
           "Unlimited emails",
           "AI-powered monitoring",
@@ -215,6 +251,15 @@ const Pricing = () => {
   const handleFormSubmit = async (customerInfo: any) => {
     setIsSubmitting(true);
     try {
+      // Find the selected plan to get Stripe information
+      const currentPlansArray = allPlans[activeCategory] || [];
+      const planName = selectedPlan.split(' - ')[0]; // Extract plan name from "Plan - category"
+      const selectedPlanObj = currentPlansArray.find(plan => plan.name === planName);
+      
+      if (!selectedPlanObj) {
+        throw new Error('Selected plan not found');
+      }
+
       // Save customer info to database for admin panel
       const { error: dbError } = await supabase.from('orders').insert({
         customer_name: customerInfo.fullName,
@@ -222,7 +267,7 @@ const Pricing = () => {
         customer_phone: customerInfo.phone,
         customer_company: customerInfo.company,
         service_name: selectedPlan,
-        amount: 0, // Will be set after payment
+        amount: selectedPlanObj.depositAmount || 2000, // Use plan's deposit amount
         status: 'inquiry'
       });
 
@@ -231,21 +276,31 @@ const Pricing = () => {
         throw new Error('Failed to save customer information');
       }
 
-      // Create Stripe payment session
+      // Create Stripe payment session using plan's Stripe information
+      const paymentBody: any = {
+        amount: selectedPlanObj.depositAmount || 2000, // Use plan's deposit amount
+        serviceName: selectedPlan,
+        type: 'deposit',
+        customerInfo: {
+          fullName: customerInfo.fullName,
+          email: customerInfo.email,
+          phone: customerInfo.phone,
+          company: customerInfo.company
+        },
+        successUrl: `${window.location.origin}/payment-success`,
+        cancelUrl: `${window.location.origin}/payment-canceled`
+      };
+
+      // Add Stripe product/price IDs if available
+      if (selectedPlanObj.stripeProductId && selectedPlanObj.stripeProductId !== "prod_YOUR_STRIPE_PRODUCT_ID_HERE") {
+        paymentBody.stripeProductId = selectedPlanObj.stripeProductId;
+      }
+      if (selectedPlanObj.stripePriceId && selectedPlanObj.stripePriceId !== "price_YOUR_STRIPE_PRICE_ID_HERE") {
+        paymentBody.stripePriceId = selectedPlanObj.stripePriceId;
+      }
+
       const { data: paymentData, error: paymentError } = await supabase.functions.invoke('create-payment', {
-        body: {
-          amount: 2000, // £20 deposit in pence
-          serviceName: selectedPlan,
-          type: 'deposit',
-          customerInfo: {
-            fullName: customerInfo.fullName,
-            email: customerInfo.email,
-            phone: customerInfo.phone,
-            company: customerInfo.company
-          },
-          successUrl: `${window.location.origin}/payment-success`,
-          cancelUrl: `${window.location.origin}/payment-canceled`
-        }
+        body: paymentBody
       });
 
       if (paymentError) {
