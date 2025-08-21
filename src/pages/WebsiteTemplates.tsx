@@ -679,13 +679,50 @@ const WebsiteTemplates = () => {
                         </div>
 
                         {/* Features List */}
-                        <div className="space-y-2 mb-6">
-                          {template.features.map((feature, idx) => (
-                            <div key={idx} className="flex items-center gap-2 text-sm text-white/70">
-                              <Check className="h-4 w-4 text-primary flex-shrink-0" />
-                              <span>{feature}</span>
+                        <div className="space-y-4 mb-6">
+                          {/* Template-Specific Features */}
+                          <div>
+                            <h4 className="text-sm font-semibold text-white/90 mb-2">Template Features:</h4>
+                            <div className="space-y-1">
+                              {template.features.map((feature, idx) => (
+                                <div key={idx} className="flex items-center gap-2 text-sm text-white/70">
+                                  <Check className="h-3 w-3 text-primary flex-shrink-0" />
+                                  <span>{feature}</span>
+                                </div>
+                              ))}
                             </div>
-                          ))}
+                          </div>
+
+                          {/* Standard Features */}
+                          <div>
+                            <h4 className="text-sm font-semibold text-white/90 mb-2">What's Included:</h4>
+                            <div className="space-y-1">
+                              <div className="flex items-center gap-2 text-sm text-white/70">
+                                <Check className="h-3 w-3 text-green-500 flex-shrink-0" />
+                                <span>Up to 5 pages</span>
+                              </div>
+                              <div className="flex items-center gap-2 text-sm text-white/70">
+                                <Check className="h-3 w-3 text-green-500 flex-shrink-0" />
+                                <span>Mobile-friendly design</span>
+                              </div>
+                              <div className="flex items-center gap-2 text-sm text-white/70">
+                                <Check className="h-3 w-3 text-green-500 flex-shrink-0" />
+                                <span>1 business email</span>
+                              </div>
+                              <div className="flex items-center gap-2 text-sm text-white/70">
+                                <Check className="h-3 w-3 text-green-500 flex-shrink-0" />
+                                <span>Basic SEO optimisation</span>
+                              </div>
+                              <div className="flex items-center gap-2 text-sm text-white/70">
+                                <Check className="h-3 w-3 text-green-500 flex-shrink-0" />
+                                <span>Contact form integration</span>
+                              </div>
+                              <div className="flex items-center gap-2 text-sm text-white/70">
+                                <Check className="h-3 w-3 text-green-500 flex-shrink-0" />
+                                <span>SSL & hosting</span>
+                              </div>
+                            </div>
+                          </div>
                         </div>
 
                         {/* Pricing & CTA */}
