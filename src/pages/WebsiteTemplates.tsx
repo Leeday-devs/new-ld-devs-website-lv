@@ -708,7 +708,7 @@ const WebsiteTemplates = () => {
                           <Button 
                             variant="outline" 
                             className="w-full border-2 border-primary/20 hover:border-primary/40 hover:bg-primary/5 transition-all duration-300 group/btn"
-                            onClick={() => window.open(template.demoUrl, '_blank')}
+                            onClick={() => window.open(window.location.origin + template.demoUrl, '_blank')}
                             disabled={template.demoUrl === "#"}
                           >
                             <Eye className="mr-2 h-4 w-4 group-hover/btn:scale-110 transition-transform" />
