@@ -156,10 +156,10 @@ const transformPostForCard = (post: BlogPost) => ({
           "https://www.facebook.com/profile.php?id=61563893127712"
         ]}
       />
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen">
         <Navigation />
         
-        <div className="container mx-auto px-4 pt-20">
+        <div className="container mx-auto px-6 pt-20">
           <Breadcrumbs items={[
             { label: 'Home', href: '/' },
             { label: 'Blog' }
@@ -167,25 +167,25 @@ const transformPostForCard = (post: BlogPost) => ({
         </div>
         
         {/* Hero Section */}
-        <section className="pt-20 pb-16 bg-gradient-hero">
-          <div className="container mx-auto px-4">
+        <section className="section-navy py-20" aria-label="Blog page hero">
+          <div className="container mx-auto px-6">
             <div className="text-center max-w-4xl mx-auto">
-              <h1 className="text-4xl md:text-6xl font-serif font-bold text-white mb-6 animate-fade-in">
-                Our Blog
+              <h1 className="heading-primary heading-xl mb-6 text-white animate-fade-in">
+                Our <span className="text-orange">Expert</span> Blog
               </h1>
-              <p className="text-xl text-white/90 mb-8 animate-fade-in-up">
-                Insights, trends, and expert advice on web development, automation, and digital innovation
+              <p className="text-body text-white/90 mb-12 animate-fade-in-up max-w-2xl mx-auto">
+                Insights, trends, and expert advice on web development, automation, and digital innovation to help your business thrive online
               </p>
               
               {/* Search Bar */}
-              <div className="relative max-w-md mx-auto mb-8 animate-fade-in-up">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
+              <div className="relative max-w-lg mx-auto mb-8 animate-fade-in-up">
+                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white/60 h-5 w-5" />
                 <input
                   type="text"
-                  placeholder="Search articles..."
+                  placeholder="Search our expert articles..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 rounded-lg border border-white/20 bg-white/10 backdrop-blur-md text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-primary"
+                  className="w-full pl-12 pr-6 py-4 rounded-xl border-2 border-white/20 bg-white/10 backdrop-blur-xl text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-orange focus:border-orange/50 transition-all duration-300 text-lg"
                   aria-label="Search articles"
                 />
               </div>
@@ -194,23 +194,21 @@ const transformPostForCard = (post: BlogPost) => ({
         </section>
 
         {/* Category Filter */}
-        <section className="py-8 border-b border-border">
-          <div className="container mx-auto px-4">
-            <div className="flex flex-wrap justify-center gap-2">
+        <section className="section-white py-12" aria-label="Category filters">
+          <div className="container mx-auto px-6">
+            <div className="text-center mb-8">
+              <h2 className="text-2xl font-semibold text-navy mb-2">Browse by Category</h2>
+              <p className="text-text-secondary">Find articles that match your interests</p>
+            </div>
+            <div className="flex flex-wrap justify-center gap-3">
               {categories.map((category) => {
                 const isSelected = selectedCategory === category;
-                const getPillClass = (name: string) => {
-                  if (name === 'All') return 'btn-premium';
-                  let hash = 0; for (let i = 0; i < name.length; i++) hash = (hash << 5) - hash + name.charCodeAt(i);
-                  const idx = (Math.abs(hash) % 10) + 1;
-                  return `category-pill-${idx}`;
-                };
                 return (
                   <Button
                     key={category}
                     variant={isSelected ? "default" : "outline"}
                     onClick={() => setSelectedCategory(category)}
-                    className={`${isSelected ? getPillClass(category) : "hover:bg-primary/10 hover:text-primary hover:border-primary"}`}
+                    className={`${isSelected ? "btn-premium" : "btn-secondary hover:btn-premium"} transition-all duration-300`}
                     aria-pressed={isSelected}
                   >
                     {category}
@@ -222,38 +220,60 @@ const transformPostForCard = (post: BlogPost) => ({
         </section>
 
         {/* Blog Posts Grid */}
-        <section className="py-16">
-          <div className="container mx-auto px-4">
+        <section className="section-white py-20" aria-label="Blog articles">
+          <div className="container mx-auto px-6">
             {isLoading ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                 {[...Array(6)].map((_, index) => (
                   <div key={index} className="animate-pulse">
-                    <div className="bg-muted rounded-lg h-64 mb-4"></div>
-                    <div className="h-4 bg-muted rounded mb-2" role="status" aria-label="Loading"/>
-                    <div className="h-4 bg-muted rounded w-3/4"></div>
+                    <div className="bg-gradient-to-br from-gray-200 to-gray-300 rounded-2xl h-72 mb-6 shimmer"></div>
+                    <div className="h-6 bg-gradient-to-r from-gray-200 to-gray-300 rounded-lg mb-3 shimmer" role="status" aria-label="Loading"/>
+                    <div className="h-4 bg-gradient-to-r from-gray-200 to-gray-300 rounded-lg w-3/4 shimmer"></div>
                   </div>
                 ))}
               </div>
             ) : filteredPosts.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {filteredPosts.map((post, index) => (
-                  <div 
-                    key={post.id} 
-                    className={`animate-fade-in-up stagger-delay-${Math.min(index + 1, 5)}`}
-                    onClick={() => trackView(post.id)}
-                  >
-                    <BlogPostCard post={transformPostForCard(post)} />
-                  </div>
-                ))}
-              </div>
+              <>
+                <div className="text-center mb-16">
+                  <h2 className="heading-primary heading-lg text-navy mb-4">
+                    Latest <span className="text-orange">Articles</span>
+                  </h2>
+                  <p className="text-body text-text-secondary max-w-2xl mx-auto">
+                    Discover expert insights and practical advice to help your business succeed in the digital world
+                  </p>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                  {filteredPosts.map((post, index) => (
+                    <div 
+                      key={post.id} 
+                      className={`animate-fade-in-up stagger-delay-${Math.min(index + 1, 5)} hover-scale`}
+                      onClick={() => trackView(post.id)}
+                    >
+                      <BlogPostCard post={transformPostForCard(post)} />
+                    </div>
+                  ))}
+                </div>
+              </>
             ) : (
-              <div className="text-center py-16">
-                <h3 className="text-xl font-semibold text-muted-foreground mb-2">No articles found</h3>
-                <p className="text-muted-foreground">
+              <div className="text-center py-20 max-w-lg mx-auto">
+                <div className="w-24 h-24 mx-auto mb-6 bg-gradient-to-br from-orange/20 to-orange/40 rounded-full flex items-center justify-center">
+                  <Search className="w-10 h-10 text-orange" />
+                </div>
+                <h3 className="heading-secondary text-navy mb-4">No articles found</h3>
+                <p className="text-body text-text-secondary mb-8">
                   {blogPosts.length === 0 
-                    ? "No blog posts have been published yet." 
-                    : "Try adjusting your search or category filter."}
+                    ? "We're working on creating amazing content for you. Check back soon!" 
+                    : "Try adjusting your search terms or browse a different category to find what you're looking for."}
                 </p>
+                {searchTerm && (
+                  <Button 
+                    onClick={() => setSearchTerm("")}
+                    variant="outline"
+                    className="btn-secondary"
+                  >
+                    Clear Search
+                  </Button>
+                )}
               </div>
             )}
           </div>
