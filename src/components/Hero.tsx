@@ -24,7 +24,10 @@ const Hero = () => {
         className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-500 ${
           isImageLoaded ? 'opacity-100' : 'opacity-0'
         }`}
-        style={{ backgroundImage: `url(${heroImageUrl})` }}
+        style={{ 
+          backgroundImage: `url(${heroImageUrl})`,
+          filter: 'blur(1px) brightness(0.7) sepia(0.2) hue-rotate(200deg) saturate(1.2)'
+        }}
       />
       {/* Fallback background while image loads */}
       <div className={`absolute inset-0 bg-navy transition-opacity duration-500 ${
