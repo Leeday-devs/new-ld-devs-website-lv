@@ -1,5 +1,5 @@
 
-import { Code, ShoppingCart, Server, CheckCircle, Globe, Smartphone, Brain } from "lucide-react";
+import { Monitor, ShoppingBag, Cloud, CheckCircle, Package, Smartphone, Bot } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { memo } from "react";
 
@@ -8,28 +8,28 @@ const Services = () => {
   
   const services = [
     {
-      icon: Code,
+      icon: Monitor,
       title: "Website Development",
       description: "Custom websites built with modern technology. Fast, responsive, and optimized for your business needs.",
       features: ["Responsive Design", "Fast Loading", "SEO Optimized", "Mobile Friendly", "SSL Secured"],
       pricingCategory: "websites"
     },
     {
-      icon: ShoppingCart,
+      icon: ShoppingBag,
       title: "E-commerce Solutions",  
       description: "Complete online stores with secure payments, inventory management, and customer accounts.",
       features: ["Payment Integration", "Product Management", "Order Tracking", "Customer Accounts", "Analytics"],
       pricingCategory: "websites"
     },
     {
-      icon: Globe,
+      icon: Package,
       title: "Pre-Built Sites",
       description: "Professional website templates ready to launch. Get online quickly with our beautiful, responsive designs.",
       features: ["Ready-Made Designs", "Fully Responsive", "Easy Customization", "Quick Setup", "Professional Look"],
       isTemplates: true
     },
     {
-      icon: Server,
+      icon: Cloud,
       title: "Hosting & Maintenance",
       description: "Reliable hosting with 24/7 monitoring, regular backups, and ongoing maintenance support.",
       features: ["99.9% Uptime", "Daily Backups", "Security Updates", "Performance Monitoring", "Technical Support"],
@@ -43,7 +43,7 @@ const Services = () => {
       pricingCategory: "mobile"
     },
     {
-      icon: Brain,
+      icon: Bot,
       title: "AI Integration",
       description: "Smart automation and AI-powered features to streamline your business operations.",
       features: ["Chatbots", "Process Automation", "Data Analysis", "Smart Workflows", "AI Content"],
@@ -93,14 +93,10 @@ const Services = () => {
         {/* Services Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => {
-            // Define color schemes for each service
+            // Define brand color schemes alternating between orange and navy
             const colorSchemes = [
               { bg: 'bg-gradient-to-br from-orange/5 to-orange/10', border: 'border-l-4 border-l-orange', icon: 'text-orange' },
-              { bg: 'bg-gradient-to-br from-blue-500/5 to-blue-600/10', border: 'border-l-4 border-l-blue-500', icon: 'text-blue-500' },
-              { bg: 'bg-gradient-to-br from-emerald-500/5 to-emerald-600/10', border: 'border-l-4 border-l-emerald-500', icon: 'text-emerald-500' },
-              { bg: 'bg-gradient-to-br from-purple-500/5 to-purple-600/10', border: 'border-l-4 border-l-purple-500', icon: 'text-purple-500' },
-              { bg: 'bg-gradient-to-br from-indigo-500/5 to-indigo-600/10', border: 'border-l-4 border-l-indigo-500', icon: 'text-indigo-500' },
-              { bg: 'bg-gradient-to-br from-pink-500/5 to-pink-600/10', border: 'border-l-4 border-l-pink-500', icon: 'text-pink-500' }
+              { bg: 'bg-gradient-to-br from-navy/5 to-navy/10', border: 'border-l-4 border-l-navy', icon: 'text-navy' },
             ];
             
             const colorScheme = colorSchemes[index % colorSchemes.length];
