@@ -17,7 +17,8 @@ const Testimonials = () => {
       role: "CEO",
       quote: "Lee is fantastic! He is quick at responding and is always willing to try and find a solution to the problem, even if that means creating his own software/platform. We have been throughly impressed with Lee's work and very grateful for all his help. Highly recommend!",
       rating: 5,
-      image: sarahImage
+      image: sarahImage,
+      website: "https://randaservices.co.uk/"
     },
     {
       id: 2,
@@ -112,7 +113,16 @@ const Testimonials = () => {
                     {testimonial.name}
                   </div>
                   <div className="text-text-secondary text-sm">
-                    {testimonial.role}, {testimonial.company}
+                    {testimonial.role}, {testimonial.website ? (
+                      <a 
+                        href={testimonial.website} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="hover:text-orange transition-colors underline"
+                      >
+                        {testimonial.company}
+                      </a>
+                    ) : testimonial.company}
                   </div>
                 </div>
               </div>
@@ -148,7 +158,16 @@ const Testimonials = () => {
                     {testimonials[currentSlide].name}
                   </div>
                   <div className="text-text-secondary text-sm">
-                    {testimonials[currentSlide].role}, {testimonials[currentSlide].company}
+                    {testimonials[currentSlide].role}, {testimonials[currentSlide].website ? (
+                      <a 
+                        href={testimonials[currentSlide].website} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="hover:text-orange transition-colors underline"
+                      >
+                        {testimonials[currentSlide].company}
+                      </a>
+                    ) : testimonials[currentSlide].company}
                   </div>
                 </div>
               </div>
