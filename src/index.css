@@ -1157,3 +1157,80 @@
     margin: 1rem 0;
   }
 }
+
+/* Performance Optimizations */
+@layer utilities {
+  /* GPU acceleration for smooth animations */
+  .animate-smooth {
+    transform: translateZ(0);
+    will-change: transform, opacity;
+  }
+
+  /* Optimized image loading */
+  .img-optimized {
+    content-visibility: auto;
+    contain-intrinsic-size: 300px 200px;
+  }
+
+  /* Reduce motion for accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* Critical loading optimization */
+  .critical-resource {
+    font-display: swap;
+  }
+
+  /* Smooth scrolling with performance consideration */
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  /* Optimize background images */
+  .bg-optimized {
+    background-attachment: scroll; /* Better than fixed on mobile */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  /* Performance-optimized gradients */
+  .gradient-optimized {
+    background-attachment: scroll;
+    will-change: background-position;
+  }
+
+  /* Contain layout for performance */
+  .contain-layout {
+    contain: layout;
+  }
+
+  .contain-paint {
+    contain: paint;
+  }
+
+  .contain-size {
+    contain: size;
+  }
+
+  /* Loading skeleton optimization */
+  .skeleton-pulse {
+    animation: pulse-optimized 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes pulse-optimized {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+}

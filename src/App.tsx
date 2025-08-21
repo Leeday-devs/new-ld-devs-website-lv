@@ -9,6 +9,7 @@ import DiscordNotificationTracker from "./components/DiscordNotificationTracker"
 import { PopupManager } from "@/components/PopupManager";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import Loading from "./components/Loading";
+import PerformanceMonitor from "@/components/PerformanceMonitor";
 
 // Lazy load pages for better performance
 const Index = lazy(() => import("./pages/Index"));
@@ -55,6 +56,7 @@ const App = () => (
     <TooltipProvider>
       <ErrorBoundary>
         <AuthProvider>
+          <PerformanceMonitor />
           <Toaster />
           <Sonner />
           <BrowserRouter>

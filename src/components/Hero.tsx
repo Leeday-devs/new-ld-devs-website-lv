@@ -1,10 +1,15 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Shield, Zap, Award } from "lucide-react";
 import { useState, useEffect } from "react";
+import { useImagePreload } from "@/hooks/useImagePreload";
 import heroBusiness from "@/assets/hero-business-tech.jpg";
 
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const { isLoaded: isImageLoaded } = useImagePreload({ 
+    src: heroBusiness,
+    crossOrigin: "anonymous"
+  });
 
   useEffect(() => {
     setIsVisible(true);
@@ -17,9 +22,15 @@ const Hero = () => {
     >
       {/* Premium business photo with navy overlay */}
       <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-500 ${
+          isImageLoaded ? 'opacity-100' : 'opacity-0'
+        }`}
         style={{ backgroundImage: `url(${heroBusiness})` }}
       />
+      {/* Fallback background while image loads */}
+      <div className={`absolute inset-0 bg-navy transition-opacity duration-500 ${
+        isImageLoaded ? 'opacity-0' : 'opacity-100'
+      }`} />
       <div className="absolute inset-0 bg-gradient-to-br from-navy/90 via-navy/85 to-orange/20" />
       
       {/* Animated gradient overlay */}
