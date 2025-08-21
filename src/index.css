@@ -33,6 +33,16 @@
     /* Border Colors */
     --border-light: 220 13% 91%;          /* #E5E7EB Light borders */
     --border-orange: 25 100% 50%;         /* Orange borders */
+    
+    /* Modal & Popup System */
+    --modal-overlay: 210 67% 12% / 0.55;  /* rgba(10,25,47,0.55) */
+    --modal-shadow: 0 24px 80px rgba(10, 25, 47, 0.25);
+    --modal-radius: 1.5rem;               /* 24px radius */
+    --modal-radius-mobile: 1.25rem;       /* 20px for mobile */
+    --modal-backdrop-blur: blur(6px);
+    
+    /* Helper text color */
+    --text-helper: 220 9% 46%;            /* #667085 */
 
     /* Clean Theme Mapping */
     --background: var(--bg-white);
@@ -368,6 +378,152 @@
   .premium-input:hover {
     border-color: hsl(var(--orange) / 0.5);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  }
+
+  /* ==========================================
+     MODAL & POPUP SYSTEM
+     ========================================== */
+
+  /* Modal Overlay */
+  .modal-overlay {
+    backdrop-filter: var(--modal-backdrop-blur);
+    background: hsl(var(--modal-overlay));
+  }
+
+  /* Modal Container Sizes */
+  .modal-default {
+    width: 100%;
+    max-width: 42rem; /* 672px - between 560-680px */
+  }
+
+  .modal-large {
+    width: 100%;
+    max-width: 53.75rem; /* 860px - between 760-860px */
+  }
+
+  .modal-small {
+    width: 100%;
+    max-width: 32.5rem; /* 520px - between 420-520px */
+  }
+
+  /* Modal Content */
+  .modal-content {
+    background: hsl(var(--bg-white));
+    border-radius: var(--modal-radius);
+    box-shadow: var(--modal-shadow);
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Mobile Modal - Sheet Style */
+  @media (max-width: 640px) {
+    .modal-content {
+      border-radius: var(--modal-radius-mobile) var(--modal-radius-mobile) 0 0;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      max-width: none;
+      transform: translateY(0);
+    }
+  }
+
+  /* Modal Header */
+  .modal-header {
+    position: relative;
+    padding: 2rem 2rem 1rem 2rem;
+  }
+
+  .modal-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, hsl(var(--orange)), hsl(25 100% 45%));
+  }
+
+  .modal-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.875rem; /* 30px - H2 scale */
+    font-weight: 700;
+    line-height: 1.2;
+    color: hsl(var(--text-primary));
+    margin: 0 0 0.5rem 0;
+  }
+
+  .modal-subtitle {
+    color: hsl(var(--text-muted));
+    font-size: 1rem;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  /* Modal Body */
+  .modal-body {
+    padding: 0 2rem 2rem 2rem;
+  }
+
+  /* Modal Footer */
+  .modal-footer {
+    padding: 1rem 2rem 2rem 2rem;
+    display: flex;
+    gap: 0.75rem;
+    justify-content: flex-end;
+  }
+
+  /* Form Fields in Modals */
+  .modal-field {
+    margin-bottom: 1.5rem;
+  }
+
+  .modal-label {
+    display: block;
+    font-weight: 500;
+    color: hsl(var(--text-primary));
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+  }
+
+  .modal-input {
+    width: 100%;
+    border: 1px solid #E5E7EB;
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    background: hsl(var(--bg-white));
+    color: hsl(var(--text-primary));
+    transition: all 0.2s ease;
+  }
+
+  .modal-input:focus {
+    outline: none;
+    border-color: hsl(var(--orange));
+    box-shadow: 0 0 0 3px hsl(var(--orange) / 0.1);
+  }
+
+  .modal-helper {
+    color: hsl(var(--text-helper));
+    font-size: 0.75rem;
+    line-height: 1.4;
+    margin-top: 0.25rem;
+  }
+
+  /* Ghost Button for Modals */
+  .btn-ghost {
+    background: transparent;
+    color: hsl(var(--text-muted));
+    border: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    text-decoration: none;
+  }
+
+  .btn-ghost:hover {
+    color: hsl(var(--orange));
+    text-decoration: underline;
   }
 }
 

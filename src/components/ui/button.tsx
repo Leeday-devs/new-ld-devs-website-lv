@@ -13,7 +13,7 @@ import { cn } from "@/lib/utils"
           secondary: "btn-secondary", 
           outline: "bg-transparent border-2 border-orange text-orange hover:bg-orange hover:text-white",
           destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
-          ghost: "text-text-primary hover:bg-bg-grey hover:text-text-primary",
+          ghost: "btn-ghost",
           link: "text-orange underline-offset-4 hover:underline",
         },
         size: {

@@ -51,6 +51,9 @@ export default {
         'border-light': 'hsl(var(--border-light))',
         'border-orange': 'hsl(var(--border-orange))',
         'border-navy': 'hsl(var(--border-navy))',
+        
+        // Helper Colors
+        'text-helper': 'hsl(var(--text-helper))',
 
         // Legacy Shadcn Tokens (mapped to clean system)
         border: 'hsl(var(--border))',
