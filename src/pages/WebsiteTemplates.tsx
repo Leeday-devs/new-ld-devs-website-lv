@@ -612,6 +612,14 @@ const WebsiteTemplates = () => {
                         </Badge>
                       </div>
 
+                      {/* 5 Page Website Badge */}
+                      <div className="absolute top-4 right-4 z-10">
+                        <div className="bg-green-600 text-white px-3 py-1.5 rounded-full flex items-center gap-2 shadow-lg backdrop-blur-sm border border-green-500/50">
+                          <Check className="h-4 w-4" />
+                          <span className="text-sm font-semibold">5 Page Website</span>
+                        </div>
+                      </div>
+
                       {/* Live Preview with Enhanced Overlay */}
                       <div className="relative aspect-video overflow-hidden bg-gradient-to-br from-muted to-muted/50 rounded-t-2xl">
                         {template.demoUrl !== "#" ? (
