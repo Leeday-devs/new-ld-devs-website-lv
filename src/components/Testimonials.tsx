@@ -54,6 +54,15 @@ const Testimonials = () => {
       quote: "The member portal and class booking system streamlined our entire operation. We've saved 20 hours per week on admin tasks.",
       rating: 5,
       image: lisaImage
+    },
+    {
+      id: 6,
+      name: "James Mitchell",
+      company: "Business Solutions Ltd",
+      role: "Managing Director",
+      quote: "Lee is fantastic! He is quick at responding and is always willing to try and find a solution to the problem, even if that means creating his own software/platform. We have been thoroughly impressed with Lee's work and very grateful for all his help.",
+      rating: 5,
+      image: davidImage
     }
   ];
 
