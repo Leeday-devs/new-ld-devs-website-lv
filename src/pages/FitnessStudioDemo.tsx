@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import WatermarkOverlay from "@/components/WatermarkOverlay";
 
 const FitnessStudioDemo = () => {
   const workoutPrograms = [
@@ -107,7 +106,6 @@ const FitnessStudioDemo = () => {
 
   return (
     <div className="min-h-screen bg-black text-white font-bold" onContextMenu={(e) => e.preventDefault()}>
-      <WatermarkOverlay text="LD Development" />
       {/* Sticky Navigation */}
       <nav className="fixed top-0 w-full bg-black/90 backdrop-blur-md z-50 border-b border-green-500/30">
         <div className="container mx-auto px-4 py-4">

@@ -9,7 +9,6 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import WatermarkOverlay from "@/components/WatermarkOverlay";
 
 const RestaurantDeluxeDemo = () => {
   const chefSpecials = [
@@ -161,7 +160,6 @@ const RestaurantDeluxeDemo = () => {
 
   return (
     <div className="min-h-screen bg-background font-serif" onContextMenu={(e) => e.preventDefault()}>
-      <WatermarkOverlay text="LD Development" />
       {/* Elegant Top Bar */}
       <div className="bg-accent/30 border-b py-2">
         <div className="container mx-auto px-4 flex justify-between items-center text-sm">
