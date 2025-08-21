@@ -29,8 +29,7 @@ const Pricing = () => {
         description: "Perfect for small businesses and personal brands",
         price: "£500",
         monthlyPrice: "£40",
-        stripeProductId: "prod_YOUR_STRIPE_PRODUCT_ID_HERE", // Add your Stripe product ID
-        stripePriceId: "price_YOUR_STRIPE_PRICE_ID_HERE", // Add your Stripe price ID
+        paymentLink: "https://buy.stripe.com/aFa00jf1ceRsb9kceV0Ny08",
         depositAmount: 5000, // £50 deposit in pence
         features: [
           "Up to 5 pages",
@@ -48,8 +47,7 @@ const Pricing = () => {
         description: "Most popular choice for growing businesses",
         price: "£1,250",
         monthlyPrice: "£65",
-        stripeProductId: "prod_YOUR_STRIPE_PRODUCT_ID_HERE", // Add your Stripe product ID
-        stripePriceId: "price_YOUR_STRIPE_PRICE_ID_HERE", // Add your Stripe price ID
+        paymentLink: "https://buy.stripe.com/7sY14ndX86kW0uG5Qx0Ny09",
         depositAmount: 12500, // £125 deposit in pence
         features: [
           "Up to 10 pages",
@@ -68,8 +66,7 @@ const Pricing = () => {
         description: "Complete solution for established businesses",
         price: "from £2,250",
         monthlyPrice: "£95",
-        stripeProductId: "prod_YOUR_STRIPE_PRODUCT_ID_HERE", // Add your Stripe product ID
-        stripePriceId: "price_YOUR_STRIPE_PRICE_ID_HERE", // Add your Stripe price ID
+        paymentLink: "https://buy.stripe.com/00wcN5f1cfVw7X83Ip0Ny0a",
         depositAmount: 22500, // £225 deposit in pence
         features: [
           "Unlimited pages",
@@ -251,7 +248,7 @@ const Pricing = () => {
   const handleFormSubmit = async (customerInfo: any) => {
     setIsSubmitting(true);
     try {
-      // Find the selected plan to get Stripe information
+      // Find the selected plan to get plan information
       const currentPlansArray = allPlans[activeCategory] || [];
       const planName = selectedPlan.split(' - ')[0]; // Extract plan name from "Plan - category"
       const selectedPlanObj = currentPlansArray.find(plan => plan.name === planName);
@@ -276,9 +273,21 @@ const Pricing = () => {
         throw new Error('Failed to save customer information');
       }
 
-      // Create Stripe payment session using plan's Stripe information
+      // Check if this is a website plan with a payment link
+      if (activeCategory === 'websites' && selectedPlanObj.paymentLink) {
+        // For website plans, redirect directly to Stripe Payment Link
+        window.open(selectedPlanObj.paymentLink, '_blank');
+        setIsFormOpen(false);
+        toast({
+          title: "Redirecting to Payment",
+          description: "Opening Stripe checkout in a new tab...",
+        });
+        return;
+      }
+
+      // For other categories (AI, Apps, Hosting), use existing Stripe API integration
       const paymentBody: any = {
-        amount: selectedPlanObj.depositAmount || 2000, // Use plan's deposit amount
+        amount: selectedPlanObj.depositAmount || 2000,
         serviceName: selectedPlan,
         type: 'deposit',
         customerInfo: {
@@ -290,13 +299,6 @@ const Pricing = () => {
         successUrl: `${window.location.origin}/payment-success`,
         cancelUrl: `${window.location.origin}/payment-canceled`
       };
-
-      // If a Stripe Product ID is provided, use it to create the checkout (edge function expects 'stripeProductKey')
-      if (selectedPlanObj.stripeProductId && !selectedPlanObj.stripeProductId.includes("YOUR_STRIPE_PRODUCT_ID")) {
-        paymentBody.stripeProductKey = selectedPlanObj.stripeProductId;
-        // Ensure we don't force the 'deposit' branch in the edge function
-        paymentBody.type = 'full';
-      }
 
       const { data: paymentData, error: paymentError } = await supabase.functions.invoke('create-payment', {
         body: paymentBody

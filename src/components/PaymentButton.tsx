@@ -8,12 +8,14 @@ interface PaymentButtonProps {
   stripeProductId?: string;
   serviceName?: string;
   amount?: number;
+  paymentLink?: string;
 }
 export const PaymentButton = ({
   className,
   stripeProductId,
   serviceName = "Quick Purchase",
-  amount = 2000
+  amount = 2000,
+  paymentLink
 }: PaymentButtonProps) => {
   const [loading, setLoading] = useState(false);
   const {
@@ -23,6 +25,14 @@ export const PaymentButton = ({
     console.log('Payment button clicked');
     setLoading(true);
     
+    // If a payment link is provided, redirect directly to it
+    if (paymentLink) {
+      window.open(paymentLink, '_blank');
+      setLoading(false);
+      return;
+    }
+    
+    // Otherwise, use the existing Stripe API integration
     const requestBody: any = {
       serviceName: serviceName,
       type: stripeProductId ? 'full' : 'deposit',

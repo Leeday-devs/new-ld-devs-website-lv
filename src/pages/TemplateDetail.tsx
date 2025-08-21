@@ -308,9 +308,9 @@ const TemplateDetail = () => {
                 <div className="flex flex-col sm:flex-row gap-4">
                   <PaymentButton 
                     className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground h-12 text-lg font-semibold"
-                    stripeProductId="prod_YOUR_TEMPLATE_PRODUCT_ID" // Replace with your actual Stripe Product ID
+                    paymentLink="https://buy.stripe.com/aFa00jf1ceRsb9kceV0Ny08"
                     serviceName={`${template.name} Template`}
-                    amount={4999} // £49.99 fallback amount if no product ID
+                    amount={4999}
                   />
                   <Button 
                     variant="outline" 
@@ -430,9 +430,9 @@ const TemplateDetail = () => {
                 <div className="mt-8">
                   <PaymentButton 
                     className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-3 text-lg"
-                    stripeProductId="prod_YOUR_TEMPLATE_PRODUCT_ID" // Replace with your actual Stripe Product ID
+                    paymentLink="https://buy.stripe.com/aFa00jf1ceRsb9kceV0Ny08"
                     serviceName={`${template.name} Template`}
-                    amount={4999} // £49.99 fallback amount if no product ID
+                    amount={4999}
                   />
                 </div>
               </CardContent>
