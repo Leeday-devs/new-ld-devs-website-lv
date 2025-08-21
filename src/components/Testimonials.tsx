@@ -20,7 +20,7 @@ const Testimonials = () => {
       name: "Michael Chen", 
       company: "E-Commerce Empire",
       role: "Founder",
-      quote: "From £50K to £200K monthly revenue in 6 months. Their e-commerce platform doesn't just look amazing—it sells. The ROI has been incredible.",
+      quote: "done some great work building and hosting a web site for me. They were Very helpful and kept me in the look through out the whole process. Great prices and an honest trustworthy staff. Would 100 percent recommended them for any 1 needing a website or hosting.",
       rating: 5
     },
     {
