@@ -474,13 +474,13 @@ const WebsiteTemplates = () => {
 
                 {/* Right Side - Additional Pages & Custom Request */}
                 <div className="space-y-8">
-                  <Card className="p-8 border-2 border-primary/20 bg-gradient-to-br from-primary/5 to-secondary/5">
+                  <Card className="p-8 border-2 border-primary/20 bg-white/10 backdrop-blur-sm">
                     <div className="text-center mb-6">
                       <div className="bg-primary/20 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                         <Clock className="h-8 w-8 text-primary" />
                       </div>
-                      <h3 className="text-xl font-bold mb-2 text-foreground">Quick 2-Day Delivery</h3>
-                      <p className="text-muted-foreground mb-4">
+                      <h3 className="text-xl font-bold mb-2 text-white">Quick 2-Day Delivery</h3>
+                      <p className="text-white/70 mb-4">
                         Your customized website will be ready within 2 business days of purchase. 
                         We'll send you mockups for approval before going live.
                       </p>
@@ -489,26 +489,26 @@ const WebsiteTemplates = () => {
                     <div className="space-y-4">
                       <div className="flex items-center gap-3">
                         <Check className="h-5 w-5 text-primary flex-shrink-0" />
-                        <span className="text-sm text-muted-foreground">✓ Your content and images</span>
+                        <span className="text-sm text-white/70">✓ Your content and images</span>
                       </div>
                       <div className="flex items-center gap-3">
                         <Check className="h-5 w-5 text-primary flex-shrink-0" />
-                        <span className="text-sm text-muted-foreground">✓ Your brand colors and logo</span>
+                        <span className="text-sm text-white/70">✓ Your brand colors and logo</span>
                       </div>
                       <div className="flex items-center gap-3">
                         <Check className="h-5 w-5 text-primary flex-shrink-0" />
-                        <span className="text-sm text-muted-foreground">✓ Professional copywriting included</span>
+                        <span className="text-sm text-white/70">✓ Professional copywriting included</span>
                       </div>
                       <div className="flex items-center gap-3">
                         <Check className="h-5 w-5 text-primary flex-shrink-0" />
-                        <span className="text-sm text-muted-foreground">✓ Free revisions until you're happy</span>
+                        <span className="text-sm text-white/70">✓ Free revisions until you're happy</span>
                       </div>
                     </div>
                   </Card>
 
-                  <Card className="p-6 border border-border">
-                    <h3 className="text-lg font-semibold mb-4 text-foreground">Don't See Your Industry?</h3>
-                    <p className="text-muted-foreground mb-4">
+                  <Card className="p-6 border-2 border-primary/20 bg-white/10 backdrop-blur-sm">
+                    <h3 className="text-lg font-semibold mb-4 text-white">Don't See Your Industry?</h3>
+                    <p className="text-white/70 mb-4">
                       We can create a custom pre-built website specifically for your industry. 
                       Just tell us what you need!
                     </p>
@@ -603,7 +603,7 @@ const WebsiteTemplates = () => {
                   return (
                     <Card 
                       key={template.id} 
-                      className="group relative overflow-hidden bg-gradient-to-br from-card to-card/50 border-2 border-border/50 hover:border-primary/30 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 hover:scale-105 rounded-2xl"
+                      className="group relative overflow-hidden bg-white/10 backdrop-blur-sm border-2 border-primary/20 hover:border-primary/40 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/20 hover:scale-105 rounded-2xl"
                       style={{ animationDelay: `${index * 100}ms` }}
                     >
                       {/* Gradient Overlay for Premium Feel */}
@@ -672,15 +672,15 @@ const WebsiteTemplates = () => {
                       <CardContent className="p-6 relative z-10">
                         <div className="flex justify-between items-start mb-3">
                           <div>
-                            <h3 className="text-xl font-bold text-foreground mb-2">{template.name}</h3>
-                            <p className="text-muted-foreground text-sm mb-4 leading-relaxed">{template.description}</p>
+                            <h3 className="text-xl font-bold text-white mb-2">{template.name}</h3>
+                            <p className="text-white/70 text-sm mb-4 leading-relaxed">{template.description}</p>
                           </div>
                         </div>
 
                         {/* Features List */}
                         <div className="space-y-2 mb-6">
                           {template.features.map((feature, idx) => (
-                            <div key={idx} className="flex items-center gap-2 text-sm text-muted-foreground">
+                            <div key={idx} className="flex items-center gap-2 text-sm text-white/70">
                               <Check className="h-4 w-4 text-primary flex-shrink-0" />
                               <span>{feature}</span>
                             </div>
@@ -692,10 +692,10 @@ const WebsiteTemplates = () => {
                           <div className="flex justify-between items-center">
                             <div>
                               <div className="text-2xl font-bold text-primary">{template.price}</div>
-                              <div className="text-xs text-muted-foreground">+ {template.monthlyPrice} hosting</div>
+                              <div className="text-xs text-white/60">+ {template.monthlyPrice} hosting</div>
                             </div>
                             <div className="text-right">
-                              <div className="text-xs text-muted-foreground">One-time purchase</div>
+                              <div className="text-xs text-white/60">One-time purchase</div>
                               <div className="text-xs font-semibold text-destructive">Removed after sale</div>
                             </div>
                           </div>
@@ -731,8 +731,8 @@ const WebsiteTemplates = () => {
 
               {/* Call-to-Action after grid */}
               <div className="text-center mt-16 p-8 bg-gradient-to-r from-primary/10 via-primary/5 to-primary/10 rounded-3xl border border-primary/20">
-                <h3 className="text-2xl font-bold mb-4 text-foreground">Don't See What You're Looking For?</h3>
-                <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
+                <h3 className="text-2xl font-bold mb-4 text-white">Don't See What You're Looking For?</h3>
+                <p className="text-white/70 mb-6 max-w-2xl mx-auto">
                   We create new industry-specific designs regularly. Contact us to discuss your requirements 
                   or request a custom pre-built website for your niche.
                 </p>
@@ -740,7 +740,7 @@ const WebsiteTemplates = () => {
                   <Button 
                     variant="outline" 
                     size="lg"
-                    className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+                    className="border-primary text-primary hover:bg-primary hover:text-white"
                     onClick={() => window.open('https://wa.me/447586266007', '_blank')}
                   >
                     <Phone className="mr-2 h-5 w-5" />
@@ -748,7 +748,7 @@ const WebsiteTemplates = () => {
                   </Button>
                   <Button 
                     size="lg"
-                    className="bg-secondary hover:bg-secondary/90"
+                    className="bg-primary hover:bg-primary/90 text-white"
                     onClick={() => setIsFormOpen(true)}
                   >
                     <MessageSquare className="mr-2 h-5 w-5" />
