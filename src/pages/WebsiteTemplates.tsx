@@ -368,12 +368,12 @@ const WebsiteTemplates = () => {
                       <Lock className="h-8 w-8 text-primary" />
                     </div>
                   </div>
-                  <h2 className="heading-primary heading-lg mb-6">
+                  <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
                     Your Site Will Be 100% Unique
                   </h2>
-                  <p className="text-body mb-8 max-w-2xl mx-auto leading-relaxed">
-                    These are <strong className="text-primary">one-time purchases</strong>. Once you buy a pre-built website, we immediately remove it from our catalog and fully customize it for your business. 
-                    This means <strong className="text-primary">no one else will ever have the same website as you</strong>.
+                  <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto leading-relaxed">
+                    These are <strong className="text-primary font-semibold">one-time purchases</strong>. Once you buy a pre-built website, we immediately remove it from our catalog and fully customize it for your business. 
+                    This means <strong className="text-primary font-semibold">no one else will ever have the same website as you</strong>.
                   </p>
                 </div>
                 
@@ -383,7 +383,7 @@ const WebsiteTemplates = () => {
                       <Check className="h-6 w-6 text-primary" />
                     </div>
                     <h3 className="font-semibold text-lg mb-2 text-primary">One-Time Purchase</h3>
-                    <p className="text-caption">Buy once, removed forever from our catalog</p>
+                    <p className="text-white/80">Buy once, removed forever from our catalog</p>
                   </div>
                   
                   <div className="text-center">
@@ -391,7 +391,7 @@ const WebsiteTemplates = () => {
                       <Star className="h-6 w-6 text-primary" />
                     </div>
                     <h3 className="font-semibold text-lg mb-2 text-primary">Fully Customized</h3>
-                    <p className="text-caption">Personalized with your branding and content</p>
+                    <p className="text-white/80">Personalized with your branding and content</p>
                   </div>
                   
                   <div className="text-center">
@@ -399,7 +399,7 @@ const WebsiteTemplates = () => {
                       <Users className="h-6 w-6 text-primary" />
                     </div>
                     <h3 className="font-semibold text-lg mb-2 text-primary">Exclusive to You</h3>
-                    <p className="text-caption">No other business will have your design</p>
+                    <p className="text-white/80">No other business will have your design</p>
                   </div>
                 </div>
               </div>
