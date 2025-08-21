@@ -5,7 +5,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/hooks/useAuth";
 import DiscordNotificationTracker from "./components/DiscordNotificationTracker";
-import { CookieBanner } from "./components/CookieBanner";
 import { PopupManager } from "@/components/PopupManager";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import Index from "./pages/Index";
@@ -42,7 +41,6 @@ const App = () => (
         <Sonner />
         <BrowserRouter>
           <DiscordNotificationTracker />
-          <CookieBanner />
           <ErrorBoundary>
             <PopupManager />
           </ErrorBoundary>
