@@ -30,6 +30,13 @@ const Hero = () => {
       <div className={`absolute inset-0 bg-navy transition-opacity duration-500 ${
         isImageLoaded ? 'opacity-0' : 'opacity-100'
       }`} />
+      
+      {/* Additional background image under shading */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
+        style={{ backgroundImage: `url(/src/assets/hero-cinematic.jpg)` }}
+      />
+      
       <div className="absolute inset-0 bg-gradient-to-br from-navy/90 via-navy/85 to-orange/20" />
       
       {/* Animated gradient overlay */}
