@@ -30,7 +30,7 @@ const Hero = () => {
       <div className={`absolute inset-0 bg-navy transition-opacity duration-500 ${
         isImageLoaded ? 'opacity-0' : 'opacity-100'
       }`} />
-      <div className="absolute inset-0 bg-gradient-to-br from-navy/90 via-navy/85 to-orange/20" />
+      <div className="absolute inset-0 bg-gradient-to-br from-navy/60 via-navy/50 to-orange/20" />
       
       {/* Animated gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-r from-orange/10 via-transparent to-navy/20 animate-gradient bg-[length:200%_200%]" />
