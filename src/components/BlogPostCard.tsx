@@ -86,9 +86,9 @@ const BlogPostCard = ({ post }: BlogPostCardProps) => {
           {/* Category Badge */}
           {post.category && (
             <div className="absolute top-4 left-4">
-              <div className={`inline-flex items-center px-4 py-2 rounded-full ${isPrimary ? 'bg-orange' : 'bg-navy'} text-white backdrop-blur-md border border-white/30 shadow-xl shadow-${isPrimary ? 'orange' : 'navy'}/30 group-hover:scale-110 group-hover:shadow-2xl transition-all duration-500 font-bold`}>
-                <Tag className="h-4 w-4 mr-2" />
-                <span className="text-sm font-bold tracking-wide uppercase">
+              <div className={`inline-flex items-center px-2.5 py-1 rounded-full ${isPrimary ? 'bg-orange' : 'bg-navy'} text-white backdrop-blur-md border border-white/30 shadow-lg shadow-${isPrimary ? 'orange' : 'navy'}/20 group-hover:scale-110 group-hover:shadow-xl transition-all duration-500 font-semibold`}>
+                <Tag className="h-3 w-3 mr-1.5" />
+                <span className="text-xs font-semibold tracking-wide uppercase">
                   {post.category}
                 </span>
               </div>
