@@ -91,12 +91,24 @@ const Services = () => {
         </div>
 
         {/* Services Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
           {services.map((service, index) => {
-            // Define brand color schemes alternating between orange and navy
+            // Premium color schemes with sophisticated gradients
             const colorSchemes = [
-              { bg: 'bg-gradient-to-br from-orange/5 to-orange/10', border: 'border-l-4 border-l-orange', icon: 'text-orange' },
-              { bg: 'bg-gradient-to-br from-navy/5 to-navy/10', border: 'border-l-4 border-l-navy', icon: 'text-navy' },
+              { 
+                bg: 'bg-gradient-to-br from-orange/8 via-orange/4 to-transparent', 
+                border: 'border border-orange/20', 
+                icon: 'text-orange',
+                glow: 'shadow-[0_0_30px_rgba(255,122,0,0.1)]',
+                hoverGlow: 'hover:shadow-[0_0_50px_rgba(255,122,0,0.25)]'
+              },
+              { 
+                bg: 'bg-gradient-to-br from-navy/8 via-navy/4 to-transparent', 
+                border: 'border border-navy/20', 
+                icon: 'text-navy',
+                glow: 'shadow-[0_0_30px_rgba(10,25,47,0.15)]',
+                hoverGlow: 'hover:shadow-[0_0_50px_rgba(10,25,47,0.3)]'
+              },
             ];
             
             const colorScheme = colorSchemes[index % colorSchemes.length];
@@ -104,51 +116,71 @@ const Services = () => {
             return (
               <div
                 key={index}
-                className={`card-premium p-8 group relative overflow-hidden ${colorScheme.bg} ${colorScheme.border} ${service.pricingCategory || service.isTemplates ? 'cursor-pointer hover:shadow-xl transition-all duration-300' : ''}`}
+                className={`relative group overflow-hidden rounded-2xl bg-white ${colorScheme.bg} ${colorScheme.border} ${colorScheme.glow} ${colorScheme.hoverGlow} transition-all duration-500 hover:scale-[1.02] hover:-translate-y-2 ${service.pricingCategory || service.isTemplates ? 'cursor-pointer' : ''}`}
                 onClick={() => handleServiceClick(service.pricingCategory, service.isTemplates)}
               >
-                {/* Icon */}
-                <div className="mb-6">
-                  <service.icon className={`h-12 w-12 ${colorScheme.icon}`} />
+                {/* Premium border gradient overlay */}
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                
+                {/* Luxury shimmer effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
+                
+                <div className="relative p-10 z-10">
+                  {/* Premium Icon Container */}
+                  <div className="mb-8 relative">
+                    <div className={`inline-flex p-4 rounded-xl ${colorScheme.bg} ${colorScheme.border} backdrop-blur-sm`}>
+                      <service.icon className={`h-8 w-8 ${colorScheme.icon} group-hover:scale-110 transition-transform duration-300`} />
+                    </div>
+                    {/* Icon glow effect */}
+                    <div className={`absolute inset-0 rounded-xl ${colorScheme.icon === 'text-orange' ? 'bg-orange/20' : 'bg-navy/20'} blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-500`} />
+                  </div>
+
+                  {/* Premium Title */}
+                  <h3 className="heading-primary heading-md mb-6 text-navy group-hover:text-orange transition-colors duration-300">
+                    {service.title}
+                  </h3>
+
+                  {/* Enhanced Description */}
+                  <p className="text-body mb-8 leading-relaxed">
+                    {service.description}
+                  </p>
+
+                  {/* Premium Features List */}
+                  <ul className="space-y-4 mb-8">
+                    {service.features.map((feature, featureIndex) => (
+                      <li key={featureIndex} className="flex items-center text-text-secondary group/item">
+                        <div className={`p-1 rounded-full ${colorScheme.bg} ${colorScheme.border} mr-4 group-hover/item:scale-110 transition-transform duration-200`}>
+                          <CheckCircle className={`h-3 w-3 ${colorScheme.icon}`} />
+                        </div>
+                        <span className="font-medium">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  {/* Premium Click Indicators */}
+                  {service.pricingCategory && (
+                    <div className="text-center">
+                      <div className={`inline-flex items-center px-6 py-3 rounded-full ${colorScheme.bg} ${colorScheme.border} backdrop-blur-sm opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300`}>
+                        <span className={`text-sm font-semibold ${colorScheme.icon}`}>
+                          View Pricing Plans →
+                        </span>
+                      </div>
+                    </div>
+                  )}
+                  
+                  {service.isTemplates && (
+                    <div className="text-center">
+                      <div className={`inline-flex items-center px-6 py-3 rounded-full ${colorScheme.bg} ${colorScheme.border} backdrop-blur-sm opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300`}>
+                        <span className={`text-sm font-semibold ${colorScheme.icon}`}>
+                          Browse Templates →
+                        </span>
+                      </div>
+                    </div>
+                  )}
                 </div>
 
-              {/* Title */}
-              <h3 className="heading-primary heading-md mb-4 text-navy">
-                {service.title}
-              </h3>
-
-              {/* Description */}
-              <p className="text-body mb-6">
-                {service.description}
-              </p>
-
-              {/* Features List */}
-              <ul className="space-y-3">
-                {service.features.map((feature, featureIndex) => (
-                  <li key={featureIndex} className="flex items-center text-text-secondary text-base">
-                    <CheckCircle className="h-4 w-4 text-orange mr-3 flex-shrink-0" />
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-
-              {/* Click indicator for cards with pricing */}
-              {service.pricingCategory && (
-                <div className="mt-6 text-center">
-                  <span className="text-sm text-orange font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    Click to see pricing →
-                  </span>
-                </div>
-              )}
-              
-              {/* Click indicator for templates */}
-              {service.isTemplates && (
-                <div className="mt-6 text-center">
-                  <span className="text-sm text-orange font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    View Templates →
-                  </span>
-                </div>
-              )}
+                {/* Premium bottom accent */}
+                <div className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${colorScheme.icon === 'text-orange' ? 'from-orange/50 via-orange to-orange/50' : 'from-navy/50 via-navy to-navy/50'} transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-center`} />
               </div>
             );
           })}
