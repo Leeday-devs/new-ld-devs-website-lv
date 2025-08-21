@@ -208,6 +208,7 @@ const Pricing = () => {
   const handleGetStarted = (planName: string) => {
     setSelectedPlan(`${planName} - ${activeCategory}`);
     setIsFormOpen(true);
+    toast({ title: "Opening form...", description: `Getting started with ${planName}` });
   };
 
   const handleFormSubmit = async (customerInfo: any) => {
