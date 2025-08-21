@@ -26,7 +26,7 @@ const Hero = () => {
         }`}
         style={{ 
           backgroundImage: `url(${heroImageUrl})`,
-          filter: 'blur(1px) brightness(0.7) sepia(0.2) hue-rotate(200deg) saturate(1.2)'
+          filter: 'blur(2px) brightness(0.5) sepia(0.2) hue-rotate(200deg) saturate(1.2)'
         }}
       />
       {/* Fallback background while image loads */}
