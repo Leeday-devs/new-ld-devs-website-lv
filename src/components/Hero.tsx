@@ -2,12 +2,12 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Shield, Zap, Award } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useImagePreload } from "@/hooks/useImagePreload";
-import heroBusiness from "@/assets/hero-business-tech.jpg";
 
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const heroImageUrl = "/src/assets/hero-business-tech.jpg";
   const { isLoaded: isImageLoaded } = useImagePreload({ 
-    src: heroBusiness
+    src: heroImageUrl
   });
 
   useEffect(() => {
@@ -24,7 +24,7 @@ const Hero = () => {
         className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-500 ${
           isImageLoaded ? 'opacity-100' : 'opacity-0'
         }`}
-        style={{ backgroundImage: `url(${heroBusiness})` }}
+        style={{ backgroundImage: `url(${heroImageUrl})` }}
       />
       {/* Fallback background while image loads */}
       <div className={`absolute inset-0 bg-navy transition-opacity duration-500 ${
