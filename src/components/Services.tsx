@@ -80,39 +80,70 @@ const Services = () => {
   return (
     <section 
       id="services" 
-      className="section-white py-20 relative overflow-hidden" 
+      className="relative py-20 overflow-hidden min-h-screen" 
       aria-label="Our web development services"
     >
-      {/* Blue Glass Background with Raindrops */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-blue-600/8 to-blue-700/5 backdrop-blur-3xl" />
+      {/* Rain on Glass Background Effect */}
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-50/90 via-blue-100/60 to-blue-200/40" />
       
-      {/* Animated Raindrops */}
+      {/* Glass texture overlay */}
+      <div className="absolute inset-0 opacity-30" style={{
+        backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Ccircle cx='7' cy='7' r='1'/%3E%3Ccircle cx='27' cy='7' r='1'/%3E%3Ccircle cx='47' cy='7' r='1'/%3E%3Ccircle cx='7' cy='27' r='1'/%3E%3Ccircle cx='27' cy='27' r='1'/%3E%3Ccircle cx='47' cy='27' r='1'/%3E%3Ccircle cx='7' cy='47' r='1'/%3E%3Ccircle cx='27' cy='47' r='1'/%3E%3Ccircle cx='47' cy='47' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+      }} />
+      
+      {/* Animated Raindrops - More realistic */}
       <div className="absolute inset-0 overflow-hidden">
-        {[...Array(15)].map((_, i) => (
+        {[...Array(25)].map((_, i) => (
           <div
             key={i}
-            className="absolute w-0.5 bg-gradient-to-b from-blue-400/60 to-transparent rounded-full animate-pulse"
+            className="absolute animate-pulse opacity-60"
             style={{
               left: `${Math.random() * 100}%`,
-              height: `${20 + Math.random() * 40}px`,
-              animationDelay: `${Math.random() * 3}s`,
-              animationDuration: `${2 + Math.random() * 2}s`,
-              transform: `translateY(${Math.random() * -50}px)`,
+              top: `${Math.random() * 100}%`,
+              width: `${2 + Math.random() * 4}px`,
+              height: `${15 + Math.random() * 30}px`,
+              background: 'linear-gradient(to bottom, rgba(59,130,246,0.4), rgba(59,130,246,0.1), transparent)',
+              borderRadius: '50px',
+              animationDelay: `${Math.random() * 4}s`,
+              animationDuration: `${3 + Math.random() * 2}s`,
+              transform: `rotate(${-10 + Math.random() * 20}deg)`,
             }}
           />
         ))}
       </div>
       
-      {/* Glass overlay pattern */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,rgba(59,130,246,0.1)_0%,transparent_25%),radial-gradient(circle_at_75%_75%,rgba(37,99,235,0.08)_0%,transparent_25%)]" />
+      {/* Water droplets on glass */}
+      <div className="absolute inset-0">
+        {[...Array(40)].map((_, i) => (
+          <div
+            key={`droplet-${i}`}
+            className="absolute rounded-full bg-gradient-radial from-blue-400/30 to-transparent animate-pulse"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              width: `${3 + Math.random() * 8}px`,
+              height: `${3 + Math.random() * 8}px`,
+              animationDelay: `${Math.random() * 6}s`,
+              animationDuration: `${4 + Math.random() * 3}s`,
+              filter: 'blur(0.5px)',
+            }}
+          />
+        ))}
+      </div>
+      
+      {/* Glass distortion effect */}
+      <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/5 to-blue-100/10 backdrop-blur-[0.5px]" />
+      
+      {/* Frosted glass overlay */}
+      <div className="absolute inset-0 bg-white/20 backdrop-blur-sm" />
       
       <div className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="heading-primary heading-lg mb-6 text-navy">
+          <h2 className="heading-primary heading-lg mb-6 text-navy drop-shadow-sm">
             Our <span className="text-orange">Premium</span> Services
           </h2>
-          <p className="text-body max-w-3xl mx-auto text-text-secondary">
+          <p className="text-body max-w-3xl mx-auto text-text-secondary drop-shadow-sm">
             From concept to launch, we provide everything you need to establish a powerful online presence
           </p>
         </div>
