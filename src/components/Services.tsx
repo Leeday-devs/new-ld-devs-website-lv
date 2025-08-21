@@ -78,8 +78,35 @@ const Services = () => {
   };
 
   return (
-    <section id="services" className="section-white py-20" aria-label="Our web development services">
-      <div className="container mx-auto px-6">
+    <section 
+      id="services" 
+      className="section-white py-20 relative overflow-hidden" 
+      aria-label="Our web development services"
+    >
+      {/* Blue Glass Background with Raindrops */}
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-blue-600/8 to-blue-700/5 backdrop-blur-3xl" />
+      
+      {/* Animated Raindrops */}
+      <div className="absolute inset-0 overflow-hidden">
+        {[...Array(15)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-0.5 bg-gradient-to-b from-blue-400/60 to-transparent rounded-full animate-pulse"
+            style={{
+              left: `${Math.random() * 100}%`,
+              height: `${20 + Math.random() * 40}px`,
+              animationDelay: `${Math.random() * 3}s`,
+              animationDuration: `${2 + Math.random() * 2}s`,
+              transform: `translateY(${Math.random() * -50}px)`,
+            }}
+          />
+        ))}
+      </div>
+      
+      {/* Glass overlay pattern */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,rgba(59,130,246,0.1)_0%,transparent_25%),radial-gradient(circle_at_75%_75%,rgba(37,99,235,0.08)_0%,transparent_25%)]" />
+      
+      <div className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="heading-primary heading-lg mb-6 text-navy">
@@ -90,8 +117,8 @@ const Services = () => {
           </p>
         </div>
 
-        {/* Services Grid - Ultra Premium */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
+        {/* Services Grid - Ultra Premium (Smaller) */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => {
             // Ultra-premium color schemes with glass morphism
             const isPrimary = index % 2 === 0;
@@ -120,7 +147,7 @@ const Services = () => {
             return (
               <div
                 key={index}
-                className={`relative group overflow-hidden rounded-3xl ${colorScheme.gradient} ${colorScheme.border} ${colorScheme.glow} ${colorScheme.hoverGlow} transition-all duration-700 hover:scale-[1.03] hover:-translate-y-3 ${service.pricingCategory || service.isTemplates ? 'cursor-pointer' : ''}`}
+                className={`relative group overflow-hidden rounded-2xl ${colorScheme.gradient} ${colorScheme.border} ${colorScheme.glow} ${colorScheme.hoverGlow} transition-all duration-700 hover:scale-[1.03] hover:-translate-y-3 ${service.pricingCategory || service.isTemplates ? 'cursor-pointer' : ''}`}
                 onClick={() => handleServiceClick(service.pricingCategory, service.isTemplates)}
                 style={{
                   backgroundImage: `
@@ -131,7 +158,7 @@ const Services = () => {
                 }}
               >
                 {/* Ultra-premium glass morphism overlay */}
-                <div className={`absolute inset-0 rounded-3xl ${colorScheme.glass} opacity-60 group-hover:opacity-80 transition-opacity duration-500`} />
+                <div className={`absolute inset-0 rounded-2xl ${colorScheme.glass} opacity-60 group-hover:opacity-80 transition-opacity duration-500`} />
                 
                 {/* Sophisticated light reflection */}
                 <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-transparent to-transparent opacity-0 group-hover:opacity-30 transition-opacity duration-700" />
@@ -142,44 +169,44 @@ const Services = () => {
                 {/* Top accent line */}
                 <div className={`absolute top-0 left-0 right-0 h-[2px] ${colorScheme.accent} opacity-60 group-hover:opacity-100 transition-opacity duration-500`} />
                 
-                <div className="relative p-12 z-10">
+                <div className="relative p-8 z-10">
                   {/* Ultra-premium Icon Container */}
-                  <div className="mb-10 relative">
-                    <div className={`inline-flex p-6 rounded-2xl ${colorScheme.iconBg} backdrop-blur-md border border-white/20 shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-all duration-500`}>
-                      <service.icon className={`h-10 w-10 ${colorScheme.icon} drop-shadow-sm`} />
+                  <div className="mb-6 relative">
+                    <div className={`inline-flex p-4 rounded-xl ${colorScheme.iconBg} backdrop-blur-md border border-white/20 shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-all duration-500`}>
+                      <service.icon className={`h-7 w-7 ${colorScheme.icon} drop-shadow-sm`} />
                     </div>
                     
                     {/* Floating particles effect */}
-                    <div className={`absolute -top-2 -right-2 w-3 h-3 rounded-full ${colorScheme.accent} opacity-0 group-hover:opacity-60 group-hover:animate-bounce transition-all duration-500 delay-100`} />
-                    <div className={`absolute -bottom-1 -left-1 w-2 h-2 rounded-full ${colorScheme.accent} opacity-0 group-hover:opacity-40 group-hover:animate-pulse transition-all duration-500 delay-200`} />
+                    <div className={`absolute -top-2 -right-2 w-2 h-2 rounded-full ${colorScheme.accent} opacity-0 group-hover:opacity-60 group-hover:animate-bounce transition-all duration-500 delay-100`} />
+                    <div className={`absolute -bottom-1 -left-1 w-1.5 h-1.5 rounded-full ${colorScheme.accent} opacity-0 group-hover:opacity-40 group-hover:animate-pulse transition-all duration-500 delay-200`} />
                   </div>
 
                   {/* Luxury Typography */}
-                  <div className="mb-8">
-                    <h3 className={`heading-primary text-3xl font-bold mb-3 ${colorScheme.icon} group-hover:text-navy transition-colors duration-500 leading-tight`}>
+                  <div className="mb-6">
+                    <h3 className={`heading-primary text-2xl font-bold mb-2 ${colorScheme.icon} group-hover:text-navy transition-colors duration-500 leading-tight`}>
                       {service.title}
                     </h3>
-                    <div className={`h-1 w-16 ${colorScheme.accent} rounded-full opacity-60 group-hover:w-24 group-hover:opacity-100 transition-all duration-500`} />
+                    <div className={`h-0.5 w-12 ${colorScheme.accent} rounded-full opacity-60 group-hover:w-20 group-hover:opacity-100 transition-all duration-500`} />
                   </div>
 
                   {/* Refined Description */}
-                  <p className="text-lg leading-relaxed text-text-secondary mb-10 font-medium group-hover:text-text-primary transition-colors duration-300">
+                  <p className="text-base leading-relaxed text-text-secondary mb-6 font-medium group-hover:text-text-primary transition-colors duration-300">
                     {service.description}
                   </p>
 
                   {/* Premium Features with enhanced styling */}
-                  <ul className="space-y-5 mb-12">
+                  <ul className="space-y-3 mb-8">
                     {service.features.map((feature, featureIndex) => (
                       <li 
                         key={featureIndex} 
                         className="flex items-center group/item"
                         style={{ animationDelay: `${featureIndex * 100}ms` }}
                       >
-                        <div className={`relative p-2 rounded-xl ${colorScheme.iconBg} mr-5 group-hover/item:scale-110 group-hover/item:rotate-12 transition-all duration-300 backdrop-blur-sm border border-white/20`}>
-                          <CheckCircle className={`h-4 w-4 ${colorScheme.icon}`} />
-                          <div className={`absolute inset-0 rounded-xl ${colorScheme.accent} opacity-0 group-hover/item:opacity-20 blur-sm transition-opacity duration-300`} />
+                        <div className={`relative p-1.5 rounded-lg ${colorScheme.iconBg} mr-3 group-hover/item:scale-110 group-hover/item:rotate-12 transition-all duration-300 backdrop-blur-sm border border-white/20`}>
+                          <CheckCircle className={`h-3 w-3 ${colorScheme.icon}`} />
+                          <div className={`absolute inset-0 rounded-lg ${colorScheme.accent} opacity-0 group-hover/item:opacity-20 blur-sm transition-opacity duration-300`} />
                         </div>
-                        <span className="font-semibold text-text-primary group-hover/item:text-navy transition-colors duration-300 text-lg">
+                        <span className="font-semibold text-text-primary group-hover/item:text-navy transition-colors duration-300 text-sm">
                           {feature}
                         </span>
                       </li>
@@ -189,8 +216,8 @@ const Services = () => {
                   {/* Ultra-premium Call-to-Action */}
                   {(service.pricingCategory || service.isTemplates) && (
                     <div className="text-center">
-                      <div className={`inline-flex items-center px-8 py-4 rounded-2xl ${colorScheme.gradient} ${colorScheme.border} backdrop-blur-md shadow-lg opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-150 hover:scale-105`}>
-                        <span className={`text-base font-bold ${colorScheme.icon} tracking-wide`}>
+                      <div className={`inline-flex items-center px-6 py-3 rounded-xl ${colorScheme.gradient} ${colorScheme.border} backdrop-blur-md shadow-lg opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-150 hover:scale-105`}>
+                        <span className={`text-sm font-bold ${colorScheme.icon} tracking-wide`}>
                           {service.pricingCategory ? 'View Luxury Packages' : 'Browse Premium Templates'} 
                           <span className="ml-2 group-hover:translate-x-1 inline-block transition-transform duration-300">→</span>
                         </span>
@@ -200,11 +227,11 @@ const Services = () => {
                 </div>
 
                 {/* Premium bottom gradient accent */}
-                <div className={`absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t ${colorScheme.accent} opacity-5 group-hover:opacity-15 transition-opacity duration-500`} />
+                <div className={`absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t ${colorScheme.accent} opacity-5 group-hover:opacity-15 transition-opacity duration-500`} />
                 
                 {/* Luxury corner accents */}
-                <div className={`absolute top-6 right-6 w-6 h-6 border-r-2 border-t-2 ${isPrimary ? 'border-orange/30' : 'border-navy/30'} opacity-0 group-hover:opacity-60 transition-opacity duration-500`} />
-                <div className={`absolute bottom-6 left-6 w-6 h-6 border-l-2 border-b-2 ${isPrimary ? 'border-orange/30' : 'border-navy/30'} opacity-0 group-hover:opacity-60 transition-opacity duration-500`} />
+                <div className={`absolute top-4 right-4 w-4 h-4 border-r-2 border-t-2 ${isPrimary ? 'border-orange/30' : 'border-navy/30'} opacity-0 group-hover:opacity-60 transition-opacity duration-500`} />
+                <div className={`absolute bottom-4 left-4 w-4 h-4 border-l-2 border-b-2 ${isPrimary ? 'border-orange/30' : 'border-navy/30'} opacity-0 group-hover:opacity-60 transition-opacity duration-500`} />
               </div>
             );
           })}
