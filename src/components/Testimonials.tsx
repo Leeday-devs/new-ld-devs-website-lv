@@ -1,10 +1,5 @@
 import { useState } from "react";
 import { Star, ChevronLeft, ChevronRight, Quote } from "lucide-react";
-import sarahImage from "@/assets/testimonial-sarah.jpg";
-import michaelImage from "@/assets/testimonial-michael.jpg";
-import emmaImage from "@/assets/testimonial-emma.jpg";
-import davidImage from "@/assets/testimonial-david.jpg";
-import lisaImage from "@/assets/testimonial-lisa.jpg";
 
 const Testimonials = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -17,7 +12,6 @@ const Testimonials = () => {
       role: "CEO",
       quote: "Lee is fantastic! He is quick at responding and is always willing to try and find a solution to the problem, even if that means creating his own software/platform. We have been throughly impressed with Lee's work and very grateful for all his help. Highly recommend!",
       rating: 5,
-      image: sarahImage,
       website: "https://randaservices.co.uk/",
       companyLogo: "/lovable-uploads/f141e9f1-24b0-4a3b-878f-eb3a29003a7e.png"
     },
@@ -27,8 +21,7 @@ const Testimonials = () => {
       company: "E-Commerce Empire",
       role: "Founder",
       quote: "From £50K to £200K monthly revenue in 6 months. Their e-commerce platform doesn't just look amazing—it sells. The ROI has been incredible.",
-      rating: 5,
-      image: michaelImage
+      rating: 5
     },
     {
       id: 3,
@@ -36,8 +29,7 @@ const Testimonials = () => {
       company: "Creative Agency UK", 
       role: "Marketing Director",
       quote: "We went from 2 client inquiries per week to 20+. The website they built positions us as the premium choice in our market. Absolute game-changer.",
-      rating: 5,
-      image: emmaImage
+      rating: 5
     },
     {
       id: 4,
@@ -45,17 +37,15 @@ const Testimonials = () => {
       company: "Restaurant Deluxe",
       role: "Owner",
       quote: "Our online orders increased by 300% after the new website launch. The booking system works flawlessly and customers love the modern design.",
-      rating: 5,
-      image: davidImage
+      rating: 5
     },
     {
       id: 5,
       name: "Lisa Thompson",
       company: "Fitness Pro Studio",
       role: "Founder",
-      quote: "The member portal and class booking system streamlined our entire operation. We've saved 20 hours per week on admin tasks.",
-      rating: 5,
-      image: lisaImage
+      quote: "The member portal and class booking system streamlined our entire operation. We've saved 20 hours per week admin tasks.",
+      rating: 5
     }
   ];
 
@@ -104,35 +94,28 @@ const Testimonials = () => {
 
               {/* Client Info */}
               <div className="flex items-center justify-between">
-                <div className="flex items-center">
-                  <img 
-                    src={testimonial.image} 
-                    alt={testimonial.name}
-                    className="w-12 h-12 rounded-full object-cover mr-4"
-                  />
-                  <div>
-                    <div className="font-semibold text-navy text-base">
-                      {testimonial.name}
-                    </div>
-                    <div className="text-text-secondary text-sm">
-                      {testimonial.role}, {testimonial.website ? (
-                        <a 
-                          href={testimonial.website} 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="hover:text-orange transition-colors underline"
-                        >
-                          {testimonial.company}
-                        </a>
-                      ) : testimonial.company}
-                    </div>
+                <div>
+                  <div className="font-semibold text-navy text-base">
+                    {testimonial.name}
+                  </div>
+                  <div className="text-text-secondary text-sm">
+                    {testimonial.role}, {testimonial.website ? (
+                      <a 
+                        href={testimonial.website} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="hover:text-orange transition-colors underline"
+                      >
+                        {testimonial.company}
+                      </a>
+                    ) : testimonial.company}
                   </div>
                 </div>
                 {testimonial.companyLogo && (
                   <img 
                     src={testimonial.companyLogo} 
                     alt={`${testimonial.company} logo`}
-                    className="h-8 w-auto object-contain"
+                    className="h-12 w-auto object-contain"
                   />
                 )}
               </div>
@@ -158,35 +141,28 @@ const Testimonials = () => {
               </blockquote>
 
               <div className="flex items-center justify-between">
-                <div className="flex items-center">
-                  <img 
-                    src={testimonials[currentSlide].image} 
-                    alt={testimonials[currentSlide].name}
-                    className="w-12 h-12 rounded-full object-cover mr-4"
-                  />
-                  <div>
-                    <div className="font-semibold text-navy text-base">
-                      {testimonials[currentSlide].name}
-                    </div>
-                    <div className="text-text-secondary text-sm">
-                      {testimonials[currentSlide].role}, {testimonials[currentSlide].website ? (
-                        <a 
-                          href={testimonials[currentSlide].website} 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="hover:text-orange transition-colors underline"
-                        >
-                          {testimonials[currentSlide].company}
-                        </a>
-                      ) : testimonials[currentSlide].company}
-                    </div>
+                <div>
+                  <div className="font-semibold text-navy text-base">
+                    {testimonials[currentSlide].name}
+                  </div>
+                  <div className="text-text-secondary text-sm">
+                    {testimonials[currentSlide].role}, {testimonials[currentSlide].website ? (
+                      <a 
+                        href={testimonials[currentSlide].website} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="hover:text-orange transition-colors underline"
+                      >
+                        {testimonials[currentSlide].company}
+                      </a>
+                    ) : testimonials[currentSlide].company}
                   </div>
                 </div>
                 {testimonials[currentSlide].companyLogo && (
                   <img 
                     src={testimonials[currentSlide].companyLogo} 
                     alt={`${testimonials[currentSlide].company} logo`}
-                    className="h-8 w-auto object-contain"
+                    className="h-12 w-auto object-contain"
                   />
                 )}
               </div>
