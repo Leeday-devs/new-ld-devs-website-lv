@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/hooks/useAuth";
 import DiscordNotificationTracker from "./components/DiscordNotificationTracker";
 import { CookieBanner } from "./components/CookieBanner";
+import { PopupManager } from "@/components/PopupManager";
 import Index from "./pages/Index";
 import UnifiedAuth from "./pages/UnifiedAuth";
 import AdminAuth from "./pages/AdminAuth";
@@ -41,6 +42,7 @@ const App = () => (
         <BrowserRouter>
           <DiscordNotificationTracker />
           <CookieBanner />
+          <PopupManager />
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/auth" element={<UnifiedAuth />} />
