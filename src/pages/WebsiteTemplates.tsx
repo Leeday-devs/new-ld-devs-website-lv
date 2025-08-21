@@ -375,6 +375,7 @@ const WebsiteTemplates = () => {
                     These are <strong className="text-primary">one-time purchases</strong>. Once you buy a pre-built website, we immediately remove it from our catalog and fully customize it for your business. 
                     This means <strong className="text-primary">no one else will ever have the same website as you</strong>.
                   </p>
+                </div>
                 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
                   <div className="text-center">
