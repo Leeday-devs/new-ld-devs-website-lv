@@ -38,6 +38,11 @@ class ErrorBoundary extends Component<Props, State> {
             <p className="text-muted-foreground mb-6">
               We're sorry, but there was an unexpected error. Please try refreshing the page.
             </p>
+            {this.state.error && (
+              <p className="text-xs text-muted-foreground mb-4 break-words">
+                Error: {this.state.error.name}: {this.state.error.message}
+              </p>
+            )}
             <div className="space-y-3">
               <Button onClick={this.handleRetry} className="w-full">
                 Try Again
