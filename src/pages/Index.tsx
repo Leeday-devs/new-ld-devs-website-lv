@@ -12,6 +12,7 @@ import SEOHead from "@/components/SEOHead";
 import StatsBar from "@/components/StatsBar";
 import TrustedByLogos from "@/components/TrustedByLogos";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import FAQ from "@/components/FAQ";
 
 const Index = () => {
   return (
@@ -66,6 +67,9 @@ const Index = () => {
           <section id="pricing" aria-label="Pricing plans and packages" className="section-white">
             <Pricing />
           </section>
+          
+          {/* FAQ (white cards) - Premium spacing */}
+          <FAQ />
           
           {/* Final CTA (navy band) */}
           <FinalCTA />
