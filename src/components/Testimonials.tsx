@@ -13,7 +13,7 @@ const Testimonials = () => {
     {
       id: 1,
       name: "Rachael Rawsthorne",
-      company: "TechStart Solutions",
+      company: "R&A Services",
       role: "CEO",
       quote: "Lee is fantastic! He is quick at responding and is always willing to try and find a solution to the problem, even if that means creating his own software/platform. We have been throughly impressed with Lee's work and very grateful for all his help. Highly recommend!",
       rating: 5,
