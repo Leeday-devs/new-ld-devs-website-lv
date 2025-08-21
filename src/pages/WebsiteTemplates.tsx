@@ -183,7 +183,6 @@ const WebsiteTemplates = () => {
       });
     }
   };
-  
   const getTemplateIcon = (category: string) => {
     const iconMap: { [key: string]: any } = {
       'Trades': Wrench,
@@ -287,16 +286,40 @@ const WebsiteTemplates = () => {
         <Navigation />
         
         <main>
-          {/* Hero Section */}
+          {/* Hero Section with Background Graphics */}
           <section 
-            className="relative pt-32 pb-20 overflow-hidden section-navy"
+            className="relative pt-32 pb-20 overflow-hidden bg-gradient-to-br from-blue-50 to-blue-100"
             style={{
-              backgroundImage: `linear-gradient(to bottom right, rgba(10, 25, 47, 0.9), rgba(10, 25, 47, 0.8)), url(${heroBusinessTech})`,
+              backgroundImage: `linear-gradient(to bottom right, rgba(239, 246, 255, 0.9), rgba(219, 234, 254, 0.9)), url(${heroBusinessTech})`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat'
             }}
           >
+            {/* Animated Background Elements */}
+            <div className="absolute inset-0">
+              <div className="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl animate-pulse"></div>
+              <div className="absolute bottom-20 right-10 w-96 h-96 bg-secondary/10 rounded-full blur-3xl animate-pulse delay-700"></div>
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-accent/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+            </div>
+            
+            {/* Floating Elements */}
+            <div className="absolute top-40 left-1/4 animate-float">
+              <div className="bg-primary/20 rounded-2xl p-4 backdrop-blur-sm border border-primary/30">
+                <Monitor className="h-8 w-8 text-primary" />
+              </div>
+            </div>
+            <div className="absolute top-60 right-1/4 animate-float delay-500">
+              <div className="bg-secondary/20 rounded-2xl p-4 backdrop-blur-sm border border-secondary/30">
+                <Layers className="h-8 w-8 text-secondary" />
+              </div>
+            </div>
+            <div className="absolute top-80 left-1/3 animate-float delay-1000">
+              <div className="bg-accent/20 rounded-2xl p-4 backdrop-blur-sm border border-accent/30">
+                <Sparkles className="h-8 w-8 text-accent" />
+              </div>
+            </div>
+
             <div className="container mx-auto px-4 relative z-10">
               <Breadcrumbs 
                 items={[
@@ -311,15 +334,15 @@ const WebsiteTemplates = () => {
                   <span className="text-primary font-semibold">One-Time Purchase • 100% Unique</span>
                 </div>
                 
-                <h1 className="text-5xl md:text-7xl font-bold mb-8 leading-tight text-white">
+                <h1 className="text-5xl md:text-7xl font-bold mb-8 leading-tight">
                   <span className="bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent">
                     Professional
                   </span>
                   <br />
-                  <span className="text-white">Pre-Built Websites</span>
+                  <span className="text-foreground">Pre-Built Websites</span>
                 </h1>
                 
-                <p className="text-xl md:text-2xl text-white/80 mb-12 max-w-4xl mx-auto leading-relaxed">
+                <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-4xl mx-auto leading-relaxed">
                   Industry-focused designs that get <strong className="text-primary">removed from our catalog</strong> once purchased. 
                   Your business deserves a unique online presence that stands out from the competition.
                 </p>
@@ -336,9 +359,9 @@ const WebsiteTemplates = () => {
                   </Button>
                   
                   <div className="text-center sm:text-left">
-                    <div className="text-sm text-white/60">Starting from</div>
+                    <div className="text-sm text-muted-foreground">Starting from</div>
                     <div className="text-3xl font-bold text-primary">£350</div>
-                    <div className="text-sm text-white/60">+ £40/month hosting</div>
+                    <div className="text-sm text-muted-foreground">+ £40/month hosting</div>
                   </div>
                 </div>
               </div>
@@ -346,216 +369,498 @@ const WebsiteTemplates = () => {
           </section>
 
           {/* Uniqueness Guarantee Section */}
-          <section className="section-white">
-            <div className="container mx-auto px-4">
-              <div className="bg-gradient-to-r from-destructive/10 via-primary/10 to-secondary/10 rounded-3xl p-8 md:p-12 border-2 border-primary/20">
-                <div className="max-w-4xl mx-auto text-center">
-                  <div className="flex items-center justify-center mb-6">
-                    <div className="bg-primary/20 rounded-full w-16 h-16 flex items-center justify-center">
-                      <Lock className="h-8 w-8 text-primary" />
-                    </div>
+          <section className="container mx-auto px-4 py-16">
+            <div className="bg-gradient-to-r from-destructive/10 via-primary/10 to-secondary/10 rounded-3xl p-8 md:p-12 border-2 border-primary/20">
+              <div className="max-w-4xl mx-auto text-center">
+                <div className="flex items-center justify-center mb-6">
+                  <div className="bg-primary/20 rounded-full w-16 h-16 flex items-center justify-center">
+                    <Lock className="h-8 w-8 text-primary" />
                   </div>
-                  <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">
-                    Your Site Will Be 100% Unique
-                  </h2>
-                  <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
-                    These are <strong>one-time purchases</strong>. Once you buy a pre-built website, we immediately remove it from our catalog and fully customize it for your business. 
-                    This means <strong>no one else will ever have the same website as you</strong>.
-                  </p>
+                </div>
+                <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">
+                  Your Site Will Be 100% Unique
+                </h2>
+                <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
+                  These are <strong>one-time purchases</strong>. Once you buy a pre-built website, we immediately remove it from our catalog and fully customize it for your business. 
+                  This means <strong>no one else will ever have the same website as you</strong>.
+                </p>
+                
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+                  <div className="text-center">
+                    <div className="bg-primary/10 rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4">
+                      <Check className="h-6 w-6 text-primary" />
+                    </div>
+                    <h3 className="font-semibold text-lg mb-2 text-foreground">One-Time Purchase</h3>
+                    <p className="text-muted-foreground text-sm">Buy once, removed forever from our catalog</p>
+                  </div>
                   
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-                    <div className="text-center">
-                      <div className="bg-primary/10 rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4">
-                        <Check className="h-6 w-6 text-primary" />
-                      </div>
-                      <h3 className="font-semibold text-lg mb-2 text-foreground">One-Time Purchase</h3>
-                      <p className="text-muted-foreground text-sm">Buy once, removed forever from our catalog</p>
+                  <div className="text-center">
+                    <div className="bg-primary/10 rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4">
+                      <Star className="h-6 w-6 text-primary" />
                     </div>
-                    
-                    <div className="text-center">
-                      <div className="bg-primary/10 rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4">
-                        <Star className="h-6 w-6 text-primary" />
-                      </div>
-                      <h3 className="font-semibold text-lg mb-2 text-foreground">Fully Customized</h3>
-                      <p className="text-muted-foreground text-sm">Personalized with your branding and content</p>
+                    <h3 className="font-semibold text-lg mb-2 text-foreground">Fully Customized</h3>
+                    <p className="text-muted-foreground text-sm">Personalized with your branding and content</p>
+                  </div>
+                  
+                  <div className="text-center">
+                    <div className="bg-primary/10 rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4">
+                      <Users className="h-6 w-6 text-primary" />
                     </div>
-                    
-                    <div className="text-center">
-                      <div className="bg-primary/10 rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4">
-                        <Users className="h-6 w-6 text-primary" />
-                      </div>
-                      <h3 className="font-semibold text-lg mb-2 text-foreground">Exclusive to You</h3>
-                      <p className="text-muted-foreground text-sm">No other business will have your design</p>
-                    </div>
+                    <h3 className="font-semibold text-lg mb-2 text-foreground">Exclusive to You</h3>
+                    <p className="text-muted-foreground text-sm">No other business will have your design</p>
                   </div>
                 </div>
               </div>
             </div>
           </section>
 
-          {/* Templates Grid */}
-          <section id="templates-grid" className="section-grey">
-            <div className="container mx-auto px-4">
-              <div className="text-center mb-16">
-                <div className="inline-flex items-center gap-2 bg-secondary/10 px-6 py-3 rounded-full mb-6 border border-secondary/20">
-                  <Palette className="h-5 w-5 text-secondary" />
-                  <span className="text-secondary font-semibold">Industry-Specific Designs</span>
+          {/* What You Get Section */}
+          <section className="container mx-auto px-4 py-16">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">What's Included in Your Pre-Built Website</h2>
+              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+                Every pre-built website comes as a complete 5-page package, professionally designed and ready to customize for your business.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+              {/* Left Side - What's Included */}
+              <div className="space-y-8">
+                <div className="space-y-6">
+                  <div className="flex items-start gap-4">
+                    <div className="bg-primary/10 rounded-full w-10 h-10 flex items-center justify-center mt-1">
+                      <FileText className="h-5 w-5 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-lg mb-2 text-foreground">5 Complete Pages</h3>
+                      <p className="text-muted-foreground">Home, About, Services, Portfolio/Gallery, and Contact pages — everything you need to showcase your business professionally.</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="bg-primary/10 rounded-full w-10 h-10 flex items-center justify-center mt-1">
+                      <Globe className="h-5 w-5 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-lg mb-2 text-foreground">Mobile Responsive Design</h3>
+                      <p className="text-muted-foreground">Your website will look perfect on all devices — desktop, tablet, and mobile phones.</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="bg-primary/10 rounded-full w-10 h-10 flex items-center justify-center mt-1">
+                      <Mail className="h-5 w-5 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-lg mb-2 text-foreground">Contact Forms & Integration</h3>
+                      <p className="text-muted-foreground">Working contact forms, Google Maps integration, and social media links to connect with your customers.</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="bg-primary/10 rounded-full w-10 h-10 flex items-center justify-center mt-1">
+                      <Zap className="h-5 w-5 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-lg mb-2 text-foreground">SEO Optimized</h3>
+                      <p className="text-muted-foreground">Built with search engine optimization in mind to help your business get found online.</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="bg-primary/10 rounded-full w-10 h-10 flex items-center justify-center mt-1">
+                      <Star className="h-5 w-5 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-lg mb-2 text-foreground">Full Customization</h3>
+                      <p className="text-muted-foreground">We'll customize everything — your logo, colors, content, images, and branding to match your business perfectly.</p>
+                    </div>
+                  </div>
                 </div>
-                <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                  Choose Your Perfect Pre-Built Website
-                </h2>
-                <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                  Each design is professionally crafted and optimized for your specific industry, 
-                  ensuring maximum impact and conversion for your business type.
-                </p>
               </div>
 
-              <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-10">
-                {templates.map((template, index) => {
-                  const IconComponent = getTemplateIcon(template.category);
+              {/* Right Side - Additional Pages & Custom Request */}
+              <div className="space-y-8">
+                <Card className="p-8 border-2 border-primary/20 bg-gradient-to-br from-primary/5 to-secondary/5">
+                  <div className="text-center mb-6">
+                    <div className="bg-primary/20 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                      <ArrowRight className="h-8 w-8 text-primary" />
+                    </div>
+                    <h3 className="text-2xl font-bold mb-2 text-foreground">Need More Pages?</h3>
+                    <p className="text-muted-foreground">
+                      Start with 5 pages, expand as you grow. Additional pages can be added for £75 each.
+                    </p>
+                  </div>
                   
-                  return (
-                    <Card key={template.id} className="group hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border-2 hover:border-primary/30 bg-card overflow-hidden relative">
-                      {/* Category Badge */}
-                      <div className="absolute top-4 left-4 z-10">
-                        <Badge variant="secondary" className="bg-primary/10 text-primary border-primary/20">
-                          <IconComponent className="mr-1 h-3 w-3" />
-                          {template.category}
-                        </Badge>
-                      </div>
+                  <div className="space-y-4 mb-6">
+                    <div className="flex justify-between items-center p-3 bg-background/50 rounded-lg">
+                      <span className="text-sm text-muted-foreground">Blog page</span>
+                      <span className="font-semibold text-primary">from £75</span>
+                    </div>
+                    <div className="flex justify-between items-center p-3 bg-background/50 rounded-lg">
+                      <span className="text-sm text-muted-foreground">Online shop</span>
+                      <span className="font-semibold text-primary">from £150</span>
+                    </div>
+                    <div className="flex justify-between items-center p-3 bg-background/50 rounded-lg">
+                      <span className="text-sm text-muted-foreground">Booking system</span>
+                      <span className="font-semibold text-primary">from £125</span>
+                    </div>
+                    <div className="flex justify-between items-center p-3 bg-background/50 rounded-lg">
+                      <span className="text-sm text-muted-foreground">Custom page</span>
+                      <span className="font-semibold text-primary">from £75</span>
+                    </div>
+                  </div>
+                </Card>
 
-                      {/* Image Placeholder */}
-                      <div className="h-48 bg-gradient-to-br from-primary/20 to-secondary/20 relative overflow-hidden">
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-                        <div className="absolute bottom-4 left-4 right-4">
-                          <h3 className="text-xl font-bold text-white mb-1">{template.name}</h3>
+                <Card className="p-8 border-2 border-secondary/20 bg-gradient-to-br from-secondary/5 to-accent/5">
+                  <div className="text-center mb-6">
+                    <div className="bg-secondary/20 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                      <MessageSquare className="h-8 w-8 text-secondary" />
+                    </div>
+                    <h3 className="text-2xl font-bold mb-2 text-foreground">Don't See Your Industry?</h3>
+                    <p className="text-muted-foreground mb-6">
+                      We can create a custom pre-built website example specifically for your niche. Request a demo and we'll show you what's possible.
+                    </p>
+                  </div>
+
+                  <Dialog open={isFormOpen} onOpenChange={setIsFormOpen}>
+                    <DialogTrigger asChild>
+                      <Button className="w-full bg-secondary hover:bg-secondary/90 text-secondary-foreground">
+                        <MessageSquare className="mr-2 h-4 w-4" />
+                        Request Custom Example
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent className="sm:max-w-[425px]">
+                      <DialogHeader>
+                        <DialogTitle>Request a Custom Pre-Built Example</DialogTitle>
+                        <DialogDescription>
+                          Tell us about your business and we'll create a custom website example for your industry.
+                        </DialogDescription>
+                      </DialogHeader>
+                      <form onSubmit={handleFormSubmit} className="space-y-4">
+                        <div>
+                          <Input
+                            placeholder="Business Name"
+                            value={formData.businessName}
+                            onChange={(e) => setFormData({...formData, businessName: e.target.value})}
+                            required
+                          />
                         </div>
+                        <div>
+                          <Input
+                            placeholder="Industry/Niche (e.g., Dental Practice, Law Firm, etc.)"
+                            value={formData.industry}
+                            onChange={(e) => setFormData({...formData, industry: e.target.value})}
+                            required
+                          />
+                        </div>
+                        <div>
+                          <Input
+                            type="email"
+                            placeholder="Email Address"
+                            value={formData.email}
+                            onChange={(e) => setFormData({...formData, email: e.target.value})}
+                            required
+                          />
+                        </div>
+                        <div>
+                          <Input
+                            type="tel"
+                            placeholder="Phone Number"
+                            value={formData.phone}
+                            onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                          />
+                        </div>
+                        <div>
+                          <Textarea
+                            placeholder="Tell us about your business and what features you'd like to see..."
+                            value={formData.description}
+                            onChange={(e) => setFormData({...formData, description: e.target.value})}
+                            rows={4}
+                          />
+                        </div>
+                        <div className="flex gap-3">
+                          <Button type="button" variant="outline" onClick={() => setIsFormOpen(false)} className="flex-1">
+                            Cancel
+                          </Button>
+                          <Button type="submit" className="flex-1">
+                            Submit Request
+                          </Button>
+                        </div>
+                      </form>
+                    </DialogContent>
+                  </Dialog>
+                </Card>
+              </div>
+            </div>
+          </section>
+
+          {/* Pre-Built Sites Grid - Enhanced Design */}
+          <section id="templates-grid" className="container mx-auto px-4 py-20 bg-gradient-to-b from-background to-muted/20">
+            <div className="text-center mb-16">
+              <div className="inline-flex items-center gap-2 bg-secondary/10 px-6 py-3 rounded-full mb-6 border border-secondary/20">
+                <Palette className="h-5 w-5 text-secondary" />
+                <span className="text-secondary font-semibold">Industry-Specific Designs</span>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                Choose Your Perfect Pre-Built Website
+              </h2>
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+                Each design is professionally crafted and optimized for your specific industry, 
+                ensuring maximum impact and conversion for your business type.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-10">
+              {templates.map((template, index) => {
+                const IconComponent = getTemplateIcon(template.category);
+                return (
+                  <Card 
+                    key={template.id} 
+                    className="group relative overflow-hidden bg-gradient-to-br from-card to-card/50 border-2 border-border/50 hover:border-primary/30 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 hover:scale-105 rounded-2xl"
+                    style={{ animationDelay: `${index * 100}ms` }}
+                  >
+                    {/* Gradient Overlay for Premium Feel */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                    
+                    {/* Category Icon & Badge */}
+                    <div className="absolute top-4 left-4 z-10 flex items-center gap-2">
+                      <div className="bg-primary/20 backdrop-blur-sm rounded-full p-2 border border-primary/30">
+                        <IconComponent className="h-4 w-4 text-primary" />
                       </div>
+                      <Badge className="bg-primary/90 text-primary-foreground shadow-lg backdrop-blur-sm">
+                        {template.category}
+                      </Badge>
+                    </div>
 
-                      <CardHeader className="pb-4">
-                        <CardDescription className="text-muted-foreground leading-relaxed">
-                          {template.description}
-                        </CardDescription>
-                      </CardHeader>
-
-                      <CardContent className="space-y-6">
-                        {/* Features */}
-                        <div className="space-y-2">
-                          {template.features.map((feature, idx) => (
-                            <div key={idx} className="flex items-center gap-2 text-sm">
-                              <Check className="h-4 w-4 text-primary flex-shrink-0" />
-                              <span className="text-muted-foreground">{feature}</span>
+                    {/* Live Preview with Enhanced Overlay */}
+                    <div className="relative aspect-video overflow-hidden bg-gradient-to-br from-muted to-muted/50 rounded-t-2xl">
+                      {template.demoUrl !== "#" ? (
+                        <>
+                          <iframe
+                            src={template.demoUrl}
+                            width="100%"
+                            height="100%"
+                            style={{
+                              border: "none",
+                              borderRadius: "0",
+                              transform: "scale(0.5)",
+                              transformOrigin: "top left",
+                              width: "200%",
+                              height: "200%",
+                              pointerEvents: "none"
+                            }}
+                            title={`${template.name} Preview`}
+                            loading="lazy"
+                          />
+                          {/* Preview Overlay */}
+                          <a
+                            href={template.demoUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={`Open live preview of ${template.name}`}
+                            className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
+                          >
+                            <div className="bg-white/90 backdrop-blur-sm rounded-full p-4 border border-white/50 opacity-0 group-hover:opacity-100 transform scale-75 group-hover:scale-100 transition-all duration-300">
+                              <Eye className="h-6 w-6 text-primary" />
                             </div>
-                          ))}
+                          </a>
+                        </>
+                      ) : (
+                        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
+                          <div className="text-center">
+                            <IconComponent className="h-16 w-16 text-primary mx-auto mb-4 opacity-50" />
+                            <p className="text-muted-foreground font-medium">Preview Coming Soon</p>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                    
+                    {/* Enhanced Template Details */}
+                    <CardContent className="p-8 relative z-10">
+                      <div className="space-y-6">
+                        {/* Header with Icon */}
+                        <div className="text-center">
+                          <div className="flex items-center justify-center gap-3 mb-4">
+                            <div className="bg-primary/10 rounded-full p-3">
+                              <IconComponent className="h-6 w-6 text-primary" />
+                            </div>
+                            <div className="text-left">
+                              <h3 className="text-2xl font-bold text-foreground">{template.name}</h3>
+                              <p className="text-sm text-muted-foreground">{template.category}</p>
+                            </div>
+                          </div>
+                          <p className="text-muted-foreground leading-relaxed mb-4">{template.description}</p>
                         </div>
 
-                        {/* Pricing */}
-                        <div className="bg-primary/5 rounded-xl p-4 space-y-2">
-                          <div className="flex items-baseline gap-2">
-                            <span className="text-3xl font-bold text-primary">{template.price}</span>
-                            <span className="text-sm text-muted-foreground">one-time</span>
+                        {/* Features List */}
+                        <div className="space-y-2">
+                          <h4 className="font-semibold text-sm text-foreground mb-3 flex items-center gap-2">
+                            <Check className="h-4 w-4 text-primary" />
+                            Key Features:
+                          </h4>
+                          <div className="grid grid-cols-2 gap-2">
+                            {template.features.map((feature, idx) => (
+                              <div key={idx} className="flex items-center gap-2 text-xs text-muted-foreground">
+                                <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
+                                <span>{feature}</span>
+                              </div>
+                            ))}
                           </div>
-                          <div className="text-sm text-muted-foreground">
-                            + {template.monthlyPrice} hosting & maintenance
-                          </div>
+                        </div>
+
+                        {/* Pricing with Enhanced Styling */}
+                        <div className="text-center p-4 bg-gradient-to-r from-primary/5 to-secondary/5 rounded-xl border border-primary/10">
+                          <div className="text-3xl font-bold text-primary mb-1">{template.price}</div>
+                          <div className="text-sm text-muted-foreground mb-3">+ {template.monthlyPrice} hosting</div>
                           <div className="text-xs text-primary font-medium bg-primary/10 px-3 py-1 rounded-full inline-block">
                             One-time purchase • Becomes yours forever
                           </div>
                         </div>
                         
-                        {/* Action Buttons */}
+                        {/* Enhanced Action Buttons */}
                         <div className="flex flex-col gap-3">
                           <Button 
                             asChild
                             variant="outline" 
-                            className="w-full border-2 border-primary/20 hover:border-primary/40 hover:bg-primary/5 transition-all duration-300"
+                            className="w-full border-2 border-primary/20 hover:border-primary/40 hover:bg-primary/5 transition-all duration-300 group/btn"
                             disabled={template.demoUrl === "#"}
                           >
                             <a href={template.demoUrl === "#" ? undefined : template.demoUrl} target="_blank" rel="noopener noreferrer">
-                              <Eye className="mr-2 h-4 w-4" />
+                              <Eye className="mr-2 h-4 w-4 group-hover/btn:scale-110 transition-transform" />
                               Preview Full Website
-                              <ArrowRight className="ml-2 h-4 w-4" />
+                              <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
                             </a>
                           </Button>
                           
                           <Button 
+                            className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 group/buy"
                             onClick={() => handleBuyNow(template)}
-                            className="w-full bg-primary hover:bg-primary/90 text-white font-semibold"
                           >
-                            <CreditCard className="mr-2 h-4 w-4" />
-                            Buy Now - {template.price}
+                            <CreditCard className="mr-2 h-4 w-4 group-hover/buy:scale-110 transition-transform" />
+                            Buy Now – {template.price}
+                            <Sparkles className="ml-2 h-4 w-4 group-hover/buy:rotate-12 transition-transform" />
                           </Button>
                         </div>
-                      </CardContent>
-                    </Card>
-                  );
-                })}
-              </div>
+                      </div>
+                    </CardContent>
 
-              {/* Call-to-Action after grid */}
-              <div className="text-center mt-16 p-8 bg-gradient-to-r from-primary/10 via-secondary/10 to-primary/10 rounded-3xl border border-primary/20">
-                <h3 className="text-2xl font-bold mb-4 text-foreground">Don't See What You're Looking For?</h3>
-                <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-                  We create new industry-specific designs regularly. Contact us to discuss your requirements 
-                  or request a custom pre-built website for your niche.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button 
-                    variant="outline" 
-                    size="lg"
-                    className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
-                    onClick={() => window.open('https://wa.me/447586266007', '_blank')}
-                  >
-                    <Phone className="mr-2 h-5 w-5" />
-                    Speak to Our Team
-                  </Button>
-                  <Button 
-                    size="lg"
-                    className="bg-secondary hover:bg-secondary/90"
-                    onClick={() => setIsFormOpen(true)}
-                  >
-                    <MessageSquare className="mr-2 h-5 w-5" />
-                    Request Custom Design
-                  </Button>
-                </div>
+                    {/* Premium Glow Effect on Hover */}
+                    <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 via-secondary/20 to-primary/20 rounded-2xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
+                  </Card>
+                );
+              })}
+            </div>
+
+            {/* Call-to-Action after grid */}
+            <div className="text-center mt-16 p-8 bg-gradient-to-r from-primary/10 via-secondary/10 to-primary/10 rounded-3xl border border-primary/20">
+              <h3 className="text-2xl font-bold mb-4 text-foreground">Don't See What You're Looking For?</h3>
+              <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
+                We create new industry-specific designs regularly. Contact us to discuss your requirements 
+                or request a custom pre-built website for your niche.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button 
+                  variant="outline" 
+                  size="lg"
+                  className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+                  onClick={() => window.open('https://wa.me/447586266007', '_blank')}
+                >
+                  <Phone className="mr-2 h-5 w-5" />
+                  Speak to Our Team
+                </Button>
+                <Button 
+                  size="lg"
+                  className="bg-secondary hover:bg-secondary/90"
+                  onClick={() => setIsFormOpen(true)}
+                >
+                  <MessageSquare className="mr-2 h-5 w-5" />
+                  Request Custom Design
+                </Button>
               </div>
             </div>
           </section>
 
           {/* FAQ Section */}
-          <section className="section-navy">
-            <div className="container mx-auto px-4">
-              <div className="max-w-4xl mx-auto text-center">
-                <h2 className="text-3xl md:text-4xl font-bold mb-16 text-white">Frequently Asked Questions</h2>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
-                  <div className="space-y-4">
-                    <h3 className="font-semibold text-xl mb-2 text-white">What happens after I purchase?</h3>
-                    <p className="text-white/80">We immediately remove the template from our catalog and begin customizing it with your branding, content, and business information.</p>
+          <section className="container mx-auto px-4 py-16 bg-muted/30 rounded-3xl my-16">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">Frequently Asked Questions</h2>
+              <p className="text-muted-foreground text-lg">Everything you need to know about our website templates</p>
+            </div>
+
+            <div className="max-w-3xl mx-auto space-y-6">
+              <Card className="p-6">
+                <h3 className="font-semibold text-lg mb-3 text-foreground">What happens after I buy?</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  You'll fill out a short form so we can customise your new website. We'll then send you a mockup within 2 business days.
+                </p>
+              </Card>
+
+              <Card className="p-6">
+                <h3 className="font-semibold text-lg mb-3 text-foreground">Can I change text, images and branding?</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Yes — we'll customise it all for your business including your logo, colors, content, and images.
+                </p>
+              </Card>
+
+              <Card className="p-6">
+                <h3 className="font-semibold text-lg mb-3 text-foreground">Do I get access to edit my site?</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Yes, you'll get full access after delivery — or we can manage everything for you if you prefer.
+                </p>
+              </Card>
+
+              <Card className="p-6">
+                <h3 className="font-semibold text-lg mb-3 text-foreground">What's included in hosting?</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Hosting includes backups, updates, SSL, one business email and support for just £40/month.
+                </p>
+              </Card>
+            </div>
+          </section>
+
+          {/* Bonus Upsell Section */}
+          <section className="container mx-auto px-4 py-16">
+            <div className="bg-gradient-to-r from-primary to-primary/80 rounded-3xl p-8 md:p-12 text-white">
+              <div className="text-center mb-12">
+                <h2 className="text-3xl md:text-4xl font-bold mb-4">Need Hosting & Ongoing Support?</h2>
+                <p className="text-lg opacity-90 max-w-2xl mx-auto">
+                  All our sites include optional hosting, backups, support, updates and a business email for just £40/month. 
+                  You can add this during checkout or anytime after launch.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="text-center">
+                  <div className="bg-white/20 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                    <Clock className="h-8 w-8" />
                   </div>
-                  
-                  <div className="space-y-4">
-                    <h3 className="font-semibold text-xl mb-2 text-white">How long does setup take?</h3>
-                    <p className="text-white/80">Most pre-built websites are customized and launched within 5-7 business days after we receive your content and branding materials.</p>
-                  </div>
-                  
-                  <div className="space-y-4">
-                    <h3 className="font-semibold text-xl mb-2 text-white">What's included in hosting?</h3>
-                    <p className="text-white/80">Professional hosting, SSL certificates, regular backups, security updates, performance monitoring, and technical support.</p>
-                  </div>
-                  
-                  <div className="space-y-4">
-                    <h3 className="font-semibold text-xl mb-2 text-white">Can I make changes later?</h3>
-                    <p className="text-white/80">Yes! Your website includes a content management system, and we provide ongoing support for updates and modifications.</p>
-                  </div>
+                  <h3 className="font-semibold text-xl mb-2">Fast Delivery</h3>
+                  <p className="opacity-90">Get your website live quickly with our streamlined process</p>
                 </div>
 
-                <div className="text-center mt-12">
-                  <Button size="lg" variant="secondary" className="bg-white text-primary hover:bg-gray-100">
-                    Get Started Today
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
+                <div className="text-center">
+                  <div className="bg-white/20 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                    <Zap className="h-8 w-8" />
+                  </div>
+                  <h3 className="font-semibold text-xl mb-2">Premium Hosting Included</h3>
+                  <p className="opacity-90">Fast, secure hosting with 99.9% uptime guarantee</p>
                 </div>
+
+                <div className="text-center">
+                  <div className="bg-white/20 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                    <Shield className="h-8 w-8" />
+                  </div>
+                  <h3 className="font-semibold text-xl mb-2">Ongoing Support</h3>
+                  <p className="opacity-90">Monthly updates, backups, and technical support</p>
+                </div>
+              </div>
+
+              <div className="text-center mt-12">
+                <Button size="lg" variant="secondary" className="bg-white text-primary hover:bg-gray-100">
+                  Get Started Today
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
               </div>
             </div>
           </section>
@@ -576,103 +881,115 @@ const WebsiteTemplates = () => {
               <div className="space-y-4">
                 <h3 className="text-lg font-semibold text-foreground border-b pb-2">Business Information</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <Input
-                      placeholder="Business Name"
-                      value={businessDetails.businessName}
-                      onChange={(e) => setBusinessDetails({...businessDetails, businessName: e.target.value})}
-                      required
-                    />
-                  </div>
-                  <div>
-                    <Input
-                      placeholder="Owner/Manager Name"
-                      value={businessDetails.ownerName}
-                      onChange={(e) => setBusinessDetails({...businessDetails, ownerName: e.target.value})}
-                      required
-                    />
-                  </div>
-                  <div>
-                    <Input
-                      type="email"
-                      placeholder="Email Address"
-                      value={businessDetails.email}
-                      onChange={(e) => setBusinessDetails({...businessDetails, email: e.target.value})}
-                      required
-                    />
-                  </div>
-                  <div>
-                    <Input
-                      type="tel"
-                      placeholder="Phone Number"
-                      value={businessDetails.phone}
-                      onChange={(e) => setBusinessDetails({...businessDetails, phone: e.target.value})}
-                      required
-                    />
-                  </div>
-                </div>
-                <div>
                   <Input
-                    placeholder="Business Address"
-                    value={businessDetails.address}
-                    onChange={(e) => setBusinessDetails({...businessDetails, address: e.target.value})}
+                    placeholder="Business/Company Name *"
+                    value={businessDetails.businessName}
+                    onChange={(e) => setBusinessDetails({...businessDetails, businessName: e.target.value})}
+                    required
+                  />
+                  <Input
+                    placeholder="Owner/Manager Name *"
+                    value={businessDetails.ownerName}
+                    onChange={(e) => setBusinessDetails({...businessDetails, ownerName: e.target.value})}
+                    required
                   />
                 </div>
+                
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <Input
+                    type="email"
+                    placeholder="Email Address *"
+                    value={businessDetails.email}
+                    onChange={(e) => setBusinessDetails({...businessDetails, email: e.target.value})}
+                    required
+                  />
+                  <Input
+                    type="tel"
+                    placeholder="Phone Number *"
+                    value={businessDetails.phone}
+                    onChange={(e) => setBusinessDetails({...businessDetails, phone: e.target.value})}
+                    required
+                  />
+                </div>
+                
+                <Input
+                  placeholder="Business Address"
+                  value={businessDetails.address}
+                  onChange={(e) => setBusinessDetails({...businessDetails, address: e.target.value})}
+                />
               </div>
 
               {/* Business Details */}
               <div className="space-y-4">
                 <h3 className="text-lg font-semibold text-foreground border-b pb-2">Business Details</h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <Input
-                      placeholder="Type of Business"
-                      value={businessDetails.businessType}
-                      onChange={(e) => setBusinessDetails({...businessDetails, businessType: e.target.value})}
-                    />
-                  </div>
-                  <div>
-                    <Input
-                      placeholder="Target Audience"
-                      value={businessDetails.targetAudience}
-                      onChange={(e) => setBusinessDetails({...businessDetails, targetAudience: e.target.value})}
-                    />
-                  </div>
-                </div>
-                <div>
-                  <Textarea
-                    placeholder="Services/Products you offer"
-                    value={businessDetails.services}
-                    onChange={(e) => setBusinessDetails({...businessDetails, services: e.target.value})}
-                    rows={3}
-                  />
-                </div>
+                <Input
+                  placeholder="Type of Business (e.g., Plumbing Services, Hair Salon) *"
+                  value={businessDetails.businessType}
+                  onChange={(e) => setBusinessDetails({...businessDetails, businessType: e.target.value})}
+                  required
+                />
+                
+                <Textarea
+                  placeholder="Main Services/Products (describe what you offer) *"
+                  value={businessDetails.services}
+                  onChange={(e) => setBusinessDetails({...businessDetails, services: e.target.value})}
+                  rows={3}
+                  required
+                />
+                
+                <Textarea
+                  placeholder="Target Audience (who are your ideal customers?)"
+                  value={businessDetails.targetAudience}
+                  onChange={(e) => setBusinessDetails({...businessDetails, targetAudience: e.target.value})}
+                  rows={2}
+                />
               </div>
 
-              {/* Customization Preferences */}
+              {/* Design Preferences */}
               <div className="space-y-4">
-                <h3 className="text-lg font-semibold text-foreground border-b pb-2">Customization Preferences</h3>
-                <div>
+                <h3 className="text-lg font-semibold text-foreground border-b pb-2">Design Preferences</h3>
+                <Input
+                  placeholder="Preferred Colors (e.g., Blue and white, Professional black/gold)"
+                  value={businessDetails.preferredColors}
+                  onChange={(e) => setBusinessDetails({...businessDetails, preferredColors: e.target.value})}
+                />
+                
+                <Textarea
+                  placeholder="Logo Details (Do you have a logo? Describe it or mention if you need one created)"
+                  value={businessDetails.logoDetails}
+                  onChange={(e) => setBusinessDetails({...businessDetails, logoDetails: e.target.value})}
+                  rows={2}
+                />
+              </div>
+
+              {/* Content & Features */}
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold text-foreground border-b pb-2">Content & Features</h3>
+                <Textarea
+                  placeholder="Content Requirements (What specific text, pages, or information do you need on your site?)"
+                  value={businessDetails.contentRequirements}
+                  onChange={(e) => setBusinessDetails({...businessDetails, contentRequirements: e.target.value})}
+                  rows={3}
+                />
+                
+                <Textarea
+                  placeholder="Special Features (Online booking, contact forms, gallery, testimonials, etc.)"
+                  value={businessDetails.specialFeatures}
+                  onChange={(e) => setBusinessDetails({...businessDetails, specialFeatures: e.target.value})}
+                  rows={2}
+                />
+                
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <Input
-                    placeholder="Preferred Colors (if any)"
-                    value={businessDetails.preferredColors}
-                    onChange={(e) => setBusinessDetails({...businessDetails, preferredColors: e.target.value})}
+                    type="date"
+                    placeholder="Preferred Launch Date"
+                    value={businessDetails.launchDate}
+                    onChange={(e) => setBusinessDetails({...businessDetails, launchDate: e.target.value})}
                   />
-                </div>
-                <div>
-                  <Textarea
-                    placeholder="Logo details (Do you have one? Describe your style preferences)"
-                    value={businessDetails.logoDetails}
-                    onChange={(e) => setBusinessDetails({...businessDetails, logoDetails: e.target.value})}
-                    rows={2}
-                  />
-                </div>
-                <div>
-                  <Textarea
-                    placeholder="Content requirements (What pages/sections do you need?)"
-                    value={businessDetails.contentRequirements}
-                    onChange={(e) => setBusinessDetails({...businessDetails, contentRequirements: e.target.value})}
-                    rows={3}
+                  <Input
+                    placeholder="Social Media Handles"
+                    value={businessDetails.socialMedia}
+                    onChange={(e) => setBusinessDetails({...businessDetails, socialMedia: e.target.value})}
                   />
                 </div>
               </div>
@@ -680,112 +997,53 @@ const WebsiteTemplates = () => {
               {/* Additional Information */}
               <div className="space-y-4">
                 <h3 className="text-lg font-semibold text-foreground border-b pb-2">Additional Information</h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <Input
-                      placeholder="Desired Launch Date"
-                      value={businessDetails.launchDate}
-                      onChange={(e) => setBusinessDetails({...businessDetails, launchDate: e.target.value})}
-                    />
+                <Textarea
+                  placeholder="Anything else you'd like us to know? Any specific requirements or questions?"
+                  value={businessDetails.additionalInfo}
+                  onChange={(e) => setBusinessDetails({...businessDetails, additionalInfo: e.target.value})}
+                  rows={3}
+                />
+              </div>
+
+              {/* Order Summary */}
+              <div className="bg-gradient-to-r from-primary/5 to-secondary/5 p-6 rounded-xl border border-primary/20">
+                <h3 className="text-lg font-semibold text-foreground mb-4">Order Summary</h3>
+                <div className="space-y-2">
+                  <div className="flex justify-between items-center">
+                    <span className="text-muted-foreground">Template:</span>
+                    <span className="font-medium">{selectedTemplate?.name}</span>
                   </div>
-                  <div>
-                    <Input
-                      placeholder="Social Media Accounts"
-                      value={businessDetails.socialMedia}
-                      onChange={(e) => setBusinessDetails({...businessDetails, socialMedia: e.target.value})}
-                    />
+                  <div className="flex justify-between items-center">
+                    <span className="text-muted-foreground">Category:</span>
+                    <span className="font-medium">{selectedTemplate?.category}</span>
                   </div>
-                </div>
-                <div>
-                  <Textarea
-                    placeholder="Special features needed (booking system, online shop, etc.)"
-                    value={businessDetails.specialFeatures}
-                    onChange={(e) => setBusinessDetails({...businessDetails, specialFeatures: e.target.value})}
-                    rows={2}
-                  />
-                </div>
-                <div>
-                  <Textarea
-                    placeholder="Any additional information or special requests"
-                    value={businessDetails.additionalInfo}
-                    onChange={(e) => setBusinessDetails({...businessDetails, additionalInfo: e.target.value})}
-                    rows={3}
-                  />
+                  <div className="flex justify-between items-center">
+                    <span className="text-muted-foreground">Setup Fee:</span>
+                    <span className="font-bold text-primary text-lg">{selectedTemplate?.price}</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-muted-foreground">Monthly Hosting:</span>
+                    <span className="font-medium">{selectedTemplate?.monthlyPrice}</span>
+                  </div>
                 </div>
               </div>
 
-              <div className="flex gap-3 pt-4">
-                <Button type="button" variant="outline" onClick={() => setIsBusinessDetailsOpen(false)} className="flex-1">
+              {/* Form Actions */}
+              <div className="flex gap-4 pt-4">
+                <Button 
+                  type="button" 
+                  variant="outline" 
+                  onClick={() => setIsBusinessDetailsOpen(false)} 
+                  className="flex-1"
+                >
                   Cancel
                 </Button>
-                <Button type="submit" className="flex-1 bg-primary hover:bg-primary/90">
+                <Button 
+                  type="submit" 
+                  className="flex-1 bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90"
+                >
                   <CreditCard className="mr-2 h-4 w-4" />
                   Proceed to Payment
-                </Button>
-              </div>
-            </form>
-          </DialogContent>
-        </Dialog>
-
-        {/* Custom Request Form Modal */}
-        <Dialog open={isFormOpen} onOpenChange={setIsFormOpen}>
-          <DialogContent className="sm:max-w-[500px]">
-            <DialogHeader>
-              <DialogTitle>Request Custom Example</DialogTitle>
-              <DialogDescription>
-                Tell us about your business and we'll create a custom pre-built website example for your industry.
-              </DialogDescription>
-            </DialogHeader>
-            
-            <form onSubmit={handleFormSubmit} className="space-y-4">
-              <div>
-                <Input
-                  placeholder="Business Name"
-                  value={formData.businessName}
-                  onChange={(e) => setFormData({...formData, businessName: e.target.value})}
-                  required
-                />
-              </div>
-              <div>
-                <Input
-                  placeholder="Industry/Business Type"
-                  value={formData.industry}
-                  onChange={(e) => setFormData({...formData, industry: e.target.value})}
-                  required
-                />
-              </div>
-              <div>
-                <Input
-                  type="email"
-                  placeholder="Email Address"
-                  value={formData.email}
-                  onChange={(e) => setFormData({...formData, email: e.target.value})}
-                  required
-                />
-              </div>
-              <div>
-                <Input
-                  type="tel"
-                  placeholder="Phone Number"
-                  value={formData.phone}
-                  onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                />
-              </div>
-              <div>
-                <Textarea
-                  placeholder="Tell us about your business and what features you'd like to see..."
-                  value={formData.description}
-                  onChange={(e) => setFormData({...formData, description: e.target.value})}
-                  rows={4}
-                  required
-                />
-              </div>
-              <div className="flex gap-3">
-                <Button type="button" variant="outline" onClick={() => setIsFormOpen(false)} className="flex-1">
-                  Cancel
-                </Button>
-                <Button type="submit" className="flex-1">
-                  Submit Request
                 </Button>
               </div>
             </form>
