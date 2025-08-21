@@ -15,7 +15,7 @@ const Testimonials = () => {
       name: "Rachael Rawsthorne",
       company: "R&A Services",
       role: "CEO",
-      quote: "done some great work building and hosting a web site for me. They were Very helpful and kept me in the look through out the whole process. Great prices and an honest trustworthy staff. Would 100 percent recommended them for any 1 needing a website or hosting.",
+      quote: "Lee is fantastic! He is quick at responding and is always willing to try and find a solution to the problem, even if that means creating his own software/platform. We have been throughly impressed with Lee's work and very grateful for all his help. Highly recommend!",
       rating: 5,
       image: sarahImage
     },
