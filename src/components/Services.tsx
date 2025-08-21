@@ -52,7 +52,7 @@ const Services = () => {
 
   const handleServiceClick = (pricingCategory?: string, isTemplates?: boolean) => {
     if (isTemplates) {
-      navigate('/website-templates');
+      navigate('/templates');
       return;
     }
     
