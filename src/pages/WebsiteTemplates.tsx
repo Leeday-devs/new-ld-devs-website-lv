@@ -590,7 +590,7 @@ const WebsiteTemplates = () => {
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-10">
+              <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
                 {templates.map((template, index) => {
                   const IconComponent = getTemplateIcon(template.category);
                   return (
