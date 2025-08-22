@@ -603,25 +603,25 @@ const WebsiteTemplates = () => {
                       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
                       
                       {/* Category Icon & Badge */}
-                      <div className="absolute top-4 left-4 z-10 flex items-center gap-2">
-                        <div className="bg-primary/20 backdrop-blur-sm rounded-full p-2 border border-primary/30">
-                          <IconComponent className="h-4 w-4 text-primary" />
+                      <div className="absolute top-2 left-2 z-10 flex items-center gap-1">
+                        <div className="bg-primary/20 backdrop-blur-sm rounded-full p-1 border border-primary/30">
+                          <IconComponent className="h-3 w-3 text-primary" />
                         </div>
-                        <Badge className="bg-primary/90 text-primary-foreground shadow-lg backdrop-blur-sm">
+                        <Badge className="bg-primary/90 text-primary-foreground shadow-lg backdrop-blur-sm text-xs">
                           {template.category}
                         </Badge>
                       </div>
 
                       {/* 5 Page Website Badge */}
-                      <div className="absolute top-4 right-4 z-10">
-                        <div className="bg-green-600 text-white px-3 py-1.5 rounded-full flex items-center gap-2 shadow-lg backdrop-blur-sm border border-green-500/50">
-                          <Check className="h-4 w-4" />
-                          <span className="text-sm font-semibold">5 Page Website</span>
+                      <div className="absolute top-2 right-2 z-10">
+                        <div className="bg-green-600 text-white px-2 py-1 rounded-full flex items-center gap-1 shadow-lg backdrop-blur-sm border border-green-500/50">
+                          <Check className="h-3 w-3" />
+                          <span className="text-xs font-semibold">5 Pages</span>
                         </div>
                       </div>
 
                       {/* Live Preview with Enhanced Overlay */}
-                      <div className="relative aspect-video overflow-hidden bg-gradient-to-br from-muted to-muted/50 rounded-t-2xl">
+                      <div className="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-muted to-muted/50 rounded-t-2xl">
                         {template.demoUrl !== "#" ? (
                           <>
                             <iframe
@@ -652,23 +652,23 @@ const WebsiteTemplates = () => {
                         )}
                       </div>
 
-                      <CardContent className="p-6 relative z-10">
-                        <div className="flex justify-between items-start mb-3">
+                      <CardContent className="p-3 relative z-10">
+                        <div className="flex justify-between items-start mb-2">
                           <div>
-                            <h3 className="text-xl font-bold text-white mb-2">{template.name}</h3>
-                            <p className="text-white/70 text-sm mb-4 leading-relaxed">{template.description}</p>
+                            <h3 className="text-lg font-bold text-white mb-1">{template.name}</h3>
+                            <p className="text-white/70 text-xs mb-3 leading-relaxed">{template.description}</p>
                           </div>
                         </div>
 
                         {/* Features List */}
-                        <div className="space-y-4 mb-6">
+                        <div className="space-y-2 mb-4">
                           {/* Template-Specific Features */}
                           <div>
-                            <h4 className="text-sm font-semibold text-white/90 mb-2">Template Features:</h4>
-                            <div className="space-y-1">
-                              {template.features.map((feature, idx) => (
-                                <div key={idx} className="flex items-center gap-2 text-sm text-white/70">
-                                  <Check className="h-3 w-3 text-primary flex-shrink-0" />
+                            <h4 className="text-xs font-semibold text-white/90 mb-1">Template Features:</h4>
+                            <div className="space-y-0.5">
+                              {template.features.slice(0, 2).map((feature, idx) => (
+                                <div key={idx} className="flex items-center gap-1 text-xs text-white/70">
+                                  <Check className="h-2 w-2 text-primary flex-shrink-0" />
                                   <span>{feature}</span>
                                 </div>
                               ))}
@@ -677,67 +677,57 @@ const WebsiteTemplates = () => {
 
                           {/* Standard Features */}
                           <div>
-                            <h4 className="text-sm font-semibold text-white/90 mb-2">What's Included:</h4>
-                            <div className="space-y-1">
-                              <div className="flex items-center gap-2 text-sm text-white/70">
-                                <Check className="h-3 w-3 text-green-500 flex-shrink-0" />
+                            <h4 className="text-xs font-semibold text-white/90 mb-1">What's Included:</h4>
+                            <div className="space-y-0.5">
+                              <div className="flex items-center gap-1 text-xs text-white/70">
+                                <Check className="h-2 w-2 text-green-500 flex-shrink-0" />
                                 <span>Up to 5 pages</span>
                               </div>
-                              <div className="flex items-center gap-2 text-sm text-white/70">
-                                <Check className="h-3 w-3 text-green-500 flex-shrink-0" />
+                              <div className="flex items-center gap-1 text-xs text-white/70">
+                                <Check className="h-2 w-2 text-green-500 flex-shrink-0" />
                                 <span>Mobile-friendly design</span>
                               </div>
-                              <div className="flex items-center gap-2 text-sm text-white/70">
-                                <Check className="h-3 w-3 text-green-500 flex-shrink-0" />
-                                <span>1 business email</span>
-                              </div>
-                              <div className="flex items-center gap-2 text-sm text-white/70">
-                                <Check className="h-3 w-3 text-green-500 flex-shrink-0" />
-                                <span>Basic SEO optimisation</span>
-                              </div>
-                              <div className="flex items-center gap-2 text-sm text-white/70">
-                                <Check className="h-3 w-3 text-green-500 flex-shrink-0" />
-                                <span>Contact form integration</span>
-                              </div>
-                              <div className="flex items-center gap-2 text-sm text-white/70">
-                                <Check className="h-3 w-3 text-green-500 flex-shrink-0" />
-                                <span>SSL & hosting</span>
+                              <div className="flex items-center gap-1 text-xs text-white/70">
+                                <Check className="h-2 w-2 text-green-500 flex-shrink-0" />
+                                <span>Basic SEO & SSL</span>
                               </div>
                             </div>
                           </div>
                         </div>
 
                         {/* Pricing and Action Buttons */}
-                        <div className="flex justify-between items-center mb-4">
+                        <div className="flex justify-between items-center mb-3">
                           <div>
-                            <div className="text-2xl font-bold text-primary">{template.price}</div>
-                            <div className="text-xs text-white/60">+ {template.monthlyPrice} hosting</div>
+                            <div className="text-lg font-bold text-primary">{template.price}</div>
+                            <div className="text-xs text-white/60">+ {template.monthlyPrice}</div>
                           </div>
                           <div className="text-right">
-                            <div className="text-xs text-white/60">One-time purchase</div>
-                            <div className="text-xs font-semibold text-destructive">Removed after sale</div>
+                            <div className="text-xs text-white/60">One-time</div>
+                            <div className="text-xs font-semibold text-destructive">Unique</div>
                           </div>
                         </div>
 
                         {/* Action Buttons */}
-                        <div className="flex gap-3">
+                        <div className="flex gap-2">
                           {template.demoUrl !== "#" && (
                             <Button 
                               variant="outline" 
-                              className="flex-1 border-primary text-primary hover:bg-primary hover:text-white"
+                              size="sm"
+                              className="flex-1 border-primary text-primary hover:bg-primary hover:text-white text-xs"
                               asChild
                             >
                               <Link to={template.demoUrl}>
-                                <Eye className="mr-2 h-4 w-4" />
-                                View Demo
+                                <Eye className="mr-1 h-3 w-3" />
+                                Demo
                               </Link>
                             </Button>
                           )}
                           <Button 
-                            className="flex-1 btn-primary"
+                            size="sm"
+                            className="flex-1 btn-primary text-xs"
                             onClick={() => handleBuyNow(template)}
                           >
-                            <CreditCard className="mr-2 h-4 w-4" />
+                            <CreditCard className="mr-1 h-3 w-3" />
                             Buy Now
                           </Button>
                         </div>
