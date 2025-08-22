@@ -707,8 +707,8 @@ const WebsiteTemplates = () => {
                           </div>
                         </div>
 
-                        {/* Pricing Only - Buttons Removed */}
-                        <div className="flex justify-between items-center">
+                        {/* Pricing and Action Buttons */}
+                        <div className="flex justify-between items-center mb-4">
                           <div>
                             <div className="text-2xl font-bold text-primary">{template.price}</div>
                             <div className="text-xs text-white/60">+ {template.monthlyPrice} hosting</div>
@@ -717,6 +717,29 @@ const WebsiteTemplates = () => {
                             <div className="text-xs text-white/60">One-time purchase</div>
                             <div className="text-xs font-semibold text-destructive">Removed after sale</div>
                           </div>
+                        </div>
+
+                        {/* Action Buttons */}
+                        <div className="flex gap-3">
+                          {template.demoUrl !== "#" && (
+                            <Button 
+                              variant="outline" 
+                              className="flex-1 border-primary text-primary hover:bg-primary hover:text-white"
+                              asChild
+                            >
+                              <Link to={template.demoUrl}>
+                                <Eye className="mr-2 h-4 w-4" />
+                                View Demo
+                              </Link>
+                            </Button>
+                          )}
+                          <Button 
+                            className="flex-1 btn-primary"
+                            onClick={() => handleBuyNow(template)}
+                          >
+                            <CreditCard className="mr-2 h-4 w-4" />
+                            Buy Now
+                          </Button>
                         </div>
                       </CardContent>
                     </Card>
