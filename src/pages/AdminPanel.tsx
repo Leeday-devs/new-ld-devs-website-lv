@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "@/hooks/useAuth";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
-import Navigation from "@/components/Navigation";
-import Footer from "@/components/Footer";
+import { AdminLayout } from "@/components/admin/AdminLayout";
 import AdminStats from "@/components/admin/AdminStats";
 import BlogPostsList from "@/components/admin/BlogPostsList";
 import CreatePostModal from "@/components/admin/CreatePostModal";
@@ -19,8 +18,7 @@ import DiscordWebhookSettings from "@/components/DiscordWebhookSettings";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
-import { Plus, Shield, BarChart3, Users, Clock, AlertTriangle, Settings, Cookie, Mail, LogOut } from "lucide-react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Plus, Shield, BarChart3, PenTool } from "lucide-react";
 
 interface BlogPost {
   id: string;
@@ -38,8 +36,9 @@ interface BlogPost {
 }
 
 const AdminPanel = () => {
-  const { user, loading, signOut } = useAuth();
+  const { user, loading } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
   const { toast } = useToast();
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [isAdmin, setIsAdmin] = useState(false);
@@ -47,25 +46,13 @@ const AdminPanel = () => {
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [showCreateCategoryModal, setShowCreateCategoryModal] = useState(false);
   const [editingPost, setEditingPost] = useState<BlogPost | null>(null);
+  const [activeTab, setActiveTab] = useState("customers");
 
-  const handleLogout = async () => {
-    if (confirm("Are you sure you want to logout?")) {
-      try {
-        await signOut();
-        toast({
-          title: "Logged out",
-          description: "You have been successfully logged out.",
-        });
-        navigate("/admin/auth");
-      } catch (error) {
-        toast({
-          title: "Error",
-          description: "Failed to logout. Please try again.",
-          variant: "destructive",
-        });
-      }
-    }
-  };
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const tab = params.get("tab") || "customers";
+    setActiveTab(tab);
+  }, [location]);
 
   useEffect(() => {
     if (!loading && !user) {
@@ -221,148 +208,82 @@ const AdminPanel = () => {
     return null;
   }
 
-  return (
-    <div className="min-h-screen bg-background">
-      <Navigation />
-      
-      <div className="pt-20 pb-16">
-        <div className="container mx-auto px-4">
-          {/* Header */}
-          <div className="mb-8">
-            <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center gap-3">
-                <div className="p-3 bg-gradient-primary rounded-lg shadow-glow">
-                  <BarChart3 className="h-6 w-6 text-white" />
-                </div>
-                <div>
-                  <h1 className="text-3xl font-serif font-bold text-foreground">
-                    Admin Panel
-                  </h1>
-                  <p className="text-muted-foreground">
-                    Manage your blog posts and view analytics
-                  </p>
-                </div>
+  const renderContent = () => {
+    switch (activeTab) {
+      case "customers":
+        return <CustomersManagement />;
+      case "pending":
+        return <PendingCustomersManagement />;
+      case "banned":
+        return <BannedEmailsManagement />;
+      case "work-requests":
+        return <WorkRequestsManagement />;
+      case "emails":
+        return <CollectedEmailsManagement />;
+      case "cookies":
+        return <CookieConsentManagement />;
+      case "discord":
+        return <DiscordWebhookSettings />;
+      case "blog":
+        return (
+          <div className="space-y-6">
+            <div className="flex items-center justify-between">
+              <div>
+                <h1 className="text-3xl font-bold text-foreground">Blog Management</h1>
+                <p className="text-muted-foreground mt-1">Create and manage your blog posts</p>
               </div>
-              
-              {/* Logout Button */}
-              <Button 
-                variant="outline" 
-                onClick={handleLogout}
-                className="flex items-center gap-2 border-destructive text-destructive hover:bg-destructive hover:text-white"
-              >
-                <LogOut className="h-4 w-4" />
-                Logout
-              </Button>
+              <div className="flex gap-2">
+                <Button 
+                  variant="outline"
+                  onClick={() => setShowCreateCategoryModal(true)}
+                  className="gap-2"
+                >
+                  <Plus className="h-4 w-4" />
+                  New Category
+                </Button>
+                <Button 
+                  onClick={() => setShowCreateModal(true)}
+                  className="gap-2 bg-primary hover:bg-primary/90"
+                >
+                  <Plus className="h-4 w-4" />
+                  New Post
+                </Button>
+              </div>
             </div>
 
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <PenTool className="h-5 w-5 text-primary" />
+                  Blog Posts
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <BlogPostsList 
+                  posts={posts}
+                  onEdit={setEditingPost}
+                  onDelete={handleDeletePost}
+                />
+              </CardContent>
+            </Card>
+          </div>
+        );
+      default:
+        return (
+          <div className="space-y-6">
+            <div>
+              <h1 className="text-3xl font-bold text-foreground">Admin Dashboard</h1>
+              <p className="text-muted-foreground mt-1">Overview of your system statistics</p>
+            </div>
             <AdminStats posts={posts} onRefresh={fetchBlogPosts} />
           </div>
+        );
+    }
+  };
 
-          {/* Admin Tabs */}
-          <Tabs defaultValue="customers" className="w-full">
-            <TabsList className="grid w-full grid-cols-8">
-              <TabsTrigger value="customers" className="flex items-center gap-2">
-                <Users className="h-4 w-4" />
-                Customers
-              </TabsTrigger>
-              <TabsTrigger value="pending" className="flex items-center gap-2">
-                <Clock className="h-4 w-4" />
-                Pending
-              </TabsTrigger>
-              <TabsTrigger value="banned" className="flex items-center gap-2">
-                <Shield className="h-4 w-4" />
-                Banned Emails
-              </TabsTrigger>
-              <TabsTrigger value="work-requests" className="flex items-center gap-2">
-                <BarChart3 className="h-4 w-4" />
-                Work Requests
-              </TabsTrigger>
-              <TabsTrigger value="emails" className="flex items-center gap-2">
-                <Mail className="h-4 w-4" />
-                Emails
-              </TabsTrigger>
-              <TabsTrigger value="cookies" className="flex items-center gap-2">
-                <Cookie className="h-4 w-4" />
-                Cookies
-              </TabsTrigger>
-              <TabsTrigger value="discord" className="flex items-center gap-2">
-                <Settings className="h-4 w-4" />
-                Discord
-              </TabsTrigger>
-              <TabsTrigger value="blog" className="flex items-center gap-2">
-                <Plus className="h-4 w-4" />
-                Blog Posts
-              </TabsTrigger>
-            </TabsList>
-
-            <TabsContent value="customers" className="mt-6">
-              <CustomersManagement />
-            </TabsContent>
-
-            <TabsContent value="pending" className="mt-6">
-              <PendingCustomersManagement />
-            </TabsContent>
-
-            <TabsContent value="banned" className="mt-6">
-              <BannedEmailsManagement />
-            </TabsContent>
-
-            <TabsContent value="work-requests" className="mt-6">
-              <WorkRequestsManagement />
-            </TabsContent>
-
-            <TabsContent value="emails" className="mt-6">
-              <CollectedEmailsManagement />
-            </TabsContent>
-
-            <TabsContent value="cookies" className="mt-6">
-              <CookieConsentManagement />
-            </TabsContent>
-
-            <TabsContent value="discord" className="mt-6">
-              <DiscordWebhookSettings />
-            </TabsContent>
-
-            <TabsContent value="blog" className="mt-6">
-              <div className="flex justify-end mb-6">
-                <div className="flex gap-2">
-                  <Button 
-                    variant="outline"
-                    onClick={() => setShowCreateCategoryModal(true)}
-                    className="gap-2"
-                  >
-                    <Plus className="h-4 w-4" />
-                    New Category
-                  </Button>
-                  <Button 
-                    onClick={() => setShowCreateModal(true)}
-                    className="btn-premium gap-2"
-                  >
-                    <Plus className="h-4 w-4" />
-                    New Post
-                  </Button>
-                </div>
-              </div>
-
-              <Card className="card-premium">
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <BarChart3 className="h-5 w-5 text-primary" />
-                    Blog Posts Management
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <BlogPostsList 
-                    posts={posts}
-                    onEdit={setEditingPost}
-                    onDelete={handleDeletePost}
-                  />
-                </CardContent>
-              </Card>
-            </TabsContent>
-          </Tabs>
-        </div>
-      </div>
+  return (
+    <AdminLayout>
+      {renderContent()}
 
       {/* Modals */}
       <CreatePostModal 
@@ -388,9 +309,7 @@ const AdminPanel = () => {
           onSuccess={handlePostUpdated}
         />
       )}
-
-      <Footer />
-    </div>
+    </AdminLayout>
   );
 };
 
