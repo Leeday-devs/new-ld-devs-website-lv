@@ -80,14 +80,15 @@ const AuthButton = () => {
             </span>
           </DropdownMenuItem>
           <DropdownMenuSeparator className="bg-white/10" />
-          <DropdownMenuItem asChild>
-            <Link
-              to={dashboardLink}
-              className="flex items-center gap-2 w-full text-white/80 hover:text-orange hover:bg-orange/10 transition-all duration-200 px-3 py-2 rounded-lg"
-            >
-              <User className="h-4 w-4" />
-              {dashboardLabel}
-            </Link>
+          <DropdownMenuItem 
+            onSelect={(e) => {
+              e.preventDefault();
+              navigate(dashboardLink);
+            }}
+            className="flex items-center gap-2 w-full text-white/80 hover:text-orange hover:bg-orange/10 transition-all duration-200 cursor-pointer px-3 py-2 rounded-lg"
+          >
+            <User className="h-4 w-4" />
+            {dashboardLabel}
           </DropdownMenuItem>
           <DropdownMenuSeparator className="bg-white/10" />
           <DropdownMenuItem 
