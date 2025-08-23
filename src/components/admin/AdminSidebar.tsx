@@ -30,7 +30,7 @@ import {
 
 const menuItems = [
   {
-    title: "Dashboard",
+    title: "LD Development",
     url: "/admin/panel",
     icon: BarChart3,
     section: "dashboard"
