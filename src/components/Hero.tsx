@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Shield, Zap, Award } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useImagePreload } from "@/hooks/useImagePreload";
+import heroBusinessTech from "@/assets/hero-business-tech.jpg";
 
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -9,7 +10,7 @@ const Hero = () => {
   const [showSubtext, setShowSubtext] = useState(false);
   const [showButton, setShowButton] = useState(false);
   const { isLoaded: isImageLoaded } = useImagePreload({ 
-    src: "/lovable-uploads/1deb033a-2e77-434e-9b7d-78b852ad46cf.png"
+    src: heroBusinessTech
   });
 
   useEffect(() => {
@@ -50,8 +51,8 @@ const Hero = () => {
           isImageLoaded ? 'opacity-100' : 'opacity-0'
         }`}
         style={{ 
-          backgroundImage: `url(/lovable-uploads/1deb033a-2e77-434e-9b7d-78b852ad46cf.png)`,
-          filter: 'blur(1px) brightness(0.4) saturate(1.1)'
+          backgroundImage: `url(${heroBusinessTech})`,
+          filter: 'blur(2px) brightness(0.5) sepia(0.2) hue-rotate(200deg) saturate(1.2)'
         }}
       />
       {/* Fallback background while image loads */}
