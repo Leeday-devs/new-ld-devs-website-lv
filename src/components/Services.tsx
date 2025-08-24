@@ -2,9 +2,12 @@
 import { Monitor, ShoppingBag, Cloud, CheckCircle, Package, Smartphone, Bot } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { memo } from "react";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 const Services = () => {
   const navigate = useNavigate();
+  const isMobile = useIsMobile();
   
   const services = [
     {
@@ -148,9 +151,51 @@ const Services = () => {
           </p>
         </div>
 
-        {/* Services Grid - Ultra Premium (Smaller) */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service, index) => {
+        {/* Services Grid/Accordion - Ultra Premium */}
+        {isMobile ? (
+          <Accordion type="single" collapsible className="w-full">
+            {services.map((service, index) => {
+              const isPrimary = index % 2 === 0;
+              const colorScheme = isPrimary 
+                ? { icon: 'text-orange', accent: 'bg-gradient-to-r from-orange via-orange/90 to-orange' }
+                : { icon: 'text-navy', accent: 'bg-gradient-to-r from-navy via-navy/90 to-navy' };
+              
+              return (
+                <AccordionItem key={index} value={`item-${index}`} className="border-orange/20 mb-4">
+                  <AccordionTrigger className="hover:no-underline p-4 bg-white/90 rounded-t-xl border border-orange/25">
+                    <div className="flex items-center space-x-4">
+                      <div className="p-2 rounded-lg bg-gradient-to-br from-orange/15 to-orange/25 backdrop-blur-md">
+                        <service.icon className={`h-5 w-5 ${colorScheme.icon}`} />
+                      </div>
+                      <span className={`font-bold ${colorScheme.icon} text-left`}>{service.title}</span>
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent className="bg-white/95 border-x border-b border-orange/25 rounded-b-xl p-4">
+                    <p className="text-text-secondary mb-4 text-sm leading-relaxed">{service.description}</p>
+                    <ul className="space-y-2 mb-4">
+                      {service.features.map((feature, featureIndex) => (
+                        <li key={featureIndex} className="flex items-center text-sm">
+                          <CheckCircle className={`h-3 w-3 ${colorScheme.icon} mr-2 flex-shrink-0`} />
+                          <span className="text-text-primary font-medium">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    {(service.pricingCategory || service.isTemplates) && (
+                      <button 
+                        onClick={() => handleServiceClick(service.pricingCategory, service.isTemplates)}
+                        className={`w-full text-center py-2 px-4 rounded-lg ${colorScheme.accent} text-white font-semibold text-sm hover:opacity-90 transition-opacity`}
+                      >
+                        {service.pricingCategory ? 'View Packages' : 'Browse Templates'} →
+                      </button>
+                    )}
+                  </AccordionContent>
+                </AccordionItem>
+              );
+            })}
+          </Accordion>
+        ) : (
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {services.map((service, index) => {
             // Ultra-premium color schemes with glass morphism
             const isPrimary = index % 2 === 0;
             const colorScheme = isPrimary 
@@ -266,7 +311,8 @@ const Services = () => {
               </div>
             );
           })}
-        </div>
+          </div>
+        )}
 
         {/* CTA Section */}
         <div className="text-center mt-16">

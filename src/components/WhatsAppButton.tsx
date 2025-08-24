@@ -10,14 +10,14 @@ const ChatButton = () => {
   return (
     <button
       onClick={handleClick}
-      className="fixed bottom-6 right-6 z-50 w-16 h-16 bg-white hover:bg-gray-50 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 flex items-center justify-center group"
+      className="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-50 w-14 h-14 md:w-16 md:h-16 bg-white hover:bg-gray-50 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 flex items-center justify-center group"
       aria-label="Chat to us now"
     >
       {/* Company Logo */}
       <img 
         src="/lovable-uploads/c05ee520-dfce-4d37-9abd-2ecb7430e4da.png" 
         alt="Company Logo" 
-        className="w-10 h-10 object-contain group-hover:animate-bounce"
+        className="w-8 h-8 md:w-10 md:h-10 object-contain group-hover:animate-bounce"
       />
       
       {/* Ripple effect */}

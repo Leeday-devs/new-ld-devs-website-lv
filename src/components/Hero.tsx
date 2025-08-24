@@ -41,14 +41,14 @@ const Hero = () => {
       <div className="container mx-auto px-6 relative z-20">
         <div className="max-w-5xl mx-auto text-center">
           <div className={`transition-all duration-1500 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
-            <h1 className="heading-primary heading-xl mb-8 text-white leading-tight font-bold">
+            <h1 className="heading-primary text-4xl md:text-5xl lg:text-6xl xl:text-7xl mb-8 text-white leading-tight font-bold">
               We Build Your <span className="text-orange">Dream Website</span>
               <span className="block mt-4">
                 That Actually <span className="text-orange">Works</span>
               </span>
             </h1>
             
-            <p className="text-body mb-12 max-w-3xl mx-auto text-white/80 text-xl leading-relaxed">
+            <p className="text-body mb-12 max-w-3xl mx-auto text-white/80 text-lg md:text-xl lg:text-2xl leading-relaxed">
               Premium <span className="text-orange font-semibold">Website</span> development and <span className="text-orange font-semibold">AI</span> services from the <span className="text-orange font-semibold">UK</span> for businesses. 
               We create fast, secure, and beautiful websites that drive real results.
             </p>
@@ -56,7 +56,7 @@ const Hero = () => {
             <div className="mb-16">
               <Button 
                 size="lg" 
-                className="btn-primary px-10 py-5 text-xl font-bold rounded-2xl shadow-2xl"
+                className="btn-primary px-8 md:px-10 py-4 md:py-5 text-lg md:text-xl font-bold rounded-2xl shadow-2xl"
                 onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
               >
                 Start Your Project

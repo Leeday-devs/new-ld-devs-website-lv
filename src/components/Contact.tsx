@@ -273,10 +273,10 @@ const Contact = () => {
                     </div>
                     
                     <div className="flex flex-col sm:flex-row gap-4 pt-6">
-                      <Button 
-                        type="submit" 
-                        disabled={isLoading} 
-                        className="btn-primary px-8 py-4 text-lg font-bold rounded-2xl flex-1"
+                      <Button
+                        type="submit"
+                        disabled={isLoading}
+                        className="btn-primary px-6 py-2.5 rounded-xl font-semibold text-sm md:text-base flex-1"
                       >
                         {isLoading ? (
                           <>
@@ -299,7 +299,7 @@ const Contact = () => {
                           const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
                           window.open(whatsappUrl, '_blank');
                         }}
-                        className="btn-secondary px-8 py-4 text-lg font-bold rounded-2xl flex-1"
+                        className="btn-secondary px-6 py-2.5 rounded-xl font-semibold text-sm md:text-base flex-1"
                       >
                         <MessageCircle className="mr-3 h-5 w-5" />
                         WhatsApp
