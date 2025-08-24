@@ -23,6 +23,22 @@ export default {
 				'serif': ['Playfair Display', 'Georgia', 'serif'],
 				'elegant': ['Cormorant Garamond', 'Georgia', 'serif'],
 			},
+			fontSize: {
+				'body': ['1.125rem', { lineHeight: '1.65', fontWeight: '400' }], // 18px
+				'large': ['1.25rem', { lineHeight: '1.65', fontWeight: '500' }], // 20px
+				'xl': '4.75rem', // 76px - Enhanced hero
+				'lg': '3.25rem', // 52px - Enhanced H2
+				'md': '2.25rem', // 36px - Enhanced H3
+			},
+			fontWeight: {
+				'light': '300',
+				'normal': '400',
+				'medium': '500',
+				'semibold': '600',
+				'bold': '700',
+				'extrabold': '800',
+				'black': '900',
+			},
       colors: {
         // Clean Brand Colors
         'brand-orange': 'hsl(var(--brand-orange))',

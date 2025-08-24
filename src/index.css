@@ -121,7 +121,7 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans;
+    @apply bg-background text-foreground font-sans text-body;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
   
@@ -135,42 +135,58 @@
      CLEAN PREMIUM COMPONENT SYSTEM
      ========================================== */
 
-  /* Typography - Premium System */
+  /* Typography - Premium Luxury System */
   .heading-primary {
     font-family: 'Playfair Display', serif;
-    font-weight: 700;
-    line-height: 1.15;
-    letter-spacing: -0.02em;
+    font-weight: 800; /* Extra bold for luxury */
+    line-height: 1.1; /* Tighter for luxury impact */
+    letter-spacing: -0.025em; /* Tighter spacing for premium feel */
     color: hsl(var(--text-primary));
   }
 
   /* Typography Scale - Premium Luxury Hierarchy */
   .heading-xl { 
-    font-size: 4.5rem; /* 72px - Hero H1 Premium */
-    line-height: 4.25rem; /* 68px - Tight luxury spacing */
+    font-size: 4.75rem; /* 76px - Enhanced Hero H1 */
+    line-height: 1.05; /* Ultra-tight luxury spacing */
+    font-weight: 900; /* Maximum weight for impact */
+    letter-spacing: -0.03em;
   }
   
   .heading-lg { 
-    font-size: 3rem; /* 48px - H2 */
-    line-height: 3.25rem; /* 52px */
+    font-size: 3.25rem; /* 52px - Enhanced H2 */
+    line-height: 1.1; /* Tight luxury spacing */
+    font-weight: 800;
+    letter-spacing: -0.025em;
   }
   
   .heading-md { 
-    font-size: 2rem; /* 32px - H3 */
-    line-height: 2.5rem; /* 40px */
+    font-size: 2.25rem; /* 36px - Enhanced H3 */
+    line-height: 1.15; /* Consistent luxury spacing */
+    font-weight: 700;
+    letter-spacing: -0.02em;
   }
 
   .text-body {
     font-family: 'Inter', sans-serif;
-    font-size: 1.125rem; /* 18px */
-    line-height: 1.6; /* 1.6 ratio for luxury readability */
+    font-size: 1.125rem; /* 18px - Premium body text */
+    line-height: 1.65; /* Consistent luxury readability */
+    font-weight: 400;
+    color: hsl(var(--text-secondary));
+  }
+
+  .text-large {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.25rem; /* 20px - For important content */
+    line-height: 1.65; /* Consistent spacing */
+    font-weight: 500;
     color: hsl(var(--text-secondary));
   }
 
   .text-caption {
     font-family: 'Inter', sans-serif;
-    font-size: 0.875rem;
+    font-size: 0.875rem; /* 14px */
     line-height: 1.5;
+    font-weight: 400;
     color: hsl(var(--text-muted));
   }
 
