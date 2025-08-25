@@ -27,11 +27,13 @@ const Testimonials = () => {
     },
     {
       id: 3,
-      name: "Emma Williams",
-      company: "Creative Agency UK", 
-      role: "Marketing Director",
-      quote: "We went from 2 client inquiries per week to 20+. The website they built positions us as the premium choice in our market. Absolute game-changer.",
-      rating: 5
+      name: "Michael Webster",
+      company: "Top Ranked Ltd", 
+      role: "Owner",
+      quote: "This company is excellent to work with. Our website turned out exactly as we envisioned, with a few additional suggestions from Lee that enhanced the final result beyond our expectations. The process was hassle-free and communication was very good throughout. I would highly recommend LD Development.",
+      rating: 5,
+      website: "https://www.top-ranked.co.uk",
+      companyLogo: "/lovable-uploads/19b269ec-842e-4877-b1e5-6ceebd5f1ca0.png"
     },
     {
       id: 4,
