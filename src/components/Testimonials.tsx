@@ -17,11 +17,12 @@ const Testimonials = () => {
     },
     {
       id: 2,
-      name: "Michael Chen", 
-      company: "E-Commerce Empire",
-      role: "Founder",
-      quote: "done some great work building and hosting a web site for me. They were Very helpful and kept me in the look through out the whole process. Great prices and an honest trustworthy staff. Would 100 percent recommended them for any 1 needing a website or hosting.",
-      rating: 5
+      name: "William Egan", 
+      company: "We Waste Ltd",
+      role: "Owner",
+      quote: "Hosting Easy host our website and social media. They are the best company we have ever worked with for this service and we highly recommend them to everyone. Value for money and a five star service!",
+      rating: 5,
+      website: "https://www.wewasteltd.co.uk"
     },
     {
       id: 3,
