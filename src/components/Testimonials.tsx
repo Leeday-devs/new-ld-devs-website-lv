@@ -22,7 +22,8 @@ const Testimonials = () => {
       role: "Owner",
       quote: "Hosting Easy host our website and social media. They are the best company we have ever worked with for this service and we highly recommend them to everyone. Value for money and a five star service!",
       rating: 5,
-      website: "https://www.wewasteltd.co.uk"
+      website: "https://www.wewasteltd.co.uk",
+      companyLogo: "/lovable-uploads/2b71c5d0-b143-4337-b814-e4dec0c11b15.png"
     },
     {
       id: 3,
