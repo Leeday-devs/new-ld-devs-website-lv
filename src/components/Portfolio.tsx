@@ -1,7 +1,5 @@
 import { useState } from "react";
 import { ExternalLink, ArrowRight, X } from "lucide-react";
-import fitnessImage from "@/assets/case-study-fitness.jpg";
-import enterpriseImage from "@/assets/case-study-enterprise.jpg";
 import restaurantImage from "@/assets/case-study-restaurant.jpg";
 import autoRepairImage from "@/assets/case-study-autorepair.jpg";
 import educationImage from "@/assets/case-study-education.jpg";
@@ -13,39 +11,39 @@ const Portfolio = () => {
   const projects = [
     {
       id: 1,
-      title: "FitnessPro Studio",
-      category: "Fitness Business",
-      description: "Complete fitness business solution with member management and booking system.",
-      image: fitnessImage,
-      technologies: ["React", "Node.js", "Stripe", "MongoDB"],
+      title: "R&A Services Contract Portal",
+      category: "Business Management",
+      description: "Secure admin portal for contract management with user authentication and monitoring.",
+      image: "/lovable-uploads/ac61a595-f03a-4f0f-b2c5-e8f128a2fa16.png",
+      technologies: ["React", "TypeScript", "Supabase", "Security"],
       liveUrl: "#",
       caseStudy: {
-        challenge: "FitnessPro Studio was struggling with manual booking processes and poor online presence, losing potential clients to competitors.",
-        solution: "We built a comprehensive platform with online booking, member management, payment processing, and mobile-responsive design.",
+        challenge: "R&A Services needed a secure contract management system to handle client portals, admin access, and streamline their contract workflow processes.",
+        solution: "We built a comprehensive contract portal with secure authentication, admin dashboard, pending customer approvals system, and real-time monitoring capabilities.",
         results: [
-          "300% increase in online bookings",
-          "50% reduction in admin time", 
-          "2,500+ active members",
-          "99.9% uptime reliability"
+          "100% secure admin access",
+          "Streamlined contract approvals",
+          "Real-time activity monitoring",
+          "Enhanced client portal experience"
         ]
       }
     },
     {
       id: 2,
-      title: "TechCorp Dashboard",
-      category: "Enterprise",
-      description: "Enterprise analytics platform with real-time KPI tracking and reporting.",
-      image: enterpriseImage,
-      technologies: ["TypeScript", "React", "D3.js", "PostgreSQL"],
+      title: "Custom Website Backend",
+      category: "Admin Systems",
+      description: "Comprehensive backend management system with user control and analytics dashboard.",
+      image: "/lovable-uploads/00d6aad9-7a15-4c0c-bc36-bd838ec3caa0.png",
+      technologies: ["React", "Node.js", "Database", "Analytics"],
       liveUrl: "#",
       caseStudy: {
-        challenge: "TechCorp needed a unified dashboard to track KPIs across multiple departments and streamline decision-making processes.",
-        solution: "We created an enterprise-grade analytics platform with real-time data visualization, automated reporting, and role-based access.",
+        challenge: "Client required a powerful backend system to manage their website operations, user accounts, content management, and business analytics from one unified dashboard.",
+        solution: "We developed a custom admin backend with user management, content controls, security monitoring, and comprehensive analytics to give complete operational oversight.",
         results: [
-          "75% faster reporting processes",
-          "500+ employees using daily",
-          "Enterprise security compliance",
-          "24/7 monitoring & support"
+          "Centralized admin control",
+          "Enhanced security features",
+          "Real-time user analytics",
+          "Streamlined operations management"
         ]
       }
     },
