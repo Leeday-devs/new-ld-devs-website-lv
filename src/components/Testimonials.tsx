@@ -79,7 +79,7 @@ const Testimonials = () => {
           {testimonials.slice(0, 3).map((testimonial) => (
             <div
               key={testimonial.id}
-              className="card-premium p-8"
+              className="card-premium p-8 flex flex-col justify-between min-h-[400px]"
             >
               {/* Quote Icon */}
               <Quote className="h-8 w-8 text-orange mb-6" />
@@ -92,7 +92,7 @@ const Testimonials = () => {
               </div>
 
               {/* Quote */}
-              <blockquote className="text-body mb-8">
+              <blockquote className="text-body mb-8 flex-grow">
                 "{testimonial.quote}"
               </blockquote>
 
