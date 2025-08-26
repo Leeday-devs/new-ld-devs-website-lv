@@ -6,16 +6,6 @@ const Testimonials = () => {
 
   const testimonials = [
     {
-      id: 1,
-      name: "Rachael Rawsthorne",
-      company: "R&A Services",
-      role: "CEO",
-      quote: "Lee is fantastic! He is quick at responding and is always willing to try and find a solution to the problem, even if that means creating his own software/platform. We have been throughly impressed with Lee's work and very grateful for all his help. Highly recommend!",
-      rating: 5,
-      website: "https://randaservices.co.uk/",
-      companyLogo: "/lovable-uploads/f141e9f1-24b0-4a3b-878f-eb3a29003a7e.png"
-    },
-    {
       id: 2,
       name: "William Egan", 
       company: "We Waste Ltd",
@@ -34,6 +24,16 @@ const Testimonials = () => {
       rating: 5,
       website: "https://www.top-ranked.co.uk",
       companyLogo: "/lovable-uploads/19b269ec-842e-4877-b1e5-6ceebd5f1ca0.png"
+    },
+    {
+      id: 1,
+      name: "Rachael Rawsthorne",
+      company: "R&A Services",
+      role: "CEO",
+      quote: "Lee is fantastic! He is quick at responding and is always willing to try and find a solution to the problem, even if that means creating his own software/platform. We have been throughly impressed with Lee's work and very grateful for all his help. Highly recommend!",
+      rating: 5,
+      website: "https://randaservices.co.uk/",
+      companyLogo: "/lovable-uploads/f141e9f1-24b0-4a3b-878f-eb3a29003a7e.png"
     },
     {
       id: 4,
