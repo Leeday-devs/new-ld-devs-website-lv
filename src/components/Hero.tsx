@@ -58,14 +58,14 @@ const Hero = () => {
           document.getElementById('video-fallback')?.classList.remove('opacity-0');
         }}
       >
-        <source src="/videos/hero.mp4" type="video/mp4" />
+        <source src="/videos/hero.mp4?v=2" type="video/mp4" />
       </video>
       
       {/* Fallback background while video loads */}
       <div id="video-fallback" className={`absolute inset-0 bg-navy transition-opacity duration-700 z-0 ${true ? '' : ''} opacity-100`} />
       {/* 40% Navy Overlay for readability */}
       <div className="absolute inset-0 bg-navy/40 z-[15] pointer-events-none" />
-      <div className="absolute inset-0 bg-gradient-to-br from-navy/60 via-navy/50 to-orange/20 z-[15] pointer-events-none" />
+      
       
       {/* Animated gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-r from-orange/10 via-transparent to-navy/20 animate-gradient bg-[length:200%_200%] z-[15] pointer-events-none" />
