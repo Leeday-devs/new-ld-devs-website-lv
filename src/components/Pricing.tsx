@@ -409,7 +409,7 @@ const Pricing = () => {
                     isPopular 
                       ? 'bg-gradient-featured border-2 border-orange shadow-featured hover:shadow-orange-glow' 
                       : 'bg-gradient-premium-card border border-gray-200 shadow-premium hover:shadow-premium-hover'
-                  } rounded-2xl p-10 flex flex-col h-full relative overflow-hidden transition-all duration-500 hover:scale-105`}
+                  } rounded-2xl p-6 flex flex-col h-full relative overflow-hidden transition-all duration-500 hover:scale-105`}
                 >
                   {/* Glow effect overlay */}
                   <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${
@@ -420,41 +420,41 @@ const Pricing = () => {
                   
                   <div className="relative z-10">
                     {/* Header */}
-                    <div className="text-center mb-10">
-                      <div className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl mb-6 ${
+                    <div className="text-center mb-6">
+                      <div className={`inline-flex items-center justify-center w-12 h-12 rounded-xl mb-4 ${
                         isPopular ? 'bg-orange text-white' : 'bg-orange/10 text-orange'
                       } group-hover:scale-110 transition-transform duration-300`}>
-                        <IconComponent className="h-8 w-8" />
+                        <IconComponent className="h-6 w-6" />
                       </div>
                       
-                      <h3 className="font-serif font-bold text-3xl mb-4 text-navy">
+                      <h3 className="font-serif font-bold text-2xl mb-2 text-navy">
                         {plan.name}
                       </h3>
                       
-                      <p className="text-gray-600 text-lg mb-8 leading-relaxed">
+                      <p className="text-gray-600 text-sm mb-4 leading-relaxed">
                         {plan.description}
                       </p>
                       
-                      <div className="mb-8">
-                        <span className="font-serif font-bold text-5xl text-navy">{plan.price}</span>
+                      <div className="mb-4">
+                        <span className="font-serif font-bold text-3xl text-navy">{plan.price}</span>
                         {plan.monthlyPrice && (
-                          <span className="text-gray-500 ml-2 text-lg">
+                          <span className="text-gray-500 ml-2 text-sm">
                             + {plan.monthlyPrice}/month
                           </span>
                         )}
-                        <p className="text-sm text-gray-500 mt-3 font-medium">
+                        <p className="text-xs text-gray-500 mt-1 font-medium">
                           Payment Options Available
                         </p>
                       </div>
                     </div>
 
                     {/* Features */}
-                    <div className="mb-8">
-                      <ul className="space-y-4">
+                    <div className="mb-6">
+                      <ul className="space-y-2">
                         {plan.features.map((feature, featureIndex) => (
-                          <li key={featureIndex} className="flex items-start text-base">
-                            <div className="flex-shrink-0 w-6 h-6 rounded-full bg-orange/10 flex items-center justify-center mr-4 mt-0.5">
-                              <CheckCircle className="h-4 w-4 text-orange" />
+                          <li key={featureIndex} className="flex items-start text-sm">
+                            <div className="flex-shrink-0 w-5 h-5 rounded-full bg-orange/10 flex items-center justify-center mr-3 mt-0.5">
+                              <CheckCircle className="h-3 w-3 text-orange" />
                             </div>
                             <span className="text-gray-700 leading-relaxed">{feature}</span>
                           </li>
@@ -463,10 +463,10 @@ const Pricing = () => {
 
                       {/* Trust Lines */}
                       {plan.trustLines && (
-                        <div className="mt-6 pt-6 border-t border-gray-200">
-                          <div className="text-center space-y-2">
-                            {plan.trustLines.map((trustLine, trustIndex) => (
-                              <p key={trustIndex} className="text-sm text-gray-600 font-medium">
+                        <div className="mt-4 pt-4 border-t border-gray-200">
+                          <div className="text-center space-y-1">
+                            {plan.trustLines.slice(0, 2).map((trustLine, trustIndex) => (
+                              <p key={trustIndex} className="text-xs text-gray-600 font-medium">
                                 {trustLine}
                               </p>
                             ))}
@@ -478,7 +478,7 @@ const Pricing = () => {
                     {/* CTA Button */}
                     <div className="mt-auto">
                       <button 
-                        className={`w-full py-4 px-8 rounded-full font-bold text-lg transition-all duration-300 relative overflow-hidden group/btn ${
+                        className={`w-full py-3 px-6 rounded-full font-bold text-base transition-all duration-300 relative overflow-hidden group/btn ${
                           isPopular
                             ? 'bg-gradient-orange-glow text-white shadow-orange-glow hover:shadow-lg hover:-translate-y-1'
                             : 'bg-navy text-white hover:bg-gray-800 shadow-lg hover:-translate-y-1'
