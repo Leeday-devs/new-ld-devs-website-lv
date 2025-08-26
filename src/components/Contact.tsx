@@ -276,19 +276,29 @@ const Contact = () => {
                       <Button
                         type="submit"
                         disabled={isLoading}
-                        className="btn-primary px-6 py-2.5 rounded-xl font-semibold text-sm md:text-base flex-1"
+                        className="btn-primary px-6 py-2.5 rounded-xl font-semibold text-sm md:text-base flex-1 group/btn relative overflow-hidden"
                       >
-                        {isLoading ? (
-                          <>
-                            <Loader2 className="mr-3 h-5 w-5 animate-spin" />
-                            Sending Message...
-                          </>
-                        ) : (
-                          <>
-                            <Send className="mr-3 h-5 w-5" />
-                            Send Message
-                          </>
-                        )}
+                        {/* Enhanced gradient background */}
+                        <div className="absolute inset-0 bg-gradient-to-r from-orange via-orange/90 to-orange/80 group-hover/btn:from-orange/90 group-hover/btn:via-orange group-hover/btn:to-orange transition-all duration-300" />
+                        
+                        {/* Glow effect */}
+                        <div className="absolute inset-0 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300" style={{
+                          boxShadow: '0 0 30px rgba(255, 122, 0, 0.5)'
+                        }} />
+                        
+                        <span className="relative z-10">
+                          {isLoading ? (
+                            <>
+                              <Loader2 className="mr-3 h-5 w-5 animate-spin" />
+                              Sending Message...
+                            </>
+                          ) : (
+                            <>
+                              <Send className="mr-3 h-5 w-5" />
+                              Send Message
+                            </>
+                          )}
+                        </span>
                       </Button>
                       
                       <Button

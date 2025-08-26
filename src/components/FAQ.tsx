@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ChevronDown, HelpCircle, MessageCircle, Shield, Clock } from "lucide-react";
+import { ChevronDown, HelpCircle, MessageCircle, Shield, Clock, Plus, Minus } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
 const FAQ = () => {
@@ -85,17 +85,21 @@ const FAQ = () => {
                       onClick={() => toggleItem(index)}
                       className="w-full text-left p-6 flex items-center justify-between group/button"
                     >
-                      <h3 className="text-lg font-bold text-navy group-hover/button:text-primary transition-colors duration-300 pr-4">
-                        {item.question}
-                      </h3>
-                      <ChevronDown 
-                        className={`h-5 w-5 text-primary transition-all duration-300 flex-shrink-0 ${
-                          openItem === index ? 'rotate-180' : ''
-                        } group-hover/button:scale-110`} 
-                      />
+                      <div className="flex items-center justify-between">
+                        <h3 className="text-lg font-bold text-navy group-hover/button:text-primary transition-colors duration-300 pr-4">
+                          {item.question}
+                        </h3>
+                        <div className="flex-shrink-0 w-8 h-8 rounded-full bg-orange/10 border-2 border-orange flex items-center justify-center group-hover/button:bg-orange/20 transition-all duration-300">
+                          {openItem === index ? (
+                            <Minus className="h-4 w-4 text-orange transition-transform duration-300 group-hover/button:scale-110" />
+                          ) : (
+                            <Plus className="h-4 w-4 text-orange transition-transform duration-300 group-hover/button:scale-110" />
+                          )}
+                        </div>
+                      </div>
                     </button>
                     
-                    <div className={`overflow-hidden transition-all duration-500 ${
+                    <div className={`overflow-hidden transition-all duration-700 ease-out ${
                       openItem === index ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
                     }`}>
                       <div className="px-6 pb-6 pt-0">

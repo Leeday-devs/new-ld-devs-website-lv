@@ -332,7 +332,7 @@ const Pricing = () => {
   return (
     <section 
       id="pricing" 
-      className="py-20 bg-white" 
+      className="py-32 bg-white" 
       aria-label="Pricing plans and packages"
     >
       <div className="container mx-auto px-6">
@@ -377,7 +377,9 @@ const Pricing = () => {
             return (
               <div
                 key={plan.id}
-                className="card-premium p-8 flex flex-col h-full"
+                className={`card-premium p-8 flex flex-col h-full group transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 ${
+                  plan.name === 'Business Growth' ? 'ring-2 ring-orange/20 hover:ring-orange/50 hover:shadow-[0_0_30px_rgba(255,122,0,0.3)] animate-pulse hover:animate-none' : ''
+                }`}
               >
                 <div className="text-center mb-8">
                   <IconComponent className="h-12 w-12 text-orange mx-auto mb-4" />
@@ -411,10 +413,12 @@ const Pricing = () => {
 
                 <div className="mt-auto">
                   <button 
-                    className="w-full py-4 rounded-2xl font-semibold text-lg transition-all duration-300 btn-secondary"
+                    className="w-full py-4 rounded-2xl font-semibold text-lg transition-all duration-300 btn-secondary group/btn hover:scale-105 hover:shadow-xl relative overflow-hidden"
                     onClick={() => handleGetStarted(plan.name)}
                   >
-                    Get Started
+                    {/* Gradient background */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-orange to-orange/80 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300" />
+                    <span className="relative z-10 group-hover/btn:text-white transition-colors duration-300">Get Started</span>
                   </button>
                 </div>
               </div>

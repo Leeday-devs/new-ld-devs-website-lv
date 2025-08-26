@@ -67,16 +67,16 @@ const Footer = () => {
 
               <div className="flex items-center gap-4">
                 <a href="https://www.facebook.com/profile.php?id=61563893127712" target="_blank" rel="noopener noreferrer">
-                  <Facebook className="h-6 w-6 text-white hover:text-gold transition-colors cursor-pointer hover:scale-110 transition-all duration-300" />
+                  <Facebook className="h-6 w-6 text-white social-icon" />
                 </a>
                 <a href="https://twitter.com/leedaydevs" target="_blank" rel="noopener noreferrer">
-                  <Twitter className="h-6 w-6 text-white hover:text-gold transition-colors cursor-pointer hover:scale-110 transition-all duration-300" />
+                  <Twitter className="h-6 w-6 text-white social-icon" />
                 </a>
                 <a href="https://instagram.com/leedaydevs" target="_blank" rel="noopener noreferrer">
-                  <Instagram className="h-6 w-6 text-white hover:text-gold transition-colors cursor-pointer hover:scale-110 transition-all duration-300" />
+                  <Instagram className="h-6 w-6 text-white social-icon" />
                 </a>
                 <a href="https://linkedin.com/company/lddevelopment" target="_blank" rel="noopener noreferrer">
-                  <Linkedin className="h-6 w-6 text-white hover:text-gold transition-colors cursor-pointer hover:scale-110 transition-all duration-300" />
+                  <Linkedin className="h-6 w-6 text-white social-icon" />
                 </a>
               </div>
             </div>

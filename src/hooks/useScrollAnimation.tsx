@@ -1,71 +1,72 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
-export const useScrollAnimation = (threshold = 0.1) => {
-  const ref = useRef<HTMLDivElement>(null);
+interface UseScrollAnimationOptions {
+  threshold?: number;
+  rootMargin?: string;
+  triggerOnce?: boolean;
+}
+
+export const useScrollAnimation = (options: UseScrollAnimationOptions = {}) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const elementRef = useRef<HTMLDivElement>(null);
+
+  const {
+    threshold = 0.1,
+    rootMargin = '0px 0px -50px 0px',
+    triggerOnce = true
+  } = options;
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('animate');
+          setIsVisible(true);
+          if (triggerOnce && elementRef.current) {
+            observer.unobserve(elementRef.current);
+          }
+        } else if (!triggerOnce) {
+          setIsVisible(false);
         }
       },
-      {
-        threshold,
-        rootMargin: '0px 0px -50px 0px'
-      }
+      { threshold, rootMargin }
     );
 
-    const currentRef = ref.current;
-    if (currentRef) {
-      observer.observe(currentRef);
+    const currentElement = elementRef.current;
+    if (currentElement) {
+      observer.observe(currentElement);
     }
 
     return () => {
-      if (currentRef) {
-        observer.unobserve(currentRef);
+      if (currentElement) {
+        observer.unobserve(currentElement);
       }
     };
-  }, [threshold]);
+  }, [threshold, rootMargin, triggerOnce]);
 
-  return ref;
+  return { elementRef, isVisible };
 };
 
-export const useStaggeredScrollAnimation = (
-  childSelector: string,
-  staggerDelay = 100
-) => {
-  const ref = useRef<HTMLDivElement>(null);
+// Higher-order component for scroll animations
+export const ScrollAnimated: React.FC<{
+  children: React.ReactNode;
+  className?: string;
+  animationType?: 'fade-in-up' | 'fade-in' | 'slide-in-left' | 'slide-in-right';
+  delay?: number;
+}> = ({ 
+  children, 
+  className = '', 
+  animationType = 'fade-in-up',
+  delay = 0
+}) => {
+  const { elementRef, isVisible } = useScrollAnimation();
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          const children = entry.target.querySelectorAll(childSelector);
-          children.forEach((child, index) => {
-            setTimeout(() => {
-              child.classList.add('animate');
-            }, index * staggerDelay);
-          });
-        }
-      },
-      {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-      }
-    );
-
-    const currentRef = ref.current;
-    if (currentRef) {
-      observer.observe(currentRef);
-    }
-
-    return () => {
-      if (currentRef) {
-        observer.unobserve(currentRef);
-      }
-    };
-  }, [childSelector, staggerDelay]);
-
-  return ref;
+  return (
+    <div
+      ref={elementRef}
+      className={`${animationType} ${isVisible ? 'animate' : ''} ${className}`}
+      style={{ animationDelay: `${delay}ms` }}
+    >
+      {children}
+    </div>
+  );
 };

@@ -353,7 +353,7 @@
     z-index: 1;
   }
 
-  /* Enhanced Form Inputs - QA Compliant */
+  /* Enhanced Form Inputs - QA Compliant with Orange Focus Glow */
   .premium-input,
   input, 
   textarea, 
@@ -376,8 +376,9 @@
   select:focus,
   .premium-input:focus {
     outline: none;
-    box-shadow: 0 0 0 3px rgba(255, 122, 0, 0.2);
+    box-shadow: 0 0 0 3px rgba(255, 122, 0, 0.2), 0 0 20px rgba(255, 122, 0, 0.1);
     border-color: #FF7A00;
+    transform: translateY(-1px);
   }
 
   /* Enhanced Button System - QA Compliant */
@@ -1232,5 +1233,60 @@
     50% {
       opacity: 0.5;
     }
+  }
+  }
+
+  /* Enhanced Social Icons with Orange Glow */
+  .social-icon {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .social-icon:hover {
+    filter: drop-shadow(0 0 15px rgba(255, 122, 0, 0.6));
+    color: hsl(var(--orange));
+    transform: scale(1.1);
+  }
+
+  /* Global Motion System - Scroll-triggered Animations */
+  .fade-in-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+  }
+  
+  .fade-in-up.animate {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .fade-in {
+    opacity: 0;
+    transition: opacity 0.3s ease-out;
+  }
+  
+  .fade-in.animate {
+    opacity: 1;
+  }
+
+  .slide-in-left {
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+  }
+  
+  .slide-in-left.animate {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .slide-in-right {
+    opacity: 0;
+    transform: translateX(30px);
+    transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+  }
+  
+  .slide-in-right.animate {
+    opacity: 1;
+    transform: translateX(0);
   }
 }
