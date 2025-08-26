@@ -33,15 +33,20 @@ const Hero = () => {
       className="bg-navy min-h-screen flex items-center justify-center relative overflow-hidden"
       aria-label="Hero section with company introduction"
     >
-      {/* Subtle Video Background */}
+      {/* Subtle Video Background - Alternative working video */}
       <video 
         autoPlay 
         muted 
         loop 
         playsInline
         className="absolute inset-0 w-full h-full object-cover opacity-30"
+        onError={(e) => {
+          // Hide video if it fails to load
+          (e.target as HTMLVideoElement).style.display = 'none';
+        }}
       >
-        <source src="https://cdn.pixabay.com/video/2021/08/04/84165-588200721_large.mp4" type="video/mp4" />
+        <source src="https://cdn.pixabay.com/video/2019/02/11/21296-317833217_large.mp4" type="video/mp4" />
+        <source src="https://cdn.pixabay.com/video/2023/04/15/158493-819916174_large.mp4" type="video/mp4" />
       </video>
       
       {/* Premium business photo with navy overlay */}
