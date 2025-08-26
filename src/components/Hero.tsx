@@ -1,12 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Shield, Zap, Award } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [showHeading, setShowHeading] = useState(false);
   const [showSubtext, setShowSubtext] = useState(false);
   const [showButton, setShowButton] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     setIsVisible(true);
@@ -15,6 +16,17 @@ const Hero = () => {
     const timer1 = setTimeout(() => setShowHeading(true), 300);
     const timer2 = setTimeout(() => setShowSubtext(true), 800);
     const timer3 = setTimeout(() => setShowButton(true), 1200);
+
+    // Try to force video playback for browsers that block autoplay
+    const v = videoRef.current;
+    if (v) {
+      v.muted = true;
+      const tryPlay = () => v.play().catch((err) => {
+        console.warn('Hero video autoplay blocked', err);
+      });
+      tryPlay();
+      setTimeout(tryPlay, 300);
+    }
     
     return () => {
       clearTimeout(timer1);
@@ -28,18 +40,20 @@ const Hero = () => {
       className="bg-navy min-h-screen flex items-center justify-center relative overflow-hidden"
       aria-label="Hero section with company introduction"
     >
-      {/* Subtle Video Background - Alternative working video */}
+      {/* Subtle Video Background - Local video for reliability */}
       <video
+        ref={videoRef}
         autoPlay
         muted
         loop
         playsInline
         preload="auto"
         className="absolute inset-0 w-full h-full object-cover opacity-100 z-10"
-        onCanPlay={() => document.getElementById('video-fallback')?.classList.add('opacity-0')}
-        onLoadedData={() => document.getElementById('video-fallback')?.classList.add('opacity-0')}
-        onPlay={() => document.getElementById('video-fallback')?.classList.add('opacity-0')}
+        onCanPlay={() => { console.log('Hero video can play'); document.getElementById('video-fallback')?.classList.add('opacity-0'); }}
+        onLoadedData={() => { console.log('Hero video loaded'); document.getElementById('video-fallback')?.classList.add('opacity-0'); }}
+        onPlay={() => { console.log('Hero video playing'); document.getElementById('video-fallback')?.classList.add('opacity-0'); }}
         onError={(e) => {
+          console.error('Hero video error', e);
           (e.target as HTMLVideoElement).style.display = 'none';
           document.getElementById('video-fallback')?.classList.remove('opacity-0');
         }}
@@ -50,11 +64,11 @@ const Hero = () => {
       {/* Fallback background while video loads */}
       <div id="video-fallback" className={`absolute inset-0 bg-navy transition-opacity duration-700 z-0 ${true ? '' : ''} opacity-100`} />
       {/* 40% Navy Overlay for readability */}
-      <div className="absolute inset-0 bg-navy/40" />
-      <div className="absolute inset-0 bg-gradient-to-br from-navy/60 via-navy/50 to-orange/20" />
+      <div className="absolute inset-0 bg-navy/40 z-[15] pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-br from-navy/60 via-navy/50 to-orange/20 z-[15] pointer-events-none" />
       
       {/* Animated gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-orange/10 via-transparent to-navy/20 animate-gradient bg-[length:200%_200%]" />
+      <div className="absolute inset-0 bg-gradient-to-r from-orange/10 via-transparent to-navy/20 animate-gradient bg-[length:200%_200%] z-[15] pointer-events-none" />
       
       {/* Floating particles effect */}
       <div className="absolute inset-0 overflow-hidden">
