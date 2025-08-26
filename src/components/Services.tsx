@@ -143,8 +143,8 @@ const Services = () => {
       <div className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="heading-primary heading-lg mb-6 text-navy drop-shadow-sm">
-            Our <span className="text-orange">Premium</span> Services
+          <h2 className="heading-lg spacing-section text-navy drop-shadow-sm">
+            Our <span className="text-highlight">Premium</span> Services
           </h2>
           <p className="text-body max-w-3xl mx-auto text-text-secondary drop-shadow-sm">
             From concept to launch, we provide everything you need to establish a powerful online presence
@@ -257,9 +257,9 @@ const Services = () => {
                     <div className={`absolute -bottom-1 -left-1 w-1.5 h-1.5 rounded-full ${colorScheme.accent} opacity-0 group-hover:opacity-40 group-hover:animate-pulse transition-all duration-500 delay-200`} />
                   </div>
 
-                  {/* Luxury Typography */}
+                   {/* Luxury Typography */}
                   <div className="mb-6">
-                    <h3 className={`heading-primary text-2xl font-bold mb-2 ${colorScheme.icon} group-hover:text-navy transition-colors duration-500 leading-tight`}>
+                    <h3 className={`heading-md font-bold mb-2 ${colorScheme.icon} group-hover:text-navy transition-colors duration-500 leading-tight`}>
                       {service.title}
                     </h3>
                     <div className={`h-0.5 w-12 ${colorScheme.accent} rounded-full opacity-60 group-hover:w-20 group-hover:opacity-100 transition-all duration-500`} />

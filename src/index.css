@@ -146,18 +146,25 @@
 
   /* Typography Scale - Premium Luxury Hierarchy */
   .heading-xl { 
-    font-size: 4.5rem; /* 72px - Hero H1 Premium */
-    line-height: 4.25rem; /* 68px - Tight luxury spacing */
+    font-size: 4rem; /* 64px - Hero H1 Premium */
+    line-height: 3.75rem; /* 60px - Tight luxury spacing */
+    letter-spacing: -0.02em; /* Negative letter spacing */
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
   }
   
   .heading-lg { 
-    font-size: 3rem; /* 48px - H2 */
+    font-size: 3rem; /* 48px - H2 Section headings */
     line-height: 3.25rem; /* 52px */
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
   }
   
   .heading-md { 
-    font-size: 2rem; /* 32px - H3 */
-    line-height: 2.5rem; /* 40px */
+    font-size: 1.875rem; /* 30px - H3 Subheadings */
+    line-height: 2.25rem; /* 36px */
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
   }
 
   .text-body {
@@ -165,6 +172,21 @@
     font-size: 1.125rem; /* 18px */
     line-height: 1.6; /* 1.6 ratio for luxury readability */
     color: hsl(var(--text-secondary));
+  }
+
+  /* Orange highlight utility */
+  .text-highlight {
+    color: hsl(var(--orange));
+    font-weight: 600;
+  }
+
+  /* Premium spacing utilities */
+  .spacing-luxury {
+    margin-bottom: 2.5rem; /* 40px between headings and subtext */
+  }
+
+  .spacing-section {
+    margin-bottom: 2rem; /* 32px consistent margins */
   }
 
   .text-caption {
@@ -178,19 +200,19 @@
   .section-white {
     background: hsl(var(--bg-white));
     color: hsl(var(--text-primary));
-    padding: 8rem 0; /* 128px - Premium spacing */
+    padding: 7.5rem 0; /* 120px - Premium spacing */
   }
 
   .section-grey {
     background: hsl(var(--bg-grey));
     color: hsl(var(--text-primary));
-    padding: 8rem 0; /* 128px - Premium spacing */
+    padding: 7.5rem 0; /* 120px - Premium spacing */
   }
 
   .section-navy {
     background: hsl(var(--bg-navy));
     color: hsl(var(--text-white));
-    padding: 8rem 0; /* 128px - Premium spacing */
+    padding: 7.5rem 0; /* 120px - Premium spacing */
   }
 
   /* Premium Card System - Enhanced Luxury Effects */

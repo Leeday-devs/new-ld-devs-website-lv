@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Star, ChevronLeft, ChevronRight, Quote } from "lucide-react";
 
 const Testimonials = () => {
@@ -61,16 +61,22 @@ const Testimonials = () => {
     setCurrentSlide((prev) => (prev - 1 + testimonials.length) % testimonials.length);
   };
 
+  // Auto-scroll every 5 seconds with swipe support
+  useEffect(() => {
+    const autoScroll = setInterval(nextSlide, 5000);
+    return () => clearInterval(autoScroll);
+  }, []);
+
   return (
-    <section className="bg-navy py-20" aria-label="Client testimonials and reviews">
+    <section className="section-navy" aria-label="Client testimonials and reviews">
       <div className="container mx-auto px-6">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="heading-primary heading-lg mb-6 text-white">
-            What Our <span className="text-orange">Clients Say</span>
+          <h2 className="heading-lg spacing-section text-white">
+            What Our <span className="text-highlight">Clients Say</span>
           </h2>
           <p className="text-body max-w-3xl mx-auto text-white/80">
-            Don't just take our word for it. Here's what our <span className="text-orange font-semibold">satisfied clients</span> have to say about working with us
+            Don't just take our word for it. Here's what our <span className="text-highlight font-semibold">satisfied clients</span> have to say about working with us
           </p>
         </div>
 
@@ -82,12 +88,12 @@ const Testimonials = () => {
               className="card-premium p-8 flex flex-col justify-between min-h-[400px]"
             >
               {/* Quote Icon */}
-              <Quote className="h-8 w-8 text-orange mb-6" />
+              <Quote className="h-8 w-8 text-highlight mb-6" />
               
-              {/* Rating */}
+              {/* Rating Stars (Orange) */}
               <div className="flex items-center mb-6">
                 {[...Array(testimonial.rating)].map((_, i) => (
-                  <Star key={i} className="h-5 w-5 text-orange fill-orange" />
+                  <Star key={i} className="h-5 w-5 text-highlight fill-current" />
                 ))}
               </div>
 
@@ -108,7 +114,7 @@ const Testimonials = () => {
                         href={testimonial.website} 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        className="hover:text-orange transition-colors underline"
+                        className="hover:text-highlight transition-colors underline"
                       >
                         {testimonial.company}
                       </a>
@@ -132,11 +138,11 @@ const Testimonials = () => {
           <div className="relative">
             {/* Testimonial Card */}
             <div className="card-premium p-8 mx-4">
-              <Quote className="h-8 w-8 text-orange mb-6" />
+              <Quote className="h-8 w-8 text-highlight mb-6" />
               
               <div className="flex items-center mb-6">
                 {[...Array(testimonials[currentSlide].rating)].map((_, i) => (
-                  <Star key={i} className="h-5 w-5 text-orange fill-orange" />
+                  <Star key={i} className="h-5 w-5 text-highlight fill-current" />
                 ))}
               </div>
 
@@ -155,7 +161,7 @@ const Testimonials = () => {
                         href={testimonials[currentSlide].website} 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        className="hover:text-orange transition-colors underline"
+                        className="hover:text-highlight transition-colors underline"
                       >
                         {testimonials[currentSlide].company}
                       </a>
@@ -197,7 +203,7 @@ const Testimonials = () => {
                 key={index}
                 onClick={() => setCurrentSlide(index)}
                 className={`w-3 h-3 rounded-full transition-colors duration-200 ${
-                  index === currentSlide ? 'bg-orange' : 'bg-white/30 border-2 border-orange'
+                  index === currentSlide ? 'bg-highlight' : 'bg-white/30 border-2 border-highlight'
                 }`}
                 aria-label={`Go to testimonial ${index + 1}`}
               />

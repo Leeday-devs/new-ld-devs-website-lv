@@ -1,70 +1,137 @@
-import { useEffect, useRef, useCallback } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 interface UseScrollTriggerOptions {
-  onTrigger: () => void;
-  scrollPercent?: number; // 0-100, default 40
-  timeDelay?: number; // milliseconds, default 7000 (7s)
-  enabled?: boolean;
+  threshold?: number;
+  rootMargin?: string;
+  triggerOnce?: boolean;
+  delay?: number;
 }
 
-export const useScrollTrigger = ({
-  onTrigger,
-  scrollPercent = 40,
-  timeDelay = 7000,
-  enabled = true,
-}: UseScrollTriggerOptions) => {
-  const hasTriggered = useRef(false);
-  const timeoutId = useRef<NodeJS.Timeout>();
+export const useScrollTrigger = (options: UseScrollTriggerOptions = {}) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const elementRef = useRef<HTMLDivElement>(null);
 
-  const checkScrollPosition = useCallback(() => {
-    if (!enabled || hasTriggered.current) return;
-
-    const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-    
-    if (scrolled >= scrollPercent) {
-      hasTriggered.current = true;
-      onTrigger();
-    }
-  }, [enabled, scrollPercent, onTrigger]);
-
-  const startTimeDelay = useCallback(() => {
-    if (!enabled || hasTriggered.current) return;
-
-    timeoutId.current = setTimeout(() => {
-      if (!hasTriggered.current) {
-        hasTriggered.current = true;
-        onTrigger();
-      }
-    }, timeDelay);
-  }, [enabled, timeDelay, onTrigger]);
+  const {
+    threshold = 0.1,
+    rootMargin = '0px 0px -100px 0px',
+    triggerOnce = true,
+    delay = 0
+  } = options;
 
   useEffect(() => {
-    if (!enabled) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          if (delay > 0) {
+            setTimeout(() => setIsVisible(true), delay);
+          } else {
+            setIsVisible(true);
+          }
+          if (triggerOnce && elementRef.current) {
+            observer.unobserve(elementRef.current);
+          }
+        } else if (!triggerOnce) {
+          setIsVisible(false);
+        }
+      },
+      { threshold, rootMargin }
+    );
 
-    // Start time-based trigger
-    startTimeDelay();
-
-    // Add scroll listener
-    window.addEventListener('scroll', checkScrollPosition, { passive: true });
+    const currentElement = elementRef.current;
+    if (currentElement) {
+      observer.observe(currentElement);
+    }
 
     return () => {
-      window.removeEventListener('scroll', checkScrollPosition);
-      if (timeoutId.current) {
-        clearTimeout(timeoutId.current);
+      if (currentElement) {
+        observer.unobserve(currentElement);
       }
     };
-  }, [enabled, checkScrollPosition, startTimeDelay]);
+  }, [threshold, rootMargin, triggerOnce, delay]);
 
-  // Reset trigger (useful for testing or re-enabling)
-  const resetTrigger = useCallback(() => {
-    hasTriggered.current = false;
-    if (timeoutId.current) {
-      clearTimeout(timeoutId.current);
-    }
-    if (enabled) {
-      startTimeDelay();
-    }
-  }, [enabled, startTimeDelay]);
+  return { elementRef, isVisible };
+};
 
-  return { resetTrigger };
+// Stats counter hook for animated numbers
+export const useCountUp = (end: number, duration: number = 2000, start: number = 0) => {
+  const [count, setCount] = useState(start);
+  const [isActive, setIsActive] = useState(false);
+
+  useEffect(() => {
+    if (!isActive) return;
+
+    let startTime: number;
+    let animationFrame: number;
+
+    const animate = (currentTime: number) => {
+      if (!startTime) startTime = currentTime;
+      const progress = Math.min((currentTime - startTime) / duration, 1);
+      
+      // Easing function for smooth animation
+      const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+      const currentCount = Math.floor(easeOutQuart * (end - start) + start);
+      
+      setCount(currentCount);
+
+      if (progress < 1) {
+        animationFrame = requestAnimationFrame(animate);
+      }
+    };
+
+    animationFrame = requestAnimationFrame(animate);
+
+    return () => {
+      if (animationFrame) {
+        cancelAnimationFrame(animationFrame);
+      }
+    };
+  }, [isActive, end, start, duration]);
+
+  const startCounting = () => setIsActive(true);
+
+  return { count, startCounting, isActive };
+};
+
+// Higher-order component for scroll animations with stagger support
+export const ScrollAnimated: React.FC<{
+  children: React.ReactNode;
+  className?: string;
+  animationType?: 'fade-in-up' | 'fade-in' | 'slide-in-left' | 'slide-in-right' | 'scroll-scale';
+  delay?: number;
+  staggerDelay?: number;
+  index?: number;
+}> = ({ 
+  children, 
+  className = '', 
+  animationType = 'fade-in-up',
+  delay = 0,
+  staggerDelay = 100,
+  index = 0
+}) => {
+  const totalDelay = delay + (staggerDelay * index);
+  const { elementRef, isVisible } = useScrollTrigger({ delay: totalDelay });
+
+  const getAnimationClass = () => {
+    switch (animationType) {
+      case 'fade-in':
+        return 'fade-in';
+      case 'slide-in-left':
+        return 'slide-in-left';
+      case 'slide-in-right':
+        return 'slide-in-right';
+      case 'scroll-scale':
+        return 'scroll-scale';
+      default:
+        return 'fade-in-up';
+    }
+  };
+
+  return (
+    <div
+      ref={elementRef}
+      className={`${getAnimationClass()} ${isVisible ? 'animate' : ''} ${className}`}
+    >
+      {children}
+    </div>
+  );
 };

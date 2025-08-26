@@ -103,10 +103,10 @@ const Hero = () => {
         <div className="max-w-6xl mx-auto text-center">
           {/* Hero Heading with staggered animation */}
           <div className={`transition-all duration-1000 ease-out ${showHeading ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16'}`}>
-            <h1 className="heading-primary text-5xl md:text-6xl lg:text-7xl xl:text-8xl mb-8 text-white leading-[0.9] font-black tracking-tight">
-              We Build Your <span className="text-orange animate-pulse">Dream Website</span>
+            <h1 className="heading-xl text-white mb-6 leading-[0.9] font-black tracking-tight">
+              We Build Your <span className="text-highlight animate-pulse">Dream Website</span>
               <span className="block mt-6">
-                That Actually <span className="text-orange relative">
+                That Actually <span className="text-highlight relative">
                   Works
                   <span className="absolute -inset-1 bg-orange/20 blur-xl animate-pulse"></span>
                 </span>
@@ -116,24 +116,24 @@ const Hero = () => {
           
           {/* Subtext with delayed animation */}
           <div className={`transition-all duration-1000 ease-out delay-300 ${showSubtext ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
-            <p className="text-body mb-12 max-w-4xl mx-auto text-white/90 text-xl md:text-2xl lg:text-3xl leading-relaxed font-medium">
-              Premium <span className="text-orange font-bold">Website</span> development and <span className="text-orange font-bold">AI</span> services from the <span className="text-orange font-bold">UK</span> for businesses. 
+            <p className="text-body spacing-luxury max-w-4xl mx-auto text-white/90 leading-relaxed font-medium">
+              Premium <span className="text-highlight font-bold">Website</span> development and <span className="text-highlight font-bold">AI</span> services from the <span className="text-highlight font-bold">UK</span> for businesses. 
               We create fast, secure, and beautiful websites that drive real results.
             </p>
           </div>
           
-          {/* CTA Button with glow effect and delayed animation */}
+          {/* CTA Button with pill shape, glow effect and delayed animation */}
           <div className={`mb-16 transition-all duration-1000 ease-out delay-500 ${showButton ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'}`}>
             <Button 
               size="lg" 
-              className="btn-primary px-10 md:px-12 py-5 md:py-6 text-xl md:text-2xl font-black rounded-2xl shadow-2xl relative overflow-hidden group hover:scale-105 transition-all duration-300 animate-pulse-slow hover:animate-none"
+              className="btn-primary px-10 md:px-12 py-5 md:py-6 text-xl md:text-2xl font-black rounded-full shadow-2xl relative overflow-hidden group hover:scale-105 transition-all duration-300 animate-pulse-slow hover:animate-none"
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
             >
               {/* Enhanced Glow effect */}
               <div className="absolute inset-0 bg-gradient-to-r from-orange via-orange to-orange opacity-0 group-hover:opacity-40 blur-xl transition-opacity duration-500 group-hover:scale-110"></div>
               
               {/* Ripple effect */}
-              <div className="absolute inset-0 bg-orange/20 rounded-2xl opacity-0 group-hover:opacity-100 group-hover:animate-ping transition-opacity duration-300"></div>
+              <div className="absolute inset-0 bg-orange/20 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping transition-opacity duration-300"></div>
               
               {/* Shine effect */}
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out"></div>
