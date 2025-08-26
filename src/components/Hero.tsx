@@ -1,17 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Shield, Zap, Award } from "lucide-react";
 import { useState, useEffect } from "react";
-import { useImagePreload } from "@/hooks/useImagePreload";
-import heroBusinessTech from "@/assets/hero-business-tech.jpg";
 
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [showHeading, setShowHeading] = useState(false);
   const [showSubtext, setShowSubtext] = useState(false);
   const [showButton, setShowButton] = useState(false);
-  const { isLoaded: isImageLoaded } = useImagePreload({ 
-    src: heroBusinessTech
-  });
 
   useEffect(() => {
     setIsVisible(true);
@@ -50,9 +45,7 @@ const Hero = () => {
       </video>
       
       {/* Fallback background while video loads */}
-      <div className={`absolute inset-0 bg-navy transition-opacity duration-1000 ${
-        isImageLoaded ? 'opacity-0' : 'opacity-100'
-      }`} />
+      <div className="absolute inset-0 bg-navy opacity-20" />
       {/* 40% Navy Overlay for readability */}
       <div className="absolute inset-0 bg-navy/40" />
       <div className="absolute inset-0 bg-gradient-to-br from-navy/60 via-navy/50 to-orange/20" />
