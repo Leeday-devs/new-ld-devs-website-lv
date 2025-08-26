@@ -15,6 +15,18 @@
     --brand-white: 0 0% 100%;             /* #FFFFFF - Clean base */
     --brand-grey: 219 20% 97%;            /* #F5F7FA - Light sections */
     
+    /* Premium Gradients */
+    --gradient-premium-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(220 13% 97%));
+    --gradient-orange: linear-gradient(135deg, hsl(25 100% 50%), hsl(25 100% 45%));
+    --gradient-orange-glow: linear-gradient(135deg, hsl(25 100% 50%), hsl(25 100% 40%));
+    --gradient-featured: linear-gradient(145deg, hsl(0 0% 100%), hsl(25 100% 98%));
+    
+    /* Premium Shadows */
+    --shadow-premium: 0 8px 32px rgba(0, 0, 0, 0.08);
+    --shadow-premium-hover: 0 20px 60px rgba(0, 0, 0, 0.15);
+    --shadow-orange-glow: 0 0 40px hsl(25 100% 50% / 0.25);
+    --shadow-featured: 0 12px 40px hsl(25 100% 50% / 0.15);
+    
     /* Text Colors - Premium Hierarchy */
     --text-primary: 210 67% 12%;          /* Navy for headers */
     --text-secondary: 215 16% 46%;        /* Grey for body */

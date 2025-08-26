@@ -1,4 +1,4 @@
-import { CheckCircle, Star, Crown, Code, ShoppingCart, Server, Smartphone, Brain, Monitor } from "lucide-react";
+import { CheckCircle, Star, Crown, Code, ShoppingCart, Server, Smartphone, Brain, Monitor, Award } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { CustomerInfoForm } from "@/components/CustomerInfoForm";
@@ -38,7 +38,8 @@ const Pricing = () => {
           "Basic SEO optimisation",
           "Contact form integration",
           "SSL & hosting"
-        ]
+        ],
+        trustLines: ["Cancel anytime", "SSL included", "No hidden fees"]
       },
       {
         id: 2,
@@ -49,6 +50,7 @@ const Pricing = () => {
         monthlyPrice: "£65",
         paymentLink: "https://buy.stripe.com/7sY14ndX86kW0uG5Qx0Ny09",
         depositAmount: 12500, // £125 deposit in pence
+        popular: true,
         features: [
           "Up to 10 pages",
           "Blog setup",
@@ -57,7 +59,8 @@ const Pricing = () => {
           "2 rounds of revisions",
           "2 business emails",
           "Ongoing support"
-        ]
+        ],
+        trustLines: ["Most popular choice", "Priority support", "30-day guarantee"]
       },
       {
         id: 3,
@@ -76,7 +79,8 @@ const Pricing = () => {
           "Priority support (same-day)",
           "5 business emails",
           "Monthly performance report"
-        ]
+        ],
+        trustLines: ["Enterprise grade", "Unlimited revisions", "Dedicated manager"]
       }
     ],
     ai: [
@@ -87,14 +91,15 @@ const Pricing = () => {
         description: "Basic AI automation for small businesses",
         price: "£350 setup",
         monthlyPrice: "£75",
-        stripeProductId: "prod_YOUR_STRIPE_PRODUCT_ID_HERE", // Add your Stripe product ID
-        stripePriceId: "price_YOUR_STRIPE_PRICE_ID_HERE", // Add your Stripe price ID
-        depositAmount: 3500, // £35 deposit in pence
+        stripeProductId: "prod_YOUR_STRIPE_PRODUCT_ID_HERE", 
+        stripePriceId: "price_YOUR_STRIPE_PRICE_ID_HERE", 
+        depositAmount: 3500, 
         features: [
           "1 automation agent (email responder or lead capture bot)",
           "1 month free support",
           "Hosting included"
-        ]
+        ],
+        trustLines: ["AI-powered efficiency", "Quick setup", "Expert support"]
       },
       {
         id: 2,
@@ -103,14 +108,16 @@ const Pricing = () => {
         description: "Advanced AI solutions for growing companies",
         price: "£750 setup",
         monthlyPrice: "£150",
-        stripeProductId: "prod_YOUR_STRIPE_PRODUCT_ID_HERE", // Add your Stripe product ID
-        stripePriceId: "price_YOUR_STRIPE_PRICE_ID_HERE", // Add your Stripe price ID
-        depositAmount: 7500, // £75 deposit in pence
+        popular: true,
+        stripeProductId: "prod_YOUR_STRIPE_PRODUCT_ID_HERE", 
+        stripePriceId: "price_YOUR_STRIPE_PRICE_ID_HERE", 
+        depositAmount: 7500, 
         features: [
           "3 automation agents (CRM pipeline, social media posting, chatbot)",
           "AI dashboard access",
           "Priority support"
-        ]
+        ],
+        trustLines: ["Most comprehensive", "Full automation", "Advanced features"]
       },
       {
         id: 3,
@@ -119,15 +126,16 @@ const Pricing = () => {
         description: "Full AI transformation solution",
         price: "£1,500 setup",
         monthlyPrice: "£250",
-        stripeProductId: "prod_YOUR_STRIPE_PRODUCT_ID_HERE", // Add your Stripe product ID
-        stripePriceId: "price_YOUR_STRIPE_PRICE_ID_HERE", // Add your Stripe price ID
-        depositAmount: 15000, // £150 deposit in pence
+        stripeProductId: "prod_YOUR_STRIPE_PRODUCT_ID_HERE", 
+        stripePriceId: "price_YOUR_STRIPE_PRICE_ID_HERE", 
+        depositAmount: 15000, 
         features: [
           "Unlimited agents",
           "Full CRM automation & custom dashboard",
           "Dedicated support",
           "Quarterly optimisation review"
-        ]
+        ],
+        trustLines: ["Complete transformation", "Unlimited potential", "White-glove service"]
       }
     ],
     mobile: [
@@ -138,14 +146,15 @@ const Pricing = () => {
         description: "Simple mobile app for small businesses",
         price: "£1,500",
         monthlyPrice: "£95",
-        stripeProductId: "prod_YOUR_STRIPE_PRODUCT_ID_HERE", // Add your Stripe product ID
-        stripePriceId: "price_YOUR_STRIPE_PRICE_ID_HERE", // Add your Stripe price ID
-        depositAmount: 15000, // £150 deposit in pence
+        stripeProductId: "prod_YOUR_STRIPE_PRODUCT_ID_HERE", 
+        stripePriceId: "price_YOUR_STRIPE_PRICE_ID_HERE", 
+        depositAmount: 15000, 
         features: [
           "Basic booking/info app",
           "Secure hosting",
           "Ongoing updates"
-        ]
+        ],
+        trustLines: ["Native performance", "App store ready", "Secure hosting"]
       },
       {
         id: 2,
@@ -154,15 +163,17 @@ const Pricing = () => {
         description: "Feature-rich mobile solution",
         price: "£3,000",
         monthlyPrice: "£150",
-        stripeProductId: "prod_YOUR_STRIPE_PRODUCT_ID_HERE", // Add your Stripe product ID
-        stripePriceId: "price_YOUR_STRIPE_PRICE_ID_HERE", // Add your Stripe price ID
-        depositAmount: 30000, // £300 deposit in pence
+        popular: true,
+        stripeProductId: "prod_YOUR_STRIPE_PRODUCT_ID_HERE", 
+        stripePriceId: "price_YOUR_STRIPE_PRICE_ID_HERE", 
+        depositAmount: 30000, 
         features: [
           "User accounts & forms",
           "Admin dashboard",
           "CRM & AI integrations",
           "Priority support"
-        ]
+        ],
+        trustLines: ["Advanced features", "Custom integrations", "Professional grade"]
       },
       {
         id: 3,
@@ -171,15 +182,16 @@ const Pricing = () => {
         description: "Complete mobile ecosystem",
         price: "from £5,000",
         monthlyPrice: "£250",
-        stripeProductId: "prod_YOUR_STRIPE_PRODUCT_ID_HERE", // Add your Stripe product ID
-        stripePriceId: "price_YOUR_STRIPE_PRICE_ID_HERE", // Add your Stripe price ID
-        depositAmount: 50000, // £500 deposit in pence
+        stripeProductId: "prod_YOUR_STRIPE_PRODUCT_ID_HERE", 
+        stripePriceId: "price_YOUR_STRIPE_PRICE_ID_HERE", 
+        depositAmount: 50000, 
         features: [
           "Fully custom app",
           "Advanced backend (Supabase/API)",
           "AI-powered features",
           "Dedicated support team"
-        ]
+        ],
+        trustLines: ["Fully bespoke", "Enterprise backend", "Dedicated team"]
       }
     ],
     software: [
@@ -190,15 +202,16 @@ const Pricing = () => {
         description: "Essential hosting for small businesses",
         price: "£40",
         monthlyPrice: "/month",
-        stripeProductId: "prod_YOUR_STRIPE_PRODUCT_ID_HERE", // Add your Stripe product ID
-        stripePriceId: "price_YOUR_STRIPE_PRICE_ID_HERE", // Add your Stripe price ID
-        depositAmount: 4000, // £40 first month in pence
+        stripeProductId: "prod_YOUR_STRIPE_PRODUCT_ID_HERE", 
+        stripePriceId: "price_YOUR_STRIPE_PRICE_ID_HERE", 
+        depositAmount: 4000, 
         features: [
           "1 business email",
           "SSL & backups",
           "Updates & security monitoring",
           "Support during working hours"
-        ]
+        ],
+        trustLines: ["99.9% uptime", "Daily backups", "UK servers"]
       },
       {
         id: 2,
@@ -207,15 +220,17 @@ const Pricing = () => {
         description: "Professional hosting solution",
         price: "£65",
         monthlyPrice: "/month",
-        stripeProductId: "prod_YOUR_STRIPE_PRODUCT_ID_HERE", // Add your Stripe product ID
-        stripePriceId: "price_YOUR_STRIPE_PRICE_ID_HERE", // Add your Stripe price ID
-        depositAmount: 6500, // £65 first month in pence
+        popular: true,
+        stripeProductId: "prod_YOUR_STRIPE_PRODUCT_ID_HERE", 
+        stripePriceId: "price_YOUR_STRIPE_PRICE_ID_HERE", 
+        depositAmount: 6500, 
         features: [
           "3 business emails",
           "Priority support",
           "Monthly security & SEO report",
           "Performance monitoring"
-        ]
+        ],
+        trustLines: ["Priority support", "Monthly reports", "Advanced monitoring"]
       },
       {
         id: 3,
@@ -224,15 +239,16 @@ const Pricing = () => {
         description: "Enterprise-grade hosting platform",
         price: "£95",
         monthlyPrice: "/month",
-        stripeProductId: "prod_YOUR_STRIPE_PRODUCT_ID_HERE", // Add your Stripe product ID
-        stripePriceId: "price_YOUR_STRIPE_PRICE_ID_HERE", // Add your Stripe price ID
-        depositAmount: 9500, // £95 first month in pence
+        stripeProductId: "prod_YOUR_STRIPE_PRODUCT_ID_HERE", 
+        stripePriceId: "price_YOUR_STRIPE_PRICE_ID_HERE", 
+        depositAmount: 9500, 
         features: [
           "Unlimited emails",
           "AI-powered monitoring",
           "Monthly performance & marketing insights",
           "24/7 priority support"
-        ]
+        ],
+        trustLines: ["24/7 support", "AI monitoring", "Enterprise grade"]
       }
     ]
   };
@@ -248,23 +264,21 @@ const Pricing = () => {
   const handleFormSubmit = async (customerInfo: any) => {
     setIsSubmitting(true);
     try {
-      // Find the selected plan to get plan information
       const currentPlansArray = allPlans[activeCategory] || [];
-      const planName = selectedPlan.split(' - ')[0]; // Extract plan name from "Plan - category"
+      const planName = selectedPlan.split(' - ')[0]; 
       const selectedPlanObj = currentPlansArray.find(plan => plan.name === planName);
       
       if (!selectedPlanObj) {
         throw new Error('Selected plan not found');
       }
 
-      // Save customer info to database for admin panel
       const { error: dbError } = await supabase.from('orders').insert({
         customer_name: customerInfo.fullName,
         customer_email: customerInfo.email,
         customer_phone: customerInfo.phone,
         customer_company: customerInfo.company,
         service_name: selectedPlan,
-        amount: selectedPlanObj.depositAmount || 2000, // Use plan's deposit amount
+        amount: selectedPlanObj.depositAmount || 2000, 
         status: 'inquiry'
       });
 
@@ -273,9 +287,7 @@ const Pricing = () => {
         throw new Error('Failed to save customer information');
       }
 
-      // Check if this is a website plan with a payment link
       if (activeCategory === 'websites' && selectedPlanObj.paymentLink) {
-        // For website plans, redirect directly to Stripe Payment Link
         window.open(selectedPlanObj.paymentLink, '_blank');
         setIsFormOpen(false);
         toast({
@@ -285,7 +297,6 @@ const Pricing = () => {
         return;
       }
 
-      // For other categories (AI, Apps, Hosting), use existing Stripe API integration
       const paymentBody: any = {
         amount: selectedPlanObj.depositAmount || 2000,
         serviceName: selectedPlan,
@@ -310,7 +321,6 @@ const Pricing = () => {
       }
 
       if (paymentData?.url) {
-        // Redirect to Stripe checkout
         window.open(paymentData.url, '_blank');
         setIsFormOpen(false);
         toast({
@@ -337,18 +347,18 @@ const Pricing = () => {
     >
       <div className="container mx-auto px-6">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="heading-primary heading-lg mb-6 text-navy">
+        <div className="text-center mb-20 animate-fade-in-up">
+          <h2 className="font-serif font-bold text-5xl md:text-6xl mb-6 text-navy">
             Simple, <span className="text-orange">Transparent</span> Pricing
           </h2>
-          <p className="text-body max-w-3xl mx-auto">
+          <p className="text-body max-w-3xl mx-auto text-xl">
             Choose the perfect plan for your business. All plans include <span className="text-orange font-semibold">hosting, SSL, and expert support</span>.
           </p>
         </div>
 
         {/* Category Switcher */}
-        <div className="flex justify-center mb-12">
-          <div className="inline-flex items-center space-x-6 bg-gray-50 p-2 rounded-2xl">
+        <div className="flex justify-center mb-16">
+          <div className="inline-flex items-center space-x-6 bg-gray-50 p-2 rounded-2xl shadow-premium">
             {categories.map((category) => {
               const IconComponent = category.icon;
               return (
@@ -358,7 +368,7 @@ const Pricing = () => {
                   onClick={() => setActiveCategory(category.id)}
                   className={`flex items-center space-x-2 px-6 py-3 rounded-xl font-medium transition-all duration-300 ${
                     activeCategory === category.id
-                      ? 'bg-orange text-white shadow-lg'
+                      ? 'bg-gradient-orange text-white shadow-orange-glow'
                       : 'text-navy hover:bg-white hover:shadow-md'
                   }`}
                 >
@@ -371,55 +381,117 @@ const Pricing = () => {
         </div>
 
         {/* Pricing Cards */}
-        <div className="grid md:grid-cols-3 gap-8 mb-16">
-          {currentPlans.map((plan) => {
+        <div className="grid md:grid-cols-3 gap-8 mb-20">
+          {currentPlans.map((plan, index) => {
             const IconComponent = plan.icon;
+            const isPopular = plan.popular;
+            
             return (
               <div
                 key={plan.id}
-                className={`card-premium p-8 flex flex-col h-full group transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 ${
-                  plan.name === 'Business Growth' ? 'ring-2 ring-orange/20 hover:ring-orange/50 hover:shadow-[0_0_30px_rgba(255,122,0,0.3)] animate-pulse hover:animate-none' : ''
+                className={`relative group transition-all duration-700 hover:-translate-y-3 ${
+                  index === 1 ? 'animate-scale-in-bounce' : 'animate-fade-in-up'
                 }`}
+                style={{ animationDelay: `${index * 150}ms` }}
               >
-                <div className="text-center mb-8">
-                  <IconComponent className="h-12 w-12 text-orange mx-auto mb-4" />
-                  <h3 className="heading-primary heading-md mb-4 text-navy">
-                    {plan.name}
-                  </h3>
-                  <p className="text-body mb-6">
-                    {plan.description}
-                  </p>
-                  <div className="mb-6">
-                    <span className="text-4xl font-bold text-navy">{plan.price}</span>
-                    {plan.monthlyPrice && (
-                      <span className="text-text-secondary ml-2">
-                        + {plan.monthlyPrice}/month
-                      </span>
-                    )}
-                    <p className="text-sm text-text-secondary mt-2">
-                      Payment Options Available
-                    </p>
+                {/* Popular Badge */}
+                {isPopular && (
+                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-10">
+                    <div className="bg-gradient-orange text-white px-6 py-2 rounded-full text-sm font-bold shadow-orange-glow flex items-center space-x-2">
+                      <Award className="h-4 w-4" />
+                      <span>Most Popular</span>
+                    </div>
                   </div>
-                </div>
+                )}
 
-                <ul className="space-y-4 mb-8 flex-1">
-                  {plan.features.map((feature, index) => (
-                    <li key={index} className="flex items-center text-base">
-                      <CheckCircle className="h-5 w-5 text-orange mr-3 flex-shrink-0" />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
+                <div
+                  className={`${
+                    isPopular 
+                      ? 'bg-gradient-featured border-2 border-orange shadow-featured hover:shadow-orange-glow' 
+                      : 'bg-gradient-premium-card border border-gray-200 shadow-premium hover:shadow-premium-hover'
+                  } rounded-2xl p-10 flex flex-col h-full relative overflow-hidden transition-all duration-500 hover:scale-105`}
+                >
+                  {/* Glow effect overlay */}
+                  <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${
+                    isPopular 
+                      ? 'bg-gradient-to-br from-orange/5 via-transparent to-orange/5' 
+                      : 'bg-gradient-to-br from-gray-50 via-white to-gray-50'
+                  }`} />
+                  
+                  <div className="relative z-10">
+                    {/* Header */}
+                    <div className="text-center mb-10">
+                      <div className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl mb-6 ${
+                        isPopular ? 'bg-orange text-white' : 'bg-orange/10 text-orange'
+                      } group-hover:scale-110 transition-transform duration-300`}>
+                        <IconComponent className="h-8 w-8" />
+                      </div>
+                      
+                      <h3 className="font-serif font-bold text-3xl mb-4 text-navy">
+                        {plan.name}
+                      </h3>
+                      
+                      <p className="text-gray-600 text-lg mb-8 leading-relaxed">
+                        {plan.description}
+                      </p>
+                      
+                      <div className="mb-8">
+                        <span className="font-serif font-bold text-5xl text-navy">{plan.price}</span>
+                        {plan.monthlyPrice && (
+                          <span className="text-gray-500 ml-2 text-lg">
+                            + {plan.monthlyPrice}/month
+                          </span>
+                        )}
+                        <p className="text-sm text-gray-500 mt-3 font-medium">
+                          Payment Options Available
+                        </p>
+                      </div>
+                    </div>
 
-                <div className="mt-auto">
-                  <button 
-                    className="w-full py-4 rounded-2xl font-semibold text-lg transition-all duration-300 btn-secondary group/btn hover:scale-105 hover:shadow-xl relative overflow-hidden"
-                    onClick={() => handleGetStarted(plan.name)}
-                  >
-                    {/* Gradient background */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-orange to-orange/80 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300" />
-                    <span className="relative z-10 group-hover/btn:text-white transition-colors duration-300">Get Started</span>
-                  </button>
+                    {/* Features */}
+                    <div className="mb-8">
+                      <ul className="space-y-4">
+                        {plan.features.map((feature, featureIndex) => (
+                          <li key={featureIndex} className="flex items-start text-base">
+                            <div className="flex-shrink-0 w-6 h-6 rounded-full bg-orange/10 flex items-center justify-center mr-4 mt-0.5">
+                              <CheckCircle className="h-4 w-4 text-orange" />
+                            </div>
+                            <span className="text-gray-700 leading-relaxed">{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
+
+                      {/* Trust Lines */}
+                      {plan.trustLines && (
+                        <div className="mt-6 pt-6 border-t border-gray-200">
+                          <div className="text-center space-y-2">
+                            {plan.trustLines.map((trustLine, trustIndex) => (
+                              <p key={trustIndex} className="text-sm text-gray-600 font-medium">
+                                {trustLine}
+                              </p>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* CTA Button */}
+                    <div className="mt-auto">
+                      <button 
+                        className={`w-full py-4 px-8 rounded-full font-bold text-lg transition-all duration-300 relative overflow-hidden group/btn ${
+                          isPopular
+                            ? 'bg-gradient-orange-glow text-white shadow-orange-glow hover:shadow-lg hover:-translate-y-1'
+                            : 'bg-navy text-white hover:bg-gray-800 shadow-lg hover:-translate-y-1'
+                        }`}
+                        onClick={() => handleGetStarted(plan.name)}
+                      >
+                        <span className="relative z-10">Get Started</span>
+                        
+                        {/* Hover ripple effect */}
+                        <div className="absolute inset-0 bg-white/20 transform scale-x-0 group-hover/btn:scale-x-100 transition-transform duration-300 origin-left" />
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
             );
@@ -427,27 +499,29 @@ const Pricing = () => {
         </div>
 
         {/* Custom Quote Section */}
-        <div className="card-premium p-12 text-center">
-          <h3 className="heading-primary heading-lg mb-6 text-navy">
-            Need Something <span className="text-orange">Custom</span>?
-          </h3>
-          <p className="text-body mb-8 max-w-2xl mx-auto">
-            Every business is unique. Let's discuss your specific requirements and create a tailored solution that perfectly fits your needs.
-          </p>
-          <button 
-            className="btn-primary px-10 py-4 text-lg font-semibold rounded-2xl"
-            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-          >
-            Get Custom Quote
-          </button>
+        <div className="bg-gradient-premium-card rounded-3xl p-16 text-center shadow-premium hover:shadow-premium-hover transition-all duration-500 group">
+          <div className="max-w-3xl mx-auto">
+            <h3 className="font-serif font-bold text-4xl mb-6 text-navy group-hover:text-orange transition-colors duration-300">
+              Need Something <span className="text-orange">Custom</span>?
+            </h3>
+            <p className="text-body mb-10 text-xl leading-relaxed">
+              Every business is unique. Let's discuss your specific requirements and create a tailored solution that perfectly fits your needs.
+            </p>
+            <button 
+              className="bg-gradient-orange text-white px-12 py-4 text-lg font-bold rounded-full shadow-orange-glow hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+            >
+              Get Custom Quote
+            </button>
+          </div>
         </div>
 
         {/* Money Back Guarantee */}
-        <div className="text-center mt-12">
-          <p className="text-text-secondary text-lg">
-            <CheckCircle className="h-5 w-5 text-orange inline mr-2" />
+        <div className="text-center mt-16 animate-fade-in">
+          <div className="inline-flex items-center text-gray-600 text-lg bg-green-50 px-6 py-3 rounded-full">
+            <CheckCircle className="h-5 w-5 text-green-500 mr-2" />
             30-day money-back guarantee on all plans
-          </p>
+          </div>
         </div>
       </div>
       
