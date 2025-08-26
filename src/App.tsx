@@ -30,6 +30,8 @@ const ModernBarberDemo = lazy(() => import("./pages/ModernBarberDemo"));
 const RestaurantDeluxeDemo = lazy(() => import("./pages/RestaurantDeluxeDemo"));
 const FitnessStudioDemo = lazy(() => import("./pages/FitnessStudioDemo"));
 const AutoRepairDemo = lazy(() => import("./pages/AutoRepairDemo"));
+const CleaningServicesDemo = lazy(() => import("./pages/CleaningServicesDemo"));
+const PetGroomingDemo = lazy(() => import("./pages/PetGroomingDemo"));
 const BusinessDetailsForm = lazy(() => import("./pages/BusinessDetailsForm"));
 const BusinessDetailsSuccess = lazy(() => import("./pages/BusinessDetailsSuccess"));
 const WebsiteSetupForm = lazy(() => import("./pages/WebsiteSetupForm"));
@@ -80,6 +82,8 @@ const App = () => (
                 <Route path="/demo/restaurant-deluxe" element={<RestaurantDeluxeDemo />} />
                 <Route path="/demo/fitness-studio" element={<FitnessStudioDemo />} />
                 <Route path="/demo/auto-repair" element={<AutoRepairDemo />} />
+                <Route path="/demo/cleaning-services" element={<CleaningServicesDemo />} />
+                <Route path="/demo/pet-grooming" element={<PetGroomingDemo />} />
                 <Route path="/business-details" element={<BusinessDetailsForm />} />
                 <Route path="/business-details-success" element={<BusinessDetailsSuccess />} />
                 <Route path="/website-setup" element={<WebsiteSetupForm />} />
