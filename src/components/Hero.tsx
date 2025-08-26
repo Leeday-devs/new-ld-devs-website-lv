@@ -44,8 +44,7 @@ const Hero = () => {
           document.getElementById('video-fallback')?.classList.remove('opacity-0');
         }}
       >
-        <source src="https://cdn.pixabay.com/video/2019/02/11/21296-317833217_large.mp4" type="video/mp4" />
-        <source src="https://cdn.pixabay.com/video/2023/04/15/158493-819916174_large.mp4" type="video/mp4" />
+        <source src="/videos/hero.mp4" type="video/mp4" />
       </video>
       
       {/* Fallback background while video loads */}
