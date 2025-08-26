@@ -49,17 +49,7 @@ const Hero = () => {
         <source src="https://cdn.pixabay.com/video/2023/04/15/158493-819916174_large.mp4" type="video/mp4" />
       </video>
       
-      {/* Premium business photo with navy overlay - reduced opacity to show video */}
-      <div 
-        className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-1000 ${
-          isImageLoaded ? 'opacity-40' : 'opacity-0'
-        }`}
-        style={{ 
-          backgroundImage: `url(${heroBusinessTech})`,
-          filter: 'blur(1px) brightness(0.6) sepia(0.1) hue-rotate(200deg) saturate(1.1)'
-        }}
-      />
-      {/* Fallback background while image loads */}
+      {/* Fallback background while video loads */}
       <div className={`absolute inset-0 bg-navy transition-opacity duration-1000 ${
         isImageLoaded ? 'opacity-0' : 'opacity-100'
       }`} />
