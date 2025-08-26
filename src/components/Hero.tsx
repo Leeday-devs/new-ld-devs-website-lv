@@ -33,17 +33,16 @@ const Hero = () => {
       className="bg-navy min-h-screen flex items-center justify-center relative overflow-hidden"
       aria-label="Hero section with company introduction"
     >
-      {/* Video Background Option - Uncomment to use */}
-      {/* <video 
+      {/* Subtle Video Background */}
+      <video 
         autoPlay 
         muted 
         loop 
         playsInline
-        className="absolute inset-0 w-full h-full object-cover opacity-40"
+        className="absolute inset-0 w-full h-full object-cover opacity-30"
       >
-        <source src="/path-to-your-video.mp4" type="video/mp4" />
-        <source src="/path-to-your-video.webm" type="video/webm" />
-      </video> */}
+        <source src="https://cdn.pixabay.com/video/2021/08/04/84165-588200721_large.mp4" type="video/mp4" />
+      </video>
       
       {/* Premium business photo with navy overlay */}
       <div 
@@ -59,6 +58,8 @@ const Hero = () => {
       <div className={`absolute inset-0 bg-navy transition-opacity duration-1000 ${
         isImageLoaded ? 'opacity-0' : 'opacity-100'
       }`} />
+      {/* 40% Navy Overlay for readability */}
+      <div className="absolute inset-0 bg-navy/40" />
       <div className="absolute inset-0 bg-gradient-to-br from-navy/60 via-navy/50 to-orange/20" />
       
       {/* Animated gradient overlay */}
@@ -107,14 +108,17 @@ const Hero = () => {
           <div className={`mb-16 transition-all duration-1000 ease-out delay-500 ${showButton ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'}`}>
             <Button 
               size="lg" 
-              className="btn-primary px-10 md:px-12 py-5 md:py-6 text-xl md:text-2xl font-black rounded-2xl shadow-2xl relative overflow-hidden group hover:scale-105 transition-all duration-300"
+              className="btn-primary px-10 md:px-12 py-5 md:py-6 text-xl md:text-2xl font-black rounded-2xl shadow-2xl relative overflow-hidden group hover:scale-105 transition-all duration-300 animate-pulse hover:animate-none"
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
             >
-              {/* Glow effect */}
-              <div className="absolute inset-0 bg-gradient-to-r from-orange via-orange to-orange opacity-0 group-hover:opacity-30 blur-xl transition-opacity duration-500"></div>
+              {/* Enhanced Glow effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-orange via-orange to-orange opacity-0 group-hover:opacity-40 blur-xl transition-opacity duration-500 group-hover:scale-110"></div>
+              
+              {/* Ripple effect */}
+              <div className="absolute inset-0 bg-orange/20 rounded-2xl opacity-0 group-hover:opacity-100 group-hover:animate-ping transition-opacity duration-300"></div>
               
               {/* Shine effect */}
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out"></div>
               
               <span className="relative z-10 flex items-center">
                 Start Your Project

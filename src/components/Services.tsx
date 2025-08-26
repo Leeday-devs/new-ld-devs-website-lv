@@ -223,7 +223,7 @@ const Services = () => {
             return (
               <div
                 key={index}
-                className={`relative group overflow-hidden rounded-2xl ${colorScheme.gradient} ${colorScheme.border} ${colorScheme.glow} ${colorScheme.hoverGlow} transition-all duration-700 hover:scale-[1.03] hover:-translate-y-3 ${service.pricingCategory || service.isTemplates ? 'cursor-pointer' : ''}`}
+                className={`relative group overflow-hidden rounded-2xl ${colorScheme.gradient} ${colorScheme.border} ${colorScheme.glow} ${colorScheme.hoverGlow} transition-all duration-700 hover:scale-[1.03] hover:-translate-y-2 hover:shadow-2xl ${service.pricingCategory || service.isTemplates ? 'cursor-pointer' : ''}`}
                 onClick={() => handleServiceClick(service.pricingCategory, service.isTemplates)}
                 style={{
                   backgroundImage: `
@@ -246,10 +246,10 @@ const Services = () => {
                 <div className={`absolute top-0 left-0 right-0 h-[2px] ${colorScheme.accent} opacity-60 group-hover:opacity-100 transition-opacity duration-500`} />
                 
                 <div className="relative p-8 z-10">
-                  {/* Ultra-premium Icon Container */}
+                  {/* Ultra-premium Icon Container with enhanced animations */}
                   <div className="mb-6 relative">
-                    <div className={`inline-flex p-4 rounded-xl ${colorScheme.iconBg} backdrop-blur-md border border-white/20 shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-all duration-500`}>
-                      <service.icon className={`h-7 w-7 ${colorScheme.icon} drop-shadow-sm`} />
+                    <div className={`inline-flex p-4 rounded-xl ${colorScheme.iconBg} backdrop-blur-md border border-white/20 shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 group-hover:shadow-2xl`}>
+                      <service.icon className={`h-7 w-7 ${colorScheme.icon} drop-shadow-sm transition-all duration-500 group-hover:text-orange group-hover:animate-pulse`} />
                     </div>
                     
                     {/* Floating particles effect */}

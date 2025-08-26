@@ -4,7 +4,7 @@ import Hero from "@/components/Hero";
 import Services from "@/components/Services";
 import Pricing from "@/components/Pricing";
 import Portfolio from "@/components/Portfolio";
-import Testimonials from "@/components/Testimonials";
+import TestimonialsCarousel from "@/components/TestimonialsCarousel";
 import Contact from "@/components/Contact";
 import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
@@ -58,9 +58,9 @@ const Index = () => {
             <Portfolio />
           </section>
           
-          {/* Testimonials (navy band, cards with headshots) - Premium spacing */}
+          {/* Testimonials (navy band, carousel with auto-scroll) - Premium spacing */}
           <section aria-label="Client testimonials and reviews" className="section-navy">
-            <Testimonials />
+            <TestimonialsCarousel />
           </section>
           
           {/* Pricing (white cards, one highlighted) - Premium spacing */}
