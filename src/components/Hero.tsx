@@ -40,7 +40,7 @@ const Hero = () => {
       className="bg-navy min-h-screen flex items-center justify-center relative overflow-hidden"
       aria-label="Hero section with company introduction"
     >
-      {/* Subtle Video Background - Local video for reliability */}
+      {/* Subtle Video Background - Cinematic video */}
       <video
         ref={videoRef}
         autoPlay
@@ -57,15 +57,16 @@ const Hero = () => {
           (e.target as HTMLVideoElement).style.display = 'none';
           document.getElementById('video-fallback')?.classList.remove('opacity-0');
         }}
+        style={{ backgroundImage: 'url(/videos/hero-cinematic.jpg)' }}
       >
         <source src="/videos/hero.mp4" type="video/mp4" />
       </video>
       
       {/* Fallback background while video loads */}
       <div id="video-fallback" className={`absolute inset-0 bg-navy transition-opacity duration-700 z-0 ${true ? '' : ''} opacity-100`} />
-      {/* 40% Navy Overlay for readability */}
-      <div className="absolute inset-0 bg-navy/40 z-[15] pointer-events-none" />
-      <div className="absolute inset-0 bg-gradient-to-br from-navy/60 via-navy/50 to-orange/20 z-[15] pointer-events-none" />
+      {/* 45% Navy Overlay for perfect readability */}
+      <div className="absolute inset-0 bg-navy/45 z-[15] pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-br from-navy/60 via-navy/40 to-orange/15 z-[15] pointer-events-none" />
       
       {/* Animated gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-r from-orange/10 via-transparent to-navy/20 animate-gradient bg-[length:200%_200%] z-[15] pointer-events-none" />
@@ -90,7 +91,7 @@ const Hero = () => {
         <div className="max-w-6xl mx-auto text-center">
           {/* Hero Heading with staggered animation */}
           <div className={`transition-all duration-1000 ease-out ${showHeading ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16'}`}>
-            <h1 className="heading-primary text-5xl md:text-6xl lg:text-7xl xl:text-8xl mb-8 text-white leading-[0.9] font-black tracking-tight">
+            <h1 className="font-playfair text-6xl md:text-7xl lg:text-8xl xl:text-9xl mb-8 text-white leading-[0.9] font-bold tracking-tight">
               We Build Your <span className="text-orange animate-pulse">Dream Website</span>
               <span className="block mt-6">
                 That Actually <span className="text-orange relative">
@@ -103,7 +104,7 @@ const Hero = () => {
           
           {/* Subtext with delayed animation */}
           <div className={`transition-all duration-1000 ease-out delay-300 ${showSubtext ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
-            <p className="text-body mb-12 max-w-4xl mx-auto text-white/90 text-xl md:text-2xl lg:text-3xl leading-relaxed font-medium">
+            <p className="text-body mb-12 max-w-4xl mx-auto text-gray-300 text-xl md:text-2xl lg:text-3xl leading-relaxed font-medium sans-serif">
               Premium <span className="text-orange font-bold">Website</span> development and <span className="text-orange font-bold">AI</span> services from the <span className="text-orange font-bold">UK</span> for businesses. 
               We create fast, secure, and beautiful websites that drive real results.
             </p>
@@ -113,21 +114,21 @@ const Hero = () => {
           <div className={`mb-16 transition-all duration-1000 ease-out delay-500 ${showButton ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'}`}>
             <Button 
               size="lg" 
-              className="btn-primary px-10 md:px-12 py-5 md:py-6 text-xl md:text-2xl font-black rounded-2xl shadow-2xl relative overflow-hidden group hover:scale-105 transition-all duration-300 animate-pulse-slow hover:animate-none"
+              className="btn-primary px-12 py-6 text-2xl font-black rounded-full shadow-2xl relative overflow-hidden group hover:scale-105 transition-all duration-300 bg-orange hover:bg-orange/90 border-0"
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
             >
-              {/* Enhanced Glow effect */}
-              <div className="absolute inset-0 bg-gradient-to-r from-orange via-orange to-orange opacity-0 group-hover:opacity-40 blur-xl transition-opacity duration-500 group-hover:scale-110"></div>
+              {/* Glow effect on hover */}
+              <div className="absolute inset-0 bg-orange/40 rounded-full opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500 group-hover:scale-110 -z-10"></div>
               
               {/* Ripple effect */}
-              <div className="absolute inset-0 bg-orange/20 rounded-2xl opacity-0 group-hover:opacity-100 group-hover:animate-ping transition-opacity duration-300"></div>
+              <div className="absolute inset-0 bg-white/20 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping transition-opacity duration-300"></div>
               
               {/* Shine effect */}
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out"></div>
               
-              <span className="relative z-10 flex items-center">
+              <span className="relative z-10 flex items-center text-white">
                 Start Your Project
-                <ArrowRight className="ml-3 h-7 w-7 group-hover:translate-x-1 transition-transform duration-300" />
+                <ArrowRight className="ml-3 h-8 w-8 group-hover:translate-x-1 transition-transform duration-300" />
               </span>
             </Button>
           </div>

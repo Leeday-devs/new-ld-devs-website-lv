@@ -21,6 +21,7 @@ export default {
 			fontFamily: {
 				'sans': ['Inter', 'system-ui', 'sans-serif'],
 				'serif': ['Playfair Display', 'Georgia', 'serif'],
+				'playfair': ['Playfair Display', 'serif'],
 				'elegant': ['Cormorant Garamond', 'Georgia', 'serif'],
 			},
       colors: {
