@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Shield, Zap, Award } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
+import heroPoster from "@/assets/hero-cinematic.jpg";
 
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -26,6 +27,15 @@ const Hero = () => {
       });
       tryPlay();
       setTimeout(tryPlay, 300);
+
+      // Fallback: attempt play on first user interaction
+      const playOnInteraction = () => {
+        v.play().catch((err) => console.warn('Hero video play on interaction failed', err));
+        window.removeEventListener('pointerdown', playOnInteraction);
+        window.removeEventListener('keydown', playOnInteraction);
+      };
+      window.addEventListener('pointerdown', playOnInteraction, { once: true });
+      window.addEventListener('keydown', playOnInteraction, { once: true });
     }
     
     return () => {
@@ -48,6 +58,9 @@ const Hero = () => {
         loop
         playsInline
         preload="auto"
+        poster={heroPoster}
+        aria-hidden="true"
+        disablePictureInPicture
         className="absolute inset-0 w-full h-full object-cover opacity-100 z-10"
         onCanPlay={() => { console.log('Hero video can play'); document.getElementById('video-fallback')?.classList.add('opacity-0'); }}
         onLoadedData={() => { console.log('Hero video loaded'); document.getElementById('video-fallback')?.classList.add('opacity-0'); }}
@@ -58,7 +71,7 @@ const Hero = () => {
           document.getElementById('video-fallback')?.classList.remove('opacity-0');
         }}
       >
-        <source src="/videos/hero.mp4?v=2" type="video/mp4" />
+        <source src="/videos/hero.mp4?v=3" type="video/mp4" />
       </video>
       
       {/* Fallback background while video loads */}
