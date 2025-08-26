@@ -1,13 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
 import { Star, Quote } from "lucide-react";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
-import Autoplay from "embla-carousel-autoplay";
 
 const TestimonialsCarousel = () => {
   const testimonials = [
@@ -40,22 +31,6 @@ const TestimonialsCarousel = () => {
       rating: 5,
       website: "https://www.top-ranked.co.uk",
       companyLogo: "/lovable-uploads/19b269ec-842e-4877-b1e5-6ceebd5f1ca0.png"
-    },
-    {
-      id: 4,
-      name: "David Rodriguez",
-      company: "Restaurant Deluxe",
-      role: "Owner",
-      quote: "Our online orders increased by 300% after the new website launch. The booking system works flawlessly and customers love the modern design.",
-      rating: 5
-    },
-    {
-      id: 5,
-      name: "Lisa Thompson",
-      company: "Fitness Pro Studio",
-      role: "Founder",
-      quote: "The member portal and class booking system streamlined our entire operation. We've saved 20 hours per week admin tasks.",
-      rating: 5
     }
   ];
 
@@ -79,97 +54,71 @@ const TestimonialsCarousel = () => {
           </p>
         </div>
 
-        {/* Carousel */}
-        <div className="max-w-6xl mx-auto">
-          <Carousel
-            opts={{
-              align: "start",
-              loop: true,
-            }}
-            plugins={[
-              Autoplay({
-                delay: 5000,
-                stopOnInteraction: true,
-                stopOnMouseEnter: true,
-              }),
-            ]}
-            className="w-full"
-          >
-            <CarouselContent className="-ml-2 md:-ml-4">
-              {testimonials.map((testimonial) => (
-                <CarouselItem key={testimonial.id} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
-                  <div className="card-premium p-8 flex flex-col justify-between min-h-[420px] group hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
-                    {/* Quote Icon with glow */}
-                    <div className="relative">
-                      <Quote className="h-8 w-8 text-orange mb-6 transition-all duration-300 group-hover:scale-110" />
-                      <div className="absolute inset-0 bg-orange/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    </div>
-                    
-                    {/* Rating Stars */}
-                    <div className="flex items-center mb-6">
-                      {[...Array(testimonial.rating)].map((_, i) => (
-                        <Star 
-                          key={i} 
-                          className="h-5 w-5 text-orange fill-orange transition-all duration-300 hover:scale-110" 
-                          style={{ animationDelay: `${i * 100}ms` }}
-                        />
-                      ))}
-                    </div>
+        {/* Three Card Grid */}
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {testimonials.map((testimonial) => (
+              <div key={testimonial.id} className="card-premium p-8 flex flex-col justify-between min-h-[420px] group hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+                {/* Quote Icon with glow */}
+                <div className="relative">
+                  <Quote className="h-8 w-8 text-orange mb-6 transition-all duration-300 group-hover:scale-110" />
+                  <div className="absolute inset-0 bg-orange/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                </div>
+                
+                {/* Rating Stars */}
+                <div className="flex items-center mb-6">
+                  {[...Array(testimonial.rating)].map((_, i) => (
+                    <Star 
+                      key={i} 
+                      className="h-5 w-5 text-orange fill-orange transition-all duration-300 hover:scale-110" 
+                      style={{ animationDelay: `${i * 100}ms` }}
+                    />
+                  ))}
+                </div>
 
-                    {/* Quote */}
-                    <blockquote className="text-body mb-8 flex-grow relative">
-                      {/* Faint logo background */}
-                      {testimonial.companyLogo && (
-                        <img 
-                          src={testimonial.companyLogo} 
-                          alt=""
-                          className="absolute right-0 top-0 h-16 w-auto object-contain opacity-5 pointer-events-none"
-                        />
-                      )}
-                      <span className="relative z-10">"{testimonial.quote}"</span>
-                    </blockquote>
+                {/* Quote */}
+                <blockquote className="text-body mb-8 flex-grow relative">
+                  {/* Faint logo background */}
+                  {testimonial.companyLogo && (
+                    <img 
+                      src={testimonial.companyLogo} 
+                      alt=""
+                      className="absolute right-0 top-0 h-16 w-auto object-contain opacity-5 pointer-events-none"
+                    />
+                  )}
+                  <span className="relative z-10">"{testimonial.quote}"</span>
+                </blockquote>
 
-                    {/* Client Info */}
-                    <div className="flex items-center justify-between mt-auto">
-                      <div>
-                        <div className="font-semibold text-navy text-base">
-                          {testimonial.name}
-                        </div>
-                        <div className="text-text-secondary text-sm">
-                          {testimonial.role}, {testimonial.website ? (
-                            <a 
-                              href={testimonial.website} 
-                              target="_blank" 
-                              rel="noopener noreferrer"
-                              className="hover:text-orange transition-colors underline"
-                            >
-                              {testimonial.company}
-                            </a>
-                          ) : testimonial.company}
-                        </div>
-                      </div>
-                      {testimonial.companyLogo && (
-                        <img 
-                          src={testimonial.companyLogo} 
-                          alt={`${testimonial.company} logo`}
-                          className="h-12 w-auto object-contain transition-all duration-300 group-hover:scale-110"
-                        />
-                      )}
+                {/* Client Info */}
+                <div className="flex items-center justify-between mt-auto">
+                  <div>
+                    <div className="font-semibold text-navy text-base">
+                      {testimonial.name}
+                    </div>
+                    <div className="text-text-secondary text-sm">
+                      {testimonial.role}, {testimonial.website ? (
+                        <a 
+                          href={testimonial.website} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="hover:text-orange transition-colors underline"
+                        >
+                          {testimonial.company}
+                        </a>
+                      ) : testimonial.company}
                     </div>
                   </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            
-            {/* Navigation */}
-            <CarouselPrevious className="hidden md:flex -left-12 bg-white/10 border-white/20 text-white hover:bg-orange hover:text-white" />
-            <CarouselNext className="hidden md:flex -right-12 bg-white/10 border-white/20 text-white hover:bg-orange hover:text-white" />
-          </Carousel>
-        </div>
-
-        {/* Mobile Touch Indicator */}
-        <div className="text-center mt-8 md:hidden">
-          <p className="text-white/60 text-sm">← Swipe to see more testimonials →</p>
+                  {testimonial.companyLogo && (
+                    <img 
+                      src={testimonial.companyLogo} 
+                      alt={`${testimonial.company} logo`}
+                      className="h-12 w-auto object-contain transition-all duration-300 group-hover:scale-110"
+                    />
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
