@@ -108,7 +108,7 @@ const Hero = () => {
           <div className={`mb-16 transition-all duration-1000 ease-out delay-500 ${showButton ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'}`}>
             <Button 
               size="lg" 
-              className="btn-primary px-10 md:px-12 py-5 md:py-6 text-xl md:text-2xl font-black rounded-2xl shadow-2xl relative overflow-hidden group hover:scale-105 transition-all duration-300 animate-pulse hover:animate-none"
+              className="btn-primary px-10 md:px-12 py-5 md:py-6 text-xl md:text-2xl font-black rounded-2xl shadow-2xl relative overflow-hidden group hover:scale-105 transition-all duration-300 animate-pulse-slow hover:animate-none"
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
             >
               {/* Enhanced Glow effect */}
