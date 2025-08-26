@@ -351,9 +351,16 @@ const Pricing = () => {
           <h2 className="font-serif font-bold text-5xl md:text-6xl mb-6 text-navy">
             Simple, <span className="text-orange">Transparent</span> Pricing
           </h2>
-          <p className="text-body max-w-3xl mx-auto text-xl">
-            Choose the perfect plan for your business. All plans include <span className="text-orange font-semibold">hosting, SSL, and expert support</span>.
-          </p>
+          <div className="max-w-4xl mx-auto mb-6">
+            <p className="text-body text-xl mb-4">
+              Choose the perfect plan for your business. All plans include <span className="text-orange font-semibold">hosting, SSL, and expert support</span>.
+            </p>
+            <div className="bg-orange/10 border border-orange/20 rounded-2xl p-6 inline-block">
+              <p className="text-navy font-semibold text-lg">
+                ✨ <span className="text-orange">We build your website completely</span> - these features are all included in your finished site
+              </p>
+            </div>
+          </div>
         </div>
 
         {/* Category Switcher */}
