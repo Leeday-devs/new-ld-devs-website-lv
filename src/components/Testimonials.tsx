@@ -34,6 +34,22 @@ const Testimonials = () => {
       rating: 5,
       website: "https://randaservices.co.uk/",
       companyLogo: "/lovable-uploads/f141e9f1-24b0-4a3b-878f-eb3a29003a7e.png"
+    },
+    {
+      id: 4,
+      name: "David Rodriguez",
+      company: "Restaurant Deluxe",
+      role: "Owner",
+      quote: "Our online orders increased by 300% after the new website launch. The booking system works flawlessly and customers love the modern design.",
+      rating: 5
+    },
+    {
+      id: 5,
+      name: "Lisa Thompson",
+      company: "Fitness Pro Studio",
+      role: "Founder",
+      quote: "The member portal and class booking system streamlined our entire operation. We've saved 20 hours per week admin tasks.",
+      rating: 5
     }
   ];
 
