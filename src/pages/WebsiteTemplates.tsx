@@ -9,7 +9,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import { ArrowRight, Check, Clock, Palette, Zap, Shield, Eye, CreditCard, Lock, Users, Star, FileText, Globe, Mail, Phone, MessageSquare, Wrench, Scissors, Car, UtensilsCrossed, Dumbbell, Stethoscope, Code, Sparkles, Layers, Monitor } from "lucide-react";
+import { ArrowRight, Check, Clock, Palette, Zap, Shield, Eye, CreditCard, Lock, Users, Star, FileText, Globe, Mail, Phone, MessageSquare, Wrench, Scissors, Car, UtensilsCrossed, Dumbbell, Stethoscope, Code, Sparkles, Layers, Monitor, Home, Heart } from "lucide-react";
 import { Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
@@ -181,7 +181,9 @@ const WebsiteTemplates = () => {
       'Automotive': Car,
       'Food & Beverage': UtensilsCrossed,
       'Health & Fitness': Dumbbell,
-      'Healthcare': Stethoscope
+      'Healthcare': Stethoscope,
+      'Home Services': Home,
+      'Pet Services': Heart
     };
     return iconMap[category] || Code;
   };
@@ -258,6 +260,30 @@ const WebsiteTemplates = () => {
       demoUrl: "/demo/auto-repair",
       stripeProductKey: "prod_Sp8KzS8aPeskRq",
       features: ["MOT booking", "Service tracker", "Warranty info", "Parts catalog"]
+    },
+    {
+      id: 7,
+      name: "Cleaning Services",
+      description: "Professional cleaning services website for domestic & commercial clients",
+      price: "£400",
+      monthlyPrice: "£40/month",
+      image: "/api/placeholder/400/300",
+      category: "Home Services",
+      demoUrl: "/demo/cleaning-services",
+      stripeProductKey: "prod_Sp8LmC3aNoPqRs",
+      features: ["Quote calculator", "Service packages", "Customer reviews", "Before/after gallery"]
+    },
+    {
+      id: 8,
+      name: "Pet Grooming & Dog Walking",
+      description: "Friendly, fun layout for pet care professionals and dog walkers",
+      price: "£450",
+      monthlyPrice: "£40/month",
+      image: "/api/placeholder/400/300",
+      category: "Pet Services",
+      demoUrl: "/demo/pet-grooming",
+      stripeProductKey: "prod_Sp8MnD4bOpQrSt",
+      features: ["Online booking", "Pet photo gallery", "Service pricing", "Care packages"]
     }
   ];
 
