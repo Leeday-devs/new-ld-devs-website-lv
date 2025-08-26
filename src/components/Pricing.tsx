@@ -388,7 +388,7 @@ const Pricing = () => {
         </div>
 
         {/* Pricing Cards */}
-        <div className="grid md:grid-cols-3 gap-8 mb-20">
+        <div className="grid md:grid-cols-3 gap-8 mb-12">
           {currentPlans.map((plan, index) => {
             const IconComponent = plan.icon;
             const isPopular = plan.popular;
@@ -505,6 +505,14 @@ const Pricing = () => {
           })}
         </div>
 
+        {/* Money Back Guarantee */}
+        <div className="text-center mb-20 animate-fade-in">
+          <div className="inline-flex items-center text-gray-600 text-lg bg-green-50 px-6 py-3 rounded-full">
+            <CheckCircle className="h-5 w-5 text-green-500 mr-2" />
+            30-day money-back guarantee on all plans
+          </div>
+        </div>
+
         {/* Custom Quote Section */}
         <div className="bg-gradient-premium-card rounded-3xl p-16 text-center shadow-premium hover:shadow-premium-hover transition-all duration-500 group">
           <div className="max-w-3xl mx-auto">
@@ -520,14 +528,6 @@ const Pricing = () => {
             >
               Get Custom Quote
             </button>
-          </div>
-        </div>
-
-        {/* Money Back Guarantee */}
-        <div className="text-center mt-16 animate-fade-in">
-          <div className="inline-flex items-center text-gray-600 text-lg bg-green-50 px-6 py-3 rounded-full">
-            <CheckCircle className="h-5 w-5 text-green-500 mr-2" />
-            30-day money-back guarantee on all plans
           </div>
         </div>
       </div>
