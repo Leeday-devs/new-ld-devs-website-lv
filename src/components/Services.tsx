@@ -83,7 +83,7 @@ const Services = () => {
   return (
     <section 
       id="services" 
-      className="relative py-20 overflow-hidden min-h-screen" 
+      className="relative pb-20 overflow-hidden min-h-screen" 
       aria-label="Our web development services"
     >
       {/* Rain on Glass Background Effect */}
@@ -142,7 +142,7 @@ const Services = () => {
       
       <div className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-16 pt-20">
           <h2 className="heading-lg spacing-section text-navy drop-shadow-sm">
             Our <span className="text-highlight">Premium</span> Services
           </h2>

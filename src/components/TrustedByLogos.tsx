@@ -62,7 +62,7 @@ const TrustedByLogos = () => {
   ];
 
   return (
-    <section className="bg-navy py-16 border-b border-white/10">
+    <section className="bg-navy pb-0 border-b border-white/10">
       <div className="container mx-auto px-6">
         <div className="text-center mb-12">
           <p className="text-white/60 text-lg font-medium tracking-wide uppercase">
