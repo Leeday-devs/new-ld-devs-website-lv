@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Star, ChevronLeft, ChevronRight, Quote } from "lucide-react";
+import { Star, ChevronLeft, ChevronRight } from "lucide-react";
 
 const Testimonials = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -87,25 +87,27 @@ const Testimonials = () => {
               key={testimonial.id}
               className="card-premium p-8 flex flex-col justify-between min-h-[400px]"
             >
-              {/* Quote Icon */}
-              <Quote className="h-8 w-8 text-highlight mb-6" />
+              {/* Large Orange Quote Mark */}
+              <div className="text-6xl text-highlight font-serif leading-none mb-6">
+                "
+              </div>
               
               {/* Rating Stars (Orange) */}
               <div className="flex items-center mb-6">
                 {[...Array(testimonial.rating)].map((_, i) => (
-                  <Star key={i} className="h-5 w-5 text-highlight fill-current" />
+                  <Star key={i} className="h-5 w-5 text-highlight fill-highlight mr-1" />
                 ))}
               </div>
 
               {/* Quote */}
-              <blockquote className="text-gray-700 mb-8 flex-grow leading-relaxed">
+              <blockquote className="text-gray-700 mb-8 flex-grow leading-relaxed text-base">
                 "{testimonial.quote}"
               </blockquote>
 
               {/* Client Info */}
-              <div className="flex items-center justify-between">
+              <div className="flex items-end justify-between">
                 <div>
-                  <div className="font-semibold text-gray-900 text-base">
+                  <div className="font-bold text-gray-900 text-base mb-1">
                     {testimonial.name}
                   </div>
                   <div className="text-gray-600 text-sm">
@@ -125,7 +127,7 @@ const Testimonials = () => {
                   <img 
                     src={testimonial.companyLogo} 
                     alt={`${testimonial.company} logo`}
-                    className="h-12 w-auto object-contain"
+                    className="h-12 w-auto object-contain ml-4"
                   />
                 )}
               </div>
@@ -138,21 +140,24 @@ const Testimonials = () => {
           <div className="relative">
             {/* Testimonial Card */}
             <div className="card-premium p-8 mx-4">
-              <Quote className="h-8 w-8 text-highlight mb-6" />
+              {/* Large Orange Quote Mark */}
+              <div className="text-6xl text-highlight font-serif leading-none mb-6">
+                "
+              </div>
               
               <div className="flex items-center mb-6">
                 {[...Array(testimonials[currentSlide].rating)].map((_, i) => (
-                  <Star key={i} className="h-5 w-5 text-highlight fill-current" />
+                  <Star key={i} className="h-5 w-5 text-highlight fill-highlight mr-1" />
                 ))}
               </div>
 
-              <blockquote className="text-gray-700 mb-8 leading-relaxed">
+              <blockquote className="text-gray-700 mb-8 leading-relaxed text-base">
                 "{testimonials[currentSlide].quote}"
               </blockquote>
 
-              <div className="flex items-center justify-between">
+              <div className="flex items-end justify-between">
                 <div>
-                  <div className="font-semibold text-gray-900 text-base">
+                  <div className="font-bold text-gray-900 text-base mb-1">
                     {testimonials[currentSlide].name}
                   </div>
                   <div className="text-gray-600 text-sm">
@@ -172,7 +177,7 @@ const Testimonials = () => {
                   <img 
                     src={testimonials[currentSlide].companyLogo} 
                     alt={`${testimonials[currentSlide].company} logo`}
-                    className="h-12 w-auto object-contain"
+                    className="h-12 w-auto object-contain ml-4"
                   />
                 )}
               </div>
