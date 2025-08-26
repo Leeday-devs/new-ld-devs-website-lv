@@ -49,7 +49,7 @@ const Index = () => {
           <TrustedByLogos />
           
           {/* Services (white cards) - Premium spacing */}
-          <section id="services" aria-label="Web development services" className="section-white">
+          <section id="services" aria-label="Web development services" className="p-0 bg-transparent">
             <Services />
           </section>
           
