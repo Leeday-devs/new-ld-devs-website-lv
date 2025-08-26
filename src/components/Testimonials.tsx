@@ -69,7 +69,7 @@ const Testimonials = () => {
           {testimonials.slice(0, 3).map((testimonial) => (
             <div
               key={testimonial.id}
-              className="card-premium p-8 flex flex-col justify-between min-h-[400px]"
+              className="card-premium p-8 flex flex-col h-[480px]"
             >
               {/* Large Orange Quote Mark */}
               <div className="text-6xl text-highlight font-serif leading-none mb-6">
@@ -88,9 +88,9 @@ const Testimonials = () => {
                 "{testimonial.quote}"
               </blockquote>
 
-              {/* Client Info */}
-              <div className="flex items-end justify-between">
-                <div>
+              {/* Client Info - Fixed at bottom */}
+              <div className="flex items-end justify-between mt-auto">
+                <div className="flex-1">
                   <div className="font-bold text-gray-900 text-base mb-1">
                     {testimonial.name}
                   </div>
@@ -108,11 +108,13 @@ const Testimonials = () => {
                   </div>
                 </div>
                 {testimonial.companyLogo && (
-                  <img 
-                    src={testimonial.companyLogo} 
-                    alt={`${testimonial.company} logo`}
-                    className="h-12 w-auto object-contain ml-4"
-                  />
+                  <div className="flex-shrink-0 ml-4">
+                    <img 
+                      src={testimonial.companyLogo} 
+                      alt={`${testimonial.company} logo`}
+                      className="h-12 w-auto object-contain"
+                    />
+                  </div>
                 )}
               </div>
             </div>
