@@ -98,17 +98,17 @@ const Testimonials = () => {
               </div>
 
               {/* Quote */}
-              <blockquote className="text-body mb-8 flex-grow">
+              <blockquote className="text-gray-700 mb-8 flex-grow leading-relaxed">
                 "{testimonial.quote}"
               </blockquote>
 
               {/* Client Info */}
               <div className="flex items-center justify-between">
                 <div>
-                  <div className="font-semibold text-navy text-base">
+                  <div className="font-semibold text-gray-900 text-base">
                     {testimonial.name}
                   </div>
-                  <div className="text-text-secondary text-sm">
+                  <div className="text-gray-600 text-sm">
                     {testimonial.role}, {testimonial.website ? (
                       <a 
                         href={testimonial.website} 
@@ -146,16 +146,16 @@ const Testimonials = () => {
                 ))}
               </div>
 
-              <blockquote className="text-body mb-8">
+              <blockquote className="text-gray-700 mb-8 leading-relaxed">
                 "{testimonials[currentSlide].quote}"
               </blockquote>
 
               <div className="flex items-center justify-between">
                 <div>
-                  <div className="font-semibold text-navy text-base">
+                  <div className="font-semibold text-gray-900 text-base">
                     {testimonials[currentSlide].name}
                   </div>
-                  <div className="text-text-secondary text-sm">
+                  <div className="text-gray-600 text-sm">
                     {testimonials[currentSlide].role}, {testimonials[currentSlide].website ? (
                       <a 
                         href={testimonials[currentSlide].website} 
