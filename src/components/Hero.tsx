@@ -29,15 +29,19 @@ const Hero = () => {
       aria-label="Hero section with company introduction"
     >
       {/* Subtle Video Background - Alternative working video */}
-      <video 
-        autoPlay 
-        muted 
-        loop 
+      <video
+        autoPlay
+        muted
+        loop
         playsInline
-        className="absolute inset-0 w-full h-full object-cover opacity-30"
+        preload="auto"
+        className="absolute inset-0 w-full h-full object-cover opacity-100 z-10"
+        onCanPlay={() => document.getElementById('video-fallback')?.classList.add('opacity-0')}
+        onLoadedData={() => document.getElementById('video-fallback')?.classList.add('opacity-0')}
+        onPlay={() => document.getElementById('video-fallback')?.classList.add('opacity-0')}
         onError={(e) => {
-          // Hide video if it fails to load
           (e.target as HTMLVideoElement).style.display = 'none';
+          document.getElementById('video-fallback')?.classList.remove('opacity-0');
         }}
       >
         <source src="https://cdn.pixabay.com/video/2019/02/11/21296-317833217_large.mp4" type="video/mp4" />
@@ -45,7 +49,7 @@ const Hero = () => {
       </video>
       
       {/* Fallback background while video loads */}
-      <div className="absolute inset-0 bg-navy opacity-20" />
+      <div id="video-fallback" className={`absolute inset-0 bg-navy transition-opacity duration-700 z-0 ${true ? '' : ''} opacity-100`} />
       {/* 40% Navy Overlay for readability */}
       <div className="absolute inset-0 bg-navy/40" />
       <div className="absolute inset-0 bg-gradient-to-br from-navy/60 via-navy/50 to-orange/20" />
