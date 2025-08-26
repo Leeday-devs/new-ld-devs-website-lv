@@ -12,344 +12,292 @@ const PetGroomingDemo = () => {
         description="Professional pet grooming and dog walking services in London. Book online today for the finest pet care!"
       />
       
-      <div className="min-h-screen bg-gradient-to-br from-rose-50 via-pink-50 to-orange-50">
-        {/* Header */}
-        <header className="bg-white shadow-xl border-b-4 border-pink-400">
-          <div className="container mx-auto px-4 py-4">
+      <div className="min-h-screen bg-gradient-to-br from-yellow-50 via-orange-50 to-pink-50">
+        
+        {/* Fun Colorful Header */}
+        <header className="bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-white shadow-xl relative overflow-hidden">
+          <div className="absolute inset-0 bg-white/10"></div>
+          <div className="container mx-auto px-4 py-6 relative z-10">
             <div className="flex justify-between items-center">
               <div className="flex items-center gap-4">
-                <div className="bg-gradient-to-br from-pink-500 to-rose-500 p-4 rounded-2xl shadow-lg">
-                  <Heart className="h-10 w-10 text-white" />
+                <div className="bg-white/20 backdrop-blur-sm p-4 rounded-full shadow-xl border border-white/30">
+                  <Heart className="h-10 w-10 text-white animate-pulse" />
                 </div>
                 <div>
-                  <h1 className="text-3xl font-bold bg-gradient-to-r from-pink-600 to-rose-600 bg-clip-text text-transparent">
-                    Paws & Claws Studio
+                  <h1 className="text-3xl font-bold text-white drop-shadow-lg">
+                    🐾 Paws & Claws Studio
                   </h1>
-                  <p className="text-sm text-pink-600 font-semibold">Certified Pet Stylists • Fully Insured • Since 2019</p>
+                  <p className="text-pink-100 text-sm font-medium">Where Pets Become Stars ✨</p>
                 </div>
               </div>
-              <nav className="hidden lg:flex gap-8">
-                <a href="#services" className="text-gray-700 hover:text-pink-600 font-medium transition-colors">Services</a>
-                <a href="#gallery" className="text-gray-700 hover:text-pink-600 font-medium transition-colors">Gallery</a>
-                <a href="#pricing" className="text-gray-700 hover:text-pink-600 font-medium transition-colors">Pricing</a>
-                <a href="#contact" className="text-gray-700 hover:text-pink-600 font-medium transition-colors">Contact</a>
+              <nav className="hidden lg:flex gap-6">
+                <a href="#services" className="text-white hover:text-pink-200 font-medium transition-colors text-sm uppercase tracking-wide">Services</a>
+                <a href="#gallery" className="text-white hover:text-pink-200 font-medium transition-colors text-sm uppercase tracking-wide">Gallery</a>
+                <a href="#pricing" className="text-white hover:text-pink-200 font-medium transition-colors text-sm uppercase tracking-wide">Pricing</a>
+                <a href="#contact" className="text-white hover:text-pink-200 font-medium transition-colors text-sm uppercase tracking-wide">Contact</a>
               </nav>
               <div className="flex items-center gap-4">
                 <div className="hidden md:block text-right">
-                  <div className="text-sm text-gray-600">Call to Book</div>
-                  <div className="text-xl font-bold text-pink-600">020 7654 3210</div>
+                  <div className="text-pink-100 text-xs">🔥 HOT LINE</div>
+                  <div className="text-xl font-bold text-white">020 7654 3210</div>
                 </div>
-                <Button className="bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white font-bold px-6 py-3 shadow-lg">
+                <Button className="bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold px-6 py-3 rounded-full shadow-xl border-2 border-white/30">
                   <Calendar className="mr-2 h-5 w-5" />
-                  Book Now
+                  Book Fun!
                 </Button>
               </div>
             </div>
           </div>
         </header>
 
-        {/* Hero Section */}
-        <section className="relative py-24 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-rose-50 via-pink-50 to-orange-50"></div>
-          <div className="absolute inset-0 opacity-20">
-            <div className="absolute top-20 left-20 w-40 h-40 bg-pink-300 rounded-full blur-3xl animate-pulse"></div>
-            <div className="absolute bottom-20 right-20 w-60 h-60 bg-rose-300 rounded-full blur-3xl animate-pulse delay-1000"></div>
-            <div className="absolute top-1/2 left-1/2 w-32 h-32 bg-orange-300 rounded-full blur-3xl animate-pulse delay-500"></div>
+        {/* Playful Hero Section */}
+        <section className="relative py-20 overflow-hidden">
+          <div className="absolute inset-0">
+            <div className="absolute top-10 left-10 w-64 h-64 bg-pink-300/30 rounded-full blur-3xl animate-bounce"></div>
+            <div className="absolute bottom-10 right-10 w-80 h-80 bg-purple-300/30 rounded-full blur-3xl animate-bounce delay-1000"></div>
+            <div className="absolute top-1/2 left-1/2 w-40 h-40 bg-yellow-300/30 rounded-full blur-3xl animate-bounce delay-500"></div>
           </div>
           
           <div className="container mx-auto px-4 relative z-10">
-            <div className="grid lg:grid-cols-2 gap-16 items-center">
-              <div className="text-left">
-                <div className="flex items-center gap-3 mb-6">
-                  <Award className="h-7 w-7 text-pink-600" />
-                  <span className="bg-pink-100 text-pink-800 px-5 py-2 rounded-full text-sm font-bold">
-                    London's Premier Pet Grooming Studio
-                  </span>
-                </div>
-                
-                <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-8">
-                  <span className="text-gray-900">Where Every Pet</span>
-                  <br />
-                  <span className="bg-gradient-to-r from-pink-600 via-rose-500 to-orange-500 bg-clip-text text-transparent">
-                    Feels Loved
-                  </span>
-                </h1>
-                
-                <p className="text-xl text-gray-700 mb-10 leading-relaxed max-w-lg">
-                  Professional pet grooming and walking services with a personal touch. Our certified stylists 
-                  treat every furry friend like family, ensuring they look and feel their absolute best.
-                </p>
+            <div className="text-center max-w-5xl mx-auto">
+              <div className="inline-flex items-center gap-3 bg-gradient-to-r from-pink-500 to-purple-500 text-white px-8 py-3 rounded-full mb-8 shadow-2xl">
+                <Star className="h-6 w-6 animate-spin" />
+                <span className="font-bold text-lg">London's Most Fun Pet Salon!</span>
+                <Star className="h-6 w-6 animate-spin" />
+              </div>
+              
+              <h1 className="text-6xl md:text-8xl font-extrabold leading-tight mb-8">
+                <span className="bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
+                  Pamper Your
+                </span>
+                <br />
+                <span className="text-gray-900 relative">
+                  Precious Pet
+                  <div className="absolute -top-4 -right-8 text-4xl">🎉</div>
+                </span>
+              </h1>
+              
+              <p className="text-2xl text-gray-700 mb-12 leading-relaxed max-w-3xl mx-auto">
+                Transform your furry friend into the star they deserve to be! Our certified pet stylists create 
+                magical makeovers with love, treats, and endless belly rubs.
+              </p>
 
-                <div className="flex flex-col sm:flex-row gap-4 mb-12">
-                  <Button size="lg" className="bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white px-10 py-5 text-lg font-bold shadow-2xl">
-                    <Calendar className="mr-3 h-6 w-6" />
-                    Book Appointment
-                  </Button>
-                  <Button size="lg" variant="outline" className="border-2 border-pink-500 text-pink-700 hover:bg-pink-50 px-10 py-5 text-lg font-bold">
-                    <Camera className="mr-3 h-6 w-6" />
-                    View Gallery
-                  </Button>
-                </div>
-
-                <div className="grid grid-cols-3 gap-8 pt-10 border-t border-gray-200">
-                  <div className="text-center">
-                    <div className="bg-pink-100 p-4 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-3">
-                      <Shield className="h-10 w-10 text-pink-600" />
-                    </div>
-                    <div className="text-sm font-bold text-gray-800">Fully Certified</div>
-                    <div className="text-xs text-gray-600">Pet First Aid Trained</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="bg-rose-100 p-4 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-3">
-                      <Stethoscope className="h-10 w-10 text-rose-600" />
-                    </div>
-                    <div className="text-sm font-bold text-gray-800">Health Focused</div>
-                    <div className="text-xs text-gray-600">Skin & coat specialists</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="bg-orange-100 p-4 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-3">
-                      <Star className="h-10 w-10 text-orange-600" />
-                    </div>
-                    <div className="text-sm font-bold text-gray-800">5-Star Rated</div>
-                    <div className="text-xs text-gray-600">1,200+ Happy Pets</div>
-                  </div>
-                </div>
+              <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16">
+                <Button size="lg" className="bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 text-white px-12 py-6 text-xl font-bold rounded-full shadow-2xl transform hover:scale-105 transition-all">
+                  <Calendar className="mr-3 h-7 w-7" />
+                  Book Magic Session ✨
+                </Button>
+                <Button size="lg" variant="outline" className="border-4 border-pink-500 text-pink-700 hover:bg-pink-50 px-12 py-6 text-xl font-bold rounded-full shadow-xl">
+                  <Camera className="mr-3 h-7 w-7" />
+                  See Transformations 📸
+                </Button>
               </div>
 
-              <div className="lg:justify-self-end">
-                <Card className="bg-white/95 backdrop-blur-sm border-2 border-pink-200 shadow-2xl p-8 max-w-lg">
-                  <CardContent className="p-0">
-                    <div className="text-center mb-8">
-                      <div className="bg-gradient-to-r from-pink-500 to-rose-500 text-white px-6 py-3 rounded-full text-sm font-bold mb-4">
-                        QUICK BOOKING
-                      </div>
-                      <h3 className="text-2xl font-bold text-gray-900 mb-2">Book Your Pet's Spa Day</h3>
-                      <p className="text-gray-600">Same-day appointments often available</p>
-                    </div>
-                    
-                    <div className="space-y-5">
-                      <div className="grid grid-cols-2 gap-4">
-                        <input type="text" placeholder="Pet's name" className="w-full p-4 border-2 border-gray-200 rounded-xl focus:border-pink-500 outline-none" />
-                        <select className="w-full p-4 border-2 border-gray-200 rounded-xl focus:border-pink-500 outline-none">
-                          <option>Dog</option>
-                          <option>Cat</option>
-                          <option>Rabbit</option>
-                          <option>Other</option>
-                        </select>
-                      </div>
-                      <input type="text" placeholder="Breed (helps us prepare)" className="w-full p-4 border-2 border-gray-200 rounded-xl focus:border-pink-500 outline-none" />
-                      <select className="w-full p-4 border-2 border-gray-200 rounded-xl focus:border-pink-500 outline-none">
-                        <option>Select service</option>
-                        <option>Full Groom & Style</option>
-                        <option>Bath & Blow Dry</option>
-                        <option>Nail Trim & Ear Clean</option>
-                        <option>Dog Walking Service</option>
-                      </select>
-                      <input type="date" className="w-full p-4 border-2 border-gray-200 rounded-xl focus:border-pink-500 outline-none" />
-                      <Button className="w-full bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white py-5 text-lg font-bold">
-                        <Calendar className="mr-2 h-6 w-6" />
-                        Book Appointment
-                      </Button>
-                      
-                      <div className="grid grid-cols-2 gap-3 text-center text-sm mt-8">
-                        <div className="bg-pink-50 rounded-xl p-4 border border-pink-200">
-                          <Clock className="h-6 w-6 text-pink-600 mx-auto mb-2" />
-                          <div className="text-pink-800 font-bold">Same Day</div>
-                          <div className="text-pink-600">Often Available</div>
-                        </div>
-                        <div className="bg-rose-50 rounded-xl p-4 border border-rose-200">
-                          <CheckCircle className="h-6 w-6 text-rose-600 mx-auto mb-2" />
-                          <div className="text-rose-800 font-bold">No Deposit</div>
-                          <div className="text-rose-600">Pay After Service</div>
-                        </div>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
+                <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-6 shadow-xl border border-pink-200">
+                  <div className="text-4xl mb-3">🏆</div>
+                  <div className="text-2xl font-bold text-pink-600 mb-2">Award Winner</div>
+                  <div className="text-sm text-gray-600">Best Pet Salon 2024</div>
+                </div>
+                <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-6 shadow-xl border border-purple-200">
+                  <div className="text-4xl mb-3">💜</div>
+                  <div className="text-2xl font-bold text-purple-600 mb-2">1,500+ Pets</div>
+                  <div className="text-sm text-gray-600">Happy & Pampered</div>
+                </div>
+                <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-6 shadow-xl border border-indigo-200">
+                  <div className="text-4xl mb-3">⭐</div>
+                  <div className="text-2xl font-bold text-indigo-600 mb-2">5-Star Reviews</div>
+                  <div className="text-sm text-gray-600">From Pet Parents</div>
+                </div>
+                <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-6 shadow-xl border border-yellow-200">
+                  <div className="text-4xl mb-3">🎨</div>
+                  <div className="text-2xl font-bold text-yellow-600 mb-2">Creative Styles</div>
+                  <div className="text-sm text-gray-600">Unique Pet Fashion</div>
+                </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Breed-Specific Services Section */}
-        <section id="services" className="py-20 bg-white">
+        {/* Fun Services Section with Zigzag Layout */}
+        <section id="services" className="py-20 bg-white relative overflow-hidden">
+          {/* Decorative Elements */}
+          <div className="absolute top-10 left-10 text-6xl opacity-20">🎨</div>
+          <div className="absolute top-20 right-20 text-6xl opacity-20">✂️</div>
+          <div className="absolute bottom-10 left-20 text-6xl opacity-20">🐕</div>
+          <div className="absolute bottom-20 right-10 text-6xl opacity-20">🐱</div>
+          
           <div className="container mx-auto px-4">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">Tailored Care for Every Breed</h2>
+            <div className="text-center mb-20">
+              <div className="inline-block bg-gradient-to-r from-pink-500 to-purple-500 text-white px-8 py-3 rounded-full mb-6 text-lg font-bold">
+                ✨ MAGICAL PET SERVICES ✨
+              </div>
+              <h2 className="text-5xl font-extrabold text-gray-900 mb-6">Every Pet Gets VIP Treatment!</h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Our certified groomers specialize in breed-specific cuts and care. Each service is customized 
-                to your pet's unique needs, temperament, and coat type.
+                From glamorous makeovers to fun adventures, we make every visit special with treats, 
+                cuddles, and professional care your pet will absolutely love!
               </p>
             </div>
             
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-              <Card className="group hover:shadow-2xl transition-all duration-300 border-l-4 border-l-pink-500">
-                <CardContent className="p-8">
-                  <div className="flex items-center justify-between mb-6">
-                    <div className="bg-pink-100 p-4 rounded-xl group-hover:bg-pink-200 transition-colors">
-                      <Scissors className="h-8 w-8 text-pink-600" />
+            <div className="space-y-16">
+              {/* Service 1 - Left Aligned */}
+              <div className="grid lg:grid-cols-2 gap-12 items-center">
+                <Card className="bg-gradient-to-br from-pink-50 to-rose-50 border-4 border-pink-200 shadow-2xl rounded-3xl overflow-hidden">
+                  <CardContent className="p-0">
+                    <div className="p-8">
+                      <div className="flex items-center gap-4 mb-6">
+                        <div className="bg-pink-500 p-4 rounded-full text-white shadow-xl">
+                          <Scissors className="h-10 w-10" />
+                        </div>
+                        <div>
+                          <Badge className="bg-pink-500 text-white px-4 py-2 mb-2 rounded-full">🌟 SIGNATURE SERVICE</Badge>
+                          <h3 className="text-3xl font-bold text-gray-900">Royal Style Makeover</h3>
+                        </div>
+                      </div>
+                      <p className="text-lg text-gray-700 mb-6 leading-relaxed">
+                        Transform your pet into royalty! Complete with luxury bath, precision cut, nail art, 
+                        bow tie or bandana, and a professional photoshoot.
+                      </p>
+                      <div className="space-y-3 mb-8">
+                        <div className="flex items-center gap-3">
+                          <div className="text-pink-500">👑</div>
+                          <span className="text-gray-700">Luxury spa bath with aromatherapy</span>
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <div className="text-pink-500">✂️</div>
+                          <span className="text-gray-700">Breed-specific precision styling</span>
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <div className="text-pink-500">💅</div>
+                          <span className="text-gray-700">Nail trim & polish (pet-safe)</span>
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <div className="text-pink-500">📸</div>
+                          <span className="text-gray-700">Professional photo session</span>
+                        </div>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <div className="text-4xl font-bold text-pink-600">£65-95</div>
+                        <Button className="bg-pink-500 hover:bg-pink-600 text-white px-8 py-3 rounded-full font-bold">
+                          Book Royal Treatment
+                        </Button>
+                      </div>
                     </div>
-                    <Badge className="bg-pink-100 text-pink-700 hover:bg-pink-200">Most Popular</Badge>
+                  </CardContent>
+                </Card>
+                
+                <div className="bg-gradient-to-br from-pink-100 to-purple-100 rounded-3xl p-8 border-4 border-dashed border-pink-300">
+                  <div className="aspect-square bg-gradient-to-br from-pink-200 to-purple-200 rounded-3xl flex items-center justify-center text-6xl">
+                    👑🐕✨
                   </div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-4">Full Grooming & Style</h3>
-                  <ul className="space-y-2 text-gray-600 mb-6">
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-pink-600" />
-                      <span>Pre-wash brush & detangle</span>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-pink-600" />
-                      <span>Luxury shampoo & conditioning</span>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-pink-600" />
-                      <span>Breed-specific cut & styling</span>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-pink-600" />
-                      <span>Nail trim, ear clean, teeth brush</span>
-                    </li>
-                  </ul>
-                  <div className="border-t pt-4">
-                    <div className="text-3xl font-bold text-pink-600 mb-2">£45-75</div>
-                    <p className="text-sm text-gray-500 mb-4">Based on size & coat type</p>
-                    <Button className="w-full bg-pink-600 hover:bg-pink-700 text-white">
-                      Book Full Groom
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="group hover:shadow-2xl transition-all duration-300 border-l-4 border-l-blue-500">
-                <CardContent className="p-8">
-                  <div className="flex items-center justify-between mb-6">
-                    <div className="bg-blue-100 p-4 rounded-xl group-hover:bg-blue-200 transition-colors">
-                      <MapPin className="h-8 w-8 text-blue-600" />
-                    </div>
-                    <Badge className="bg-blue-100 text-blue-700 hover:bg-blue-200">Exercise</Badge>
-                  </div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-4">Dog Walking Service</h3>
-                  <ul className="space-y-2 text-gray-600 mb-6">
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-blue-600" />
-                      <span>Hampstead Heath & local parks</span>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-blue-600" />
-                      <span>GPS tracking & photo updates</span>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-blue-600" />
-                      <span>Individual or group walks</span>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-blue-600" />
-                      <span>Fresh water & waste cleanup</span>
-                    </li>
-                  </ul>
-                  <div className="border-t pt-4">
-                    <div className="text-3xl font-bold text-blue-600 mb-2">£18-28</div>
-                    <p className="text-sm text-gray-500 mb-4">30min - 1hr walks available</p>
-                    <Button variant="outline" className="w-full border-blue-500 text-blue-600 hover:bg-blue-50">
-                      Book Walk
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="group hover:shadow-2xl transition-all duration-300 border-l-4 border-l-green-500">
-                <CardContent className="p-8">
-                  <div className="flex items-center justify-between mb-6">
-                    <div className="bg-green-100 p-4 rounded-xl group-hover:bg-green-200 transition-colors">
-                      <Heart className="h-8 w-8 text-green-600" />
-                    </div>
-                    <Badge className="bg-green-100 text-green-700 hover:bg-green-200">Gentle</Badge>
-                  </div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-4">Puppy Introduction</h3>
-                  <ul className="space-y-2 text-gray-600 mb-6">
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-green-600" />
-                      <span>First grooming experience (12-16 weeks)</span>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-green-600" />
-                      <span>Gentle handling & socialization</span>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-green-600" />
-                      <span>Face & feet desensitization</span>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-green-600" />
-                      <span>Positive reinforcement treats</span>
-                    </li>
-                  </ul>
-                  <div className="border-t pt-4">
-                    <div className="text-3xl font-bold text-green-600 mb-2">£35</div>
-                    <p className="text-sm text-gray-500 mb-4">Perfect first grooming experience</p>
-                    <Button variant="outline" className="w-full border-green-500 text-green-600 hover:bg-green-50">
-                      Book Puppy Session
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="group hover:shadow-2xl transition-all duration-300 border-l-4 border-l-purple-500">
-                <CardContent className="p-8">
-                  <div className="flex items-center justify-between mb-6">
-                    <div className="bg-purple-100 p-4 rounded-xl group-hover:bg-purple-200 transition-colors">
-                      <Stethoscope className="h-8 w-8 text-purple-600" />
-                    </div>
-                    <Badge className="bg-purple-100 text-purple-700 hover:bg-purple-200">Therapeutic</Badge>
-                  </div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-4">Spa & Wellness</h3>
-                  <ul className="space-y-2 text-gray-600 mb-6">
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-purple-600" />
-                      <span>Medicated shampoo treatments</span>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-purple-600" />
-                      <span>Flea & tick prevention</span>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-purple-600" />
-                      <span>Aromatherapy & relaxation</span>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-purple-600" />
-                      <span>Coat & skin condition analysis</span>
-                    </li>
-                  </ul>
-                  <div className="border-t pt-4">
-                    <div className="text-3xl font-bold text-purple-600 mb-2">£55-85</div>
-                    <p className="text-sm text-gray-500 mb-4">Add-on or standalone service</p>
-                    <Button variant="outline" className="w-full border-purple-500 text-purple-600 hover:bg-purple-50">
-                      Book Spa Treatment
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-
-            {/* Popular Breeds Section */}
-            <div className="mt-20 bg-gradient-to-r from-pink-50 to-rose-50 rounded-3xl p-10">
-              <h3 className="text-3xl font-bold text-center mb-10">Popular Breed Specializations</h3>
-              <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
-                {[
-                  "Poodles", "Golden Retrievers", "Yorkshire Terriers", "Cocker Spaniels",
-                  "Bichon Frises", "Shih Tzus", "Portuguese Water Dogs", "Bernedoodles",
-                  "Maltese", "Cavalier King Charles", "French Bulldogs", "Dachshunds"
-                ].map((breed, index) => (
-                  <div key={index} className="bg-white rounded-xl p-4 text-center shadow-sm hover:shadow-md transition-shadow">
-                    <Palette className="h-6 w-6 text-pink-600 mx-auto mb-2" />
-                    <span className="text-sm font-semibold text-gray-700">{breed}</span>
-                  </div>
-                ))}
+                </div>
               </div>
-              <p className="text-center text-gray-600 mt-8">
-                Don't see your breed? <span className="text-pink-600 font-semibold cursor-pointer hover:underline">Contact us</span> - we work with all breeds and mixed pets!
-              </p>
+
+              {/* Service 2 - Right Aligned */}
+              <div className="grid lg:grid-cols-2 gap-12 items-center">
+                <div className="bg-gradient-to-br from-blue-100 to-indigo-100 rounded-3xl p-8 border-4 border-dashed border-blue-300 lg:order-1">
+                  <div className="aspect-square bg-gradient-to-br from-blue-200 to-indigo-200 rounded-3xl flex items-center justify-center text-6xl">
+                    🏃‍♂️🐕🌳
+                  </div>
+                </div>
+                
+                <Card className="bg-gradient-to-br from-blue-50 to-indigo-50 border-4 border-blue-200 shadow-2xl rounded-3xl overflow-hidden lg:order-2">
+                  <CardContent className="p-0">
+                    <div className="p-8">
+                      <div className="flex items-center gap-4 mb-6">
+                        <div className="bg-blue-500 p-4 rounded-full text-white shadow-xl">
+                          <MapPin className="h-10 w-10" />
+                        </div>
+                        <div>
+                          <Badge className="bg-blue-500 text-white px-4 py-2 mb-2 rounded-full">🏃‍♂️ ADVENTURE TIME</Badge>
+                          <h3 className="text-3xl font-bold text-gray-900">Epic Dog Adventures</h3>
+                        </div>
+                      </div>
+                      <p className="text-lg text-gray-700 mb-6 leading-relaxed">
+                        Let your dog explore London's best parks! GPS tracking, real-time photos, 
+                        socialization with other dogs, and tired happy pups guaranteed.
+                      </p>
+                      <div className="space-y-3 mb-8">
+                        <div className="flex items-center gap-3">
+                          <div className="text-blue-500">🌳</div>
+                          <span className="text-gray-700">Hampstead Heath & Hyde Park adventures</span>
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <div className="text-blue-500">📱</div>
+                          <span className="text-gray-700">Live GPS tracking & photo updates</span>
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <div className="text-blue-500">🐕</div>
+                          <span className="text-gray-700">Supervised socialization sessions</span>
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <div className="text-blue-500">💧</div>
+                          <span className="text-gray-700">Fresh water & emergency first aid kit</span>
+                        </div>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <div className="text-4xl font-bold text-blue-600">£25-40</div>
+                        <Button className="bg-blue-500 hover:bg-blue-600 text-white px-8 py-3 rounded-full font-bold">
+                          Book Adventure
+                        </Button>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+
+              {/* Service 3 - Left Aligned */}
+              <div className="grid lg:grid-cols-2 gap-12 items-center">
+                <Card className="bg-gradient-to-br from-green-50 to-emerald-50 border-4 border-green-200 shadow-2xl rounded-3xl overflow-hidden">
+                  <CardContent className="p-0">
+                    <div className="p-8">
+                      <div className="flex items-center gap-4 mb-6">
+                        <div className="bg-green-500 p-4 rounded-full text-white shadow-xl">
+                          <Heart className="h-10 w-10" />
+                        </div>
+                        <div>
+                          <Badge className="bg-green-500 text-white px-4 py-2 mb-2 rounded-full">🐾 GENTLE CARE</Badge>
+                          <h3 className="text-3xl font-bold text-gray-900">Puppy's First Spa Day</h3>
+                        </div>
+                      </div>
+                      <p className="text-lg text-gray-700 mb-6 leading-relaxed">
+                        Special introduction for puppies 12-16 weeks. Gentle handling, lots of treats, 
+                        positive reinforcement, and creating lifelong spa lovers!
+                      </p>
+                      <div className="space-y-3 mb-8">
+                        <div className="flex items-center gap-3">
+                          <div className="text-green-500">🍖</div>
+                          <span className="text-gray-700">Unlimited treats & positive reinforcement</span>
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <div className="text-green-500">🛁</div>
+                          <span className="text-gray-700">Gentle first bath experience</span>
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <div className="text-green-500">👂</div>
+                          <span className="text-gray-700">Face, feet & ear handling training</span>
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <div className="text-green-500">🎁</div>
+                          <span className="text-gray-700">Take-home puppy care package</span>
+                        </div>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <div className="text-4xl font-bold text-green-600">£45</div>
+                        <Button className="bg-green-500 hover:bg-green-600 text-white px-8 py-3 rounded-full font-bold">
+                          Book Puppy Spa
+                        </Button>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+                
+                <div className="bg-gradient-to-br from-green-100 to-emerald-100 rounded-3xl p-8 border-4 border-dashed border-green-300">
+                  <div className="aspect-square bg-gradient-to-br from-green-200 to-emerald-200 rounded-3xl flex items-center justify-center text-6xl">
+                    🐶💚🛁
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
