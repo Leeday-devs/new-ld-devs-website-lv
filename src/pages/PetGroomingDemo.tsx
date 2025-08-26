@@ -1,114 +1,355 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Star, Clock, CheckCircle, Heart, Scissors, Calendar, MapPin } from "lucide-react";
+import { Star, Clock, CheckCircle, Heart, Scissors, Calendar, MapPin, Camera, Phone, Mail, Award, Shield, Stethoscope, Palette, Users } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
 
 const PetGroomingDemo = () => {
   return (
     <>
       <SEOHead 
-        title="PawSome Grooming - Pet Grooming & Dog Walking Services"
-        description="Professional pet grooming and dog walking services. Book online today!"
+        title="Paws & Claws Grooming Studio - Premium Pet Grooming & Dog Walking"
+        description="Professional pet grooming and dog walking services in London. Book online today for the finest pet care!"
       />
       
-      <div className="min-h-screen bg-gradient-to-br from-pink-50 to-orange-50">
+      <div className="min-h-screen bg-gradient-to-br from-rose-50 via-pink-50 to-orange-50">
         {/* Header */}
-        <header className="bg-white shadow-sm">
-          <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-            <div className="flex items-center gap-2">
-              <Heart className="h-6 w-6 text-pink-600" />
-              <span className="text-xl font-bold text-gray-800">PawSome Grooming</span>
+        <header className="bg-white shadow-xl border-b-4 border-pink-400">
+          <div className="container mx-auto px-4 py-4">
+            <div className="flex justify-between items-center">
+              <div className="flex items-center gap-4">
+                <div className="bg-gradient-to-br from-pink-500 to-rose-500 p-4 rounded-2xl shadow-lg">
+                  <Heart className="h-10 w-10 text-white" />
+                </div>
+                <div>
+                  <h1 className="text-3xl font-bold bg-gradient-to-r from-pink-600 to-rose-600 bg-clip-text text-transparent">
+                    Paws & Claws Studio
+                  </h1>
+                  <p className="text-sm text-pink-600 font-semibold">Certified Pet Stylists • Fully Insured • Since 2019</p>
+                </div>
+              </div>
+              <nav className="hidden lg:flex gap-8">
+                <a href="#services" className="text-gray-700 hover:text-pink-600 font-medium transition-colors">Services</a>
+                <a href="#gallery" className="text-gray-700 hover:text-pink-600 font-medium transition-colors">Gallery</a>
+                <a href="#pricing" className="text-gray-700 hover:text-pink-600 font-medium transition-colors">Pricing</a>
+                <a href="#contact" className="text-gray-700 hover:text-pink-600 font-medium transition-colors">Contact</a>
+              </nav>
+              <div className="flex items-center gap-4">
+                <div className="hidden md:block text-right">
+                  <div className="text-sm text-gray-600">Call to Book</div>
+                  <div className="text-xl font-bold text-pink-600">020 7654 3210</div>
+                </div>
+                <Button className="bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white font-bold px-6 py-3 shadow-lg">
+                  <Calendar className="mr-2 h-5 w-5" />
+                  Book Now
+                </Button>
+              </div>
             </div>
-            <nav className="hidden md:flex gap-6">
-              <a href="#services" className="text-gray-600 hover:text-pink-600">Services</a>
-              <a href="#gallery" className="text-gray-600 hover:text-pink-600">Gallery</a>
-              <a href="#pricing" className="text-gray-600 hover:text-pink-600">Pricing</a>
-              <a href="#contact" className="text-gray-600 hover:text-pink-600">Contact</a>
-            </nav>
-            <Button className="bg-pink-600 hover:bg-pink-700">Book Now</Button>
           </div>
         </header>
 
         {/* Hero Section */}
-        <section className="py-20 text-center">
-          <div className="container mx-auto px-4">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
-              Where Every Pet is Treated Like Family
-            </h1>
-            <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-              Professional pet grooming and dog walking services with love, care, and expertise. 
-              Your furry friends deserve the best!
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-pink-600 hover:bg-pink-700">
-                <Calendar className="mr-2 h-4 w-4" />
-                Book Appointment
-              </Button>
-              <Button size="lg" variant="outline">
-                View Our Work
-              </Button>
-            </div>
-            <div className="mt-8 flex justify-center items-center gap-6">
-              <Badge variant="secondary" className="px-4 py-2">
-                <Star className="mr-1 h-4 w-4 text-yellow-500" />
-                4.9/5 Rating
-              </Badge>
-              <Badge variant="secondary" className="px-4 py-2">
-                500+ Happy Pets
-              </Badge>
-              <Badge variant="secondary" className="px-4 py-2">
-                Fully Insured
-              </Badge>
+        <section className="relative py-24 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-rose-50 via-pink-50 to-orange-50"></div>
+          <div className="absolute inset-0 opacity-20">
+            <div className="absolute top-20 left-20 w-40 h-40 bg-pink-300 rounded-full blur-3xl animate-pulse"></div>
+            <div className="absolute bottom-20 right-20 w-60 h-60 bg-rose-300 rounded-full blur-3xl animate-pulse delay-1000"></div>
+            <div className="absolute top-1/2 left-1/2 w-32 h-32 bg-orange-300 rounded-full blur-3xl animate-pulse delay-500"></div>
+          </div>
+          
+          <div className="container mx-auto px-4 relative z-10">
+            <div className="grid lg:grid-cols-2 gap-16 items-center">
+              <div className="text-left">
+                <div className="flex items-center gap-3 mb-6">
+                  <Award className="h-7 w-7 text-pink-600" />
+                  <span className="bg-pink-100 text-pink-800 px-5 py-2 rounded-full text-sm font-bold">
+                    London's Premier Pet Grooming Studio
+                  </span>
+                </div>
+                
+                <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-8">
+                  <span className="text-gray-900">Where Every Pet</span>
+                  <br />
+                  <span className="bg-gradient-to-r from-pink-600 via-rose-500 to-orange-500 bg-clip-text text-transparent">
+                    Feels Loved
+                  </span>
+                </h1>
+                
+                <p className="text-xl text-gray-700 mb-10 leading-relaxed max-w-lg">
+                  Professional pet grooming and walking services with a personal touch. Our certified stylists 
+                  treat every furry friend like family, ensuring they look and feel their absolute best.
+                </p>
+
+                <div className="flex flex-col sm:flex-row gap-4 mb-12">
+                  <Button size="lg" className="bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white px-10 py-5 text-lg font-bold shadow-2xl">
+                    <Calendar className="mr-3 h-6 w-6" />
+                    Book Appointment
+                  </Button>
+                  <Button size="lg" variant="outline" className="border-2 border-pink-500 text-pink-700 hover:bg-pink-50 px-10 py-5 text-lg font-bold">
+                    <Camera className="mr-3 h-6 w-6" />
+                    View Gallery
+                  </Button>
+                </div>
+
+                <div className="grid grid-cols-3 gap-8 pt-10 border-t border-gray-200">
+                  <div className="text-center">
+                    <div className="bg-pink-100 p-4 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-3">
+                      <Shield className="h-10 w-10 text-pink-600" />
+                    </div>
+                    <div className="text-sm font-bold text-gray-800">Fully Certified</div>
+                    <div className="text-xs text-gray-600">Pet First Aid Trained</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="bg-rose-100 p-4 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-3">
+                      <Stethoscope className="h-10 w-10 text-rose-600" />
+                    </div>
+                    <div className="text-sm font-bold text-gray-800">Health Focused</div>
+                    <div className="text-xs text-gray-600">Skin & coat specialists</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="bg-orange-100 p-4 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-3">
+                      <Star className="h-10 w-10 text-orange-600" />
+                    </div>
+                    <div className="text-sm font-bold text-gray-800">5-Star Rated</div>
+                    <div className="text-xs text-gray-600">1,200+ Happy Pets</div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="lg:justify-self-end">
+                <Card className="bg-white/95 backdrop-blur-sm border-2 border-pink-200 shadow-2xl p-8 max-w-lg">
+                  <CardContent className="p-0">
+                    <div className="text-center mb-8">
+                      <div className="bg-gradient-to-r from-pink-500 to-rose-500 text-white px-6 py-3 rounded-full text-sm font-bold mb-4">
+                        QUICK BOOKING
+                      </div>
+                      <h3 className="text-2xl font-bold text-gray-900 mb-2">Book Your Pet's Spa Day</h3>
+                      <p className="text-gray-600">Same-day appointments often available</p>
+                    </div>
+                    
+                    <div className="space-y-5">
+                      <div className="grid grid-cols-2 gap-4">
+                        <input type="text" placeholder="Pet's name" className="w-full p-4 border-2 border-gray-200 rounded-xl focus:border-pink-500 outline-none" />
+                        <select className="w-full p-4 border-2 border-gray-200 rounded-xl focus:border-pink-500 outline-none">
+                          <option>Dog</option>
+                          <option>Cat</option>
+                          <option>Rabbit</option>
+                          <option>Other</option>
+                        </select>
+                      </div>
+                      <input type="text" placeholder="Breed (helps us prepare)" className="w-full p-4 border-2 border-gray-200 rounded-xl focus:border-pink-500 outline-none" />
+                      <select className="w-full p-4 border-2 border-gray-200 rounded-xl focus:border-pink-500 outline-none">
+                        <option>Select service</option>
+                        <option>Full Groom & Style</option>
+                        <option>Bath & Blow Dry</option>
+                        <option>Nail Trim & Ear Clean</option>
+                        <option>Dog Walking Service</option>
+                      </select>
+                      <input type="date" className="w-full p-4 border-2 border-gray-200 rounded-xl focus:border-pink-500 outline-none" />
+                      <Button className="w-full bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white py-5 text-lg font-bold">
+                        <Calendar className="mr-2 h-6 w-6" />
+                        Book Appointment
+                      </Button>
+                      
+                      <div className="grid grid-cols-2 gap-3 text-center text-sm mt-8">
+                        <div className="bg-pink-50 rounded-xl p-4 border border-pink-200">
+                          <Clock className="h-6 w-6 text-pink-600 mx-auto mb-2" />
+                          <div className="text-pink-800 font-bold">Same Day</div>
+                          <div className="text-pink-600">Often Available</div>
+                        </div>
+                        <div className="bg-rose-50 rounded-xl p-4 border border-rose-200">
+                          <CheckCircle className="h-6 w-6 text-rose-600 mx-auto mb-2" />
+                          <div className="text-rose-800 font-bold">No Deposit</div>
+                          <div className="text-rose-600">Pay After Service</div>
+                        </div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* Services Section */}
-        <section id="services" className="py-16 bg-white">
+        {/* Breed-Specific Services Section */}
+        <section id="services" className="py-20 bg-white">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center mb-12">Our Services</h2>
+            <div className="text-center mb-16">
+              <h2 className="text-4xl font-bold text-gray-900 mb-4">Tailored Care for Every Breed</h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Our certified groomers specialize in breed-specific cuts and care. Each service is customized 
+                to your pet's unique needs, temperament, and coat type.
+              </p>
+            </div>
+            
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-              <Card className="text-center p-6 hover:shadow-lg transition-shadow">
-                <CardContent>
-                  <div className="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Scissors className="h-8 w-8 text-pink-600" />
+              <Card className="group hover:shadow-2xl transition-all duration-300 border-l-4 border-l-pink-500">
+                <CardContent className="p-8">
+                  <div className="flex items-center justify-between mb-6">
+                    <div className="bg-pink-100 p-4 rounded-xl group-hover:bg-pink-200 transition-colors">
+                      <Scissors className="h-8 w-8 text-pink-600" />
+                    </div>
+                    <Badge className="bg-pink-100 text-pink-700 hover:bg-pink-200">Most Popular</Badge>
                   </div>
-                  <h3 className="text-xl font-semibold mb-4">Full Grooming</h3>
-                  <p className="text-gray-600 mb-4">Wash, cut, nail trim, ear cleaning, and styling</p>
-                  <div className="text-2xl font-bold text-pink-600">From £35</div>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-4">Full Grooming & Style</h3>
+                  <ul className="space-y-2 text-gray-600 mb-6">
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="h-4 w-4 text-pink-600" />
+                      <span>Pre-wash brush & detangle</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="h-4 w-4 text-pink-600" />
+                      <span>Luxury shampoo & conditioning</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="h-4 w-4 text-pink-600" />
+                      <span>Breed-specific cut & styling</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="h-4 w-4 text-pink-600" />
+                      <span>Nail trim, ear clean, teeth brush</span>
+                    </li>
+                  </ul>
+                  <div className="border-t pt-4">
+                    <div className="text-3xl font-bold text-pink-600 mb-2">£45-75</div>
+                    <p className="text-sm text-gray-500 mb-4">Based on size & coat type</p>
+                    <Button className="w-full bg-pink-600 hover:bg-pink-700 text-white">
+                      Book Full Groom
+                    </Button>
+                  </div>
                 </CardContent>
               </Card>
-              <Card className="text-center p-6 hover:shadow-lg transition-shadow">
-                <CardContent>
-                  <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <MapPin className="h-8 w-8 text-blue-600" />
+
+              <Card className="group hover:shadow-2xl transition-all duration-300 border-l-4 border-l-blue-500">
+                <CardContent className="p-8">
+                  <div className="flex items-center justify-between mb-6">
+                    <div className="bg-blue-100 p-4 rounded-xl group-hover:bg-blue-200 transition-colors">
+                      <MapPin className="h-8 w-8 text-blue-600" />
+                    </div>
+                    <Badge className="bg-blue-100 text-blue-700 hover:bg-blue-200">Exercise</Badge>
                   </div>
-                  <h3 className="text-xl font-semibold mb-4">Dog Walking</h3>
-                  <p className="text-gray-600 mb-4">30min, 1hr, or group walks in local parks</p>
-                  <div className="text-2xl font-bold text-blue-600">From £15</div>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-4">Dog Walking Service</h3>
+                  <ul className="space-y-2 text-gray-600 mb-6">
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="h-4 w-4 text-blue-600" />
+                      <span>Hampstead Heath & local parks</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="h-4 w-4 text-blue-600" />
+                      <span>GPS tracking & photo updates</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="h-4 w-4 text-blue-600" />
+                      <span>Individual or group walks</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="h-4 w-4 text-blue-600" />
+                      <span>Fresh water & waste cleanup</span>
+                    </li>
+                  </ul>
+                  <div className="border-t pt-4">
+                    <div className="text-3xl font-bold text-blue-600 mb-2">£18-28</div>
+                    <p className="text-sm text-gray-500 mb-4">30min - 1hr walks available</p>
+                    <Button variant="outline" className="w-full border-blue-500 text-blue-600 hover:bg-blue-50">
+                      Book Walk
+                    </Button>
+                  </div>
                 </CardContent>
               </Card>
-              <Card className="text-center p-6 hover:shadow-lg transition-shadow">
-                <CardContent>
-                  <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Heart className="h-8 w-8 text-green-600" />
+
+              <Card className="group hover:shadow-2xl transition-all duration-300 border-l-4 border-l-green-500">
+                <CardContent className="p-8">
+                  <div className="flex items-center justify-between mb-6">
+                    <div className="bg-green-100 p-4 rounded-xl group-hover:bg-green-200 transition-colors">
+                      <Heart className="h-8 w-8 text-green-600" />
+                    </div>
+                    <Badge className="bg-green-100 text-green-700 hover:bg-green-200">Gentle</Badge>
                   </div>
-                  <h3 className="text-xl font-semibold mb-4">Puppy Package</h3>
-                  <p className="text-gray-600 mb-4">Gentle introduction to grooming for puppies</p>
-                  <div className="text-2xl font-bold text-green-600">£25</div>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-4">Puppy Introduction</h3>
+                  <ul className="space-y-2 text-gray-600 mb-6">
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="h-4 w-4 text-green-600" />
+                      <span>First grooming experience (12-16 weeks)</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="h-4 w-4 text-green-600" />
+                      <span>Gentle handling & socialization</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="h-4 w-4 text-green-600" />
+                      <span>Face & feet desensitization</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="h-4 w-4 text-green-600" />
+                      <span>Positive reinforcement treats</span>
+                    </li>
+                  </ul>
+                  <div className="border-t pt-4">
+                    <div className="text-3xl font-bold text-green-600 mb-2">£35</div>
+                    <p className="text-sm text-gray-500 mb-4">Perfect first grooming experience</p>
+                    <Button variant="outline" className="w-full border-green-500 text-green-600 hover:bg-green-50">
+                      Book Puppy Session
+                    </Button>
+                  </div>
                 </CardContent>
               </Card>
-              <Card className="text-center p-6 hover:shadow-lg transition-shadow">
-                <CardContent>
-                  <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Clock className="h-8 w-8 text-purple-600" />
+
+              <Card className="group hover:shadow-2xl transition-all duration-300 border-l-4 border-l-purple-500">
+                <CardContent className="p-8">
+                  <div className="flex items-center justify-between mb-6">
+                    <div className="bg-purple-100 p-4 rounded-xl group-hover:bg-purple-200 transition-colors">
+                      <Stethoscope className="h-8 w-8 text-purple-600" />
+                    </div>
+                    <Badge className="bg-purple-100 text-purple-700 hover:bg-purple-200">Therapeutic</Badge>
                   </div>
-                  <h3 className="text-xl font-semibold mb-4">Express Service</h3>
-                  <p className="text-gray-600 mb-4">Quick wash and dry for busy schedules</p>
-                  <div className="text-2xl font-bold text-purple-600">£20</div>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-4">Spa & Wellness</h3>
+                  <ul className="space-y-2 text-gray-600 mb-6">
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="h-4 w-4 text-purple-600" />
+                      <span>Medicated shampoo treatments</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="h-4 w-4 text-purple-600" />
+                      <span>Flea & tick prevention</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="h-4 w-4 text-purple-600" />
+                      <span>Aromatherapy & relaxation</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="h-4 w-4 text-purple-600" />
+                      <span>Coat & skin condition analysis</span>
+                    </li>
+                  </ul>
+                  <div className="border-t pt-4">
+                    <div className="text-3xl font-bold text-purple-600 mb-2">£55-85</div>
+                    <p className="text-sm text-gray-500 mb-4">Add-on or standalone service</p>
+                    <Button variant="outline" className="w-full border-purple-500 text-purple-600 hover:bg-purple-50">
+                      Book Spa Treatment
+                    </Button>
+                  </div>
                 </CardContent>
               </Card>
+            </div>
+
+            {/* Popular Breeds Section */}
+            <div className="mt-20 bg-gradient-to-r from-pink-50 to-rose-50 rounded-3xl p-10">
+              <h3 className="text-3xl font-bold text-center mb-10">Popular Breed Specializations</h3>
+              <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+                {[
+                  "Poodles", "Golden Retrievers", "Yorkshire Terriers", "Cocker Spaniels",
+                  "Bichon Frises", "Shih Tzus", "Portuguese Water Dogs", "Bernedoodles",
+                  "Maltese", "Cavalier King Charles", "French Bulldogs", "Dachshunds"
+                ].map((breed, index) => (
+                  <div key={index} className="bg-white rounded-xl p-4 text-center shadow-sm hover:shadow-md transition-shadow">
+                    <Palette className="h-6 w-6 text-pink-600 mx-auto mb-2" />
+                    <span className="text-sm font-semibold text-gray-700">{breed}</span>
+                  </div>
+                ))}
+              </div>
+              <p className="text-center text-gray-600 mt-8">
+                Don't see your breed? <span className="text-pink-600 font-semibold cursor-pointer hover:underline">Contact us</span> - we work with all breeds and mixed pets!
+              </p>
             </div>
           </div>
         </section>
@@ -321,7 +562,7 @@ const PetGroomingDemo = () => {
             <p className="text-xl mb-8">Book your appointment today and see why pets love us!</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" variant="secondary">
-                Call Now: 020 7890 1234
+                Call Now: 020 7654 3210
               </Button>
               <Button size="lg" variant="outline" className="text-white border-white hover:bg-white hover:text-pink-600">
                 Book Online
@@ -337,7 +578,7 @@ const PetGroomingDemo = () => {
               <div>
                 <div className="flex items-center gap-2 mb-4">
                   <Heart className="h-6 w-6 text-pink-400" />
-                  <span className="text-xl font-bold">PawSome Grooming</span>
+                  <span className="text-xl font-bold">Paws & Claws Studio</span>
                 </div>
                 <p className="text-gray-300">
                   Professional pet care services with love and expertise.
@@ -363,14 +604,14 @@ const PetGroomingDemo = () => {
               <div>
                 <h3 className="font-semibold mb-4">Contact</h3>
                 <div className="text-gray-300 space-y-2">
-                  <div>📞 020 7890 1234</div>
-                  <div>✉️ hello@pawsomegrooming.co.uk</div>
+                  <div>📞 020 7654 3210</div>
+                  <div>✉️ hello@pawsandclaws.studio</div>
                   <div>📍 London, UK</div>
                 </div>
               </div>
             </div>
             <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-              <p>&copy; 2024 PawSome Grooming. All rights reserved.</p>
+              <p>&copy; 2024 Paws & Claws Grooming Studio. All rights reserved.</p>
             </div>
           </div>
         </footer>
