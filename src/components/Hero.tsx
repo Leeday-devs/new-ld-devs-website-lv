@@ -47,7 +47,7 @@ const Hero = () => {
 
   return (
     <section 
-      className="bg-navy min-h-screen flex items-center justify-center relative overflow-hidden"
+      className="bg-navy min-h-screen flex items-center justify-center relative overflow-hidden pt-24 md:pt-16"
       aria-label="Hero section with company introduction"
     >
       {/* Subtle Video Background - Local video for reliability */}
