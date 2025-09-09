@@ -56,7 +56,7 @@ const TestimonialsCarousel = () => {
 
         {/* Three Card Grid */}
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
             {testimonials.map((testimonial) => (
               <div key={testimonial.id} className="card-premium p-8 flex flex-col justify-between min-h-[420px] group hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
                 {/* Quote Icon with glow */}

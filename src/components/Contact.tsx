@@ -154,10 +154,10 @@ const Contact = () => {
 
         <div className="max-w-7xl mx-auto">
           <div className="bg-white rounded-3xl shadow-luxury overflow-hidden">
-            <div className="grid lg:grid-cols-5 min-h-[600px]">
+            <div className="grid grid-cols-1 lg:grid-cols-5 min-h-[400px] lg:min-h-[600px]">
               
-              {/* Left Sidebar - Contact Info */}
-              <div className="lg:col-span-2 bg-navy p-10 flex flex-col justify-between">
+              {/* Left Sidebar - Contact Info - Mobile Optimized */}
+              <div className="lg:col-span-2 bg-navy p-6 sm:p-8 lg:p-10 flex flex-col justify-between">
                 <div>
                   <h3 className="heading-primary heading-md text-white mb-8 font-bold">
                     Get in Touch
@@ -202,15 +202,15 @@ const Contact = () => {
                 </div>
               </div>
 
-              {/* Right Side - Contact Form */}
-              <div className="lg:col-span-3 p-12">
+              {/* Right Side - Contact Form - Mobile Optimized */}
+              <div className="lg:col-span-3 p-6 sm:p-8 lg:p-12">
                 <div className="max-w-2xl">
                   <h3 className="heading-primary heading-md text-navy mb-8 font-bold">
                     Send us a <span className="text-orange">Message</span>
                   </h3>
                   
                   <form onSubmit={handleSubmit} className="space-y-8">
-                    <div className="grid md:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                       <div className="space-y-3">
                         <label className="text-base font-semibold text-navy">
                           Full Name *

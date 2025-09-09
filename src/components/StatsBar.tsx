@@ -38,8 +38,8 @@ const StatsBar = () => {
   return (
     <section className="section-navy" ref={elementRef}>
       <div className="container mx-auto px-6">
-        {/* Stats Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+        {/* Stats Grid - Mobile Optimized */}
+        <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
           {stats.map((stat, index) => {
             const IconComponent = stat.icon;
             const { count, startCounting } = useCountUp(stat.value, 2000);

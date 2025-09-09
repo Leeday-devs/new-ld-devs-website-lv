@@ -71,7 +71,7 @@ const FAQ = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-12 items-start">
           {/* FAQ Items */}
           <div className="lg:col-span-2">
             <div className="space-y-4">

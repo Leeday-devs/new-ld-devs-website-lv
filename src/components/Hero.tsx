@@ -100,12 +100,12 @@ const Hero = () => {
       </div>
 
       <div className="container mx-auto px-6 relative z-20">
-        <div className="max-w-6xl mx-auto text-center">
-          {/* Hero Heading with staggered animation */}
+        <div className="max-w-6xl mx-auto text-center px-4">
+          {/* Hero Heading with staggered animation - Mobile Optimized */}
           <div className={`transition-all duration-1000 ease-out ${showHeading ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16'}`}>
-            <h1 className="heading-xl text-white mb-6 leading-[0.9] font-black tracking-tight">
-              We Build Your <span className="text-highlight animate-pulse">Dream Website</span>
-              <span className="block mt-6">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-white mb-4 sm:mb-6 leading-[0.9] font-black tracking-tight">
+              We Build Your <span className="text-highlight animate-pulse block sm:inline">Dream Website</span>
+              <span className="block mt-3 sm:mt-6">
                 That Actually <span className="text-highlight relative">
                   Works
                   <span className="absolute -inset-1 bg-orange/20 blur-xl animate-pulse"></span>
@@ -114,19 +114,19 @@ const Hero = () => {
             </h1>
           </div>
           
-          {/* Subtext with delayed animation */}
+          {/* Subtext with delayed animation - Mobile Optimized */}
           <div className={`transition-all duration-1000 ease-out delay-300 ${showSubtext ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
-            <p className="text-body spacing-luxury max-w-4xl mx-auto text-white/90 leading-relaxed font-medium">
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl max-w-4xl mx-auto text-white/90 leading-relaxed font-medium mb-6 sm:mb-8 px-2">
               Premium <span className="text-highlight font-bold">Website</span> development and <span className="text-highlight font-bold">AI</span> services from the <span className="text-highlight font-bold">UK</span> for businesses. 
-              We create fast, secure, and beautiful websites that drive real results.
+              <span className="block mt-2">We create fast, secure, and beautiful websites that drive real results.</span>
             </p>
           </div>
           
-          {/* CTA Button with pill shape, glow effect and delayed animation */}
-          <div className={`mb-16 transition-all duration-1000 ease-out delay-500 ${showButton ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'}`}>
+          {/* CTA Button with pill shape, glow effect and delayed animation - Mobile Optimized */}
+          <div className={`mb-8 sm:mb-16 transition-all duration-1000 ease-out delay-500 ${showButton ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'}`}>
             <Button 
               size="lg" 
-              className="btn-primary px-10 md:px-12 py-5 md:py-6 text-xl md:text-2xl font-black rounded-full shadow-2xl relative overflow-hidden group hover:scale-105 transition-all duration-300 animate-pulse-slow hover:animate-none"
+              className="btn-primary px-6 sm:px-8 md:px-10 lg:px-12 py-3 sm:py-4 md:py-5 lg:py-6 text-base sm:text-lg md:text-xl lg:text-2xl font-black rounded-full shadow-2xl relative overflow-hidden group hover:scale-105 transition-all duration-300 animate-pulse-slow hover:animate-none w-full sm:w-auto max-w-xs sm:max-w-none"
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
             >
               {/* Enhanced Glow effect */}
@@ -138,27 +138,28 @@ const Hero = () => {
               {/* Shine effect */}
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out"></div>
               
-              <span className="relative z-10 flex items-center">
-                Start Your Project
-                <ArrowRight className="ml-3 h-7 w-7 group-hover:translate-x-1 transition-transform duration-300" />
+              <span className="relative z-10 flex items-center justify-center">
+                <span className="hidden sm:inline">Start Your Project</span>
+                <span className="sm:hidden">Get Started</span>
+                <ArrowRight className="ml-2 sm:ml-3 h-5 sm:h-6 md:h-7 w-5 sm:w-6 md:w-7 group-hover:translate-x-1 transition-transform duration-300" />
               </span>
             </Button>
           </div>
           
-          {/* Trust indicators with animation */}
+          {/* Trust indicators with animation - Mobile Optimized */}
           <div className={`transition-all duration-1000 ease-out delay-700 ${showButton ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <div className="flex flex-wrap justify-center items-center gap-8 text-white/60">
+            <div className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-4 sm:gap-6 md:gap-8 text-white/60">
               <div className="flex items-center gap-2 hover:text-orange transition-colors duration-300">
-                <Shield className="h-5 w-5" />
-                <span className="text-sm font-semibold">Secure & Fast</span>
+                <Shield className="h-4 sm:h-5 w-4 sm:w-5" />
+                <span className="text-xs sm:text-sm font-semibold">Secure & Fast</span>
               </div>
               <div className="flex items-center gap-2 hover:text-orange transition-colors duration-300">
-                <Zap className="h-5 w-5" />
-                <span className="text-sm font-semibold">Quick Delivery</span>
+                <Zap className="h-4 sm:h-5 w-4 sm:w-5" />
+                <span className="text-xs sm:text-sm font-semibold">Quick Delivery</span>
               </div>
               <div className="flex items-center gap-2 hover:text-orange transition-colors duration-300">
-                <Award className="h-5 w-5" />
-                <span className="text-sm font-semibold">Premium Quality</span>
+                <Award className="h-4 sm:h-5 w-4 sm:w-5" />
+                <span className="text-xs sm:text-sm font-semibold">Premium Quality</span>
               </div>
             </div>
           </div>
