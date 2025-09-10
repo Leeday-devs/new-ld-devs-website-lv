@@ -69,31 +69,34 @@ export const CustomerInfoForm = ({ onSubmit, isLoading, serviceName }: CustomerI
   };
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle className="text-lg flex items-center gap-2">
-          <User className="h-5 w-5 text-primary" />
+    <div className="bg-white dark:bg-gray-900 rounded-2xl border-2 border-gray-200 dark:border-gray-700 shadow-lg overflow-hidden">
+      <div className="bg-gradient-to-r from-orange/10 to-orange/5 p-6 border-b border-gray-200 dark:border-gray-700">
+        <h3 className="text-xl font-bold flex items-center gap-3 text-gray-900 dark:text-white">
+          <div className="p-2 bg-orange/20 rounded-lg">
+            <User className="h-5 w-5 text-orange" />
+          </div>
           Your Information
-        </CardTitle>
-        <p className="text-sm text-muted-foreground">
+        </h3>
+        <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
           We need a few details to get started with your {serviceName.toLowerCase()}
         </p>
-      </CardHeader>
-      <CardContent>
+      </div>
+      
+      <div className="p-6">
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-4">
+          <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6">
             <FormField
               control={form.control}
               name="fullName"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Full Name *</FormLabel>
+                  <FormLabel className="text-sm font-semibold text-gray-700 dark:text-gray-300">Full Name *</FormLabel>
                   <FormControl>
                     <div className="relative">
-                      <User className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                      <User className="absolute left-4 top-4 h-5 w-5 text-orange" />
                       <Input 
                         placeholder="Enter your full name" 
-                        className="pl-10" 
+                        className="pl-12 h-12 border-2 border-gray-200 dark:border-gray-700 focus:border-orange transition-colors" 
                         {...field} 
                       />
                     </div>
@@ -108,14 +111,14 @@ export const CustomerInfoForm = ({ onSubmit, isLoading, serviceName }: CustomerI
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email Address *</FormLabel>
+                  <FormLabel className="text-sm font-semibold text-gray-700 dark:text-gray-300">Email Address *</FormLabel>
                   <FormControl>
                     <div className="relative">
-                      <Mail className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                      <Mail className="absolute left-4 top-4 h-5 w-5 text-orange" />
                       <Input 
                         type="email" 
                         placeholder="Enter your email address" 
-                        className="pl-10" 
+                        className="pl-12 h-12 border-2 border-gray-200 dark:border-gray-700 focus:border-orange transition-colors" 
                         {...field} 
                       />
                     </div>
@@ -130,14 +133,14 @@ export const CustomerInfoForm = ({ onSubmit, isLoading, serviceName }: CustomerI
               name="phone"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Phone Number *</FormLabel>
+                  <FormLabel className="text-sm font-semibold text-gray-700 dark:text-gray-300">Phone Number *</FormLabel>
                   <FormControl>
                     <div className="relative">
-                      <Phone className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                      <Phone className="absolute left-4 top-4 h-5 w-5 text-orange" />
                       <Input 
                         type="tel" 
                         placeholder="Enter your phone number" 
-                        className="pl-10" 
+                        className="pl-12 h-12 border-2 border-gray-200 dark:border-gray-700 focus:border-orange transition-colors" 
                         {...field} 
                       />
                     </div>
@@ -152,13 +155,13 @@ export const CustomerInfoForm = ({ onSubmit, isLoading, serviceName }: CustomerI
               name="company"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Company Name (Optional)</FormLabel>
+                  <FormLabel className="text-sm font-semibold text-gray-700 dark:text-gray-300">Company Name (Optional)</FormLabel>
                   <FormControl>
                     <div className="relative">
-                      <Building className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                      <Building className="absolute left-4 top-4 h-5 w-5 text-orange" />
                       <Input 
                         placeholder="Enter your company name" 
-                        className="pl-10" 
+                        className="pl-12 h-12 border-2 border-gray-200 dark:border-gray-700 focus:border-orange transition-colors" 
                         {...field} 
                       />
                     </div>
@@ -168,24 +171,28 @@ export const CustomerInfoForm = ({ onSubmit, isLoading, serviceName }: CustomerI
               )}
             />
 
-            <Button 
-              type="submit" 
-              className="w-full bg-primary hover:bg-primary/90 text-white font-semibold py-3"
-              size="lg"
-              disabled={isLoading}
-            >
-              {isLoading ? (
-                <>Processing...</>
-              ) : (
-                <>
-                  Continue to Payment
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </>
-              )}
-            </Button>
+            <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
+              <Button 
+                type="submit" 
+                className="w-full bg-gradient-to-r from-orange to-orange/80 hover:from-orange/90 hover:to-orange/70 text-white font-bold py-4 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                disabled={isLoading}
+              >
+                {isLoading ? (
+                  <>Processing...</>
+                ) : (
+                  <>
+                    Continue to Payment
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </>
+                )}
+              </Button>
+              <p className="text-center text-sm text-gray-500 dark:text-gray-400 mt-3">
+                Secure checkout powered by Stripe
+              </p>
+            </div>
           </form>
         </Form>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 };

@@ -642,15 +642,22 @@ const Pricing = () => {
       
       {/* Customer Info Modal */}
       <Dialog open={isFormOpen} onOpenChange={setIsFormOpen}>
-        <DialogContent className="max-w-md">
-          <DialogHeader>
-            <DialogTitle>Get Started with {selectedPlan}</DialogTitle>
+        <DialogContent className="max-w-lg bg-white dark:bg-gray-900 border-0 shadow-2xl">
+          <DialogHeader className="pb-6 border-b border-gray-100 dark:border-gray-800">
+            <DialogTitle className="text-2xl font-bold text-center bg-gradient-to-r from-orange to-orange/80 bg-clip-text text-transparent">
+              Get Started with {selectedPlan}
+            </DialogTitle>
+            <p className="text-center text-muted-foreground mt-2">
+              Complete your information to proceed with your order
+            </p>
           </DialogHeader>
-          <CustomerInfoForm
-            serviceName={selectedPlan}
-            onSubmit={handleFormSubmit}
-            isLoading={isSubmitting}
-          />
+          <div className="p-2">
+            <CustomerInfoForm
+              serviceName={selectedPlan}
+              onSubmit={handleFormSubmit}
+              isLoading={isSubmitting}
+            />
+          </div>
         </DialogContent>
       </Dialog>
 
