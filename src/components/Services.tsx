@@ -163,12 +163,12 @@ const Services = () => {
               return (
                 <div key={index} className="mobile-app-card swipe-card">
                   <div className="flex items-start space-x-4 mb-4">
-                    <div className="p-3 rounded-2xl bg-gradient-to-br from-orange/15 to-orange/25 backdrop-blur-md">
-                      <service.icon className={`h-6 w-6 ${colorScheme.icon}`} />
+                    <div className="p-3 rounded-2xl bg-gradient-to-br from-orange/20 to-orange/30 backdrop-blur-md border border-orange/20">
+                      <service.icon className="h-6 w-6 text-orange drop-shadow-sm" />
                     </div>
                     <div className="flex-1">
-                      <h3 className={`font-bold text-lg ${colorScheme.icon} mb-2`}>{service.title}</h3>
-                      <p className="text-gray-600 text-sm leading-relaxed mb-3">{service.description}</p>
+                      <h3 className="font-bold text-lg text-navy mb-2 drop-shadow-sm">{service.title}</h3>
+                      <p className="text-gray-700 text-sm leading-relaxed mb-3 font-medium">{service.description}</p>
                     </div>
                   </div>
                   
@@ -181,8 +181,8 @@ const Services = () => {
                         <ul className="space-y-2 mb-4">
                           {service.features.map((feature, featureIndex) => (
                             <li key={featureIndex} className="flex items-center text-sm">
-                              <CheckCircle className={`h-3 w-3 ${colorScheme.icon} mr-2 flex-shrink-0`} />
-                              <span className="text-gray-700 font-medium">{feature}</span>
+                              <CheckCircle className="h-3 w-3 text-orange mr-2 flex-shrink-0 drop-shadow-sm" />
+                              <span className="text-navy font-semibold">{feature}</span>
                             </li>
                           ))}
                         </ul>
@@ -193,7 +193,7 @@ const Services = () => {
                   {(service.pricingCategory || service.isTemplates) && (
                     <button 
                       onClick={() => handleServiceClick(service.pricingCategory, service.isTemplates)}
-                      className="mobile-app-button mt-4 text-base py-3"
+                      className="mobile-app-button mt-4 text-base py-3 font-bold text-white shadow-lg"
                     >
                       {service.pricingCategory ? 'View Packages' : 'Browse Templates'} →
                     </button>

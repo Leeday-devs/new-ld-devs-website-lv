@@ -320,11 +320,12 @@
   }
 
   .mobile-app-card {
-    @apply bg-white rounded-2xl shadow-lg border border-gray-100 p-6 mb-4 transition-all duration-300;
+    @apply bg-white/95 backdrop-blur-md rounded-2xl shadow-xl border border-gray-200/50 p-6 mb-4 transition-all duration-300;
   }
 
   .mobile-app-card:hover {
-    @apply shadow-xl scale-105;
+    @apply shadow-2xl scale-105;
+    background: rgba(255, 255, 255, 0.98);
   }
 
   .mobile-app-button {
@@ -369,10 +370,17 @@
     @apply bg-orange h-full transition-all duration-500 ease-out;
   }
 
-  /* Mobile scroll optimizations */
-  .mobile-scroll {
-    @apply scroll-smooth;
-    scroll-padding-top: 6rem;
+  /* Additional high-contrast utilities for better readability */
+  .card-high-contrast {
+    @apply bg-white/98 backdrop-blur-lg border-2 border-gray-200/80 shadow-2xl;
+  }
+
+  .text-high-contrast {
+    @apply text-gray-900 font-semibold drop-shadow-sm;
+  }
+
+  .text-secondary-contrast {
+    @apply text-gray-700 font-medium;
   }
 
   /* Premium Card System - Enhanced Luxury Effects */
