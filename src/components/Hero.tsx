@@ -71,7 +71,7 @@ const Hero = () => {
           document.getElementById('video-fallback')?.classList.remove('opacity-0');
         }}
       >
-        <source src="/videos/hero.mp4?v=3" type="video/mp4" />
+        <source src="/videos/hero-new.mp4" type="video/mp4" />
       </video>
       
       {/* Fallback background while video loads */}
