@@ -53,9 +53,6 @@ const Index = () => {
           {/* AI Benefits Section - Charts and examples */}
           <AIBenefitsSection />
           
-          {/* Applications Section - AI and website features */}
-          <ApplicationsSection />
-          
           {/* Services (white cards) - Premium spacing */}
           <section id="services" aria-label="Web development services" className="p-0 bg-transparent">
             <Services />
@@ -75,6 +72,9 @@ const Index = () => {
           <section id="pricing" aria-label="Pricing plans and packages" className="section-white">
             <Pricing />
           </section>
+          
+          {/* Applications Section - AI and website features */}
+          <ApplicationsSection />
           
           {/* FAQ (white cards) - Premium spacing */}
           <FAQ />
