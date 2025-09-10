@@ -93,107 +93,112 @@ const CustomerProfileModal = ({ open, onClose, customer, onSuccess }: CustomerPr
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-[500px]">
+      <DialogContent className="modal-default">
         <DialogHeader>
-          <DialogTitle className="flex items-center gap-2">
+          <DialogTitle className="modal-title flex items-center gap-2">
             <User className="h-5 w-5" />
             Edit Profile
           </DialogTitle>
-          <DialogDescription>
+          <DialogDescription className="modal-subtitle">
             Update your profile information below.
           </DialogDescription>
         </DialogHeader>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="space-y-2">
-            <Label htmlFor="name">Full Name *</Label>
-            <div className="relative">
-              <User className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-              <Input
-                id="name"
-                type="text"
-                placeholder="Enter your full name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="pl-10"
-                required
-              />
+        <form onSubmit={handleSubmit} className="modal-body space-y-4 sm:space-y-6">
+          <div className="grid grid-cols-1 gap-4">
+            <div>
+              <Label htmlFor="name" className="modal-label">Full Name *</Label>
+              <div className="relative">
+                <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <Input
+                  id="name"
+                  type="text"
+                  placeholder="Enter your full name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className="modal-input min-h-[48px] text-base pl-10"
+                  required
+                />
+              </div>
+            </div>
+
+            <div>
+              <Label htmlFor="email" className="modal-label">Email *</Label>
+              <div className="relative">
+                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <Input
+                  id="email"
+                  type="email"
+                  placeholder="Enter your email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="modal-input min-h-[48px] text-base pl-10"
+                  required
+                />
+              </div>
             </div>
           </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="email">Email *</Label>
-            <div className="relative">
-              <Mail className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-              <Input
-                id="email"
-                type="email"
-                placeholder="Enter your email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="pl-10"
-                required
-              />
+          <div className="grid grid-cols-1 gap-4">
+            <div>
+              <Label htmlFor="company" className="modal-label">Company</Label>
+              <div className="relative">
+                <Building className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <Input
+                  id="company"
+                  type="text"
+                  placeholder="Enter your company name"
+                  value={company}
+                  onChange={(e) => setCompany(e.target.value)}
+                  className="modal-input min-h-[48px] text-base pl-10"
+                />
+              </div>
+            </div>
+
+            <div>
+              <Label htmlFor="website" className="modal-label">Website URL</Label>
+              <div className="relative">
+                <Globe className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <Input
+                  id="website"
+                  type="url"
+                  placeholder="https://your-website.com"
+                  value={websiteUrl}
+                  onChange={(e) => setWebsiteUrl(e.target.value)}
+                  className="modal-input min-h-[48px] text-base pl-10"
+                />
+              </div>
             </div>
           </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="company">Company</Label>
+          <div>
+            <Label htmlFor="phone" className="modal-label">Phone Number</Label>
             <div className="relative">
-              <Building className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-              <Input
-                id="company"
-                type="text"
-                placeholder="Enter your company name"
-                value={company}
-                onChange={(e) => setCompany(e.target.value)}
-                className="pl-10"
-              />
-            </div>
-          </div>
-
-          <div className="space-y-2">
-            <Label htmlFor="website">Website URL</Label>
-            <div className="relative">
-              <Globe className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-              <Input
-                id="website"
-                type="url"
-                placeholder="https://your-website.com"
-                value={websiteUrl}
-                onChange={(e) => setWebsiteUrl(e.target.value)}
-                className="pl-10"
-              />
-            </div>
-          </div>
-
-          <div className="space-y-2">
-            <Label htmlFor="phone">Phone Number</Label>
-            <div className="relative">
-              <User className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+              <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input
                 id="phone"
                 type="tel"
                 placeholder="Enter your phone number"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
-                className="pl-10"
+                className="modal-input min-h-[48px] text-base pl-10"
               />
             </div>
           </div>
 
-          <div className="flex justify-end gap-3 pt-4">
+          <div className="flex flex-col gap-3 sm:flex-row justify-end pt-4">
             <Button
               type="button"
               variant="outline"
               onClick={onClose}
               disabled={loading}
+              className="min-h-[48px] touch-manipulation"
             >
               Cancel
             </Button>
             <Button
               type="submit"
-              className="btn-premium"
+              className="btn-premium min-h-[48px] touch-manipulation"
               disabled={loading}
             >
               {loading ? 'Saving...' : 'Save Changes'}

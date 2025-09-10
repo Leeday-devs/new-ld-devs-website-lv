@@ -68,7 +68,7 @@ export const PromoModal = ({
         aria-labelledby={titleId}
         aria-describedby={descriptionId}
       >
-        <div className="modal-body text-center space-y-6">
+        <div className="modal-body text-center space-y-4 sm:space-y-6">
           <div className="space-y-4">
             <Badge 
               variant="default" 
@@ -87,17 +87,17 @@ export const PromoModal = ({
             </DialogHeader>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-3">
+          <div className="flex flex-col gap-3 sm:flex-row">
             <Button 
               onClick={handleClaimOffer}
-              className="btn-primary flex-1"
+              className="btn-primary px-6 py-4 rounded-xl font-semibold flex-1 min-h-[48px] touch-manipulation"
             >
               {ctaText}
             </Button>
             <Button 
               variant="ghost" 
               onClick={onClose}
-              className="text-text-muted hover:text-text-primary"
+              className="text-text-muted hover:text-text-primary min-h-[48px] touch-manipulation"
             >
               Maybe later
             </Button>

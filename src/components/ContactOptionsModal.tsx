@@ -97,25 +97,25 @@ export const ContactOptionsModal = ({ isOpen, onClose }: ContactOptionsModalProp
         </DialogHeader>
 
         <div className="modal-body">
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
             {contactOptions.map((option) => (
               <Button
                 key={option.title}
                 onClick={() => handleOptionClick(option.action)}
-                className={`${option.color} h-24 flex flex-col items-center justify-center gap-2 border-0 text-white transition-all duration-200 hover:scale-105 hover:shadow-lg`}
+                className={`${option.color} h-20 sm:h-24 flex flex-col items-center justify-center gap-1 sm:gap-2 border-0 text-white transition-all duration-200 hover:scale-105 hover:shadow-lg min-h-[48px] touch-manipulation`}
                 variant="default"
               >
-                <option.icon className={`h-6 w-6 ${option.iconColor}`} />
+                <option.icon className={`h-5 w-5 sm:h-6 sm:w-6 ${option.iconColor}`} />
                 <div className="text-center">
-                  <div className="font-semibold text-sm">{option.title}</div>
-                  <div className="text-xs opacity-90">{option.description}</div>
+                  <div className="font-semibold text-xs sm:text-sm">{option.title}</div>
+                  <div className="text-xs opacity-90 hidden sm:block">{option.description}</div>
                 </div>
               </Button>
             ))}
           </div>
 
-          <div className="text-center mt-6">
-            <p className="modal-helper">
+          <div className="text-center mt-4 sm:mt-6">
+            <p className="modal-helper text-xs sm:text-sm">
               We typically respond within a few hours during business hours
             </p>
           </div>

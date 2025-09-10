@@ -301,18 +301,18 @@ const CookiePreferencesDialog = ({
 
         <Separator />
 
-        <div className="flex flex-col sm:flex-row gap-3 justify-between pt-4">
+        <div className="flex flex-col gap-3 sm:flex-row justify-between pt-4">
           <Button
             variant="destructive"
             onClick={onReset}
-            className="flex items-center gap-2"
+            className="flex items-center gap-2 min-h-[48px] touch-manipulation"
           >
             <Cookie className="h-4 w-4" />
             Reset Consent
           </Button>
           <Button
             onClick={onSave}
-            className="bg-primary text-primary-foreground hover:bg-primary/90"
+            className="bg-primary text-primary-foreground hover:bg-primary/90 min-h-[48px] touch-manipulation"
           >
             Save Preferences
           </Button>

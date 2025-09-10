@@ -124,11 +124,11 @@ export const ContactQuoteModal = ({ isOpen, onClose }: ContactQuoteModalProps) =
           </DialogDescription>
         </DialogHeader>
 
-        <form onSubmit={handleSubmit} className="modal-body space-y-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <form onSubmit={handleSubmit} className="modal-body space-y-4 sm:space-y-6">
+          <div className="grid grid-cols-1 gap-4">
             <div>
-              <Label htmlFor="name" className="text-sm font-medium text-text-primary mb-2 block">
-                Name
+              <Label htmlFor="name" className="modal-label">
+                Full Name *
               </Label>
               <Input
                 id="name"
@@ -136,14 +136,14 @@ export const ContactQuoteModal = ({ isOpen, onClose }: ContactQuoteModalProps) =
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Your full name"
-                className="premium-input"
+                className="modal-input min-h-[48px] text-base"
                 required
               />
             </div>
 
             <div>
-              <Label htmlFor="email" className="text-sm font-medium text-text-primary mb-2 block">
-                Email
+              <Label htmlFor="email" className="modal-label">
+                Email Address *
               </Label>
               <Input
                 id="email"
@@ -151,18 +151,18 @@ export const ContactQuoteModal = ({ isOpen, onClose }: ContactQuoteModalProps) =
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="your@email.com"
-                className="premium-input"
+                className="modal-input min-h-[48px] text-base"
                 required
               />
             </div>
           </div>
 
           <div>
-            <Label htmlFor="budget" className="text-sm font-medium text-text-primary mb-2 block">
-              Budget Range
+            <Label htmlFor="budget" className="modal-label">
+              Budget Range *
             </Label>
             <Select value={budget} onValueChange={setBudget} required>
-              <SelectTrigger className="premium-input">
+              <SelectTrigger className="modal-input min-h-[48px] text-base">
                 <SelectValue placeholder="Select your budget range" />
               </SelectTrigger>
               <SelectContent>
@@ -176,23 +176,23 @@ export const ContactQuoteModal = ({ isOpen, onClose }: ContactQuoteModalProps) =
           </div>
 
           <div>
-            <Label htmlFor="message" className="text-sm font-medium text-text-primary mb-2 block">
-              Project Details
+            <Label htmlFor="message" className="modal-label">
+              Project Details *
             </Label>
             <Textarea
               id="message"
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               placeholder="Tell us about your project, goals, and any specific requirements..."
-              className="premium-input min-h-[100px] resize-none"
+              className="modal-input min-h-[100px] text-base resize-none"
               required
             />
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-3">
+          <div className="flex flex-col gap-3 sm:flex-row">
             <Button 
               type="submit" 
-              className="btn-primary flex-1"
+              className="btn-primary px-6 py-4 rounded-xl font-semibold flex-1 min-h-[48px] disabled:opacity-50 disabled:cursor-not-allowed touch-manipulation"
               disabled={isSubmitting}
             >
               {isSubmitting ? "Sending..." : "Get My Quote"}
@@ -200,10 +200,11 @@ export const ContactQuoteModal = ({ isOpen, onClose }: ContactQuoteModalProps) =
             <Button 
               type="button" 
               onClick={handleWhatsAppClick}
-              className="btn-secondary flex items-center gap-2"
+              className="btn-secondary px-6 py-4 rounded-xl font-semibold flex items-center justify-center gap-2 min-h-[48px] touch-manipulation"
             >
               <MessageCircle className="h-4 w-4" />
-              Chat on WhatsApp
+              <span className="hidden sm:inline">Chat on WhatsApp</span>
+              <span className="sm:hidden">WhatsApp</span>
             </Button>
           </div>
         </form>

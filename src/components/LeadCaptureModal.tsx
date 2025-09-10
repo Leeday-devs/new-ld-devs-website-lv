@@ -122,26 +122,26 @@ export const LeadCaptureModal = ({ isOpen, onClose }: LeadCaptureModalProps) => 
           </DialogDescription>
         </DialogHeader>
 
-        <form onSubmit={handleSubmit} className="modal-body space-y-6">
+        <form onSubmit={handleSubmit} className="modal-body space-y-4 sm:space-y-6">
           <div className="space-y-4">
             <div>
-              <Label htmlFor="name" className="text-sm font-medium text-text-primary mb-2 block">
-                Name
+              <Label htmlFor="name" className="modal-label">
+                Your Name *
               </Label>
               <Input
                 id="name"
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                placeholder="Your full name"
-                className="premium-input"
+                placeholder="Enter your name"
+                className="modal-input min-h-[48px] text-base"
                 required
               />
             </div>
 
             <div>
-              <Label htmlFor="email" className="text-sm font-medium text-text-primary mb-2 block">
-                Email
+              <Label htmlFor="email" className="modal-label">
+                Email Address *
               </Label>
               <Input
                 id="email"
@@ -149,7 +149,7 @@ export const LeadCaptureModal = ({ isOpen, onClose }: LeadCaptureModalProps) => 
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="your@email.com"
-                className="premium-input"
+                className="modal-input min-h-[48px] text-base"
                 required
               />
             </div>
@@ -162,10 +162,10 @@ export const LeadCaptureModal = ({ isOpen, onClose }: LeadCaptureModalProps) => 
             </span>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-3">
+          <div className="flex flex-col gap-3 sm:flex-row">
             <Button 
               type="submit" 
-              className="btn-primary flex-1"
+              className="btn-primary px-6 py-4 rounded-xl font-semibold flex-1 min-h-[48px] disabled:opacity-50 disabled:cursor-not-allowed touch-manipulation"
               disabled={isSubmitting}
             >
               {isSubmitting ? "Sending..." : "Get the Free Guide"}
@@ -174,7 +174,7 @@ export const LeadCaptureModal = ({ isOpen, onClose }: LeadCaptureModalProps) => 
               type="button" 
               variant="ghost" 
               onClick={onClose}
-              className="text-text-muted hover:text-text-primary"
+              className="text-text-muted hover:text-text-primary min-h-[48px] touch-manipulation"
             >
               No thanks
             </Button>
