@@ -22,25 +22,25 @@ const StickyBookNowButton = () => {
       <div className="bg-orange text-white rounded-2xl shadow-2xl border border-orange-400/20 overflow-hidden animate-fade-in">
         <button
           onClick={handleBookNow}
-          className="w-full flex items-center justify-between p-4 hover:bg-orange-600 transition-colors active:scale-95 transition-transform"
+          className="w-full flex items-center justify-between p-4 hover:bg-orange-500 transition-colors active:scale-95 transition-transform"
         >
           <div className="flex items-center gap-3">
-            <div className="bg-white/20 rounded-full p-2">
-              <Calendar className="h-5 w-5" />
+            <div className="bg-white/30 rounded-full p-2 border border-white/20">
+              <Calendar className="h-5 w-5 text-white" />
             </div>
             <div className="text-left">
-              <div className="font-bold text-lg">Book Your Project</div>
-              <div className="text-white/80 text-sm">Free consultation • Fast quote</div>
+              <div className="font-bold text-lg text-white drop-shadow-sm">Book Your Project</div>
+              <div className="text-white/90 text-sm font-medium drop-shadow-sm">Free consultation • Fast quote</div>
             </div>
           </div>
           
-          <ArrowRight className="h-6 w-6 flex-shrink-0" />
+          <ArrowRight className="h-6 w-6 flex-shrink-0 text-white drop-shadow-sm" />
         </button>
         
         {/* Close button */}
         <button
           onClick={() => setIsVisible(false)}
-          className="absolute top-2 right-2 w-6 h-6 bg-white/20 rounded-full flex items-center justify-center text-white/80 hover:bg-white/30 transition-colors"
+          className="absolute top-2 right-2 w-6 h-6 bg-white/30 rounded-full flex items-center justify-center text-white font-bold hover:bg-white/40 transition-colors border border-white/20"
         >
           ×
         </button>

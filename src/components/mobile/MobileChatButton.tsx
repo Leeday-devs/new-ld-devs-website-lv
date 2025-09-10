@@ -37,7 +37,7 @@ const MobileChatButton = () => {
           <div className="space-y-3">
             <button
               onClick={handleWhatsAppClick}
-              className="w-full flex items-center gap-3 p-3 rounded-xl bg-green-50 text-green-700 hover:bg-green-100 transition-colors font-medium"
+              className="w-full flex items-center gap-3 p-3 rounded-xl bg-green-100 text-green-800 hover:bg-green-200 transition-colors font-bold border border-green-200"
             >
               <MessageCircle className="h-5 w-5" />
               WhatsApp Chat
@@ -45,7 +45,7 @@ const MobileChatButton = () => {
             
             <button
               onClick={handleEmailClick}
-              className="w-full flex items-center gap-3 p-3 rounded-xl bg-blue-50 text-blue-700 hover:bg-blue-100 transition-colors font-medium"
+              className="w-full flex items-center gap-3 p-3 rounded-xl bg-blue-100 text-blue-800 hover:bg-blue-200 transition-colors font-bold border border-blue-200"
             >
               <MessageCircle className="h-5 w-5" />
               Send Email
@@ -53,7 +53,7 @@ const MobileChatButton = () => {
             
             <button
               onClick={handleContactClick}
-              className="w-full flex items-center gap-3 p-3 rounded-xl bg-orange-50 text-orange-700 hover:bg-orange-100 transition-colors font-medium"
+              className="w-full flex items-center gap-3 p-3 rounded-xl bg-orange-100 text-orange-800 hover:bg-orange-200 transition-colors font-bold border border-orange-200"
             >
               <MessageCircle className="h-5 w-5" />
               Contact Form
