@@ -83,18 +83,18 @@ const Index = () => {
           {/* AI Benefits Section - Charts and examples */}
           <AIBenefitsSection />
           
-          {/* Services (white cards) - Premium spacing */}
-          <section id="services" aria-label="Web development services" className="spacing-mobile-lg bg-transparent">
+          {/* Services (dark background) - Premium spacing */}
+          <section id="services" aria-label="Web development services" className="bg-transparent">
             <Services />
           </section>
           
-          {/* Portfolio / Case Studies (white, 3-column grid) - Premium spacing */}
-          <section id="portfolio" aria-label="Portfolio of completed projects" className="section-white">
+          {/* Portfolio / Case Studies (dark background) - Premium spacing */}
+          <section id="portfolio" aria-label="Portfolio of completed projects" className="bg-transparent">
             <Portfolio />
           </section>
           
-          {/* Pricing (white cards, one highlighted) - Premium spacing */}
-          <section id="pricing" aria-label="Pricing plans and packages" className="section-white">
+          {/* Pricing (dark background) - Premium spacing */}
+          <section id="pricing" aria-label="Pricing plans and packages" className="bg-transparent">
             <Pricing />
           </section>
           
@@ -106,7 +106,7 @@ const Index = () => {
           {/* Applications Section - AI and website features */}
           <ApplicationsSection />
           
-          {/* FAQ (white cards) - Premium spacing */}
+          {/* FAQ (dark background) - Premium spacing */}
           <FAQ />
           
           {/* Final CTA (navy band) */}

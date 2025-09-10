@@ -134,7 +134,7 @@ const Portfolio = () => {
   };
 
   return (
-    <section id="portfolio" className="section-white py-20" aria-label="Case studies showing real business results">
+    <section id="portfolio" className="bg-transparent py-20" aria-label="Case studies showing real business results">
       <div className="container mx-auto px-6">
         {/* Section Header */}
         <div className="text-center mb-16">
