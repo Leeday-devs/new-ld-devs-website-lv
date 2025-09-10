@@ -19,10 +19,6 @@ import ApplicationsSection from "@/components/ApplicationsSection";
 import LiveChatWidget from "@/components/LiveChatWidget";
 import PerformanceOptimizer from "@/components/PerformanceOptimizer";
 import SEOEnhancements from "@/components/SEOEnhancements";
-import AnalyticsTracker from "@/components/AnalyticsTracker";
-import SecurityHeaders from "@/components/SecurityHeaders";
-import LoadingStates from "@/components/LoadingStates";
-import ErrorTracker, { ErrorBoundary } from "@/components/ErrorTracker";
 
 const Index = () => {
   const faqData = [
@@ -49,8 +45,7 @@ const Index = () => {
   ];
 
   return (
-    <ErrorBoundary>
-      <LoadingStates />
+    <>
       <SEOHead 
         title="LD Development - Premium Web Development & AI Solutions | London UK"
         description="Award-winning web development agency in London. Custom websites, e-commerce, AI automation & digital solutions. Fast, secure, mobile-optimized websites for UK businesses. 5-star rated with 150+ happy clients. Get your free quote today!"
@@ -129,10 +124,7 @@ const Index = () => {
       </div>
       <PerformanceOptimizer />
       <SEOEnhancements />
-      <AnalyticsTracker />
-      <SecurityHeaders />
-      <ErrorTracker />
-    </ErrorBoundary>
+    </>
   );
 };
 
