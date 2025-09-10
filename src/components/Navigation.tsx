@@ -79,11 +79,11 @@ const Navigation = () => {
   return (
     <>
       <PromoStrip />
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      <nav className={`fixed left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled 
           ? 'bg-navy/95 backdrop-blur-xl border-b border-gold/20 shadow-premium' 
           : 'bg-transparent'
-      }`} style={{ top: '40px' }}>
+      }`} style={{ top: '48px' }}>
       <div className="container mx-auto px-4">
         {/* Google Trust Banner - Mobile Optimized */}
         <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-4 md:gap-6 py-2 bg-gradient-primary text-white text-xs font-medium">
