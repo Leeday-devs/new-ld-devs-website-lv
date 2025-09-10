@@ -40,6 +40,7 @@ const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
 const TermsOfService = lazy(() => import("./pages/TermsOfService"));
 const CookiePolicy = lazy(() => import("./pages/CookiePolicy"));
 const NotFound = lazy(() => import("./pages/NotFound"));
+const PricingPage = lazy(() => import("./pages/PricingPage"));
 
 // Optimized QueryClient configuration
 const queryClient = new QueryClient({
@@ -70,6 +71,7 @@ const App = () => (
             <Suspense fallback={<Loading message="Loading page..." />}>
               <Routes>
                 <Route path="/" element={<Index />} />
+                <Route path="/pricing" element={<PricingPage />} />
                 <Route path="/auth" element={<UnifiedAuth />} />
                 <Route path="/admin/auth" element={<AdminAuth />} />
                 <Route path="/admin/panel" element={<AdminPanel />} />

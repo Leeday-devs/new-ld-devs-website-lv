@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback, memo } from "react";
 import { Menu, X, ChevronDown, Star, Shield, Award } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { Link } from "react-router-dom";
 
 const MobileOptimizedNavigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -11,16 +12,17 @@ const MobileOptimizedNavigation = () => {
 
   // Navigation items optimized for mobile
   const primaryNavItems = [
-    { name: "Home", href: "#home" },
-    { name: "Services", href: "#services" },
-    { name: "Pre-Built", href: "/templates" },
-    { name: "Blog", href: "/blog" }
+    { name: "Home", href: "/", isInternal: true },
+    { name: "Services", href: "#services", isInternal: false },
+    { name: "Pricing", href: "/pricing", isInternal: true },
+    { name: "Pre-Built", href: "/templates", isInternal: true },
+    { name: "Blog", href: "/blog", isInternal: true }
   ];
 
   const dropdownItems = [
-    { name: "Portfolio", href: "#portfolio" },
-    { name: "FAQ", href: "#faq" },
-    { name: "Contact", href: "#contact" }
+    { name: "Portfolio", href: "#portfolio", isInternal: false },
+    { name: "FAQ", href: "#faq", isInternal: false },
+    { name: "Contact", href: "#contact", isInternal: false }
   ];
 
   // Mobile-first navigation items (all in one array for mobile)
@@ -116,19 +118,35 @@ const MobileOptimizedNavigation = () => {
           {/* Desktop Navigation - Hidden on mobile */}
           <div className="hidden md:flex items-center space-x-1 lg:space-x-2">
             {primaryNavItems.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className={`px-3 lg:px-4 py-2 rounded-lg font-medium transition-all duration-300 hover:bg-white/10 ${
-                  isScrolled 
-                    ? 'text-white hover:text-orange hover:bg-orange/10' 
-                    : 'text-white hover:text-orange'
-                }`}
-                onClick={handleMenuClose}
-              >
-                {item.name}
-              </a>
+              item.isInternal ? (
+                <Link
+                  key={item.name}
+                  to={item.href}
+                  className={`px-3 lg:px-4 py-2 rounded-lg font-medium transition-all duration-300 hover:bg-white/10 ${
+                    isScrolled 
+                      ? 'text-white hover:text-orange hover:bg-orange/10' 
+                      : 'text-white hover:text-orange'
+                  }`}
+                  onClick={handleMenuClose}
+                >
+                  {item.name}
+                </Link>
+              ) : (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className={`px-3 lg:px-4 py-2 rounded-lg font-medium transition-all duration-300 hover:bg-white/10 ${
+                    isScrolled 
+                      ? 'text-white hover:text-orange hover:bg-orange/10' 
+                      : 'text-white hover:text-orange'
+                  }`}
+                  onClick={handleMenuClose}
+                >
+                  {item.name}
+                </a>
+              )
             ))}
+            
             
             {/* Desktop Dropdown */}
             <div className="relative" data-dropdown>
@@ -148,17 +166,31 @@ const MobileOptimizedNavigation = () => {
               {isDropdownOpen && (
                 <div className="absolute top-full right-0 mt-2 w-48 bg-white rounded-xl shadow-xl border border-gray-100 py-2 z-50">
                   {dropdownItems.map((item) => (
-                    <a
-                      key={item.name}
-                      href={item.href}
-                      className="block px-4 py-2.5 text-navy hover:text-orange hover:bg-orange/5 font-medium transition-colors duration-200"
-                      onClick={() => {
-                        setIsDropdownOpen(false);
-                        handleMenuClose();
-                      }}
-                    >
-                      {item.name}
-                    </a>
+                    item.isInternal ? (
+                      <Link
+                        key={item.name}
+                        to={item.href}
+                        className="block px-4 py-2.5 text-navy hover:text-orange hover:bg-orange/5 font-medium transition-colors duration-200"
+                        onClick={() => {
+                          setIsDropdownOpen(false);
+                          handleMenuClose();
+                        }}
+                      >
+                        {item.name}
+                      </Link>
+                    ) : (
+                      <a
+                        key={item.name}
+                        href={item.href}
+                        className="block px-4 py-2.5 text-navy hover:text-orange hover:bg-orange/5 font-medium transition-colors duration-200"
+                        onClick={() => {
+                          setIsDropdownOpen(false);
+                          handleMenuClose();
+                        }}
+                      >
+                        {item.name}
+                      </a>
+                    )
                   ))}
                 </div>
               )}
@@ -200,15 +232,27 @@ const MobileOptimizedNavigation = () => {
           <div className="py-4 space-y-2 bg-white/95 backdrop-blur-md rounded-2xl mx-2 mb-4 shadow-xl border border-orange/10">
             {/* Mobile Navigation Items */}
             {allNavItems.map((item, index) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className="block px-4 py-3 text-navy hover:text-orange hover:bg-orange/5 font-medium transition-all duration-200 rounded-lg mx-2"
-                onClick={handleMenuClose}
-                style={{ animationDelay: `${index * 50}ms` }}
-              >
-                {item.name}
-              </a>
+              item.isInternal ? (
+                <Link
+                  key={item.name}
+                  to={item.href}
+                  className="block px-4 py-3 text-navy hover:text-orange hover:bg-orange/5 font-medium transition-all duration-200 rounded-lg mx-2"
+                  onClick={handleMenuClose}
+                  style={{ animationDelay: `${index * 50}ms` }}
+                >
+                  {item.name}
+                </Link>
+              ) : (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className="block px-4 py-3 text-navy hover:text-orange hover:bg-orange/5 font-medium transition-all duration-200 rounded-lg mx-2"
+                  onClick={handleMenuClose}
+                  style={{ animationDelay: `${index * 50}ms` }}
+                >
+                  {item.name}
+                </a>
+              )
             ))}
             
             {/* Mobile CTA Button */}
