@@ -1,4 +1,4 @@
-import { memo } from "react";
+import { memo, useEffect } from "react";
 import MobileOptimizedNavigation from "@/components/MobileOptimizedNavigation";
 import MobileOptimizedHero from "@/components/MobileOptimizedHero";
 import Services from "@/components/Services";
@@ -44,6 +44,11 @@ const Index = () => {
       answer: "Yes, while we're based in London, we work with businesses throughout the UK and internationally. We conduct meetings via video calls and provide the same high-quality service regardless of location."
     }
   ];
+
+  // Scroll to top when page loads
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>
