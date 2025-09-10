@@ -176,7 +176,7 @@ const Footer = () => {
                   </div>
                   <div>
                     <div className="text-white/80 group-hover:text-orange transition-colors">lee@leedaydevs.com</div>
-                    <div className="text-xs text-white/60">Get Free Quote</div>
+                    <div className="text-xs text-white/60">Get Instant Quote</div>
                   </div>
                 </a>
                 <div className="flex items-center gap-3 group">

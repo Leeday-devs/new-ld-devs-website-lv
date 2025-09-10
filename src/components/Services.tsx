@@ -194,120 +194,105 @@ const Services = () => {
             })}
           </Accordion>
         ) : (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
             {services.map((service, index) => {
-            // Ultra-premium color schemes with glass morphism
+            // Premium color schemes matching pricing cards
             const isPrimary = index % 2 === 0;
             const colorScheme = isPrimary 
               ? {
-                  gradient: 'bg-gradient-to-br from-orange/12 via-orange/8 via-white/95 to-orange/6',
-                  border: 'border border-orange/25',
-                  glass: 'backdrop-blur-xl bg-white/90',
-                  icon: 'text-orange',
-                  iconBg: 'bg-gradient-to-br from-orange/15 to-orange/25',
-                  accent: 'bg-gradient-to-r from-orange via-orange/90 to-orange',
-                  glow: 'shadow-[0_8px_32px_rgba(255,122,0,0.12),0_0_0_1px_rgba(255,122,0,0.05)]',
-                  hoverGlow: 'hover:shadow-[0_20px_60px_rgba(255,122,0,0.25),0_0_0_1px_rgba(255,122,0,0.15)]'
+                  cardBg: 'bg-gradient-to-br from-navy/95 via-navy to-purple-900/50',
+                  border: 'border-2 border-orange/30',
+                  shadow: 'shadow-2xl shadow-orange/10',
+                  hoverShadow: 'hover:shadow-orange/30',
+                  icon: 'text-white',
+                  iconBg: 'bg-gradient-to-r from-orange to-orange/80',
+                  accent: 'bg-gradient-to-r from-orange to-orange/80',
+                  glow: 'bg-gradient-to-r from-orange to-orange/80'
                 }
               : {
-                  gradient: 'bg-gradient-to-br from-navy/12 via-navy/8 via-white/95 to-navy/6',
-                  border: 'border border-navy/25',
-                  glass: 'backdrop-blur-xl bg-white/90',
-                  icon: 'text-navy',
-                  iconBg: 'bg-gradient-to-br from-navy/15 to-navy/25',
-                  accent: 'bg-gradient-to-r from-navy via-navy/90 to-navy',
-                  glow: 'shadow-[0_8px_32px_rgba(10,25,47,0.15),0_0_0_1px_rgba(10,25,47,0.08)]',
-                  hoverGlow: 'hover:shadow-[0_20px_60px_rgba(10,25,47,0.3),0_0_0_1px_rgba(10,25,47,0.2)]'
+                  cardBg: 'bg-gradient-to-br from-navy/90 via-navy/95 to-blue-900/30',
+                  border: 'border border-white/20',
+                  shadow: 'shadow-2xl shadow-blue-900/20',
+                  hoverShadow: 'hover:shadow-blue-400/30',
+                  icon: 'text-white',
+                  iconBg: 'bg-gradient-to-r from-blue-500/80 to-purple-500/80',
+                  accent: 'bg-gradient-to-r from-blue-500/80 to-purple-500/80',
+                  glow: 'bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400'
                 };
             
             return (
               <div
                 key={index}
-                className={`relative group overflow-hidden rounded-2xl ${colorScheme.gradient} ${colorScheme.border} ${colorScheme.glow} ${colorScheme.hoverGlow} transition-all duration-700 hover:scale-[1.03] hover:-translate-y-2 hover:shadow-2xl ${service.pricingCategory || service.isTemplates ? 'cursor-pointer' : ''}`}
+                className={`relative group transition-all duration-700 hover:-translate-y-4 animate-fade-in-up ${service.pricingCategory || service.isTemplates ? 'cursor-pointer' : ''}`}
+                style={{ animationDelay: `${index * 150}ms` }}
                 onClick={() => handleServiceClick(service.pricingCategory, service.isTemplates)}
-                style={{
-                  backgroundImage: `
-                    radial-gradient(circle at 20% 80%, ${isPrimary ? 'rgba(255,122,0,0.08)' : 'rgba(10,25,47,0.08)'} 0%, transparent 50%),
-                    radial-gradient(circle at 80% 20%, ${isPrimary ? 'rgba(255,122,0,0.06)' : 'rgba(10,25,47,0.06)'} 0%, transparent 50%),
-                    radial-gradient(circle at 40% 40%, rgba(255,255,255,0.8) 0%, transparent 50%)
-                  `
-                }}
               >
-                {/* Ultra-premium glass morphism overlay */}
-                <div className={`absolute inset-0 rounded-2xl ${colorScheme.glass} opacity-60 group-hover:opacity-80 transition-opacity duration-500`} />
-                
-                {/* Sophisticated light reflection */}
-                <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-transparent to-transparent opacity-0 group-hover:opacity-30 transition-opacity duration-700" />
-                
-                {/* Premium shimmer animation */}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1200 ease-out" />
-                
-                {/* Top accent line */}
-                <div className={`absolute top-0 left-0 right-0 h-[2px] ${colorScheme.accent} opacity-60 group-hover:opacity-100 transition-opacity duration-500`} />
-                
-                <div className="relative p-8 z-10">
-                  {/* Ultra-premium Icon Container with enhanced animations */}
-                  <div className="mb-6 relative">
-                    <div className={`inline-flex p-4 rounded-xl ${colorScheme.iconBg} backdrop-blur-md border border-white/20 shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 group-hover:shadow-2xl`}>
-                      <service.icon className={`h-7 w-7 ${colorScheme.icon} drop-shadow-sm transition-all duration-500 group-hover:text-orange group-hover:animate-pulse`} />
-                    </div>
-                    
-                    {/* Floating particles effect */}
-                    <div className={`absolute -top-2 -right-2 w-2 h-2 rounded-full ${colorScheme.accent} opacity-0 group-hover:opacity-60 group-hover:animate-bounce transition-all duration-500 delay-100`} />
-                    <div className={`absolute -bottom-1 -left-1 w-1.5 h-1.5 rounded-full ${colorScheme.accent} opacity-0 group-hover:opacity-40 group-hover:animate-pulse transition-all duration-500 delay-200`} />
-                  </div>
+                {/* Premium Glow Effect */}
+                <div className={`absolute -inset-1 rounded-3xl blur-lg opacity-0 group-hover:opacity-100 transition-all duration-500 ${colorScheme.glow}`} />
 
-                   {/* Luxury Typography */}
-                  <div className="mb-6">
-                    <h3 className={`heading-md font-bold mb-2 ${colorScheme.icon} group-hover:text-navy transition-colors duration-500 leading-tight`}>
-                      {service.title}
-                    </h3>
-                    <div className={`h-0.5 w-12 ${colorScheme.accent} rounded-full opacity-60 group-hover:w-20 group-hover:opacity-100 transition-all duration-500`} />
-                  </div>
-
-                  {/* Refined Description */}
-                  <p className="text-base leading-relaxed text-text-secondary mb-6 font-medium group-hover:text-text-primary transition-colors duration-300">
-                    {service.description}
-                  </p>
-
-                  {/* Premium Features with enhanced styling */}
-                  <ul className="space-y-3 mb-8">
-                    {service.features.map((feature, featureIndex) => (
-                      <li 
-                        key={featureIndex} 
-                        className="flex items-center group/item"
-                        style={{ animationDelay: `${featureIndex * 100}ms` }}
-                      >
-                        <div className={`relative p-1.5 rounded-lg ${colorScheme.iconBg} mr-3 group-hover/item:scale-110 group-hover/item:rotate-12 transition-all duration-300 backdrop-blur-sm border border-white/20`}>
-                          <CheckCircle className={`h-3 w-3 ${colorScheme.icon}`} />
-                          <div className={`absolute inset-0 rounded-lg ${colorScheme.accent} opacity-0 group-hover/item:opacity-20 blur-sm transition-opacity duration-300`} />
-                        </div>
-                        <span className="font-semibold text-text-primary group-hover/item:text-navy transition-colors duration-300 text-sm">
-                          {feature}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  {/* Ultra-premium Call-to-Action */}
-                  {(service.pricingCategory || service.isTemplates) && (
-                    <div className="text-center">
-                      <div className={`inline-flex items-center px-6 py-3 rounded-xl ${colorScheme.gradient} ${colorScheme.border} backdrop-blur-md shadow-lg opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-150 hover:scale-105`}>
-                        <span className={`text-sm font-bold ${colorScheme.icon} tracking-wide`}>
-                          {service.pricingCategory ? 'View Luxury Packages' : 'Browse Premium Templates'} 
-                          <span className="ml-2 group-hover:translate-x-1 inline-block transition-transform duration-300">→</span>
-                        </span>
+                <div className={`relative ${colorScheme.cardBg} ${colorScheme.border} ${colorScheme.shadow} ${colorScheme.hoverShadow} rounded-3xl p-8 lg:p-10 backdrop-blur-2xl overflow-hidden transition-all duration-500 hover:scale-105 hover:shadow-3xl h-full flex flex-col`}>
+                  
+                  {/* Premium Background Pattern */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-white/5 opacity-50"></div>
+                  <div className={`absolute top-0 right-0 w-32 h-32 ${isPrimary ? 'bg-gradient-to-br from-orange/10 to-transparent' : 'bg-gradient-to-br from-blue-500/10 to-transparent'} rounded-full blur-2xl`}></div>
+                  
+                  <div className="relative z-10 flex flex-col h-full">
+                    {/* Premium Icon Container */}
+                    <div className="text-center mb-6">
+                      <div className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl mb-4 ${colorScheme.iconBg} shadow-xl group-hover:scale-110 transition-all duration-500`}>
+                        <service.icon className={`h-8 w-8 ${colorScheme.icon}`} />
                       </div>
+                      
+                      <h3 className="text-2xl lg:text-3xl font-bold text-white mb-3 group-hover:text-orange transition-colors duration-300 leading-tight">
+                        {service.title}
+                      </h3>
+                      
+                      {/* Premium accent line */}
+                      <div className={`h-0.5 w-16 ${colorScheme.accent} rounded-full mx-auto opacity-60 group-hover:w-24 group-hover:opacity-100 transition-all duration-500`} />
                     </div>
-                  )}
-                </div>
 
-                {/* Premium bottom gradient accent */}
-                <div className={`absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t ${colorScheme.accent} opacity-5 group-hover:opacity-15 transition-opacity duration-500`} />
-                
-                {/* Luxury corner accents */}
-                <div className={`absolute top-4 right-4 w-4 h-4 border-r-2 border-t-2 ${isPrimary ? 'border-orange/30' : 'border-navy/30'} opacity-0 group-hover:opacity-60 transition-opacity duration-500`} />
-                <div className={`absolute bottom-4 left-4 w-4 h-4 border-l-2 border-b-2 ${isPrimary ? 'border-orange/30' : 'border-navy/30'} opacity-0 group-hover:opacity-60 transition-opacity duration-500`} />
+                    {/* Description */}
+                    <p className="text-gray-300 text-lg leading-relaxed mb-6 text-center flex-grow">
+                      {service.description}
+                    </p>
+
+                    {/* Premium Features List */}
+                    <div className="mb-8">
+                      <ul className="space-y-3">
+                        {service.features.map((feature, featureIndex) => (
+                          <li 
+                            key={featureIndex} 
+                            className="flex items-start space-x-3 group/item"
+                            style={{ animationDelay: `${(index * 150) + (featureIndex * 50)}ms` }}
+                          >
+                            <div className={`flex-shrink-0 w-6 h-6 rounded-full ${colorScheme.accent} flex items-center justify-center mt-0.5 group-hover/item:scale-110 transition-transform duration-300 shadow-lg`}>
+                              <CheckCircle className="h-3.5 w-3.5 text-white" />
+                            </div>
+                            <span className="text-gray-200 font-medium leading-relaxed group-hover/item:text-white transition-colors duration-300">
+                              {feature}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* Premium CTA Button */}
+                    {(service.pricingCategory || service.isTemplates) && (
+                      <div className="mt-auto">
+                        <button className={`w-full py-4 px-8 rounded-2xl font-bold text-lg transition-all duration-500 transform hover:scale-105 active:scale-95 shadow-2xl ${colorScheme.accent} text-white ${colorScheme.hoverShadow} group/button overflow-hidden relative`}>
+                          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-200%] group-hover/button:translate-x-[200%] transition-transform duration-1000"></div>
+                          <div className="relative z-10 flex items-center justify-center space-x-2">
+                            <span>{service.pricingCategory ? 'View Packages' : 'Browse Templates'}</span>
+                            <span className="group-hover/button:translate-x-1 inline-block transition-transform duration-300">→</span>
+                          </div>
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                  
+                  {/* Premium bottom gradient accent */}
+                  <div className={`absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t ${colorScheme.accent} opacity-5 group-hover:opacity-15 transition-opacity duration-500`} />
+                </div>
               </div>
             );
           })}
