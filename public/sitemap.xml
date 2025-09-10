@@ -15,11 +15,35 @@
     <mobile:mobile/>
     <image:image>
       <image:loc>https://leedaydevs.com/lovable-uploads/c05ee520-dfce-4d37-9abd-2ecb7430e4da.png</image:loc>
-      <image:title>LD Development - Premium Web Development Services</image:title>
+      <image:title>LD Development - Premium Web Development Services London</image:title>
     </image:image>
+    <video:video>
+      <video:thumbnail_loc>https://leedaydevs.com/assets/hero-cinematic.jpg</video:thumbnail_loc>
+      <video:title>LD Development - Premium Web Development Services</video:title>
+      <video:description>See our premium web development services in action</video:description>
+      <video:content_loc>https://leedaydevs.com/videos/hero.mp4</video:content_loc>
+      <video:duration>30</video:duration>
+    </video:video>
   </url>
   
-  <!-- Services Pages -->
+  <!-- High-Value Landing Pages -->
+  <url>
+    <loc>https://leedaydevs.com/web-development-london</loc>
+    <lastmod>2025-01-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <mobile:mobile/>
+  </url>
+  
+  <url>
+    <loc>https://leedaydevs.com/ecommerce-development-uk</loc>
+    <lastmod>2025-01-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <mobile:mobile/>
+  </url>
+  
+  <!-- Core Service Pages -->
   <url>
     <loc>https://leedaydevs.com/services</loc>
     <lastmod>2025-01-10</lastmod>
@@ -31,7 +55,7 @@
   <url>
     <loc>https://leedaydevs.com/web-development</loc>
     <lastmod>2025-01-10</lastmod>
-    <changefreq>monthly</changefreq>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <mobile:mobile/>
   </url>
@@ -39,7 +63,7 @@
   <url>
     <loc>https://leedaydevs.com/e-commerce</loc>
     <lastmod>2025-01-10</lastmod>
-    <changefreq>monthly</changefreq>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <mobile:mobile/>
   </url>
@@ -47,7 +71,7 @@
   <url>
     <loc>https://leedaydevs.com/ai-automation</loc>
     <lastmod>2025-01-10</lastmod>
-    <changefreq>monthly</changefreq>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <mobile:mobile/>
   </url>
@@ -55,20 +79,41 @@
   <url>
     <loc>https://leedaydevs.com/hosting</loc>
     <lastmod>2025-01-10</lastmod>
-    <changefreq>monthly</changefreq>
+    <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <mobile:mobile/>
   </url>
   
-  <!-- Portfolio & Templates -->
+  <url>
+    <loc>https://leedaydevs.com/mobile-app-development</loc>
+    <lastmod>2025-01-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <mobile:mobile/>
+  </url>
+  
+  <!-- Portfolio & Case Studies -->
   <url>
     <loc>https://leedaydevs.com/portfolio</loc>
     <lastmod>2025-01-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <mobile:mobile/>
+    <image:image>
+      <image:loc>https://leedaydevs.com/assets/project-1.jpg</image:loc>
+      <image:title>Web Development Portfolio - LD Development</image:title>
+    </image:image>
   </url>
   
+  <url>
+    <loc>https://leedaydevs.com/case-studies</loc>
+    <lastmod>2025-01-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <mobile:mobile/>
+  </url>
+  
+  <!-- Templates & Demos -->
   <url>
     <loc>https://leedaydevs.com/templates</loc>
     <lastmod>2025-01-10</lastmod>
@@ -77,9 +122,17 @@
     <mobile:mobile/>
   </url>
   
-  <!-- Demo Pages -->
   <url>
-    <loc>https://leedaydevs.com/demo/restaurant</loc>
+    <loc>https://leedaydevs.com/website-templates</loc>
+    <lastmod>2025-01-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <mobile:mobile/>
+  </url>
+  
+  <!-- Industry Demo Pages -->
+  <url>
+    <loc>https://leedaydevs.com/demo/restaurant-deluxe</loc>
     <lastmod>2025-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -95,7 +148,7 @@
   </url>
   
   <url>
-    <loc>https://leedaydevs.com/demo/cleaning</loc>
+    <loc>https://leedaydevs.com/demo/cleaning-services</loc>
     <lastmod>2025-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -103,7 +156,7 @@
   </url>
   
   <url>
-    <loc>https://leedaydevs.com/demo/fitness</loc>
+    <loc>https://leedaydevs.com/demo/fitness-studio</loc>
     <lastmod>2025-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -111,7 +164,7 @@
   </url>
   
   <url>
-    <loc>https://leedaydevs.com/demo/barber</loc>
+    <loc>https://leedaydevs.com/demo/modern-barber</loc>
     <lastmod>2025-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -119,7 +172,7 @@
   </url>
   
   <url>
-    <loc>https://leedaydevs.com/demo/electrician</loc>
+    <loc>https://leedaydevs.com/demo/electrician-expert</loc>
     <lastmod>2025-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -127,7 +180,7 @@
   </url>
   
   <url>
-    <loc>https://leedaydevs.com/demo/plumber</loc>
+    <loc>https://leedaydevs.com/demo/plumber-pro</loc>
     <lastmod>2025-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -142,7 +195,7 @@
     <mobile:mobile/>
   </url>
   
-  <!-- Blog -->
+  <!-- Blog & Content -->
   <url>
     <loc>https://leedaydevs.com/blog</loc>
     <lastmod>2025-01-10</lastmod>
@@ -151,9 +204,41 @@
     <mobile:mobile/>
   </url>
   
-  <!-- Business Pages -->
+  <url>
+    <loc>https://leedaydevs.com/blog/web-development-trends-2025</loc>
+    <lastmod>2025-01-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <mobile:mobile/>
+  </url>
+  
+  <url>
+    <loc>https://leedaydevs.com/blog/ai-automation-business-growth</loc>
+    <lastmod>2025-01-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <mobile:mobile/>
+  </url>
+  
+  <url>
+    <loc>https://leedaydevs.com/blog/ecommerce-conversion-optimization</loc>
+    <lastmod>2025-01-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <mobile:mobile/>
+  </url>
+  
+  <!-- Business & Lead Generation -->
   <url>
     <loc>https://leedaydevs.com/request-work</loc>
+    <lastmod>2025-01-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <mobile:mobile/>
+  </url>
+  
+  <url>
+    <loc>https://leedaydevs.com/get-quote</loc>
     <lastmod>2025-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
@@ -169,14 +254,22 @@
   </url>
   
   <url>
-    <loc>https://leedaydevs.com/website-setup</loc>
+    <loc>https://leedaydevs.com/website-setup-form</loc>
     <lastmod>2025-01-10</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <mobile:mobile/>
+  </url>
+  
+  <url>
+    <loc>https://leedaydevs.com/pricing</loc>
+    <lastmod>2025-01-10</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <mobile:mobile/>
   </url>
   
-  <!-- Contact & About -->
+  <!-- Contact & Support -->
   <url>
     <loc>https://leedaydevs.com/contact</loc>
     <lastmod>2025-01-10</lastmod>
@@ -193,7 +286,48 @@
     <mobile:mobile/>
   </url>
   
-  <!-- Legal Pages -->
+  <url>
+    <loc>https://leedaydevs.com/support</loc>
+    <lastmod>2025-01-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <mobile:mobile/>
+  </url>
+  
+  <url>
+    <loc>https://leedaydevs.com/faq</loc>
+    <lastmod>2025-01-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <mobile:mobile/>
+  </url>
+  
+  <!-- Success Pages -->
+  <url>
+    <loc>https://leedaydevs.com/payment-success</loc>
+    <lastmod>2025-01-10</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <mobile:mobile/>
+  </url>
+  
+  <url>
+    <loc>https://leedaydevs.com/business-details-success</loc>
+    <lastmod>2025-01-10</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <mobile:mobile/>
+  </url>
+  
+  <url>
+    <loc>https://leedaydevs.com/website-setup-thank-you</loc>
+    <lastmod>2025-01-10</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <mobile:mobile/>
+  </url>
+  
+  <!-- Legal & Compliance -->
   <url>
     <loc>https://leedaydevs.com/privacy-policy</loc>
     <lastmod>2025-01-05</lastmod>
@@ -210,12 +344,11 @@
     <mobile:mobile/>
   </url>
   
-  <!-- Auth Pages (Lower Priority) -->
   <url>
-    <loc>https://leedaydevs.com/auth</loc>
+    <loc>https://leedaydevs.com/cookie-policy</loc>
     <lastmod>2025-01-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
     <mobile:mobile/>
   </url>
 
