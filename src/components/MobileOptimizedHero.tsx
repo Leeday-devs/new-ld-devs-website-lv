@@ -180,7 +180,7 @@ const MobileOptimizedHero = () => {
             <span className="text-highlight font-bold">UK</span>{" "}
             for businesses.
             <span className="block mt-2">
-              We create fast, secure, and beautiful Websites & Applications.
+              We create fast, secure, and beautiful <span className="text-highlight font-bold">Websites & Applications</span>.
             </span>
           </p>
         </div>
