@@ -9,8 +9,7 @@ const primaryNavItems = [
   { label: "Home", href: "/", isInternal: true },
   { label: "Services", href: "#services", isInternal: false },
   { label: "Pre-Built", href: "/templates", isInternal: true },
-  { label: "Blog", href: "/blog", isInternal: true },
-  { label: "About", href: "#about", isInternal: false }
+  { label: "Blog", href: "/blog", isInternal: true }
 ];
 
 const dropdownItems = [
