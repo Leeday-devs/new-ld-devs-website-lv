@@ -2,13 +2,17 @@ import { useState, useEffect, useCallback, memo } from "react";
 import { Menu, X, ChevronDown, Star, Shield, Award } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const MobileOptimizedNavigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const isMobile = useIsMobile();
+  const location = useLocation();
+  
+  // Check if we're on the pricing page
+  const isPricingPage = location.pathname === '/pricing';
 
   // Navigation items optimized for mobile
   const primaryNavItems = [
@@ -77,13 +81,15 @@ const MobileOptimizedNavigation = () => {
   return (
     <nav 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled 
-          ? 'bg-navy/95 backdrop-blur-md shadow-lg border-b border-orange/10' 
-          : 'bg-gradient-to-b from-navy/80 via-navy/60 to-transparent'
+        isPricingPage
+          ? 'bg-navy/95 backdrop-blur-md shadow-lg border-b border-orange/10'
+          : isScrolled 
+            ? 'bg-navy/95 backdrop-blur-md shadow-lg border-b border-orange/10' 
+            : 'bg-gradient-to-b from-navy/80 via-navy/60 to-transparent'
       }`}
     >
       {/* Mobile-First Trust Banner */}
-      <div className={`${isScrolled ? 'hidden' : 'block'} bg-orange/95 backdrop-blur-sm text-white py-1.5 px-4 text-center`}>
+      <div className={`${isScrolled || isPricingPage ? 'hidden' : 'block'} bg-orange/95 backdrop-blur-sm text-white py-1.5 px-4 text-center`}>
         <div className="flex items-center justify-center space-x-2 text-xs xs:text-sm">
           <div className="flex items-center space-x-1">
             <Star className="h-3 w-3 xs:h-4 xs:w-4 fill-current" />

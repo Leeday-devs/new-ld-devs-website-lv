@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import Pricing from "@/components/Pricing";
+import pricingHeroBg from "@/assets/pricing-hero-bg.jpg";
 
 const PricingPage = () => {
   return (

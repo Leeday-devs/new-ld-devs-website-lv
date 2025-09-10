@@ -6,6 +6,7 @@ import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import pricingHeroBg from "@/assets/pricing-hero-bg.jpg";
 
 const Pricing = () => {
   const [activeCategory, setActiveCategory] = useState('websites');
@@ -346,9 +347,13 @@ const Pricing = () => {
       className="relative py-32 overflow-hidden"
       aria-label="Pricing plans and packages"
     >
-      {/* Premium Background with Animated Gradients */}
-      <div className="absolute inset-0 bg-gradient-to-br from-navy via-navy/95 to-purple-900/20"></div>
-      <div className="absolute inset-0 bg-gradient-to-t from-navy/50 via-transparent to-navy/30"></div>
+      {/* Premium Background with Hero Image */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${pricingHeroBg})` }}
+      ></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-navy/90 via-navy/85 to-purple-900/80"></div>
+      <div className="absolute inset-0 bg-gradient-to-t from-navy/70 via-transparent to-navy/50"></div>
       
       {/* Animated Background Elements */}
       <div className="absolute top-20 left-10 w-72 h-72 bg-orange/10 rounded-full blur-3xl animate-float"></div>
