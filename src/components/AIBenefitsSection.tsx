@@ -73,43 +73,43 @@ const AIBenefitsSection = () => {
   ];
 
   return (
-    <section className="py-20 bg-navy text-white relative overflow-hidden">
+    <section className="py-12 bg-navy text-white relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--brand-orange)_0%,_transparent_50%)] opacity-5"></div>
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_var(--brand-orange)_0%,_transparent_50%)] opacity-5"></div>
       
       <div className="container mx-auto px-4 relative">
         <ScrollAnimated>
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
               Why Your Business Needs a Professional <span className="text-primary">Website</span>
             </h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            <p className="text-lg text-gray-300 max-w-2xl mx-auto">
               Real data shows the transformative impact of professional websites on business growth
             </p>
           </div>
         </ScrollAnimated>
 
         {/* Dashboard Metrics Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
           {dashboardMetrics.map((metric, index) => (
-            <ScrollAnimated key={index} delay={index * 100}>
+            <ScrollAnimated key={index} delay={index * 50}>
               <Card className="bg-white/5 border-white/10 backdrop-blur-sm hover:bg-white/10 transition-all duration-300 group">
-                <CardContent className="p-6">
-                  <div className="flex items-center justify-between mb-4">
-                    <div className={`p-3 rounded-xl ${metric.bgColor}`}>
+                <CardContent className="p-4">
+                  <div className="flex items-center justify-between mb-3">
+                    <div className={`p-2 rounded-lg ${metric.bgColor}`}>
                       <div className={metric.color}>
                         {metric.icon}
                       </div>
                     </div>
-                    <div className={`flex items-center gap-1 text-sm ${metric.color} ${metric.color.includes('green') ? 'bg-green-400/10' : metric.color.includes('orange') ? 'bg-orange-400/10' : 'bg-blue-400/10'} px-2 py-1 rounded-full`}>
+                    <div className={`flex items-center gap-1 text-xs ${metric.color} ${metric.color.includes('green') ? 'bg-green-400/10' : metric.color.includes('orange') ? 'bg-orange-400/10' : 'bg-blue-400/10'} px-2 py-1 rounded-full`}>
                       <ArrowUp className="w-3 h-3" />
                       {metric.change}
                     </div>
                   </div>
                   <div className="mb-2">
-                    <div className="text-3xl font-bold text-white mb-1">{metric.value}</div>
-                    <div className="text-sm font-medium text-gray-300">{metric.title}</div>
+                    <div className="text-2xl font-bold text-white mb-1">{metric.value}</div>
+                    <div className="text-xs font-medium text-gray-300">{metric.title}</div>
                   </div>
                   <div className="text-xs text-gray-400">{metric.description}</div>
                 </CardContent>
@@ -120,16 +120,16 @@ const AIBenefitsSection = () => {
 
         {/* Main Chart Section */}
         <ScrollAnimated>
-          <Card className="bg-white/5 border-white/10 backdrop-blur-sm mb-12">
-            <CardHeader className="pb-4">
-              <CardTitle className="text-2xl text-white flex items-center gap-3">
-                <BarChart3 className="w-6 h-6 text-primary" />
+          <Card className="bg-white/5 border-white/10 backdrop-blur-sm mb-8">
+            <CardHeader className="pb-3">
+              <CardTitle className="text-xl text-white flex items-center gap-3">
+                <BarChart3 className="w-5 h-5 text-primary" />
                 Website Performance Impact
               </CardTitle>
-              <p className="text-gray-400">Revenue, leads, and traffic growth with professional websites</p>
+              <p className="text-sm text-gray-400">Revenue, leads, and traffic growth with professional websites</p>
             </CardHeader>
-            <CardContent className="p-6 pt-0">
-              <ResponsiveContainer width="100%" height={350}>
+            <CardContent className="p-4 pt-0">
+              <ResponsiveContainer width="100%" height={250}>
                 <AreaChart data={websiteImpactData}>
                   <defs>
                     <linearGradient id="revenueGradient" x1="0" y1="0" x2="0" y2="1">
@@ -146,19 +146,20 @@ const AIBenefitsSection = () => {
                     dataKey="month" 
                     axisLine={false}
                     tickLine={false}
-                    tick={{ fill: '#9ca3af', fontSize: 12 }}
+                    tick={{ fill: '#9ca3af', fontSize: 11 }}
                   />
                   <YAxis 
                     axisLine={false}
                     tickLine={false}
-                    tick={{ fill: '#9ca3af', fontSize: 12 }}
+                    tick={{ fill: '#9ca3af', fontSize: 11 }}
                   />
                   <Tooltip 
                     contentStyle={{
                       backgroundColor: 'rgba(0,0,0,0.8)',
                       border: '1px solid rgba(255,255,255,0.1)',
-                      borderRadius: '12px',
-                      color: 'white'
+                      borderRadius: '8px',
+                      color: 'white',
+                      fontSize: '12px'
                     }}
                     formatter={(value, name) => [
                       `${value}%`, 
@@ -170,7 +171,7 @@ const AIBenefitsSection = () => {
                     type="monotone"
                     dataKey="revenue"
                     stroke="#22d3ee"
-                    strokeWidth={3}
+                    strokeWidth={2}
                     fill="url(#revenueGradient)"
                   />
                   <Area
@@ -189,16 +190,16 @@ const AIBenefitsSection = () => {
         {/* CTA Section */}
         <ScrollAnimated>
           <div className="text-center">
-            <Card className="bg-primary/10 border-primary/20 backdrop-blur-sm p-8">
-              <h3 className="text-2xl font-bold mb-4 text-white">Ready to Transform Your Business?</h3>
-              <p className="text-lg text-gray-300 mb-6 max-w-2xl mx-auto">
+            <Card className="bg-primary/10 border-primary/20 backdrop-blur-sm p-6">
+              <h3 className="text-xl font-bold mb-3 text-white">Ready to Transform Your Business?</h3>
+              <p className="text-gray-300 mb-4 max-w-xl mx-auto">
                 Join 1,200+ businesses already seeing these results with professional websites
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <button className="btn-primary px-8 py-4 text-white font-semibold rounded-xl">
+              <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                <button className="btn-primary px-6 py-3 text-white font-semibold rounded-lg">
                   Get Your Dashboard Quote
                 </button>
-                <button className="border border-white/20 text-white px-8 py-4 rounded-xl font-semibold hover:bg-white/10 transition-colors">
+                <button className="border border-white/20 text-white px-6 py-3 rounded-lg font-semibold hover:bg-white/10 transition-colors">
                   View Live Examples
                 </button>
               </div>
