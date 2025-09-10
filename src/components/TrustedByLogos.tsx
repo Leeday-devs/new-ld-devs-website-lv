@@ -41,6 +41,11 @@ const TrustedByLogos = () => {
       name: "OpenAI",
       url: "https://openai.com",
       displayName: "OpenAI"
+    },
+    {
+      name: "Leonardo.ai",
+      url: "https://leonardo.ai",
+      displayName: "Leonardo.ai"
     }
   ];
 
