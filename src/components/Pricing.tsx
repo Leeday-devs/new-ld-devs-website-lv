@@ -365,7 +365,7 @@ const Pricing = () => {
           
           <h1 className="font-serif font-bold text-6xl md:text-7xl lg:text-8xl mb-8 text-white animate-fade-in-up stagger-delay-1">
             Investment in Your{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange via-yellow-400 to-orange animate-gradient-x">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange to-orange/80 animate-gradient-x">
               Digital Future
             </span>
           </h1>
@@ -378,13 +378,13 @@ const Pricing = () => {
               <span className="text-orange font-semibold">lifetime support</span>.
             </p>
             
-            <div className="bg-gradient-to-r from-orange/20 via-yellow-400/20 to-orange/20 backdrop-blur-xl border border-orange/30 rounded-2xl p-8 inline-block shadow-2xl">
+            <div className="bg-gradient-to-r from-orange/20 to-orange/10 backdrop-blur-xl border border-orange/30 rounded-2xl p-8 inline-block shadow-2xl">
               <div className="flex items-center justify-center gap-3 text-white">
                 <Shield className="h-6 w-6 text-orange" />
                 <span className="text-lg font-semibold">
                   Complete builds delivered - no technical knowledge required
                 </span>
-                <Zap className="h-6 w-6 text-yellow-400" />
+                <Zap className="h-6 w-6 text-orange" />
               </div>
             </div>
           </div>
@@ -404,13 +404,13 @@ const Pricing = () => {
                     onClick={() => setActiveCategory(category.id)}
                     className={`group relative overflow-hidden flex items-center justify-center space-x-1.5 px-4 py-3.5 rounded-2xl font-semibold transition-all duration-500 text-sm ${
                       activeCategory === category.id
-                        ? 'bg-gradient-to-r from-orange via-yellow-400 to-orange text-navy shadow-2xl scale-105'
+                        ? 'bg-gradient-to-r from-orange to-orange/80 text-white shadow-2xl scale-105'
                         : 'text-white/80 hover:text-white bg-white/5 backdrop-blur-xl border border-white/10 hover:bg-white/10 hover:shadow-xl hover:scale-105'
                     }`}
                     style={{ animationDelay: `${index * 100}ms` }}
                   >
                     {activeCategory === category.id && (
-                      <div className="absolute inset-0 bg-gradient-to-r from-orange/20 via-yellow-400/20 to-orange/20 animate-pulse"></div>
+                      <div className="absolute inset-0 bg-gradient-to-r from-orange/20 to-orange/10 animate-pulse"></div>
                     )}
                     <IconComponent className="h-5 w-5 relative z-10" />
                     <span className="relative z-10">{category.label}</span>
@@ -430,15 +430,15 @@ const Pricing = () => {
                     onClick={() => setActiveCategory(category.id)}
                     className={`group relative overflow-hidden flex items-center space-x-3 px-8 py-4 rounded-2xl font-semibold transition-all duration-500 text-base ${
                       activeCategory === category.id
-                        ? 'bg-gradient-to-r from-orange via-yellow-400 to-orange text-navy shadow-2xl scale-105'
+                        ? 'bg-gradient-to-r from-orange to-orange/80 text-white shadow-2xl scale-105'
                         : 'text-white/80 hover:text-white hover:bg-white/10 hover:shadow-xl hover:scale-105'
                     }`}
                     style={{ animationDelay: `${index * 100}ms` }}
                   >
                     {activeCategory === category.id && (
                       <>
-                        <div className="absolute inset-0 bg-gradient-to-r from-orange/20 via-yellow-400/20 to-orange/20 animate-pulse"></div>
-                        <div className="absolute -inset-1 bg-gradient-to-r from-orange via-yellow-400 to-orange rounded-2xl blur opacity-30 group-hover:opacity-50 transition-opacity"></div>
+                        <div className="absolute inset-0 bg-gradient-to-r from-orange/20 to-orange/10 animate-pulse"></div>
+                        <div className="absolute -inset-1 bg-gradient-to-r from-orange to-orange/80 rounded-2xl blur opacity-30 group-hover:opacity-50 transition-opacity"></div>
                       </>
                     )}
                     <IconComponent className="h-6 w-6 relative z-10" />
@@ -465,7 +465,7 @@ const Pricing = () => {
                 {/* Popular Badge */}
                 {isPopular && (
                   <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 z-20">
-                    <div className="bg-gradient-to-r from-orange via-yellow-400 to-orange text-navy px-8 py-3 rounded-full text-sm font-bold shadow-2xl flex items-center space-x-2 animate-bounce-gentle">
+                    <div className="bg-gradient-to-r from-orange to-orange/80 text-white px-8 py-3 rounded-full text-sm font-bold shadow-2xl flex items-center space-x-2 animate-bounce-gentle">
                       <Award className="h-4 w-4" />
                       <span>Most Popular</span>
                       <Sparkles className="h-4 w-4" />
@@ -476,7 +476,7 @@ const Pricing = () => {
                 {/* Premium Glow Effect */}
                 <div className={`absolute -inset-1 rounded-3xl blur-lg opacity-0 group-hover:opacity-100 transition-all duration-500 ${
                   isPopular 
-                    ? 'bg-gradient-to-r from-orange via-yellow-400 to-orange' 
+                    ? 'bg-gradient-to-r from-orange to-orange/80' 
                     : 'bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400'
                 }`} />
 
@@ -496,7 +496,7 @@ const Pricing = () => {
                     <div className="text-center mb-8">
                       <div className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl mb-6 ${
                         isPopular 
-                          ? 'bg-gradient-to-r from-orange via-yellow-400 to-orange text-navy shadow-xl' 
+                          ? 'bg-gradient-to-r from-orange to-orange/80 text-white shadow-xl' 
                           : 'bg-gradient-to-r from-blue-400/20 to-purple-400/20 text-orange border border-orange/30'
                       } group-hover:scale-110 transition-all duration-500 shadow-2xl`}>
                         <IconComponent className="h-8 w-8" />
@@ -539,8 +539,8 @@ const Pricing = () => {
                             className="flex items-start space-x-3 group/item"
                             style={{ animationDelay: `${(index * 150) + (featureIndex * 50)}ms` }}
                           >
-                            <div className="flex-shrink-0 w-6 h-6 rounded-full bg-gradient-to-r from-orange to-yellow-400 flex items-center justify-center mt-0.5 group-hover/item:scale-110 transition-transform duration-300">
-                              <CheckCircle className="h-3.5 w-3.5 text-navy" />
+                            <div className="flex-shrink-0 w-6 h-6 rounded-full bg-gradient-to-r from-orange to-orange/80 flex items-center justify-center mt-0.5 group-hover/item:scale-110 transition-transform duration-300">
+                              <CheckCircle className="h-3.5 w-3.5 text-white" />
                             </div>
                             <span className="text-gray-200 font-medium leading-relaxed group-hover/item:text-white transition-colors duration-300">
                               {feature}
@@ -568,7 +568,7 @@ const Pricing = () => {
                       disabled={isSubmitting}
                       className={`w-full py-4 px-8 rounded-2xl font-bold text-lg transition-all duration-500 transform hover:scale-105 active:scale-95 shadow-2xl ${
                         isPopular
-                          ? 'bg-gradient-to-r from-orange via-yellow-400 to-orange text-navy hover:shadow-orange/50 hover:shadow-2xl'
+                          ? 'bg-gradient-to-r from-orange to-orange/80 text-white hover:shadow-orange/50 hover:shadow-2xl'
                           : 'bg-gradient-to-r from-white/10 to-white/5 text-white border-2 border-orange/30 hover:border-orange hover:bg-orange/10 hover:shadow-orange/30'
                       } group/button overflow-hidden relative`}
                     >
@@ -596,7 +596,7 @@ const Pricing = () => {
         {/* Premium Custom Quote Section */}
         <div className="relative group animate-fade-in-up" style={{ animationDelay: '1.4s' }}>
           {/* Glow Effect */}
-          <div className="absolute -inset-1 bg-gradient-to-r from-orange via-yellow-400 to-orange rounded-3xl blur-lg opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
+          <div className="absolute -inset-1 bg-gradient-to-r from-orange to-orange/80 rounded-3xl blur-lg opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
           
           <div className="relative bg-gradient-to-br from-navy/90 via-navy to-purple-900/30 backdrop-blur-2xl rounded-3xl p-12 lg:p-16 text-center border border-white/10 shadow-2xl overflow-hidden">
             {/* Background Pattern */}
@@ -610,8 +610,8 @@ const Pricing = () => {
                 <span>Bespoke Solutions</span>
               </div>
               
-              <h3 className="font-serif font-bold text-5xl lg:text-6xl mb-8 text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-orange group-hover:via-yellow-400 group-hover:to-orange transition-all duration-500">
-                Need Something <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange via-yellow-400 to-orange">Extraordinary</span>?
+              <h3 className="font-serif font-bold text-5xl lg:text-6xl mb-8 text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-orange group-hover:to-orange/80 transition-all duration-500">
+                Need Something <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange to-orange/80">Extraordinary</span>?
               </h3>
               
               <p className="text-xl lg:text-2xl mb-12 text-gray-200 leading-relaxed max-w-3xl mx-auto">
@@ -619,7 +619,7 @@ const Pricing = () => {
               </p>
               
               <button 
-                className="group/btn bg-gradient-to-r from-orange via-yellow-400 to-orange text-navy px-12 py-5 text-xl font-bold rounded-2xl shadow-2xl hover:shadow-orange/50 hover:-translate-y-2 transition-all duration-500 relative overflow-hidden"
+                className="group/btn bg-gradient-to-r from-orange to-orange/80 text-white px-12 py-5 text-xl font-bold rounded-2xl shadow-2xl hover:shadow-orange/50 hover:-translate-y-2 transition-all duration-500 relative overflow-hidden"
                 onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 translate-x-[-200%] group-hover/btn:translate-x-[200%] transition-transform duration-1000"></div>
