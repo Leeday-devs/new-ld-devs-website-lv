@@ -387,22 +387,24 @@
     z-index: 1;
   }
 
-  /* Enhanced Form Inputs - QA Compliant with Orange Focus Glow */
+  /* Enhanced Form Inputs - QA Compliant with Orange Focus Glow - Mobile Optimized */
   .premium-input,
   input, 
   textarea, 
   select {
     width: 100%;
-    padding: 12px 14px;
+    padding: 14px 16px; /* Increased padding for better mobile touch */
     border: 1px solid #E5E7EB;
     border-radius: 12px;
-    font-size: 1rem;
+    font-size: 16px; /* Prevents zoom on iOS */
     line-height: 1.5;
     background: #FFFFFF;
     color: hsl(var(--text-primary));
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-    min-height: 44px; /* Thumb-friendly for mobile */
+    min-height: 48px; /* Increased for better mobile touch targets */
+    -webkit-appearance: none; /* Remove iOS styling */
+    -webkit-tap-highlight-color: transparent; /* Remove tap highlight */
   }
 
   input:focus, 
@@ -415,19 +417,21 @@
     transform: translateY(-1px);
   }
 
-  /* Enhanced Button System - QA Compliant */
+  /* Enhanced Button System - QA Compliant - Mobile Optimized */
   .btn-primary {
     background: #FF7A00;
     color: #fff;
     border-radius: 9999px;
-    padding: 12px 20px;
+    padding: 14px 24px; /* Increased padding for mobile */
     border: none;
     font-weight: 600;
-    min-height: 44px; /* Thumb-friendly for mobile */
+    min-height: 48px; /* Increased for better mobile touch targets */
     transition: all 0.2s ease;
     cursor: pointer;
     position: relative;
     overflow: hidden;
+    -webkit-tap-highlight-color: transparent; /* Remove tap highlight */
+    touch-action: manipulation; /* Improve touch responsiveness */
   }
 
   .btn-primary:hover {
@@ -440,12 +444,14 @@
     background: #0A192F;
     color: #fff;
     border-radius: 9999px;
-    padding: 12px 20px;
+    padding: 14px 24px; /* Increased padding for mobile */
     border: 1px solid transparent;
     font-weight: 600;
-    min-height: 44px; /* Thumb-friendly for mobile */
+    min-height: 48px; /* Increased for better mobile touch targets */
     transition: all 0.2s ease;
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent; /* Remove tap highlight */
+    touch-action: manipulation; /* Improve touch responsiveness */
   }
 
   .btn-secondary:hover {

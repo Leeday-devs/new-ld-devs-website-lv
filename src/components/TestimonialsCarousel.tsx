@@ -54,30 +54,30 @@ const TestimonialsCarousel = () => {
           </p>
         </div>
 
-        {/* Three Card Grid */}
+        {/* Three Card Grid - Mobile Optimized */}
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
             {testimonials.map((testimonial) => (
-              <div key={testimonial.id} className="card-premium p-8 flex flex-col justify-between min-h-[420px] group hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
-                {/* Quote Icon with glow */}
+              <div key={testimonial.id} className="card-premium p-4 sm:p-6 lg:p-8 flex flex-col justify-between min-h-[320px] sm:min-h-[380px] lg:min-h-[420px] group hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+                {/* Quote Icon with glow - Mobile Optimized */}
                 <div className="relative">
-                  <Quote className="h-8 w-8 text-orange mb-6 transition-all duration-300 group-hover:scale-110" />
+                  <Quote className="h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8 text-orange mb-4 sm:mb-5 lg:mb-6 transition-all duration-300 group-hover:scale-110" />
                   <div className="absolute inset-0 bg-orange/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </div>
                 
-                {/* Rating Stars */}
-                <div className="flex items-center mb-6">
+                {/* Rating Stars - Mobile Optimized */}
+                <div className="flex items-center mb-4 sm:mb-5 lg:mb-6">
                   {[...Array(testimonial.rating)].map((_, i) => (
                     <Star 
                       key={i} 
-                      className="h-5 w-5 text-orange fill-orange transition-all duration-300 hover:scale-110" 
+                      className="h-4 w-4 sm:h-5 sm:w-5 text-orange fill-orange transition-all duration-300 hover:scale-110 mr-1" 
                       style={{ animationDelay: `${i * 100}ms` }}
                     />
                   ))}
                 </div>
 
-                {/* Quote */}
-                <blockquote className="text-body mb-8 flex-grow relative">
+                {/* Quote - Mobile Optimized */}
+                <blockquote className="text-sm sm:text-base lg:text-lg mb-6 sm:mb-7 lg:mb-8 flex-grow relative leading-relaxed">
                   {/* Faint logo background */}
                   {testimonial.companyLogo && (
                     <img 
@@ -89,19 +89,19 @@ const TestimonialsCarousel = () => {
                   <span className="relative z-10">"{testimonial.quote}"</span>
                 </blockquote>
 
-                {/* Client Info */}
+                {/* Client Info - Mobile Optimized */}
                 <div className="flex items-center justify-between mt-auto">
-                  <div>
-                    <div className="font-semibold text-navy text-base">
+                  <div className="flex-1 min-w-0">
+                    <div className="font-semibold text-navy text-sm sm:text-base truncate">
                       {testimonial.name}
                     </div>
-                    <div className="text-text-secondary text-sm">
+                    <div className="text-text-secondary text-xs sm:text-sm">
                       {testimonial.role}, {testimonial.website ? (
                         <a 
                           href={testimonial.website} 
                           target="_blank" 
                           rel="noopener noreferrer"
-                          className="hover:text-orange transition-colors underline"
+                          className="hover:text-orange transition-colors underline break-words"
                         >
                           {testimonial.company}
                         </a>
@@ -112,7 +112,7 @@ const TestimonialsCarousel = () => {
                     <img 
                       src={testimonial.companyLogo} 
                       alt={`${testimonial.company} logo`}
-                      className="h-12 w-auto object-contain transition-all duration-300 group-hover:scale-110"
+                      className="h-8 w-auto sm:h-10 lg:h-12 object-contain transition-all duration-300 group-hover:scale-110 flex-shrink-0 ml-2"
                     />
                   )}
                 </div>

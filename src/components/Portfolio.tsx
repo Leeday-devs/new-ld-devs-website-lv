@@ -194,63 +194,64 @@ const Portfolio = () => {
         </div>
       </div>
 
-      {/* Case Study Modal */}
+      {/* Case Study Modal - Mobile Optimized */}
       {selectedProject && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-3xl max-w-5xl w-full max-h-[90vh] overflow-y-auto animate-scale-in shadow-luxury border border-gray-100">
-            <div className="p-10">
-              {/* Modal Header */}
-              <div className="flex items-center justify-between mb-10">
-                <div>
-                  <h3 className="heading-primary heading-lg text-navy mb-3 font-bold">
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-2 sm:p-4">
+          <div className="bg-white rounded-2xl sm:rounded-3xl max-w-5xl w-full max-h-[95vh] sm:max-h-[90vh] overflow-y-auto animate-scale-in shadow-luxury border border-gray-100">
+            <div className="p-4 sm:p-6 lg:p-10">
+              {/* Modal Header - Mobile Optimized */}
+              <div className="flex items-start justify-between mb-6 sm:mb-10">
+                <div className="flex-1 mr-4">
+                  <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-navy mb-2 sm:mb-3 leading-tight">
                     {selectedProject.title}
                   </h3>
-                  <p className="text-orange font-bold text-xl tracking-wide">
+                  <p className="text-orange font-bold text-sm sm:text-lg lg:text-xl tracking-wide">
                     {selectedProject.category} • Case Study
                   </p>
                 </div>
                 <button
                   onClick={closeCaseStudy}
-                  className="text-text-secondary hover:text-navy transition-colors p-3 hover:bg-gray-100 rounded-xl"
+                  className="text-text-secondary hover:text-navy transition-colors p-2 sm:p-3 hover:bg-gray-100 rounded-xl flex-shrink-0 touch-manipulation"
+                  style={{ minHeight: '48px', minWidth: '48px' }}
                 >
-                  <X className="h-7 w-7" />
+                  <X className="h-5 w-5 sm:h-6 sm:w-6 lg:h-7 lg:w-7" />
                 </button>
               </div>
 
-              {/* Case Study Content */}
-              <div className="space-y-12">
+              {/* Case Study Content - Mobile Optimized */}
+              <div className="space-y-6 sm:space-y-8 lg:space-y-12">
                 {/* Challenge */}
-                <div className="bg-gradient-to-br from-red-50 to-red-100 p-10 rounded-3xl border-l-6 border-red-400 shadow-subtle">
-                  <h4 className="heading-primary heading-md text-red-600 mb-6 flex items-center font-bold">
+                <div className="bg-gradient-to-br from-red-50 to-red-100 p-4 sm:p-6 lg:p-10 rounded-2xl sm:rounded-3xl border-l-4 sm:border-l-6 border-red-400 shadow-subtle">
+                  <h4 className="text-lg sm:text-xl lg:text-2xl font-bold text-red-600 mb-3 sm:mb-4 lg:mb-6 flex items-center">
                     🎯 The Challenge
                   </h4>
-                  <p className="text-body text-gray-700 leading-relaxed text-lg">
+                  <p className="text-sm sm:text-base lg:text-lg text-gray-700 leading-relaxed">
                     {selectedProject.caseStudy.challenge}
                   </p>
                 </div>
 
                 {/* Solution */}
-                <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-10 rounded-3xl border-l-6 border-blue-400 shadow-subtle">
-                  <h4 className="heading-primary heading-md text-blue-600 mb-6 flex items-center font-bold">
+                <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-4 sm:p-6 lg:p-10 rounded-2xl sm:rounded-3xl border-l-4 sm:border-l-6 border-blue-400 shadow-subtle">
+                  <h4 className="text-lg sm:text-xl lg:text-2xl font-bold text-blue-600 mb-3 sm:mb-4 lg:mb-6 flex items-center">
                     🛠️ Our Solution
                   </h4>
-                  <p className="text-body text-gray-700 leading-relaxed text-lg">
+                  <p className="text-sm sm:text-base lg:text-lg text-gray-700 leading-relaxed">
                     {selectedProject.caseStudy.solution}
                   </p>
                 </div>
 
                 {/* Results */}
-                <div className="bg-gradient-to-br from-green-50 to-green-100 p-10 rounded-3xl border-l-6 border-green-400 shadow-subtle">
-                  <h4 className="heading-primary heading-md text-green-600 mb-8 flex items-center font-bold">
+                <div className="bg-gradient-to-br from-green-50 to-green-100 p-4 sm:p-6 lg:p-10 rounded-2xl sm:rounded-3xl border-l-4 sm:border-l-6 border-green-400 shadow-subtle">
+                  <h4 className="text-lg sm:text-xl lg:text-2xl font-bold text-green-600 mb-4 sm:mb-6 lg:mb-8 flex items-center">
                     📈 Business Results
                   </h4>
-                  <div className="grid md:grid-cols-2 gap-8">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
                     {selectedProject.caseStudy.results.map((result, index) => (
-                      <div key={index} className="bg-white p-8 rounded-2xl shadow-premium border border-green-200 hover:shadow-luxury transition-shadow duration-300">
-                        <div className="text-4xl font-bold text-orange mb-4 font-serif">
+                      <div key={index} className="bg-white p-4 sm:p-6 lg:p-8 rounded-xl sm:rounded-2xl shadow-premium border border-green-200 hover:shadow-luxury transition-shadow duration-300">
+                        <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-orange mb-2 sm:mb-3 lg:mb-4 font-serif">
                           {result.split(' ')[0]}
                         </div>
-                        <p className="text-gray-600 font-semibold text-lg">
+                        <p className="text-sm sm:text-base lg:text-lg text-gray-600 font-semibold">
                           {result.split(' ').slice(1).join(' ')}
                         </p>
                       </div>
@@ -259,15 +260,16 @@ const Portfolio = () => {
                 </div>
               </div>
 
-              {/* Modal Footer */}
-              <div className="mt-12 pt-10 border-t border-gray-200 text-center">
+              {/* Modal Footer - Mobile Optimized */}
+              <div className="mt-6 sm:mt-8 lg:mt-12 pt-6 sm:pt-8 lg:pt-10 border-t border-gray-200 text-center">
                 <button
                   onClick={closeCaseStudy}
-                  className="btn-primary px-12 py-5 rounded-2xl font-bold text-lg"
+                  className="btn-primary px-6 sm:px-8 lg:px-12 py-3 sm:py-4 lg:py-5 rounded-xl sm:rounded-2xl font-bold text-sm sm:text-base lg:text-lg w-full sm:w-auto touch-manipulation"
+                  style={{ minHeight: '48px' }}
                 >
                   Get <span className="text-white/90">Similar Results</span> for Your Business
                 </button>
-                <p className="text-base text-gray-500 mt-4 font-medium">
+                <p className="text-sm sm:text-base text-gray-500 mt-3 sm:mt-4 font-medium px-2">
                   Ready to solve your business challenges? Let's discuss your project.
                 </p>
               </div>
