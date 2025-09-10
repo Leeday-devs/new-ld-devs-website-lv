@@ -216,9 +216,9 @@ const Footer = () => {
             </div>
             
             <div className="flex flex-wrap justify-center gap-4 sm:gap-6 items-center text-xs sm:text-sm">
-              <a href="#" className="text-white/70 hover:text-orange transition-colors touch-manipulation" style={{ minHeight: '32px', display: 'inline-flex', alignItems: 'center' }}>Privacy Policy</a>
-              <a href="#" className="text-white/70 hover:text-orange transition-colors touch-manipulation" style={{ minHeight: '32px', display: 'inline-flex', alignItems: 'center' }}>Terms</a>
-              <a href="#" className="text-white/70 hover:text-orange transition-colors touch-manipulation" style={{ minHeight: '32px', display: 'inline-flex', alignItems: 'center' }}>Cookies</a>
+              <a href="/privacy-policy" className="text-white/70 hover:text-orange transition-colors touch-manipulation" style={{ minHeight: '32px', display: 'inline-flex', alignItems: 'center' }}>Privacy Policy</a>
+              <a href="/terms" className="text-white/70 hover:text-orange transition-colors touch-manipulation" style={{ minHeight: '32px', display: 'inline-flex', alignItems: 'center' }}>Terms</a>
+              <a href="/cookies" className="text-white/70 hover:text-orange transition-colors touch-manipulation" style={{ minHeight: '32px', display: 'inline-flex', alignItems: 'center' }}>Cookies</a>
               <div className="flex items-center gap-2 text-white/60">
                 <Shield className="h-3 w-3" />
                 <span className="text-xs">SSL Secured</span>

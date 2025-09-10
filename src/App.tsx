@@ -36,6 +36,9 @@ const BusinessDetailsForm = lazy(() => import("./pages/BusinessDetailsForm"));
 const BusinessDetailsSuccess = lazy(() => import("./pages/BusinessDetailsSuccess"));
 const WebsiteSetupForm = lazy(() => import("./pages/WebsiteSetupForm"));
 const WebsiteSetupThankYou = lazy(() => import("./pages/WebsiteSetupThankYou"));
+const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
+const TermsOfService = lazy(() => import("./pages/TermsOfService"));
+const CookiePolicy = lazy(() => import("./pages/CookiePolicy"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 // Optimized QueryClient configuration
@@ -88,6 +91,9 @@ const App = () => (
                 <Route path="/business-details-success" element={<BusinessDetailsSuccess />} />
                 <Route path="/website-setup" element={<WebsiteSetupForm />} />
                 <Route path="/website-setup-thank-you" element={<WebsiteSetupThankYou />} />
+                <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                <Route path="/terms" element={<TermsOfService />} />
+                <Route path="/cookies" element={<CookiePolicy />} />
                 <Route path="/payment-success" element={<PaymentSuccess />} />
                 <Route path="/payment-canceled" element={<PaymentCanceled />} />
                 <Route path="*" element={<NotFound />} />
