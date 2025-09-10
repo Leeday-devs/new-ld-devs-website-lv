@@ -63,14 +63,14 @@ const Index = () => {
             <Portfolio />
           </section>
           
-          {/* Testimonials (navy band, carousel with auto-scroll) - Premium spacing */}
-          <section aria-label="Client testimonials and reviews" className="section-navy">
-            <TestimonialsCarousel />
-          </section>
-          
           {/* Pricing (white cards, one highlighted) - Premium spacing */}
           <section id="pricing" aria-label="Pricing plans and packages" className="section-white">
             <Pricing />
+          </section>
+          
+          {/* Testimonials (navy band, carousel with auto-scroll) - Premium spacing */}
+          <section aria-label="Client testimonials and reviews" className="section-navy">
+            <TestimonialsCarousel />
           </section>
           
           {/* Applications Section - AI and website features */}
