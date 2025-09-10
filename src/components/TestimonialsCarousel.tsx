@@ -86,7 +86,7 @@ const TestimonialsCarousel = () => {
                       className="absolute right-0 top-0 h-16 w-auto object-contain opacity-5 pointer-events-none"
                     />
                   )}
-                  <span className="relative z-10">"{testimonial.quote}"</span>
+                  <span className="relative z-10 text-gray-700">"{testimonial.quote}"</span>
                 </blockquote>
 
                 {/* Client Info - Mobile Optimized */}
