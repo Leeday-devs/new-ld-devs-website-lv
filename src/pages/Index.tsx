@@ -1,6 +1,6 @@
 import { memo } from "react";
-import Navigation from "@/components/Navigation";
-import Hero from "@/components/Hero";
+import MobileOptimizedNavigation from "@/components/MobileOptimizedNavigation";
+import MobileOptimizedHero from "@/components/MobileOptimizedHero";
 import Services from "@/components/Services";
 import Pricing from "@/components/Pricing";
 import Portfolio from "@/components/Portfolio";
@@ -63,12 +63,12 @@ const Index = () => {
         ]}
       />
       <div className="min-h-screen">
-        <Navigation />
+        <MobileOptimizedNavigation />
         <BreadcrumbsNavigation />
-        <main>
-          {/* Hero (navy) */}
+        <main className="mobile-scroll">
+          {/* Hero (navy) - Mobile Optimized */}
           <section id="home" aria-label="Homepage hero">
-            <Hero />
+            <MobileOptimizedHero />
           </section>
           
           {/* Trust/Stats (navy band, count-up) */}
@@ -83,7 +83,7 @@ const Index = () => {
           <AIBenefitsSection />
           
           {/* Services (white cards) - Premium spacing */}
-          <section id="services" aria-label="Web development services" className="p-0 bg-transparent">
+          <section id="services" aria-label="Web development services" className="spacing-mobile-lg bg-transparent">
             <Services />
           </section>
           
