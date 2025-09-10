@@ -328,7 +328,14 @@
   }
 
   .mobile-app-button {
-    @apply w-full bg-orange text-white rounded-2xl py-4 px-6 font-bold text-lg hover:bg-orange-600 transition-all duration-300 active:scale-95 shadow-lg;
+    @apply w-full text-white rounded-2xl py-4 px-6 font-bold text-lg transition-all duration-300 active:scale-95 shadow-lg;
+    background: linear-gradient(135deg, hsl(var(--orange)), hsl(25 100% 45%));
+  }
+
+  .mobile-app-button:hover {
+    background: linear-gradient(135deg, hsl(25 100% 45%), hsl(25 100% 35%));
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px hsl(var(--orange) / 0.4);
   }
 
   .mobile-app-input {
