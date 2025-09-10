@@ -20,17 +20,8 @@ import LiveChatWidget from "@/components/LiveChatWidget";
 import MobilePerformanceOptimizer from "@/components/MobilePerformanceOptimizer";
 import CriticalCSS from "@/components/CriticalCSS";
 import SEOEnhancements from "@/components/SEOEnhancements";
-import BottomNavigation from "@/components/mobile/BottomNavigation";
-import MobileChatButton from "@/components/mobile/MobileChatButton";
-import StickyBookNowButton from "@/components/mobile/StickyBookNowButton";
-import MobileDrawerMenu from "@/components/mobile/MobileDrawerMenu";
-import { useState } from "react";
-import { useIsMobile } from "@/hooks/use-mobile";
 
 const Index = () => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const isMobile = useIsMobile();
-  
   const faqData = [
     {
       question: "How long does it take to build a website?",
@@ -86,82 +77,56 @@ const Index = () => {
             <MobileOptimizedHero />
           </section>
           
-          {/* Trust/Stats (navy band, count-up) - Mobile Compact */}
-          <section aria-label="Company statistics and trust indicators" className="section-mobile-compact">
+          {/* Trust/Stats (navy band, count-up) */}
+          <section aria-label="Company statistics and trust indicators">
             <StatsBar />
           </section>
           
-          {/* Trusted By Logos - Social Proof - Mobile Minimal */}
-          <div className="section-mobile-minimal">
-            <TrustedByLogos />
-          </div>
+          {/* Trusted By Logos - Social Proof */}
+          <TrustedByLogos />
           
-          {/* AI Benefits Section - Charts and examples - Mobile Compact */}
-          <div className="section-mobile-compact">
-            <AIBenefitsSection />
-          </div>
+          {/* AI Benefits Section - Charts and examples */}
+          <AIBenefitsSection />
           
-          {/* Services (dark background) - Mobile Compact */}
-          <section id="services" aria-label="Web development services" className="bg-transparent section-mobile-compact">
+          {/* Services (dark background) - Premium spacing */}
+          <section id="services" aria-label="Web development services" className="bg-transparent">
             <Services />
           </section>
           
-          {/* Portfolio / Case Studies (dark background) - Mobile Compact */}
-          <section id="portfolio" aria-label="Portfolio of completed projects" className="bg-transparent section-mobile-compact">
+          {/* Portfolio / Case Studies (dark background) - Premium spacing */}
+          <section id="portfolio" aria-label="Portfolio of completed projects" className="bg-transparent">
             <Portfolio />
           </section>
           
-          {/* Pricing (dark background) - Mobile Compact */}
-          <section id="pricing" aria-label="Pricing plans and packages" className="bg-transparent section-mobile-compact">
+          {/* Pricing (dark background) - Premium spacing */}
+          <section id="pricing" aria-label="Pricing plans and packages" className="bg-transparent">
             <Pricing />
           </section>
           
-          {/* Testimonials (navy band, carousel with auto-scroll) - Mobile Minimal */}
-          <section aria-label="Client testimonials and reviews" className="section-navy section-mobile-minimal">
+          {/* Testimonials (navy band, carousel with auto-scroll) - Premium spacing */}
+          <section aria-label="Client testimonials and reviews" className="section-navy">
             <TestimonialsCarousel />
           </section>
           
-          {/* Applications Section - AI and website features - Mobile Compact */}
-          <div className="section-mobile-compact">
-            <ApplicationsSection />
-          </div>
+          {/* Applications Section - AI and website features */}
+          <ApplicationsSection />
           
-          {/* FAQ (dark background) - Mobile Compact */}
-          <div className="section-mobile-compact">
-            <FAQ />
-          </div>
+          {/* FAQ (dark background) - Premium spacing */}
+          <FAQ />
           
-          {/* Final CTA (navy band) - Mobile Minimal */}
-          <div className="section-navy section-mobile-minimal">
-            <FinalCTA />
-          </div>
+          {/* Final CTA (navy band) */}
+          <FinalCTA />
           
-        {/* Contact form if needed - Mobile Compact */}
-        <section id="contact" aria-label="Contact information and form" className="section-navy section-mobile-compact">
+        {/* Contact form if needed */}
+        <section id="contact" aria-label="Contact information and form" className="section-navy">
           <Contact />
         </section>
         </main>
         
         {/* Footer (navy) */}
         <Footer />
-        
-        {/* Mobile App Components */}
-        {isMobile && (
-          <>
-            <BottomNavigation />
-            <MobileChatButton />
-            <StickyBookNowButton />
-          </>
-        )}
-        
         <WhatsAppButton />
         <LiveChatWidget />
-        
-        {/* Mobile Drawer Menu */}
-        <MobileDrawerMenu 
-          isOpen={isMobileMenuOpen} 
-          onClose={() => setIsMobileMenuOpen(false)} 
-        />
       </div>
       <CriticalCSS />
       <MobilePerformanceOptimizer />

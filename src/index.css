@@ -241,12 +241,12 @@
     color: hsl(var(--text-muted));
   }
 
-  /* Section Styles - Mobile-Optimized Compact Spacing */
+  /* Section Styles - Mobile-First Premium Spacing */
   .section-white {
     background: hsl(var(--bg-white));
     color: hsl(var(--text-primary));
-    /* Mobile: 2rem (32px) - Very compact mobile spacing */
-    padding: 2rem 0;
+    /* Mobile: 3rem (48px) - Compact mobile spacing */
+    padding: 3rem 0;
     /* Tablet: 5rem (80px) */
     @media (min-width: 640px) {
       padding: 5rem 0;
@@ -260,8 +260,8 @@
   .section-grey {
     background: hsl(var(--bg-grey));
     color: hsl(var(--text-primary));
-    /* Mobile: 2rem (32px) - Very compact mobile spacing */
-    padding: 2rem 0;
+    /* Mobile: 3rem (48px) - Compact mobile spacing */
+    padding: 3rem 0;
     /* Tablet: 5rem (80px) */
     @media (min-width: 640px) {
       padding: 5rem 0;
@@ -275,8 +275,8 @@
   .section-navy {
     background: hsl(var(--bg-navy));
     color: hsl(var(--text-white));
-    /* Mobile: 2rem (32px) - Very compact mobile spacing */
-    padding: 2rem 0;
+    /* Mobile: 3rem (48px) - Compact mobile spacing */
+    padding: 3rem 0;
     /* Tablet: 5rem (80px) */
     @media (min-width: 640px) {
       padding: 5rem 0;
@@ -285,102 +285,6 @@
     @media (min-width: 1024px) {
       padding: 7.5rem 0;
     }
-  }
-
-  /* Mobile-Specific Compact Sections */
-  .section-mobile-compact {
-    /* Mobile: 1.5rem (24px) - Ultra compact */
-    padding: 1.5rem 0;
-    /* Tablet: Keep normal spacing */
-    @media (min-width: 640px) {
-      padding: 5rem 0;
-    }
-    /* Desktop: Premium spacing */
-    @media (min-width: 1024px) {
-      padding: 7.5rem 0;
-    }
-  }
-
-  .section-mobile-minimal {
-    /* Mobile: 1rem (16px) - Minimal spacing */
-    padding: 1rem 0;
-    /* Tablet: Normal spacing */
-    @media (min-width: 640px) {
-      padding: 3rem 0;
-    }
-    /* Desktop: Premium spacing */
-    @media (min-width: 1024px) {
-      padding: 5rem 0;
-    }
-  }
-
-  /* Mobile App-Like Styles */
-  .mobile-app-section {
-    @apply px-4 py-6;
-  }
-
-  .mobile-app-card {
-    @apply bg-white/95 backdrop-blur-md rounded-2xl shadow-xl border border-gray-200/50 p-6 mb-4 transition-all duration-300;
-  }
-
-  .mobile-app-card:hover {
-    @apply shadow-2xl scale-105;
-    background: rgba(255, 255, 255, 0.98);
-  }
-
-  .mobile-app-button {
-    @apply w-full text-white rounded-2xl py-4 px-6 font-bold text-lg transition-all duration-300 active:scale-95 shadow-lg;
-    background: linear-gradient(135deg, hsl(var(--orange)), hsl(25 100% 45%));
-  }
-
-  .mobile-app-button:hover {
-    background: linear-gradient(135deg, hsl(25 100% 45%), hsl(25 100% 35%));
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px hsl(var(--orange) / 0.4);
-  }
-
-  .mobile-app-input {
-    @apply w-full rounded-2xl border-2 border-gray-200 px-4 py-4 text-lg focus:border-orange focus:ring-0 focus:outline-none transition-colors bg-gray-50 hover:bg-white;
-  }
-
-  /* Safe area support for mobile */
-  .safe-area-pb {
-    padding-bottom: env(safe-area-inset-bottom);
-  }
-
-  .safe-area-pt {
-    padding-top: env(safe-area-inset-top);
-  }
-
-  /* Mobile swipe animations */
-  .swipe-card {
-    @apply transform transition-transform duration-300 ease-out;
-  }
-
-  .swipe-card:hover {
-    @apply scale-105;
-  }
-
-  /* Progress indicator */
-  .progress-bar {
-    @apply w-full bg-gray-200 rounded-full h-2 overflow-hidden;
-  }
-
-  .progress-fill {
-    @apply bg-orange h-full transition-all duration-500 ease-out;
-  }
-
-  /* Additional high-contrast utilities for better readability */
-  .card-high-contrast {
-    @apply bg-white/98 backdrop-blur-lg border-2 border-gray-200/80 shadow-2xl;
-  }
-
-  .text-high-contrast {
-    @apply text-gray-900 font-semibold drop-shadow-sm;
-  }
-
-  .text-secondary-contrast {
-    @apply text-gray-700 font-medium;
   }
 
   /* Premium Card System - Enhanced Luxury Effects */

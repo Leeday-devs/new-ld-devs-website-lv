@@ -211,7 +211,7 @@ const MobileOptimizedNavigation = () => {
               onClick={handleWhatsAppClick}
               className="btn-primary px-4 lg:px-6 py-2 lg:py-2.5 text-sm lg:text-base font-bold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
             >
-              Get Instant Quote
+              Get Free Quote
             </Button>
           </div>
 
@@ -272,7 +272,7 @@ const MobileOptimizedNavigation = () => {
                 }}
                 className="btn-primary w-full py-3 text-base font-bold rounded-full shadow-lg"
               >
-                Get Instant Quote
+                Get Free Quote
               </Button>
             </div>
           </div>
