@@ -82,30 +82,30 @@ const Navigation = () => {
         : 'bg-transparent'
     }`}>
       <div className="container mx-auto px-4">
-        {/* Google Trust Banner */}
-        <div className="flex items-center justify-center gap-6 py-2 bg-gradient-primary text-white text-xs font-medium">
+        {/* Google Trust Banner - Mobile Optimized */}
+        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-4 md:gap-6 py-2 bg-gradient-primary text-white text-xs font-medium">
           <div className="flex items-center gap-1">
             <Star className="h-3 w-3 fill-yellow-400 text-yellow-400" />
-            <span>5.0 Google Rating</span>
+            <span className="text-xs">5.0 Rating</span>
           </div>
           <div className="flex items-center gap-1">
             <Shield className="h-3 w-3" />
-            <span>Google Certified Partner</span>
+            <span className="text-xs">Google Certified</span>
           </div>
           <div className="flex items-center gap-1">
             <Award className="h-3 w-3" />
-            <span>Quality Guaranteed</span>
+            <span className="text-xs">Quality Assured</span>
           </div>
         </div>
         
-        <div className="flex items-center justify-between h-20">
-          {/* Premium Logo with new design */}
-          <Link to="/" className="flex items-center gap-4 hover-scale cursor-pointer group">
+        <div className="flex items-center justify-between h-16 sm:h-20">
+          {/* Premium Logo with new design - Mobile Optimized */}
+          <Link to="/" className="flex items-center gap-2 sm:gap-4 hover-scale cursor-pointer group">
             <div className="relative hover-glow">
               <img 
                 src="/lovable-uploads/95a8e543-b54c-4dc4-b36a-5561bf01ed41.png" 
                 alt="LD Development - Premium Web Development Company" 
-                className="h-20 w-auto transition-transform duration-300 group-hover:scale-110"
+                className="h-12 sm:h-16 md:h-20 w-auto transition-transform duration-300 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-gradient-primary rounded-lg blur-lg opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
             </div>
@@ -180,64 +180,48 @@ const Navigation = () => {
             </div>
           </div>
 
-          {/* Premium CTA Button */}
-          <div className="hidden lg:flex items-center gap-4">
-            <div className="flex flex-col items-end text-xs text-muted-foreground">
+          {/* Premium CTA Button - Mobile Responsive */}
+          <div className="hidden md:flex items-center gap-4">
+            <div className="hidden lg:flex flex-col items-end text-xs text-muted-foreground">
               <span className="font-semibold">Ready to elevate?</span>
               <span>Free consultation</span>
             </div>
             <Button 
-              className="btn-premium hover-glow px-6 py-3 rounded-full font-bold text-sm tracking-wide shadow-button"
+              className="btn-premium hover-glow px-4 md:px-6 py-2 md:py-3 rounded-full font-bold text-xs md:text-sm tracking-wide shadow-button"
               onClick={handleWhatsAppClick}
             >
-              Start Your Project
+              <span className="hidden lg:inline">Start Your Project</span>
+              <span className="lg:hidden">Get Quote</span>
             </Button>
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="lg:hidden flex items-center gap-3">
+          {/* Mobile Menu Button - Responsive */}
+          <div className="md:hidden flex items-center gap-2">
             <AuthButton />
             <button
-              className="p-3 hover-glow rounded-xl transition-smooth bg-primary/10 border border-primary/20"
+              className="p-2 sm:p-3 hover-glow rounded-xl transition-smooth bg-primary/10 border border-primary/20"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
               {isMenuOpen ? (
-                <X className="h-5 w-5 text-primary" />
+                <X className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
               ) : (
-                <Menu className="h-5 w-5 text-primary" />
+                <Menu className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
               )}
             </button>
           </div>
         </div>
 
-        {/* Premium Mobile Navigation */}
+        {/* Premium Mobile Navigation - Enhanced */}
         {isMenuOpen && (
-          <div className="lg:hidden border-t border-border bg-background/98 backdrop-blur-xl animate-fade-in-up">
-            <div className="py-6 space-y-2">
-              {/* Mobile Google Trust Elements */}
-              <div className="px-4 pb-4 mb-4 border-b border-border/30">
-                <div className="flex flex-wrap gap-4 justify-center text-xs text-muted-foreground">
-                  <div className="flex items-center gap-1">
-                    <Star className="h-3 w-3 fill-yellow-400 text-yellow-400" />
-                    <span>5.0 Rating</span>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <Shield className="h-3 w-3" />
-                    <span>Google Certified</span>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <Award className="h-3 w-3" />
-                    <span>Quality Assured</span>
-                  </div>
-                </div>
-              </div>
+          <div className="md:hidden border-t border-border bg-background/98 backdrop-blur-xl animate-fade-in-up">
+            <div className="py-4 space-y-1">
               
               {allNavItems.map((item, index) => (
                 item.isInternal ? (
                   <Link
                     key={item.label}
                     to={item.href}
-                    className="block px-6 py-3 text-muted-foreground hover:text-primary hover:bg-primary/5 transition-smooth font-semibold tracking-wide animate-slide-in-left rounded-lg mx-2"
+                    className="block px-4 py-3 text-sm text-muted-foreground hover:text-primary hover:bg-primary/5 transition-smooth font-semibold tracking-wide animate-slide-in-left rounded-lg mx-2"
                     style={{ animationDelay: `${index * 0.1}s` }}
                     onClick={handleMenuClose}
                   >
@@ -247,7 +231,7 @@ const Navigation = () => {
                   <a
                     key={item.label}
                     href={item.href}
-                    className="block px-6 py-3 text-muted-foreground hover:text-primary hover:bg-primary/5 transition-smooth font-semibold tracking-wide animate-slide-in-left rounded-lg mx-2"
+                    className="block px-4 py-3 text-sm text-muted-foreground hover:text-primary hover:bg-primary/5 transition-smooth font-semibold tracking-wide animate-slide-in-left rounded-lg mx-2"
                     style={{ animationDelay: `${index * 0.1}s` }}
                     onClick={handleMenuClose}
                   >
@@ -258,8 +242,11 @@ const Navigation = () => {
               
               <div className="px-4 pt-4 mt-4 border-t border-border/30 animate-fade-in-up stagger-delay-5">
                 <Button 
-                  className="btn-premium w-full py-4 rounded-full font-bold text-sm tracking-wide shadow-button"
-                  onClick={handleWhatsAppClick}
+                  className="btn-premium w-full py-3 rounded-full font-bold text-sm tracking-wide shadow-button"
+                  onClick={() => {
+                    handleWhatsAppClick();
+                    handleMenuClose();
+                  }}
                 >
                   Start Your Project
                 </Button>

@@ -363,32 +363,57 @@ const Pricing = () => {
           </div>
         </div>
 
-        {/* Category Switcher */}
-        <div className="flex justify-center mb-16">
-          <div className="inline-flex items-center space-x-6 bg-gray-50 p-2 rounded-2xl shadow-premium">
-            {categories.map((category) => {
-              const IconComponent = category.icon;
-              return (
-                <button
-                  key={category.id}
-                  data-category={category.id}
-                  onClick={() => setActiveCategory(category.id)}
-                  className={`flex items-center space-x-2 px-6 py-3 rounded-xl font-medium transition-all duration-300 ${
-                    activeCategory === category.id
-                      ? 'bg-gradient-orange text-white shadow-orange-glow'
-                      : 'text-navy hover:bg-white hover:shadow-md'
-                  }`}
-                >
-                  <IconComponent className="h-5 w-5" />
-                  <span>{category.label}</span>
-                </button>
-              );
-            })}
+        {/* Category Switcher - Mobile Optimized */}
+        <div className="flex justify-center mb-12 sm:mb-16 px-4">
+          <div className="w-full max-w-4xl">
+            {/* Mobile: Stacked Layout */}
+            <div className="grid grid-cols-2 gap-2 sm:hidden">
+              {categories.map((category) => {
+                const IconComponent = category.icon;
+                return (
+                  <button
+                    key={category.id}
+                    data-category={category.id}
+                    onClick={() => setActiveCategory(category.id)}
+                    className={`flex items-center justify-center space-x-1 px-3 py-2.5 rounded-xl font-medium transition-all duration-300 text-xs ${
+                      activeCategory === category.id
+                        ? 'bg-gradient-orange text-white shadow-orange-glow'
+                        : 'text-navy hover:bg-white hover:shadow-md bg-gray-50'
+                    }`}
+                  >
+                    <IconComponent className="h-4 w-4" />
+                    <span>{category.label}</span>
+                  </button>
+                );
+              })}
+            </div>
+            
+            {/* Tablet & Desktop: Horizontal Layout */}
+            <div className="hidden sm:inline-flex items-center justify-center space-x-2 md:space-x-6 bg-gray-50 p-2 rounded-2xl shadow-premium w-full sm:w-auto mx-auto">
+              {categories.map((category) => {
+                const IconComponent = category.icon;
+                return (
+                  <button
+                    key={category.id}
+                    data-category={category.id}
+                    onClick={() => setActiveCategory(category.id)}
+                    className={`flex items-center space-x-2 px-3 sm:px-6 py-2 sm:py-3 rounded-xl font-medium transition-all duration-300 text-sm ${
+                      activeCategory === category.id
+                        ? 'bg-gradient-orange text-white shadow-orange-glow'
+                        : 'text-navy hover:bg-white hover:shadow-md'
+                    }`}
+                  >
+                    <IconComponent className="h-4 sm:h-5 w-4 sm:w-5" />
+                    <span className="whitespace-nowrap">{category.label}</span>
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </div>
 
-        {/* Pricing Cards - Mobile Optimized */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mb-8 sm:mb-12">
+        {/* Pricing Cards - Fully Mobile Optimized */}
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mb-8 sm:mb-12">
           {currentPlans.map((plan, index) => {
             const IconComponent = plan.icon;
             const isPopular = plan.popular;
@@ -396,16 +421,16 @@ const Pricing = () => {
             return (
               <div
                 key={plan.id}
-                className={`relative group transition-all duration-700 hover:-translate-y-3 ${
+                className={`relative group transition-all duration-700 hover:-translate-y-2 ${
                   index === 1 ? 'animate-scale-in-bounce' : 'animate-fade-in-up'
                 }`}
                 style={{ animationDelay: `${index * 150}ms` }}
               >
-                {/* Popular Badge */}
+                {/* Popular Badge - Mobile Optimized */}
                 {isPopular && (
-                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-10">
-                    <div className="bg-gradient-orange text-white px-6 py-2 rounded-full text-sm font-bold shadow-orange-glow flex items-center space-x-2">
-                      <Award className="h-4 w-4" />
+                  <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 z-10">
+                    <div className="bg-gradient-orange text-white px-3 sm:px-6 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-bold shadow-orange-glow flex items-center space-x-1 sm:space-x-2">
+                      <Award className="h-3 w-3 sm:h-4 sm:w-4" />
                       <span>Most Popular</span>
                     </div>
                   </div>
@@ -416,7 +441,7 @@ const Pricing = () => {
                     isPopular 
                       ? 'bg-gradient-featured border-2 border-orange shadow-featured hover:shadow-orange-glow' 
                       : 'bg-gradient-premium-card border border-gray-200 shadow-premium hover:shadow-premium-hover'
-                  } rounded-2xl p-6 flex flex-col h-full relative overflow-hidden transition-all duration-500 hover:scale-105`}
+                  } rounded-2xl p-4 sm:p-6 flex flex-col h-full relative overflow-hidden transition-all duration-500 hover:scale-105`}
                 >
                   {/* Glow effect overlay */}
                   <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${
@@ -426,26 +451,26 @@ const Pricing = () => {
                   }`} />
                   
                   <div className="relative z-10">
-                    {/* Header */}
-                    <div className="text-center mb-6">
-                      <div className={`inline-flex items-center justify-center w-12 h-12 rounded-xl mb-4 ${
+                    {/* Header - Mobile Optimized */}
+                    <div className="text-center mb-4 sm:mb-6">
+                      <div className={`inline-flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-xl mb-3 sm:mb-4 ${
                         isPopular ? 'bg-orange text-white' : 'bg-orange/10 text-orange'
                       } group-hover:scale-110 transition-transform duration-300`}>
-                        <IconComponent className="h-6 w-6" />
+                        <IconComponent className="h-5 w-5 sm:h-6 sm:w-6" />
                       </div>
                       
-                      <h3 className="font-serif font-bold text-2xl mb-2 text-navy">
+                      <h3 className="font-serif font-bold text-xl sm:text-2xl mb-1 sm:mb-2 text-navy">
                         {plan.name}
                       </h3>
                       
-                      <p className="text-gray-600 text-sm mb-4 leading-relaxed">
+                      <p className="text-gray-600 text-xs sm:text-sm mb-3 sm:mb-4 leading-relaxed px-2">
                         {plan.description}
                       </p>
                       
-                      <div className="mb-4">
-                        <span className="font-serif font-bold text-3xl text-navy">{plan.price}</span>
+                      <div className="mb-3 sm:mb-4">
+                        <span className="font-serif font-bold text-2xl sm:text-3xl text-navy">{plan.price}</span>
                         {plan.monthlyPrice && (
-                          <span className="text-gray-500 ml-2 text-sm">
+                          <span className="text-gray-500 ml-1 sm:ml-2 text-xs sm:text-sm">
                             + {plan.monthlyPrice}/month
                           </span>
                         )}
