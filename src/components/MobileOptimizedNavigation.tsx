@@ -76,7 +76,7 @@ const MobileOptimizedNavigation = () => {
     <nav 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled 
-          ? 'bg-white/95 backdrop-blur-md shadow-lg border-b border-orange/10' 
+          ? 'bg-navy/95 backdrop-blur-md shadow-lg border-b border-orange/10' 
           : 'bg-gradient-to-b from-navy/80 via-navy/60 to-transparent'
       }`}
     >
@@ -121,7 +121,7 @@ const MobileOptimizedNavigation = () => {
                 href={item.href}
                 className={`px-3 lg:px-4 py-2 rounded-lg font-medium transition-all duration-300 hover:bg-white/10 ${
                   isScrolled 
-                    ? 'text-navy hover:text-orange hover:bg-orange/5' 
+                    ? 'text-white hover:text-orange hover:bg-orange/10' 
                     : 'text-white hover:text-orange'
                 }`}
                 onClick={handleMenuClose}
@@ -136,7 +136,7 @@ const MobileOptimizedNavigation = () => {
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                 className={`flex items-center px-3 lg:px-4 py-2 rounded-lg font-medium transition-all duration-300 hover:bg-white/10 ${
                   isScrolled 
-                    ? 'text-navy hover:text-orange hover:bg-orange/5' 
+                    ? 'text-white hover:text-orange hover:bg-orange/10' 
                     : 'text-white hover:text-orange'
                 }`}
               >
@@ -180,7 +180,7 @@ const MobileOptimizedNavigation = () => {
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className={`md:hidden p-2 rounded-lg transition-all duration-300 touch-target ${
               isScrolled 
-                ? 'text-navy hover:text-orange hover:bg-orange/5' 
+                ? 'text-white hover:text-orange hover:bg-orange/10' 
                 : 'text-white hover:text-orange hover:bg-white/10'
             }`}
             aria-label="Toggle menu"
