@@ -13,27 +13,118 @@ import {
   Smartphone,
   Shield,
   Zap,
-  ArrowRight
+  ArrowRight,
+  TrendingUp,
+  Clock,
+  Target,
+  Activity
 } from 'lucide-react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area } from 'recharts';
 
 const ApplicationsSection = () => {
   const [activeTab, setActiveTab] = useState('ecommerce');
 
-  const conversionData = [
-    { month: 'Jan', without: 2.1, with: 4.8 },
-    { month: 'Feb', without: 2.3, with: 5.2 },
-    { month: 'Mar', without: 2.0, with: 5.6 },
-    { month: 'Apr', without: 2.4, with: 6.1 },
-    { month: 'May', without: 2.2, with: 6.8 },
-    { month: 'Jun', without: 2.5, with: 7.2 }
+  const aiPerformanceData = [
+    { month: 'Jan', ecommerce: 138, customer: 185, analytics: 200, automation: 160 },
+    { month: 'Feb', ecommerce: 145, customer: 195, analytics: 225, automation: 175 },
+    { month: 'Mar', ecommerce: 152, customer: 210, analytics: 245, automation: 190 },
+    { month: 'Apr', ecommerce: 161, customer: 225, analytics: 265, automation: 205 },
+    { month: 'May', ecommerce: 168, customer: 240, analytics: 280, automation: 220 },
+    { month: 'Jun', ecommerce: 172, customer: 255, analytics: 295, automation: 235 }
   ];
 
-  const revenueGrowthData = [
-    { quarter: 'Q1', revenue: 100 },
-    { quarter: 'Q2', revenue: 125 },
-    { quarter: 'Q3', revenue: 165 },
-    { quarter: 'Q4', revenue: 220 }
+  const dashboardMetrics = [
+    {
+      title: "AI E-Commerce",
+      value: "172%", 
+      change: "+38%",
+      icon: <ShoppingCart className="w-5 h-5" />,
+      color: "text-green-400",
+      bgColor: "bg-green-400/10",
+      description: "Sales conversion increase",
+      id: "ecommerce"
+    },
+    {
+      title: "Smart Support",
+      value: "255%",
+      change: "+85%", 
+      icon: <MessageSquare className="w-5 h-5" />,
+      color: "text-blue-400",
+      bgColor: "bg-blue-400/10",
+      description: "Faster response times",
+      id: "customer"
+    },
+    {
+      title: "Business Intelligence", 
+      value: "295%",
+      change: "+200%",
+      icon: <BarChart3 className="w-5 h-5" />,
+      color: "text-purple-400",
+      bgColor: "bg-purple-400/10",
+      description: "Better decision making",
+      id: "analytics"
+    },
+    {
+      title: "Process Automation",
+      value: "235%",
+      change: "+60%",
+      icon: <Bot className="w-5 h-5" />,
+      color: "text-orange-400", 
+      bgColor: "bg-orange-400/10",
+      description: "Time savings on tasks",
+      id: "automation"
+    }
+  ];
+
+  const websiteMetrics = [
+    {
+      title: "Mobile Performance",
+      value: "98%",
+      icon: <Smartphone className="w-5 h-5" />,
+      color: "text-cyan-400",
+      bgColor: "bg-cyan-400/10",
+      description: "PageSpeed score"
+    },
+    {
+      title: "Security Rating", 
+      value: "A+",
+      icon: <Shield className="w-5 h-5" />,
+      color: "text-green-400",
+      bgColor: "bg-green-400/10",
+      description: "SSL & security grade"
+    },
+    {
+      title: "Global Reach",
+      value: "5.2B",
+      icon: <Globe className="w-5 h-5" />,
+      color: "text-blue-400",
+      bgColor: "bg-blue-400/10", 
+      description: "Internet users accessible"
+    },
+    {
+      title: "Payment Ready",
+      value: "15+",
+      icon: <CreditCard className="w-5 h-5" />,
+      color: "text-purple-400",
+      bgColor: "bg-purple-400/10",
+      description: "Payment methods integrated"
+    },
+    {
+      title: "AI Features",
+      value: "12+",
+      icon: <Zap className="w-5 h-5" />,
+      color: "text-yellow-400",
+      bgColor: "bg-yellow-400/10",
+      description: "Smart capabilities built-in"
+    },
+    {
+      title: "Customer Portals",
+      value: "∞",
+      icon: <Users className="w-5 h-5" />,
+      color: "text-pink-400",
+      bgColor: "bg-pink-400/10",
+      description: "Unlimited user access"
+    }
   ];
 
   const applications = [
@@ -43,7 +134,7 @@ const ApplicationsSection = () => {
       icon: <ShoppingCart className="w-8 h-8" />,
       features: [
         'AI-powered product recommendations',
-        'Automated inventory management',
+        'Automated inventory management', 
         'Smart pricing optimization',
         'Personalized customer journeys',
         'Abandoned cart recovery'
@@ -64,7 +155,7 @@ const ApplicationsSection = () => {
       stats: '85% faster response times'
     },
     {
-      id: 'analytics',
+      id: 'analytics', 
       title: 'Business Intelligence',
       icon: <BarChart3 className="w-8 h-8" />,
       features: [
@@ -91,184 +182,204 @@ const ApplicationsSection = () => {
     }
   ];
 
-  const websiteFeatures = [
-    {
-      icon: <Globe className="w-6 h-6" />,
-      title: 'Professional Design',
-      description: 'Modern, conversion-optimized layouts that work on all devices'
-    },
-    {
-      icon: <Smartphone className="w-6 h-6" />,
-      title: 'Mobile-First Approach',
-      description: 'Perfect experience on smartphones, tablets, and desktops'
-    },
-    {
-      icon: <Shield className="w-6 h-6" />,
-      title: 'Security & Performance',
-      description: 'Fast loading, secure hosting, and SEO optimization included'
-    },
-    {
-      icon: <CreditCard className="w-6 h-6" />,
-      title: 'Payment Integration',
-      description: 'Accept payments instantly with Stripe, PayPal, and more'
-    },
-    {
-      icon: <Users className="w-6 h-6" />,
-      title: 'Customer Portals',
-      description: 'Give customers access to orders, invoices, and support tickets'
-    },
-    {
-      icon: <Zap className="w-6 h-6" />,
-      title: 'AI-Powered Features',
-      description: 'Chatbots, recommendations, and smart analytics built-in'
-    }
-  ];
-
   return (
-    <section className="py-20 bg-muted/30">
-      <div className="container mx-auto px-4">
+    <section className="py-20 bg-navy text-white relative overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_var(--brand-orange)_0%,_transparent_50%)] opacity-5"></div>
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_var(--brand-orange)_0%,_transparent_50%)] opacity-5"></div>
+      
+      <div className="container mx-auto px-4 relative">
         <ScrollAnimated>
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
               Powerful <span className="text-primary">AI Applications</span> & Modern Websites
             </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              From intelligent automation to stunning websites, we build solutions that drive real business results.
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              Advanced AI solutions and professional websites that transform businesses and drive exponential growth
             </p>
           </div>
         </ScrollAnimated>
 
-        {/* AI Applications Tabs */}
-        <div className="mb-20">
+        {/* AI Dashboard Metrics */}
+        <div className="mb-16">
           <ScrollAnimated>
-            <h3 className="text-3xl font-bold text-center mb-12">AI Solutions That Drive Growth</h3>
+            <h3 className="text-3xl font-bold text-center mb-12 text-white">AI Solutions Performance Dashboard</h3>
           </ScrollAnimated>
           
-          <div className="grid md:grid-cols-4 gap-4 mb-8">
-            {applications.map((app) => (
-              <ScrollAnimated key={app.id}>
-                <button
-                  onClick={() => setActiveTab(app.id)}
-                  className={`p-4 text-left rounded-lg transition-all duration-300 w-full ${
-                    activeTab === app.id
-                      ? 'bg-primary text-primary-foreground shadow-lg'
-                      : 'bg-card hover:bg-muted border border-border'
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            {dashboardMetrics.map((metric, index) => (
+              <ScrollAnimated key={metric.id} delay={index * 100}>
+                <Card 
+                  className={`bg-white/5 border-white/10 backdrop-blur-sm hover:bg-white/10 transition-all duration-300 group cursor-pointer ${
+                    activeTab === metric.id ? 'ring-2 ring-primary bg-white/15' : ''
                   }`}
+                  onClick={() => setActiveTab(metric.id)}
                 >
-                  <div className="flex items-center gap-3 mb-2">
-                    {app.icon}
-                    <span className="font-semibold">{app.title}</span>
-                  </div>
-                  <p className={`text-sm ${
-                    activeTab === app.id ? 'text-primary-foreground/80' : 'text-muted-foreground'
-                  }`}>
-                    {app.stats}
-                  </p>
-                </button>
+                  <CardContent className="p-6">
+                    <div className="flex items-center justify-between mb-4">
+                      <div className={`p-3 rounded-xl ${metric.bgColor}`}>
+                        <div className={metric.color}>
+                          {metric.icon}
+                        </div>
+                      </div>
+                      <div className={`flex items-center gap-1 text-sm ${metric.color} ${metric.color.includes('green') ? 'bg-green-400/10' : metric.color.includes('blue') ? 'bg-blue-400/10' : metric.color.includes('purple') ? 'bg-purple-400/10' : 'bg-orange-400/10'} px-2 py-1 rounded-full`}>
+                        <TrendingUp className="w-3 h-3" />
+                        {metric.change}
+                      </div>
+                    </div>
+                    <div className="mb-2">
+                      <div className="text-3xl font-bold text-white mb-1">{metric.value}</div>
+                      <div className="text-sm font-medium text-gray-300">{metric.title}</div>
+                    </div>
+                    <div className="text-xs text-gray-400">{metric.description}</div>
+                  </CardContent>
+                </Card>
               </ScrollAnimated>
             ))}
           </div>
 
+          {/* Interactive AI Performance Chart */}
           <ScrollAnimated>
-            <Card className="p-8">
+            <Card className="bg-white/5 border-white/10 backdrop-blur-sm mb-12">
+              <CardHeader className="pb-4">
+                <CardTitle className="text-2xl text-white flex items-center gap-3">
+                  <Activity className="w-6 h-6 text-primary" />
+                  AI Solutions Performance Tracking
+                </CardTitle>
+                <p className="text-gray-400">Real-time performance metrics across all AI applications</p>
+              </CardHeader>
+              <CardContent className="p-6 pt-0">
+                <ResponsiveContainer width="100%" height={350}>
+                  <AreaChart data={aiPerformanceData}>
+                    <defs>
+                      <linearGradient id="aiGradient" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="5%" stopColor="#ff7a00" stopOpacity={0.3}/>
+                        <stop offset="95%" stopColor="#ff7a00" stopOpacity={0.05}/>
+                      </linearGradient>
+                    </defs>
+                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
+                    <XAxis 
+                      dataKey="month" 
+                      axisLine={false}
+                      tickLine={false}
+                      tick={{ fill: '#9ca3af', fontSize: 12 }}
+                    />
+                    <YAxis 
+                      axisLine={false}
+                      tickLine={false}
+                      tick={{ fill: '#9ca3af', fontSize: 12 }}
+                    />
+                    <Tooltip 
+                      contentStyle={{
+                        backgroundColor: 'rgba(0,0,0,0.8)',
+                        border: '1px solid rgba(255,255,255,0.1)',
+                        borderRadius: '12px',
+                        color: 'white'
+                      }}
+                      formatter={(value, name) => [
+                        `${value}%`, 
+                        name === 'ecommerce' ? 'E-Commerce Performance' :
+                        name === 'customer' ? 'Customer Support' :
+                        name === 'analytics' ? 'Business Intelligence' : 'Process Automation'
+                      ]}
+                    />
+                    <Area
+                      type="monotone"
+                      dataKey={activeTab}
+                      stroke="#ff7a00"
+                      strokeWidth={3}
+                      fill="url(#aiGradient)"
+                    />
+                  </AreaChart>
+                </ResponsiveContainer>
+              </CardContent>
+            </Card>
+          </ScrollAnimated>
+
+          {/* AI Features Detail */}
+          <ScrollAnimated>
+            <Card className="bg-white/5 border-white/10 backdrop-blur-sm p-8">
               <div className="grid lg:grid-cols-2 gap-8">
                 <div>
-                  <h4 className="text-2xl font-bold mb-6">
+                  <h4 className="text-2xl font-bold mb-6 text-white">
                     {applications.find(app => app.id === activeTab)?.title}
                   </h4>
                   <ul className="space-y-3 mb-6">
                     {applications.find(app => app.id === activeTab)?.features.map((feature, index) => (
                       <li key={index} className="flex items-start gap-3">
                         <ArrowRight className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                        <span>{feature}</span>
+                        <span className="text-gray-300">{feature}</span>
                       </li>
                     ))}
                   </ul>
-                  <div className="p-4 bg-primary/10 rounded-lg border border-primary/20">
+                  <div className="p-4 bg-primary/20 rounded-lg border border-primary/30">
                     <p className="font-semibold text-primary">
                       {applications.find(app => app.id === activeTab)?.stats}
                     </p>
                   </div>
                 </div>
-                <div>
-                  <ResponsiveContainer width="100%" height={300}>
-                    {activeTab === 'ecommerce' ? (
-                      <LineChart data={conversionData}>
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="month" />
-                        <YAxis />
-                        <Tooltip formatter={(value) => [`${value}%`, 'Conversion Rate']} />
-                        <Line 
-                          type="monotone" 
-                          dataKey="without" 
-                          stroke="hsl(var(--destructive))" 
-                          name="Without AI"
-                          strokeWidth={3}
-                        />
-                        <Line 
-                          type="monotone" 
-                          dataKey="with" 
-                          stroke="hsl(var(--primary))" 
-                          name="With AI"
-                          strokeWidth={3}
-                        />
-                      </LineChart>
-                    ) : (
-                      <AreaChart data={revenueGrowthData}>
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="quarter" />
-                        <YAxis />
-                        <Tooltip formatter={(value) => [`${value}%`, 'Performance Improvement']} />
-                        <Area 
-                          type="monotone" 
-                          dataKey="revenue" 
-                          stroke="hsl(var(--primary))" 
-                          fill="hsl(var(--primary)/0.3)"
-                          strokeWidth={3}
-                        />
-                      </AreaChart>
-                    )}
-                  </ResponsiveContainer>
+                <div className="flex items-center justify-center">
+                  <div className="text-center">
+                    <div className="text-6xl font-bold text-primary mb-2">
+                      {dashboardMetrics.find(m => m.id === activeTab)?.value}
+                    </div>
+                    <div className="text-gray-300 mb-4">Performance Improvement</div>
+                    <div className={`inline-flex items-center gap-1 px-3 py-1 rounded-full ${dashboardMetrics.find(m => m.id === activeTab)?.bgColor} ${dashboardMetrics.find(m => m.id === activeTab)?.color}`}>
+                      <TrendingUp className="w-4 h-4" />
+                      {dashboardMetrics.find(m => m.id === activeTab)?.change}
+                    </div>
+                  </div>
                 </div>
               </div>
             </Card>
           </ScrollAnimated>
         </div>
 
-        {/* Website Features */}
+        {/* Website Features Dashboard */}
         <div>
           <ScrollAnimated>
-            <h3 className="text-3xl font-bold text-center mb-12">Complete Website Solutions</h3>
+            <h3 className="text-3xl font-bold text-center mb-12 text-white">Complete Website Solutions Dashboard</h3>
           </ScrollAnimated>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-            {websiteFeatures.map((feature, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+            {websiteMetrics.map((metric, index) => (
               <ScrollAnimated key={index} delay={index * 100}>
-                <Card className="p-6 hover:shadow-lg transition-all duration-300 border-2 hover:border-primary/20">
-                  <div className="text-primary mb-4">
-                    {feature.icon}
-                  </div>
-                  <h4 className="text-lg font-bold mb-3">{feature.title}</h4>
-                  <p className="text-muted-foreground">{feature.description}</p>
+                <Card className="bg-white/5 border-white/10 backdrop-blur-sm hover:bg-white/10 transition-all duration-300 group">
+                  <CardContent className="p-6">
+                    <div className="flex items-center justify-between mb-4">
+                      <div className={`p-3 rounded-xl ${metric.bgColor}`}>
+                        <div className={metric.color}>
+                          {metric.icon}
+                        </div>
+                      </div>
+                    </div>
+                    <div className="mb-2">
+                      <div className="text-3xl font-bold text-white mb-1">{metric.value}</div>
+                      <div className="text-sm font-medium text-gray-300">{metric.title}</div>
+                    </div>
+                    <div className="text-xs text-gray-400">{metric.description}</div>
+                  </CardContent>
                 </Card>
               </ScrollAnimated>
             ))}
           </div>
 
           <ScrollAnimated>
-            <div className="text-center p-8 bg-gradient-to-r from-primary/10 to-primary/5 rounded-2xl border border-primary/20">
-              <h4 className="text-2xl font-bold mb-4">Complete Digital Transformation</h4>
-              <p className="text-lg text-muted-foreground mb-6 max-w-2xl mx-auto">
-                Get a professional website with AI-powered features that work together to grow your business automatically.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <button className="bg-primary text-primary-foreground px-8 py-3 rounded-lg font-semibold hover:bg-primary/90 transition-colors">
-                  Start Your Project
-                </button>
-                <button className="border border-primary text-primary px-8 py-3 rounded-lg font-semibold hover:bg-primary/10 transition-colors">
-                  View Live Examples
-                </button>
-              </div>
+            <div className="text-center">
+              <Card className="bg-primary/10 border-primary/20 backdrop-blur-sm p-8">
+                <h4 className="text-2xl font-bold mb-4 text-white">Complete Digital Transformation</h4>
+                <p className="text-lg text-gray-300 mb-6 max-w-2xl mx-auto">
+                  Professional websites with AI-powered features that work together to automate and scale your business
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <button className="btn-primary px-8 py-4 text-white font-semibold rounded-xl">
+                    Launch Your AI-Powered Website
+                  </button>
+                  <button className="border border-white/20 text-white px-8 py-4 rounded-xl font-semibold hover:bg-white/10 transition-colors">
+                    Explore Live Demos
+                  </button>
+                </div>
+              </Card>
             </div>
           </ScrollAnimated>
         </div>
