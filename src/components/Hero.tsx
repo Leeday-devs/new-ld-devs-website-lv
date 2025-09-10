@@ -8,7 +8,9 @@ const Hero = () => {
   const [showHeading, setShowHeading] = useState(false);
   const [showSubtext, setShowSubtext] = useState(false);
   const [showButton, setShowButton] = useState(false);
+  const [videoLoaded, setVideoLoaded] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const hasTriedPlay = useRef(false);
 
   useEffect(() => {
     setIsVisible(true);
@@ -18,19 +20,30 @@ const Hero = () => {
     const timer2 = setTimeout(() => setShowSubtext(true), 800);
     const timer3 = setTimeout(() => setShowButton(true), 1200);
 
-    // Try to force video playback for browsers that block autoplay
+    // Optimized video playback - prevent repeated calls
     const v = videoRef.current;
-    if (v) {
+    if (v && !hasTriedPlay.current) {
+      hasTriedPlay.current = true;
       v.muted = true;
-      const tryPlay = () => v.play().catch((err) => {
-        console.warn('Hero video autoplay blocked', err);
-      });
-      tryPlay();
-      setTimeout(tryPlay, 300);
+      
+      const tryPlay = () => {
+        if (v.readyState >= 3) { // HAVE_FUTURE_DATA
+          v.play().catch(() => {
+            // Silent fail - poster image will show
+          });
+        }
+      };
+
+      // Try play when video is ready
+      if (v.readyState >= 3) {
+        tryPlay();
+      } else {
+        v.addEventListener('canplay', tryPlay, { once: true });
+      }
 
       // Fallback: attempt play on first user interaction
       const playOnInteraction = () => {
-        v.play().catch((err) => console.warn('Hero video play on interaction failed', err));
+        v.play().catch(() => {});
         window.removeEventListener('pointerdown', playOnInteraction);
         window.removeEventListener('keydown', playOnInteraction);
       };
@@ -62,11 +75,22 @@ const Hero = () => {
         aria-hidden="true"
         disablePictureInPicture
         className="absolute inset-0 w-full h-full object-cover opacity-100 z-10"
-        onCanPlay={() => { console.log('Hero video can play'); document.getElementById('video-fallback')?.classList.add('opacity-0'); }}
-        onLoadedData={() => { console.log('Hero video loaded'); document.getElementById('video-fallback')?.classList.add('opacity-0'); }}
-        onPlay={() => { console.log('Hero video playing'); document.getElementById('video-fallback')?.classList.add('opacity-0'); }}
+        onCanPlay={() => {
+          if (!videoLoaded) {
+            setVideoLoaded(true);
+            document.getElementById('video-fallback')?.classList.add('opacity-0');
+          }
+        }}
+        onLoadedData={() => {
+          if (!videoLoaded) {
+            setVideoLoaded(true);
+            document.getElementById('video-fallback')?.classList.add('opacity-0');
+          }
+        }}
+        onPlay={() => {
+          document.getElementById('video-fallback')?.classList.add('opacity-0');
+        }}
         onError={(e) => {
-          console.error('Hero video error', e);
           (e.target as HTMLVideoElement).style.display = 'none';
           document.getElementById('video-fallback')?.classList.remove('opacity-0');
         }}

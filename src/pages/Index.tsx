@@ -16,6 +16,9 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 import FAQ from "@/components/FAQ";
 import AIBenefitsSection from "@/components/AIBenefitsSection";
 import ApplicationsSection from "@/components/ApplicationsSection";
+import LiveChatWidget from "@/components/LiveChatWidget";
+import PerformanceOptimizer from "@/components/PerformanceOptimizer";
+import SEOEnhancements from "@/components/SEOEnhancements";
 
 const Index = () => {
   const faqData = [
@@ -117,7 +120,10 @@ const Index = () => {
         {/* Footer (navy) */}
         <Footer />
         <WhatsAppButton />
+        <LiveChatWidget />
       </div>
+      <PerformanceOptimizer />
+      <SEOEnhancements />
     </>
   );
 };
