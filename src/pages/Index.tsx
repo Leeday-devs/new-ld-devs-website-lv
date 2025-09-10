@@ -17,7 +17,8 @@ import FAQ from "@/components/FAQ";
 import AIBenefitsSection from "@/components/AIBenefitsSection";
 import ApplicationsSection from "@/components/ApplicationsSection";
 import LiveChatWidget from "@/components/LiveChatWidget";
-import PerformanceOptimizer from "@/components/PerformanceOptimizer";
+import MobilePerformanceOptimizer from "@/components/MobilePerformanceOptimizer";
+import CriticalCSS from "@/components/CriticalCSS";
 import SEOEnhancements from "@/components/SEOEnhancements";
 
 const Index = () => {
@@ -122,7 +123,8 @@ const Index = () => {
         <WhatsAppButton />
         <LiveChatWidget />
       </div>
-      <PerformanceOptimizer />
+      <CriticalCSS />
+      <MobilePerformanceOptimizer />
       <SEOEnhancements />
     </>
   );
