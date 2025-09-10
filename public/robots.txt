@@ -1,23 +1,48 @@
 User-agent: *
 Allow: /
+
+# Priority pages for indexing
+Allow: /
+Allow: /services
+Allow: /portfolio 
+Allow: /blog
+Allow: /contact
+Allow: /request-work
+Allow: /templates
+
+# Block sensitive areas
 Disallow: /admin/
 Disallow: /dashboard/
+Disallow: /auth/
 Disallow: /payment-success
 Disallow: /payment-canceled
-
-Sitemap: https://leedaydevs.com/sitemap.xml
-
-# Block access to sensitive areas
-User-agent: *
 Disallow: /api/
 Disallow: /.env
 Disallow: /config/
 Disallow: /src/
+Disallow: /*?*
+Disallow: /search
 
-# Allow important pages for SEO
-Allow: /blog
-Allow: /auth
-Allow: /request-work
+# Allow Googlebot access to CSS and JS for better rendering
+User-agent: Googlebot
+Allow: *.css
+Allow: *.js
+Allow: *.png
+Allow: *.jpg  
+Allow: *.jpeg
+Allow: *.gif
+Allow: *.svg
+Allow: *.webp
 
-# Crawl delay for respectful crawling
+# Sitemaps
+Sitemap: https://leedaydevs.com/sitemap.xml
+
+# Crawl delay for respectful crawling (1 second)
 Crawl-delay: 1
+
+# Additional SEO directives
+User-agent: *
+Disallow: /*utm_*
+Disallow: /*ref=*
+Disallow: /*sort=*
+Disallow: /*filter=*

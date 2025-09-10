@@ -144,10 +144,10 @@ const Services = () => {
         {/* Section Header */}
         <div className="text-center mb-16 pt-20">
           <h2 className="heading-lg spacing-section text-navy drop-shadow-sm">
-            Our <span className="text-highlight">Premium</span> Services
+            Our <span className="text-highlight">Premium</span> Web Development Services
           </h2>
           <p className="text-body max-w-3xl mx-auto text-text-secondary drop-shadow-sm">
-            From concept to launch, we provide everything you need to establish a powerful online presence
+            Expert web development, e-commerce solutions, AI automation, and digital services for UK businesses. From concept to launch, we deliver premium solutions that drive real results.
           </p>
         </div>
 

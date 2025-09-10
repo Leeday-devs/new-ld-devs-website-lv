@@ -104,10 +104,10 @@ const Hero = () => {
           {/* Hero Heading with staggered animation - Mobile Optimized */}
           <div className={`transition-all duration-1000 ease-out ${showHeading ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16'}`}>
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-white mb-4 sm:mb-6 leading-[0.9] font-black tracking-tight">
-              We Build Your <span className="text-highlight animate-pulse block sm:inline">Dream Website</span>
+              Premium Web Development <span className="text-highlight animate-pulse block sm:inline">Solutions</span>
               <span className="block mt-3 sm:mt-6">
-                That Actually <span className="text-highlight relative">
-                  Works
+                That Drive Real <span className="text-highlight relative">
+                  Results
                   <span className="absolute -inset-1 bg-orange/20 blur-xl animate-pulse"></span>
                 </span>
               </span>

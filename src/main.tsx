@@ -2,6 +2,7 @@ import { createRoot } from 'react-dom/client'
 import { HelmetProvider } from 'react-helmet-async'
 import App from './App.tsx'
 import ErrorBoundary from './components/ErrorBoundary'
+import { initializeSEOOptimizations } from './utils/seo'
 import './index.css'
 
 // Register service worker for performance (production only)
@@ -32,6 +33,9 @@ if ('serviceWorker' in navigator && process.env.NODE_ENV === 'production') {
       });
   });
 }
+
+// Initialize SEO optimizations
+initializeSEOOptimizations();
 
 createRoot(document.getElementById("root")!).render(
   <HelmetProvider>

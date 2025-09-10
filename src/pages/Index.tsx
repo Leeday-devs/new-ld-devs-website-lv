@@ -9,6 +9,7 @@ import Contact from "@/components/Contact";
 import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
+import BreadcrumbsNavigation from "@/components/BreadcrumbsNavigation";
 import StatsBar from "@/components/StatsBar";
 import TrustedByLogos from "@/components/TrustedByLogos";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -17,25 +18,50 @@ import AIBenefitsSection from "@/components/AIBenefitsSection";
 import ApplicationsSection from "@/components/ApplicationsSection";
 
 const Index = () => {
+  const faqData = [
+    {
+      question: "How long does it take to build a website?",
+      answer: "Most websites are completed within 2-4 weeks, depending on complexity. Simple websites can be delivered in as little as 1 week, while complex e-commerce or custom applications may take 6-8 weeks."
+    },
+    {
+      question: "Do you provide ongoing support and maintenance?",
+      answer: "Yes, we offer comprehensive maintenance packages including security updates, backups, performance monitoring, and content updates. All our websites come with 30 days of free support after launch."
+    },
+    {
+      question: "Can you help improve my website's search engine rankings?",
+      answer: "Absolutely! All our websites are built with SEO best practices, including fast loading times, mobile optimization, clean code structure, and proper meta tags. We also offer dedicated SEO services to improve your rankings."
+    },
+    {
+      question: "What technologies do you use for web development?",
+      answer: "We use modern technologies including React, TypeScript, Node.js, and cloud hosting services. This ensures your website is fast, secure, scalable, and future-proof."
+    },
+    {
+      question: "Do you work with businesses outside of London?",
+      answer: "Yes, while we're based in London, we work with businesses throughout the UK and internationally. We conduct meetings via video calls and provide the same high-quality service regardless of location."
+    }
+  ];
+
   return (
     <>
       <SEOHead 
-        title="LD Development - Professional Web Development & Hosting Services UK"
-        description="Expert web development and hosting services in London. We build custom websites, e-commerce platforms, AI automation solutions, and customer portals for UK businesses. Fast, secure, mobile-optimized websites with ongoing support."
-        keywords="web development UK, website design London, web hosting UK, e-commerce development, AI automation small business, customer portal development, responsive web design, React development, web security, mobile-first design"
+        title="LD Development - Premium Web Development & AI Solutions | London UK"
+        description="Award-winning web development agency in London. Custom websites, e-commerce, AI automation & digital solutions. Fast, secure, mobile-optimized websites for UK businesses. 5-star rated with 150+ happy clients. Get your free quote today!"
+        keywords="web development London, website design UK, e-commerce development, AI automation, React development, web hosting UK, digital agency London, custom websites, mobile app development, SEO services London"
         url="https://leedaydevs.com"
-        structuredData={{
-          "@context": "https://schema.org",
-          "@type": "WebSite",
-          name: "LD Development",
-          url: "https://leedaydevs.com"
+        serviceData={{
+          serviceName: "Web Development Services",
+          serviceType: "Website Development",
+          areaServed: "United Kingdom",
+          priceRange: "££-£££"
         }}
-        organizationSameAs={[
-          "https://www.facebook.com/profile.php?id=61563893127712"
+        faqData={faqData}
+        breadcrumbs={[
+          { name: "Home", url: "/" }
         ]}
       />
       <div className="min-h-screen">
         <Navigation />
+        <BreadcrumbsNavigation />
         <main>
           {/* Hero (navy) */}
           <section id="home" aria-label="Homepage hero">

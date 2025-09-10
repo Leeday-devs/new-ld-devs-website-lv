@@ -145,10 +145,10 @@ const Contact = () => {
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="heading-primary heading-lg mb-6 text-white">
-            Let's Build Something <span className="text-orange">Amazing</span>
+            Get Your Free <span className="text-orange">Quote Today</span>
           </h2>
           <p className="text-body text-white/80 max-w-3xl mx-auto">
-            Ready to start your project? Get in touch and let's discuss how we can bring your <span className="text-orange font-semibold">vision to life</span>.
+            Ready to transform your business with premium web development? Contact London's leading web development agency and let's discuss your <span className="text-orange font-semibold">project requirements</span>.
           </p>
         </div>
 
