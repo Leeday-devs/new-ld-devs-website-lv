@@ -77,48 +77,58 @@ const Index = () => {
             <MobileOptimizedHero />
           </section>
           
-          {/* Trust/Stats (navy band, count-up) */}
-          <section aria-label="Company statistics and trust indicators">
+          {/* Trust/Stats (navy band, count-up) - Mobile Compact */}
+          <section aria-label="Company statistics and trust indicators" className="section-mobile-compact">
             <StatsBar />
           </section>
           
-          {/* Trusted By Logos - Social Proof */}
-          <TrustedByLogos />
+          {/* Trusted By Logos - Social Proof - Mobile Minimal */}
+          <div className="section-mobile-minimal">
+            <TrustedByLogos />
+          </div>
           
-          {/* AI Benefits Section - Charts and examples */}
-          <AIBenefitsSection />
+          {/* AI Benefits Section - Charts and examples - Mobile Compact */}
+          <div className="section-mobile-compact">
+            <AIBenefitsSection />
+          </div>
           
-          {/* Services (dark background) - Premium spacing */}
-          <section id="services" aria-label="Web development services" className="bg-transparent">
+          {/* Services (dark background) - Mobile Compact */}
+          <section id="services" aria-label="Web development services" className="bg-transparent section-mobile-compact">
             <Services />
           </section>
           
-          {/* Portfolio / Case Studies (dark background) - Premium spacing */}
-          <section id="portfolio" aria-label="Portfolio of completed projects" className="bg-transparent">
+          {/* Portfolio / Case Studies (dark background) - Mobile Compact */}
+          <section id="portfolio" aria-label="Portfolio of completed projects" className="bg-transparent section-mobile-compact">
             <Portfolio />
           </section>
           
-          {/* Pricing (dark background) - Premium spacing */}
-          <section id="pricing" aria-label="Pricing plans and packages" className="bg-transparent">
+          {/* Pricing (dark background) - Mobile Compact */}
+          <section id="pricing" aria-label="Pricing plans and packages" className="bg-transparent section-mobile-compact">
             <Pricing />
           </section>
           
-          {/* Testimonials (navy band, carousel with auto-scroll) - Premium spacing */}
-          <section aria-label="Client testimonials and reviews" className="section-navy">
+          {/* Testimonials (navy band, carousel with auto-scroll) - Mobile Minimal */}
+          <section aria-label="Client testimonials and reviews" className="section-navy section-mobile-minimal">
             <TestimonialsCarousel />
           </section>
           
-          {/* Applications Section - AI and website features */}
-          <ApplicationsSection />
+          {/* Applications Section - AI and website features - Mobile Compact */}
+          <div className="section-mobile-compact">
+            <ApplicationsSection />
+          </div>
           
-          {/* FAQ (dark background) - Premium spacing */}
-          <FAQ />
+          {/* FAQ (dark background) - Mobile Compact */}
+          <div className="section-mobile-compact">
+            <FAQ />
+          </div>
           
-          {/* Final CTA (navy band) */}
-          <FinalCTA />
+          {/* Final CTA (navy band) - Mobile Minimal */}
+          <div className="section-navy section-mobile-minimal">
+            <FinalCTA />
+          </div>
           
-        {/* Contact form if needed */}
-        <section id="contact" aria-label="Contact information and form" className="section-navy">
+        {/* Contact form if needed - Mobile Compact */}
+        <section id="contact" aria-label="Contact information and form" className="section-navy section-mobile-compact">
           <Contact />
         </section>
         </main>

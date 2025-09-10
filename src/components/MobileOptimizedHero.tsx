@@ -65,7 +65,9 @@ const MobileOptimizedHero = () => {
 
   return (
     <section 
-      className="bg-navy min-h-screen flex items-center justify-center relative overflow-hidden pt-20 px-4"
+      className={`bg-navy flex items-center justify-center relative overflow-hidden px-4 ${
+        isMobile ? 'min-h-[70vh] pt-16 pb-8' : 'min-h-screen pt-20'
+      }`}
       aria-label="Hero section with company introduction"
     >
       {/* Desktop-Only Video Background for Performance */}
@@ -156,22 +158,31 @@ const MobileOptimizedHero = () => {
       <div className="container mx-auto relative z-20 text-center max-w-4xl">
         {/* Mobile-First Hero Heading with faster animations */}
         <div className={`transition-all duration-500 ease-out ${showHeading ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-white mb-4 sm:mb-6 leading-[0.9] font-black tracking-tight">
+          <h1 className={`text-white font-black tracking-tight leading-tight ${
+            isMobile 
+              ? 'text-2xl xs:text-3xl mb-3' 
+              : 'text-5xl md:text-6xl lg:text-7xl xl:text-8xl mb-4 sm:mb-6 leading-[0.9]'
+          }`}>
             Premium Web Development{" "}
             <span className="text-highlight block xs:inline">Solutions</span>
-            <span className="block mt-2 sm:mt-6 text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
-              Built For{" "}
-              <span className="text-highlight relative">
-                You
-                {!isMobile && <span className="absolute -inset-1 bg-orange/20 blur-xl animate-pulse"></span>}
-              </span>
+            <span className={`block text-highlight relative ${
+              isMobile 
+                ? 'mt-1 text-xl xs:text-2xl' 
+                : 'mt-2 sm:mt-6 text-4xl md:text-5xl lg:text-6xl xl:text-7xl'
+            }`}>
+              Built For You
+              {!isMobile && <span className="absolute -inset-1 bg-orange/20 blur-xl animate-pulse"></span>}
             </span>
           </h1>
         </div>
         
         {/* Mobile-Optimized Subtext - Reduced animation complexity */}
         <div className={`transition-all duration-500 ease-out ${showSubtext ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
-          <p className="text-sm xs:text-base sm:text-lg md:text-xl max-w-3xl mx-auto text-white/90 leading-relaxed font-medium mb-6 sm:mb-8 px-2">
+          <p className={`max-w-3xl mx-auto text-white/90 leading-relaxed font-medium px-2 ${
+            isMobile 
+              ? 'text-sm mb-4' 
+              : 'text-sm xs:text-base sm:text-lg md:text-xl mb-6 sm:mb-8'
+          }`}>
             Premium{" "}
             <span className="text-highlight font-bold">Website</span>{" "}
             development and{" "}
@@ -179,18 +190,24 @@ const MobileOptimizedHero = () => {
             services from the{" "}
             <span className="text-highlight font-bold">UK</span>{" "}
             for businesses.
-            <span className="block mt-2">
-              We create fast, secure, and beautiful <span className="text-highlight font-bold">Websites & Applications</span>.
-            </span>
+            {!isMobile && (
+              <span className="block mt-2">
+                We create fast, secure, and beautiful <span className="text-highlight font-bold">Websites & Applications</span>.
+              </span>
+            )}
           </p>
         </div>
         
         {/* Optimized CTA Button - Reduced effects on mobile */}
-        <div className={`mb-8 sm:mb-16 transition-all duration-500 ease-out ${showButton ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-4 scale-98'}`}>
+        <div className={`transition-all duration-500 ease-out ${showButton ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-4 scale-98'} ${
+          isMobile ? 'mb-4' : 'mb-8 sm:mb-16'
+        }`}>
           <Button 
             size="lg" 
-            className={`btn-primary w-full xs:w-auto px-8 sm:px-10 md:px-12 py-4 sm:py-5 md:py-6 text-lg sm:text-xl md:text-2xl font-black rounded-full shadow-2xl relative overflow-hidden group transition-all duration-300 max-w-sm mx-auto ${
-              isMobile ? '' : 'hover:scale-105 animate-pulse-slow hover:animate-none'
+            className={`btn-primary w-full xs:w-auto font-black rounded-full shadow-2xl relative overflow-hidden group transition-all duration-300 max-w-sm mx-auto ${
+              isMobile 
+                ? 'px-6 py-3 text-base' 
+                : 'px-8 sm:px-10 md:px-12 py-4 sm:py-5 md:py-6 text-lg sm:text-xl md:text-2xl hover:scale-105 animate-pulse-slow hover:animate-none'
             }`}
             onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
           >
@@ -212,22 +229,24 @@ const MobileOptimizedHero = () => {
         </div>
         
         {/* Mobile-Optimized Trust Indicators - Simplified */}
-        <div className={`transition-all duration-500 ease-out ${showButton ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-          <div className="flex flex-col xs:flex-row flex-wrap justify-center items-center gap-3 sm:gap-6 md:gap-8 text-white/60">
-            <div className={`flex items-center gap-2 transition-colors duration-300 ${isMobile ? '' : 'hover:text-orange'}`}>
-              <Shield className="h-4 sm:h-5 w-4 sm:w-5" />
-              <span className="text-xs sm:text-sm font-semibold">Secure & Fast</span>
-            </div>
-            <div className={`flex items-center gap-2 transition-colors duration-300 ${isMobile ? '' : 'hover:text-orange'}`}>
-              <Zap className="h-4 sm:h-5 w-4 sm:w-5" />
-              <span className="text-xs sm:text-sm font-semibold">Quick Delivery</span>
-            </div>
-            <div className={`flex items-center gap-2 transition-colors duration-300 ${isMobile ? '' : 'hover:text-orange'}`}>
-              <Award className="h-4 sm:h-5 w-4 sm:w-5" />
-              <span className="text-xs sm:text-sm font-semibold">Premium Quality</span>
+        {!isMobile && (
+          <div className={`transition-all duration-500 ease-out ${showButton ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+            <div className="flex flex-col xs:flex-row flex-wrap justify-center items-center gap-3 sm:gap-6 md:gap-8 text-white/60">
+              <div className="flex items-center gap-2 transition-colors duration-300 hover:text-orange">
+                <Shield className="h-4 sm:h-5 w-4 sm:w-5" />
+                <span className="text-xs sm:text-sm font-semibold">Secure & Fast</span>
+              </div>
+              <div className="flex items-center gap-2 transition-colors duration-300 hover:text-orange">
+                <Zap className="h-4 sm:h-5 w-4 sm:w-5" />
+                <span className="text-xs sm:text-sm font-semibold">Quick Delivery</span>
+              </div>
+              <div className="flex items-center gap-2 transition-colors duration-300 hover:text-orange">
+                <Award className="h-4 sm:h-5 w-4 sm:w-5" />
+                <span className="text-xs sm:text-sm font-semibold">Premium Quality</span>
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
     </section>
   );
