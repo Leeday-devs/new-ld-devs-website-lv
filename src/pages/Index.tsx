@@ -20,8 +20,17 @@ import LiveChatWidget from "@/components/LiveChatWidget";
 import MobilePerformanceOptimizer from "@/components/MobilePerformanceOptimizer";
 import CriticalCSS from "@/components/CriticalCSS";
 import SEOEnhancements from "@/components/SEOEnhancements";
+import BottomNavigation from "@/components/mobile/BottomNavigation";
+import MobileChatButton from "@/components/mobile/MobileChatButton";
+import StickyBookNowButton from "@/components/mobile/StickyBookNowButton";
+import MobileDrawerMenu from "@/components/mobile/MobileDrawerMenu";
+import { useState } from "react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const Index = () => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const isMobile = useIsMobile();
+  
   const faqData = [
     {
       question: "How long does it take to build a website?",
@@ -135,8 +144,24 @@ const Index = () => {
         
         {/* Footer (navy) */}
         <Footer />
+        
+        {/* Mobile App Components */}
+        {isMobile && (
+          <>
+            <BottomNavigation />
+            <MobileChatButton />
+            <StickyBookNowButton />
+          </>
+        )}
+        
         <WhatsAppButton />
         <LiveChatWidget />
+        
+        {/* Mobile Drawer Menu */}
+        <MobileDrawerMenu 
+          isOpen={isMobileMenuOpen} 
+          onClose={() => setIsMobileMenuOpen(false)} 
+        />
       </div>
       <CriticalCSS />
       <MobilePerformanceOptimizer />

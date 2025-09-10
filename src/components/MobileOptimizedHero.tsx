@@ -66,7 +66,7 @@ const MobileOptimizedHero = () => {
   return (
     <section 
       className={`bg-navy flex items-center justify-center relative overflow-hidden px-4 ${
-        isMobile ? 'min-h-[70vh] pt-16 pb-8' : 'min-h-screen pt-20'
+        isMobile ? 'min-h-screen pt-4 pb-20' : 'min-h-screen pt-20'
       }`}
       aria-label="Hero section with company introduction"
     >
@@ -198,16 +198,16 @@ const MobileOptimizedHero = () => {
           </p>
         </div>
         
-        {/* Optimized CTA Button - Reduced effects on mobile */}
+        {/* Mobile App-Style CTA Button */}
         <div className={`transition-all duration-500 ease-out ${showButton ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-4 scale-98'} ${
-          isMobile ? 'mb-4' : 'mb-8 sm:mb-16'
+          isMobile ? 'mb-8 px-2' : 'mb-8 sm:mb-16'
         }`}>
           <Button 
             size="lg" 
-            className={`btn-primary w-full xs:w-auto font-black rounded-full shadow-2xl relative overflow-hidden group transition-all duration-300 max-w-sm mx-auto ${
+            className={`font-black shadow-2xl relative overflow-hidden group transition-all duration-300 ${
               isMobile 
-                ? 'px-6 py-3 text-base' 
-                : 'px-8 sm:px-10 md:px-12 py-4 sm:py-5 md:py-6 text-lg sm:text-xl md:text-2xl hover:scale-105 animate-pulse-slow hover:animate-none'
+                ? 'mobile-app-button rounded-2xl text-lg py-5 w-full max-w-sm mx-auto' 
+                : 'btn-primary w-auto px-8 sm:px-10 md:px-12 py-4 sm:py-5 md:py-6 text-lg sm:text-xl md:text-2xl hover:scale-105 animate-pulse-slow hover:animate-none rounded-full'
             }`}
             onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
           >

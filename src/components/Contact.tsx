@@ -6,10 +6,11 @@ import { Mail, Phone, MapPin, Send, Loader2, MessageCircle, Zap } from "lucide-r
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { isRateLimited, sanitizeInput, isValidEmail, logSecureError } from "@/utils/security";
+import { useIsMobile } from "@/hooks/use-mobile";
+
 const Contact = () => {
-  const {
-    toast
-  } = useToast();
+  const { toast } = useToast();
+  const isMobile = useIsMobile();
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -17,36 +18,39 @@ const Contact = () => {
     subject: "",
     message: ""
   });
-  const contactInfo = [{
-    icon: Mail,
-    label: "Email",
-    value: "LeeDayDevs@gmail.com",
-    href: "mailto:LeeDayDevs@gmail.com"
-  }, {
-    icon: Phone,
-    label: "Phone",
-    value: "07586 266007",
-    href: "tel:07586266007"
-  }, {
-    icon: MapPin,
-    label: "Location",
-    value: "3RD Floor 86-90, Paul Street, London EC2A 4NE",
-    href: "#"
-  }];
+
+  const contactInfo = [
+    {
+      icon: Mail,
+      label: "Email",
+      value: "LeeDayDevs@gmail.com",
+      href: "mailto:LeeDayDevs@gmail.com"
+    },
+    {
+      icon: Phone,
+      label: "Phone", 
+      value: "07586 266007",
+      href: "tel:07586266007"
+    },
+    {
+      icon: MapPin,
+      label: "Location",
+      value: "3RD Floor 86-90, Paul Street, London EC2A 4NE",
+      href: "#"
+    }
+  ];
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const {
-      name,
-      value
-    } = e.target;
+    const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
       [name]: value
     }));
   };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Sanitize and validate inputs
     const sanitizedData = {
       name: sanitizeInput(formData.name.trim()),
       email: sanitizeInput(formData.email.trim()),
@@ -65,7 +69,7 @@ const Contact = () => {
 
     if (!isValidEmail(sanitizedData.email)) {
       toast({
-        title: "Error",
+        title: "Error", 
         description: "Please enter a valid email address",
         variant: "destructive"
       });
@@ -81,8 +85,7 @@ const Contact = () => {
       return;
     }
 
-    // Rate limiting
-    if (isRateLimited(`contact-${sanitizedData.email}`, 3, 300000)) { // 5 minutes
+    if (isRateLimited(`contact-${sanitizedData.email}`, 3, 300000)) {
       toast({
         title: "Error",
         description: "Too many attempts. Please wait 5 minutes before trying again.",
@@ -93,13 +96,9 @@ const Contact = () => {
 
     setIsLoading(true);
     try {
-      // Store in database
-      const {
-        error: dbError
-      } = await supabase.from('contact_submissions').insert([sanitizedData]);
+      const { error: dbError } = await supabase.from('contact_submissions').insert([sanitizedData]);
       if (dbError) throw dbError;
 
-      // Send Discord notification
       const { error: discordError } = await supabase.functions.invoke('send-discord-notification', {
         body: {
           eventType: 'contact',
@@ -114,7 +113,6 @@ const Contact = () => {
 
       if (discordError) {
         console.error('Discord notification failed:', discordError);
-        // Don't throw error - form submission was successful
       }
       
       toast({
@@ -122,7 +120,6 @@ const Contact = () => {
         description: "Thank you for your message. We'll get back to you soon!"
       });
 
-      // Reset form
       setFormData({
         name: "",
         email: "",
@@ -140,6 +137,7 @@ const Contact = () => {
       setIsLoading(false);
     }
   };
+
   return (
     <section className="section-navy">
       <div className="container mx-auto px-6">
@@ -156,7 +154,7 @@ const Contact = () => {
           <div className="bg-white rounded-3xl shadow-luxury overflow-hidden">
             <div className="grid grid-cols-1 lg:grid-cols-5 min-h-[400px] lg:min-h-[600px]">
               
-              {/* Left Sidebar - Contact Info - Mobile Optimized */}
+              {/* Left Sidebar - Contact Info */}
               <div className="lg:col-span-2 bg-navy p-6 sm:p-8 lg:p-10 flex flex-col justify-between">
                 <div>
                   <h3 className="heading-primary heading-md text-white mb-8 font-bold">
@@ -186,7 +184,6 @@ const Contact = () => {
                   </div>
                 </div>
 
-                {/* Quick Response Box */}
                 <div className="bg-navy/50 border border-orange/20 rounded-2xl p-8 mt-8">
                   <div className="flex items-center gap-4 mb-4">
                     <div className="bg-orange/20 rounded-full w-12 h-12 flex items-center justify-center">
@@ -202,120 +199,134 @@ const Contact = () => {
                 </div>
               </div>
 
-              {/* Right Side - Contact Form - Mobile Optimized */}
+              {/* Right Side - Contact Form */}
               <div className="lg:col-span-3 p-6 sm:p-8 lg:p-12">
                 <div className="max-w-2xl">
                   <h3 className="heading-primary heading-md text-navy mb-8 font-bold">
                     Send us a <span className="text-orange">Message</span>
                   </h3>
                   
-                  <form onSubmit={handleSubmit} className="space-y-8">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-                      <div className="space-y-3">
-                        <label className="text-base font-semibold text-navy">
-                          Full Name *
-                        </label>
+                  {isMobile ? (
+                    <div className="space-y-6">
+                      <div className="progress-bar">
+                        <div className="progress-fill" style={{ width: '100%' }}></div>
+                      </div>
+                      
+                      <form onSubmit={handleSubmit} className="space-y-6">
                         <Input
                           name="name"
                           value={formData.name}
                           onChange={handleInputChange}
-                          placeholder="Enter your full name"
-                          className="premium-input"
-                          maxLength={100}
+                          placeholder="Full Name *"
+                          className="mobile-app-input"
                           required
                         />
-                      </div>
-                      
-                      <div className="space-y-3">
-                        <label className="text-base font-semibold text-navy">
-                          Email Address *
-                        </label>
+                        
                         <Input
                           name="email"
                           type="email"
                           value={formData.email}
                           onChange={handleInputChange}
-                          placeholder="Enter your email address"
+                          placeholder="Email Address *"
+                          className="mobile-app-input"
+                          required
+                        />
+                        
+                        <Input
+                          name="subject"
+                          value={formData.subject}
+                          onChange={handleInputChange}
+                          placeholder="Subject"
+                          className="mobile-app-input"
+                        />
+                        
+                        <Textarea
+                          name="message"
+                          value={formData.message}
+                          onChange={handleInputChange}
+                          placeholder="Project Details *"
+                          className="mobile-app-input min-h-32"
+                          required
+                        />
+                        
+                        <Button
+                          type="submit"
+                          disabled={isLoading}
+                          className="mobile-app-button"
+                        >
+                          {isLoading ? (
+                            <>
+                              <Loader2 className="mr-3 h-6 w-6 animate-spin" />
+                              Sending...
+                            </>
+                          ) : (
+                            <>
+                              <Send className="mr-3 h-6 w-6" />
+                              Send Message
+                            </>
+                          )}
+                        </Button>
+                      </form>
+                    </div>
+                  ) : (
+                    <form onSubmit={handleSubmit} className="space-y-8">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <Input
+                          name="name"
+                          value={formData.name}
+                          onChange={handleInputChange}
+                          placeholder="Full Name *"
                           className="premium-input"
-                          maxLength={100}
+                          required
+                        />
+                        
+                        <Input
+                          name="email"
+                          type="email"
+                          value={formData.email}
+                          onChange={handleInputChange}
+                          placeholder="Email Address *"
+                          className="premium-input"
                           required
                         />
                       </div>
-                    </div>
-                    
-                    <div className="space-y-3">
-                      <label className="text-base font-semibold text-navy">
-                        Subject
-                      </label>
+                      
                       <Input
                         name="subject"
                         value={formData.subject}
                         onChange={handleInputChange}
-                        placeholder="What's your project about?"
+                        placeholder="Subject"
                         className="premium-input"
-                        maxLength={200}
                       />
-                    </div>
-                    
-                    <div className="space-y-3">
-                      <label className="text-base font-semibold text-navy">
-                        Project Details *
-                      </label>
+                      
                       <Textarea
                         name="message"
                         value={formData.message}
                         onChange={handleInputChange}
-                        placeholder="Tell us about your project goals, timeline, and any specific requirements..."
-                        className="premium-input min-h-32 resize-none"
-                        maxLength={2000}
+                        placeholder="Project Details *"
+                        className="premium-input min-h-32"
                         required
                       />
-                    </div>
-                    
-                    <div className="flex flex-col sm:flex-row gap-4 pt-6">
+                      
                       <Button
                         type="submit"
                         disabled={isLoading}
-                        className="btn-primary px-6 py-2.5 rounded-xl font-semibold text-sm md:text-base flex-1 group/btn relative overflow-hidden"
+                        className="btn-primary px-8 py-3 rounded-xl font-semibold w-full"
                       >
-                        {/* Enhanced gradient background */}
-                        <div className="absolute inset-0 bg-gradient-to-r from-orange via-orange/90 to-orange/80 group-hover/btn:from-orange/90 group-hover/btn:via-orange group-hover/btn:to-orange transition-all duration-300" />
-                        
-                        {/* Glow effect */}
-                        <div className="absolute inset-0 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300" style={{
-                          boxShadow: '0 0 30px rgba(255, 122, 0, 0.5)'
-                        }} />
-                        
-                        <span className="relative z-10">
-                          {isLoading ? (
-                            <>
-                              <Loader2 className="mr-3 h-5 w-5 animate-spin" />
-                              Sending Message...
-                            </>
-                          ) : (
-                            <>
-                              <Send className="mr-3 h-5 w-5" />
-                              Send Message
-                            </>
-                          )}
-                        </span>
+                        {isLoading ? (
+                          <>
+                            <Loader2 className="mr-3 h-5 w-5 animate-spin" />
+                            Sending Message...
+                          </>
+                        ) : (
+                          <>
+                            <Send className="mr-3 h-5 w-5" />
+                            Send Message
+                          </>
+                        )}
                       </Button>
-                      
-                      <Button
-                        type="button"
-                        onClick={() => {
-                          const whatsappNumber = "447586266007";
-                          const message = "Hi! I'm interested in your premium web development services.";
-                          const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
-                          window.open(whatsappUrl, '_blank');
-                        }}
-                        className="btn-secondary px-6 py-2.5 rounded-xl font-semibold text-sm md:text-base flex-1"
-                      >
-                        <MessageCircle className="mr-3 h-5 w-5" />
-                        WhatsApp
-                      </Button>
-                    </div>
-                  </form>
+                    </form>
+                  )}
                 </div>
               </div>
             </div>
@@ -325,4 +336,5 @@ const Contact = () => {
     </section>
   );
 };
+
 export default Contact;

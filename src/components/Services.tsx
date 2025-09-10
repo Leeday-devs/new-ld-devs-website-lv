@@ -151,9 +151,9 @@ const Services = () => {
           </p>
         </div>
 
-        {/* Services Grid/Accordion - Ultra Premium */}
+        {/* Mobile App-Style Cards / Desktop Grid */}
         {isMobile ? (
-          <Accordion type="single" collapsible className="w-full">
+          <div className="space-y-4">
             {services.map((service, index) => {
               const isPrimary = index % 2 === 0;
               const colorScheme = isPrimary 
@@ -161,38 +161,47 @@ const Services = () => {
                 : { icon: 'text-navy', accent: 'bg-gradient-to-r from-navy via-navy/90 to-navy' };
               
               return (
-                <AccordionItem key={index} value={`item-${index}`} className="border-orange/20 mb-4">
-                  <AccordionTrigger className="hover:no-underline p-4 bg-white/90 rounded-t-xl border border-orange/25">
-                    <div className="flex items-center space-x-4">
-                      <div className="p-2 rounded-lg bg-gradient-to-br from-orange/15 to-orange/25 backdrop-blur-md">
-                        <service.icon className={`h-5 w-5 ${colorScheme.icon}`} />
-                      </div>
-                      <span className={`font-bold ${colorScheme.icon} text-left`}>{service.title}</span>
+                <div key={index} className="mobile-app-card swipe-card">
+                  <div className="flex items-start space-x-4 mb-4">
+                    <div className="p-3 rounded-2xl bg-gradient-to-br from-orange/15 to-orange/25 backdrop-blur-md">
+                      <service.icon className={`h-6 w-6 ${colorScheme.icon}`} />
                     </div>
-                  </AccordionTrigger>
-                  <AccordionContent className="bg-white/95 border-x border-b border-orange/25 rounded-b-xl p-4">
-                    <p className="text-text-secondary mb-4 text-sm leading-relaxed">{service.description}</p>
-                    <ul className="space-y-2 mb-4">
-                      {service.features.map((feature, featureIndex) => (
-                        <li key={featureIndex} className="flex items-center text-sm">
-                          <CheckCircle className={`h-3 w-3 ${colorScheme.icon} mr-2 flex-shrink-0`} />
-                          <span className="text-text-primary font-medium">{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    {(service.pricingCategory || service.isTemplates) && (
-                      <button 
-                        onClick={() => handleServiceClick(service.pricingCategory, service.isTemplates)}
-                        className={`w-full text-center py-2 px-4 rounded-lg ${colorScheme.accent} text-white font-semibold text-sm hover:opacity-90 transition-opacity`}
-                      >
-                        {service.pricingCategory ? 'View Packages' : 'Browse Templates'} →
-                      </button>
-                    )}
-                  </AccordionContent>
-                </AccordionItem>
+                    <div className="flex-1">
+                      <h3 className={`font-bold text-lg ${colorScheme.icon} mb-2`}>{service.title}</h3>
+                      <p className="text-gray-600 text-sm leading-relaxed mb-3">{service.description}</p>
+                    </div>
+                  </div>
+                  
+                  <Accordion type="single" collapsible className="w-full">
+                    <AccordionItem value="features" className="border-0">
+                      <AccordionTrigger className="hover:no-underline py-2 text-sm font-medium text-gray-500">
+                        View Features
+                      </AccordionTrigger>
+                      <AccordionContent className="pt-2">
+                        <ul className="space-y-2 mb-4">
+                          {service.features.map((feature, featureIndex) => (
+                            <li key={featureIndex} className="flex items-center text-sm">
+                              <CheckCircle className={`h-3 w-3 ${colorScheme.icon} mr-2 flex-shrink-0`} />
+                              <span className="text-gray-700 font-medium">{feature}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </AccordionContent>
+                    </AccordionItem>
+                  </Accordion>
+                  
+                  {(service.pricingCategory || service.isTemplates) && (
+                    <button 
+                      onClick={() => handleServiceClick(service.pricingCategory, service.isTemplates)}
+                      className="mobile-app-button mt-4 text-base py-3"
+                    >
+                      {service.pricingCategory ? 'View Packages' : 'Browse Templates'} →
+                    </button>
+                  )}
+                </div>
               );
             })}
-          </Accordion>
+          </div>
         ) : (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
             {services.map((service, index) => {
