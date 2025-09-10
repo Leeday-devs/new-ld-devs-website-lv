@@ -8,6 +8,7 @@ import AuthButton from "./AuthButton";
 const primaryNavItems = [
   { label: "Home", href: "/", isInternal: true },
   { label: "Services", href: "#services", isInternal: false },
+  { label: "Pricing", href: "/pricing", isInternal: true },
   { label: "Pre-Built", href: "/templates", isInternal: true },
   { label: "Blog", href: "/blog", isInternal: true }
 ];
