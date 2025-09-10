@@ -1,150 +1,208 @@
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ScrollAnimated } from '@/hooks/useScrollTrigger';
-import { TrendingUp, Clock, Users, DollarSign, Zap, Target } from 'lucide-react';
-import { PieChart, Pie, Cell, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import { TrendingUp, Clock, Users, DollarSign, Zap, Target, ArrowUp, Globe, ShoppingCart, BarChart3 } from 'lucide-react';
+import { PieChart, Pie, Cell, ResponsiveContainer, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend, BarChart, Bar } from 'recharts';
 
 const AIBenefitsSection = () => {
-  const businessPresenceData = [
-    { name: 'No Website', value: 25, color: 'hsl(var(--destructive))' },
-    { name: 'Professional Website', value: 75, color: 'hsl(var(--primary))' }
+  // Dashboard-style metrics data
+  const websiteImpactData = [
+    { month: 'Jan', revenue: 100, leads: 80, traffic: 120 },
+    { month: 'Feb', revenue: 125, leads: 110, traffic: 145 },
+    { month: 'Mar', revenue: 155, leads: 135, traffic: 170 },
+    { month: 'Apr', revenue: 185, leads: 160, traffic: 195 },
+    { month: 'May', revenue: 220, leads: 190, traffic: 225 },
+    { month: 'Jun', revenue: 250, leads: 220, traffic: 260 }
   ];
 
-  const revenueGrowthData = [
-    { month: 'Jan', noWebsite: 100, withWebsite: 115 },
-    { month: 'Mar', noWebsite: 100, withWebsite: 135 },
-    { month: 'Jun', noWebsite: 100, withWebsite: 160 },
-    { month: 'Sep', noWebsite: 100, withWebsite: 190 },
-    { month: 'Dec', noWebsite: 100, withWebsite: 225 }
-  ];
-
-  const benefits = [
+  const dashboardMetrics = [
     {
-      icon: <TrendingUp className="w-8 h-8" />,
-      title: "225% Revenue Growth",
-      description: "Businesses with professional websites see 2.25x more revenue within their first year"
+      title: "Revenue Growth",
+      value: "225%",
+      change: "+125%",
+      icon: <TrendingUp className="w-5 h-5" />,
+      color: "text-green-400",
+      bgColor: "bg-green-400/10",
+      description: "Average increase in first year"
     },
     {
-      icon: <Clock className="w-8 h-8" />,
-      title: "Work 24/7 for You",
-      description: "Your website generates leads and sales even while you sleep"
+      title: "Online Reach", 
+      value: "4.9B",
+      change: "+∞",
+      icon: <Globe className="w-5 h-5" />,
+      color: "text-blue-400",
+      bgColor: "bg-blue-400/10",
+      description: "Potential customers worldwide"
     },
     {
-      icon: <Users className="w-8 h-8" />,
-      title: "Reach 4.9B People",
-      description: "Connect with billions of potential customers online worldwide"
+      title: "Customer Trust",
+      value: "75%", 
+      change: "+50%",
+      icon: <Users className="w-5 h-5" />,
+      color: "text-purple-400",
+      bgColor: "bg-purple-400/10", 
+      description: "Judge credibility by website"
     },
     {
-      icon: <DollarSign className="w-8 h-8" />,
-      title: "Lower Marketing Costs",
-      description: "Digital marketing is 62% more cost-effective than traditional advertising"
+      title: "Cost Efficiency",
+      value: "62%",
+      change: "-38%",
+      icon: <DollarSign className="w-5 h-5" />,
+      color: "text-orange-400",
+      bgColor: "bg-orange-400/10",
+      description: "More cost-effective than traditional ads"
+    },
+    {
+      title: "24/7 Sales",
+      value: "∞",
+      change: "Always On",
+      icon: <Clock className="w-5 h-5" />,
+      color: "text-cyan-400", 
+      bgColor: "bg-cyan-400/10",
+      description: "Work while you sleep"
+    },
+    {
+      title: "Conversion Rate",
+      value: "3.2x",
+      change: "+220%",
+      icon: <ShoppingCart className="w-5 h-5" />,
+      color: "text-pink-400",
+      bgColor: "bg-pink-400/10",
+      description: "Higher than no website"
     }
   ];
 
   return (
-    <section className="py-20 bg-background">
-      <div className="container mx-auto px-4">
+    <section className="py-20 bg-navy text-white relative overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--brand-orange)_0%,_transparent_50%)] opacity-5"></div>
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_var(--brand-orange)_0%,_transparent_50%)] opacity-5"></div>
+      
+      <div className="container mx-auto px-4 relative">
         <ScrollAnimated>
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
               Why Your Business Needs a Professional <span className="text-primary">Website</span>
             </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              In today's digital world, your website is your most powerful business tool. See how the right website drives real results.
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              Real data shows the transformative impact of professional websites on business growth
             </p>
           </div>
         </ScrollAnimated>
 
-        <div className="grid lg:grid-cols-2 gap-12 mb-16">
-          <ScrollAnimated animationType="slide-in-left">
-            <Card className="p-8">
-              <CardHeader>
-                <CardTitle className="text-2xl mb-4 flex items-center gap-3">
-                  <Zap className="w-6 h-6 text-primary" />
-                  Customer Trust Factor
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ResponsiveContainer width="100%" height={300}>
-                  <PieChart>
-                    <Pie
-                      data={businessPresenceData}
-                      cx="50%"
-                      cy="50%"
-                      outerRadius={100}
-                      dataKey="value"
-                      label={({ name, value }) => `${name}: ${value}%`}
-                    >
-                      {businessPresenceData.map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={entry.color} />
-                      ))}
-                    </Pie>
-                    <Tooltip />
-                  </PieChart>
-                </ResponsiveContainer>
-                <p className="text-center text-muted-foreground mt-4">
-                  75% of consumers judge business credibility based on website design and functionality.
-                </p>
-              </CardContent>
-            </Card>
-          </ScrollAnimated>
-
-          <ScrollAnimated animationType="slide-in-right">
-            <Card className="p-8">
-              <CardHeader>
-                <CardTitle className="text-2xl mb-4 flex items-center gap-3">
-                  <Target className="w-6 h-6 text-primary" />
-                  Revenue Growth Over Time
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ResponsiveContainer width="100%" height={300}>
-                  <BarChart data={revenueGrowthData}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="month" />
-                    <YAxis />
-                    <Tooltip formatter={(value, name) => [`${value}%`, name === 'noWebsite' ? 'Without Website' : 'With Professional Website']} />
-                    <Legend />
-                    <Bar dataKey="noWebsite" fill="hsl(var(--destructive))" name="Without Website" />
-                    <Bar dataKey="withWebsite" fill="hsl(var(--primary))" name="With Professional Website" />
-                  </BarChart>
-                </ResponsiveContainer>
-                <p className="text-center text-muted-foreground mt-4">
-                  Businesses with professional websites consistently outperform competitors without online presence.
-                </p>
-              </CardContent>
-            </Card>
-          </ScrollAnimated>
-        </div>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {benefits.map((benefit, index) => (
+        {/* Dashboard Metrics Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+          {dashboardMetrics.map((metric, index) => (
             <ScrollAnimated key={index} delay={index * 100}>
-              <Card className="p-6 text-center hover:shadow-lg transition-all duration-300 border-2 hover:border-primary/20">
-                <div className="text-primary mb-4 flex justify-center">
-                  {benefit.icon}
-                </div>
-                <h3 className="text-xl font-bold mb-3">{benefit.title}</h3>
-                <p className="text-muted-foreground">{benefit.description}</p>
+              <Card className="bg-white/5 border-white/10 backdrop-blur-sm hover:bg-white/10 transition-all duration-300 group">
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className={`p-3 rounded-xl ${metric.bgColor}`}>
+                      <div className={metric.color}>
+                        {metric.icon}
+                      </div>
+                    </div>
+                    <div className={`flex items-center gap-1 text-sm ${metric.color} ${metric.color.includes('green') ? 'bg-green-400/10' : metric.color.includes('orange') ? 'bg-orange-400/10' : 'bg-blue-400/10'} px-2 py-1 rounded-full`}>
+                      <ArrowUp className="w-3 h-3" />
+                      {metric.change}
+                    </div>
+                  </div>
+                  <div className="mb-2">
+                    <div className="text-3xl font-bold text-white mb-1">{metric.value}</div>
+                    <div className="text-sm font-medium text-gray-300">{metric.title}</div>
+                  </div>
+                  <div className="text-xs text-gray-400">{metric.description}</div>
+                </CardContent>
               </Card>
             </ScrollAnimated>
           ))}
         </div>
 
+        {/* Main Chart Section */}
         <ScrollAnimated>
-          <div className="text-center mt-16 p-8 bg-primary/5 rounded-2xl border border-primary/20">
-            <h3 className="text-2xl font-bold mb-4">Ready to Get Your Professional Website?</h3>
-            <p className="text-lg text-muted-foreground mb-6">
-              Join 1,200+ businesses already growing their revenue with our professional websites.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-primary text-primary-foreground px-8 py-3 rounded-lg font-semibold hover:bg-primary/90 transition-colors">
-                Get Free Website Quote
-              </button>
-              <button className="border border-primary text-primary px-8 py-3 rounded-lg font-semibold hover:bg-primary/10 transition-colors">
-                View Live Examples
-              </button>
-            </div>
+          <Card className="bg-white/5 border-white/10 backdrop-blur-sm mb-12">
+            <CardHeader className="pb-4">
+              <CardTitle className="text-2xl text-white flex items-center gap-3">
+                <BarChart3 className="w-6 h-6 text-primary" />
+                Website Performance Impact
+              </CardTitle>
+              <p className="text-gray-400">Revenue, leads, and traffic growth with professional websites</p>
+            </CardHeader>
+            <CardContent className="p-6 pt-0">
+              <ResponsiveContainer width="100%" height={350}>
+                <AreaChart data={websiteImpactData}>
+                  <defs>
+                    <linearGradient id="revenueGradient" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="5%" stopColor="#22d3ee" stopOpacity={0.3}/>
+                      <stop offset="95%" stopColor="#22d3ee" stopOpacity={0.05}/>
+                    </linearGradient>
+                    <linearGradient id="leadsGradient" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="5%" stopColor="#a78bfa" stopOpacity={0.3}/>
+                      <stop offset="95%" stopColor="#a78bfa" stopOpacity={0.05}/>
+                    </linearGradient>
+                  </defs>
+                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
+                  <XAxis 
+                    dataKey="month" 
+                    axisLine={false}
+                    tickLine={false}
+                    tick={{ fill: '#9ca3af', fontSize: 12 }}
+                  />
+                  <YAxis 
+                    axisLine={false}
+                    tickLine={false}
+                    tick={{ fill: '#9ca3af', fontSize: 12 }}
+                  />
+                  <Tooltip 
+                    contentStyle={{
+                      backgroundColor: 'rgba(0,0,0,0.8)',
+                      border: '1px solid rgba(255,255,255,0.1)',
+                      borderRadius: '12px',
+                      color: 'white'
+                    }}
+                    formatter={(value, name) => [
+                      `${value}%`, 
+                      name === 'revenue' ? 'Revenue Growth' : 
+                      name === 'leads' ? 'Lead Generation' : 'Traffic Growth'
+                    ]}
+                  />
+                  <Area
+                    type="monotone"
+                    dataKey="revenue"
+                    stroke="#22d3ee"
+                    strokeWidth={3}
+                    fill="url(#revenueGradient)"
+                  />
+                  <Area
+                    type="monotone"
+                    dataKey="leads"
+                    stroke="#a78bfa"
+                    strokeWidth={2}
+                    fill="url(#leadsGradient)"
+                  />
+                </AreaChart>
+              </ResponsiveContainer>
+            </CardContent>
+          </Card>
+        </ScrollAnimated>
+
+        {/* CTA Section */}
+        <ScrollAnimated>
+          <div className="text-center">
+            <Card className="bg-primary/10 border-primary/20 backdrop-blur-sm p-8">
+              <h3 className="text-2xl font-bold mb-4 text-white">Ready to Transform Your Business?</h3>
+              <p className="text-lg text-gray-300 mb-6 max-w-2xl mx-auto">
+                Join 1,200+ businesses already seeing these results with professional websites
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <button className="btn-primary px-8 py-4 text-white font-semibold rounded-xl">
+                  Get Your Dashboard Quote
+                </button>
+                <button className="border border-white/20 text-white px-8 py-4 rounded-xl font-semibold hover:bg-white/10 transition-colors">
+                  View Live Examples
+                </button>
+              </div>
+            </Card>
           </div>
         </ScrollAnimated>
       </div>
