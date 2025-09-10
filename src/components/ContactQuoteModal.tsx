@@ -61,6 +61,23 @@ export const ContactQuoteModal = ({ isOpen, onClose }: ContactQuoteModalProps) =
 
       if (error) throw error;
 
+      // Send Discord notification
+      const { error: discordError } = await supabase.functions.invoke('send-discord-notification', {
+        body: {
+          eventType: 'quote_request',
+          data: {
+            name: name.trim(),
+            email: email.trim(),
+            budget,
+            message: message.trim().substring(0, 200) + (message.trim().length > 200 ? '...' : '')
+          }
+        }
+      });
+
+      if (discordError) {
+        console.error('Discord notification failed:', discordError);
+      }
+
       toast({
         title: "Quote request sent!",
         description: "We'll get back to you within 24 hours.",

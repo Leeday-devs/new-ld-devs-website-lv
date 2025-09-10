@@ -62,6 +62,22 @@ export const LeadCaptureModal = ({ isOpen, onClose }: LeadCaptureModalProps) => 
 
       if (error) throw error;
 
+      // Send Discord notification
+      const { error: discordError } = await supabase.functions.invoke('send-discord-notification', {
+        body: {
+          eventType: 'newsletter_signup',
+          data: {
+            name: name.trim(),
+            email: email.trim(),
+            source: 'lead_capture_popup'
+          }
+        }
+      });
+
+      if (discordError) {
+        console.error('Discord notification failed:', discordError);
+      }
+
       toast({
         title: "Success!",
         description: "Your free guide is on its way to your inbox.",

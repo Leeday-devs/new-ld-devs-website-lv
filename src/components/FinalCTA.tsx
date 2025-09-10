@@ -36,6 +36,21 @@ const FinalCTA = () => {
           variant: "destructive",
         });
       } else {
+        // Send Discord notification
+        const { error: discordError } = await supabase.functions.invoke('send-discord-notification', {
+          body: {
+            eventType: 'newsletter_signup',
+            data: {
+              email: email.trim(),
+              source: 'final_cta'
+            }
+          }
+        });
+
+        if (discordError) {
+          console.error('Discord notification failed:', discordError);
+        }
+
         setIsSubmitted(true);
         toast({
           title: "Success!",

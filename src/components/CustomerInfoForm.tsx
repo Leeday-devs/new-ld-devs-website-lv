@@ -14,6 +14,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { User, Mail, Phone, Building, ArrowRight } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 
 const customerInfoSchema = z.object({
   fullName: z.string().min(2, "Name must be at least 2 characters"),
@@ -41,7 +42,29 @@ export const CustomerInfoForm = ({ onSubmit, isLoading, serviceName }: CustomerI
     },
   });
 
-  const handleSubmit = (data: CustomerInfo) => {
+  const handleSubmit = async (data: CustomerInfo) => {
+    // Send Discord notification first
+    try {
+      const { error: discordError } = await supabase.functions.invoke('send-discord-notification', {
+        body: {
+          eventType: 'customer_info',
+          data: {
+            fullName: data.fullName,
+            email: data.email,
+            phone: data.phone,
+            company: data.company || 'N/A',
+            serviceName
+          }
+        }
+      });
+
+      if (discordError) {
+        console.error('Discord notification failed:', discordError);
+      }
+    } catch (error) {
+      console.error('Failed to send Discord notification:', error);
+    }
+
     onSubmit(data);
   };
 

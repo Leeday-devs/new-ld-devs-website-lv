@@ -1,13 +1,68 @@
 import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin, ArrowRight, Shield, Star, Award } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const [email, setEmail] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast();
 
-  const handleNewsletterSubmit = (e: React.FormEvent) => {
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Newsletter signup logic would go here
+    
+    if (!email.trim()) {
+      toast({
+        title: "Email required",
+        description: "Please enter your email address",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const { error } = await supabase
+        .from('newsletter_subscriptions')
+        .insert([{ email: email.trim() }]);
+
+      if (error) throw error;
+
+      // Send Discord notification
+      const { error: discordError } = await supabase.functions.invoke('send-discord-notification', {
+        body: {
+          eventType: 'newsletter_signup',
+          data: {
+            email: email.trim(),
+            source: 'footer'
+          }
+        }
+      });
+
+      if (discordError) {
+        console.error('Discord notification failed:', discordError);
+      }
+
+      toast({
+        title: "Success!",
+        description: "Thank you for subscribing to our newsletter!",
+      });
+      
+      setEmail("");
+    } catch (error) {
+      console.error('Newsletter signup error:', error);
+      toast({
+        title: "Error",
+        description: "Something went wrong. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -57,11 +112,19 @@ const Footer = () => {
                   <Input 
                     type="email" 
                     placeholder="Enter your email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    disabled={isSubmitting}
                     className="bg-white/10 border-white/20 text-white placeholder:text-white/60 focus:border-orange focus:ring-orange text-sm sm:text-base flex-1"
                     style={{ minHeight: '44px' }}
                   />
-                  <Button type="submit" className="bg-orange hover:bg-orange/90 text-white px-4 sm:px-6 touch-manipulation" style={{ minHeight: '44px' }}>
-                    <ArrowRight className="h-4 w-4" />
+                  <Button 
+                    type="submit" 
+                    disabled={isSubmitting}
+                    className="bg-orange hover:bg-orange/90 text-white px-4 sm:px-6 touch-manipulation" 
+                    style={{ minHeight: '44px' }}
+                  >
+                    {isSubmitting ? "..." : <ArrowRight className="h-4 w-4" />}
                   </Button>
                 </form>
               </div>
