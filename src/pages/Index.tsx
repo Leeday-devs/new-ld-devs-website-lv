@@ -13,6 +13,8 @@ import StatsBar from "@/components/StatsBar";
 import TrustedByLogos from "@/components/TrustedByLogos";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import FAQ from "@/components/FAQ";
+import AIBenefitsSection from "@/components/AIBenefitsSection";
+import ApplicationsSection from "@/components/ApplicationsSection";
 
 const Index = () => {
   return (
@@ -47,6 +49,12 @@ const Index = () => {
           
           {/* Trusted By Logos - Social Proof */}
           <TrustedByLogos />
+          
+          {/* AI Benefits Section - Charts and examples */}
+          <AIBenefitsSection />
+          
+          {/* Applications Section - AI and website features */}
+          <ApplicationsSection />
           
           {/* Services (white cards) - Premium spacing */}
           <section id="services" aria-label="Web development services" className="p-0 bg-transparent">
