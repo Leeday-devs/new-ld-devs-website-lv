@@ -11,7 +11,8 @@ import {
   PenTool, 
   Home,
   LogOut,
-  User
+  User,
+  Database
 } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import {
@@ -34,6 +35,12 @@ const menuItems = [
     url: "/admin/panel",
     icon: BarChart3,
     section: "dashboard"
+  },
+  {
+    title: "Customer Info",
+    url: "/admin/panel?tab=customer-info",
+    icon: Database,
+    section: "management"
   },
   {
     title: "Customers",

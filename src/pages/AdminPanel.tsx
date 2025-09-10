@@ -8,6 +8,7 @@ import BlogPostsList from "@/components/admin/BlogPostsList";
 import CreatePostModal from "@/components/admin/CreatePostModal";
 import EditPostModal from "@/components/admin/EditPostModal";
 import CreateCategoryModal from "@/components/admin/CreateCategoryModal";
+import { CustomerInformationManagement } from "@/components/admin/CustomerInformationManagement";
 import CustomersManagement from "@/components/admin/CustomersManagement";
 import WorkRequestsManagement from "@/components/admin/WorkRequestsManagement";
 import PendingCustomersManagement from "@/components/admin/PendingCustomersManagement";
@@ -210,6 +211,8 @@ const AdminPanel = () => {
 
   const renderContent = () => {
     switch (activeTab) {
+      case "customer-info":
+        return <CustomerInformationManagement />;
       case "customers":
         return <CustomersManagement />;
       case "pending":
