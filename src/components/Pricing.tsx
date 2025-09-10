@@ -2,6 +2,7 @@ import { CheckCircle, Star, Crown, Code, ShoppingCart, Server, Smartphone, Brain
 import { Switch } from "@/components/ui/switch";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { CustomerInfoForm } from "@/components/CustomerInfoForm";
+import { CustomQuoteModal } from "@/components/CustomQuoteModal";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
@@ -11,6 +12,7 @@ import pricingHeroBg from "@/assets/pricing-hero-bg.jpg";
 const Pricing = () => {
   const [activeCategory, setActiveCategory] = useState('websites');
   const [isFormOpen, setIsFormOpen] = useState(false);
+  const [isCustomQuoteOpen, setIsCustomQuoteOpen] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState<string>('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
@@ -625,7 +627,7 @@ const Pricing = () => {
               
               <button 
                 className="group/btn bg-gradient-to-r from-orange to-orange/80 text-white px-12 py-5 text-xl font-bold rounded-2xl shadow-2xl hover:shadow-orange/50 hover:-translate-y-2 transition-all duration-500 relative overflow-hidden"
-                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                onClick={() => setIsCustomQuoteOpen(true)}
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 translate-x-[-200%] group-hover/btn:translate-x-[200%] transition-transform duration-1000"></div>
                 <span className="relative z-10 flex items-center space-x-2">
@@ -651,6 +653,12 @@ const Pricing = () => {
           />
         </DialogContent>
       </Dialog>
+
+      {/* Custom Quote Modal */}
+      <CustomQuoteModal 
+        isOpen={isCustomQuoteOpen}
+        onOpenChange={setIsCustomQuoteOpen}
+      />
     </section>
   );
 };

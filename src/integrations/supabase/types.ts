@@ -243,6 +243,75 @@ export type Database = {
         }
         Relationships: []
       }
+      custom_quote_requests: {
+        Row: {
+          admin_notes: string | null
+          budget_range: string | null
+          company: string | null
+          created_at: string
+          email: string
+          has_existing_branding: boolean | null
+          id: string
+          name: string
+          needs_hosting: boolean | null
+          needs_maintenance: boolean | null
+          phone: string | null
+          project_description: string
+          project_type: string
+          quote_amount: number | null
+          quoted_at: string | null
+          quoted_by: string | null
+          special_requirements: string | null
+          status: string
+          timeline: string | null
+          updated_at: string
+        }
+        Insert: {
+          admin_notes?: string | null
+          budget_range?: string | null
+          company?: string | null
+          created_at?: string
+          email: string
+          has_existing_branding?: boolean | null
+          id?: string
+          name: string
+          needs_hosting?: boolean | null
+          needs_maintenance?: boolean | null
+          phone?: string | null
+          project_description: string
+          project_type: string
+          quote_amount?: number | null
+          quoted_at?: string | null
+          quoted_by?: string | null
+          special_requirements?: string | null
+          status?: string
+          timeline?: string | null
+          updated_at?: string
+        }
+        Update: {
+          admin_notes?: string | null
+          budget_range?: string | null
+          company?: string | null
+          created_at?: string
+          email?: string
+          has_existing_branding?: boolean | null
+          id?: string
+          name?: string
+          needs_hosting?: boolean | null
+          needs_maintenance?: boolean | null
+          phone?: string | null
+          project_description?: string
+          project_type?: string
+          quote_amount?: number | null
+          quoted_at?: string | null
+          quoted_by?: string | null
+          special_requirements?: string | null
+          status?: string
+          timeline?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       customer_services: {
         Row: {
           created_at: string

@@ -10,6 +10,7 @@ import EditPostModal from "@/components/admin/EditPostModal";
 import CreateCategoryModal from "@/components/admin/CreateCategoryModal";
 import { CustomerInformationManagement } from "@/components/admin/CustomerInformationManagement";
 import CustomersManagement from "@/components/admin/CustomersManagement";
+import { CustomQuotesManagement } from "@/components/admin/CustomQuotesManagement";
 import WorkRequestsManagement from "@/components/admin/WorkRequestsManagement";
 import PendingCustomersManagement from "@/components/admin/PendingCustomersManagement";
 import BannedEmailsManagement from "@/components/admin/BannedEmailsManagement";
@@ -213,6 +214,8 @@ const AdminPanel = () => {
     switch (activeTab) {
       case "customer-info":
         return <CustomerInformationManagement />;
+      case "custom-quotes":
+        return <CustomQuotesManagement />;
       case "customers":
         return <CustomersManagement />;
       case "pending":

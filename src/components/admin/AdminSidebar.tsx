@@ -12,7 +12,8 @@ import {
   Home,
   LogOut,
   User,
-  Database
+  Database,
+  MessageSquare
 } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import {
@@ -40,6 +41,12 @@ const menuItems = [
     title: "Customer Info",
     url: "/admin/panel?tab=customer-info",
     icon: Database,
+    section: "management"
+  },
+  {
+    title: "Custom Quotes",
+    url: "/admin/panel?tab=custom-quotes",
+    icon: MessageSquare,
     section: "management"
   },
   {
