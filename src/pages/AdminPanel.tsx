@@ -18,7 +18,6 @@ import DiscordWebhookSettings from "@/components/DiscordWebhookSettings";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
-import PromoStripManagement from "@/components/admin/PromoStripManagement";
 import { Plus, Shield, BarChart3, PenTool } from "lucide-react";
 
 interface BlogPost {
@@ -225,8 +224,6 @@ const AdminPanel = () => {
         return <CookieConsentManagement />;
       case "discord":
         return <DiscordWebhookSettings />;
-      case "promo":
-        return <PromoStripManagement />;
       case "blog":
         return (
           <div className="space-y-6">
