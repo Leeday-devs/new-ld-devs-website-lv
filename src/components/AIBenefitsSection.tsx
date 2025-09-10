@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ScrollAnimated } from '@/hooks/useScrollTrigger';
-import { TrendingUp, Clock, Users, DollarSign, Zap, Target, ArrowUp, Globe, ShoppingCart, BarChart3 } from 'lucide-react';
+import { TrendingUp, Clock, Users, DollarSign, Zap, Target, ArrowUp, Globe, ShoppingCart, BarChart3, MessageCircle } from 'lucide-react';
 import { PieChart, Pie, Cell, ResponsiveContainer, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend, BarChart, Bar } from 'recharts';
 
 const AIBenefitsSection = () => {
@@ -196,11 +196,18 @@ const AIBenefitsSection = () => {
                 Join 1,200+ businesses already seeing these results with professional websites
               </p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                <button className="btn-primary px-6 py-3 text-white font-semibold rounded-lg">
-                  Get Your Dashboard Quote
+                <button 
+                  className="btn-primary px-6 py-3 text-white font-semibold rounded-lg"
+                  onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}
+                >
+                  Pricing
                 </button>
-                <button className="border border-white/20 text-white px-6 py-3 rounded-lg font-semibold hover:bg-white/10 transition-colors">
-                  View Live Examples
+                <button 
+                  className="border border-white/20 text-white px-6 py-3 rounded-lg font-semibold hover:bg-white/10 transition-colors flex items-center justify-center gap-2"
+                  onClick={() => window.open('https://wa.me/447476678602', '_blank')}
+                >
+                  <MessageCircle className="w-4 h-4" />
+                  WhatsApp
                 </button>
               </div>
             </Card>
