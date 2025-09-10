@@ -393,64 +393,64 @@ const Pricing = () => {
               </div>
             </div>
           </div>
-        </div>
 
-        {/* Premium Category Switcher */}
-        <div className="flex justify-center mb-16 px-4 animate-fade-in-up stagger-delay-3">
-          <div className="w-full max-w-5xl">
-            {/* Mobile: Stacked Layout */}
-            <div className="grid grid-cols-2 gap-3 sm:hidden">
-              {categories.map((category, index) => {
-                const IconComponent = category.icon;
-                return (
-                  <button
-                    key={category.id}
-                    data-category={category.id}
-                    onClick={() => setActiveCategory(category.id)}
-                    className={`group relative overflow-hidden flex items-center justify-center space-x-1.5 px-4 py-3.5 rounded-2xl font-semibold transition-all duration-500 text-sm ${
-                      activeCategory === category.id
-                        ? 'bg-gradient-to-r from-orange to-orange/80 text-white shadow-2xl scale-105'
-                        : 'text-white/80 hover:text-white bg-white/5 backdrop-blur-xl border border-white/10 hover:bg-white/10 hover:shadow-xl hover:scale-105'
-                    }`}
-                    style={{ animationDelay: `${index * 100}ms` }}
-                  >
-                    {activeCategory === category.id && (
-                      <div className="absolute inset-0 bg-gradient-to-r from-orange/20 to-orange/10 animate-pulse"></div>
-                    )}
-                    <IconComponent className="h-5 w-5 relative z-10" />
-                    <span className="relative z-10">{category.label}</span>
-                  </button>
-                );
-              })}
-            </div>
-            
-            {/* Desktop: Horizontal Layout */}
-            <div className="hidden sm:inline-flex items-center justify-center space-x-3 bg-navy/40 backdrop-blur-2xl p-3 rounded-3xl border border-white/10 shadow-2xl mx-auto">
-              {categories.map((category, index) => {
-                const IconComponent = category.icon;
-                return (
-                  <button
-                    key={category.id}
-                    data-category={category.id}
-                    onClick={() => setActiveCategory(category.id)}
-                    className={`group relative overflow-hidden flex items-center space-x-3 px-8 py-4 rounded-2xl font-semibold transition-all duration-500 text-base ${
-                      activeCategory === category.id
-                        ? 'bg-gradient-to-r from-orange to-orange/80 text-white shadow-2xl scale-105'
-                        : 'text-white/80 hover:text-white hover:bg-white/10 hover:shadow-xl hover:scale-105'
-                    }`}
-                    style={{ animationDelay: `${index * 100}ms` }}
-                  >
-                    {activeCategory === category.id && (
-                      <>
+          {/* Premium Category Switcher - Centered in Middle */}
+          <div className="flex justify-center mb-16 px-4 animate-fade-in-up stagger-delay-3">
+            <div className="w-full max-w-5xl">
+              {/* Mobile: Stacked Layout */}
+              <div className="grid grid-cols-2 gap-3 sm:hidden">
+                {categories.map((category, index) => {
+                  const IconComponent = category.icon;
+                  return (
+                    <button
+                      key={category.id}
+                      data-category={category.id}
+                      onClick={() => setActiveCategory(category.id)}
+                      className={`group relative overflow-hidden flex items-center justify-center space-x-1.5 px-4 py-3.5 rounded-2xl font-semibold transition-all duration-500 text-sm ${
+                        activeCategory === category.id
+                          ? 'bg-gradient-to-r from-orange to-orange/80 text-white shadow-2xl scale-105'
+                          : 'text-white/80 hover:text-white bg-white/5 backdrop-blur-xl border border-white/10 hover:bg-white/10 hover:shadow-xl hover:scale-105'
+                      }`}
+                      style={{ animationDelay: `${index * 100}ms` }}
+                    >
+                      {activeCategory === category.id && (
                         <div className="absolute inset-0 bg-gradient-to-r from-orange/20 to-orange/10 animate-pulse"></div>
-                        <div className="absolute -inset-1 bg-gradient-to-r from-orange to-orange/80 rounded-2xl blur opacity-30 group-hover:opacity-50 transition-opacity"></div>
-                      </>
-                    )}
-                    <IconComponent className="h-6 w-6 relative z-10" />
-                    <span className="whitespace-nowrap relative z-10">{category.label}</span>
-                  </button>
-                );
-              })}
+                      )}
+                      <IconComponent className="h-5 w-5 relative z-10" />
+                      <span className="relative z-10">{category.label}</span>
+                    </button>
+                  );
+                })}
+              </div>
+              
+              {/* Desktop: Horizontal Layout */}
+              <div className="hidden sm:inline-flex items-center justify-center space-x-3 bg-navy/40 backdrop-blur-2xl p-3 rounded-3xl border border-white/10 shadow-2xl mx-auto">
+                {categories.map((category, index) => {
+                  const IconComponent = category.icon;
+                  return (
+                    <button
+                      key={category.id}
+                      data-category={category.id}
+                      onClick={() => setActiveCategory(category.id)}
+                      className={`group relative overflow-hidden flex items-center space-x-3 px-8 py-4 rounded-2xl font-semibold transition-all duration-500 text-base ${
+                        activeCategory === category.id
+                          ? 'bg-gradient-to-r from-orange to-orange/80 text-white shadow-2xl scale-105'
+                          : 'text-white/80 hover:text-white hover:bg-white/10 hover:shadow-xl hover:scale-105'
+                      }`}
+                      style={{ animationDelay: `${index * 100}ms` }}
+                    >
+                      {activeCategory === category.id && (
+                        <>
+                          <div className="absolute inset-0 bg-gradient-to-r from-orange/20 to-orange/10 animate-pulse"></div>
+                          <div className="absolute -inset-1 bg-gradient-to-r from-orange to-orange/80 rounded-2xl blur opacity-30 group-hover:opacity-50 transition-opacity"></div>
+                        </>
+                      )}
+                      <IconComponent className="h-6 w-6 relative z-10" />
+                      <span className="whitespace-nowrap relative z-10">{category.label}</span>
+                    </button>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>
