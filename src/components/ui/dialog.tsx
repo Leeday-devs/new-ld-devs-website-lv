@@ -38,7 +38,7 @@ const DialogContent = React.forwardRef<
       role="dialog"
       aria-modal="true"
       className={cn(
-        "fixed left-[50%] top-[50%] z-50 translate-x-[-50%] translate-y-[-50%] modal-content modal-default focus:outline-none data-[state=open]:animate-[modal-content-in_var(--modal-content-duration)_ease-out] data-[state=closed]:animate-[modal-content-out_var(--modal-content-duration)_ease-out] max-h-[90vh] sm:max-h-[80vh] overflow-y-auto",
+        "fixed left-[50%] top-[50%] z-50 translate-x-[-50%] translate-y-[-50%] modal-content modal-default focus:outline-none data-[state=open]:animate-[modal-content-in_var(--modal-content-duration)_ease-out] data-[state=closed]:animate-[modal-content-out_var(--modal-content-duration)_ease-out] max-h-[90vh] sm:max-h-[80vh] overflow-y-auto max-[640px]:!fixed max-[640px]:!bottom-0 max-[640px]:!left-0 max-[640px]:!right-0 max-[640px]:!top-auto max-[640px]:!transform-none max-[640px]:!w-full max-[640px]:!max-w-none",
         className
       )}
       tabIndex={-1}

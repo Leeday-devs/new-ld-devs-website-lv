@@ -578,47 +578,86 @@
   /* Mobile Modal - Enhanced Sheet Style */
   @media (max-width: 640px) {
     .modal-content {
-      border-radius: var(--modal-radius-mobile) var(--modal-radius-mobile) 0 0;
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      width: 100%;
-      max-width: none;
-      transform: translateY(0);
-      max-height: 90vh;
+      border-radius: 16px 16px 0 0;
+      position: fixed !important;
+      bottom: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      top: auto !important;
+      width: 100% !important;
+      max-width: none !important;
+      transform: none !important;
+      max-height: 85vh;
+      margin: 0 !important;
+      display: flex;
+      flex-direction: column;
       padding-bottom: max(env(safe-area-inset-bottom), 16px);
     }
 
+    /* Override dialog positioning */
+    [data-radix-dialog-content] {
+      position: fixed !important;
+      bottom: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      top: auto !important;
+      transform: none !important;
+      width: 100% !important;
+      max-width: none !important;
+    }
+
     .modal-header {
-      padding: 16px 20px 12px 20px;
+      padding: 20px 20px 16px 20px;
+      flex-shrink: 0;
+      position: relative;
     }
 
     .modal-header::before {
-      border-radius: var(--modal-radius-mobile) var(--modal-radius-mobile) 0 0;
+      border-radius: 16px 16px 0 0;
+    }
+
+    /* Add mobile handle */
+    .modal-header::after {
+      content: '';
+      position: absolute;
+      top: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 32px;
+      height: 4px;
+      background: hsl(var(--border));
+      border-radius: 2px;
     }
 
     .modal-body {
       padding: 0 1.25rem 1.25rem 1.25rem;
-      max-height: calc(90vh - 120px);
+      flex: 1;
       overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      min-height: 0;
     }
 
     .modal-title {
-      font-size: 1.5rem; /* 24px on mobile */
+      font-size: 1.375rem; /* 22px on mobile */
       line-height: 1.3;
+      margin-top: 8px; /* Account for handle */
     }
 
     .modal-subtitle {
       font-size: 0.875rem; /* 14px on mobile */
+      margin-top: 4px;
     }
 
     /* Mobile touch improvements */
     .modal-input,
-    .premium-input {
-      font-size: 16px; /* Prevents zoom on iOS */
+    .premium-input,
+    input,
+    textarea,
+    select {
+      font-size: 16px !important; /* Prevents zoom on iOS */
       min-height: 48px;
       padding: 12px 16px;
+      border-radius: 8px;
     }
 
     /* Mobile button improvements */
@@ -631,6 +670,21 @@
       padding: 12px 20px;
       touch-action: manipulation;
       -webkit-tap-highlight-color: transparent;
+      border-radius: 8px;
+    }
+
+    /* Grid adjustments for mobile */
+    .grid-cols-1.sm\\:grid-cols-2 {
+      grid-template-columns: 1fr;
+    }
+
+    /* Spacing adjustments */
+    .space-y-4 > * + * {
+      margin-top: 1rem;
+    }
+
+    .space-y-6 > * + * {
+      margin-top: 1rem;
     }
   }
 
