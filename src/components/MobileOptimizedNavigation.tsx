@@ -108,11 +108,13 @@ const MobileOptimizedNavigation = () => {
         <div className="flex items-center justify-between h-16 xs:h-18 sm:h-20">
           {/* Logo - Mobile Optimized */}
           <div className="flex-shrink-0">
-            <img
-              src="/lovable-uploads/c05ee520-dfce-4d37-9abd-2ecb7430e4da.png"
-              alt="LD Development Logo"
-              className="h-8 w-auto xs:h-10 sm:h-12 transition-all duration-300"
-            />
+            <Link to="/">
+              <img
+                src="/lovable-uploads/c05ee520-dfce-4d37-9abd-2ecb7430e4da.png"
+                alt="LD Development Logo"
+                className="h-8 w-auto xs:h-10 sm:h-12 transition-all duration-300"
+              />
+            </Link>
           </div>
 
           {/* Desktop Navigation - Hidden on mobile */}
