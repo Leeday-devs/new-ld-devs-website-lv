@@ -135,7 +135,6 @@
   body {
     @apply bg-background text-foreground font-sans;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
-    padding-top: 140px; /* Space for promo strip (48px) + navigation (92px) */
   }
   
   html {
