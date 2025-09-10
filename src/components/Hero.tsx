@@ -106,8 +106,8 @@ const Hero = () => {
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-white mb-4 sm:mb-6 leading-[0.9] font-black tracking-tight">
               Premium Web Development <span className="text-highlight animate-pulse block sm:inline">Solutions</span>
               <span className="block mt-3 sm:mt-6">
-                Built for <span className="text-highlight relative">
-                  yOU
+                Built For <span className="text-highlight relative">
+                  You
                   <span className="absolute -inset-1 bg-orange/20 blur-xl animate-pulse"></span>
                 </span>
               </span>
