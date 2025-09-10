@@ -83,6 +83,12 @@ const menuItems = [
     icon: PenTool,
     section: "content"
   },
+  {
+    title: "Promo Strip",
+    url: "/admin/panel?tab=promo",
+    icon: Clock,
+    section: "content"
+  },
 ];
 
 const sectionLabels = {

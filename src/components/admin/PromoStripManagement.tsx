@@ -36,10 +36,10 @@ const PromoStripManagement = () => {
   const fetchPromoData = async () => {
     try {
       const { data, error } = await supabase
-        .from('promo_strips')
+        .from('promo_strips' as any)
         .select('*')
         .eq('is_active', true)
-        .single();
+        .maybeSingle();
       
       if (error && error.code !== 'PGRST116') {
         console.error('Error fetching promo data:', error);
@@ -48,8 +48,12 @@ const PromoStripManagement = () => {
       
       if (data) {
         setPromoData({
-          ...data,
-          end_date: new Date(data.end_date).toISOString().split('T')[0]
+          id: (data as any).id,
+          text: (data as any).text,
+          end_date: new Date((data as any).end_date).toISOString().split('T')[0],
+          is_active: (data as any).is_active,
+          background_color: (data as any).background_color,
+          text_color: (data as any).text_color
         });
       }
     } catch (error) {
@@ -75,13 +79,13 @@ const PromoStripManagement = () => {
       if (promoData.id) {
         // Update existing
         result = await supabase
-          .from('promo_strips')
+          .from('promo_strips' as any)
           .update(promoToSave)
           .eq('id', promoData.id);
       } else {
         // Create new
         result = await supabase
-          .from('promo_strips')
+          .from('promo_strips' as any)
           .insert([promoToSave]);
       }
 
@@ -114,7 +118,7 @@ const PromoStripManagement = () => {
     setIsLoading(true);
     try {
       const { error } = await supabase
-        .from('promo_strips')
+        .from('promo_strips' as any)
         .delete()
         .eq('id', promoData.id);
 

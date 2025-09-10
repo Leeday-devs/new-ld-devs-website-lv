@@ -1342,4 +1342,9 @@
     opacity: 1;
     transform: translateX(0);
   }
+  
+  /* Body padding adjustment for promo strip */
+  body {
+    padding-top: 144px; /* Account for promo strip + navigation */
+  }
 }

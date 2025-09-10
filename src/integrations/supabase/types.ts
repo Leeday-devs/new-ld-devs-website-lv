@@ -446,6 +446,39 @@ export type Database = {
         }
         Relationships: []
       }
+      promo_strips: {
+        Row: {
+          background_color: string
+          created_at: string
+          end_date: string
+          id: string
+          is_active: boolean
+          text: string
+          text_color: string
+          updated_at: string
+        }
+        Insert: {
+          background_color?: string
+          created_at?: string
+          end_date: string
+          id?: string
+          is_active?: boolean
+          text: string
+          text_color?: string
+          updated_at?: string
+        }
+        Update: {
+          background_color?: string
+          created_at?: string
+          end_date?: string
+          id?: string
+          is_active?: boolean
+          text?: string
+          text_color?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       template_purchases: {
         Row: {
           business_name: string

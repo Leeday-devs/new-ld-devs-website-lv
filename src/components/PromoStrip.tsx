@@ -26,13 +26,18 @@ const PromoStrip = () => {
     const fetchPromoData = async () => {
       try {
         const { data, error } = await supabase
-          .from('promo_strips')
+          .from('promo_strips' as any)
           .select('*')
           .eq('is_active', true)
-          .single();
+          .maybeSingle();
         
         if (error) {
           console.error('Error fetching promo data:', error);
+        }
+        
+        if (data) {
+          setPromoData(data as any);
+        } else {
           // Set default data if no promo exists
           setPromoData({
             id: 'default',
@@ -42,8 +47,6 @@ const PromoStrip = () => {
             background_color: '#ef4444',
             text_color: '#ffffff'
           });
-        } else if (data) {
-          setPromoData(data);
         }
       } catch (err) {
         console.error('Error:', err);
