@@ -2,17 +2,12 @@ import { useEffect } from 'react';
 
 const SecurityHeaders = () => {
   useEffect(() => {
-    const isIframe = window.self !== window.top;
-    const isPreview = location.hostname.includes('lovable.dev') || location.hostname === 'localhost';
-    const allowEmbed = isIframe && isPreview;
-
     // Add security-related meta tags
     const addSecurityMeta = () => {
-      const securityTags: Array<{ name?: string; httpEquiv?: string; content: string }> = [
+      const securityTags = [
         { name: 'referrer', content: 'strict-origin-when-cross-origin' },
         { httpEquiv: 'X-Content-Type-Options', content: 'nosniff' },
-        // Only add X-Frame-Options in non-embedded contexts
-        ...(allowEmbed ? [] : [{ httpEquiv: 'X-Frame-Options', content: 'DENY' }]),
+        { httpEquiv: 'X-Frame-Options', content: 'DENY' },
         { httpEquiv: 'X-XSS-Protection', content: '1; mode=block' },
         { httpEquiv: 'Permissions-Policy', content: 'camera=(), microphone=(), geolocation=()' }
       ];
@@ -76,15 +71,12 @@ const SecurityHeaders = () => {
       });
     };
 
+    // Prevent clickjacking by checking if in iframe
     const preventClickjacking = () => {
       if (window !== window.top) {
-        if (allowEmbed) {
-          // Allowed embedded context (Lovable preview or localhost) - do not hide
-          document.body.style.display = '';
-        } else {
-          document.body.style.display = 'none';
-          console.warn('Potential clickjacking attempt detected');
-        }
+        // Site is in an iframe - could be clickjacking attempt
+        document.body.style.display = 'none';
+        console.warn('Potential clickjacking attempt detected');
       }
     };
 
