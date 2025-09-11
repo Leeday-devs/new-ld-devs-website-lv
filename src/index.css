@@ -731,7 +731,7 @@
   .modal-overlay {
     position: fixed;
     inset: 0;
-    z-index: 9990;
+    z-index: 9998;
     background: rgba(10, 25, 47, 0.55);
     backdrop-filter: blur(6px);
     animation: fadeIn 0.16s ease-out;
@@ -739,7 +739,7 @@
 
   /* Modal Content - Enhanced */
   .modal-content {
-    background: #fff;
+    background: hsl(var(--bg-white));
     color: hsl(var(--text-primary));
     width: min(90vw, 680px);
     border-radius: 24px;
@@ -747,6 +747,8 @@
     transform: translateY(6px) scale(0.98);
     animation: popIn 0.2s ease-out forwards;
     position: relative;
+    z-index: 9999;
+  }
     overflow: hidden;
     z-index: 9991;
   }
