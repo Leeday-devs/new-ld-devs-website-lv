@@ -164,19 +164,19 @@ export const ActionCTA = ({
   primaryAction: { text: string; href: string };
   secondaryAction?: { text: string; href: string };
 }) => (
-  <div className="bg-gradient-to-r from-primary to-[hsl(var(--brand-navy))] text-white p-8 rounded-xl mt-6 shadow-lg">
+  <div className="bg-[hsl(var(--brand-navy))] text-white p-8 rounded-xl mt-6 shadow-lg border-2 border-primary">
     <p className="text-xl font-medium mb-6">{question}</p>
     <div className="flex flex-col sm:flex-row gap-4">
       <a 
         href={primaryAction.href}
-        className="bg-white text-primary px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 transition-all duration-300 text-center shadow-md hover:shadow-lg transform hover:-translate-y-1"
+        className="bg-primary text-white px-8 py-4 rounded-xl font-semibold hover:bg-primary/90 transition-all duration-300 text-center shadow-md hover:shadow-lg transform hover:-translate-y-1"
       >
         {primaryAction.text}
       </a>
       {secondaryAction && (
         <a 
           href={secondaryAction.href}
-          className="border-2 border-white text-white px-8 py-4 rounded-xl font-semibold hover:bg-white hover:text-[hsl(var(--brand-navy))] transition-all duration-300 text-center hover:shadow-lg transform hover:-translate-y-1"
+          className="border-2 border-primary text-primary bg-white px-8 py-4 rounded-xl font-semibold hover:bg-primary hover:text-white transition-all duration-300 text-center hover:shadow-lg transform hover:-translate-y-1"
         >
           {secondaryAction.text}
         </a>
