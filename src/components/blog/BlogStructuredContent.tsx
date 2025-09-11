@@ -6,9 +6,9 @@ import {
   BlogActionItems, 
   BlogConclusion,
   EnhancedSubheading,
-  ActionList,
-  ActionCTA
+  ActionList
 } from './BlogContentStructure';
+import { BlogCTAWithModal } from './BlogCTAWithModal';
 
 interface BlogStructuredContentProps {
   content: string;
@@ -63,11 +63,7 @@ export const BlogStructuredContent = ({ content, title }: BlogStructuredContentP
           structuredContent.push(
             <BlogConclusion key={`conclusion-${structuredContent.length}`}>
               <div dangerouslySetInnerHTML={{ __html: sectionHtml }} />
-              <ActionCTA 
-                question="Ready to transform your business with these strategies?"
-                primaryAction={{ text: "Get Started Today", href: "/contact" }}
-                secondaryAction={{ text: "Learn More", href: "/services" }}
-              />
+              <BlogCTAWithModal />
             </BlogConclusion>
           );
           break;
