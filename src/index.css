@@ -502,7 +502,7 @@
 
   /* Blog-Specific Styles */
   .blog-content {
-    @apply max-w-none prose-lg leading-relaxed;
+    @apply max-w-none leading-relaxed text-lg;
   }
   
   .blog-content h1 {
