@@ -110,9 +110,9 @@ export const EnhancedTableOfContents = () => {
   if (toc.length === 0) return null;
 
   return (
-    <Card className="overflow-hidden bg-gradient-to-br from-background to-muted/20 border-border/50 sticky top-24 shadow-lg z-30">
+    <Card className="overflow-hidden bg-background border-border/50 sticky top-24 shadow-xl z-50">
       {/* Header */}
-      <div className="p-4 border-b border-border/50">
+      <div className="p-4 border-b border-border/50 bg-background">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <List className="h-5 w-5 text-primary" />
@@ -150,15 +150,15 @@ export const EnhancedTableOfContents = () => {
       
       {/* TOC Content */}
       {(!isMobile || !isCollapsed) && (
-        <div className="relative bg-background">
-          <ScrollArea className="max-h-[60vh] min-h-[200px] p-4">
-            <nav className="space-y-1 pb-4">
+        <div className="relative bg-background z-10">
+          <ScrollArea className="max-h-[60vh] min-h-[200px] p-4 bg-background">
+            <nav className="space-y-1 pb-4 bg-background">
               {toc.map((item, index) => (
                 <button
                   key={item.id}
                   onClick={() => scrollToHeading(item.id)}
                   className={`
-                    w-full text-left text-sm py-2 px-3 rounded-lg transition-all duration-200
+                    w-full text-left text-sm py-2 px-3 rounded-lg transition-all duration-200 bg-background
                     hover:bg-muted/60 hover:text-foreground hover:shadow-sm
                     ${activeId === item.id 
                       ? 'bg-gradient-to-r from-primary/20 to-primary/10 text-primary font-medium border-l-4 border-primary shadow-sm' 
