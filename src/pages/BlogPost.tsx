@@ -298,11 +298,6 @@ const BlogPost = () => {
                 <EnhancedTableOfContents />
               </div>
               
-              <BlogRelatedPosts 
-                currentPostId={post.id} 
-                category={post.category} 
-              />
-              
               {/* Social Share - Non-sticky on smaller screens */}
               <div className="xl:sticky xl:top-[calc(100vh-12rem)]">
                 <BlogSocialShare
@@ -312,6 +307,14 @@ const BlogPost = () => {
                 />
               </div>
             </aside>
+          </div>
+
+          {/* Related Articles Section */}
+          <div className="max-w-7xl mx-auto mt-16">
+            <BlogRelatedPosts 
+              currentPostId={post.id} 
+              category={post.category} 
+            />
           </div>
         </main>
         
