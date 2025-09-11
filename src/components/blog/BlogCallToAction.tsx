@@ -101,27 +101,6 @@ export const BlogCallToAction = () => {
         </div>
       </Card>
 
-      {/* Free Consultation CTA */}
-      <Card className="p-8 bg-gradient-to-br from-accent/5 via-background to-primary/5 border border-accent/30">
-        <div className="text-center space-y-4">
-          <h3 className="text-xl font-bold text-foreground">
-            Ready to Transform Your Business?
-          </h3>
-          <p className="text-muted-foreground max-w-lg mx-auto">
-            Let's discuss how we can help automate your workflows and boost your productivity. 
-            Book a free 30-minute consultation call.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center pt-2">
-            <Button size="lg" className="bg-primary hover:bg-primary/90">
-              Book Free Consultation
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
-            <Button variant="outline" size="lg">
-              View Our Services
-            </Button>
-          </div>
-        </div>
-      </Card>
     </div>
   );
 };
