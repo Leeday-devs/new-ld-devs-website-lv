@@ -17,7 +17,7 @@ import DOMPurify from 'dompurify';
 import { ReadingProgress } from '@/components/blog/ReadingProgress';
 import { BlogAuthor } from '@/components/blog/BlogAuthor';
 import { BlogSocialShare } from '@/components/blog/BlogSocialShare';
-import { BlogTableOfContents } from '@/components/blog/BlogTableOfContents';
+import { EnhancedTableOfContents } from '@/components/blog/EnhancedTableOfContents';
 import { BlogRelatedPosts } from '@/components/blog/BlogRelatedPosts';
 import { BlogCallToAction } from '@/components/blog/BlogCallToAction';
 import { BlogStructuredContent } from '@/components/blog/BlogStructuredContent';
@@ -295,7 +295,7 @@ const BlogPost = () => {
             {/* Sidebar */}
             <aside className="xl:col-span-4 space-y-6">
               <div className="xl:sticky xl:top-28 xl:max-h-[calc(100vh-8rem)] xl:overflow-y-auto">
-                <BlogTableOfContents />
+                <EnhancedTableOfContents />
               </div>
               
               <BlogRelatedPosts 

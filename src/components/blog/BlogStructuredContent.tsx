@@ -118,12 +118,7 @@ export const BlogStructuredContent = ({ content, title }: BlogStructuredContentP
   };
 
   return (
-    <div className="blog-structured-content">
-      {/* Title Section */}
-      <BlogTitle>
-        <h1>{title}</h1>
-      </BlogTitle>
-      
+    <div className="blog-structured-content">      
       {/* Structured Content */}
       {parseAndStructureContent(content)}
     </div>
