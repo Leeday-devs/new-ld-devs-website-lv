@@ -294,14 +294,13 @@ const BlogPost = () => {
 
             {/* Sidebar */}
             <aside className="xl:col-span-4 space-y-6">
-              <div className="xl:sticky xl:top-28 xl:max-h-[calc(100vh-8rem)] xl:overflow-y-auto">
+              <div className="xl:sticky xl:top-28 xl:max-h-[calc(100vh-8rem)] xl:overflow-y-auto space-y-6">
                 <EnhancedTableOfContents />
+                <BlogRelatedPosts 
+                  currentPostId={post.id} 
+                  category={post.category} 
+                />
               </div>
-              
-              <BlogRelatedPosts 
-                currentPostId={post.id} 
-                category={post.category} 
-              />
               
               {/* Social Share - Non-sticky on smaller screens */}
               <div className="xl:sticky xl:top-[calc(100vh-12rem)]">
