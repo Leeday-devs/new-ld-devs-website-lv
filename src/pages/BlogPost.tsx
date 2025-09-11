@@ -213,7 +213,7 @@ const BlogPost = () => {
                             {post.category}
                           </Badge>
                         )}
-                        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight text-white">
+                        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight text-white drop-shadow-lg">
                           {post.title}
                         </h1>
                       </div>
@@ -233,7 +233,7 @@ const BlogPost = () => {
                     )}
                   </div>
 
-                  <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-foreground leading-tight">
+                  <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight" style={{color: '#2563EB'}}>
                     {post.title}
                   </h1>
                 </header>
