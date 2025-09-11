@@ -110,12 +110,18 @@ export const BlogRelatedPosts = ({ currentPostId, category }: BlogRelatedPostsPr
                 className="flex gap-4 p-4 hover:bg-muted/30 transition-colors duration-200"
               >
                 <div className="relative w-20 h-20 flex-shrink-0">
-                  <OptimizedImage
-                    src={post.images?.[0] || '/placeholder.svg'}
-                    alt={post.title}
-                    className="w-full h-full object-cover rounded-lg"
-                    priority={false}
-                  />
+                  {post.images?.[0] ? (
+                    <OptimizedImage
+                      src={post.images[0]}
+                      alt={post.title}
+                      className="w-full h-full object-cover rounded-lg"
+                      priority={false}
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-gradient-to-br from-primary/20 to-primary/10 rounded-lg flex items-center justify-center">
+                      <TrendingUp className="h-8 w-8 text-primary/60" />
+                    </div>
+                  )}
                 </div>
                 
                 <div className="flex-1 min-w-0 space-y-2">
