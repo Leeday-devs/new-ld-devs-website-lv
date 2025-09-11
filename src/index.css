@@ -1057,7 +1057,6 @@
     color: hsl(var(--orange));
     text-decoration: underline;
   }
-}
 
 
 @layer utilities {
