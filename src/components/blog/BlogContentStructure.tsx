@@ -169,7 +169,8 @@ export const ActionCTA = ({
     <div className="flex flex-col sm:flex-row gap-4">
       <a 
         href={primaryAction.href}
-        className="bg-primary text-[hsl(var(--brand-navy))] px-8 py-4 rounded-xl font-semibold hover:bg-primary/90 transition-all duration-300 text-center shadow-md hover:shadow-lg transform hover:-translate-y-1"
+        className="bg-primary text-[hsl(var(--navy))] hover:text-[hsl(var(--navy))] px-8 py-4 rounded-xl font-semibold transition-all duration-300 text-center shadow-md hover:shadow-lg transform hover:-translate-y-1"
+        style={{ color: 'hsl(var(--navy))' }}
       >
         {primaryAction.text}
       </a>
