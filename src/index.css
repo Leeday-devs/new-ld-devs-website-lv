@@ -500,12 +500,47 @@
     cursor: pointer;
   }
 
-  /* Blog-Specific Styles - Matching Site Color Scheme */
+  /* Blog-Specific Styles - Structured Layout */
   .blog-content {
     @apply max-w-none leading-relaxed text-lg text-text-secondary;
     font-family: 'Inter', system-ui, sans-serif;
   }
   
+  /* Structured Blog Sections */
+  .blog-title-section h1 {
+    @apply text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-brand-navy;
+    font-family: 'Playfair Display', serif;
+    line-height: 1.2;
+  }
+  
+  .blog-intro-section {
+    background: linear-gradient(135deg, #fff7ed 0%, #fed7aa 100%);
+  }
+  
+  .blog-intro-content p {
+    @apply text-lg text-gray-700 mb-4;
+    line-height: 1.7;
+  }
+  
+  .blog-subheading-section h2 {
+    @apply text-2xl md:text-3xl font-bold mb-3 text-brand-navy;
+    font-family: 'Playfair Display', serif;
+  }
+  
+  .blog-subheading-section h3 {
+    @apply text-xl md:text-2xl font-semibold mb-2 text-brand-navy;
+    font-family: 'Playfair Display', serif;
+  }
+  
+  .blog-action-section {
+    background: linear-gradient(135deg, #eff6ff 0%, #bfdbfe 100%);
+  }
+  
+  .blog-conclusion-section {
+    background: linear-gradient(135deg, #fef2f2 0%, #fecaca 100%);
+  }
+  
+  /* Enhanced Content Styling */
   .blog-content h1 {
     @apply text-4xl md:text-5xl font-bold mb-6;
     color: #2563EB; /* Blue for contrast against background images */

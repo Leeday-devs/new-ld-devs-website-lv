@@ -20,6 +20,7 @@ import { BlogSocialShare } from '@/components/blog/BlogSocialShare';
 import { BlogTableOfContents } from '@/components/blog/BlogTableOfContents';
 import { BlogRelatedPosts } from '@/components/blog/BlogRelatedPosts';
 import { BlogCallToAction } from '@/components/blog/BlogCallToAction';
+import { BlogStructuredContent } from '@/components/blog/BlogStructuredContent';
 
 interface BlogPostData {
   id: string;
@@ -268,9 +269,13 @@ const BlogPost = () => {
                 />
               </div>
 
-              {/* Article Content */}
+              {/* Article Content - Now with structured layout */}
               <div className="blog-content mb-12">
-                <div 
+                {/* Option 1: Use the new structured content parser */}
+                <BlogStructuredContent content={post.content} title={post.title} />
+                
+                {/* Option 2: Keep original content (uncomment to use instead) */}
+                {/* <div 
                   dangerouslySetInnerHTML={{ 
                     __html: DOMPurify.sanitize(post.content, {
                       ALLOWED_TAGS: ['p', 'br', 'strong', 'em', 'u', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'ul', 'ol', 'li', 'blockquote', 'a', 'img', 'code', 'pre'],
@@ -278,7 +283,7 @@ const BlogPost = () => {
                       ALLOW_DATA_ATTR: false
                     })
                   }}
-                />
+                /> */}
               </div>
 
               {/* Call to Action */}
