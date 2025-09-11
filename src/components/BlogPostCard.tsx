@@ -2,12 +2,14 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { CalendarDays, User, Tag } from "lucide-react";
+import BlogImageCarousel from "@/components/BlogImageCarousel";
 
 interface BlogPost {
   id: string;
   title: string;
   excerpt: string;
   image: string;
+  images?: string[];
   author: string;
   date: string;
   slug: string;
@@ -75,11 +77,12 @@ const BlogPostCard = ({ post }: BlogPostCardProps) => {
       <div className="relative p-8 z-10 h-full flex flex-col">
         {/* Featured Image with Premium Styling */}
         <div className="mb-6 relative overflow-hidden rounded-xl">
-          <img 
-            src={post.image} 
+          <BlogImageCarousel
+            images={post.images && post.images.length > 0 ? post.images : (post.image ? [post.image] : [])}
             alt={`Featured image for ${post.title}`}
-            loading="lazy"
-            className="w-full h-48 object-cover transition-all duration-700 group-hover:scale-110 rounded-xl"
+            className="h-48 group-hover:scale-110 rounded-xl"
+            autoSlide={true}
+            slideInterval={6000}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-navy/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl" />
           

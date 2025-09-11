@@ -14,6 +14,7 @@ interface BlogPost {
   title: string;
   excerpt: string;
   featured_image: string;
+  images?: string[];
   slug: string;
   category: string;
   category_id?: string | null;
@@ -127,6 +128,7 @@ const transformPostForCard = (post: BlogPost) => ({
   title: post.title,
   excerpt: post.excerpt || '',
   image: post.featured_image || "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=600&fit=crop",
+  images: post.images && post.images.length > 0 ? post.images : (post.featured_image ? [post.featured_image] : []),
   author: "LD Development Team",
   date: formatDate(post.created_at),
   slug: post.slug,

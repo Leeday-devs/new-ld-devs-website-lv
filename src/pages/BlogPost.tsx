@@ -10,6 +10,7 @@ import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import DOMPurify from 'dompurify';
 import Breadcrumbs from "@/components/Breadcrumbs";
+import BlogImageCarousel from "@/components/BlogImageCarousel";
 
 interface BlogPostData {
   id: string;
@@ -17,6 +18,7 @@ interface BlogPostData {
   content: string;
   excerpt: string;
   featured_image: string;
+  images: string[];
   slug: string;
   category: string;
   created_at: string;
@@ -217,17 +219,18 @@ const BlogPost = () => {
           </div>
         </section>
 
-        {/* Featured Image */}
-        {post.featured_image && (
+        {/* Featured Images */}
+        {((post.images && post.images.length > 0) || post.featured_image) && (
           <section className="pb-8">
             <div className="container mx-auto px-4">
               <div className="max-w-4xl mx-auto">
                 <div className="relative overflow-hidden rounded-2xl shadow-elegant animate-scale-in">
-                  <img 
-                    src={post.featured_image} 
+                  <BlogImageCarousel
+                    images={post.images && post.images.length > 0 ? post.images : (post.featured_image ? [post.featured_image] : [])}
                     alt={post.title}
-                    loading="lazy"
-                    className="w-full h-64 md:h-96 object-cover"
+                    className="h-64 md:h-96"
+                    autoSlide={true}
+                    slideInterval={6000}
                   />
                 </div>
               </div>

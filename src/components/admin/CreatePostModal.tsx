@@ -31,6 +31,7 @@ const CreatePostModal = ({ open, onClose, onSuccess }: CreatePostModalProps) => 
     content: "",
     category: "",
     featured_image: "",
+    images: [] as string[],
     status: "draft",
     tags: ""
   });
@@ -80,7 +81,13 @@ const CreatePostModal = ({ open, onClose, onSuccess }: CreatePostModalProps) => 
         .from('blog-images')
         .getPublicUrl(fileName);
 
-      setFormData(prev => ({ ...prev, featured_image: publicUrl.publicUrl }));
+      // Add to images array
+      setFormData(prev => ({ 
+        ...prev, 
+        images: [...prev.images, publicUrl.publicUrl],
+        // Keep featured_image for backward compatibility
+        featured_image: prev.images.length === 0 ? publicUrl.publicUrl : prev.featured_image
+      }));
       
       toast({
         title: "Success",
@@ -98,12 +105,15 @@ const CreatePostModal = ({ open, onClose, onSuccess }: CreatePostModalProps) => 
   };
 
   const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
+    const files = e.target.files;
+    if (!files) return;
+
+    // Convert FileList to Array and process each file
+    Array.from(files).forEach(file => {
       if (file.size > 5 * 1024 * 1024) { // 5MB limit
         toast({
           title: "File too large",
-          description: "Please select an image smaller than 5MB.",
+          description: `${file.name} is larger than 5MB. Please select a smaller image.`,
           variant: "destructive",
         });
         return;
@@ -112,18 +122,34 @@ const CreatePostModal = ({ open, onClose, onSuccess }: CreatePostModalProps) => 
       if (!file.type.startsWith('image/')) {
         toast({
           title: "Invalid file type",
-          description: "Please select an image file.",
+          description: `${file.name} is not an image file.`,
           variant: "destructive",
         });
         return;
       }
       
       handleImageUpload(file);
-    }
+    });
+
+    // Reset input value to allow selecting the same files again
+    e.target.value = '';
   };
 
-  const handleRemoveImage = () => {
-    setFormData(prev => ({ ...prev, featured_image: "" }));
+  const handleRemoveImage = (index?: number) => {
+    if (index !== undefined) {
+      // Remove specific image from array
+      setFormData(prev => {
+        const newImages = prev.images.filter((_, i) => i !== index);
+        return {
+          ...prev,
+          images: newImages,
+          featured_image: newImages.length > 0 ? newImages[0] : ""
+        };
+      });
+    } else {
+      // Remove all images (legacy support)
+      setFormData(prev => ({ ...prev, images: [], featured_image: "" }));
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -146,6 +172,7 @@ const CreatePostModal = ({ open, onClose, onSuccess }: CreatePostModalProps) => 
           category: sanitizeInput(formData.category),
           category_id: selectedCategory?.id || null,
           featured_image: formData.featured_image || null,
+          images: formData.images.length > 0 ? formData.images : null,
           status: formData.status,
           author_id: user.id,
           published_at: publishedAt
@@ -175,6 +202,7 @@ const CreatePostModal = ({ open, onClose, onSuccess }: CreatePostModalProps) => 
         content: "",
         category: "",
         featured_image: "",
+        images: [],
         status: "draft",
         tags: ""
       });
@@ -314,23 +342,45 @@ const CreatePostModal = ({ open, onClose, onSuccess }: CreatePostModalProps) => 
             {/* Right Column */}
             <div className="space-y-6">
               <div className="space-y-2">
-                <Label>Cover Image</Label>
+                <Label>Images {formData.images.length > 0 && `(${formData.images.length})`}</Label>
                 <div className="border-2 border-dashed border-border rounded-lg p-6">
-                  {formData.featured_image ? (
-                    <div className="relative">
-                      <img 
-                        src={formData.featured_image} 
-                        alt="Preview" 
-                        className="w-full h-48 object-cover rounded-lg"
-                      />
+                  {formData.images.length > 0 ? (
+                    <div className="space-y-4">
+                      {/* Image Grid */}
+                      <div className="grid grid-cols-2 gap-3">
+                        {formData.images.map((image, index) => (
+                          <div key={index} className="relative group">
+                            <img 
+                              src={image} 
+                              alt={`Preview ${index + 1}`} 
+                              className="w-full h-24 object-cover rounded-lg"
+                            />
+                            <Button
+                              type="button"
+                              variant="destructive"
+                              size="sm"
+                              className="absolute top-1 right-1 h-6 w-6 p-0 opacity-0 group-hover:opacity-100 transition-opacity"
+                              onClick={() => handleRemoveImage(index)}
+                            >
+                              <X className="h-3 w-3" />
+                            </Button>
+                            <div className="absolute bottom-1 left-1 bg-black/50 text-white text-xs px-1 rounded">
+                              {index + 1}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                      
+                      {/* Add More Button */}
                       <Button
                         type="button"
-                        variant="destructive"
-                        size="sm"
-                        className="absolute top-2 right-2"
-                        onClick={handleRemoveImage}
+                        variant="outline"
+                        onClick={() => fileInputRef.current?.click()}
+                        disabled={isUploading}
+                        className="w-full"
                       >
-                        <X className="h-4 w-4" />
+                        <Plus className="h-4 w-4 mr-2" />
+                        {isUploading ? "Uploading..." : "Add Another Image"}
                       </Button>
                     </div>
                   ) : (
@@ -344,10 +394,10 @@ const CreatePostModal = ({ open, onClose, onSuccess }: CreatePostModalProps) => 
                         className="mb-2"
                       >
                         <Upload className="h-4 w-4 mr-2" />
-                        {isUploading ? "Uploading..." : "Upload Image"}
+                        {isUploading ? "Uploading..." : "Upload Images"}
                       </Button>
                       <p className="text-sm text-muted-foreground">
-                        PNG, JPG up to 5MB
+                        PNG, JPG up to 5MB each. Multiple images will create a slideshow.
                       </p>
                     </div>
                   )}
@@ -355,6 +405,7 @@ const CreatePostModal = ({ open, onClose, onSuccess }: CreatePostModalProps) => 
                     ref={fileInputRef}
                     type="file"
                     accept="image/*"
+                    multiple
                     onChange={handleFileSelect}
                     className="hidden"
                   />
