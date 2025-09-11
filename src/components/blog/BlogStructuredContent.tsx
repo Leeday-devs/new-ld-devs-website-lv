@@ -30,7 +30,6 @@ export const BlogStructuredContent = ({ content, title }: BlogStructuredContentP
     let currentSection: 'intro' | 'content' | 'conclusion' = 'intro';
     let sectionContent: HTMLElement[] = [];
     let subheadingCount = 0;
-    let hasAddedTitleBadge = false;
 
     const flushSection = () => {
       if (sectionContent.length === 0) return;
@@ -81,27 +80,6 @@ export const BlogStructuredContent = ({ content, title }: BlogStructuredContentP
       const tagName = element.tagName.toLowerCase();
       const textContent = element.textContent?.toLowerCase() || '';
       
-      // Skip the first h1 if it matches the title (already shown in hero)
-      if (tagName === 'h1' && element.textContent === title) {
-        // Add just the title badge guidance without duplicating the title
-        if (!hasAddedTitleBadge) {
-          structuredContent.push(
-            <div key="title-badge" className="mb-6">
-              <div className="flex items-start gap-3 mb-2">
-                <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-emerald-500 text-white">
-                  TITLE
-                </span>
-                <div className="text-sm text-muted-foreground">
-                  Should include: Number + Benefit + Timeframe
-                </div>
-              </div>
-            </div>
-          );
-          hasAddedTitleBadge = true;
-        }
-        return;
-      }
-      
       // Detect section transitions
       if (tagName === 'h2' || tagName === 'h3') {
         flushSection();
@@ -141,7 +119,12 @@ export const BlogStructuredContent = ({ content, title }: BlogStructuredContentP
 
   return (
     <div className="blog-structured-content">
-      {/* Structured Content - Title is handled in the hero section */}
+      {/* Title Section */}
+      <BlogTitle>
+        <h1>{title}</h1>
+      </BlogTitle>
+      
+      {/* Structured Content */}
       {parseAndStructureContent(content)}
     </div>
   );
