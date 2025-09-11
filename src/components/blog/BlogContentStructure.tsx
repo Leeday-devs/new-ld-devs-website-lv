@@ -157,29 +157,31 @@ export const EnhancedSubheading = ({
 // Call-to-action component for conclusion
 export const ActionCTA = ({ 
   question, 
-  primaryAction
+  primaryAction, 
+  secondaryAction 
 }: { 
   question: string;
-  primaryAction: { text: string; action?: () => void };
-}) => {
-  const handleClick = () => {
-    if (primaryAction.action) {
-      primaryAction.action();
-    }
-  };
-
-  return (
-    <div className="bg-[hsl(var(--brand-navy))] text-white p-8 rounded-xl mt-6 shadow-lg border-2 border-primary">
-      <p className="text-xl font-medium mb-6">{question}</p>
-      <div className="flex justify-center">
-        <button
-          onClick={handleClick}
-          className="bg-primary text-[hsl(var(--navy))] hover:text-[hsl(var(--navy))] px-8 py-4 rounded-xl font-semibold transition-all duration-300 text-center shadow-md hover:shadow-lg transform hover:-translate-y-1"
-          style={{ color: 'hsl(var(--navy))' }}
+  primaryAction: { text: string; href: string };
+  secondaryAction?: { text: string; href: string };
+}) => (
+  <div className="bg-[hsl(var(--brand-navy))] text-white p-8 rounded-xl mt-6 shadow-lg border-2 border-primary">
+    <p className="text-xl font-medium mb-6">{question}</p>
+    <div className="flex flex-col sm:flex-row gap-4">
+      <a 
+        href={primaryAction.href}
+        className="bg-primary text-[hsl(var(--navy))] hover:text-[hsl(var(--navy))] px-8 py-4 rounded-xl font-semibold transition-all duration-300 text-center shadow-md hover:shadow-lg transform hover:-translate-y-1"
+        style={{ color: 'hsl(var(--navy))' }}
+      >
+        {primaryAction.text}
+      </a>
+      {secondaryAction && (
+        <a 
+          href={secondaryAction.href}
+          className="border-2 border-primary text-primary bg-white px-8 py-4 rounded-xl font-semibold hover:bg-primary hover:text-white transition-all duration-300 text-center hover:shadow-lg transform hover:-translate-y-1"
         >
-          {primaryAction.text}
-        </button>
-      </div>
+          {secondaryAction.text}
+        </a>
+      )}
     </div>
-  );
-};
+  </div>
+);
