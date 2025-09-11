@@ -110,7 +110,7 @@ export const EnhancedTableOfContents = () => {
   if (toc.length === 0) return null;
 
   return (
-    <Card className="overflow-hidden bg-gradient-to-br from-background to-muted/20 border-border/50 sticky top-24 shadow-lg">
+    <Card className="overflow-hidden bg-gradient-to-br from-background to-muted/20 border-border/50 sticky top-24 shadow-lg z-30">
       {/* Header */}
       <div className="p-4 border-b border-border/50">
         <div className="flex items-center justify-between">
@@ -150,35 +150,37 @@ export const EnhancedTableOfContents = () => {
       
       {/* TOC Content */}
       {(!isMobile || !isCollapsed) && (
-        <ScrollArea className="max-h-96 p-4">
-          <nav className="space-y-1">
-            {toc.map((item, index) => (
-              <button
-                key={item.id}
-                onClick={() => scrollToHeading(item.id)}
-                className={`
-                  w-full text-left text-sm py-2 px-3 rounded-lg transition-all duration-200
-                  hover:bg-muted/60 hover:text-foreground hover:shadow-sm
-                  ${activeId === item.id 
-                    ? 'bg-gradient-to-r from-primary/20 to-primary/10 text-primary font-medium border-l-4 border-primary shadow-sm' 
-                    : 'text-muted-foreground hover:text-foreground'
-                  }
-                  ${item.level === 1 ? 'font-semibold text-base' : ''}
-                  ${item.level === 2 ? 'ml-4 text-sm' : ''}
-                  ${item.level === 3 ? 'ml-8 text-xs' : ''}
-                `}
-              >
-                <div className="flex items-center gap-2">
-                  <span className="flex-shrink-0 w-5 h-5 rounded-full bg-muted/50 flex items-center justify-center text-xs font-medium">
-                    {index + 1}
-                  </span>
-                  {item.level > 1 && <ChevronRight className="h-3 w-3 opacity-50 flex-shrink-0" />}
-                  <span className="line-clamp-2 leading-relaxed">{item.text}</span>
-                </div>
-              </button>
-            ))}
-          </nav>
-        </ScrollArea>
+        <div className="relative bg-background">
+          <ScrollArea className="max-h-[60vh] min-h-[200px] p-4">
+            <nav className="space-y-1 pb-4">
+              {toc.map((item, index) => (
+                <button
+                  key={item.id}
+                  onClick={() => scrollToHeading(item.id)}
+                  className={`
+                    w-full text-left text-sm py-2 px-3 rounded-lg transition-all duration-200
+                    hover:bg-muted/60 hover:text-foreground hover:shadow-sm
+                    ${activeId === item.id 
+                      ? 'bg-gradient-to-r from-primary/20 to-primary/10 text-primary font-medium border-l-4 border-primary shadow-sm' 
+                      : 'text-muted-foreground hover:text-foreground'
+                    }
+                    ${item.level === 1 ? 'font-semibold text-base' : ''}
+                    ${item.level === 2 ? 'ml-4 text-sm' : ''}
+                    ${item.level === 3 ? 'ml-8 text-xs' : ''}
+                  `}
+                >
+                  <div className="flex items-center gap-2">
+                    <span className="flex-shrink-0 w-5 h-5 rounded-full bg-muted/50 flex items-center justify-center text-xs font-medium">
+                      {index + 1}
+                    </span>
+                    {item.level > 1 && <ChevronRight className="h-3 w-3 opacity-50 flex-shrink-0" />}
+                    <span className="line-clamp-2 leading-relaxed">{item.text}</span>
+                  </div>
+                </button>
+              ))}
+            </nav>
+          </ScrollArea>
+        </div>
       )}
     </Card>
   );
