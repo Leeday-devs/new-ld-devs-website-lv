@@ -20,6 +20,7 @@ interface CreatePostModalProps {
 
 
 const CreatePostModal = ({ open, onClose, onSuccess }: CreatePostModalProps) => {
+  console.log('CreatePostModal render - open:', open);
   const { user } = useAuth();
   const { toast } = useToast();
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -257,7 +258,7 @@ const CreatePostModal = ({ open, onClose, onSuccess }: CreatePostModalProps) => 
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="max-w-6xl max-h-[95vh] overflow-y-auto">
+      <DialogContent className="max-w-6xl max-h-[95vh] overflow-y-auto z-50">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
             <Plus className="h-5 w-5 text-primary" />

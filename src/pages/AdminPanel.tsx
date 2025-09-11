@@ -248,7 +248,10 @@ const AdminPanel = () => {
                   New Category
                 </Button>
                 <Button 
-                  onClick={() => setShowCreateModal(true)}
+                  onClick={() => {
+                    console.log('New Post button clicked, showCreateModal:', showCreateModal);
+                    setShowCreateModal(true);
+                  }}
                   className="gap-2 bg-primary hover:bg-primary/90"
                 >
                   <Plus className="h-4 w-4" />
@@ -294,7 +297,10 @@ const AdminPanel = () => {
       {/* Modals */}
       <CreatePostModal 
         open={showCreateModal}
-        onClose={() => setShowCreateModal(false)}
+        onClose={() => {
+          console.log('CreatePostModal onClose called');
+          setShowCreateModal(false);
+        }}
         onSuccess={handlePostCreated}
       />
 
