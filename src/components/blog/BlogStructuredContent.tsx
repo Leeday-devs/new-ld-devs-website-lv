@@ -65,8 +65,10 @@ export const BlogStructuredContent = ({ content, title }: BlogStructuredContentP
               <div dangerouslySetInnerHTML={{ __html: sectionHtml }} />
               <ActionCTA 
                 question="Ready to transform your business with these strategies?"
-                primaryAction={{ text: "Get Started Today", href: "/contact" }}
-                secondaryAction={{ text: "Learn More", href: "/services" }}
+                primaryAction={{ 
+                  text: "Get Started Today", 
+                  href: "https://wa.me/447586266007?text=" + encodeURIComponent("Hi! I'm interested in your web development services after reading your blog post.") 
+                }}
               />
             </BlogConclusion>
           );
