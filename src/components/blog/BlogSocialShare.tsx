@@ -63,103 +63,93 @@ export const BlogSocialShare = ({ url, title, excerpt }: BlogSocialShareProps) =
   };
 
   return (
-    <Card className="p-6 bg-gradient-to-br from-background to-muted/30 border-border/50">
-      <div className="flex flex-col gap-4">
+    <Card className="p-4 bg-background border border-border/30">
+      <div className="flex items-center justify-between gap-3">
         {/* Engagement Actions */}
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <Button
-              variant={isLiked ? "default" : "outline"}
-              size="sm"
-              onClick={handleLike}
-              className={`transition-all duration-200 ${
-                isLiked ? 'bg-red-500 hover:bg-red-600' : ''
-              }`}
-            >
-              <Heart className={`h-4 w-4 ${isLiked ? 'fill-current' : ''}`} />
-              <span className="ml-1 font-medium">{likes}</span>
-            </Button>
-            
-            <Button
-              variant={isSaved ? "default" : "outline"}
-              size="sm"
-              onClick={handleSave}
-              className={`transition-all duration-200 ${
-                isSaved ? 'bg-primary hover:bg-primary/90' : ''
-              }`}
-            >
-              <Bookmark className={`h-4 w-4 ${isSaved ? 'fill-current' : ''}`} />
-              {isSaved ? 'Saved' : 'Save'}
-            </Button>
-          </div>
+        <div className="flex items-center gap-2">
+          <Button
+            variant={isLiked ? "default" : "ghost"}
+            size="sm"
+            onClick={handleLike}
+            className={`h-8 px-2 text-xs ${
+              isLiked ? 'bg-red-500 hover:bg-red-600 text-white' : 'hover:bg-muted'
+            }`}
+          >
+            <Heart className={`h-3 w-3 ${isLiked ? 'fill-current' : ''}`} />
+            <span className="ml-1">{likes}</span>
+          </Button>
           
-          <div className="text-sm text-muted-foreground flex items-center gap-1">
-            <Share2 className="h-4 w-4" />
-            Share article
-          </div>
+          <Button
+            variant={isSaved ? "default" : "ghost"}
+            size="sm"
+            onClick={handleSave}
+            className={`h-8 px-2 text-xs ${
+              isSaved ? 'bg-primary hover:bg-primary/90' : 'hover:bg-muted'
+            }`}
+          >
+            <Bookmark className={`h-3 w-3 ${isSaved ? 'fill-current' : ''}`} />
+            <span className="ml-1 hidden sm:inline">Save</span>
+          </Button>
         </div>
 
         {/* Social Share Buttons */}
-        <div className="flex flex-wrap gap-2">
+        <div className="flex items-center gap-1">
           <Button
-            variant="outline"
+            variant="ghost"
             size="sm"
             asChild
-            className="flex-1 min-w-0"
+            className="h-8 w-8 p-0"
           >
             <a 
               href={shareLinks.facebook}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2"
+              title="Share on Facebook"
             >
-              <Facebook className="h-4 w-4" />
-              <span className="hidden sm:inline">Facebook</span>
+              <Facebook className="h-3 w-3" />
             </a>
           </Button>
           
           <Button
-            variant="outline"
+            variant="ghost"
             size="sm"
             asChild
-            className="flex-1 min-w-0"
+            className="h-8 w-8 p-0"
           >
             <a 
               href={shareLinks.twitter}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2"
+              title="Share on Twitter"
             >
-              <Twitter className="h-4 w-4" />
-              <span className="hidden sm:inline">Twitter</span>
+              <Twitter className="h-3 w-3" />
             </a>
           </Button>
           
           <Button
-            variant="outline"
+            variant="ghost"
             size="sm"
             asChild
-            className="flex-1 min-w-0"
+            className="h-8 w-8 p-0"
           >
             <a 
               href={shareLinks.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2"
+              title="Share on LinkedIn"
             >
-              <Linkedin className="h-4 w-4" />
-              <span className="hidden sm:inline">LinkedIn</span>
+              <Linkedin className="h-3 w-3" />
             </a>
           </Button>
           
           <Button
-            variant="outline"
+            variant="ghost"
             size="sm"
             onClick={copyToClipboard}
-            className="flex-1 min-w-0"
+            className="h-8 w-8 p-0"
+            title="Copy link"
           >
-            <Link className="h-4 w-4" />
-            <span className="hidden sm:inline ml-2">Copy</span>
+            <Link className="h-3 w-3" />
           </Button>
         </div>
       </div>
