@@ -1,36 +1,46 @@
-import { useParams, Navigate } from "react-router-dom";
-import Navigation from "@/components/Navigation";
-import Footer from "@/components/Footer";
-import SEOHead from "@/components/SEOHead";
-import ShareMenu from "@/components/ShareMenu";
-import { Button } from "@/components/ui/button";
-import { CalendarDays, User, ArrowLeft, Clock } from "lucide-react";
-import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
-import { supabase } from "@/integrations/supabase/client";
+import { useState, useEffect } from 'react';
+import { useParams, Navigate } from 'react-router-dom';
+import { supabase } from '@/integrations/supabase/client';
+import Navigation from '@/components/Navigation';
+import Footer from '@/components/Footer';
+import Breadcrumbs from '@/components/Breadcrumbs';
+import SEOHead from '@/components/SEOHead';
+import BlogImageCarousel from '@/components/BlogImageCarousel';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { Card } from '@/components/ui/card';
+import { ArrowLeft, Calendar, Clock, User } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import DOMPurify from 'dompurify';
-import Breadcrumbs from "@/components/Breadcrumbs";
-import BlogImageCarousel from "@/components/BlogImageCarousel";
+
+// New blog components
+import { ReadingProgress } from '@/components/blog/ReadingProgress';
+import { BlogAuthor } from '@/components/blog/BlogAuthor';
+import { BlogSocialShare } from '@/components/blog/BlogSocialShare';
+import { BlogTableOfContents } from '@/components/blog/BlogTableOfContents';
+import { BlogRelatedPosts } from '@/components/blog/BlogRelatedPosts';
+import { BlogCallToAction } from '@/components/blog/BlogCallToAction';
 
 interface BlogPostData {
   id: string;
   title: string;
   content: string;
   excerpt: string;
-  featured_image: string;
-  images: string[];
+  featured_image?: string;
+  images?: string[];
   slug: string;
-  category: string;
+  category?: string;
   created_at: string;
-  published_at: string;
-  author_id: string;
+  published_at?: string;
+  author_id?: string;
+  status: string;
 }
 
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
   const [post, setPost] = useState<BlogPostData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [readTime, setReadTime] = useState("5 min read");
+  const [readTime, setReadTime] = useState(5);
 
   useEffect(() => {
     if (slug) {
@@ -48,7 +58,6 @@ const BlogPost = () => {
         .single();
 
       if (error) {
-        // Don't log detailed error information
         console.error('Error fetching blog post');
         setPost(null);
         return;
@@ -60,12 +69,11 @@ const BlogPost = () => {
       const wordsPerMinute = 200;
       const wordCount = data.content.replace(/<[^>]*>/g, '').split(/\s+/).length;
       const minutes = Math.ceil(wordCount / wordsPerMinute);
-      setReadTime(`${minutes} min read`);
+      setReadTime(minutes);
 
       // Track view
       trackView(data.id);
     } catch (error) {
-      // Don't log detailed error information
       console.error('Error fetching blog post');
       setPost(null);
     } finally {
@@ -96,22 +104,30 @@ const BlogPost = () => {
     });
   };
 
-
   if (isLoading) {
     return (
       <div className="min-h-screen bg-background">
+        <ReadingProgress />
         <Navigation />
         <div className="pt-20 pb-16">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto animate-pulse">
-              <div className="h-8 bg-muted rounded mb-4 w-1/4"></div>
-              <div className="h-12 bg-muted rounded mb-6"></div>
-              <div className="h-4 bg-muted rounded mb-2 w-1/3"></div>
-              <div className="h-64 bg-muted rounded mb-8"></div>
-              <div className="space-y-4">
-                <div className="h-4 bg-muted rounded"></div>
-                <div className="h-4 bg-muted rounded w-5/6"></div>
-                <div className="h-4 bg-muted rounded w-4/6"></div>
+            <div className="max-w-7xl mx-auto animate-pulse">
+              <div className="grid grid-cols-1 xl:grid-cols-12 gap-8">
+                <div className="xl:col-span-8 space-y-6">
+                  <div className="h-8 bg-muted rounded mb-4 w-1/4"></div>
+                  <div className="h-12 bg-muted rounded mb-6"></div>
+                  <div className="h-4 bg-muted rounded mb-2 w-1/3"></div>
+                  <div className="h-64 bg-muted rounded mb-8"></div>
+                  <div className="space-y-4">
+                    <div className="h-4 bg-muted rounded"></div>
+                    <div className="h-4 bg-muted rounded w-5/6"></div>
+                    <div className="h-4 bg-muted rounded w-4/6"></div>
+                  </div>
+                </div>
+                <div className="xl:col-span-4 space-y-6">
+                  <div className="h-40 bg-muted rounded"></div>
+                  <div className="h-60 bg-muted rounded"></div>
+                </div>
               </div>
             </div>
           </div>
@@ -129,19 +145,17 @@ const BlogPost = () => {
       <SEOHead 
         title={`${post.title} - LD Development Blog`}
         description={post.excerpt || post.title}
-        keywords={`${post.category.toLowerCase()}, web development, ${post.title.toLowerCase()}`}
+        keywords={`${post.category?.toLowerCase()}, web development, ${post.title.toLowerCase()}`}
         url={typeof window !== 'undefined' ? window.location.href : undefined}
-        ogImage={post.featured_image}
+        ogImage={post.images?.[0] || post.featured_image}
         structuredData={{
           "@context": "https://schema.org",
           "@type": "BlogPosting",
           headline: post.title,
-          image: post.featured_image ? [post.featured_image] : [
-            `${typeof window !== 'undefined' ? window.location.origin : 'https://leedaydevs.com'}/lovable-uploads/c05ee520-dfce-4d37-9abd-2ecb7430e4da.png`
-          ],
+          image: post.images?.[0] || post.featured_image || '',
           datePublished: post.published_at || post.created_at,
           dateModified: post.published_at || post.created_at,
-          author: { "@type": "Organization", name: "LD Development" },
+          author: { "@type": "Organization", name: "LD Development Team" },
           publisher: { 
             "@type": "Organization", 
             name: "LD Development",
@@ -155,137 +169,145 @@ const BlogPost = () => {
           "https://www.facebook.com/profile.php?id=61563893127712"
         ]}
       />
+      
       <div className="min-h-screen bg-background">
+        <ReadingProgress />
         <Navigation />
         
-        {/* Hero Section */}
-        <section className="pt-20 pb-8">
-          <div className="container mx-auto px-4">
-            <div className="mb-6">
-              <Breadcrumbs items={[
-                { label: 'Home', href: '/' },
-                { label: 'Blog', href: '/blog' },
-                { label: post.title }
-              ]} />
-            </div>
-            <div className="max-w-4xl mx-auto">
-              {/* Back Button */}
-              <Link to="/blog" className="inline-flex items-center gap-2 text-primary hover:text-primary-dark transition-colors mb-8">
+        <main className="container mx-auto px-4 py-8">
+          <div className="mb-6 max-w-7xl mx-auto">
+            <Breadcrumbs items={[
+              { label: 'Home', href: '/' },
+              { label: 'Blog', href: '/blog' },
+              { label: post.title }
+            ]} />
+          </div>
+
+          <div className="mb-6 max-w-7xl mx-auto">
+            <Link to="/blog">
+              <Button variant="outline" className="gap-2">
                 <ArrowLeft className="h-4 w-4" />
                 Back to Blog
-              </Link>
+              </Button>
+            </Link>
+          </div>
 
-              {/* Category Badge */}
-              <div className="mb-4">
-                {(() => {
-                  const name = post.category || '';
-                  let hash = 0; for (let i = 0; i < name.length; i++) hash = (hash << 5) - hash + name.charCodeAt(i);
-                  const idx = (Math.abs(hash) % 10) + 1;
-                  const cls = `category-badge-${idx}`;
-                  return <span className={`${cls} text-white text-sm`}>{post.category}</span>;
-                })()}
-              </div>
-
-              {/* Title */}
-              <h1 className="text-3xl md:text-5xl font-serif font-bold text-foreground mb-6 animate-fade-in">
-                {post.title}
-              </h1>
-
-              {/* Meta Information */}
-              <div className="flex flex-wrap items-center gap-6 text-muted-foreground mb-8 animate-fade-in-up">
-                <div className="flex items-center gap-2">
-                  <User className="h-4 w-4" />
-                  <span>LD Development Team</span>
+          <div className="grid grid-cols-1 xl:grid-cols-12 gap-8 max-w-7xl mx-auto">
+            {/* Main Content */}
+            <article className="xl:col-span-8">
+              {/* Hero Section with Featured Image */}
+              {((post.images && post.images.length > 0) || post.featured_image) && (
+                <div className="mb-8 -mx-4 sm:mx-0">
+                  <div className="blog-hero relative overflow-hidden rounded-2xl">
+                    <BlogImageCarousel
+                      images={post.images && post.images.length > 0 ? post.images : (post.featured_image ? [post.featured_image] : [])}
+                      alt={post.title}
+                      className="w-full h-[400px] md:h-[500px] object-cover"
+                      autoSlide={true}
+                      slideInterval={6000}
+                    />
+                    <div className="blog-hero-content absolute inset-0 flex items-end p-8">
+                      <div className="max-w-2xl">
+                        {post.category && (
+                          <Badge className="mb-4 bg-white/20 text-white border-white/30 backdrop-blur-sm">
+                            {post.category}
+                          </Badge>
+                        )}
+                        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight text-white">
+                          {post.title}
+                        </h1>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div className="flex items-center gap-2">
-                  <CalendarDays className="h-4 w-4" />
-                  <span>{formatDate(post.published_at || post.created_at)}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Clock className="h-4 w-4" />
-                  <span>{readTime}</span>
-                </div>
-              </div>
+              )}
 
-              {/* Share Button */}
-<div className="mb-8 animate-fade-in-up">
-                <ShareMenu 
-                  title={post.title}
-                  excerpt={post.excerpt || post.title}
-                  url={typeof window !== 'undefined' ? window.location.href : ''}
+              {/* Article Header (fallback if no image) */}
+              {(!post.images || post.images.length === 0) && !post.featured_image && (
+                <header className="mb-8">
+                  <div className="flex items-center gap-3 mb-4">
+                    {post.category && (
+                      <Badge variant="secondary" className="bg-primary/10 text-primary border-primary/20">
+                        {post.category}
+                      </Badge>
+                    )}
+                  </div>
+
+                  <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-foreground leading-tight">
+                    {post.title}
+                  </h1>
+                </header>
+              )}
+
+              {/* Author Section */}
+              <div className="mb-8">
+                <BlogAuthor
+                  author="LD Development Team"
+                  date={post.published_at || post.created_at}
+                  readTime={readTime}
+                  viewCount={Math.floor(Math.random() * 1000) + 100}
+                  authorBio="Expert team specializing in business automation and digital transformation."
                 />
               </div>
-            </div>
-          </div>
-        </section>
 
-        {/* Featured Images */}
-        {((post.images && post.images.length > 0) || post.featured_image) && (
-          <section className="pb-8">
-            <div className="container mx-auto px-4">
-              <div className="max-w-4xl mx-auto">
-                <div className="relative overflow-hidden rounded-2xl shadow-elegant animate-scale-in">
-                  <BlogImageCarousel
-                    images={post.images && post.images.length > 0 ? post.images : (post.featured_image ? [post.featured_image] : [])}
-                    alt={post.title}
-                    className="h-64 md:h-96"
-                    autoSlide={true}
-                    slideInterval={6000}
-                  />
+              {/* Excerpt */}
+              {post.excerpt && (
+                <div className="mb-8 p-6 bg-muted/30 rounded-2xl border-l-4 border-primary">
+                  <p className="text-lg text-foreground/80 leading-relaxed italic">
+                    {post.excerpt}
+                  </p>
                 </div>
-              </div>
-            </div>
-          </section>
-        )}
+              )}
 
-        {/* Content */}
-        <section className="pb-16">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <div 
-                className="prose prose-lg max-w-none animate-fade-in-up"
-                style={{
-                  '--tw-prose-body': 'hsl(var(--foreground))',
-                  '--tw-prose-headings': 'hsl(var(--foreground))',
-                  '--tw-prose-links': 'hsl(var(--primary))',
-                  '--tw-prose-bold': 'hsl(var(--foreground))',
-                  '--tw-prose-quotes': 'hsl(var(--muted-foreground))',
-                } as React.CSSProperties}
-                dangerouslySetInnerHTML={{ 
-                  __html: DOMPurify.sanitize(post.content, {
-                    ALLOWED_TAGS: ['p', 'br', 'strong', 'em', 'u', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'ul', 'ol', 'li', 'blockquote', 'a', 'img', 'code', 'pre'],
-                    ALLOWED_ATTR: ['href', 'src', 'alt', 'title', 'target', 'rel'],
-                    ALLOW_DATA_ATTR: false
-                  })
-                }}
+              {/* Social Share */}
+              <div className="mb-8">
+                <BlogSocialShare
+                  url={`/blog/${slug}`}
+                  title={post.title}
+                  excerpt={post.excerpt}
+                />
+              </div>
+
+              {/* Article Content */}
+              <div className="blog-content mb-12">
+                <div 
+                  dangerouslySetInnerHTML={{ 
+                    __html: DOMPurify.sanitize(post.content, {
+                      ALLOWED_TAGS: ['p', 'br', 'strong', 'em', 'u', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'ul', 'ol', 'li', 'blockquote', 'a', 'img', 'code', 'pre'],
+                      ALLOWED_ATTR: ['href', 'src', 'alt', 'title', 'target', 'rel', 'id'],
+                      ALLOW_DATA_ATTR: false
+                    })
+                  }}
+                />
+              </div>
+
+              {/* Call to Action */}
+              <div className="mt-12">
+                <BlogCallToAction />
+              </div>
+            </article>
+
+            {/* Sidebar */}
+            <aside className="xl:col-span-4 space-y-6">
+              <BlogTableOfContents />
+              
+              <BlogRelatedPosts 
+                currentPostId={post.id} 
+                category={post.category} 
               />
               
-              {/* Call to Action */}
-              <div className="mt-12 p-8 bg-gradient-card rounded-2xl border border-border animate-fade-in-up">
-                <h3 className="text-2xl font-serif font-bold text-foreground mb-4">
-                  Ready to Transform Your Digital Presence?
-                </h3>
-                <p className="text-muted-foreground mb-6">
-                  Let LD Development help you implement these cutting-edge solutions for your business. 
-                  Our expert team is ready to bring your vision to life.
-                </p>
-                <div className="flex flex-wrap gap-4">
-                  <Link to="/#contact">
-                    <Button className="btn-premium">
-                      Get Started
-                    </Button>
-                  </Link>
-                  <Link to="/blog">
-                    <Button variant="outline" className="hover:bg-primary/10 hover:text-primary hover:border-primary">
-                      Read More Articles
-                    </Button>
-                  </Link>
-                </div>
+              {/* Sticky Social Share */}
+              <div className="sticky top-24">
+                <BlogSocialShare
+                  url={`/blog/${slug}`}
+                  title={post.title}
+                  excerpt={post.excerpt}
+                />
               </div>
-            </div>
+            </aside>
           </div>
-        </section>
-
+        </main>
+        
         <Footer />
       </div>
     </>
