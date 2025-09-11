@@ -109,7 +109,7 @@ const BlogPost = () => {
       <div className="min-h-screen bg-background">
         <ReadingProgress />
         <Navigation />
-        <div className="pt-20 pb-16">
+        <div className="pt-24 pb-16">
           <div className="container mx-auto px-4">
             <div className="max-w-7xl mx-auto animate-pulse">
               <div className="grid grid-cols-1 xl:grid-cols-12 gap-8">
@@ -174,7 +174,7 @@ const BlogPost = () => {
         <ReadingProgress />
         <Navigation />
         
-        <main className="container mx-auto px-4 py-8">
+        <main className="container mx-auto px-4 pt-24 pb-8">
           <div className="mb-6 max-w-7xl mx-auto">
             <Breadcrumbs items={[
               { label: 'Home', href: '/' },
@@ -289,15 +289,17 @@ const BlogPost = () => {
 
             {/* Sidebar */}
             <aside className="xl:col-span-4 space-y-6">
-              <BlogTableOfContents />
+              <div className="xl:sticky xl:top-28 xl:max-h-[calc(100vh-8rem)] xl:overflow-y-auto">
+                <BlogTableOfContents />
+              </div>
               
               <BlogRelatedPosts 
                 currentPostId={post.id} 
                 category={post.category} 
               />
               
-              {/* Sticky Social Share */}
-              <div className="sticky top-24">
+              {/* Social Share - Non-sticky on smaller screens */}
+              <div className="xl:sticky xl:top-[calc(100vh-12rem)]">
                 <BlogSocialShare
                   url={`/blog/${slug}`}
                   title={post.title}
