@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
 import { Plus, Save, Upload, X, Image } from "lucide-react";
 import ReactQuill from 'react-quill';
@@ -256,7 +256,7 @@ const CreatePostModal = ({ open, onClose, onSuccess }: CreatePostModalProps) => 
   };
 
   return (
-    <Dialog open={open} onOpenChange={onClose}>
+    <Dialog open={open} onOpenChange={(v) => { if (!v) onClose(); }}>
       <DialogContent 
         className="max-w-4xl max-h-[90vh] overflow-y-auto bg-background border border-border shadow-2xl"
         style={{ zIndex: 10000 }}
@@ -266,6 +266,9 @@ const CreatePostModal = ({ open, onClose, onSuccess }: CreatePostModalProps) => 
             <Plus className="h-5 w-5 text-primary" />
             Create New Blog Post
           </DialogTitle>
+          <DialogDescription className="text-muted-foreground">
+            Create and publish a new blog post. Fields marked * are required.
+          </DialogDescription>
         </DialogHeader>
 
         <form onSubmit={handleSubmit} className="space-y-6">
