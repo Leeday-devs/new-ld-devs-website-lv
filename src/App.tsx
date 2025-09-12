@@ -12,6 +12,7 @@ import Loading from "./components/Loading";
 import PerformanceMonitor from "@/components/PerformanceMonitor";
 
 // Lazy load pages for better performance
+const CreateBlogPost = lazy(() => import("./pages/CreateBlogPost"));
 const Index = lazy(() => import("./pages/Index"));
 const UnifiedAuth = lazy(() => import("./pages/UnifiedAuth"));
 const AdminAuth = lazy(() => import("./pages/AdminAuth"));
@@ -75,6 +76,7 @@ const App = () => (
                 <Route path="/auth" element={<UnifiedAuth />} />
                 <Route path="/admin/auth" element={<AdminAuth />} />
                 <Route path="/admin/panel" element={<AdminPanel />} />
+                <Route path="/admin/create-blog" element={<CreateBlogPost />} />
                 <Route path="/dashboard" element={<CustomerDashboard />} />
                 <Route path="/request-work" element={<RequestWork />} />
                 <Route path="/blog" element={<Blog />} />

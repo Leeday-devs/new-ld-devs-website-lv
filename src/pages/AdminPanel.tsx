@@ -5,7 +5,6 @@ import { supabase } from "@/integrations/supabase/client";
 import { AdminLayout } from "@/components/admin/AdminLayout";
 import AdminStats from "@/components/admin/AdminStats";
 import BlogPostsList from "@/components/admin/BlogPostsList";
-import CreatePostModal from "@/components/admin/CreatePostModal";
 import EditPostModal from "@/components/admin/EditPostModal";
 import CreateCategoryModal from "@/components/admin/CreateCategoryModal";
 import { CustomerInformationManagement } from "@/components/admin/CustomerInformationManagement";
@@ -45,7 +44,6 @@ const AdminPanel = () => {
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [isAdmin, setIsAdmin] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [showCreateModal, setShowCreateModal] = useState(false);
   const [showCreateCategoryModal, setShowCreateCategoryModal] = useState(false);
   const [editingPost, setEditingPost] = useState<BlogPost | null>(null);
   const [activeTab, setActiveTab] = useState("customers");
@@ -144,7 +142,6 @@ const AdminPanel = () => {
   };
 
   const handlePostCreated = () => {
-    setShowCreateModal(false);
     fetchBlogPosts();
     toast({
       title: "Success",
@@ -248,7 +245,7 @@ const AdminPanel = () => {
                   New Category
                 </Button>
                 <Button 
-                  onClick={() => setShowCreateModal(true)}
+                  onClick={() => navigate('/admin/create-blog')}
                   className="gap-2 bg-primary hover:bg-primary/90"
                 >
                   <Plus className="h-4 w-4" />
@@ -292,12 +289,6 @@ const AdminPanel = () => {
       {renderContent()}
 
       {/* Modals */}
-      <CreatePostModal 
-        open={showCreateModal}
-        onClose={() => setShowCreateModal(false)}
-        onSuccess={handlePostCreated}
-      />
-
       <CreateCategoryModal
         open={showCreateCategoryModal}
         onClose={() => setShowCreateCategoryModal(false)}
