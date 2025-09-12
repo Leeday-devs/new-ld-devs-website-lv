@@ -258,8 +258,8 @@ const CreatePostModal = ({ open, onClose, onSuccess }: CreatePostModalProps) => 
   return (
     <Dialog open={open} onOpenChange={onClose}>
       <DialogContent 
-        className="max-w-6xl max-h-[95vh] overflow-y-auto bg-background border border-border"
-        style={{ zIndex: 9999 }}
+        className="max-w-4xl max-h-[90vh] overflow-y-auto bg-background border border-border shadow-2xl"
+        style={{ zIndex: 10000 }}
       >
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">

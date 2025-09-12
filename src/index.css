@@ -748,9 +748,7 @@
     animation: popIn 0.2s ease-out forwards;
     position: relative;
     z-index: 9999;
-  }
     overflow: hidden;
-    z-index: 9991;
   }
 
   /* Prevent Background Scroll */
