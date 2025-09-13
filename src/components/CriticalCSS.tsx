@@ -29,12 +29,8 @@ const CriticalCSS = () => {
           box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
         }
         
-        /* Reduce blur effects */
-        .backdrop-blur-md,
-        .backdrop-blur-sm {
-          backdrop-filter: none !important;
-          background-color: rgba(255, 255, 255, 0.8) !important;
-        }
+        /* Keep glass blur effects enabled on mobile for visual quality */
+        /* Note: heavy blurs (xl/2xl) are still avoided elsewhere if added */
         
         /* Optimize transforms */
         .hover\\:scale-105:hover,
