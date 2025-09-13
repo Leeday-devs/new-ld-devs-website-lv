@@ -82,10 +82,10 @@ const MobileOptimizedNavigation = () => {
     <nav 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isPricingPage
-          ? 'md:bg-navy/95 bg-blue-600/95 backdrop-blur-md shadow-lg border-b border-orange/10'
+          ? 'md:bg-navy/95 bg-[hsl(210_67%_12%)] backdrop-blur-md shadow-lg border-b border-orange/10'
           : isScrolled 
-            ? 'md:bg-navy/95 bg-blue-600/95 backdrop-blur-md shadow-lg border-b border-orange/10' 
-            : 'md:bg-gradient-to-b md:from-navy/80 md:via-navy/60 md:to-transparent bg-blue-600/90'
+            ? 'md:bg-navy/95 bg-[hsl(210_67%_12%)] backdrop-blur-md shadow-lg border-b border-orange/10' 
+            : 'md:bg-gradient-to-b md:from-navy/80 md:via-navy/60 md:to-transparent bg-[hsl(210_67%_12%)]'
       }`}
     >
       {/* Mobile-First Trust Banner */}
@@ -220,8 +220,8 @@ const MobileOptimizedNavigation = () => {
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className={`md:hidden p-2 rounded-lg transition-all duration-300 touch-target ${
               isScrolled 
-                ? 'text-white hover:text-orange hover:bg-orange/10' 
-                : 'text-white hover:text-orange hover:bg-white/10'
+                ? 'md:text-white text-[hsl(25_100%_50%)] md:hover:text-orange hover:text-orange/80 hover:bg-orange/10' 
+                : 'md:text-white text-[hsl(25_100%_50%)] md:hover:text-orange hover:text-orange/80 hover:bg-white/10'
             }`}
             aria-label="Toggle menu"
           >
