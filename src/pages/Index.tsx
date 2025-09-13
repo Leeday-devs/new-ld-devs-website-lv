@@ -1,5 +1,5 @@
 import { memo, useEffect } from "react";
-import MobileOptimizedNavigation from "@/components/MobileOptimizedNavigation";
+import MobileAppLayout from "@/components/MobileAppLayout";
 import MobileOptimizedHero from "@/components/MobileOptimizedHero";
 import Services from "@/components/Services";
 import Pricing from "@/components/Pricing";
@@ -68,8 +68,12 @@ const Index = () => {
           { name: "Home", url: "/" }
         ]}
       />
-      <div className="min-h-screen">
-        <MobileOptimizedNavigation />
+      <MobileAppLayout 
+        showNavigation={true}
+        showFooter={true}
+        showWhatsApp={true}
+        showBottomNav={true}
+      >
         <BreadcrumbsNavigation />
         <main className="mobile-scroll">
           {/* Hero (navy) - Mobile Optimized */}
@@ -122,12 +126,8 @@ const Index = () => {
           <Contact />
         </section>
         </main>
-        
-        {/* Footer (navy) */}
-        <Footer />
-        <WhatsAppButton />
         <LiveChatWidget />
-      </div>
+      </MobileAppLayout>
       <CriticalCSS />
       <MobilePerformanceOptimizer />
       <SEOEnhancements />
