@@ -82,10 +82,10 @@ const MobileOptimizedNavigation = () => {
     <nav 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isPricingPage
-          ? 'bg-navy/95 backdrop-blur-md shadow-lg border-b border-orange/10'
+          ? 'md:bg-navy/95 bg-blue-600/95 backdrop-blur-md shadow-lg border-b border-orange/10'
           : isScrolled 
-            ? 'bg-navy/95 backdrop-blur-md shadow-lg border-b border-orange/10' 
-            : 'bg-gradient-to-b from-navy/80 via-navy/60 to-transparent'
+            ? 'md:bg-navy/95 bg-blue-600/95 backdrop-blur-md shadow-lg border-b border-orange/10' 
+            : 'md:bg-gradient-to-b md:from-navy/80 md:via-navy/60 md:to-transparent bg-blue-600/90'
       }`}
     >
       {/* Mobile-First Trust Banner */}
