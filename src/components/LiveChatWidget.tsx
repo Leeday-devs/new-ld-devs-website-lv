@@ -65,7 +65,7 @@ const LiveChatWidget = () => {
   return (
     <>
       {/* Chat Button */}
-      <div className="fixed bottom-6 right-6 z-50">
+      <div className="fixed bottom-28 md:bottom-6 right-6 z-50">
         <Button
           onClick={() => setIsOpen(true)}
           className={`rounded-full w-14 h-14 shadow-lg transition-all duration-300 ${
@@ -78,7 +78,7 @@ const LiveChatWidget = () => {
       </div>
 
       {/* Chat Widget */}
-      <div className={`fixed bottom-6 right-6 w-80 h-96 bg-white rounded-2xl shadow-2xl border z-50 transition-all duration-300 ${
+      <div className={`fixed bottom-28 md:bottom-6 right-6 w-80 h-96 bg-white rounded-2xl shadow-2xl border z-50 transition-all duration-300 ${
         isOpen ? 'scale-100 opacity-100' : 'scale-0 opacity-0'
       }`}>
         {/* Header */}

@@ -204,7 +204,6 @@ const AppLikeNavigation = () => {
 
             {/* Mobile Menu Button - App-style */}
             <div className="md:hidden flex items-center gap-2">
-              <AuthButton />
               <button
                 className="p-3 rounded-xl transition-all duration-200 bg-gradient-to-r from-orange/20 to-gold/20 border border-orange/30 hover:from-orange/30 hover:to-gold/30 hover:scale-105 active:scale-95"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
