@@ -12,7 +12,6 @@ import SEOHead from "@/components/SEOHead";
 import BreadcrumbsNavigation from "@/components/BreadcrumbsNavigation";
 import StatsBar from "@/components/StatsBar";
 import TrustedByLogos from "@/components/TrustedByLogos";
-import WhatsAppButton from "@/components/WhatsAppButton";
 import FAQ from "@/components/FAQ";
 import AIBenefitsSection from "@/components/AIBenefitsSection";
 import ApplicationsSection from "@/components/ApplicationsSection";
@@ -71,7 +70,6 @@ const Index = () => {
       <MobileAppLayout 
         showNavigation={true}
         showFooter={true}
-        showWhatsApp={true}
         showBottomNav={true}
       >
         <BreadcrumbsNavigation />

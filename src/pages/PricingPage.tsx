@@ -2,7 +2,6 @@ import { memo, useEffect } from "react";
 import MobileOptimizedNavigation from "@/components/MobileOptimizedNavigation";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
-import WhatsAppButton from "@/components/WhatsAppButton";
 import Pricing from "@/components/Pricing";
 import pricingHeroBg from "@/assets/pricing-hero-bg.jpg";
 
@@ -30,7 +29,6 @@ const PricingPage = () => {
           <Pricing />
         </main>
         <Footer />
-        <WhatsAppButton />
       </div>
     </>
   );
