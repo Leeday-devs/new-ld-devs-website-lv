@@ -138,21 +138,8 @@ export const optimizeImages = () => {
 };
 
 export const prefetchCriticalResources = () => {
-  // Preload critical CSS and fonts
-  const criticalResources = [
-    { href: '/fonts/inter.woff2', as: 'font', type: 'font/woff2' },
-    { href: '/css/critical.css', as: 'style' }
-  ];
-
-  criticalResources.forEach(resource => {
-    const link = document.createElement('link');
-    link.rel = 'preload';
-    link.href = resource.href;
-    link.as = resource.as;
-    if (resource.type) link.type = resource.type;
-    if (resource.as === 'font') link.crossOrigin = 'anonymous';
-    document.head.appendChild(link);
-  });
+  // No critical resources to preload - using Google Fonts and inline CSS
+  // This function is kept for future use if needed
 };
 
 // Core Web Vitals optimization
