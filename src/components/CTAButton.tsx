@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useContactModal } from "@/components/PopupManager";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 interface CTAButtonProps {
@@ -17,12 +17,11 @@ export const CTAButton = ({
   className = "",
   ...props 
 }: CTAButtonProps) => {
-  const navigate = useNavigate();
-  const location = useLocation();
+  const { openContactModal } = useContactModal();
   const isMobile = useIsMobile();
 
   const handleClick = () => {
-    navigate(`/contact?returnTo=${encodeURIComponent(location.pathname)}`);
+    openContactModal();
   };
 
   const sizeClasses = {

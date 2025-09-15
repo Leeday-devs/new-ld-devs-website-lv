@@ -15,11 +15,6 @@ import PerformanceMonitor from "@/components/PerformanceMonitor";
 const CreateBlogPost = lazy(() => import("./pages/CreateBlogPost"));
 const Index = lazy(() => import("./pages/Index"));
 const UnifiedAuth = lazy(() => import("./pages/UnifiedAuth"));
-const ContactPage = lazy(() => import("./pages/ContactPage"));
-const QuotePage = lazy(() => import("./pages/QuotePage"));
-const BookingPage = lazy(() => import("./pages/BookingPage"));
-const ConsultationPage = lazy(() => import("./pages/ConsultationPage"));
-const ThankYouPage = lazy(() => import("./pages/ThankYouPage"));
 const AdminAuth = lazy(() => import("./pages/AdminAuth"));
 const AdminPanel = lazy(() => import("./pages/AdminPanel"));
 const CustomerDashboard = lazy(() => import("./pages/CustomerDashboard"));
@@ -100,11 +95,6 @@ const App = () => (
                 <Route path="/business-details-success" element={<BusinessDetailsSuccess />} />
                 <Route path="/website-setup" element={<WebsiteSetupForm />} />
                 <Route path="/website-setup-thank-you" element={<WebsiteSetupThankYou />} />
-                <Route path="/contact" element={<ContactPage />} />
-                <Route path="/quote" element={<QuotePage />} />
-                <Route path="/book" element={<BookingPage />} />
-                <Route path="/consultation" element={<ConsultationPage />} />
-                <Route path="/thank-you" element={<ThankYouPage />} />
                 <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                 <Route path="/terms" element={<TermsOfService />} />
                 <Route path="/cookies" element={<CookiePolicy />} />
