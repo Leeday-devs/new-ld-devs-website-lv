@@ -260,8 +260,10 @@ const Pricing = () => {
   const currentPlans = allPlans[activeCategory];
 
   const handleGetStarted = (planName: string) => {
+    console.log("Getting started with plan:", planName);
     setSelectedPlan(`${planName} - ${activeCategory}`);
     setIsFormOpen(true);
+    console.log("Modal should be open, isFormOpen:", true);
     toast({ title: "Opening form...", description: `Getting started with ${planName}` });
   };
 
@@ -642,7 +644,7 @@ const Pricing = () => {
       
       {/* Customer Info Modal */}
       <Dialog open={isFormOpen} onOpenChange={setIsFormOpen}>
-        <DialogContent className="max-w-lg bg-white dark:bg-gray-900 border-0 shadow-2xl">
+        <DialogContent className="max-w-lg bg-white dark:bg-gray-900 border-0 shadow-2xl overflow-y-auto max-h-[90vh]">
           <DialogHeader className="pb-6 border-b border-gray-100 dark:border-gray-800">
             <DialogTitle className="text-2xl font-bold text-center bg-gradient-to-r from-orange to-orange/80 bg-clip-text text-transparent">
               Get Started with {selectedPlan}
