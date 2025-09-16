@@ -1,23 +1,19 @@
 import { CheckCircle, Star, Crown, Code, ShoppingCart, Server, Smartphone, Brain, Monitor, Award, Sparkles, Zap, Shield } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
-import { CustomerInfoForm } from "@/components/CustomerInfoForm";
 import { CustomQuoteModal } from "@/components/CustomQuoteModal";
-import { useState, useId } from "react";
+import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import pricingHeroBg from "@/assets/pricing-hero-bg.jpg";
+import { useNavigate } from "react-router-dom";
 
 const Pricing = () => {
   const [activeCategory, setActiveCategory] = useState('websites');
-  const [isFormOpen, setIsFormOpen] = useState(false);
   const [isCustomQuoteOpen, setIsCustomQuoteOpen] = useState(false);
-  const [selectedPlan, setSelectedPlan] = useState<string>('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
-  const titleId = useId();
-  const descriptionId = useId();
+  const navigate = useNavigate();
 
   const categories = [
     { id: 'websites', label: 'Websites', icon: Monitor },
@@ -261,91 +257,17 @@ const Pricing = () => {
 
   const currentPlans = allPlans[activeCategory];
 
-  const handleGetStarted = (planName: string) => {
-    console.log("Getting started with plan:", planName);
-    setSelectedPlan(`${planName} - ${activeCategory}`);
-    setIsFormOpen(true);
-    console.log("Modal should be open, isFormOpen:", true);
-    toast({ title: "Opening form...", description: `Getting started with ${planName}` });
+  const handleGetStarted = (plan: any) => {
+    const serviceName = `${plan.name} - ${activeCategory}`;
+    const params = new URLSearchParams({
+      serviceName,
+      amount: String(plan.depositAmount || 2000),
+    });
+    if (plan.paymentLink) params.set('paymentLink', plan.paymentLink);
+    navigate(`/checkout?${params.toString()}`);
+    toast({ title: "Opening checkout...", description: `Getting started with ${plan.name}` });
   };
 
-  const handleFormSubmit = async (customerInfo: any) => {
-    setIsSubmitting(true);
-    try {
-      const currentPlansArray = allPlans[activeCategory] || [];
-      const planName = selectedPlan.split(' - ')[0]; 
-      const selectedPlanObj = currentPlansArray.find(plan => plan.name === planName);
-      
-      if (!selectedPlanObj) {
-        throw new Error('Selected plan not found');
-      }
-
-      const { error: dbError } = await supabase.from('orders').insert({
-        customer_name: customerInfo.fullName,
-        customer_email: customerInfo.email,
-        customer_phone: customerInfo.phone,
-        customer_company: customerInfo.company,
-        service_name: selectedPlan,
-        amount: selectedPlanObj.depositAmount || 2000, 
-        status: 'inquiry'
-      });
-
-      if (dbError) {
-        console.error('Database error:', dbError);
-        throw new Error('Failed to save customer information');
-      }
-
-      if (activeCategory === 'websites' && selectedPlanObj.paymentLink) {
-        window.open(selectedPlanObj.paymentLink, '_blank');
-        setIsFormOpen(false);
-        toast({
-          title: "Redirecting to Payment",
-          description: "Opening Stripe checkout in a new tab...",
-        });
-        return;
-      }
-
-      const paymentBody: any = {
-        amount: selectedPlanObj.depositAmount || 2000,
-        serviceName: selectedPlan,
-        type: 'deposit',
-        customerInfo: {
-          fullName: customerInfo.fullName,
-          email: customerInfo.email,
-          phone: customerInfo.phone,
-          company: customerInfo.company
-        },
-        successUrl: `${window.location.origin}/payment-success`,
-        cancelUrl: `${window.location.origin}/payment-canceled`
-      };
-
-      const { data: paymentData, error: paymentError } = await supabase.functions.invoke('create-payment', {
-        body: paymentBody
-      });
-
-      if (paymentError) {
-        console.error('Payment error:', paymentError);
-        throw new Error('Failed to create payment session');
-      }
-
-      if (paymentData?.url) {
-        window.open(paymentData.url, '_blank');
-        setIsFormOpen(false);
-        toast({
-          title: "Redirecting to Payment",
-          description: "Opening Stripe checkout in a new tab...",
-        });
-      }
-    } catch (error) {
-      toast({
-        title: "Error",
-        description: error.message || "Failed to submit information. Please try again.",
-        variant: "destructive"
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
 
   return (
     <section 
@@ -575,7 +497,7 @@ const Pricing = () => {
 
                     {/* Premium CTA Button */}
                     <button
-                      onClick={() => handleGetStarted(plan.name)}
+                      onClick={() => handleGetStarted(plan)}
                       disabled={isSubmitting}
                       className={`w-full py-4 px-8 rounded-2xl font-bold text-lg transition-all duration-500 transform hover:scale-105 active:scale-95 shadow-2xl ${
                         isPopular
@@ -641,40 +563,15 @@ const Pricing = () => {
               </button>
             </div>
           </div>
-        </div>
       </div>
-      
-      {/* Customer Info Modal */}
-      <Dialog open={isFormOpen} onOpenChange={setIsFormOpen}>
-        <DialogContent 
-          className="max-w-lg bg-white dark:bg-gray-900 border-0 shadow-2xl overflow-y-auto max-h-[90vh]"
-          aria-labelledby={titleId}
-          aria-describedby={descriptionId}
-        >
-          <DialogHeader className="pb-6 border-b border-gray-100 dark:border-gray-800">
-            <DialogTitle id={titleId} className="text-2xl font-bold text-center bg-gradient-to-r from-orange to-orange/80 bg-clip-text text-transparent">
-              Get Started with {selectedPlan}
-            </DialogTitle>
-            <DialogDescription id={descriptionId} className="text-center text-muted-foreground mt-2">
-              Complete your information to proceed with your order
-            </DialogDescription>
-          </DialogHeader>
-          <div className="p-2">
-            <CustomerInfoForm
-              serviceName={selectedPlan}
-              onSubmit={handleFormSubmit}
-              isLoading={isSubmitting}
-            />
-          </div>
-        </DialogContent>
-      </Dialog>
-
-      {/* Custom Quote Modal */}
-      <CustomQuoteModal 
-        isOpen={isCustomQuoteOpen}
-        onOpenChange={setIsCustomQuoteOpen}
-      />
-    </section>
+    </div>
+    
+    {/* Custom Quote Modal */}
+    <CustomQuoteModal 
+      isOpen={isCustomQuoteOpen}
+      onOpenChange={setIsCustomQuoteOpen}
+    />
+  </section>
   );
 };
 
