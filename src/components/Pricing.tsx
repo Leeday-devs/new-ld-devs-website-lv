@@ -1,9 +1,9 @@
 import { CheckCircle, Star, Crown, Code, ShoppingCart, Server, Smartphone, Brain, Monitor, Award, Sparkles, Zap, Shield } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { CustomerInfoForm } from "@/components/CustomerInfoForm";
 import { CustomQuoteModal } from "@/components/CustomQuoteModal";
-import { useState } from "react";
+import { useState, useId } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
@@ -16,6 +16,8 @@ const Pricing = () => {
   const [selectedPlan, setSelectedPlan] = useState<string>('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
+  const titleId = useId();
+  const descriptionId = useId();
 
   const categories = [
     { id: 'websites', label: 'Websites', icon: Monitor },
@@ -644,14 +646,18 @@ const Pricing = () => {
       
       {/* Customer Info Modal */}
       <Dialog open={isFormOpen} onOpenChange={setIsFormOpen}>
-        <DialogContent className="max-w-lg bg-white dark:bg-gray-900 border-0 shadow-2xl overflow-y-auto max-h-[90vh]">
+        <DialogContent 
+          className="max-w-lg bg-white dark:bg-gray-900 border-0 shadow-2xl overflow-y-auto max-h-[90vh]"
+          aria-labelledby={titleId}
+          aria-describedby={descriptionId}
+        >
           <DialogHeader className="pb-6 border-b border-gray-100 dark:border-gray-800">
-            <DialogTitle className="text-2xl font-bold text-center bg-gradient-to-r from-orange to-orange/80 bg-clip-text text-transparent">
+            <DialogTitle id={titleId} className="text-2xl font-bold text-center bg-gradient-to-r from-orange to-orange/80 bg-clip-text text-transparent">
               Get Started with {selectedPlan}
             </DialogTitle>
-            <p className="text-center text-muted-foreground mt-2">
+            <DialogDescription id={descriptionId} className="text-center text-muted-foreground mt-2">
               Complete your information to proceed with your order
-            </p>
+            </DialogDescription>
           </DialogHeader>
           <div className="p-2">
             <CustomerInfoForm
