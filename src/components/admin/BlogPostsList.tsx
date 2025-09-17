@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { 
@@ -28,11 +29,11 @@ interface BlogPost {
 
 interface BlogPostsListProps {
   posts: BlogPost[];
-  onEdit: (post: BlogPost) => void;
   onDelete: (postId: string) => void;
 }
 
-const BlogPostsList = ({ posts, onEdit, onDelete }: BlogPostsListProps) => {
+const BlogPostsList = ({ posts, onDelete }: BlogPostsListProps) => {
+  const navigate = useNavigate();
   const getStatusBadge = (status: string) => {
     const variants = {
       published: "default",
@@ -116,7 +117,7 @@ const BlogPostsList = ({ posts, onEdit, onDelete }: BlogPostsListProps) => {
                   <Button
                     variant="outline"
                     size="sm"
-                    onClick={() => onEdit(post)}
+                    onClick={() => navigate(`/admin/blog/edit/${post.id}`)}
                     className="hover:bg-primary/10 hover:text-primary hover:border-primary"
                   >
                     <Edit className="h-3 w-3" />

@@ -1,0 +1,524 @@
+import { useState, useRef, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { supabase } from "@/integrations/supabase/client";
+import { useAuth } from "@/hooks/useAuth";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { useToast } from "@/hooks/use-toast";
+import { ArrowLeft, Save, Upload, X, Image, Plus, Edit } from "lucide-react";
+import ReactQuill from 'react-quill';
+import { sanitizeInput, sanitizeHtml } from '@/utils/security';
+import 'react-quill/dist/quill.snow.css';
+
+interface BlogPost {
+  id: string;
+  title: string;
+  slug: string;
+  excerpt: string | null;
+  content: string;
+  featured_image: string | null;
+  images: string[] | null;
+  category: string;
+  status: string;
+  published_at: string | null;
+}
+
+const EditBlogPost = () => {
+  const navigate = useNavigate();
+  const { id } = useParams<{ id: string }>();
+  const { user } = useAuth();
+  const { toast } = useToast();
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
+  const [initialLoading, setInitialLoading] = useState(true);
+  const [post, setPost] = useState<BlogPost | null>(null);
+  const [formData, setFormData] = useState({
+    title: "",
+    excerpt: "",
+    content: "",
+    category: "",
+    featured_image: "",
+    images: [] as string[],
+    status: "draft",
+    tags: ""
+  });
+
+  // Dynamic categories from DB
+  const [categories, setCategories] = useState<{ id: string; name: string }[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (!id) return;
+      
+      // Fetch categories
+      const { data: categoriesData } = await supabase
+        .from('blog_categories')
+        .select('id,name')
+        .eq('status', 'active')
+        .order('name', { ascending: true });
+      
+      if (categoriesData) setCategories(categoriesData);
+
+      // Fetch post
+      const { data: postData, error } = await supabase
+        .from('blog_posts')
+        .select('*')
+        .eq('id', id)
+        .single();
+
+      if (error) {
+        toast({
+          title: "Error",
+          description: "Failed to load blog post.",
+          variant: "destructive",
+        });
+        navigate('/admin/panel?tab=blog');
+        return;
+      }
+
+      if (postData) {
+        setPost(postData);
+        setFormData({
+          title: postData.title,
+          excerpt: postData.excerpt || "",
+          content: postData.content,
+          category: postData.category,
+          featured_image: postData.featured_image || "",
+          images: postData.images || [],
+          status: postData.status,
+          tags: ""
+        });
+      }
+      
+      setInitialLoading(false);
+    };
+
+    fetchData();
+  }, [id, navigate, toast]);
+
+  const generateSlug = (title: string) => {
+    return title
+      .toLowerCase()
+      .replace(/[^a-z0-9\s-]/g, '')
+      .replace(/\s+/g, '-')
+      .replace(/-+/g, '-')
+      .trim();
+  };
+
+  const handleImageUpload = async (file: File) => {
+    setIsUploading(true);
+    try {
+      const fileName = `${Date.now()}-${file.name.replace(/[^a-zA-Z0-9.-]/g, '')}`;
+      const { data, error } = await supabase.storage
+        .from('blog-images')
+        .upload(fileName, file);
+
+      if (error) {
+        toast({
+          title: "Upload Error",
+          description: "Failed to upload image. Please try again.",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      const { data: publicUrl } = supabase.storage
+        .from('blog-images')
+        .getPublicUrl(fileName);
+
+      // Add to images array
+      setFormData(prev => ({ 
+        ...prev, 
+        images: [...prev.images, publicUrl.publicUrl],
+        // Keep featured_image for backward compatibility
+        featured_image: prev.images.length === 0 ? publicUrl.publicUrl : prev.featured_image
+      }));
+      
+      toast({
+        title: "Success",
+        description: "Image uploaded successfully!",
+      });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "An unexpected error occurred during upload.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsUploading(false);
+    }
+  };
+
+  const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (!files) return;
+
+    Array.from(files).forEach(file => {
+      if (file.size > 5 * 1024 * 1024) {
+        toast({
+          title: "File too large",
+          description: `${file.name} is larger than 5MB. Please select a smaller image.`,
+          variant: "destructive",
+        });
+        return;
+      }
+      
+      if (!file.type.startsWith('image/')) {
+        toast({
+          title: "Invalid file type",
+          description: `${file.name} is not an image file.`,
+          variant: "destructive",
+        });
+        return;
+      }
+      
+      handleImageUpload(file);
+    });
+
+    e.target.value = '';
+  };
+
+  const handleRemoveImage = (index: number) => {
+    setFormData(prev => {
+      const newImages = prev.images.filter((_, i) => i !== index);
+      return {
+        ...prev,
+        images: newImages,
+        featured_image: newImages.length > 0 ? newImages[0] : ""
+      };
+    });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!user || !post) return;
+
+    setIsLoading(true);
+    try {
+      const slug = generateSlug(formData.title);
+      const selectedCategory = categories.find((c) => c.name === formData.category);
+      
+      const updateData: any = {
+        title: sanitizeInput(formData.title),
+        slug,
+        excerpt: formData.excerpt ? sanitizeInput(formData.excerpt) : null,
+        content: sanitizeHtml(formData.content),
+        category: sanitizeInput(formData.category),
+        category_id: selectedCategory?.id || null,
+        featured_image: formData.featured_image || null,
+        images: formData.images.length > 0 ? formData.images : null,
+        status: formData.status
+      };
+
+      // If changing from draft to published, set published_at
+      if (post.status !== 'published' && formData.status === 'published') {
+        updateData.published_at = new Date().toISOString();
+      }
+      // If changing from published to draft, remove published_at
+      else if (post.status === 'published' && formData.status === 'draft') {
+        updateData.published_at = null;
+      }
+
+      const { error } = await supabase
+        .from('blog_posts')
+        .update(updateData)
+        .eq('id', post.id);
+
+      if (error) {
+        if (error.code === '23505') {
+          toast({
+            title: "Error",
+            description: "A post with this title already exists. Please choose a different title.",
+            variant: "destructive",
+          });
+        } else {
+          toast({
+            title: "Error",
+            description: "Failed to update post. Please try again.",
+            variant: "destructive",
+          });
+        }
+        return;
+      }
+
+      // Send Discord notification
+      try {
+        await supabase.functions.invoke('send-discord-notification', {
+          body: {
+            eventType: 'admin_action',
+            data: {
+              action: 'Blog Post Updated',
+              adminEmail: user?.email || 'Unknown Admin',
+              details: `Updated "${formData.title}" - Status: ${formData.status}`,
+              postTitle: formData.title,
+              category: formData.category,
+              status: formData.status,
+              excerpt: formData.excerpt?.substring(0, 100) + (formData.excerpt && formData.excerpt.length > 100 ? '...' : '')
+            }
+          }
+        });
+      } catch (discordError) {
+        console.error('Failed to send Discord notification:', discordError);
+      }
+
+      toast({
+        title: "Success",
+        description: "Blog post updated successfully!",
+      });
+
+      navigate('/admin/panel?tab=blog');
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "An unexpected error occurred.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const quillModules = {
+    toolbar: [
+      [{ 'header': [1, 2, 3, false] }],
+      ['bold', 'italic', 'underline', 'strike'],
+      [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+      ['blockquote', 'code-block'],
+      ['link'],
+      ['clean']
+    ],
+  };
+
+  if (initialLoading) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-4"></div>
+          <p className="text-muted-foreground">Loading blog post...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!post) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="text-center">
+          <p className="text-muted-foreground">Blog post not found.</p>
+          <Button onClick={() => navigate('/admin/panel?tab=blog')} className="mt-4">
+            Back to Admin
+          </Button>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-background">
+      <div className="container mx-auto px-4 py-8 max-w-6xl">
+        {/* Header */}
+        <div className="flex items-center justify-between mb-8">
+          <div className="flex items-center gap-4">
+            <Button
+              variant="outline"
+              onClick={() => navigate('/admin/panel?tab=blog')}
+              className="gap-2"
+            >
+              <ArrowLeft className="h-4 w-4" />
+              Back to Admin
+            </Button>
+            <div>
+              <h1 className="text-3xl font-bold text-foreground flex items-center gap-2">
+                <Edit className="h-8 w-8 text-primary" />
+                Edit Blog Post
+              </h1>
+              <p className="text-muted-foreground mt-1">Update your blog post. Fields marked * are required.</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Form */}
+        <form onSubmit={handleSubmit} className="space-y-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* Left Column */}
+            <div className="space-y-6">
+              <div className="space-y-2">
+                <Label htmlFor="title">Title *</Label>
+                <Input
+                  id="title"
+                  value={formData.title}
+                  onChange={(e) => setFormData(prev => ({ ...prev, title: e.target.value.slice(0, 200) }))}
+                  placeholder="Enter post title"
+                  required
+                  className="text-lg"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="category">Category *</Label>
+                <Select 
+                  value={formData.category} 
+                  onValueChange={(value) => setFormData(prev => ({ ...prev, category: value }))}
+                  required
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select category" />
+                  </SelectTrigger>
+                  <SelectContent className="z-50 bg-popover">
+                    {categories.map((c) => (
+                      <SelectItem key={c.id} value={c.name}>
+                        {c.name}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="excerpt">Excerpt</Label>
+                <textarea
+                  id="excerpt"
+                  value={formData.excerpt}
+                  onChange={(e) => setFormData(prev => ({ ...prev, excerpt: e.target.value.slice(0, 500) }))}
+                  placeholder="Brief description of the post (recommended: 30-50 words)"
+                  rows={4}
+                  className="w-full px-3 py-2 border border-input rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-ring"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="status">Status</Label>
+                <Select 
+                  value={formData.status} 
+                  onValueChange={(value) => setFormData(prev => ({ ...prev, status: value }))}
+                >
+                  <SelectTrigger>
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent className="z-50 bg-popover">
+                    <SelectItem value="draft">Save as Draft</SelectItem>
+                    <SelectItem value="published">Publish Now</SelectItem>
+                    <SelectItem value="archived">Archive</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+
+            {/* Right Column - Images */}
+            <div className="space-y-6">
+              <div className="space-y-2">
+                <Label>Images {formData.images.length > 0 && `(${formData.images.length})`}</Label>
+                <div className="border-2 border-dashed border-border rounded-lg p-6">
+                  {formData.images.length > 0 ? (
+                    <div className="space-y-4">
+                      {/* Image Grid */}
+                      <div className="grid grid-cols-2 gap-3">
+                        {formData.images.map((image, index) => (
+                          <div key={index} className="relative group">
+                            <img 
+                              src={image} 
+                              alt={`Preview ${index + 1}`} 
+                              className="w-full h-24 object-cover rounded-lg"
+                            />
+                            <Button
+                              type="button"
+                              variant="destructive"
+                              size="sm"
+                              className="absolute top-1 right-1 h-6 w-6 p-0 opacity-0 group-hover:opacity-100 transition-opacity"
+                              onClick={() => handleRemoveImage(index)}
+                            >
+                              <X className="h-3 w-3" />
+                            </Button>
+                            <div className="absolute bottom-1 left-1 bg-black/50 text-white text-xs px-1 rounded">
+                              {index + 1}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                      
+                      {/* Add More Button */}
+                      <Button
+                        type="button"
+                        variant="outline"
+                        onClick={() => fileInputRef.current?.click()}
+                        disabled={isUploading}
+                        className="w-full"
+                      >
+                        <Plus className="h-4 w-4 mr-2" />
+                        {isUploading ? "Uploading..." : "Add Another Image"}
+                      </Button>
+                    </div>
+                  ) : (
+                    <div className="text-center">
+                      <Image className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
+                      <Button
+                        type="button"
+                        variant="outline"
+                        onClick={() => fileInputRef.current?.click()}
+                        disabled={isUploading}
+                        className="mb-2"
+                      >
+                        <Upload className="h-4 w-4 mr-2" />
+                        {isUploading ? "Uploading..." : "Upload Images"}
+                      </Button>
+                      <p className="text-sm text-muted-foreground">
+                        PNG, JPG up to 5MB each. Multiple images will create a slideshow.
+                      </p>
+                    </div>
+                  )}
+                  <input
+                    ref={fileInputRef}
+                    type="file"
+                    accept="image/*"
+                    multiple
+                    onChange={handleFileSelect}
+                    className="hidden"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Content Editor */}
+          <div className="space-y-2">
+            <Label htmlFor="content">Content *</Label>
+            <div className="border border-input rounded-md overflow-hidden">
+              <ReactQuill
+                theme="snow"
+                value={formData.content}
+                onChange={(content) => setFormData(prev => ({ ...prev, content }))}
+                modules={quillModules}
+                placeholder="Write your blog post content here..."
+                style={{ minHeight: '400px' }}
+              />
+            </div>
+          </div>
+
+          {/* Action Buttons */}
+          <div className="flex justify-between items-center pt-6 border-t">
+            <Button 
+              type="button" 
+              variant="outline" 
+              onClick={() => navigate('/admin/panel?tab=blog')}
+            >
+              Cancel
+            </Button>
+            <Button 
+              type="submit" 
+              className="btn-premium gap-2"
+              disabled={isLoading || isUploading}
+            >
+              <Save className="h-4 w-4" />
+              {isLoading ? "Saving..." : "Update Post"}
+            </Button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+};
+
+export default EditBlogPost;

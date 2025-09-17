@@ -5,7 +5,6 @@ import { supabase } from "@/integrations/supabase/client";
 import { AdminLayout } from "@/components/admin/AdminLayout";
 import AdminStats from "@/components/admin/AdminStats";
 import BlogPostsList from "@/components/admin/BlogPostsList";
-import EditPostModal from "@/components/admin/EditPostModal";
 import CreateCategoryModal from "@/components/admin/CreateCategoryModal";
 import { CustomerInformationManagement } from "@/components/admin/CustomerInformationManagement";
 import CustomersManagement from "@/components/admin/CustomersManagement";
@@ -45,7 +44,6 @@ const AdminPanel = () => {
   const [isAdmin, setIsAdmin] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [showCreateCategoryModal, setShowCreateCategoryModal] = useState(false);
-  const [editingPost, setEditingPost] = useState<BlogPost | null>(null);
   const [activeTab, setActiveTab] = useState("customers");
 
   useEffect(() => {
@@ -146,15 +144,6 @@ const AdminPanel = () => {
     toast({
       title: "Success",
       description: "Blog post created successfully!",
-    });
-  };
-
-  const handlePostUpdated = () => {
-    setEditingPost(null);
-    fetchBlogPosts();
-    toast({
-      title: "Success",
-      description: "Blog post updated successfully!",
     });
   };
 
@@ -264,7 +253,6 @@ const AdminPanel = () => {
               <CardContent>
                 <BlogPostsList 
                   posts={posts}
-                  onEdit={setEditingPost}
                   onDelete={handleDeletePost}
                 />
               </CardContent>
@@ -297,15 +285,6 @@ const AdminPanel = () => {
           toast({ title: "Success", description: "Category created successfully!" });
         }}
       />
-
-      {editingPost && (
-        <EditPostModal 
-          post={editingPost}
-          open={!!editingPost}
-          onClose={() => setEditingPost(null)}
-          onSuccess={handlePostUpdated}
-        />
-      )}
     </AdminLayout>
   );
 };
