@@ -37,7 +37,7 @@ const AuthButton = () => {
 
       if (profile?.role === 'admin') {
         setDashboardLink('/admin/panel');
-        setDashboardLabel('Admin Panel');
+        setDashboardLabel('Login');
         return;
       }
 
