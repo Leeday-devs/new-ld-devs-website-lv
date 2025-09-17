@@ -171,10 +171,6 @@ const Navigation = () => {
                       </a>
                     )
                   ))}
-                  <div className="border-t border-white/10 my-2"></div>
-                  <div className="px-2">
-                    <AuthButton />
-                  </div>
                 </div>
               )}
             </div>

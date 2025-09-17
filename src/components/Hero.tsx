@@ -143,6 +143,7 @@ const Hero = () => {
             <p className="text-sm sm:text-base md:text-lg lg:text-xl max-w-4xl mx-auto text-white/90 leading-relaxed font-medium mb-6 sm:mb-8 px-2">
               Premium <span className="text-highlight font-bold">Website</span> development and <span className="text-highlight font-bold">AI</span> services from the <span className="text-highlight font-bold">UK</span> for businesses. 
               <span className="block mt-2">We create fast, secure, and beautiful websites that drive real results.</span>
+              <span className="block mt-3 text-highlight font-bold">No technical knowledge needed, we do everything for you.</span>
             </p>
           </div>
           

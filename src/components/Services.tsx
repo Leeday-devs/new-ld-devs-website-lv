@@ -148,6 +148,7 @@ const Services = () => {
           </h2>
           <p className="text-body max-w-3xl mx-auto text-text-secondary drop-shadow-sm">
             Expert web development, e-commerce solutions, AI automation, and digital services for UK businesses. From concept to launch, we deliver premium solutions that drive real results.
+            <span className="block mt-3 text-highlight font-bold">No technical knowledge needed, we do everything for you.</span>
           </p>
         </div>
 
