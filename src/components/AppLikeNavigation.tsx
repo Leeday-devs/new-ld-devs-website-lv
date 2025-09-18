@@ -193,8 +193,8 @@ const AppLikeNavigation = () => {
                 className="btn-premium hover-glow px-4 md:px-6 py-2 md:py-3 rounded-full font-bold text-xs md:text-sm tracking-wide shadow-button"
                 onClick={handleWhatsAppClick}
               >
-                <span className="hidden lg:inline">Start Your Project</span>
-                <span className="lg:hidden">Get Quote</span>
+                <span className="hidden lg:inline">Contact Us</span>
+                <span className="lg:hidden">Contact Us</span>
               </Button>
             </div>
 
