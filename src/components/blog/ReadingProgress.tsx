@@ -16,9 +16,14 @@ export const ReadingProgress = () => {
   }, []);
 
   return (
-    <div className="fixed top-0 left-0 w-full h-1 bg-muted/20 z-[60] pointer-events-none">
+    <div className="fixed top-0 left-0 w-full h-1 bg-slate-200/50 dark:bg-slate-800/50 z-[60] pointer-events-none">
       <div 
-        className="h-full bg-gradient-to-r from-primary to-accent transition-all duration-300 ease-out"
+        className="h-full bg-gradient-to-r from-[#FF7A00] via-[#0D6EFD] to-[#FF7A00] transition-all duration-300 ease-out shadow-lg"
+        style={{ width: `${progress}%` }}
+      />
+      {/* Glow effect */}
+      <div 
+        className="absolute top-0 left-0 h-full bg-gradient-to-r from-[#FF7A00]/50 via-[#0D6EFD]/50 to-[#FF7A00]/50 blur-sm transition-all duration-300 ease-out"
         style={{ width: `${progress}%` }}
       />
     </div>
