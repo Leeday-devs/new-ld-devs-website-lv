@@ -38,6 +38,12 @@ const menuItems = [
     section: "dashboard"
   },
   {
+    title: "Order Forms",
+    url: "/admin/panel?tab=order-forms",
+    icon: Database,
+    section: "management"
+  },
+  {
     title: "Customer Info",
     url: "/admin/panel?tab=customer-info",
     icon: Database,

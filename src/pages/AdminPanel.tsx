@@ -6,6 +6,7 @@ import { AdminLayout } from "@/components/admin/AdminLayout";
 import AdminStats from "@/components/admin/AdminStats";
 import BlogPostsList from "@/components/admin/BlogPostsList";
 import CreateCategoryModal from "@/components/admin/CreateCategoryModal";
+import { OrderFormsManagement } from "@/components/admin/OrderFormsManagement";
 import { CustomerInformationManagement } from "@/components/admin/CustomerInformationManagement";
 import CustomersManagement from "@/components/admin/CustomersManagement";
 import { CustomQuotesManagement } from "@/components/admin/CustomQuotesManagement";
@@ -198,6 +199,8 @@ const AdminPanel = () => {
 
   const renderContent = () => {
     switch (activeTab) {
+      case "order-forms":
+        return <OrderFormsManagement />;
       case "customer-info":
         return <CustomerInformationManagement />;
       case "custom-quotes":
