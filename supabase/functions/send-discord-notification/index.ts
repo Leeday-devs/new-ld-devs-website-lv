@@ -258,6 +258,23 @@ serve(async (req) => {
           timestamp: new Date().toISOString()
         };
         break;
+
+      case 'customer_info':
+        embed = {
+          title: '💼 Customer Information Submitted!',
+          description: `**${data.fullName}** submitted information for ${data.serviceName}`,
+          color: eventColors.customer_inquiry,
+          fields: [
+            { name: 'Full Name', value: data.fullName, inline: true },
+            { name: 'Email', value: data.email, inline: true },
+            { name: 'Phone', value: data.phone || 'Not provided', inline: true },
+            { name: 'Company', value: data.company || 'Not provided', inline: true },
+            { name: 'Service', value: data.serviceName, inline: false },
+            { name: 'Source', value: 'Pricing Card Form', inline: true }
+          ],
+          timestamp: new Date().toISOString()
+        };
+        break;
         
       default:
         embed = {
