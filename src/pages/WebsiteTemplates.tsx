@@ -133,6 +133,24 @@ const WebsiteTemplates = () => {
     e.preventDefault();
     
     try {
+      // Store in database first
+      const { error: dbError } = await supabase
+        .from('custom_quote_requests')
+        .insert({
+          name: formData.businessName,
+          email: formData.email,
+          company: formData.businessName,
+          phone: formData.phone,
+          project_type: 'Custom Website Template',
+          project_description: `Industry: ${formData.industry}\n\nDescription: ${formData.description}`,
+          special_requirements: `Custom pre-built website example for ${formData.industry} industry`,
+          status: 'pending'
+        });
+
+      if (dbError) {
+        throw dbError;
+      }
+
       // Send Discord notification
       const { error: discordError } = await supabase.functions.invoke('send-discord-notification', {
         body: {
@@ -142,13 +160,15 @@ const WebsiteTemplates = () => {
             industry: formData.industry,
             email: formData.email,
             phone: formData.phone,
-            description: formData.description
+            description: formData.description,
+            source: 'Website Templates - Custom Request'
           }
         }
       });
 
       if (discordError) {
-        throw discordError;
+        console.error('Discord notification failed:', discordError);
+        // Don't throw - form submission was successful
       }
 
       toast({

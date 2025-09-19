@@ -185,10 +185,6 @@ const AppLikeNavigation = () => {
 
             {/* Desktop CTA - Unchanged */}
             <div className="hidden md:flex items-center gap-4">
-              <div className="hidden lg:flex flex-col items-end text-xs text-muted-foreground">
-                <span className="font-semibold">Ready to elevate?</span>
-                <span>Free consultation</span>
-              </div>
               <Button 
                 className="btn-premium hover-glow px-4 md:px-6 py-2 md:py-3 rounded-full font-bold text-xs md:text-sm tracking-wide shadow-button"
                 onClick={handleWhatsAppClick}
