@@ -119,7 +119,7 @@ const Contact = () => {
       
       toast({
         title: "Message sent!",
-        description: "Thank you for your message. We'll get back to you soon!"
+        description: "Thank you for your message. I'll get back to you soon!"
       });
 
       // Reset form
@@ -148,7 +148,7 @@ const Contact = () => {
             Get Your Free <span className="text-orange">Quote Today</span>
           </h2>
           <p className="text-body text-white/80 max-w-3xl mx-auto">
-            Ready to transform your business with premium web development? Contact London's leading web development agency and let's discuss your <span className="text-orange font-semibold">project requirements</span>.
+            Ready to transform your business with premium web development? You'll work with me directly. No middlemen, no sales reps. Let's discuss your <span className="text-orange font-semibold">project requirements</span>.
           </p>
         </div>
 
@@ -197,7 +197,7 @@ const Contact = () => {
                     </div>
                   </div>
                   <p className="text-white/80 leading-relaxed">
-                    ⚡ We usually reply within <span className="text-orange font-semibold">1 hour</span> during business hours.
+                    ⚡ I usually reply within <span className="text-orange font-semibold">1 hour</span> during business hours.
                   </p>
                 </div>
               </div>

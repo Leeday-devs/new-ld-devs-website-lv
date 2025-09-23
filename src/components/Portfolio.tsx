@@ -139,10 +139,10 @@ const Portfolio = () => {
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="heading-primary heading-lg mb-6 text-navy">
-            Case <span className="text-orange">Studies</span>
+            Some of My <span className="text-orange">Recent Work</span>
           </h2>
           <p className="text-body max-w-3xl mx-auto text-text-secondary">
-            Real business challenges we've solved. See how we transform problems into profitable solutions with measurable results.
+            Real business challenges I've solved. See how I transform problems into profitable solutions with measurable results.
           </p>
         </div>
 
@@ -189,7 +189,7 @@ const Portfolio = () => {
             className="btn-primary px-10 py-4 text-lg font-semibold rounded-2xl"
             onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
           >
-            Start Your Project
+            Work With Lee
           </button>
         </div>
       </div>

@@ -142,8 +142,8 @@ const Hero = () => {
           <div className={`transition-all duration-1000 ease-out delay-300 ${showSubtext ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
             <p className="text-sm sm:text-base md:text-lg lg:text-xl max-w-4xl mx-auto text-white/90 leading-relaxed font-medium mb-6 sm:mb-8 px-2">
               Premium <span className="text-highlight font-bold">Website</span> development and <span className="text-highlight font-bold">AI</span> services from the <span className="text-highlight font-bold">UK</span> for businesses. 
-              <span className="block mt-2">We create fast, secure, and beautiful websites that drive real results.</span>
-              <span className="block mt-3 text-highlight font-bold">No technical knowledge needed, we do everything for you.</span>
+              <span className="block mt-2">I create fast, secure, and beautiful websites that drive real results.</span>
+              <span className="block mt-3 text-highlight font-bold">No technical knowledge needed, I do everything for you.</span>
             </p>
           </div>
           
@@ -164,8 +164,8 @@ const Hero = () => {
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out"></div>
               
               <span className="relative z-10 flex items-center justify-center">
-                <span className="hidden sm:inline">Start Your Project</span>
-                <span className="sm:hidden">Get Started</span>
+                <span className="hidden sm:inline">Work With Lee</span>
+                <span className="sm:hidden">Work With Lee</span>
                 <ArrowRight className="ml-2 sm:ml-3 h-5 sm:h-6 md:h-7 w-5 sm:w-6 md:w-7 group-hover:translate-x-1 transition-transform duration-300" />
               </span>
             </Button>

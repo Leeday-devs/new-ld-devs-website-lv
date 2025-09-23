@@ -78,7 +78,7 @@ export const CustomerInfoForm = ({ onSubmit, isLoading, serviceName }: CustomerI
           Your Information
         </h3>
         <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
-          We need a few details to get started with your {serviceName.toLowerCase()}
+          I need a few details to get started with your {serviceName.toLowerCase()}
         </p>
       </div>
       

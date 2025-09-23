@@ -80,7 +80,7 @@ export const CustomQuoteModal = ({ isOpen, onOpenChange }: CustomQuoteModalProps
       console.error('Error:', error);
       toast({
         title: "Submission Failed",
-        description: error.message || "Please try again or contact us directly.",
+        description: error.message || "Please try again or contact me directly.",
         variant: "destructive"
       });
     } finally {

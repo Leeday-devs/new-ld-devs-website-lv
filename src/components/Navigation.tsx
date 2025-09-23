@@ -182,8 +182,8 @@ const Navigation = () => {
               className="btn-premium hover-glow px-4 md:px-6 py-2 md:py-3 rounded-full font-bold text-xs md:text-sm tracking-wide shadow-button"
               onClick={handleWhatsAppClick}
             >
-              <span className="hidden lg:inline">Contact Us</span>
-              <span className="lg:hidden">Contact Us</span>
+                <span className="hidden lg:inline">Contact Lee</span>
+                <span className="lg:hidden">Contact Lee</span>
             </Button>
           </div>
 
@@ -240,7 +240,7 @@ const Navigation = () => {
                     handleMenuClose();
                   }}
                 >
-                  Start Your Project
+                  Work With Lee
                 </Button>
               </div>
             </div>

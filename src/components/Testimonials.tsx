@@ -57,10 +57,10 @@ const Testimonials = () => {
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="heading-lg spacing-section text-white">
-            What Our <span className="text-highlight">Clients Say</span>
+            What My <span className="text-highlight">Clients Say</span>
           </h2>
           <p className="text-body max-w-3xl mx-auto text-white/80">
-            Don't just take our word for it. Here's what our <span className="text-highlight font-semibold">satisfied clients</span> have to say about working with us
+            Don't just take my word for it. Here's what my <span className="text-highlight font-semibold">satisfied clients</span> have to say about working with me
           </p>
         </div>
 

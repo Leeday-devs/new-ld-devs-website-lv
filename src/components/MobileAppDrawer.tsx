@@ -155,7 +155,7 @@ const MobileAppDrawer = ({ isOpen, onClose }: MobileAppDrawerProps) => {
             className="w-full bg-gradient-to-r from-orange to-gold hover:from-orange/90 hover:to-gold/90 text-navy font-bold py-4 text-base rounded-xl shadow-lg transform hover:scale-105 transition-all duration-200"
             onClick={handleWhatsAppClick}
           >
-            Start Your Project
+            Work With Lee
           </Button>
         </div>
       </div>

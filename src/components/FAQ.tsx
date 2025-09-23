@@ -12,27 +12,27 @@ const FAQ = () => {
     },
     {
       question: "Do you provide hosting and domain registration?",
-      answer: "Yes! We offer comprehensive hosting packages starting from £40/month, including SSL certificates, regular backups, security monitoring, and technical support. We can also help you register a domain or transfer your existing one to our hosting platform."
+      answer: "Yes! I offer comprehensive hosting packages starting from £40/month, including SSL certificates, regular backups, security monitoring, and technical support. I can also help you register a domain or transfer your existing one to my hosting platform."
     },
     {
       question: "Will my website work on mobile devices?",
-      answer: "Absolutely! All our websites are built with a mobile-first approach, ensuring they look and function perfectly on smartphones, tablets, and desktop computers. We test extensively across all devices and browsers before launch."
+      answer: "Absolutely! All my websites are built with a mobile-first approach, ensuring they look and function perfectly on smartphones, tablets, and desktop computers. I test extensively across all devices and browsers before launch."
     },
     {
       question: "Can I update my website content myself?",
-      answer: "Yes, we build websites with user-friendly content management systems. We'll provide training and documentation so you can easily update text, images, and other content. For more complex changes, our support team is always available to help."
+      answer: "Yes, I build websites with user-friendly content management systems. I'll provide training and documentation so you can easily update text, images, and other content. For more complex changes, I'm always available to help."
     },
     {
       question: "What's included in your ongoing support?",
-      answer: "Our support includes regular security updates, performance monitoring, backup management, technical support via email/phone, and minor content updates. We also offer monthly maintenance packages for more extensive ongoing support."
+      answer: "My support includes regular security updates, performance monitoring, backup management, technical support via email/phone, and minor content updates. I also offer monthly maintenance packages for more extensive ongoing support."
     },
     {
       question: "Do you work with businesses outside of London?",
-      answer: "Yes! While we're based in London, we work with clients throughout the UK and internationally. Most of our communication is done remotely via video calls, email, and project management tools, making location no barrier to great service."
+      answer: "Yes! While I'm based in London, I work with clients throughout the UK and internationally. Most of my communication is done remotely via video calls, email, and project management tools, making location no barrier to great service."
     },
     {
       question: "Can you help improve my existing website?",
-      answer: "Definitely! We offer website audits, redesigns, performance optimization, SEO improvements, and feature additions for existing websites. We can work with most platforms and technologies to enhance your current online presence."
+      answer: "Definitely! I offer website audits, redesigns, performance optimisation, SEO improvements, and feature additions for existing websites. I can work with most platforms and technologies to enhance your current online presence."
     },
     {
       question: "What if I'm not happy with the final result?",
@@ -130,7 +130,7 @@ const FAQ = () => {
                     Still Have Questions?
                   </h3>
                   <p className="text-white/80 leading-relaxed">
-                    Can't find what you're looking for? Our team is here to help with personalized answers to your specific needs.
+                    Can't find what you're looking for? I'm here to help with personalised answers to your specific needs.
                   </p>
                 </div>
 

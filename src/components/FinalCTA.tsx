@@ -54,7 +54,7 @@ const FinalCTA = () => {
         setIsSubmitted(true);
         toast({
           title: "Success!",
-          description: "Thank you! We'll get back to you shortly.",
+          description: "Thank you! I'll get back to you shortly.",
         });
       }
     } catch (error) {
@@ -82,13 +82,13 @@ const FinalCTA = () => {
           <h2 className="heading-primary text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
             Ready to Build Something
             <span className="block text-orange mt-2">
-              Extraordinary?
+              Extraordinary With Me?
             </span>
           </h2>
 
           {/* Subheading */}
           <p className="text-xl md:text-2xl text-white/80 mb-8 max-w-3xl mx-auto leading-relaxed">
-            Join hundreds of successful businesses who trust us to create 
+            Join hundreds of successful businesses who trust me to create 
             websites that not only look amazing but deliver real results.
           </p>
 
@@ -110,7 +110,7 @@ const FinalCTA = () => {
               <div className="max-w-2xl mx-auto text-center">
                 <div className="bg-white/10 border border-white/20 rounded-xl px-8 py-6">
                   <h3 className="text-2xl font-bold text-white mb-2">Thank You!</h3>
-                  <p className="text-white/80 text-lg">We will get back to you shortly.</p>
+                  <p className="text-white/80 text-lg">I'll get back to you shortly.</p>
                 </div>
               </div>
             ) : (
@@ -128,7 +128,7 @@ const FinalCTA = () => {
                   disabled={isSubmitting}
                   className="bg-orange hover:bg-orange/90 text-white font-bold text-lg px-8 py-4 rounded-xl transition-all duration-300 hover:-translate-y-1 shadow-2xl hover:shadow-orange/20 inline-flex items-center gap-3 whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0"
                 >
-                  {isSubmitting ? "Submitting..." : "Get Started"}
+                  {isSubmitting ? "Submitting..." : "Work With Lee"}
                   <ArrowRight className="h-5 w-5" />
                 </button>
               </form>

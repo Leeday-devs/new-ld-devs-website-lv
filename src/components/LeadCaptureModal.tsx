@@ -89,7 +89,7 @@ export const LeadCaptureModal = ({ isOpen, onClose }: LeadCaptureModalProps) => 
       console.error('Error subscribing:', error);
       toast({
         title: "Something went wrong",
-        description: "Please try again or contact us directly.",
+        description: "Please try again or contact me directly.",
         variant: "destructive",
       });
     } finally {

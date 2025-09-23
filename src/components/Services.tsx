@@ -144,11 +144,11 @@ const Services = () => {
         {/* Section Header */}
         <div className="text-center mb-16 pt-20">
           <h2 className="heading-lg spacing-section text-navy drop-shadow-sm">
-            Our <span className="text-highlight">Premium</span> Web Development Services
+            What <span className="text-highlight">I Can Build</span> For You
           </h2>
           <p className="text-body max-w-3xl mx-auto text-text-secondary drop-shadow-sm">
-            Expert web development, e-commerce solutions, AI automation, and digital services for UK businesses. From concept to launch, we deliver premium solutions that drive real results.
-            <span className="block mt-3 text-highlight font-bold">No technical knowledge needed, we do everything for you.</span>
+            Expert web development, e-commerce solutions, AI automation, and digital services for UK businesses. From concept to launch, I deliver premium solutions that drive real results.
+            <span className="block mt-3 text-highlight font-bold">No technical knowledge needed, I do everything for you.</span>
           </p>
         </div>
 
@@ -321,7 +321,7 @@ const Services = () => {
             className="btn-primary px-10 py-4 text-lg font-semibold rounded-2xl"
             onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
           >
-            Start Your Project
+            Work With Lee
           </button>
         </div>
       </div>

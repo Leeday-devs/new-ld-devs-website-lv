@@ -368,7 +368,7 @@ const Pricing = () => {
                     <button onClick={() => handleGetStarted(plan)} disabled={isSubmitting} className={`w-full py-4 px-8 rounded-2xl font-bold text-lg transition-all duration-500 transform hover:scale-105 active:scale-95 shadow-2xl ${isPopular ? 'bg-gradient-to-r from-orange to-orange/80 text-white hover:shadow-orange/50 hover:shadow-2xl' : 'bg-gradient-to-r from-white/10 to-white/5 text-white border-2 border-orange/30 hover:border-orange hover:bg-orange/10 hover:shadow-orange/30'} group/button overflow-hidden relative`}>
                       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-200%] group-hover/button:translate-x-[200%] transition-transform duration-1000"></div>
                       <div className="relative z-10 flex items-center justify-center space-x-2">
-                        <span>{isSubmitting ? 'Processing...' : 'Get Started Today'}</span>
+                        <span>{isSubmitting ? 'Processing...' : 'Work With Lee'}</span>
                         <Zap className="h-5 w-5 group-hover/button:rotate-12 transition-transform duration-300" />
                       </div>
                     </button>

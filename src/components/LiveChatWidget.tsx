@@ -47,7 +47,7 @@ const LiveChatWidget = () => {
     setTimeout(() => {
       const botResponse: Message = {
         id: (Date.now() + 1).toString(),
-        text: "Thanks for your message! A member of our team will get back to you shortly. For immediate assistance, feel free to call us or use the contact form on our website.",
+        text: "Thanks for your message! I'll get back to you shortly. For immediate assistance, feel free to call me or use the contact form on my website.",
         isBot: true,
         timestamp: new Date()
       };

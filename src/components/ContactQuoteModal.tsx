@@ -91,7 +91,7 @@ export const ContactQuoteModal = ({ isOpen, onClose }: ContactQuoteModalProps) =
       console.error('Error submitting quote request:', error);
       toast({
         title: "Something went wrong",
-        description: "Please try again or contact us directly.",
+        description: "Please try again or contact me directly.",
         variant: "destructive",
       });
     } finally {
