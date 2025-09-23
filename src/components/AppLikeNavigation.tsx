@@ -9,8 +9,8 @@ import MobileAppDrawer from "./MobileAppDrawer";
 // Move navigation items outside component to prevent recreating on every render
 const primaryNavItems = [
   { label: "Home", href: "/", isInternal: true },
-  { label: "Services", href: "/#services", isInternal: false },
-  { label: "Pricing", href: "/pricing", isInternal: true },
+  { label: "What I Do", href: "/#services", isInternal: false },
+  { label: "Pricing (From)", href: "/pricing", isInternal: true },
   { label: "Pre-Built", href: "/templates", isInternal: true },
   { label: "Blog", href: "/blog", isInternal: true }
 ];
@@ -18,7 +18,7 @@ const primaryNavItems = [
 const dropdownItems = [
   { label: "Portfolio", href: "#portfolio", isInternal: false },
   { label: "FAQ", href: "#faq", isInternal: false },
-  { label: "Contact", href: "#contact", isInternal: false }
+  { label: "Contact Lee", href: "#contact", isInternal: false }
 ];
 
 const AppLikeNavigation = () => {
@@ -189,8 +189,8 @@ const AppLikeNavigation = () => {
                 className="btn-premium hover-glow px-4 md:px-6 py-2 md:py-3 rounded-full font-bold text-xs md:text-sm tracking-wide shadow-button"
                 onClick={handleWhatsAppClick}
               >
-                <span className="hidden lg:inline">Contact Lee</span>
-                <span className="lg:hidden">Contact Lee</span>
+                <span className="hidden lg:inline">Work With Lee</span>
+                <span className="lg:hidden">Work With Lee</span>
               </Button>
             </div>
 
