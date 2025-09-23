@@ -38,29 +38,29 @@ const Pricing = () => {
       name: "Starter",
       icon: Code,
       description: "Perfect for small businesses and personal brands",
-      price: "£500",
+      price: "from £500",
       monthlyPrice: "£40",
       paymentLink: "https://buy.stripe.com/aFa00jf1ceRsb9kceV0Ny08",
       depositAmount: 5000,
       // £50 deposit in pence
-      features: ["Up to 5 pages", "Mobile-friendly design", "1 business email", "Basic SEO optimisation", "Contact form integration", "SSL & hosting"],
+      features: ["Up to 5 pages", "Mobile-friendly design", "1 business email", "Basic SEO optimisation", "Contact form integration", "SSL & hosting", "Tailored to your content and goals"],
       trustLines: ["Cancel anytime", "SSL included", "No hidden fees"]
     }, {
       id: 2,
       name: "Business Growth",
       icon: Crown,
       description: "Most popular choice for growing businesses",
-      price: "£1,250",
+      price: "from £1,250",
       monthlyPrice: "£65",
       paymentLink: "https://buy.stripe.com/7sY14ndX86kW0uG5Qx0Ny09",
       depositAmount: 12500,
       // £125 deposit in pence
       popular: true,
-      features: ["Up to 10 pages", "Blog setup", "SEO optimisation & analytics", "AI chatbot/contact assistant", "2 rounds of revisions", "2 business emails", "Ongoing support"],
+      features: ["Up to 10 pages", "Blog setup", "SEO optimisation & analytics", "AI chatbot/contact assistant", "2 rounds of revisions", "2 business emails", "Ongoing support", "Includes strategy call and on-page SEO basics"],
       trustLines: ["Most popular choice", "Priority support", "30-day guarantee"]
     }, {
       id: 3,
-      name: "Premium/Pro",
+      name: "Premium Pro",
       icon: ShoppingCart,
       description: "Complete solution for established businesses",
       price: "from £2,250",
@@ -68,7 +68,7 @@ const Pricing = () => {
       paymentLink: "https://buy.stripe.com/00wcN5f1cfVw7X83Ip0Ny0a",
       depositAmount: 22500,
       // £225 deposit in pence
-      features: ["Unlimited pages", "E-commerce or booking system", "Advanced SEO", "CRM automation", "Priority support (same-day)", "5 business emails", "Monthly performance report"],
+      features: ["Unlimited pages", "E-commerce or booking system", "Advanced SEO", "CRM automation", "Priority support (same-day)", "5 business emails", "Monthly performance report", "Bespoke design, advanced integrations, priority support"],
       trustLines: ["Enterprise grade", "Unlimited revisions", "Dedicated manager"]
     }],
     ai: [{
@@ -230,10 +230,7 @@ const Pricing = () => {
           
           <div className="max-w-4xl mx-auto mb-12 animate-fade-in-up stagger-delay-2">
             <p className="text-xl md:text-2xl text-gray-200 mb-6 leading-relaxed">
-              Premium solutions crafted with precision. Every plan includes{" "}
-              <span className="text-orange font-semibold">white-glove service</span>,{" "}
-              <span className="text-orange font-semibold">enterprise security</span>, and{" "}
-              <span className="text-orange font-semibold">lifetime support</span>.
+              You'll work directly with me—no sales reps, just one freelancer dedicated to your project.
             </p>
             
             <div className="bg-gradient-to-r from-orange/20 to-orange/10 backdrop-blur-xl border border-orange/30 rounded-2xl p-8 inline-block shadow-2xl">
@@ -377,6 +374,16 @@ const Pricing = () => {
               </div>;
         })}
         </div>
+        
+        {/* Custom Pricing Note */}
+        <div className="text-center mb-16 animate-fade-in-up" style={{
+          animationDelay: '1.0s'
+        }}>
+          <p className="text-gray-300 text-lg">
+            Need something unique? I'll price it fairly after a quick chat.
+          </p>
+        </div>
+        
         {/* Premium Guarantee & Trust Section */}
         <div className="text-center mb-20 animate-fade-in-up" style={{
         animationDelay: '1.2s'
