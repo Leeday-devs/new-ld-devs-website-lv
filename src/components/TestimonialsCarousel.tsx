@@ -17,7 +17,7 @@ const TestimonialsCarousel = () => {
       name: "William Egan", 
       company: "We Waste Ltd",
       role: "Owner",
-      quote: "We have been using LD Web Development for years now, you wont get a better service! We recommend these guys to absolutely everyone.",
+      quote: "Working directly with Lee saved us time and money. You won't get a better service! We recommend Lee to absolutely everyone.",
       rating: 5,
       website: "https://www.wewasteltd.co.uk",
       companyLogo: "/lovable-uploads/2b71c5d0-b143-4337-b814-e4dec0c11b15.png"
@@ -27,7 +27,7 @@ const TestimonialsCarousel = () => {
       name: "Michael Webster",
       company: "Top Ranked Ltd", 
       role: "Owner",
-      quote: "This company is excellent to work with. Our website turned out exactly as we envisioned, with a few additional suggestions from Lee that enhanced the final result beyond our expectations. The process was hassle-free and communication was very good throughout. I would highly recommend LD Development.",
+      quote: "Lee made the whole process simple and personal. Our website turned out exactly as we envisioned, with additional suggestions from Lee that enhanced the final result beyond our expectations. The process was hassle-free and communication was excellent throughout. I would highly recommend working with Lee.",
       rating: 5,
       website: "https://www.top-ranked.co.uk",
       companyLogo: "/lovable-uploads/19b269ec-842e-4877-b1e5-6ceebd5f1ca0.png"
@@ -47,10 +47,10 @@ const TestimonialsCarousel = () => {
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="heading-primary heading-lg mb-6 text-white">
-            What Our <span className="text-orange">Clients Say</span>
+            What My <span className="text-orange">Clients Say</span>
           </h2>
           <p className="text-body max-w-3xl mx-auto text-white/80">
-            Don't just take our word for it. Here's what our <span className="text-orange font-semibold">satisfied clients</span> have to say about working with us
+            Don't just take my word for it. Here's what my <span className="text-orange font-semibold">satisfied clients</span> have to say about working directly with me
           </p>
         </div>
 
