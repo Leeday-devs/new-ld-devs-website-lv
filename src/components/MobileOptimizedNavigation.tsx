@@ -17,8 +17,8 @@ const MobileOptimizedNavigation = () => {
   // Navigation items optimized for mobile
   const primaryNavItems = [
     { name: "Home", href: "/", isInternal: true },
-    { name: "Services", href: "#services", isInternal: false },
-    { name: "Pricing", href: "/pricing", isInternal: true },
+    { name: "What I Do", href: "#services", isInternal: false },
+    { name: "Pricing (From)", href: "/pricing", isInternal: true },
     { name: "Pre-Built", href: "/templates", isInternal: true },
     { name: "Blog", href: "/blog", isInternal: true }
   ];
@@ -26,7 +26,7 @@ const MobileOptimizedNavigation = () => {
   const dropdownItems = [
     { name: "Portfolio", href: "#portfolio", isInternal: false },
     { name: "FAQ", href: "#faq", isInternal: false },
-    { name: "Contact", href: "#contact", isInternal: false }
+    { name: "Contact Lee", href: "#contact", isInternal: false }
   ];
 
   // Mobile-first navigation items (all in one array for mobile)
@@ -211,7 +211,7 @@ const MobileOptimizedNavigation = () => {
               onClick={handleWhatsAppClick}
               className="btn-primary px-4 lg:px-6 py-2 lg:py-2.5 text-sm lg:text-base font-bold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
             >
-              Contact Lee
+              Work With Lee
             </Button>
           </div>
 
@@ -272,7 +272,7 @@ const MobileOptimizedNavigation = () => {
                 }}
                 className="btn-primary w-full py-3 text-base font-bold rounded-full shadow-lg"
               >
-                Contact Lee
+                Work With Lee
               </Button>
             </div>
           </div>
