@@ -195,11 +195,11 @@ const Footer = () => {
             <div className="space-y-3 sm:space-y-4">
               <h4 className="text-base sm:text-lg font-bold text-white">Quick Links</h4>
               <ul className="space-y-2 sm:space-y-3">
-                <li><a href="#home" className="text-white/80 hover:text-orange transition-colors hover:translate-x-1 inline-block text-sm sm:text-base touch-manipulation" style={{ minHeight: '32px', display: 'inline-flex', alignItems: 'center' }}>About Us</a></li>
-                <li><a href="#portfolio" className="text-white/80 hover:text-orange transition-colors hover:translate-x-1 inline-block text-sm sm:text-base touch-manipulation" style={{ minHeight: '32px', display: 'inline-flex', alignItems: 'center' }}>Case Studies</a></li>
-                <li><a href="#contact" className="text-white/80 hover:text-orange transition-colors hover:translate-x-1 inline-block text-sm sm:text-base touch-manipulation" style={{ minHeight: '32px', display: 'inline-flex', alignItems: 'center' }}>Get Quote</a></li>
+                <li><a href="#about" className="text-white/80 hover:text-orange transition-colors hover:translate-x-1 inline-block text-sm sm:text-base touch-manipulation" style={{ minHeight: '32px', display: 'inline-flex', alignItems: 'center' }}>About Lee</a></li>
+                <li><a href="#services" className="text-white/80 hover:text-orange transition-colors hover:translate-x-1 inline-block text-sm sm:text-base touch-manipulation" style={{ minHeight: '32px', display: 'inline-flex', alignItems: 'center' }}>What I Do</a></li>
+                <li><a href="#pricing" className="text-white/80 hover:text-orange transition-colors hover:translate-x-1 inline-block text-sm sm:text-base touch-manipulation" style={{ minHeight: '32px', display: 'inline-flex', alignItems: 'center' }}>Pricing (From)</a></li>
+                <li><a href="#contact" className="text-white/80 hover:text-orange transition-colors hover:translate-x-1 inline-block text-sm sm:text-base touch-manipulation" style={{ minHeight: '32px', display: 'inline-flex', alignItems: 'center' }}>Contact Lee</a></li>
                 <li><a href="/auth" className="text-white/80 hover:text-orange transition-colors hover:translate-x-1 inline-block text-sm sm:text-base touch-manipulation" style={{ minHeight: '32px', display: 'inline-flex', alignItems: 'center' }}>Client Portal</a></li>
-                <li><a href="#faq" className="text-white/80 hover:text-orange transition-colors hover:translate-x-1 inline-block text-sm sm:text-base touch-manipulation" style={{ minHeight: '32px', display: 'inline-flex', alignItems: 'center' }}>FAQ</a></li>
               </ul>
             </div>
           </div>
@@ -212,7 +212,7 @@ const Footer = () => {
           <div className="flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-4">
             <div className="text-center sm:text-left">
               <div className="text-white font-semibold mb-1 text-sm sm:text-base">© {currentYear} LD Development</div>
-              <div className="text-white/70 text-xs sm:text-sm">Part of Hosting Easy Ltd | UK Registered Company</div>
+              <div className="text-white/70 text-xs sm:text-sm">LD Development is my freelance brand. Registered company: Hosting Easy Ltd.</div>
             </div>
             
             <div className="flex flex-wrap justify-center gap-4 sm:gap-6 items-center text-xs sm:text-sm">
