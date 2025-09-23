@@ -14,8 +14,10 @@ const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    subject: "",
-    message: ""
+    phone: "",
+    projectGoals: "",
+    budgetRange: "",
+    timeline: ""
   });
   const contactInfo = [{
     icon: Mail,
@@ -50,11 +52,13 @@ const Contact = () => {
     const sanitizedData = {
       name: sanitizeInput(formData.name.trim()),
       email: sanitizeInput(formData.email.trim()),
-      subject: sanitizeInput(formData.subject.trim()),
-      message: sanitizeInput(formData.message.trim())
+      phone: sanitizeInput(formData.phone.trim()),
+      projectGoals: sanitizeInput(formData.projectGoals.trim()),
+      budgetRange: sanitizeInput(formData.budgetRange.trim()),
+      timeline: sanitizeInput(formData.timeline.trim())
     };
     
-    if (!sanitizedData.name || !sanitizedData.email || !sanitizedData.message) {
+    if (!sanitizedData.name || !sanitizedData.email || !sanitizedData.projectGoals) {
       toast({
         title: "Error",
         description: "Please fill in all required fields",
@@ -72,10 +76,10 @@ const Contact = () => {
       return;
     }
 
-    if (sanitizedData.message.length > 2000) {
+    if (sanitizedData.projectGoals.length > 2000) {
       toast({
         title: "Error",
-        description: "Message is too long. Please keep it under 2000 characters.",
+        description: "Project goals is too long. Please keep it under 2000 characters.",
         variant: "destructive"
       });
       return;
@@ -93,10 +97,17 @@ const Contact = () => {
 
     setIsLoading(true);
     try {
-      // Store in database
+      // Store in database - map new fields to existing table structure
+      const dbData = {
+        name: sanitizedData.name,
+        email: sanitizedData.email,
+        subject: `Budget: ${sanitizedData.budgetRange} | Timeline: ${sanitizedData.timeline}`,
+        message: `Project Goals: ${sanitizedData.projectGoals}\n\nPhone: ${sanitizedData.phone || 'Not provided'}\nBudget Range: ${sanitizedData.budgetRange || 'Not specified'}\nTimeline: ${sanitizedData.timeline || 'Not specified'}`
+      };
+      
       const {
         error: dbError
-      } = await supabase.from('contact_submissions').insert([sanitizedData]);
+      } = await supabase.from('contact_submissions').insert([dbData]);
       if (dbError) throw dbError;
 
       // Send Discord notification
@@ -106,8 +117,10 @@ const Contact = () => {
           data: {
             name: sanitizedData.name,
             email: sanitizedData.email,
-            subject: sanitizedData.subject,
-            message: sanitizedData.message.substring(0, 200) + (sanitizedData.message.length > 200 ? '...' : '')
+            phone: sanitizedData.phone,
+            projectGoals: sanitizedData.projectGoals.substring(0, 200) + (sanitizedData.projectGoals.length > 200 ? '...' : ''),
+            budgetRange: sanitizedData.budgetRange,
+            timeline: sanitizedData.timeline
           }
         }
       });
@@ -118,16 +131,18 @@ const Contact = () => {
       }
       
       toast({
-        title: "Message sent!",
-        description: "Thank you for your message. I'll get back to you soon!"
+        title: "Thanks—I'll reply personally, usually the same day.",
+        description: "Your message has been sent directly to Lee!"
       });
 
       // Reset form
       setFormData({
         name: "",
         email: "",
-        subject: "",
-        message: ""
+        phone: "",
+        projectGoals: "",
+        budgetRange: "",
+        timeline: ""
       });
     } catch (error: any) {
       logSecureError('Contact form submission', error);
@@ -145,10 +160,10 @@ const Contact = () => {
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="heading-primary heading-lg mb-6 text-white">
-            Get Your Free <span className="text-orange">Quote Today</span>
+            Work With Me <span className="text-orange">Directly</span>
           </h2>
           <p className="text-body text-white/80 max-w-3xl mx-auto">
-            Ready to transform your business with premium web development? You'll work with me directly. No middlemen, no sales reps. Let's discuss your <span className="text-orange font-semibold">project requirements</span>.
+            Tell me what you need—your message comes straight to me.
           </p>
         </div>
 
@@ -156,11 +171,11 @@ const Contact = () => {
           <div className="bg-white rounded-3xl shadow-luxury overflow-hidden">
             <div className="grid grid-cols-1 lg:grid-cols-5 min-h-[400px] lg:min-h-[600px]">
               
-              {/* Left Sidebar - Contact Info - Mobile Optimized */}
+              {/* Left Sidebar - Direct Line Info - Mobile Optimized */}
               <div className="lg:col-span-2 bg-navy p-6 sm:p-8 lg:p-10 flex flex-col justify-between">
                 <div>
                   <h3 className="heading-primary heading-md text-white mb-8 font-bold">
-                    Get in Touch
+                    Direct Line
                   </h3>
                   
                   <div className="space-y-8">
@@ -186,18 +201,21 @@ const Contact = () => {
                   </div>
                 </div>
 
-                {/* Quick Response Box */}
+                {/* Direct Contact Box */}
                 <div className="bg-navy/50 border border-orange/20 rounded-2xl p-8 mt-8">
                   <div className="flex items-center gap-4 mb-4">
                     <div className="bg-orange/20 rounded-full w-12 h-12 flex items-center justify-center">
-                      <Zap className="h-6 w-6 text-orange" />
+                      <Phone className="h-6 w-6 text-orange" />
                     </div>
                     <div>
-                      <h4 className="text-lg font-bold text-white">Quick Response</h4>
+                      <h4 className="text-lg font-bold text-white">Prefer a quick chat?</h4>
                     </div>
                   </div>
-                  <p className="text-white/80 leading-relaxed">
-                    ⚡ I usually reply within <span className="text-orange font-semibold">1 hour</span> during business hours.
+                  <p className="text-white/80 leading-relaxed mb-3">
+                    Call <span className="text-orange font-semibold">07586 266007</span>
+                  </p>
+                  <p className="text-white/60 text-sm">
+                    No sales team—just me.
                   </p>
                 </div>
               </div>
@@ -206,20 +224,20 @@ const Contact = () => {
               <div className="lg:col-span-3 p-6 sm:p-8 lg:p-12">
                 <div className="max-w-2xl">
                   <h3 className="heading-primary heading-md text-navy mb-8 font-bold">
-                    Send us a <span className="text-orange">Message</span>
+                    Send to <span className="text-orange">Lee</span>
                   </h3>
                   
                   <form onSubmit={handleSubmit} className="space-y-8">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                       <div className="space-y-3">
                         <label className="text-base font-semibold text-navy">
-                          Full Name *
+                          Name *
                         </label>
                         <Input
                           name="name"
                           value={formData.name}
                           onChange={handleInputChange}
-                          placeholder="Enter your full name"
+                          placeholder="Your name"
                           className="premium-input"
                           maxLength={100}
                           required
@@ -228,14 +246,14 @@ const Contact = () => {
                       
                       <div className="space-y-3">
                         <label className="text-base font-semibold text-navy">
-                          Email Address *
+                          Email *
                         </label>
                         <Input
                           name="email"
                           type="email"
                           value={formData.email}
                           onChange={handleInputChange}
-                          placeholder="Enter your email address"
+                          placeholder="your@email.com"
                           className="premium-input"
                           maxLength={100}
                           required
@@ -245,31 +263,62 @@ const Contact = () => {
                     
                     <div className="space-y-3">
                       <label className="text-base font-semibold text-navy">
-                        Subject
+                        Phone (optional)
                       </label>
                       <Input
-                        name="subject"
-                        value={formData.subject}
+                        name="phone"
+                        type="tel"
+                        value={formData.phone}
                         onChange={handleInputChange}
-                        placeholder="What's your project about?"
+                        placeholder="Your phone number"
                         className="premium-input"
-                        maxLength={200}
+                        maxLength={20}
                       />
                     </div>
                     
                     <div className="space-y-3">
                       <label className="text-base font-semibold text-navy">
-                        Project Details *
+                        Project Goals *
                       </label>
                       <Textarea
-                        name="message"
-                        value={formData.message}
+                        name="projectGoals"
+                        value={formData.projectGoals}
                         onChange={handleInputChange}
-                        placeholder="Tell us about your project goals, timeline, and any specific requirements..."
+                        placeholder="Tell me what you're looking to achieve..."
                         className="premium-input min-h-32 resize-none"
                         maxLength={2000}
                         required
                       />
+                    </div>
+                    
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                      <div className="space-y-3">
+                        <label className="text-base font-semibold text-navy">
+                          Budget Range
+                        </label>
+                        <Input
+                          name="budgetRange"
+                          value={formData.budgetRange}
+                          onChange={handleInputChange}
+                          placeholder="e.g., £1,000-£3,000"
+                          className="premium-input"
+                          maxLength={50}
+                        />
+                      </div>
+                      
+                      <div className="space-y-3">
+                        <label className="text-base font-semibold text-navy">
+                          Timeline
+                        </label>
+                        <Input
+                          name="timeline"
+                          value={formData.timeline}
+                          onChange={handleInputChange}
+                          placeholder="e.g., 2-3 weeks"
+                          className="premium-input"
+                          maxLength={50}
+                        />
+                      </div>
                     </div>
                     
                     <div className="flex flex-col sm:flex-row gap-4 pt-6">
@@ -290,12 +339,12 @@ const Contact = () => {
                           {isLoading ? (
                             <>
                               <Loader2 className="mr-3 h-5 w-5 animate-spin" />
-                              Sending Message...
+                              Sending to Lee...
                             </>
                           ) : (
                             <>
                               <Send className="mr-3 h-5 w-5" />
-                              Send Message
+                              Send to Lee
                             </>
                           )}
                         </span>
@@ -305,7 +354,7 @@ const Contact = () => {
                         type="button"
                         onClick={() => {
                           const whatsappNumber = "447586266007";
-                          const message = "Hi! I'm interested in your premium web development services.";
+                          const message = "Hi Lee! I'm interested in your web development services.";
                           const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
                           window.open(whatsappUrl, '_blank');
                         }}
