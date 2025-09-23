@@ -147,6 +147,122 @@ const ApplicationsSection = () => {
     features: ['Workflow automation', 'Email marketing sequences', 'Social media management', 'Lead qualification', 'Data entry elimination'],
     stats: '60% time savings on tasks'
   }];
-  return;
+  return (
+    <section className="bg-transparent py-20" aria-label="AI applications and smart website features">
+      <div className="container mx-auto px-6">
+        {/* Section Header */}
+        <ScrollAnimated>
+          <div className="text-center mb-16">
+            <h2 className="heading-primary heading-lg mb-6 text-navy">
+              Smart Website <span className="text-orange">Applications</span>
+            </h2>
+            <p className="text-body max-w-3xl mx-auto text-text-secondary">
+              Discover how AI-enhanced websites and intelligent automation can transform your business operations
+            </p>
+          </div>
+        </ScrollAnimated>
+
+        {/* Interactive Tabs */}
+        <ScrollAnimated>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
+            {dashboardMetrics.map((metric, index) => (
+              <button
+                key={index}
+                onClick={() => setActiveTab(metric.id)}
+                className={`p-6 rounded-2xl transition-all duration-300 text-left group ${
+                  activeTab === metric.id 
+                    ? 'bg-orange text-white shadow-luxury' 
+                    : 'card-premium hover:shadow-luxury'
+                }`}
+              >
+                <div className={`p-3 rounded-xl mb-4 ${
+                  activeTab === metric.id ? 'bg-white/20' : metric.bgColor
+                }`}>
+                  <div className={activeTab === metric.id ? 'text-white' : metric.color}>
+                    {metric.icon}
+                  </div>
+                </div>
+                <div className={`text-2xl font-bold mb-2 ${
+                  activeTab === metric.id ? 'text-white' : 'text-navy'
+                }`}>
+                  {metric.value}
+                </div>
+                <h3 className={`font-bold mb-2 ${
+                  activeTab === metric.id ? 'text-white' : 'text-navy'
+                }`}>
+                  {metric.title}
+                </h3>
+                <p className={`text-sm ${
+                  activeTab === metric.id ? 'text-white/80' : 'text-text-secondary'
+                }`}>
+                  {metric.description}
+                </p>
+              </button>
+            ))}
+          </div>
+        </ScrollAnimated>
+
+        {/* Performance Chart */}
+        <ScrollAnimated>
+          <Card className="card-premium mb-16">
+            <CardHeader>
+              <CardTitle className="text-center text-navy">
+                AI Performance Metrics
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="h-80">
+                <ResponsiveContainer width="100%" height="100%">
+                  <LineChart data={aiPerformanceData}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+                    <XAxis dataKey="month" stroke="#64748b" />
+                    <YAxis stroke="#64748b" />
+                    <Tooltip 
+                      contentStyle={{ 
+                        backgroundColor: 'white', 
+                        border: '1px solid #e2e8f0',
+                        borderRadius: '12px',
+                        boxShadow: '0 10px 30px -10px rgba(0,0,0,0.1)'
+                      }} 
+                    />
+                    <Line 
+                      type="monotone" 
+                      dataKey={activeTab} 
+                      stroke="#f97316" 
+                      strokeWidth={3}
+                      dot={{ fill: '#f97316', strokeWidth: 2, r: 6 }}
+                      activeDot={{ r: 8, stroke: '#f97316', strokeWidth: 2 }}
+                    />
+                  </LineChart>
+                </ResponsiveContainer>
+              </div>
+            </CardContent>
+          </Card>
+        </ScrollAnimated>
+
+        {/* Website Features Grid */}
+        <ScrollAnimated>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {websiteMetrics.map((metric, index) => (
+              <Card key={index} className="card-premium hover:shadow-luxury transition-all duration-300 group">
+                <CardContent className="p-6">
+                  <div className="flex items-start justify-between mb-4">
+                    <div className={`p-3 rounded-xl ${metric.bgColor} ${metric.color}`}>
+                      {metric.icon}
+                    </div>
+                    <div className="text-right">
+                      <div className="text-2xl font-bold text-navy">{metric.value}</div>
+                    </div>
+                  </div>
+                  <h3 className="font-bold text-navy mb-2">{metric.title}</h3>
+                  <p className="text-text-secondary text-sm">{metric.description}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </ScrollAnimated>
+      </div>
+    </section>
+  );
 };
 export default ApplicationsSection;

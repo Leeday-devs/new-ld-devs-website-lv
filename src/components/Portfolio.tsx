@@ -142,7 +142,7 @@ const Portfolio = () => {
             Some of My <span className="text-orange">Recent Work</span>
           </h2>
           <p className="text-body max-w-3xl mx-auto text-text-secondary">
-            Real business challenges I've solved. See how I transform problems into profitable solutions with measurable results.
+            As a freelancer, I work one-on-one with each client to deliver results that look premium and perform.
           </p>
         </div>
 
@@ -178,6 +178,11 @@ const Portfolio = () => {
                     </div>
                   </div>
                 </div>
+              </div>
+              
+              {/* Card Footer */}
+              <div className="p-4 text-center">
+                <p className="text-text-secondary text-sm font-medium">Built by Lee</p>
               </div>
             </div>
           ))}
