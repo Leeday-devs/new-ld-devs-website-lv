@@ -12,45 +12,45 @@ const Services = () => {
   const services = [
     {
       icon: Monitor,
-      title: "Website Development",
-      description: "Custom websites built with modern technology. Fast, responsive, and optimized for your business needs.",
+      title: "Web Design & Development",
+      description: "I design and build fast, modern websites tailored to your goals.",
       features: ["Responsive Design", "Fast Loading", "SEO Optimized", "Mobile Friendly", "SSL Secured"],
       pricingCategory: "websites"
     },
     {
       icon: ShoppingBag,
-      title: "E-commerce Solutions",  
-      description: "Complete online stores with secure payments, inventory management, and customer accounts.",
+      title: "Ecommerce Solutions",  
+      description: "I set up high-converting shops with secure payments and simple management.",
       features: ["Payment Integration", "Product Management", "Order Tracking", "Customer Accounts", "Analytics"],
       pricingCategory: "websites"
     },
     {
       icon: Package,
-      title: "Pre-Built Sites",
-      description: "Professional website templates ready to launch. Get online quickly with our beautiful, responsive designs.",
+      title: "Re-Designs",
+      description: "I overhaul outdated sites into premium, trustworthy experiences.",
       features: ["Ready-Made Designs", "Fully Responsive", "Easy Customization", "Quick Setup", "Professional Look"],
       isTemplates: true
     },
     {
       icon: Cloud,
       title: "Hosting & Maintenance",
-      description: "Reliable hosting with 24/7 monitoring, regular backups, and ongoing maintenance support.",
+      description: "I host, secure, and maintain your site with updates and backups.",
       features: ["99.9% Uptime", "Daily Backups", "Security Updates", "Performance Monitoring", "Technical Support"],
       pricingCategory: "software"
     },
     {
-      icon: Smartphone,
-      title: "Apps",
-      description: "Native and cross-platform mobile applications that work seamlessly across all devices.",
-      features: ["iOS & Android", "Cross-Platform", "App Store Deployment", "Push Notifications", "Offline Support"],
-      pricingCategory: "mobile"
-    },
-    {
       icon: Bot,
-      title: "AI Integration",
-      description: "Smart automation and AI-powered features to streamline your business operations.",
+      title: "AI & Automation",
+      description: "I build AI tools and automations that save you hours each week.",
       features: ["Chatbots", "Process Automation", "Data Analysis", "Smart Workflows", "AI Content"],
       pricingCategory: "ai"
+    },
+    {
+      icon: Smartphone,
+      title: "Integrations",
+      description: "I connect your site to CRMs, calendars, and payment systems.",
+      features: ["iOS & Android", "Cross-Platform", "App Store Deployment", "Push Notifications", "Offline Support"],
+      pricingCategory: "mobile"
     }
   ];
 
@@ -147,8 +147,7 @@ const Services = () => {
             What <span className="text-highlight">I Can Build</span> For You
           </h2>
           <p className="text-body max-w-3xl mx-auto text-text-secondary drop-shadow-sm">
-            Expert web development, e-commerce solutions, AI automation, and digital services for UK businesses. From concept to launch, I deliver premium solutions that drive real results.
-            <span className="block mt-3 text-highlight font-bold">No technical knowledge needed, I do everything for you.</span>
+            Work directly with me from strategy to launch—fast replies, clear milestones, premium finish.
           </p>
         </div>
 
@@ -314,6 +313,13 @@ const Services = () => {
           })}
           </div>
         )}
+
+        {/* Direct Contact Guarantee */}
+        <div className="text-center mt-12 mb-8">
+          <p className="text-lg font-medium text-navy">
+            You'll always deal directly with me—no middlemen.
+          </p>
+        </div>
 
         {/* CTA Section */}
         <div className="text-center mt-16">
