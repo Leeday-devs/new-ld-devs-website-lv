@@ -15,6 +15,7 @@ import TrustedByLogos from "@/components/TrustedByLogos";
 import FAQ from "@/components/FAQ";
 import AIBenefitsSection from "@/components/AIBenefitsSection";
 import ApplicationsSection from "@/components/ApplicationsSection";
+import AboutMe from "@/components/AboutMe";
 import LiveChatWidget from "@/components/LiveChatWidget";
 import MobilePerformanceOptimizer from "@/components/MobilePerformanceOptimizer";
 import CriticalCSS from "@/components/CriticalCSS";
@@ -92,6 +93,9 @@ const Index = () => {
           
           {/* Applications Section - AI and website features */}
           <ApplicationsSection />
+          
+          {/* About Me Section */}
+          <AboutMe />
           
           {/* FAQ (dark background) - Premium spacing */}
           <FAQ />
