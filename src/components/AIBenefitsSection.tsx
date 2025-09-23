@@ -85,6 +85,77 @@ const AIBenefitsSection = () => {
     bgColor: "bg-pink-400/10",
     description: "Higher than no website"
   }];
-  return;
+  return (
+    <section className="py-20 bg-dark">
+      <div className="container mx-auto px-6">
+        <ScrollAnimated>
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              Transform Your Business with <span className="text-highlight">Premium Websites</span>
+            </h2>
+            <p className="text-xl text-white/80 max-w-3xl mx-auto">
+              See the real impact of professional web development on your business growth
+            </p>
+          </div>
+        </ScrollAnimated>
+
+        {/* Dashboard Metrics Grid */}
+        <ScrollAnimated>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+            {dashboardMetrics.map((metric, index) => (
+              <Card key={index} className="bg-gray-900/50 border-gray-800 hover:border-orange/50 transition-all duration-300">
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className={`p-3 rounded-lg ${metric.bgColor}`}>
+                      <div className={metric.color}>{metric.icon}</div>
+                    </div>
+                    <div className={`text-sm font-semibold ${metric.color}`}>
+                      {metric.change}
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <h3 className="text-white font-semibold">{metric.title}</h3>
+                    <div className="text-3xl font-bold text-white">{metric.value}</div>
+                    <p className="text-sm text-white/60">{metric.description}</p>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </ScrollAnimated>
+
+        {/* Chart Section */}
+        <ScrollAnimated>
+          <Card className="bg-gray-900/50 border-gray-800">
+            <CardHeader>
+              <CardTitle className="text-white text-2xl">Business Growth Over Time</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="h-80">
+                <ResponsiveContainer width="100%" height="100%">
+                  <AreaChart data={websiteImpactData}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
+                    <XAxis dataKey="month" stroke="#9CA3AF" />
+                    <YAxis stroke="#9CA3AF" />
+                    <Tooltip 
+                      contentStyle={{ 
+                        backgroundColor: 'rgb(17 24 39)', 
+                        border: '1px solid rgb(75 85 99)',
+                        borderRadius: '8px'
+                      }}
+                    />
+                    <Legend />
+                    <Area type="monotone" dataKey="revenue" stackId="1" stroke="#f97316" fill="#f97316/20" name="Revenue %" />
+                    <Area type="monotone" dataKey="leads" stackId="1" stroke="#3b82f6" fill="#3b82f6/20" name="Leads %" />
+                    <Area type="monotone" dataKey="traffic" stackId="1" stroke="#10b981" fill="#10b981/20" name="Traffic %" />
+                  </AreaChart>
+                </ResponsiveContainer>
+              </div>
+            </CardContent>
+          </Card>
+        </ScrollAnimated>
+      </div>
+    </section>
+  );
 };
 export default AIBenefitsSection;

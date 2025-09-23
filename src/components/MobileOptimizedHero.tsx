@@ -160,9 +160,9 @@ const MobileOptimizedHero = () => {
             Premium Web Development{" "}
             <span className="text-highlight block xs:inline">Solutions</span>
             <span className="block mt-2 sm:mt-6 text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
-              Built For{" "}
+              Built By{" "}
               <span className="text-highlight relative">
-                You
+                Me
                 {!isMobile && <span className="absolute -inset-1 bg-orange/20 blur-xl animate-pulse"></span>}
               </span>
             </span>
@@ -172,16 +172,10 @@ const MobileOptimizedHero = () => {
         {/* Mobile-Optimized Subtext - Reduced animation complexity */}
         <div className={`transition-all duration-500 ease-out ${showSubtext ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
           <p className="text-sm xs:text-base sm:text-lg md:text-xl max-w-3xl mx-auto text-white/90 leading-relaxed font-medium mb-6 sm:mb-8 px-2">
-            Premium{" "}
-            <span className="text-highlight font-bold">Website</span>{" "}
-            development and{" "}
-            <span className="text-highlight font-bold">AI</span>{" "}
-            services from the{" "}
-            <span className="text-highlight font-bold">UK</span>{" "}
-            for businesses.
-            <span className="block mt-2">
-              We create fast, secure, and beautiful <span className="text-highlight font-bold">Websites & Applications</span>.
-            </span>
+            I'm Lee, a freelance web developer from{" "}
+            <span className="text-highlight font-bold">London</span>.{" "}
+            I create websites that look and feel like{" "}
+            <span className="text-highlight font-bold">£10,000 projects</span>—without the agency price tag.
           </p>
         </div>
         
@@ -204,8 +198,7 @@ const MobileOptimizedHero = () => {
             )}
             
             <span className="relative z-10 flex items-center justify-center">
-              <span className="hidden xs:inline">Start Your Project</span>
-              <span className="xs:hidden">Get Started</span>
+              Work With Me
               <ArrowRight className="ml-2 sm:ml-3 h-5 sm:h-6 md:h-7 w-5 sm:w-6 md:w-7 group-hover:translate-x-1 transition-transform duration-300" />
             </span>
           </Button>

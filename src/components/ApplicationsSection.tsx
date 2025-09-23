@@ -147,6 +147,104 @@ const ApplicationsSection = () => {
     features: ['Workflow automation', 'Email marketing sequences', 'Social media management', 'Lead qualification', 'Data entry elimination'],
     stats: '60% time savings on tasks'
   }];
-  return;
+  return (
+    <section className="py-20 bg-gray-900">
+      <div className="container mx-auto px-6">
+        <ScrollAnimated>
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              <span className="text-highlight">AI-Powered</span> Business Applications
+            </h2>
+            <p className="text-xl text-white/80 max-w-3xl mx-auto">
+              Discover how modern web applications with AI integration can revolutionize your business operations
+            </p>
+          </div>
+        </ScrollAnimated>
+
+        {/* Interactive Metrics */}
+        <ScrollAnimated>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            {dashboardMetrics.map((metric, index) => (
+              <Card 
+                key={index} 
+                className={`bg-gray-800 border-gray-700 hover:border-orange/50 transition-all duration-300 cursor-pointer ${
+                  activeTab === metric.id ? 'border-orange ring-1 ring-orange/20' : ''
+                }`}
+                onClick={() => setActiveTab(metric.id)}
+              >
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className={`p-3 rounded-lg ${metric.bgColor}`}>
+                      <div className={metric.color}>{metric.icon}</div>
+                    </div>
+                    <div className={`text-sm font-semibold ${metric.color}`}>
+                      {metric.change}
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <h3 className="text-white font-semibold">{metric.title}</h3>
+                    <div className="text-2xl font-bold text-white">{metric.value}</div>
+                    <p className="text-xs text-white/60">{metric.description}</p>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </ScrollAnimated>
+
+        {/* Dynamic Chart */}
+        <ScrollAnimated>
+          <Card className="bg-gray-800 border-gray-700 mb-12">
+            <CardHeader>
+              <CardTitle className="text-white text-xl">AI Performance Analytics</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="h-64">
+                <ResponsiveContainer width="100%" height="100%">
+                  <LineChart data={aiPerformanceData}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
+                    <XAxis dataKey="month" stroke="#9CA3AF" />
+                    <YAxis stroke="#9CA3AF" />
+                    <Tooltip 
+                      contentStyle={{ 
+                        backgroundColor: 'rgb(31 41 55)', 
+                        border: '1px solid rgb(75 85 99)',
+                        borderRadius: '8px'
+                      }}
+                    />
+                    <Line 
+                      type="monotone" 
+                      dataKey={activeTab} 
+                      stroke="#f97316" 
+                      strokeWidth={3}
+                      dot={{ fill: '#f97316', r: 6 }}
+                    />
+                  </LineChart>
+                </ResponsiveContainer>
+              </div>
+            </CardContent>
+          </Card>
+        </ScrollAnimated>
+
+        {/* Website Features Grid */}
+        <ScrollAnimated>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {websiteMetrics.map((metric, index) => (
+              <Card key={index} className="bg-gray-800 border-gray-700 hover:border-orange/50 transition-all duration-300">
+                <CardContent className="p-6 text-center">
+                  <div className={`inline-flex p-4 rounded-full ${metric.bgColor} mb-4`}>
+                    <div className={metric.color}>{metric.icon}</div>
+                  </div>
+                  <h3 className="text-white font-semibold mb-2">{metric.title}</h3>
+                  <div className="text-3xl font-bold text-white mb-2">{metric.value}</div>
+                  <p className="text-sm text-white/60">{metric.description}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </ScrollAnimated>
+      </div>
+    </section>
+  );
 };
 export default ApplicationsSection;
