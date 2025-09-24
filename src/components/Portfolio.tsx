@@ -186,35 +186,6 @@ const Portfolio = () => {
               </div>
             </div>
           ))}
-          
-          {/* Coming Soon Placeholder Card */}
-          <div className="card-premium overflow-hidden group transform transition-all duration-500 hover:shadow-luxury opacity-75">
-            <div className="relative h-80 overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-center text-gray-500">
-                  <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-r from-orange/20 to-orange/10 flex items-center justify-center">
-                    <svg className="w-8 h-8 text-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                    </svg>
-                  </div>
-                  <h3 className="heading-primary heading-md mb-2 text-gray-600 font-bold">
-                    Coming Soon
-                  </h3>
-                  <p className="text-sm text-gray-500 font-medium">
-                    New Project
-                  </p>
-                </div>
-              </div>
-              
-              {/* Subtle hover effect */}
-              <div className="absolute inset-0 bg-gradient-to-br from-orange/10 to-orange/5 opacity-0 group-hover:opacity-100 transition-all duration-500" />
-            </div>
-            
-            {/* Card Footer */}
-            <div className="p-4 text-center">
-              <p className="text-text-secondary text-sm font-medium">Built by Lee</p>
-            </div>
-          </div>
         </div>
 
         {/* CTA Section */}
