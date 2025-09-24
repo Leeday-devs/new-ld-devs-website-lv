@@ -64,14 +64,14 @@ const MobileStickyActionBar = () => {
            paddingLeft: 'env(safe-area-inset-left, 0)',
            paddingRight: 'env(safe-area-inset-right, 0)'
          }}>
-      <div className="flex items-center gap-3 p-4">
+      <div className="flex items-center gap-2 p-3">
         {/* Work With Me - Primary Action */}
         <Button
           onClick={handleWorkWithMeClick}
-          className="flex-1 btn-primary min-h-[52px] rounded-2xl font-bold text-base tracking-wide shadow-orange-glow active:scale-95 transition-all duration-200"
+          className="flex-1 btn-primary min-h-[44px] rounded-xl font-semibold text-sm tracking-wide shadow-orange-glow active:scale-95 transition-all duration-200"
           aria-label="Work with Lee - Get in touch about your project"
         >
-          <Briefcase className="h-5 w-5 mr-2" />
+          <Briefcase className="h-4 w-4 mr-1.5" />
           Work With Me
         </Button>
         
@@ -79,11 +79,11 @@ const MobileStickyActionBar = () => {
         <Button
           onClick={handleWhatsAppClick}
           variant="outline"
-          className="flex-1 min-h-[52px] rounded-2xl font-semibold text-base tracking-wide border-2 border-green-500 text-green-600 hover:bg-green-500 hover:text-white active:scale-95 transition-all duration-200"
+          className="flex-1 min-h-[44px] rounded-xl font-medium text-sm tracking-wide border-2 border-green-500 text-green-600 hover:bg-green-500 hover:text-white active:scale-95 transition-all duration-200"
           aria-label="Contact Lee via WhatsApp"
         >
-          <MessageCircle className="h-5 w-5 mr-2" />
-          WhatsApp Me
+          <MessageCircle className="h-4 w-4 mr-1.5" />
+          WhatsApp
         </Button>
       </div>
     </div>
