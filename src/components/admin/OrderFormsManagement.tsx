@@ -22,8 +22,16 @@ import {
   Globe,
   Target,
   Timer,
-  Server
+  Server,
+  Eye,
+  Edit,
+  Trash2,
+  MoreVertical
 } from "lucide-react";
+import { ViewOrderModal } from "./ViewOrderModal";
+import { EditOrderModal } from "./EditOrderModal";
+import { DeleteOrderDialog } from "./DeleteOrderDialog";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 
 interface OrderForm {
   id: string;
@@ -49,6 +57,10 @@ export function OrderFormsManagement() {
   const [isLoading, setIsLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState("all");
+  const [selectedOrder, setSelectedOrder] = useState<OrderForm | null>(null);
+  const [viewModalOpen, setViewModalOpen] = useState(false);
+  const [editModalOpen, setEditModalOpen] = useState(false);
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const { toast } = useToast();
 
   useEffect(() => {
@@ -209,6 +221,21 @@ export function OrderFormsManagement() {
     }
   };
 
+  const handleViewOrder = (order: OrderForm) => {
+    setSelectedOrder(order);
+    setViewModalOpen(true);
+  };
+
+  const handleEditOrder = (order: OrderForm) => {
+    setSelectedOrder(order);
+    setEditModalOpen(true);
+  };
+
+  const handleDeleteOrder = (order: OrderForm) => {
+    setSelectedOrder(order);
+    setDeleteDialogOpen(true);
+  };
+
   if (isLoading) {
     return (
       <div className="min-h-[400px] flex items-center justify-center">
@@ -275,19 +302,30 @@ export function OrderFormsManagement() {
               <p className="text-muted-foreground">No order forms found.</p>
             </div>
           ) : (
-            <div className="space-y-4">
+            <div className="grid gap-6">
               {filteredOrders.map((order) => {
                 const paymentStatus = getPaymentStatus(order);
                 
                 return (
-                  <div key={order.id} className="border rounded-lg p-6 space-y-4 hover:shadow-md transition-shadow">
-                    <div className="flex items-start justify-between">
-                      <div className="space-y-1">
+                  <Card key={order.id} className="glass-card hover:shadow-xl transition-all duration-300 group">
+                    <CardContent className="p-6">
+                      {/* Header with customer info and actions */}
+                      <div className="flex items-start justify-between mb-4">
                         <div className="flex items-center gap-3">
-                          <h3 className="font-semibold text-lg flex items-center gap-2">
-                            <User className="h-4 w-4 text-primary" />
-                            {order.customer_name || 'Unknown Customer'}
-                          </h3>
+                          <div className="p-2 rounded-full bg-gradient-to-br from-primary/10 to-primary/5">
+                            <User className="h-5 w-5 text-primary" />
+                          </div>
+                          <div>
+                            <h3 className="font-semibold text-lg">
+                              {order.customer_name || 'Unknown Customer'}
+                            </h3>
+                            <p className="text-sm text-muted-foreground">
+                              {order.service_name}
+                            </p>
+                          </div>
+                        </div>
+                        
+                        <div className="flex items-center gap-2">
                           <Badge className={paymentStatus.color}>
                             {paymentStatus.status === 'completed' ? (
                               <CheckCircle className="h-3 w-3 mr-1" />
@@ -296,107 +334,182 @@ export function OrderFormsManagement() {
                             )}
                             {paymentStatus.label}
                           </Badge>
+                          
+                          <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                              <Button variant="ghost" size="icon" className="opacity-0 group-hover:opacity-100 transition-opacity">
+                                <MoreVertical className="h-4 w-4" />
+                              </Button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent align="end">
+                              <DropdownMenuItem onClick={() => handleViewOrder(order)}>
+                                <Eye className="h-4 w-4 mr-2" />
+                                View Details
+                              </DropdownMenuItem>
+                              <DropdownMenuItem onClick={() => handleEditOrder(order)}>
+                                <Edit className="h-4 w-4 mr-2" />
+                                Edit Order
+                              </DropdownMenuItem>
+                              <DropdownMenuItem 
+                                onClick={() => handleDeleteOrder(order)}
+                                className="text-destructive focus:text-destructive"
+                              >
+                                <Trash2 className="h-4 w-4 mr-2" />
+                                Delete Order
+                              </DropdownMenuItem>
+                            </DropdownMenuContent>
+                          </DropdownMenu>
                         </div>
-                        <p className="text-muted-foreground text-sm">
-                          Service: <span className="font-medium">{order.service_name}</span>
-                        </p>
                       </div>
-                      
-                      <div className="text-right">
-                        <div className="text-2xl font-bold text-primary flex items-center gap-1">
-                          <DollarSign className="h-5 w-5" />
-                          {formatAmount(order.amount)}
-                        </div>
-                        <p className="text-sm text-muted-foreground flex items-center gap-1">
-                          <Calendar className="h-3 w-3" />
-                          {formatDate(order.created_at)}
-                        </p>
-                      </div>
-                    </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pt-4 border-t">
-                      <div className="flex items-center gap-2">
-                        <Mail className="h-4 w-4 text-muted-foreground" />
-                        <span className="text-sm">{order.customer_email}</span>
-                      </div>
-                      
-                      {order.customer_phone && (
+                      {/* Amount and date */}
+                      <div className="flex items-center justify-between mb-4 p-3 bg-gradient-to-r from-primary/5 to-transparent rounded-lg">
                         <div className="flex items-center gap-2">
-                          <Phone className="h-4 w-4 text-muted-foreground" />
-                          <span className="text-sm">{order.customer_phone}</span>
-                        </div>
-                      )}
-                      
-                      {order.customer_company && (
-                        <div className="flex items-center gap-2">
-                          <Building2 className="h-4 w-4 text-muted-foreground" />
-                          <span className="text-sm">{order.customer_company}</span>
-                        </div>
-                      )}
-
-                      {order.customer_website_url && (
-                        <div className="flex items-center gap-2">
-                          <Globe className="h-4 w-4 text-muted-foreground" />
-                          <span className="text-sm">{order.customer_website_url}</span>
-                        </div>
-                      )}
-
-                      {order.customer_project_goals && (
-                        <div className="flex items-center gap-2">
-                          <Target className="h-4 w-4 text-muted-foreground" />
-                          <span className="text-sm">{getProjectGoalsLabel(order.customer_project_goals)}</span>
-                        </div>
-                      )}
-
-                      {order.customer_timeline && (
-                        <div className="flex items-center gap-2">
-                          <Timer className="h-4 w-4 text-muted-foreground" />
-                          <span className="text-sm">{getTimelineLabel(order.customer_timeline)}</span>
-                        </div>
-                      )}
-
-                      {order.customer_add_hosting !== null && (
-                        <div className="flex items-center gap-2">
-                          <Server className="h-4 w-4 text-muted-foreground" />
-                          <span className="text-sm">
-                            Hosting: {order.customer_add_hosting ? 'Yes (£40/month)' : 'No'}
+                          <DollarSign className="h-5 w-5 text-primary" />
+                          <span className="text-2xl font-bold text-primary">
+                            {formatAmount(order.amount)}
                           </span>
                         </div>
-                      )}
-                    </div>
-
-                    {order.stripe_session_id && (
-                      <div className="pt-2 border-t">
-                        <p className="text-xs text-muted-foreground">
-                          Stripe Session: <code className="bg-muted px-1 rounded">{order.stripe_session_id}</code>
-                        </p>
+                        <div className="flex items-center gap-1 text-sm text-muted-foreground">
+                          <Calendar className="h-4 w-4" />
+                          {formatDate(order.created_at)}
+                        </div>
                       </div>
-                    )}
 
-                    <div className="flex items-center gap-2 pt-2">
-                      <Select
-                        value={order.status}
-                        onValueChange={(value) => updateOrderStatus(order.id, value)}
-                      >
-                        <SelectTrigger className="w-[150px]">
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="inquiry">Inquiry</SelectItem>
-                          <SelectItem value="pending">Pending</SelectItem>
-                          <SelectItem value="processing">Processing</SelectItem>
-                          <SelectItem value="completed">Completed</SelectItem>
-                          <SelectItem value="cancelled">Cancelled</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                  </div>
+                      {/* Customer details grid */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mb-4">
+                        <div className="flex items-center gap-2 p-2 bg-muted/30 rounded-lg">
+                          <Mail className="h-4 w-4 text-muted-foreground flex-shrink-0" />
+                          <span className="text-sm truncate">{order.customer_email}</span>
+                        </div>
+                        
+                        {order.customer_phone && (
+                          <div className="flex items-center gap-2 p-2 bg-muted/30 rounded-lg">
+                            <Phone className="h-4 w-4 text-muted-foreground flex-shrink-0" />
+                            <span className="text-sm">{order.customer_phone}</span>
+                          </div>
+                        )}
+                        
+                        {order.customer_company && (
+                          <div className="flex items-center gap-2 p-2 bg-muted/30 rounded-lg">
+                            <Building2 className="h-4 w-4 text-muted-foreground flex-shrink-0" />
+                            <span className="text-sm truncate">{order.customer_company}</span>
+                          </div>
+                        )}
+
+                        {order.customer_website_url && (
+                          <div className="flex items-center gap-2 p-2 bg-muted/30 rounded-lg">
+                            <Globe className="h-4 w-4 text-muted-foreground flex-shrink-0" />
+                            <span className="text-sm truncate">{order.customer_website_url}</span>
+                          </div>
+                        )}
+
+                        {order.customer_project_goals && (
+                          <div className="flex items-center gap-2 p-2 bg-muted/30 rounded-lg">
+                            <Target className="h-4 w-4 text-muted-foreground flex-shrink-0" />
+                            <span className="text-sm">{getProjectGoalsLabel(order.customer_project_goals)}</span>
+                          </div>
+                        )}
+
+                        {order.customer_timeline && (
+                          <div className="flex items-center gap-2 p-2 bg-muted/30 rounded-lg">
+                            <Timer className="h-4 w-4 text-muted-foreground flex-shrink-0" />
+                            <span className="text-sm">{getTimelineLabel(order.customer_timeline)}</span>
+                          </div>
+                        )}
+
+                        {order.customer_add_hosting !== null && (
+                          <div className="flex items-center gap-2 p-2 bg-muted/30 rounded-lg">
+                            <Server className="h-4 w-4 text-muted-foreground flex-shrink-0" />
+                            <span className="text-sm">
+                              Hosting: {order.customer_add_hosting ? '£40/month' : 'No'}
+                            </span>
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Payment info */}
+                      {order.stripe_session_id && (
+                        <div className="p-3 bg-green-50 border border-green-200 rounded-lg mb-4">
+                          <p className="text-xs text-green-700 font-medium">
+                            ✓ Payment Confirmed
+                          </p>
+                          <code className="text-xs text-green-600 bg-green-100 px-2 py-1 rounded mt-1 inline-block">
+                            {order.stripe_session_id.substring(0, 24)}...
+                          </code>
+                        </div>
+                      )}
+
+                      {/* Status and actions */}
+                      <div className="flex items-center justify-between pt-3 border-t border-border/50">
+                        <div className="flex items-center gap-3">
+                          <Select
+                            value={order.status}
+                            onValueChange={(value) => updateOrderStatus(order.id, value)}
+                          >
+                            <SelectTrigger className="w-[140px]">
+                              <SelectValue />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="inquiry">Inquiry</SelectItem>
+                              <SelectItem value="pending">Pending</SelectItem>
+                              <SelectItem value="processing">Processing</SelectItem>
+                              <SelectItem value="completed">Completed</SelectItem>
+                              <SelectItem value="cancelled">Cancelled</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </div>
+                        
+                        <div className="flex items-center gap-2">
+                          <Button 
+                            variant="outline" 
+                            size="sm"
+                            onClick={() => handleViewOrder(order)}
+                            className="hover:bg-primary/10 hover:border-primary/30"
+                          >
+                            <Eye className="h-4 w-4 mr-1" />
+                            View
+                          </Button>
+                          <Button 
+                            variant="outline" 
+                            size="sm"
+                            onClick={() => handleEditOrder(order)}
+                            className="hover:bg-primary/10 hover:border-primary/30"
+                          >
+                            <Edit className="h-4 w-4 mr-1" />
+                            Edit
+                          </Button>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
                 );
               })}
             </div>
           )}
         </CardContent>
       </Card>
+
+      {/* Modals and Dialogs */}
+      <ViewOrderModal
+        order={selectedOrder}
+        isOpen={viewModalOpen}
+        onClose={() => setViewModalOpen(false)}
+      />
+
+      <EditOrderModal
+        order={selectedOrder}
+        isOpen={editModalOpen}
+        onClose={() => setEditModalOpen(false)}
+        onSaved={fetchOrders}
+      />
+
+      <DeleteOrderDialog
+        order={selectedOrder}
+        isOpen={deleteDialogOpen}
+        onClose={() => setDeleteDialogOpen(false)}
+        onDeleted={fetchOrders}
+      />
     </div>
   );
 }
