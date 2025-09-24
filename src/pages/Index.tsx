@@ -43,8 +43,8 @@ const Index = () => {
     window.scrollTo(0, 0);
   }, []);
   return <>
-      <SEOHead title="LD Development - Premium Web Development & AI Solutions | London UK" description="Award-winning web development agency in London. Custom websites, e-commerce, AI automation & digital solutions. Fast, secure, mobile-optimized websites for UK businesses. 5-star rated with 150+ happy clients. Get your free quote today!" keywords="web development London, website design UK, e-commerce development, AI automation, React development, web hosting UK, digital agency London, custom websites, mobile app development, SEO services London" url="https://leedaydevs.com" serviceData={{
-      serviceName: "Web Development Services",
+      <SEOHead title="Lee Day — London Freelance Web Developer | Premium Websites Without Agency Hassle" description="I'm Lee, a London-based freelance web developer. I build premium, high-converting websites with fast, direct communication—no middlemen. Pricing from £500." keywords="London freelance web developer, freelance website developer, premium websites UK, web developer London, direct web development, no agency middlemen, affordable web development, fast web developer" url="https://leedaydevs.com" serviceData={{
+      serviceName: "Freelance Web Development",
       serviceType: "Website Development",
       areaServed: "United Kingdom",
       priceRange: "££-£££"
