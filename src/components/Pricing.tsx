@@ -231,9 +231,9 @@ const Pricing = () => {
             <span>Premium Pricing Plans</span>
           </div>
           
-          <h1 className="font-serif font-bold text-6xl md:text-7xl lg:text-8xl mb-8 text-white animate-fade-in-up stagger-delay-1">
+          <h1 className="font-serif font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl mb-8 text-white animate-fade-in-up stagger-delay-1 leading-tight">
             Investment in Your{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange to-orange/80 animate-gradient-x">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange to-orange/80 animate-gradient-x block sm:inline">
               Digital Future
             </span>
           </h1>
