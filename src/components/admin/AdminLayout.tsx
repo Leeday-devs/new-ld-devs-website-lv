@@ -5,6 +5,7 @@ import { AdminStatsRow } from "./AdminStatsRow";
 import { RevenueChart } from "./RevenueChart";
 import { NotificationsPanel } from "./NotificationsPanel";
 import { NotificationsTrigger } from "./NotificationsTrigger";
+import { QuickActionsRow } from "./QuickActionsRow";
 
 interface AdminLayoutProps {
   children: ReactNode;
@@ -46,6 +47,8 @@ export function AdminLayout({ children }: AdminLayoutProps) {
           <main className="flex-1 p-6">
             {children}
           </main>
+          
+          <QuickActionsRow />
           
           {/* Mobile notifications - below content */}
           <NotificationsPanel 
