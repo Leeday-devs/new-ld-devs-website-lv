@@ -1,4 +1,5 @@
 import { MapPin, MessageCircle, User } from "lucide-react";
+import leeHeadshot from "../assets/lee-headshot.jpg";
 
 const AboutMe = () => {
   return (
@@ -21,10 +22,12 @@ const AboutMe = () => {
                 
                 {/* Headshot Card */}
                 <div className="relative w-64 h-64 bg-gradient-to-br from-navy/10 to-purple-900/10 rounded-full border border-orange/20 shadow-luxury overflow-hidden">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <User className="h-32 w-32 text-orange/40" />
-                  </div>
-                  {/* Placeholder for actual headshot */}
+                  <img 
+                    src={leeHeadshot} 
+                    alt="Lee - Freelance Web Developer from London"
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                  {/* Subtle overlay */}
                   <div className="absolute inset-0 bg-gradient-to-br from-transparent via-orange/5 to-transparent"></div>
                 </div>
               </div>
