@@ -98,16 +98,14 @@ const Footer = () => {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 sm:gap-7 lg:gap-8">
             {/* Company Info - Mobile Optimized */}
-            <div className="lg:col-span-2 space-y-4 sm:space-y-5 lg:space-y-6">
-              <h3 className="text-2xl sm:text-3xl font-black font-serif text-white">LD Development</h3>
-              <p className="text-white/80 leading-relaxed text-base sm:text-lg">
-                Building legendary websites that transform businesses and deliver exceptional results for our clients across the UK.
-              </p>
-              
-              {/* Personal Bio Line */}
-              <p className="text-white/60 text-sm italic leading-relaxed">
-                I'm Lee, a London-based freelancer building websites, apps, and AI solutions for small businesses.
-              </p>
+            <div className="lg:col-span-2 space-y-5 sm:space-y-6 lg:space-y-7">
+              <div className="space-y-3">
+                <h3 className="text-2xl sm:text-3xl font-black font-serif text-white">LD Development</h3>
+                {/* Personal Bio Line */}
+                <p className="text-white/70 text-sm sm:text-base leading-relaxed">
+                  I'm Lee, a London-based freelancer building websites, apps, and AI solutions for small businesses.
+                </p>
+              </div>
               
               {/* Newsletter Signup - Mobile Optimized */}
               <div className="space-y-3 sm:space-y-4">
