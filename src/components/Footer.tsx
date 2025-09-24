@@ -104,6 +104,11 @@ const Footer = () => {
                 Building legendary websites that transform businesses and deliver exceptional results for our clients across the UK.
               </p>
               
+              {/* Personal Bio Line */}
+              <p className="text-white/60 text-sm italic leading-relaxed">
+                I'm Lee, a London-based freelancer building websites, apps, and AI solutions for small businesses.
+              </p>
+              
               {/* Newsletter Signup - Mobile Optimized */}
               <div className="space-y-3 sm:space-y-4">
                 <h4 className="text-base sm:text-lg font-bold text-white">Join 1,000+ Smart Business Owners</h4>
