@@ -23,7 +23,7 @@ const MobileAppLayout = ({
   return (
     <div className="min-h-screen app-container">
       {showNavigation && <AppLikeNavigation />}
-      <main className={`mobile-app-main ${isMobile && showBottomNav ? 'pb-44' : ''}`}>
+      <main className={`mobile-app-main ${isMobile && showBottomNav ? 'pb-24' : ''}`}>
         {children}
       </main>
       {showFooter && <Footer />}
