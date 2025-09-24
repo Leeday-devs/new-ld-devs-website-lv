@@ -23,12 +23,11 @@ const MobileAppLayout = ({
   return (
     <div className="min-h-screen app-container">
       {showNavigation && <AppLikeNavigation />}
-      <main className={`mobile-app-main ${isMobile && showBottomNav ? 'pb-24' : ''}`}>
+      <main className="mobile-app-main">
         {children}
       </main>
       {showFooter && <Footer />}
       {isMobile && showBottomNav && <MobileBottomNavigation />}
-      <MobileStickyActionBar />
     </div>
   );
 };

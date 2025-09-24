@@ -66,9 +66,10 @@ const MobileBottomNavigation = () => {
   return (
     <nav className="md:hidden fixed left-0 right-0 z-50 bg-navy/95 backdrop-blur-xl border-t border-gold/20" 
          style={{ 
-           bottom: '48px', // Flush above the smaller sticky action bar
+           bottom: '0px', // Now sits at bottom since action bar is removed
            paddingLeft: 'env(safe-area-inset-left, 0)',
-           paddingRight: 'env(safe-area-inset-right, 0)'
+           paddingRight: 'env(safe-area-inset-right, 0)',
+           paddingBottom: 'env(safe-area-inset-bottom, 8px)'
          }}>
       <div className="flex items-center justify-around py-1 px-2">
         {navItems.map((item) => {

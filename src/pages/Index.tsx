@@ -14,7 +14,7 @@ import StatsBar from "@/components/StatsBar";
 import TrustedByLogos from "@/components/TrustedByLogos";
 import FAQ from "@/components/FAQ";
 import AboutMe from "@/components/AboutMe";
-import LiveChatWidget from "@/components/LiveChatWidget";
+import WhatsAppWidget from "@/components/LiveChatWidget";
 import MobilePerformanceOptimizer from "@/components/MobilePerformanceOptimizer";
 import CriticalCSS from "@/components/CriticalCSS";
 import SEOEnhancements from "@/components/SEOEnhancements";
@@ -100,7 +100,7 @@ const Index = () => {
           <Contact />
         </section>
         </main>
-        <LiveChatWidget />
+        <WhatsAppWidget />
       </MobileAppLayout>
       <CriticalCSS />
       <MobilePerformanceOptimizer />
