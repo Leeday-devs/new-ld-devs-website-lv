@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import AppLikeNavigation from "@/components/AppLikeNavigation";
 import MobileBottomNavigation from "@/components/MobileBottomNavigation";
+import MobileStickyActionBar from "@/components/MobileStickyActionBar";
 import Footer from "@/components/Footer";
 
 interface MobileAppLayoutProps {
@@ -22,11 +23,12 @@ const MobileAppLayout = ({
   return (
     <div className="min-h-screen app-container">
       {showNavigation && <AppLikeNavigation />}
-      <main className={`mobile-app-main ${isMobile && showBottomNav ? 'pb-20' : ''}`}>
+      <main className={`mobile-app-main ${isMobile && showBottomNav ? 'pb-44' : ''}`}>
         {children}
       </main>
       {showFooter && <Footer />}
       {isMobile && showBottomNav && <MobileBottomNavigation />}
+      <MobileStickyActionBar />
     </div>
   );
 };

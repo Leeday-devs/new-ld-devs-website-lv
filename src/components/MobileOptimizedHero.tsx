@@ -163,10 +163,18 @@ const MobileOptimizedHero = () => {
             </p>
           </div>
           
-          <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-white mb-4 sm:mb-6 leading-[0.9] font-black tracking-tight">
+          <h1 className={`text-white mb-4 sm:mb-6 leading-[0.9] font-black tracking-tight ${
+            isMobile 
+              ? "text-2xl xs:text-3xl" // Smaller mobile sizes for better 2-3 line wrapping
+              : "text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl"
+          }`}>
             Premium Web Development{" "}
             <span className="text-highlight block xs:inline">Solutions</span>
-            <span className="block mt-2 sm:mt-6 text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
+            <span className={`block mt-2 sm:mt-6 ${
+              isMobile 
+                ? "text-xl xs:text-2xl" // Proportionally smaller on mobile
+                : "text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl"
+            }`}>
               Built By{" "}
               <span className="text-highlight relative">
                 Me
@@ -183,29 +191,53 @@ const MobileOptimizedHero = () => {
           </p>
         </div>
         
-        {/* Optimized CTA Button - Reduced effects on mobile */}
+        {/* Mobile: Stacked CTAs, Desktop: Single CTA */}
         <div className={`mb-8 sm:mb-16 transition-all duration-500 ease-out ${showButton ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-4 scale-98'}`}>
-          <Button 
-            size="lg" 
-            className={`btn-primary w-full xs:w-auto px-8 sm:px-10 md:px-12 py-4 sm:py-5 md:py-6 text-lg sm:text-xl md:text-2xl font-black rounded-full shadow-2xl relative overflow-hidden group transition-all duration-300 max-w-sm mx-auto ${
-              isMobile ? '' : 'hover:scale-105 animate-pulse-slow hover:animate-none'
-            }`}
-            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-          >
-            {/* Reduced effects on mobile for performance */}
-            {!isMobile && (
-              <>
-                <div className="absolute inset-0 bg-gradient-to-r from-orange via-orange to-orange opacity-0 group-hover:opacity-40 blur-xl transition-opacity duration-500 group-hover:scale-110"></div>
-                <div className="absolute inset-0 bg-orange/20 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping transition-opacity duration-300"></div>
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out"></div>
-              </>
-            )}
-            
-            <span className="relative z-10 flex items-center justify-center">
-              Work With Me
-              <ArrowRight className="ml-2 sm:ml-3 h-5 sm:h-6 md:h-7 w-5 sm:w-6 md:w-7 group-hover:translate-x-1 transition-transform duration-300" />
-            </span>
-          </Button>
+          {isMobile ? (
+            // Mobile: Stacked buttons with gap
+            <div className="flex flex-col gap-4 max-w-sm mx-auto">
+              <Button 
+                size="lg" 
+                className="btn-primary w-full min-h-[52px] px-8 py-4 text-lg font-black rounded-2xl shadow-orange-glow relative overflow-hidden group transition-all duration-300 active:scale-95"
+                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+              >
+                <span className="relative z-10 flex items-center justify-center">
+                  Work With Me
+                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
+                </span>
+              </Button>
+              
+              <Button 
+                variant="outline"
+                size="lg" 
+                className="w-full min-h-[52px] px-8 py-4 text-lg font-semibold rounded-2xl border-2 border-white/30 text-white hover:bg-white/10 active:scale-95 transition-all duration-300"
+                onClick={() => {
+                  const workSection = document.getElementById('work') || document.querySelector('#portfolio');
+                  workSection?.scrollIntoView({ behavior: 'smooth' });
+                }}
+              >
+                <span className="flex items-center justify-center">
+                  See My Work
+                </span>
+              </Button>
+            </div>
+          ) : (
+            // Desktop: Single button with effects
+            <Button 
+              size="lg" 
+              className="btn-primary w-auto px-8 sm:px-10 md:px-12 py-4 sm:py-5 md:py-6 text-lg sm:text-xl md:text-2xl font-black rounded-full shadow-2xl relative overflow-hidden group transition-all duration-300 max-w-sm mx-auto hover:scale-105 animate-pulse-slow hover:animate-none"
+              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-orange via-orange to-orange opacity-0 group-hover:opacity-40 blur-xl transition-opacity duration-500 group-hover:scale-110"></div>
+              <div className="absolute inset-0 bg-orange/20 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping transition-opacity duration-300"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out"></div>
+              
+              <span className="relative z-10 flex items-center justify-center">
+                Work With Me
+                <ArrowRight className="ml-2 sm:ml-3 h-5 sm:h-6 md:h-7 w-5 sm:w-6 md:w-7 group-hover:translate-x-1 transition-transform duration-300" />
+              </span>
+            </Button>
+          )}
         </div>
         
         {/* Mobile-Optimized Trust Indicators - Simplified */}

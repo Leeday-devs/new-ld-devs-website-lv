@@ -382,10 +382,15 @@
       user-select: none;
     }
     
-    /* Safe area for iPhone */
+    /* Safe area for iPhone with sticky action bar */
     .mobile-app-main {
       padding-top: env(safe-area-inset-top);
-      padding-bottom: env(safe-area-inset-bottom);
+      /* Bottom padding handled by MobileAppLayout based on sticky bar */
+    }
+    
+    /* Body padding for sticky action bar */
+    body {
+      padding-bottom: 0; /* Reset any existing padding */
     }
     
     /* Enhanced touch feedback */
