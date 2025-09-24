@@ -429,6 +429,10 @@ const Pricing = () => {
                   <Zap className="h-6 w-6 group-hover/btn:rotate-12 transition-transform duration-300" />
                 </span>
               </button>
+              
+              <p className="text-white/60 italic mt-8 text-sm">
+                Not sure which option fits? Message me—I'll advise honestly.
+              </p>
             </div>
           </div>
       </div>

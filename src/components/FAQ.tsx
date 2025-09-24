@@ -45,6 +45,10 @@ const FAQ = () => {
     {
       question: "How much does a website cost?",
       answer: "Our websites start from £350 for simple brochure sites, with custom projects ranging from £1,500-£15,000+ depending on complexity and features. We also offer pre-built industry-specific templates that are perfect for getting online quickly and cost-effectively."
+    },
+    {
+      question: "Do I work with tight timelines?",
+      answer: "Yes—message me with your deadline."
     }
   ];
 

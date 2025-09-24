@@ -188,6 +188,11 @@ const Hero = () => {
               </div>
             </div>
           </div>
+          
+          {/* Personal signature */}
+          <div className={`mt-12 transition-all duration-1000 ease-out delay-1000 ${showButton ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+            <p className="text-white/40 italic text-sm font-light">— Lee</p>
+          </div>
         </div>
       </div>
     </section>
