@@ -47,20 +47,28 @@ const Checkout = () => {
       }
 
       // Else create a Stripe Checkout Session via our Edge Function
+      const requestBody: any = {
+        amount: amount || 2000,
+        serviceName,
+        type: 'deposit',
+        customerInfo: {
+          fullName: customerInfo.fullName,
+          email: customerInfo.email,
+          phone: customerInfo.phone,
+          company: customerInfo.company
+        },
+        successUrl: `${window.location.origin}/payment-success`,
+        cancelUrl: `${window.location.origin}/payment-canceled`
+      };
+
+      // Add hosting subscription if selected
+      if (customerInfo.addHosting) {
+        requestBody.addHosting = true;
+        requestBody.hostingAmount = 4000; // £40 in pence
+      }
+
       const { data: paymentData, error: paymentError } = await supabase.functions.invoke('create-payment', {
-        body: {
-          amount: amount || 2000,
-          serviceName,
-          type: 'deposit',
-          customerInfo: {
-            fullName: customerInfo.fullName,
-            email: customerInfo.email,
-            phone: customerInfo.phone,
-            company: customerInfo.company
-          },
-          successUrl: `${window.location.origin}/payment-success`,
-          cancelUrl: `${window.location.origin}/payment-canceled`
-        }
+        body: requestBody
       });
 
       if (paymentError) throw paymentError;

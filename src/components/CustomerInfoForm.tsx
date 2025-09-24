@@ -13,7 +13,9 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { User, Mail, Phone, Building, ArrowRight } from "lucide-react";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Checkbox } from "@/components/ui/checkbox";
+import { User, Mail, Phone, Building, ArrowRight, Globe, Target, Clock, Lock, Shield } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 
 const customerInfoSchema = z.object({
@@ -21,12 +23,16 @@ const customerInfoSchema = z.object({
   email: z.string().email("Please enter a valid email address"),
   phone: z.string().min(10, "Please enter a valid phone number"),
   company: z.string().optional(),
+  websiteUrl: z.string().optional(),
+  projectGoals: z.string().min(1, "Please select your project goals"),
+  timeline: z.string().min(1, "Please select your preferred timeline"),
+  addHosting: z.boolean().default(false),
 });
 
 type CustomerInfo = z.infer<typeof customerInfoSchema>;
 
 interface CustomerInfoFormProps {
-  onSubmit: (customerInfo: CustomerInfo) => void;
+  onSubmit: (customerInfo: CustomerInfo & { addHosting?: boolean }) => void;
   isLoading?: boolean;
   serviceName: string;
 }
@@ -39,6 +45,10 @@ export const CustomerInfoForm = ({ onSubmit, isLoading, serviceName }: CustomerI
       email: "",
       phone: "",
       company: "",
+      websiteUrl: "",
+      projectGoals: "",
+      timeline: "",
+      addHosting: false,
     },
   });
 
@@ -53,6 +63,10 @@ export const CustomerInfoForm = ({ onSubmit, isLoading, serviceName }: CustomerI
             email: data.email,
             phone: data.phone,
             company: data.company || 'N/A',
+            websiteUrl: data.websiteUrl || 'N/A',
+            projectGoals: data.projectGoals,
+            timeline: data.timeline,
+            addHosting: data.addHosting,
             serviceName
           }
         }
@@ -77,8 +91,8 @@ export const CustomerInfoForm = ({ onSubmit, isLoading, serviceName }: CustomerI
           </div>
           Your Information
         </h3>
-        <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
-          I need a few details to get started with your {serviceName.toLowerCase()}
+        <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 leading-relaxed">
+          Once you complete payment, I'll contact you within 24 hours to discuss your project details and next steps. You'll be working directly with me (Lee) — no sales team, no middlemen.
         </p>
       </div>
       
@@ -171,6 +185,106 @@ export const CustomerInfoForm = ({ onSubmit, isLoading, serviceName }: CustomerI
               )}
             />
 
+            <FormField
+              control={form.control}
+              name="websiteUrl"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-sm font-semibold text-gray-700 dark:text-gray-300">Website URL (Optional)</FormLabel>
+                  <FormControl>
+                    <div className="relative">
+                      <Globe className="absolute left-4 top-4 h-5 w-5 text-orange" />
+                      <Input 
+                        placeholder="https://yourwebsite.com" 
+                        className="pl-12 h-12 border-2 border-gray-200 dark:border-gray-700 focus:border-orange transition-colors" 
+                        {...field} 
+                      />
+                    </div>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="projectGoals"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-sm font-semibold text-gray-700 dark:text-gray-300">Project Goals *</FormLabel>
+                  <FormControl>
+                    <div className="relative">
+                      <Target className="absolute left-4 top-4 h-5 w-5 text-orange z-10" />
+                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <SelectTrigger className="pl-12 h-12 border-2 border-gray-200 dark:border-gray-700 focus:border-orange transition-colors">
+                          <SelectValue placeholder="What's your main goal?" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="new-website">New Website</SelectItem>
+                          <SelectItem value="redesign">Redesign</SelectItem>
+                          <SelectItem value="ecommerce">E-commerce</SelectItem>
+                          <SelectItem value="ai-tools">AI Tools</SelectItem>
+                          <SelectItem value="other">Other</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="timeline"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-sm font-semibold text-gray-700 dark:text-gray-300">Timeline *</FormLabel>
+                  <FormControl>
+                    <div className="relative">
+                      <Clock className="absolute left-4 top-4 h-5 w-5 text-orange z-10" />
+                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <SelectTrigger className="pl-12 h-12 border-2 border-gray-200 dark:border-gray-700 focus:border-orange transition-colors">
+                          <SelectValue placeholder="When do you need this completed?" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="asap">ASAP</SelectItem>
+                          <SelectItem value="1-2-weeks">1–2 weeks</SelectItem>
+                          <SelectItem value="1-month-plus">1 month+</SelectItem>
+                          <SelectItem value="flexible">Flexible</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="addHosting"
+              render={({ field }) => (
+                <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-lg border-2 border-orange/20 p-4 bg-orange/5">
+                  <FormControl>
+                    <Checkbox
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                      className="data-[state=checked]:bg-orange data-[state=checked]:border-orange"
+                    />
+                  </FormControl>
+                  <div className="space-y-1 leading-none">
+                    <FormLabel className="text-sm font-semibold text-gray-700 dark:text-gray-300">
+                      Yes, add hosting & maintenance (£40/month, cancel anytime)
+                    </FormLabel>
+                    <p className="text-xs text-gray-600 dark:text-gray-400">
+                      Includes domain, SSL, updates, backups, and ongoing support
+                    </p>
+                  </div>
+                </FormItem>
+              )}
+            />
+
             <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
               <Button 
                 type="submit" 
@@ -186,9 +300,19 @@ export const CustomerInfoForm = ({ onSubmit, isLoading, serviceName }: CustomerI
                   </>
                 )}
               </Button>
-              <p className="text-center text-sm text-gray-500 dark:text-gray-400 mt-3">
-                Secure checkout powered by Stripe
-              </p>
+              <div className="mt-4 space-y-2">
+                <div className="flex items-center justify-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+                  <Lock className="h-4 w-4 text-green-600" />
+                  SSL Secured Payment
+                </div>
+                <div className="flex items-center justify-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+                  <Shield className="h-4 w-4 text-green-600" />
+                  30-day money-back guarantee on all plans
+                </div>
+                <p className="text-center text-xs text-gray-400 dark:text-gray-500">
+                  Secure checkout powered by Stripe
+                </p>
+              </div>
             </div>
           </form>
         </Form>
