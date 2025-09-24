@@ -128,7 +128,7 @@ const FinalCTA = () => {
                   disabled={isSubmitting}
                   className="bg-orange hover:bg-orange/90 text-white font-bold text-lg px-8 py-4 rounded-xl transition-all duration-300 hover:-translate-y-1 shadow-2xl hover:shadow-orange/20 inline-flex items-center gap-3 whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0"
                 >
-                  {isSubmitting ? "Submitting..." : "Work With Lee"}
+                  {isSubmitting ? "Submitting..." : "Send a Message to Lee"}
                   <ArrowRight className="h-5 w-5" />
                 </button>
               </form>

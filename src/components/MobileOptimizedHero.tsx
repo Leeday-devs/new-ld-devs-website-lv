@@ -172,7 +172,7 @@ const MobileOptimizedHero = () => {
         {/* Mobile-Optimized Subtext - Reduced animation complexity */}
         <div className={`transition-all duration-500 ease-out ${showSubtext ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
           <p className="text-sm xs:text-base sm:text-lg md:text-xl max-w-3xl mx-auto text-white/90 leading-relaxed font-medium mb-6 sm:mb-8 px-2">
-            I'm Lee, a freelance developer from London. I've been building websites since I was 13, and now I help small businesses get premium websites without the agency price tag.
+            I'm Lee, a London-based freelancer. I help small businesses grow online with websites, apps, and AI solutions — all without agency overheads.
           </p>
         </div>
         

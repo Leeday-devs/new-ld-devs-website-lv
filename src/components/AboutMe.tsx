@@ -8,7 +8,7 @@ const AboutMe = () => {
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="heading-primary heading-lg mb-6 text-navy">
-            About <span className="text-orange">Me</span>
+            Meet <span className="text-orange">Lee</span>
           </h2>
         </div>
 
@@ -45,7 +45,7 @@ const AboutMe = () => {
               </div>
 
               {/* Stats Row */}
-              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-6 sm:gap-8">
+              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-6 sm:gap-8 mb-6">
                 <div className="flex items-center space-x-2 text-navy">
                   <MapPin className="h-5 w-5 text-orange" />
                   <span className="font-semibold">London-based</span>
@@ -58,6 +58,13 @@ const AboutMe = () => {
                   <User className="h-5 w-5 text-orange" />
                   <span className="font-semibold">1-to-1 work</span>
                 </div>
+              </div>
+
+              {/* Transparency Line */}
+              <div className="text-center lg:text-left">
+                <p className="text-sm text-text-secondary/70 font-medium">
+                  Registered company: Hosting Easy Ltd, London.
+                </p>
               </div>
             </div>
           </div>

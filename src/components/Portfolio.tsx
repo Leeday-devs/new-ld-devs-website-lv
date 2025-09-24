@@ -139,10 +139,10 @@ const Portfolio = () => {
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="heading-primary heading-lg mb-6 text-navy">
-            Some of My <span className="text-orange">Recent Work</span>
+            A Few Projects I've <span className="text-orange">Personally Built</span>
           </h2>
           <p className="text-body max-w-3xl mx-auto text-text-secondary">
-            Here's a look at some projects I've built personally for clients.
+            Here's a look at some of the work I've created directly for clients.
           </p>
         </div>
 
