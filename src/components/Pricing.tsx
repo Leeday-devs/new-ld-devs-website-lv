@@ -1,4 +1,4 @@
-import { CheckCircle, Star, Crown, Code, ShoppingCart, Server, Smartphone, Brain, Monitor, Award, Sparkles, Zap, Shield } from "lucide-react";
+import { CheckCircle, Star, Crown, Code, ShoppingCart, Server, Smartphone, Brain, Monitor, Award, Sparkles, Zap, Shield, ChevronDown, ChevronUp } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 import { CustomQuoteModal } from "@/components/CustomQuoteModal";
 import { useState } from "react";
@@ -11,6 +11,7 @@ const Pricing = () => {
   const [activeCategory, setActiveCategory] = useState('websites');
   const [isCustomQuoteOpen, setIsCustomQuoteOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showComparison, setShowComparison] = useState(false);
   const {
     toast
   } = useToast();
@@ -38,38 +39,47 @@ const Pricing = () => {
       name: "Starter",
       icon: Code,
       description: "Perfect for small businesses and personal brands",
+      whoThisIsFor: "Best for startups and personal brands",
+      buildPrice: "from £500",
+      monthlyPrice: "£40/month hosting & maintenance",
       price: "from £500",
-      monthlyPrice: "£40",
       paymentLink: "https://buy.stripe.com/aFa00jf1ceRsb9kceV0Ny08",
       depositAmount: 5000,
       // £50 deposit in pence
       features: ["Up to 5 pages", "Mobile-friendly design", "1 business email", "Basic SEO optimisation", "Contact form integration", "SSL & hosting", "Tailored to your content and goals"],
-      trustLines: ["Cancel anytime", "SSL included", "No hidden fees"]
+      trustLines: ["Cancel anytime", "SSL included", "No hidden fees"],
+      ctaText: "Start My Website"
     }, {
       id: 2,
       name: "Business Growth",
       icon: Crown,
       description: "Most popular choice for growing businesses",
+      whoThisIsFor: "Perfect for growing small businesses",
+      buildPrice: "from £1,250",
+      monthlyPrice: "£55/month hosting & support",
       price: "from £1,250",
-      monthlyPrice: "£65",
       paymentLink: "https://buy.stripe.com/7sY14ndX86kW0uG5Qx0Ny09",
       depositAmount: 12500,
       // £125 deposit in pence
       popular: true,
       features: ["Up to 10 pages", "Blog setup", "SEO optimisation & analytics", "AI chatbot/contact assistant", "2 rounds of revisions", "2 business emails", "Ongoing support", "Includes strategy call and on-page SEO basics"],
-      trustLines: ["Most popular choice", "Priority support", "30-day guarantee"]
+      trustLines: ["Most popular choice", "Priority support", "30-day guarantee"],
+      ctaText: "Grow My Business"
     }, {
       id: 3,
       name: "Premium Pro",
       icon: ShoppingCart,
       description: "Complete solution for established businesses",
+      whoThisIsFor: "For established businesses needing advanced solutions",
+      buildPrice: "from £2,250",
+      monthlyPrice: "£75/month hosting & support",
       price: "from £2,250",
-      monthlyPrice: "£95",
       paymentLink: "https://buy.stripe.com/00wcN5f1cfVw7X83Ip0Ny0a",
       depositAmount: 22500,
       // £225 deposit in pence
-      features: ["Unlimited pages", "E-commerce or booking system", "Advanced SEO", "CRM automation", "Priority support (same-day)", "5 business emails", "Monthly performance report", "Bespoke design, advanced integrations, priority support"],
-      trustLines: ["Enterprise grade", "Unlimited revisions", "Dedicated manager"]
+      features: ["Unlimited pages", "E-commerce or booking system", "Advanced SEO", "Advanced AI & automation workflows", "Priority support (same-day)", "5 business emails", "Monthly performance report", "Bespoke design, advanced integrations, priority support"],
+      trustLines: ["Enterprise grade", "Unlimited revisions", "Dedicated manager"],
+      ctaText: "Go Premium"
     }],
     ai: [{
       id: 1,
@@ -326,21 +336,50 @@ const Pricing = () => {
                         {plan.name}
                       </h3>
                       
+                      {/* Who This Is For */}
+                      {activeCategory === 'websites' && plan.whoThisIsFor && (
+                        <p className="text-orange text-base font-medium mb-4">
+                          {plan.whoThisIsFor}
+                        </p>
+                      )}
+                      
                       <p className="text-gray-300 text-lg leading-relaxed mb-6">
                         {plan.description}
                       </p>
 
                       {/* Premium Pricing Display */}
                       <div className="mb-8">
-                        <div className="flex items-baseline justify-center gap-2 mb-2">
-                          <span className="text-5xl lg:text-6xl font-bold text-white">
-                            {plan.price}
-                          </span>
-                          {plan.monthlyPrice}
-                        </div>
-                        {plan.monthlyPrice && plan.monthlyPrice !== "/month" && <p className="text-orange/80 text-sm font-medium">
-                            Then {plan.monthlyPrice}/month
-                          </p>}
+                        {activeCategory === 'websites' ? (
+                          <div className="space-y-3">
+                            <div className="text-center">
+                              <div className="text-3xl lg:text-4xl font-bold text-white mb-1">
+                                {plan.buildPrice}
+                              </div>
+                              <p className="text-gray-300 text-base">
+                                One-time build cost
+                              </p>
+                            </div>
+                            <div className="text-center border-t border-white/10 pt-3">
+                              <div className="text-2xl font-semibold text-orange mb-1">
+                                + {plan.monthlyPrice}
+                              </div>
+                              <p className="text-gray-400 text-sm">
+                                Ongoing hosting & support
+                              </p>
+                            </div>
+                          </div>
+                        ) : (
+                          <div className="flex items-baseline justify-center gap-2 mb-2">
+                            <span className="text-5xl lg:text-6xl font-bold text-white">
+                              {plan.price}
+                            </span>
+                            {plan.monthlyPrice && plan.monthlyPrice !== "/month" && (
+                              <span className="text-orange/80 text-lg font-medium">
+                                {plan.monthlyPrice}
+                              </span>
+                            )}
+                          </div>
+                        )}
                       </div>
                     </div>
 
@@ -374,7 +413,7 @@ const Pricing = () => {
                     <button onClick={() => handleGetStarted(plan)} disabled={isSubmitting} className={`w-full py-4 px-8 rounded-2xl font-bold text-lg transition-all duration-500 transform hover:scale-105 active:scale-95 shadow-2xl ${isPopular ? 'bg-gradient-to-r from-orange to-orange/80 text-white hover:shadow-orange/50 hover:shadow-2xl' : 'bg-gradient-to-r from-white/10 to-white/5 text-white border-2 border-orange/30 hover:border-orange hover:bg-orange/10 hover:shadow-orange/30'} group/button overflow-hidden relative`}>
                       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-200%] group-hover/button:translate-x-[200%] transition-transform duration-1000"></div>
                       <div className="relative z-10 flex items-center justify-center space-x-2">
-                        <span>{isSubmitting ? 'Processing...' : "Let's Build Your Project"}</span>
+                        <span>{isSubmitting ? 'Processing...' : (activeCategory === 'websites' && plan.ctaText ? plan.ctaText : "Let's Build Your Project")}</span>
                         <Zap className="h-5 w-5 group-hover/button:rotate-12 transition-transform duration-300" />
                       </div>
                     </button>
@@ -383,6 +422,93 @@ const Pricing = () => {
               </div>;
         })}
         </div>
+
+        {/* Compare Plans Button - only show for websites */}
+        {activeCategory === 'websites' && (
+          <div className="text-center mb-12 animate-fade-in-up">
+            <button 
+              onClick={() => setShowComparison(!showComparison)}
+              className="inline-flex items-center space-x-2 text-white/80 hover:text-orange transition-colors duration-300 text-lg font-medium"
+            >
+              <span>Compare Plans</span>
+              {showComparison ? <ChevronUp className="h-5 w-5" /> : <ChevronDown className="h-5 w-5" />}
+            </button>
+          </div>
+        )}
+
+        {/* Comparison Table */}
+        {activeCategory === 'websites' && showComparison && (
+          <div className="mb-16 animate-fade-in-up">
+            <div className="bg-gradient-to-br from-navy/90 via-navy to-purple-900/30 backdrop-blur-2xl rounded-3xl p-8 lg:p-12 border border-white/10 shadow-2xl overflow-hidden">
+              <div className="relative z-10">
+                <h3 className="text-2xl font-bold text-white mb-8 text-center">Plan Comparison</h3>
+                
+                <div className="overflow-x-auto">
+                  <table className="w-full">
+                    <thead>
+                      <tr className="border-b border-white/10">
+                        <th className="text-left py-4 px-4 text-white font-semibold">Features</th>
+                        <th className="text-center py-4 px-4 text-white font-semibold">Starter</th>
+                        <th className="text-center py-4 px-4 text-white font-semibold">Business Growth</th>
+                        <th className="text-center py-4 px-4 text-white font-semibold">Premium Pro</th>
+                      </tr>
+                    </thead>
+                    <tbody className="text-gray-300">
+                      <tr className="border-b border-white/5">
+                        <td className="py-4 px-4 font-medium">Pages</td>
+                        <td className="text-center py-4 px-4">Up to 5</td>
+                        <td className="text-center py-4 px-4">Up to 10</td>
+                        <td className="text-center py-4 px-4">Unlimited</td>
+                      </tr>
+                      <tr className="border-b border-white/5">
+                        <td className="py-4 px-4 font-medium">SEO</td>
+                        <td className="text-center py-4 px-4">Basic</td>
+                        <td className="text-center py-4 px-4">Advanced + Analytics</td>
+                        <td className="text-center py-4 px-4">Advanced + Reports</td>
+                      </tr>
+                      <tr className="border-b border-white/5">
+                        <td className="py-4 px-4 font-medium">Blog</td>
+                        <td className="text-center py-4 px-4">-</td>
+                        <td className="text-center py-4 px-4">✓</td>
+                        <td className="text-center py-4 px-4">✓</td>
+                      </tr>
+                      <tr className="border-b border-white/5">
+                        <td className="py-4 px-4 font-medium">E-commerce</td>
+                        <td className="text-center py-4 px-4">-</td>
+                        <td className="text-center py-4 px-4">-</td>
+                        <td className="text-center py-4 px-4">✓</td>
+                      </tr>
+                      <tr className="border-b border-white/5">
+                        <td className="py-4 px-4 font-medium">AI/Automation</td>
+                        <td className="text-center py-4 px-4">-</td>
+                        <td className="text-center py-4 px-4">AI Chatbot</td>
+                        <td className="text-center py-4 px-4">Advanced Workflows</td>
+                      </tr>
+                      <tr className="border-b border-white/5">
+                        <td className="py-4 px-4 font-medium">CRM</td>
+                        <td className="text-center py-4 px-4">-</td>
+                        <td className="text-center py-4 px-4">-</td>
+                        <td className="text-center py-4 px-4">✓</td>
+                      </tr>
+                      <tr className="border-b border-white/5">
+                        <td className="py-4 px-4 font-medium">Support</td>
+                        <td className="text-center py-4 px-4">Standard</td>
+                        <td className="text-center py-4 px-4">Priority</td>
+                        <td className="text-center py-4 px-4">Same-day Priority</td>
+                      </tr>
+                      <tr>
+                        <td className="py-4 px-4 font-medium">Revisions</td>
+                        <td className="text-center py-4 px-4">1 round</td>
+                        <td className="text-center py-4 px-4">2 rounds</td>
+                        <td className="text-center py-4 px-4">Unlimited</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
         
         {/* Custom Pricing Note */}
         <div className="text-center mb-16 animate-fade-in-up" style={{
