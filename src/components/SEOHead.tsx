@@ -37,7 +37,7 @@ const SEOHead = ({
   structuredData,
   noindex = false,
   organizationSameAs = [
-    "https://www.linkedin.com/company/ld-development",
+    "https://www.linkedin.com/in/lee-day",
     "https://github.com/leedaydevs", 
     "https://twitter.com/leedaydevs"
   ],
@@ -56,71 +56,28 @@ const SEOHead = ({
   const generateStructuredData = () => {
     const schemas = [];
 
-    // Organization/LocalBusiness Schema
+    // Person Schema
     schemas.push({
       "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "@id": `${originUrl}#organization`,
-      name: "LD Development",
-      alternateName: "Lee Day Devs", 
-      url: originUrl,
-      logo: `${originUrl}/lovable-uploads/c05ee520-dfce-4d37-9abd-2ecb7430e4da.png`,
-      image: [
-        `${originUrl}/lovable-uploads/c05ee520-dfce-4d37-9abd-2ecb7430e4da.png`,
-        `${originUrl}/assets/hero-business-tech.jpg`
-      ],
-      description,
-      sameAs: organizationSameAs,
+      "@type": "Person",
+      "@id": `${originUrl}#person`,
+      name: "Lee Day",
+      jobTitle: "Freelance Web Developer",
+      brand: "LD Development",
+      url: "https://leeday.uk",
+      image: "https://leeday.uk/path-to-headshot.jpg",
       telephone: "+447586266007",
-      email: "LeeDayDevs@gmail.com",
+      email: "mailto:leedaydevs@gmail.com",
       address: {
-        "@type": "PostalAddress", 
-        streetAddress: "3rd Floor 86-90, Paul Street",
+        "@type": "PostalAddress",
         addressLocality: "London",
-        addressRegion: "England",
-        postalCode: "EC2A 4NE",
         addressCountry: "GB"
       },
-      geo: {
-        "@type": "GeoCoordinates",
-        latitude: 51.5244,
-        longitude: -0.0795
-      },
-      openingHoursSpecification: [
-        {
-          "@type": "OpeningHoursSpecification",
-          dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-          opens: "09:00",
-          closes: "18:00"
-        }
+      sameAs: [
+        "https://www.linkedin.com/in/lee-day"
       ],
-      priceRange: "££-£££",
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: "5.0",
-        reviewCount: "150",
-        bestRating: "5",
-        worstRating: "1"
-      },
-      areaServed: [
-        {
-          "@type": "City",
-          name: "London"
-        },
-        {
-          "@type": "Country", 
-          name: "United Kingdom"
-        }
-      ],
-      serviceArea: {
-        "@type": "GeoCircle",
-        geoMidpoint: {
-          "@type": "GeoCoordinates",
-          latitude: 51.5074,
-          longitude: -0.1278
-        },
-        geoRadius: "50000"
-      }
+      areaServed: "GB",
+      knowsAbout: ["Web Development", "WordPress", "AI Automation", "Supabase", "React"]
     });
 
     // Website Schema
@@ -132,7 +89,7 @@ const SEOHead = ({
       name: siteName,
       description,
       publisher: {
-        "@id": `${originUrl}#organization`
+        "@id": `${originUrl}#person`
       },
       potentialAction: {
         "@type": "SearchAction",
@@ -149,7 +106,7 @@ const SEOHead = ({
         name: serviceData.serviceName,
         serviceType: serviceData.serviceType,
         provider: {
-          "@id": `${originUrl}#organization`
+          "@id": `${originUrl}#person`
         },
         areaServed: serviceData.areaServed,
         hasOfferCatalog: {
@@ -180,7 +137,7 @@ const SEOHead = ({
           name: articleData.author
         },
         publisher: {
-          "@id": `${originUrl}#organization`
+          "@id": `${originUrl}#person`
         },
         datePublished: articleData.datePublished,
         dateModified: articleData.dateModified || articleData.datePublished,
