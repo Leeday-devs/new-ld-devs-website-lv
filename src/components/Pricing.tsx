@@ -302,8 +302,8 @@ const Pricing = () => {
               <ChevronRight className="h-4 w-4" />
             </div>
             
-            <div className="overflow-x-auto scrollbar-hide horizontal-scroll-container">
-              <div className="flex gap-6 px-6 pb-4 snap-x snap-mandatory" style={{ width: 'max-content' }}>
+            <div className="overflow-x-auto scrollbar-hide horizontal-scroll-container snap-x">
+              <div className="flex gap-6 px-6 pb-4" style={{ width: 'max-content' }}>
                 {currentPlans.map((plan, index) => {
                   const IconComponent = plan.icon;
                   const isPopular = plan.popular;

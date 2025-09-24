@@ -162,8 +162,8 @@ const Portfolio = () => {
               <ChevronRight className="h-4 w-4" />
             </div>
             
-            <div className="overflow-x-auto scrollbar-hide horizontal-scroll-container">
-              <div className="flex gap-4 px-6 pb-4 snap-x" style={{ width: 'max-content' }}>
+            <div className="overflow-x-auto scrollbar-hide horizontal-scroll-container snap-x">
+              <div className="flex gap-4 px-6 pb-4" style={{ width: 'max-content' }}>
                 {projects.map((project, index) => (
                   <div
                     key={project.id}
