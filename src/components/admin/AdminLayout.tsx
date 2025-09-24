@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import { SidebarProvider, SidebarInset, SidebarTrigger } from "@/components/ui/sidebar";
 import { AdminSidebar } from "./AdminSidebar";
+import { AdminStatsRow } from "./AdminStatsRow";
 
 interface AdminLayoutProps {
   children: ReactNode;
@@ -28,6 +29,9 @@ export function AdminLayout({ children }: AdminLayoutProps) {
               </div>
             </div>
           </header>
+          
+          <AdminStatsRow />
+          
           <main className="flex-1 p-6">
             {children}
           </main>
