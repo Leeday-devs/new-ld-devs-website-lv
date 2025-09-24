@@ -156,6 +156,13 @@ const MobileOptimizedHero = () => {
       <div className="container mx-auto relative z-20 text-center max-w-4xl">
         {/* Mobile-First Hero Heading with faster animations */}
         <div className={`transition-all duration-500 ease-out ${showHeading ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          {/* Micro-headline */}
+          <div className={`transition-all duration-500 ease-out ${showHeading ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'} mb-4 sm:mb-6`}>
+            <p className="text-xs sm:text-sm md:text-base text-orange/80 uppercase font-semibold tracking-[0.2em] text-center">
+              Websites • Apps • AI Automation • Hosting
+            </p>
+          </div>
+          
           <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-white mb-4 sm:mb-6 leading-[0.9] font-black tracking-tight">
             Premium Web Development{" "}
             <span className="text-highlight block xs:inline">Solutions</span>
