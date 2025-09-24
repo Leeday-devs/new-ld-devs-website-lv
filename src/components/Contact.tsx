@@ -276,10 +276,10 @@ const Contact = () => {
                       <div className="bg-orange/10 rounded-full w-12 h-12 flex items-center justify-center mb-2 group-hover:bg-orange/20 transition-all duration-300">
                         <info.icon className="h-5 w-5 text-orange" />
                       </div>
-                      <div className="text-xs text-navy/60 font-medium mb-1 text-center">
+                      <div className="text-xs font-medium mb-1 text-center text-gray-600">
                         {info.label}
                       </div>
-                      <div className="text-sm font-semibold text-navy text-center leading-tight">
+                      <div className="text-sm font-semibold text-center leading-tight text-gray-900">
                         {info.value}
                       </div>
                     </a>
