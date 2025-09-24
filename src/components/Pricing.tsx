@@ -289,17 +289,26 @@ const Pricing = () => {
           return <div key={plan.id} className={`relative group transition-all duration-700 hover:-translate-y-4 animate-fade-in-up`} style={{
             animationDelay: `${(index + 4) * 150}ms`
           }}>
-                {/* Popular Badge */}
+                {/* Most Popular Badge */}
                 {isPopular && <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 z-20">
-                    <div className="bg-gradient-to-r from-orange to-orange/80 text-white px-8 py-3 rounded-full text-sm font-bold shadow-2xl flex items-center space-x-2 animate-bounce-gentle">
-                      <Award className="h-4 w-4" />
-                      <span>Most Popular</span>
-                      <Sparkles className="h-4 w-4" />
+                    <div className="relative">
+                      {/* Badge Glow Effect */}
+                      <div className="absolute -inset-1 bg-gradient-to-r from-orange via-yellow-400 to-orange rounded-full blur-sm opacity-75 animate-pulse"></div>
+                      
+                      {/* Premium Badge */}
+                      <div className="relative bg-gradient-to-r from-orange via-yellow-400 to-orange text-white px-8 py-3 rounded-full text-sm font-bold shadow-2xl flex items-center space-x-2 border border-yellow-300/30 backdrop-blur-sm">
+                        <Award className="h-4 w-4 text-white/90" />
+                        <span className="tracking-wide">MOST POPULAR</span>
+                        <Sparkles className="h-4 w-4 text-white/90" />
+                      </div>
                     </div>
                   </div>}
 
-                {/* Premium Glow Effect */}
-                <div className={`absolute -inset-1 rounded-3xl blur-lg opacity-0 group-hover:opacity-100 transition-all duration-500 ${isPopular ? 'bg-gradient-to-r from-orange to-orange/80' : 'bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400'}`} />
+                {/* Enhanced Glow Effect for Popular Card */}
+                <div className={`absolute -inset-1 rounded-3xl blur-lg opacity-0 group-hover:opacity-100 transition-all duration-500 ${isPopular ? 'bg-gradient-to-r from-orange via-yellow-400 to-orange' : 'bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400'}`} />
+                
+                {/* Additional Popular Card Glow */}
+                {isPopular && <div className="absolute -inset-2 rounded-3xl bg-gradient-to-r from-orange/20 via-yellow-400/20 to-orange/20 blur-xl opacity-60"></div>}
 
                 <div className={`relative ${isPopular ? 'bg-gradient-to-br from-navy/95 via-navy to-purple-900/50 border-2 border-orange/50 shadow-2xl shadow-orange/20' : 'bg-gradient-to-br from-navy/90 via-navy/95 to-blue-900/30 border border-white/10 shadow-2xl'} rounded-3xl p-8 lg:p-10 flex flex-col h-full backdrop-blur-2xl overflow-hidden transition-all duration-500 hover:scale-105 hover:shadow-3xl`}>
                   {/* Premium Background Pattern */}
