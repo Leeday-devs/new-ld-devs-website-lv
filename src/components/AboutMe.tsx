@@ -7,6 +7,9 @@ const AboutMe = () => {
       <div className="container mx-auto px-6">
         {/* Section Header */}
         <div className="text-center mb-16">
+          <p className="text-text-secondary/70 font-medium text-sm sm:text-base mb-4 tracking-wide">
+            London-based Freelancer • Websites • Apps • AI Tools
+          </p>
           <h2 className="heading-primary heading-lg mb-6 text-navy">
             Meet <span className="text-orange">Lee</span>
           </h2>

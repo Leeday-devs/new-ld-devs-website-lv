@@ -141,8 +141,11 @@ const Portfolio = () => {
           <h2 className="heading-primary heading-lg mb-6 text-navy">
             A Few Projects I've <span className="text-orange">Personally Built</span>
           </h2>
-          <p className="text-body max-w-3xl mx-auto text-text-secondary">
+          <p className="text-body max-w-3xl mx-auto text-text-secondary mb-4">
             Here's a look at some of the work I've created directly for clients.
+          </p>
+          <p className="text-sm font-medium text-text-secondary/80 italic">
+            Every project here was designed and built by me, start to finish.
           </p>
         </div>
 
@@ -194,7 +197,7 @@ const Portfolio = () => {
             className="btn-primary px-10 py-4 text-lg font-semibold rounded-2xl"
             onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
           >
-            Work With Lee
+            View Project Details
           </button>
         </div>
       </div>

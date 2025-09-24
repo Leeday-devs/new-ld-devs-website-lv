@@ -147,28 +147,41 @@ const Hero = () => {
             </p>
           </div>
           
-          {/* CTA Button with pill shape, glow effect and delayed animation - Mobile Optimized */}
+          {/* CTA Buttons with pill shape, glow effect and delayed animation - Mobile Optimized */}
           <div className={`mb-8 sm:mb-16 transition-all duration-1000 ease-out delay-500 ${showButton ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'}`}>
-            <Button 
-              size="lg" 
-              className="btn-primary px-6 sm:px-8 md:px-10 lg:px-12 py-3 sm:py-4 md:py-5 lg:py-6 text-base sm:text-lg md:text-xl lg:text-2xl font-black rounded-full shadow-2xl relative overflow-hidden group hover:scale-105 transition-all duration-300 animate-pulse-slow hover:animate-none w-full sm:w-auto max-w-xs sm:max-w-none"
-              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-            >
-              {/* Enhanced Glow effect */}
-              <div className="absolute inset-0 bg-gradient-to-r from-orange via-orange to-orange opacity-0 group-hover:opacity-40 blur-xl transition-opacity duration-500 group-hover:scale-110"></div>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Button 
+                size="lg" 
+                className="btn-primary px-6 sm:px-8 md:px-10 lg:px-12 py-3 sm:py-4 md:py-5 lg:py-6 text-base sm:text-lg md:text-xl lg:text-2xl font-black rounded-full shadow-2xl relative overflow-hidden group hover:scale-105 transition-all duration-300 animate-pulse-slow hover:animate-none w-full sm:w-auto max-w-xs sm:max-w-none"
+                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+              >
+                {/* Enhanced Glow effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-orange via-orange to-orange opacity-0 group-hover:opacity-40 blur-xl transition-opacity duration-500 group-hover:scale-110"></div>
+                
+                {/* Ripple effect */}
+                <div className="absolute inset-0 bg-orange/20 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping transition-opacity duration-300"></div>
+                
+                {/* Shine effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out"></div>
+                
+                <span className="relative z-10 flex items-center justify-center">
+                  <span className="hidden sm:inline">Work With Me</span>
+                  <span className="sm:hidden">Work With Me</span>
+                  <ArrowRight className="ml-2 sm:ml-3 h-5 sm:h-6 md:h-7 w-5 sm:w-6 md:w-7 group-hover:translate-x-1 transition-transform duration-300" />
+                </span>
+              </Button>
               
-              {/* Ripple effect */}
-              <div className="absolute inset-0 bg-orange/20 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping transition-opacity duration-300"></div>
-              
-              {/* Shine effect */}
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out"></div>
-              
-              <span className="relative z-10 flex items-center justify-center">
-                <span className="hidden sm:inline">Work With Lee</span>
-                <span className="sm:hidden">Work With Lee</span>
-                <ArrowRight className="ml-2 sm:ml-3 h-5 sm:h-6 md:h-7 w-5 sm:w-6 md:w-7 group-hover:translate-x-1 transition-transform duration-300" />
-              </span>
-            </Button>
+              <Button 
+                variant="outline"
+                size="lg" 
+                className="border-2 border-white/30 text-white hover:bg-white/10 hover:border-white/50 px-6 sm:px-8 md:px-10 lg:px-12 py-3 sm:py-4 md:py-5 lg:py-6 text-base sm:text-lg md:text-xl lg:text-2xl font-black rounded-full shadow-lg relative overflow-hidden group hover:scale-105 transition-all duration-300 w-full sm:w-auto max-w-xs sm:max-w-none backdrop-blur-sm"
+                onClick={() => document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' })}
+              >
+                <span className="relative z-10 flex items-center justify-center">
+                  <span>See My Work</span>
+                </span>
+              </Button>
+            </div>
           </div>
           
           {/* Trust indicators with animation - Mobile Optimized */}
