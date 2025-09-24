@@ -143,7 +143,7 @@ const FAQ = () => {
 
           {/* Contact CTA Sidebar */}
           <div className="lg:sticky lg:top-24">
-            <Card className="bg-gradient-to-br from-navy via-navy/95 to-navy border-2 border-primary/20 overflow-hidden relative">
+            <Card className="bg-white border-2 border-primary/20 overflow-hidden relative">
               {/* Background decoration */}
               <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/10"></div>
               
@@ -152,10 +152,10 @@ const FAQ = () => {
                   <div className="bg-primary/20 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                     <MessageCircle className="h-8 w-8 text-primary" />
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-3">
+                  <h3 className="text-2xl font-bold text-text-primary mb-3">
                     Still Have Questions?
                   </h3>
-                  <p className="text-white/80 leading-relaxed">
+                  <p className="text-text-secondary leading-relaxed">
                     Can't find what you're looking for? I'm here to help with personalised answers to your specific needs.
                   </p>
                 </div>
@@ -179,8 +179,8 @@ const FAQ = () => {
                   </a>
                 </div>
 
-                <div className="mt-6 pt-6 border-t border-white/20">
-                  <div className="flex items-center justify-center gap-4 text-sm text-white/80">
+                <div className="mt-6 pt-6 border-t border-border-light">
+                  <div className="flex items-center justify-center gap-4 text-sm text-text-secondary">
                     <div className="flex items-center gap-2">
                       <Clock className="h-4 w-4 text-primary" />
                       <span>Quick Response</span>
