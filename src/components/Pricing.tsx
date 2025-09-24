@@ -1,10 +1,11 @@
-import { CheckCircle, Star, Crown, Code, ShoppingCart, Server, Smartphone, Brain, Monitor, Award, Sparkles, Zap, Shield, ChevronDown, ChevronUp } from "lucide-react";
+import { CheckCircle, Star, Crown, Code, ShoppingCart, Server, Smartphone, Brain, Monitor, Award, Sparkles, Zap, Shield, ChevronDown, ChevronUp, ChevronLeft, ChevronRight } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 import { CustomQuoteModal } from "@/components/CustomQuoteModal";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { useIsMobile } from "@/hooks/use-mobile";
 import pricingHeroBg from "@/assets/pricing-hero-bg.jpg";
 import { useNavigate } from "react-router-dom";
 const Pricing = () => {
@@ -12,9 +13,8 @@ const Pricing = () => {
   const [isCustomQuoteOpen, setIsCustomQuoteOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showComparison, setShowComparison] = useState(false);
-  const {
-    toast
-  } = useToast();
+  const isMobile = useIsMobile();
+  const { toast } = useToast();
   const navigate = useNavigate();
   const categories = [{
     id: 'websites',
@@ -291,140 +291,311 @@ const Pricing = () => {
           </div>
         </div>
 
-        {/* Premium Pricing Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 lg:gap-12 mb-16">
-          {currentPlans.map((plan, index) => {
-          const IconComponent = plan.icon;
-          const isPopular = plan.popular;
-          return <div key={plan.id} className={`relative group transition-all duration-700 hover:-translate-y-4 animate-fade-in-up`} style={{
-            animationDelay: `${(index + 4) * 150}ms`
-          }}>
-                {/* Most Popular Badge */}
-                {isPopular && <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 z-20">
-                    <div className="relative">
-                      {/* Badge Glow Effect */}
-                      <div className="absolute -inset-1 bg-gradient-to-r from-orange via-yellow-400 to-orange rounded-full blur-sm opacity-75 animate-pulse"></div>
-                      
-                      {/* Premium Badge */}
-                      <div className="relative bg-gradient-to-r from-orange via-yellow-400 to-orange text-white px-8 py-3 rounded-full text-sm font-bold shadow-2xl flex items-center space-x-2 border border-yellow-300/30 backdrop-blur-sm">
-                        <Award className="h-4 w-4 text-white/90" />
-                        <span className="tracking-wide">MOST POPULAR</span>
-                        <Sparkles className="h-4 w-4 text-white/90" />
-                      </div>
-                    </div>
-                  </div>}
-
-                {/* Enhanced Glow Effect for Popular Card */}
-                <div className={`absolute -inset-1 rounded-3xl blur-lg opacity-0 group-hover:opacity-100 transition-all duration-500 ${isPopular ? 'bg-gradient-to-r from-orange via-yellow-400 to-orange' : 'bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400'}`} />
-                
-                {/* Additional Popular Card Glow */}
-                {isPopular && <div className="absolute -inset-2 rounded-3xl bg-gradient-to-r from-orange/20 via-yellow-400/20 to-orange/20 blur-xl opacity-60"></div>}
-
-                <div className={`relative ${isPopular ? 'bg-gradient-to-br from-navy/95 via-navy to-purple-900/50 border-2 border-orange/50 shadow-2xl shadow-orange/20' : 'bg-gradient-to-br from-navy/90 via-navy/95 to-blue-900/30 border border-white/10 shadow-2xl'} rounded-3xl p-8 lg:p-10 flex flex-col h-full backdrop-blur-2xl overflow-hidden transition-all duration-500 hover:scale-105 hover:shadow-3xl`}>
-                  {/* Premium Background Pattern */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-white/5 opacity-50"></div>
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-orange/10 to-transparent rounded-full blur-2xl"></div>
+        {/* Premium Pricing Cards - Mobile: Horizontal Carousel, Desktop: Grid */}
+        {isMobile ? (
+          // Mobile: Horizontal Scrollable Cards with Snap Center
+          <div className="relative mb-16">
+            {/* Swipe Hint */}
+            <div className="flex justify-center items-center gap-2 mb-6 text-orange/70">
+              <ChevronLeft className="h-4 w-4" />
+              <span className="text-sm font-medium">swipe to compare plans</span>  
+              <ChevronRight className="h-4 w-4" />
+            </div>
+            
+            <div className="overflow-x-auto scrollbar-hide">
+              <div className="flex gap-6 px-6 pb-4 snap-x snap-mandatory" style={{ width: 'max-content' }}>
+                {currentPlans.map((plan, index) => {
+                  const IconComponent = plan.icon;
+                  const isPopular = plan.popular;
+                  const isCenterCard = index === 1; // Assume middle card for focus scaling
                   
-                  <div className="relative z-10">
-                    {/* Premium Header */}
-                    <div className="text-center mb-8">
-                      <div className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl mb-6 ${isPopular ? 'bg-gradient-to-r from-orange to-orange/80 text-white shadow-xl' : 'bg-gradient-to-r from-blue-400/20 to-purple-400/20 text-orange border border-orange/30'} group-hover:scale-110 transition-all duration-500 shadow-2xl`}>
-                        <IconComponent className="h-8 w-8" />
-                      </div>
-                      
-                      <h3 className="text-3xl font-bold text-white mb-3 group-hover:text-orange transition-colors duration-300">
-                        {plan.name}
-                      </h3>
-                      
-                      {/* Who This Is For */}
-                      {activeCategory === 'websites' && plan.whoThisIsFor && (
-                        <p className="text-orange text-base font-medium mb-4">
-                          {plan.whoThisIsFor}
-                        </p>
+                  return (
+                    <div
+                      key={plan.id}
+                      className={`relative w-80 flex-shrink-0 snap-center transition-all duration-700 ${
+                        isCenterCard && isPopular ? 'scale-105' : 'scale-100'
+                      }`}
+                      style={{ animationDelay: `${index * 150}ms` }}
+                    >
+                      {/* Most Popular Badge */}
+                      {isPopular && (
+                        <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 z-20">
+                          <div className="relative">
+                            <div className="absolute -inset-1 bg-gradient-to-r from-orange via-yellow-400 to-orange rounded-full blur-sm opacity-75 animate-pulse"></div>
+                            <div className="relative bg-gradient-to-r from-orange via-yellow-400 to-orange text-white px-6 py-2 rounded-full text-xs font-bold shadow-2xl flex items-center space-x-2">
+                              <Award className="h-3 w-3" />
+                              <span>MOST POPULAR</span>
+                              <Sparkles className="h-3 w-3" />
+                            </div>
+                          </div>
+                        </div>
                       )}
-                      
-                      <p className="text-gray-300 text-lg leading-relaxed mb-6">
-                        {plan.description}
-                      </p>
 
-                      {/* Premium Pricing Display */}
-                      <div className="mb-8">
-                        {activeCategory === 'websites' ? (
-                          <div className="space-y-3">
-                            <div className="text-center">
-                              <div className="text-3xl lg:text-4xl font-bold text-white mb-1">
-                                {plan.buildPrice}
-                              </div>
-                              <p className="text-gray-300 text-base">
-                                One-time build cost
-                              </p>
+                      {/* Enhanced Shadow for Popular/Center Card */}
+                      <div className={`absolute -inset-1 rounded-3xl blur-lg opacity-0 hover:opacity-100 transition-all duration-500 ${
+                        isPopular ? 'bg-gradient-to-r from-orange via-yellow-400 to-orange shadow-2xl shadow-orange/20' : 'bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400'
+                      }`} />
+
+                      <div className={`relative ${
+                        isPopular 
+                          ? 'bg-gradient-to-br from-navy/95 via-navy to-purple-900/50 border-2 border-orange/50 shadow-2xl shadow-orange/20' 
+                          : 'bg-gradient-to-br from-navy/90 via-navy/95 to-blue-900/30 border border-white/10 shadow-2xl'
+                      } rounded-3xl p-6 flex flex-col h-full backdrop-blur-2xl overflow-hidden transition-all duration-500`}>
+                        
+                        {/* Background Pattern */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-white/5 opacity-50"></div>
+                        <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-orange/10 to-transparent rounded-full blur-2xl"></div>
+                        
+                        <div className="relative z-10">
+                          {/* Header */}
+                          <div className="text-center mb-6">
+                            <div className={`inline-flex items-center justify-center w-12 h-12 rounded-2xl mb-4 ${
+                              isPopular 
+                                ? 'bg-gradient-to-r from-orange to-orange/80 text-white shadow-xl' 
+                                : 'bg-gradient-to-r from-blue-400/20 to-purple-400/20 text-orange border border-orange/30'
+                            } transition-all duration-500 shadow-2xl`}>
+                              <IconComponent className="h-6 w-6" />
                             </div>
-                            <div className="text-center border-t border-white/10 pt-3">
-                              <div className="text-2xl font-semibold text-orange mb-1">
-                                + {plan.monthlyPrice}
-                              </div>
-                              <p className="text-gray-400 text-sm">
-                                Ongoing hosting & support
+                            
+                            <h3 className="text-2xl font-bold text-white mb-2">
+                              {plan.name}
+                            </h3>
+                            
+                            {activeCategory === 'websites' && plan.whoThisIsFor && (
+                              <p className="text-orange text-sm font-medium mb-3">
+                                {plan.whoThisIsFor}
                               </p>
-                            </div>
-                          </div>
-                        ) : (
-                          <div className="flex items-baseline justify-center gap-2 mb-2">
-                            <span className="text-5xl lg:text-6xl font-bold text-white">
-                              {plan.price}
-                            </span>
-                            {plan.monthlyPrice && plan.monthlyPrice !== "/month" && (
-                              <span className="text-orange/80 text-lg font-medium">
-                                {plan.monthlyPrice}
-                              </span>
                             )}
-                          </div>
-                        )}
-                      </div>
-                    </div>
+                            
+                            <p className="text-gray-300 text-sm leading-relaxed mb-4">
+                              {plan.description}
+                            </p>
 
-                    {/* Premium Features List */}
-                    <div className="flex-grow mb-8">
-                      <ul className="space-y-4">
-                        {plan.features.map((feature, featureIndex) => <li key={featureIndex} className="flex items-start space-x-3 group/item" style={{
-                      animationDelay: `${index * 150 + featureIndex * 50}ms`
-                    }}>
-                            <div className="flex-shrink-0 w-6 h-6 rounded-full bg-gradient-to-r from-orange to-orange/80 flex items-center justify-center mt-0.5 group-hover/item:scale-110 transition-transform duration-300">
-                              <CheckCircle className="h-3.5 w-3.5 text-white" />
+                            {/* Pricing */}
+                            <div className="mb-6">
+                              {activeCategory === 'websites' ? (
+                                <div className="space-y-2">
+                                  <div className="text-center">
+                                    <div className="text-2xl font-bold text-white mb-1">
+                                      {plan.buildPrice}
+                                    </div>
+                                    <p className="text-gray-300 text-xs">
+                                      One-time build cost
+                                    </p>
+                                  </div>
+                                  <div className="text-center border-t border-white/10 pt-2">
+                                    <div className="text-lg font-semibold text-orange mb-1">
+                                      + {plan.monthlyPrice}
+                                    </div>
+                                    <p className="text-gray-400 text-xs">
+                                      Ongoing hosting & support
+                                    </p>
+                                  </div>
+                                </div>
+                              ) : (
+                                <div className="flex items-baseline justify-center gap-1 mb-2">
+                                  <span className="text-3xl font-bold text-white">
+                                    {plan.price}
+                                  </span>
+                                  {plan.monthlyPrice && plan.monthlyPrice !== "/month" && (
+                                    <span className="text-orange/80 text-sm font-medium">
+                                      {plan.monthlyPrice}
+                                    </span>
+                                  )}
+                                </div>
+                              )}
                             </div>
-                            <span className="text-gray-200 font-medium leading-relaxed group-hover/item:text-white transition-colors duration-300">
-                              {feature}
+                          </div>
+
+                          {/* Features - Condensed for Mobile */}
+                          <div className="flex-grow mb-6">
+                            <ul className="space-y-3">
+                              {plan.features.slice(0, 5).map((feature, featureIndex) => (
+                                <li key={featureIndex} className="flex items-start space-x-2">
+                                  <div className="flex-shrink-0 w-4 h-4 rounded-full bg-gradient-to-r from-orange to-orange/80 flex items-center justify-center mt-0.5">
+                                    <CheckCircle className="h-2.5 w-2.5 text-white" />
+                                  </div>
+                                  <span className="text-gray-200 text-sm font-medium leading-relaxed">
+                                    {feature}
+                                  </span>
+                                </li>
+                              ))}
+                              {plan.features.length > 5 && (
+                                <li className="text-orange/70 text-xs text-center pt-2">
+                                  +{plan.features.length - 5} more features
+                                </li>
+                              )}
+                            </ul>
+                          </div>
+
+                          {/* CTA Button */}
+                          <button 
+                            onClick={() => handleGetStarted(plan)} 
+                            disabled={isSubmitting}
+                            className={`w-full py-3 px-6 rounded-2xl font-bold text-sm transition-all duration-500 transform active:scale-95 shadow-2xl ${
+                              isPopular 
+                                ? 'bg-gradient-to-r from-orange to-orange/80 text-white' 
+                                : 'bg-gradient-to-r from-white/10 to-white/5 text-white border-2 border-orange/30'
+                            } relative overflow-hidden`}
+                          >
+                            <span className="relative z-10">
+                              {isSubmitting ? 'Processing...' : (activeCategory === 'websites' && plan.ctaText ? plan.ctaText : "Get Started")}
                             </span>
-                          </li>)}
-                      </ul>
-                    </div>
-
-                    {/* Premium Trust Indicators */}
-                    <div className="mb-8 p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
-                      <div className="space-y-2">
-                        {plan.trustLines.map((trustLine, trustIndex) => <div key={trustIndex} className="flex items-center space-x-2 text-sm">
-                            <Shield className="h-4 w-4 text-orange flex-shrink-0" />
-                            <span className="text-gray-300 font-medium">{trustLine}</span>
-                          </div>)}
+                          </button>
+                        </div>
                       </div>
                     </div>
-
-                    {/* Premium CTA Button */}
-                    <button onClick={() => handleGetStarted(plan)} disabled={isSubmitting} className={`w-full py-4 px-8 rounded-2xl font-bold text-lg transition-all duration-500 transform hover:scale-105 active:scale-95 shadow-2xl ${isPopular ? 'bg-gradient-to-r from-orange to-orange/80 text-white hover:shadow-orange/50 hover:shadow-2xl' : 'bg-gradient-to-r from-white/10 to-white/5 text-white border-2 border-orange/30 hover:border-orange hover:bg-orange/10 hover:shadow-orange/30'} group/button overflow-hidden relative`}>
-                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-200%] group-hover/button:translate-x-[200%] transition-transform duration-1000"></div>
-                      <div className="relative z-10 flex items-center justify-center space-x-2">
-                        <span>{isSubmitting ? 'Processing...' : (activeCategory === 'websites' && plan.ctaText ? plan.ctaText : "Let's Build Your Project")}</span>
-                        <Zap className="h-5 w-5 group-hover/button:rotate-12 transition-transform duration-300" />
+                  );
+                })}
+                
+                {/* Peek indicator */}
+                <div className="w-6 flex-shrink-0 flex items-center justify-center text-orange/50">
+                  <ChevronRight className="h-6 w-6" />
+                </div>
+              </div>
+            </div>
+            
+            {/* Gradient fade hints */}
+            <div className="absolute right-0 top-12 bottom-4 w-12 bg-gradient-to-l from-navy via-navy/80 to-transparent pointer-events-none"></div>
+          </div>
+        ) : (
+          // Desktop: Grid Layout (unchanged)
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 lg:gap-12 mb-16">
+            {currentPlans.map((plan, index) => {
+              const IconComponent = plan.icon;
+              const isPopular = plan.popular;
+              return (
+                <div key={plan.id} className={`relative group transition-all duration-700 hover:-translate-y-4 animate-fade-in-up`} style={{
+                  animationDelay: `${(index + 4) * 150}ms`
+                }}>
+                  {/* Most Popular Badge */}
+                  {isPopular && <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 z-20">
+                      <div className="relative">
+                        {/* Badge Glow Effect */}
+                        <div className="absolute -inset-1 bg-gradient-to-r from-orange via-yellow-400 to-orange rounded-full blur-sm opacity-75 animate-pulse"></div>
+                        
+                        {/* Premium Badge */}
+                        <div className="relative bg-gradient-to-r from-orange via-yellow-400 to-orange text-white px-8 py-3 rounded-full text-sm font-bold shadow-2xl flex items-center space-x-2 border border-yellow-300/30 backdrop-blur-sm">
+                          <Award className="h-4 w-4 text-white/90" />
+                          <span className="tracking-wide">MOST POPULAR</span>
+                          <Sparkles className="h-4 w-4 text-white/90" />
+                        </div>
                       </div>
-                    </button>
+                    </div>}
+
+                  {/* Enhanced Glow Effect for Popular Card */}
+                  <div className={`absolute -inset-1 rounded-3xl blur-lg opacity-0 group-hover:opacity-100 transition-all duration-500 ${isPopular ? 'bg-gradient-to-r from-orange via-yellow-400 to-orange' : 'bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400'}`} />
+                  
+                  {/* Additional Popular Card Glow */}
+                  {isPopular && <div className="absolute -inset-2 rounded-3xl bg-gradient-to-r from-orange/20 via-yellow-400/20 to-orange/20 blur-xl opacity-60"></div>}
+
+                  <div className={`relative ${isPopular ? 'bg-gradient-to-br from-navy/95 via-navy to-purple-900/50 border-2 border-orange/50 shadow-2xl shadow-orange/20' : 'bg-gradient-to-br from-navy/90 via-navy/95 to-blue-900/30 border border-white/10 shadow-2xl'} rounded-3xl p-8 lg:p-10 flex flex-col h-full backdrop-blur-2xl overflow-hidden transition-all duration-500 hover:scale-105 hover:shadow-3xl`}>
+                    {/* Premium Background Pattern */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-white/5 opacity-50"></div>
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-orange/10 to-transparent rounded-full blur-2xl"></div>
+                    
+                    <div className="relative z-10">
+                      {/* Premium Header */}
+                      <div className="text-center mb-8">
+                        <div className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl mb-6 ${isPopular ? 'bg-gradient-to-r from-orange to-orange/80 text-white shadow-xl' : 'bg-gradient-to-r from-blue-400/20 to-purple-400/20 text-orange border border-orange/30'} group-hover:scale-110 transition-all duration-500 shadow-2xl`}>
+                          <IconComponent className="h-8 w-8" />
+                        </div>
+                        
+                        <h3 className="text-3xl font-bold text-white mb-3 group-hover:text-orange transition-colors duration-300">
+                          {plan.name}
+                        </h3>
+                        
+                        {/* Who This Is For */}
+                        {activeCategory === 'websites' && plan.whoThisIsFor && (
+                          <p className="text-orange text-base font-medium mb-4">
+                            {plan.whoThisIsFor}
+                          </p>
+                        )}
+                        
+                        <p className="text-gray-300 text-lg leading-relaxed mb-6">
+                          {plan.description}
+                        </p>
+
+                        {/* Premium Pricing Display */}
+                        <div className="mb-8">
+                          {activeCategory === 'websites' ? (
+                            <div className="space-y-3">
+                              <div className="text-center">
+                                <div className="text-3xl lg:text-4xl font-bold text-white mb-1">
+                                  {plan.buildPrice}
+                                </div>
+                                <p className="text-gray-300 text-base">
+                                  One-time build cost
+                                </p>
+                              </div>
+                              <div className="text-center border-t border-white/10 pt-3">
+                                <div className="text-2xl font-semibold text-orange mb-1">
+                                  + {plan.monthlyPrice}
+                                </div>
+                                <p className="text-gray-400 text-sm">
+                                  Ongoing hosting & support
+                                </p>
+                              </div>
+                            </div>
+                          ) : (
+                            <div className="flex items-baseline justify-center gap-2 mb-2">
+                              <span className="text-5xl lg:text-6xl font-bold text-white">
+                                {plan.price}
+                              </span>
+                              {plan.monthlyPrice && plan.monthlyPrice !== "/month" && (
+                                <span className="text-orange/80 text-lg font-medium">
+                                  {plan.monthlyPrice}
+                                </span>
+                              )}
+                            </div>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Premium Features List */}
+                      <div className="flex-grow mb-8">
+                        <ul className="space-y-4">
+                          {plan.features.map((feature, featureIndex) => <li key={featureIndex} className="flex items-start space-x-3 group/item" style={{
+                        animationDelay: `${index * 150 + featureIndex * 50}ms`
+                      }}>
+                              <div className="flex-shrink-0 w-6 h-6 rounded-full bg-gradient-to-r from-orange to-orange/80 flex items-center justify-center mt-0.5 group-hover/item:scale-110 transition-transform duration-300">
+                                <CheckCircle className="h-3.5 w-3.5 text-white" />
+                              </div>
+                              <span className="text-gray-200 font-medium leading-relaxed group-hover/item:text-white transition-colors duration-300">
+                                {feature}
+                              </span>
+                            </li>)}
+                        </ul>
+                      </div>
+
+                      {/* Premium Trust Indicators */}
+                      <div className="mb-8 p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
+                        <div className="space-y-2">
+                          {plan.trustLines.map((trustLine, trustIndex) => <div key={trustIndex} className="flex items-center space-x-2 text-sm">
+                              <Shield className="h-4 w-4 text-orange flex-shrink-0" />
+                              <span className="text-gray-300 font-medium">{trustLine}</span>
+                            </div>)}
+                        </div>
+                      </div>
+
+                      {/* Premium CTA Button */}
+                      <button onClick={() => handleGetStarted(plan)} disabled={isSubmitting} className={`w-full py-4 px-8 rounded-2xl font-bold text-lg transition-all duration-500 transform hover:scale-105 active:scale-95 shadow-2xl ${isPopular ? 'bg-gradient-to-r from-orange to-orange/80 text-white hover:shadow-orange/50 hover:shadow-2xl' : 'bg-gradient-to-r from-white/10 to-white/5 text-white border-2 border-orange/30 hover:border-orange hover:bg-orange/10 hover:shadow-orange/30'} group/button overflow-hidden relative`}>
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-200%] group-hover/button:translate-x-[200%] transition-transform duration-1000"></div>
+                        <div className="relative z-10 flex items-center justify-center space-x-2">
+                          <span>{isSubmitting ? 'Processing...' : (activeCategory === 'websites' && plan.ctaText ? plan.ctaText : "Let's Build Your Project")}</span>
+                          <Zap className="h-5 w-5 group-hover/button:rotate-12 transition-transform duration-300" />
+                        </div>
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>;
-        })}
-        </div>
+              );
+            })}
+          </div>
+        )}
 
-        {/* Compare Plans Button - only show for websites */}
-        {activeCategory === 'websites' && (
+        {/* Compare Plans Button - only show for websites on desktop */}
+        {activeCategory === 'websites' && !isMobile && (
           <div className="text-center mb-12 animate-fade-in-up">
             <button 
               onClick={() => setShowComparison(!showComparison)}
@@ -436,8 +607,8 @@ const Pricing = () => {
           </div>
         )}
 
-        {/* Comparison Table */}
-        {activeCategory === 'websites' && showComparison && (
+        {/* Comparison Table - Desktop Only */}
+        {activeCategory === 'websites' && showComparison && !isMobile && (
           <div className="mb-16 animate-fade-in-up">
             <div className="bg-gradient-to-br from-navy/90 via-navy to-purple-900/30 backdrop-blur-2xl rounded-3xl p-8 lg:p-12 border border-white/10 shadow-2xl overflow-hidden">
               <div className="relative z-10">

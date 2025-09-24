@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { ExternalLink, ArrowRight, X } from "lucide-react";
+import { ExternalLink, ArrowRight, X, ChevronLeft, ChevronRight } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
 import restaurantImage from "@/assets/case-study-restaurant.jpg";
 import autoRepairImage from "@/assets/case-study-autorepair.jpg";
 import educationImage from "@/assets/case-study-education.jpg";
@@ -7,6 +8,7 @@ import ecommerceImage from "@/assets/case-study-ecommerce.jpg";
 
 const Portfolio = () => {
   const [selectedProject, setSelectedProject] = useState(null);
+  const isMobile = useIsMobile();
 
   const projects = [
     {
@@ -149,47 +151,115 @@ const Portfolio = () => {
           </p>
         </div>
 
-        {/* Case Studies Grid - Mobile Optimized */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mb-12 sm:mb-16">
-          {projects.slice(0, 3).map((project) => (
-            <div
-              key={project.id}
-              className="card-premium overflow-hidden cursor-pointer group transform transition-all duration-500 hover:shadow-luxury"
-              onClick={() => openCaseStudy(project)}
-            >
-              <div className="relative h-80 overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={`${project.title} case study`}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                />
+        {/* Case Studies - Mobile: Horizontal Swipe, Desktop: Grid */}
+        {isMobile ? (
+          // Mobile: Horizontal Swipe Cards
+          <div className="relative mb-12">
+            {/* Swipe Hint */}
+            <div className="flex justify-center items-center gap-2 mb-4 text-orange/70">
+              <ChevronLeft className="h-4 w-4" />
+              <span className="text-sm font-medium">swipe</span>
+              <ChevronRight className="h-4 w-4" />
+            </div>
+            
+            <div className="overflow-x-auto scrollbar-hide">
+              <div className="flex gap-4 px-6 pb-4" style={{ width: 'max-content' }}>
+                {projects.map((project) => (
+                  <div
+                    key={project.id}
+                    className="w-80 flex-shrink-0 card-premium overflow-hidden cursor-pointer group transform transition-all duration-500 hover:shadow-luxury snap-center"
+                    onClick={() => openCaseStudy(project)}
+                  >
+                    <div className="relative h-48 overflow-hidden">
+                      <img
+                        src={project.image}
+                        alt={`${project.title} case study`}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      />
+                      
+                      {/* Orange Overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-br from-orange/90 to-orange/70 opacity-0 group-hover:opacity-100 transition-all duration-500" />
+                      
+                      {/* Overlay Content */}
+                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500">
+                        <div className="text-center text-white p-4">
+                          <h3 className="text-lg font-bold mb-2">{project.title}</h3>
+                          <p className="text-sm opacity-90 mb-3">{project.category}</p>
+                          <div className="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full text-xs font-bold">
+                            View Project Details →
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Card Content */}
+                    <div className="p-4">
+                      <h3 className="font-bold text-navy mb-2">{project.title}</h3>
+                      <p className="text-sm text-text-secondary mb-3">{project.description}</p>
+                      <div className="flex flex-wrap gap-1">
+                        {project.technologies.slice(0, 3).map((tech, index) => (
+                          <span key={index} className="text-xs bg-orange/10 text-orange px-2 py-1 rounded-full">
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                ))}
                 
-                {/* Orange Overlay with enhanced animation */}
-                <div className="absolute inset-0 bg-gradient-to-br from-orange/90 to-orange/70 opacity-0 group-hover:opacity-100 transition-all duration-500" />
-                
-                {/* Overlay Content with enhanced styling */}
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 transform group-hover:scale-105">
-                  <div className="text-center text-white p-8">
-                    <h3 className="heading-primary heading-md mb-4 text-white font-bold">
-                      {project.title}
-                    </h3>
-                    <p className="text-lg opacity-90 mb-4 font-medium">
-                      {project.category}
-                    </p>
-                    <div className="bg-white/20 backdrop-blur-sm px-6 py-3 rounded-full text-sm font-bold tracking-wide border border-white/30">
-                      View Case Study →
+                {/* Peek indicator for more cards */}
+                <div className="w-6 flex-shrink-0 flex items-center justify-center text-orange/50">
+                  <ChevronRight className="h-6 w-6" />
+                </div>
+              </div>
+            </div>
+            
+            {/* Gradient fade hints */}
+            <div className="absolute right-0 top-16 bottom-4 w-12 bg-gradient-to-l from-white via-white/80 to-transparent pointer-events-none"></div>
+          </div>
+        ) : (
+          // Desktop: Grid Layout (unchanged)
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mb-12 sm:mb-16">
+            {projects.slice(0, 3).map((project) => (
+              <div
+                key={project.id}
+                className="card-premium overflow-hidden cursor-pointer group transform transition-all duration-500 hover:shadow-luxury"
+                onClick={() => openCaseStudy(project)}
+              >
+                <div className="relative h-80 overflow-hidden">
+                  <img
+                    src={project.image}
+                    alt={`${project.title} case study`}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  
+                  {/* Orange Overlay with enhanced animation */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-orange/90 to-orange/70 opacity-0 group-hover:opacity-100 transition-all duration-500" />
+                  
+                  {/* Overlay Content with enhanced styling */}
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 transform group-hover:scale-105">
+                    <div className="text-center text-white p-8">
+                      <h3 className="heading-primary heading-md mb-4 text-white font-bold">
+                        {project.title}
+                      </h3>
+                      <p className="text-lg opacity-90 mb-4 font-medium">
+                        {project.category}
+                      </p>
+                      <div className="bg-white/20 backdrop-blur-sm px-6 py-3 rounded-full text-sm font-bold tracking-wide border border-white/30">
+                        View Case Study →
+                      </div>
                     </div>
                   </div>
                 </div>
+                
+                {/* Card Footer */}
+                <div className="p-4 text-center">
+                  <p className="text-text-secondary text-sm font-medium">Built by Lee</p>
+                </div>
               </div>
-              
-              {/* Card Footer */}
-              <div className="p-4 text-center">
-                <p className="text-text-secondary text-sm font-medium">Built by Lee</p>
-              </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
 
         {/* CTA Section */}
         <div className="text-center">

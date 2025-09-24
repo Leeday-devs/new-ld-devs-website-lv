@@ -388,9 +388,28 @@
       /* Bottom padding handled by MobileAppLayout based on sticky bar */
     }
     
-    /* Body padding for sticky action bar */
-    body {
-      padding-bottom: 0; /* Reset any existing padding */
+    /* Horizontal scroll with snap - Mobile only */
+    .scrollbar-hide {
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    
+    .scrollbar-hide::-webkit-scrollbar {
+      display: none;
+    }
+    
+    .snap-x {
+      scroll-snap-type: x mandatory;
+    }
+    
+    .snap-center {
+      scroll-snap-align: center;
+    }
+    
+    /* Smooth scrolling for app feel */
+    .scrollbar-hide {
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
     }
     
     /* Enhanced touch feedback */
