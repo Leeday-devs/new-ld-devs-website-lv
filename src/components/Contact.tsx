@@ -231,7 +231,7 @@ const Contact = () => {
             // Mobile: Enhanced Contact Card Layout
             <div className="space-y-6">
               {/* Main Contact Card */}
-              <div className="bg-white rounded-3xl p-8 shadow-luxury overflow-hidden">
+              <div className="bg-white text-text-primary rounded-3xl p-8 shadow-luxury overflow-hidden">
                 {/* Header with Icon */}
                 <div className="text-center mb-8">
                   <div className="bg-orange/10 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
@@ -276,10 +276,10 @@ const Contact = () => {
                       <div className="bg-orange/10 rounded-full w-12 h-12 flex items-center justify-center mb-2 group-hover:bg-orange/20 transition-all duration-300">
                         <info.icon className="h-5 w-5 text-orange" />
                       </div>
-                      <div className="text-xs font-medium mb-1 text-center text-gray-600">
+                      <div className="text-xs font-medium mb-1 text-center text-text-secondary">
                         {info.label}
                       </div>
-                      <div className="text-sm font-semibold text-center leading-tight text-gray-900">
+                      <div className="text-sm font-semibold text-center leading-tight text-text-primary">
                         {info.value}
                       </div>
                     </a>
