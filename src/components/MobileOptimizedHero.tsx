@@ -26,34 +26,31 @@ const MobileOptimizedHero = () => {
     const timer2 = setTimeout(() => setShowSubtext(true), delay2);
     const timer3 = setTimeout(() => setShowButton(true), delay3);
 
-    // Mobile: Skip video entirely for performance
-    // Desktop: Load video with optimizations
-    if (!isMobile) {
-      const v = videoRef.current;
-      if (v && !hasTriedPlay.current) {
-        hasTriedPlay.current = true;
-        v.muted = true;
-        
-        const tryPlay = () => {
-          if (v.readyState >= 3) {
-            v.play().catch(() => {});
-          }
-        };
-
+    // Mobile & Desktop: Load video with mobile optimizations
+    const v = videoRef.current;
+    if (v && !hasTriedPlay.current) {
+      hasTriedPlay.current = true;
+      v.muted = true;
+      
+      const tryPlay = () => {
         if (v.readyState >= 3) {
-          tryPlay();
-        } else {
-          v.addEventListener('canplay', tryPlay, { once: true });
-        }
-
-        const playOnInteraction = () => {
           v.play().catch(() => {});
-          window.removeEventListener('pointerdown', playOnInteraction);
-          window.removeEventListener('keydown', playOnInteraction);
-        };
-        window.addEventListener('pointerdown', playOnInteraction, { once: true });
-        window.addEventListener('keydown', playOnInteraction, { once: true });
+        }
+      };
+
+      if (v.readyState >= 3) {
+        tryPlay();
+      } else {
+        v.addEventListener('canplay', tryPlay, { once: true });
       }
+
+      const playOnInteraction = () => {
+        v.play().catch(() => {});
+        window.removeEventListener('pointerdown', playOnInteraction);
+        window.removeEventListener('keydown', playOnInteraction);
+      };
+      window.addEventListener('pointerdown', playOnInteraction, { once: true });
+      window.addEventListener('keydown', playOnInteraction, { once: true });
     }
     
     return () => {
@@ -68,42 +65,40 @@ const MobileOptimizedHero = () => {
       className="bg-navy min-h-screen flex items-center justify-center relative overflow-hidden pt-20 px-4"
       aria-label="Hero section with company introduction"
     >
-      {/* Desktop-Only Video Background for Performance */}
-      {!isMobile && (
-        <video
-          ref={videoRef}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="none" // Don't preload on mobile
-          poster={heroPoster}
-          aria-hidden="true"
-          disablePictureInPicture
-          className="absolute inset-0 w-full h-full object-cover opacity-100 z-10"
-          onCanPlay={() => {
-            if (!videoLoaded) {
-              setVideoLoaded(true);
-              document.getElementById('video-fallback')?.classList.add('opacity-0');
-            }
-          }}
-          onLoadedData={() => {
-            if (!videoLoaded) {
-              setVideoLoaded(true);
-              document.getElementById('video-fallback')?.classList.add('opacity-0');
-            }
-          }}
-          onPlay={() => {
+      {/* Video Background for Mobile & Desktop */}
+      <video
+        ref={videoRef}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload={isMobile ? "metadata" : "auto"} // Lighter preload on mobile
+        poster={heroPoster}
+        aria-hidden="true"
+        disablePictureInPicture
+        className="absolute inset-0 w-full h-full object-cover opacity-100 z-10"
+        onCanPlay={() => {
+          if (!videoLoaded) {
+            setVideoLoaded(true);
             document.getElementById('video-fallback')?.classList.add('opacity-0');
-          }}
-          onError={(e) => {
-            (e.target as HTMLVideoElement).style.display = 'none';
-            document.getElementById('video-fallback')?.classList.remove('opacity-0');
-          }}
-        >
-          <source src="/videos/hero-new.mp4" type="video/mp4" />
-        </video>
-      )}
+          }
+        }}
+        onLoadedData={() => {
+          if (!videoLoaded) {
+            setVideoLoaded(true);
+            document.getElementById('video-fallback')?.classList.add('opacity-0');
+          }
+        }}
+        onPlay={() => {
+          document.getElementById('video-fallback')?.classList.add('opacity-0');
+        }}
+        onError={(e) => {
+          (e.target as HTMLVideoElement).style.display = 'none';
+          document.getElementById('video-fallback')?.classList.remove('opacity-0');
+        }}
+      >
+        <source src="/videos/hero-new.mp4" type="video/mp4" />
+      </video>
       
       {/* Mobile: Optimized Static Background with WebP support */}
       <div className="absolute inset-0 z-0">
@@ -136,22 +131,20 @@ const MobileOptimizedHero = () => {
       }`} />
       
       {/* Reduced particles on mobile for performance */}
-      {!isMobile && (
-        <div className="absolute inset-0 overflow-hidden">
-          {[...Array(8)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute w-1 h-1 sm:w-2 sm:h-2 bg-orange/20 rounded-full animate-pulse"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 4}s`,
-                animationDuration: `${3 + Math.random() * 2}s`,
-              }}
-            />
-          ))}
-        </div>
-      )}
+      <div className="absolute inset-0 overflow-hidden">
+        {[...Array(isMobile ? 5 : 8)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-1 h-1 sm:w-2 sm:h-2 bg-orange/20 rounded-full animate-pulse"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 4}s`,
+              animationDuration: `${3 + Math.random() * 2}s`,
+            }}
+          />
+        ))}
+      </div>
 
       <div className="container mx-auto relative z-20 text-center max-w-4xl">
         {/* Mobile-First Hero Heading with faster animations */}
