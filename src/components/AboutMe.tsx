@@ -37,10 +37,10 @@ const AboutMe = () => {
             <div className="lg:col-span-2 text-center lg:text-left">
               <div className="space-y-6 mb-8">
                 <p className="text-body text-lg leading-relaxed text-text-secondary">
-                  Hi, I'm Lee. I've worked in web and tech since I was 13, and I help small businesses across London and beyond get premium websites without the big-agency runaround.
+                  Hi, I'm Lee, a London based freelancer. I work directly with small businesses to create everything from websites and apps to AI automations and contract portals & tools that save time, build trust, and help your business grow.
                 </p>
                 <p className="text-body text-lg leading-relaxed text-text-secondary">
-                  When you work with me, you get direct communication, fast iterations, and a site that looks and performs like it costs £10k—at a fair price.
+                  That's me in the photo with my wife—my biggest supporter. I keep my process simple: clear communication, fast turnarounds, and solutions that deliver a premium finish without the agency price tag.
                 </p>
               </div>
 
