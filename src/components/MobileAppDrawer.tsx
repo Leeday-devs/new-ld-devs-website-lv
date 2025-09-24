@@ -49,11 +49,6 @@ const MobileAppDrawer = ({ isOpen, onClose }: MobileAppDrawerProps) => {
     }
   };
 
-  const handleWhatsAppClick = () => {
-    window.open('https://wa.me/447586266007', '_blank');
-    onClose();
-  };
-
   if (!isVisible) return null;
 
   return (
@@ -66,42 +61,41 @@ const MobileAppDrawer = ({ isOpen, onClose }: MobileAppDrawerProps) => {
         onClick={onClose}
       />
       
-      {/* Drawer - More Compact */}
-      <div className={`md:hidden fixed top-0 right-0 bottom-0 z-50 w-64 max-w-[75vw] bg-navy/98 backdrop-blur-xl border-l border-gold/20 transform transition-transform duration-300 ease-out ${
+      {/* Drawer - Ultra Compact */}
+      <div className={`md:hidden fixed top-0 right-0 bottom-0 z-50 w-56 max-w-[70vw] bg-navy/98 backdrop-blur-xl border-l border-gold/20 transform transition-transform duration-300 ease-out ${
         isOpen ? 'translate-x-0' : 'translate-x-full'
       }`}>
         
-        {/* Header - Compact */}
-        <div className="flex items-center justify-between p-4 border-b border-gold/20">
-          <div className="flex items-center gap-2">
+        {/* Header - Ultra Compact */}
+        <div className="flex items-center justify-between p-3 border-b border-gold/20">
+          <div className="flex items-center gap-1.5">
             <img 
               src="/lovable-uploads/95a8e543-b54c-4dc4-b36a-5561bf01ed41.png" 
               alt="LD Development" 
-              className="h-8 w-auto"
+              className="h-6 w-auto"
             />
             <div>
-              <h3 className="text-white font-bold text-base">LD Development</h3>
-              <p className="text-gold text-xs">Premium Web Solutions</p>
+              <h3 className="text-white font-bold text-sm">LD Development</h3>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 rounded-lg bg-white/10 hover:bg-white/20 transition-colors"
+            className="p-1 rounded-md bg-white/10 hover:bg-white/20 transition-colors"
           >
             <X className="h-4 w-4 text-white" />
           </button>
         </div>
         
-        {/* Navigation Items - More Compact */}
-        <div className="flex-1 py-4 overflow-y-auto">
-          <nav className="space-y-1 px-3">
+        {/* Navigation Items - Ultra Compact */}
+        <div className="flex-1 py-2 overflow-y-auto">
+          <nav className="space-y-0.5 px-2">
             {navItems.map((item, index) => (
               item.isInternal ? (
                 <Link
                   key={item.label}
                   to={item.href}
                   onClick={() => handleNavClick(item)}
-                  className={`block px-3 py-3 text-white/80 hover:text-orange hover:bg-orange/10 rounded-lg transition-all duration-200 font-medium text-sm border border-transparent hover:border-orange/20 transform hover:translate-x-0.5`}
+                  className={`block px-3 py-2.5 text-white/80 hover:text-orange hover:bg-orange/10 rounded-md transition-all duration-200 font-medium text-sm border border-transparent hover:border-orange/20`}
                   style={{ 
                     animationDelay: `${index * 50}ms`,
                     animation: isOpen ? 'slideInRight 0.3s ease-out forwards' : 'none'
@@ -113,7 +107,7 @@ const MobileAppDrawer = ({ isOpen, onClose }: MobileAppDrawerProps) => {
                 <button
                   key={item.label}
                   onClick={() => handleNavClick(item)}
-                  className={`block w-full text-left px-3 py-3 text-white/80 hover:text-orange hover:bg-orange/10 rounded-lg transition-all duration-200 font-medium text-sm border border-transparent hover:border-orange/20 transform hover:translate-x-0.5`}
+                  className={`block w-full text-left px-3 py-2.5 text-white/80 hover:text-orange hover:bg-orange/10 rounded-md transition-all duration-200 font-medium text-sm border border-transparent hover:border-orange/20`}
                   style={{ 
                     animationDelay: `${index * 50}ms`,
                     animation: isOpen ? 'slideInRight 0.3s ease-out forwards' : 'none'
@@ -124,16 +118,6 @@ const MobileAppDrawer = ({ isOpen, onClose }: MobileAppDrawerProps) => {
               )
             ))}
           </nav>
-        </div>
-        
-        {/* Bottom CTA - Compact, No Auth Button */}
-        <div className="p-3 border-t border-gold/10">
-          <Button 
-            className="w-full bg-gradient-to-r from-orange to-gold hover:from-orange/90 hover:to-gold/90 text-navy font-bold py-3 text-sm rounded-lg shadow-lg transform hover:scale-105 transition-all duration-200"
-            onClick={handleWhatsAppClick}
-          >
-            Work With Lee
-          </Button>
         </div>
       </div>
       
