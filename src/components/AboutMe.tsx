@@ -12,19 +12,19 @@ const AboutMe = () => {
           </h2>
         </div>
 
-        <div className="max-w-4xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
-            {/* Headshot Placeholder */}
-            <div className="lg:col-span-1 flex justify-center">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            {/* Left Column - Photo */}
+            <div className="flex justify-center lg:justify-end">
               <div className="relative group">
                 {/* Glow Effect */}
-                <div className="absolute -inset-1 bg-gradient-to-r from-orange to-orange/80 rounded-full blur-lg opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
+                <div className="absolute -inset-2 bg-gradient-to-r from-orange to-orange/80 rounded-3xl blur-xl opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
                 
-                {/* Headshot Card */}
-                <div className="relative w-64 h-64 bg-gradient-to-br from-navy/10 to-purple-900/10 rounded-full border border-orange/20 shadow-luxury overflow-hidden">
+                {/* Photo Card */}
+                <div className="relative w-80 h-96 bg-gradient-to-br from-navy/10 to-purple-900/10 rounded-3xl border border-orange/20 shadow-luxury overflow-hidden">
                   <img 
                     src={leeHeadshot} 
-                    alt="Lee - Freelance Web Developer from London"
+                    alt="Lee and his wife - Freelance Web Developer from London"
                     className="absolute inset-0 w-full h-full object-cover"
                   />
                   {/* Subtle overlay */}
@@ -33,8 +33,8 @@ const AboutMe = () => {
               </div>
             </div>
 
-            {/* Content */}
-            <div className="lg:col-span-2 text-center lg:text-left">
+            {/* Right Column - Content */}
+            <div className="text-center lg:text-left">
               <div className="space-y-6 mb-8">
                 <p className="text-body text-lg leading-relaxed text-text-secondary">
                   Hi, I'm Lee, a London based freelancer. I work directly with small businesses to create everything from websites and apps to AI automations and contract portals & tools that save time, build trust, and help your business grow.
