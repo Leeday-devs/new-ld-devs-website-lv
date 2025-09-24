@@ -228,56 +228,75 @@ const Contact = () => {
 
         <div className="max-w-7xl mx-auto">
           {isMobile ? (
-            // Mobile: Buttons First, Collapsible Form
-            <div className="space-y-8">
-              {/* Quick Action Buttons */}
-              <div className="flex flex-col gap-4">
-                <Button
-                  onClick={() => setShowDetailedForm(!showDetailedForm)}
-                  className="btn-primary w-full min-h-[56px] text-lg font-bold rounded-2xl shadow-orange-glow"
-                >
-                  <Mail className="mr-3 h-6 w-6" />
-                  Get in Touch
-                </Button>
-                
-                <Button
-                  onClick={() => {
-                    const whatsappNumber = "447586266007";
-                    const message = "Hi Lee! I'm interested in your web development services.";
-                    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
-                    window.open(whatsappUrl, '_blank');
-                  }}
-                  variant="outline"
-                  className="w-full min-h-[56px] text-lg font-semibold rounded-2xl border-2 border-green-500 text-green-600 hover:bg-green-500 hover:text-white"
-                >
-                  <MessageCircle className="mr-3 h-6 w-6" />
-                  WhatsApp Me
-                </Button>
-              </div>
+            // Mobile: Enhanced Contact Card Layout
+            <div className="space-y-6">
+              {/* Main Contact Card */}
+              <div className="bg-white rounded-3xl p-8 shadow-luxury overflow-hidden">
+                {/* Header with Icon */}
+                <div className="text-center mb-8">
+                  <div className="bg-orange/10 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
+                    <MessageCircle className="h-10 w-10 text-orange" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-navy mb-2">How would you like to connect?</h3>
+                  <p className="text-navy/70">Choose your preferred way to get in touch</p>
+                </div>
 
-              {/* Direct Line Info - Mobile */}
-              <div className="bg-navy rounded-3xl p-6 shadow-luxury">
-                <h3 className="text-xl font-bold text-white mb-6">Direct Line</h3>
-                <div className="space-y-4">
-                  {contactInfo.map((info) => (
+                {/* Action Buttons */}
+                <div className="flex flex-col gap-4 mb-8">
+                  <Button
+                    onClick={() => setShowDetailedForm(!showDetailedForm)}
+                    className="btn-primary w-full min-h-[56px] text-lg font-bold rounded-2xl shadow-orange-glow"
+                  >
+                    <Mail className="mr-3 h-6 w-6" />
+                    Get In Touch
+                  </Button>
+                  
+                  <Button
+                    onClick={() => {
+                      const whatsappNumber = "447586266007";
+                      const message = "Hi Lee! I'm interested in your web development services.";
+                      const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+                      window.open(whatsappUrl, '_blank');
+                    }}
+                    className="w-full min-h-[56px] text-lg font-semibold rounded-2xl bg-green-500 hover:bg-green-600 text-white border-0 transition-all duration-300 hover:scale-[1.02] shadow-lg"
+                  >
+                    <MessageCircle className="mr-3 h-6 w-6" />
+                    WhatsApp Me
+                  </Button>
+                </div>
+
+                {/* Contact Options */}
+                <div className="grid grid-cols-2 gap-3">
+                  {contactInfo.slice(0, 2).map((info) => (
                     <a
                       key={info.label}
                       href={info.href}
-                      className="flex items-start gap-4 group"
+                      className="flex flex-col items-center p-4 rounded-2xl bg-gray-50 hover:bg-orange/5 transition-all duration-300 group border border-gray-100 hover:border-orange/20"
                     >
-                      <div className="bg-orange/20 rounded-xl w-12 h-12 flex items-center justify-center group-hover:bg-orange/30 transition-all duration-300">
+                      <div className="bg-orange/10 rounded-full w-12 h-12 flex items-center justify-center mb-2 group-hover:bg-orange/20 transition-all duration-300">
                         <info.icon className="h-5 w-5 text-orange" />
                       </div>
-                      <div className="flex-1">
-                        <div className="text-xs text-white/60 uppercase font-medium mb-1">
-                          {info.label}
-                        </div>
-                        <div className="text-sm font-semibold text-white leading-relaxed">
-                          {info.value}
-                        </div>
+                      <div className="text-xs text-navy/60 font-medium mb-1 text-center">
+                        {info.label}
+                      </div>
+                      <div className="text-sm font-semibold text-navy text-center leading-tight">
+                        {info.value}
                       </div>
                     </a>
                   ))}
+                </div>
+              </div>
+
+              {/* Quick Response Info */}
+              <div className="bg-navy rounded-3xl p-6 shadow-luxury">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="bg-orange/20 rounded-full w-12 h-12 flex items-center justify-center">
+                    <MessageCircle className="h-6 w-6 text-orange" />
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-bold text-white">Quick Response Guaranteed</h4>
+                    <p className="text-white/70 text-sm">Usually within 2 hours</p>
+                  </div>
                 </div>
               </div>
 
