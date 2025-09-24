@@ -282,7 +282,7 @@ const Contact = () => {
               </div>
 
               {/* Quick Message Form */}
-              <div className="bg-white rounded-3xl p-6 shadow-luxury">
+              <div className="bg-white text-navy rounded-3xl p-6 shadow-luxury">
                 <h3 className="text-xl font-bold text-navy mb-4">Quick Message</h3>
                 <form onSubmit={handleQuickSubmit} className="space-y-4">
                   <Textarea
@@ -314,7 +314,7 @@ const Contact = () => {
               </div>
 
               {/* Detailed Form - Collapsible */}
-              <div className={`bg-white rounded-3xl shadow-luxury overflow-hidden transition-all duration-500 ${
+              <div className={`bg-white text-navy rounded-3xl shadow-luxury overflow-hidden transition-all duration-500 ${
                 showDetailedForm ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0'
               }`}>
                 <div className="p-6">
