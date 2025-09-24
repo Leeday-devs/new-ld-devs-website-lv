@@ -1,8 +1,23 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Star, ChevronLeft, ChevronRight } from "lucide-react";
+import useEmblaCarousel from 'embla-carousel-react';
+import Autoplay from 'embla-carousel-autoplay';
 
 const Testimonials = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    { 
+      loop: true,
+      align: 'start',
+      slidesToScroll: 1,
+      breakpoints: {
+        '(min-width: 768px)': { slidesToScroll: 1 }
+      }
+    },
+    [Autoplay({ delay: 5000, stopOnInteraction: true })]
+  );
+  
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
 
   const testimonials = [
     {
@@ -34,22 +49,57 @@ const Testimonials = () => {
       rating: 5,
       website: "https://randaservices.co.uk/",
       companyLogo: "/lovable-uploads/f141e9f1-24b0-4a3b-878f-eb3a29003a7e.png"
+    },
+    {
+      id: 4,
+      name: "Sarah Johnson",
+      company: "Green Tech Solutions",
+      role: "Marketing Director",
+      quote: "Working with Lee was a game-changer for our business. He delivered a stunning website that perfectly captured our brand vision and significantly improved our online presence.",
+      rating: 5,
+      website: "#",
+      companyLogo: null
+    },
+    {
+      id: 5,
+      name: "David Martinez",
+      company: "Urban Fitness Studio",
+      role: "Owner",
+      quote: "The booking system Lee built for us has streamlined our operations completely. Our clients love the easy online scheduling, and we've seen a 40% increase in bookings.",
+      rating: 5,
+      website: "#",
+      companyLogo: null
     }
   ];
 
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % testimonials.length);
-  };
+  const scrollPrev = useCallback(() => {
+    if (emblaApi) emblaApi.scrollPrev();
+  }, [emblaApi]);
 
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-  };
+  const scrollNext = useCallback(() => {
+    if (emblaApi) emblaApi.scrollNext();
+  }, [emblaApi]);
 
-  // Auto-scroll every 5 seconds with swipe support
-  useEffect(() => {
-    const autoScroll = setInterval(nextSlide, 5000);
-    return () => clearInterval(autoScroll);
+  const scrollTo = useCallback((index: number) => {
+    if (emblaApi) emblaApi.scrollTo(index);
+  }, [emblaApi]);
+
+  const onInit = useCallback((emblaApi: any) => {
+    setScrollSnaps(emblaApi.scrollSnapList());
   }, []);
+
+  const onSelect = useCallback((emblaApi: any) => {
+    setSelectedIndex(emblaApi.selectedScrollSnap());
+  }, []);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+
+    onInit(emblaApi);
+    onSelect(emblaApi);
+    emblaApi.on('reInit', onInit);
+    emblaApi.on('select', onSelect);
+  }, [emblaApi, onInit, onSelect]);
 
   return (
     <section className="section-navy" aria-label="Client testimonials and reviews">
@@ -64,137 +114,97 @@ const Testimonials = () => {
           </p>
         </div>
 
-        {/* Desktop Grid */}
-        <div className="hidden md:grid md:grid-cols-3 gap-8">
-          {testimonials.slice(0, 3).map((testimonial) => (
-            <div
-              key={testimonial.id}
-              className="card-premium p-8 flex flex-col h-[480px]"
-            >
-              {/* Large Orange Quote Mark */}
-              <div className="text-6xl text-highlight font-serif leading-none mb-6">
-                "
-              </div>
-              
-              {/* Rating Stars (Orange) */}
-              <div className="flex items-center mb-6">
-                {[...Array(testimonial.rating)].map((_, i) => (
-                  <Star key={i} className="h-5 w-5 text-highlight fill-highlight mr-1" />
-                ))}
-              </div>
+        {/* Testimonials Carousel */}
+        <div className="testimonials-carousel relative">
+          <div className="overflow-hidden" ref={emblaRef}>
+            <div className="flex -mx-4">
+              {testimonials.map((testimonial) => (
+                <div
+                  key={testimonial.id}
+                  className="flex-shrink-0 w-full md:w-1/2 lg:w-1/3 px-4"
+                >
+                  <div className="card-premium p-8 flex flex-col h-[480px]">
+                    {/* Large Orange Quote Mark */}
+                    <div className="text-6xl text-highlight font-serif leading-none mb-6">
+                      "
+                    </div>
+                    
+                    {/* Rating Stars (Orange) */}
+                    <div className="flex items-center mb-6">
+                      {[...Array(testimonial.rating)].map((_, i) => (
+                        <Star key={i} className="h-5 w-5 text-highlight fill-highlight mr-1" />
+                      ))}
+                    </div>
 
-              {/* Quote */}
-              <blockquote className="text-gray-700 mb-8 flex-grow leading-relaxed text-base">
-                "{testimonial.quote}"
-              </blockquote>
+                    {/* Quote */}
+                    <blockquote className="text-gray-700 mb-8 flex-grow leading-relaxed text-base">
+                      "{testimonial.quote}"
+                    </blockquote>
 
-              {/* Client Info - Fixed at bottom */}
-              <div className="flex items-end justify-between mt-auto">
-                <div className="flex-1">
-                  <div className="font-bold text-gray-900 text-base mb-1">
-                    {testimonial.name}
-                  </div>
-                  <div className="text-gray-600 text-sm">
-                    {testimonial.role}, {testimonial.website ? (
-                      <a 
-                        href={testimonial.website} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="hover:text-highlight transition-colors underline"
-                      >
-                        {testimonial.company}
-                      </a>
-                    ) : testimonial.company}
-                  </div>
-                </div>
-                {testimonial.companyLogo && (
-                  <div className="flex-shrink-0 ml-4">
-                    <img 
-                      src={testimonial.companyLogo} 
-                      alt={`${testimonial.company} logo`}
-                      className="h-12 w-auto object-contain"
-                    />
-                  </div>
-                )}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Mobile Carousel */}
-        <div className="md:hidden">
-          <div className="relative">
-            {/* Testimonial Card */}
-            <div className="card-premium p-8 mx-4">
-              {/* Large Orange Quote Mark */}
-              <div className="text-6xl text-highlight font-serif leading-none mb-6">
-                "
-              </div>
-              
-              <div className="flex items-center mb-6">
-                {[...Array(testimonials[currentSlide].rating)].map((_, i) => (
-                  <Star key={i} className="h-5 w-5 text-highlight fill-highlight mr-1" />
-                ))}
-              </div>
-
-              <blockquote className="text-gray-700 mb-8 leading-relaxed text-base">
-                "{testimonials[currentSlide].quote}"
-              </blockquote>
-
-              <div className="flex items-end justify-between">
-                <div>
-                  <div className="font-bold text-gray-900 text-base mb-1">
-                    {testimonials[currentSlide].name}
-                  </div>
-                  <div className="text-gray-600 text-sm">
-                    {testimonials[currentSlide].role}, {testimonials[currentSlide].website ? (
-                      <a 
-                        href={testimonials[currentSlide].website} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="hover:text-highlight transition-colors underline"
-                      >
-                        {testimonials[currentSlide].company}
-                      </a>
-                    ) : testimonials[currentSlide].company}
+                    {/* Client Info - Fixed at bottom */}
+                    <div className="flex items-end justify-between mt-auto">
+                      <div className="flex-1">
+                        <div className="font-bold text-gray-900 text-base mb-1">
+                          {testimonial.name}
+                        </div>
+                        <div className="text-gray-600 text-sm">
+                          {testimonial.role}, {testimonial.website && testimonial.website !== "#" ? (
+                            <a 
+                              href={testimonial.website} 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              className="hover:text-highlight transition-colors underline"
+                            >
+                              {testimonial.company}
+                            </a>
+                          ) : testimonial.company}
+                        </div>
+                      </div>
+                      {testimonial.companyLogo && (
+                        <div className="flex-shrink-0 ml-4">
+                          <img 
+                            src={testimonial.companyLogo} 
+                            alt={`${testimonial.company} logo`}
+                            className="h-12 w-auto object-contain"
+                          />
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
-                {testimonials[currentSlide].companyLogo && (
-                  <img 
-                    src={testimonials[currentSlide].companyLogo} 
-                    alt={`${testimonials[currentSlide].company} logo`}
-                    className="h-12 w-auto object-contain ml-4"
-                  />
-                )}
-              </div>
+              ))}
             </div>
+          </div>
 
-            {/* Navigation Arrows */}
+          {/* Navigation Arrows */}
+          <div className="flex justify-center mt-8 space-x-4">
             <button
-              onClick={prevSlide}
-              className="absolute left-0 top-1/2 -translate-y-1/2 bg-white rounded-full p-2 shadow-md hover:shadow-lg transition-shadow"
-              aria-label="Previous testimonial"
+              onClick={scrollPrev}
+              className="bg-white rounded-full p-3 shadow-luxury hover:shadow-premium transition-all duration-300 hover:scale-110 group"
+              aria-label="Previous testimonials"
             >
-              <ChevronLeft className="h-6 w-6 text-navy" />
+              <ChevronLeft className="h-6 w-6 text-navy group-hover:text-highlight transition-colors" />
             </button>
             
             <button
-              onClick={nextSlide}
-              className="absolute right-0 top-1/2 -translate-y-1/2 bg-white rounded-full p-2 shadow-md hover:shadow-lg transition-shadow"
-              aria-label="Next testimonial"
+              onClick={scrollNext}
+              className="bg-white rounded-full p-3 shadow-luxury hover:shadow-premium transition-all duration-300 hover:scale-110 group"
+              aria-label="Next testimonials"
             >
-              <ChevronRight className="h-6 w-6 text-navy" />
+              <ChevronRight className="h-6 w-6 text-navy group-hover:text-highlight transition-colors" />
             </button>
           </div>
 
           {/* Pagination Dots */}
-          <div className="flex justify-center items-center mt-8 space-x-2">
-            {testimonials.map((_, index) => (
+          <div className="flex justify-center items-center mt-6 space-x-2">
+            {scrollSnaps.map((_, index) => (
               <button
                 key={index}
-                onClick={() => setCurrentSlide(index)}
-                className={`w-3 h-3 rounded-full transition-colors duration-200 ${
-                  index === currentSlide ? 'bg-highlight' : 'bg-white/30 border-2 border-highlight'
+                onClick={() => scrollTo(index)}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  index === selectedIndex 
+                    ? 'bg-highlight scale-125 shadow-glow' 
+                    : 'bg-white/30 border-2 border-highlight hover:bg-white/50 hover:scale-110'
                 }`}
                 aria-label={`Go to testimonial ${index + 1}`}
               />
