@@ -78,6 +78,13 @@ const FAQ = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-12 items-start">
           {/* FAQ Items */}
           <div className="lg:col-span-2">
+            {/* Intro Line */}
+            <div className="text-center mb-8">
+              <p className="text-lg text-text-secondary/80 font-medium">
+                Here are the most common questions I get as a freelancer.
+              </p>
+            </div>
+            
             <div className="space-y-4">
               {faqItems.map((item, index) => (
                 <Card 
@@ -116,6 +123,17 @@ const FAQ = () => {
                   </CardContent>
                 </Card>
               ))}
+            </div>
+            
+            {/* Contact Link Below FAQs */}
+            <div className="text-center mt-12">
+              <button
+                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                className="text-lg text-primary hover:text-primary/80 font-semibold transition-colors duration-300 inline-flex items-center gap-2 group"
+              >
+                Still have questions? Message me directly
+                <span className="transform group-hover:translate-x-1 transition-transform duration-300">→</span>
+              </button>
             </div>
           </div>
 
