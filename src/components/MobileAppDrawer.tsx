@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
-import { X, Star, Shield, Award, User } from "lucide-react";
+import { X } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import AuthButton from "./AuthButton";
 
 interface MobileAppDrawerProps {
   isOpen: boolean;
@@ -67,60 +66,42 @@ const MobileAppDrawer = ({ isOpen, onClose }: MobileAppDrawerProps) => {
         onClick={onClose}
       />
       
-      {/* Drawer */}
-      <div className={`md:hidden fixed top-0 right-0 bottom-0 z-50 w-80 max-w-[85vw] bg-navy/98 backdrop-blur-xl border-l border-gold/20 transform transition-transform duration-300 ease-out ${
+      {/* Drawer - More Compact */}
+      <div className={`md:hidden fixed top-0 right-0 bottom-0 z-50 w-64 max-w-[75vw] bg-navy/98 backdrop-blur-xl border-l border-gold/20 transform transition-transform duration-300 ease-out ${
         isOpen ? 'translate-x-0' : 'translate-x-full'
       }`}>
         
-        {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-gold/20">
-          <div className="flex items-center gap-3">
+        {/* Header - Compact */}
+        <div className="flex items-center justify-between p-4 border-b border-gold/20">
+          <div className="flex items-center gap-2">
             <img 
               src="/lovable-uploads/95a8e543-b54c-4dc4-b36a-5561bf01ed41.png" 
               alt="LD Development" 
-              className="h-10 w-auto"
+              className="h-8 w-auto"
             />
             <div>
-              <h3 className="text-white font-bold text-lg">LD Development</h3>
+              <h3 className="text-white font-bold text-base">LD Development</h3>
               <p className="text-gold text-xs">Premium Web Solutions</p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+            className="p-1.5 rounded-lg bg-white/10 hover:bg-white/20 transition-colors"
           >
-            <X className="h-5 w-5 text-white" />
+            <X className="h-4 w-4 text-white" />
           </button>
         </div>
-
-        {/* Trust Badges */}
-        <div className="p-4 border-b border-gold/10">
-          <div className="flex items-center justify-center gap-4 text-xs">
-            <div className="flex items-center gap-1 text-gold">
-              <Star className="h-3 w-3 fill-current" />
-              <span>5.0 Rating</span>
-            </div>
-            <div className="flex items-center gap-1 text-gold">
-              <Shield className="h-3 w-3" />
-              <span>Certified</span>
-            </div>
-            <div className="flex items-center gap-1 text-gold">
-              <Award className="h-3 w-3" />
-              <span>Quality</span>
-            </div>
-          </div>
-        </div>
         
-        {/* Navigation Items */}
-        <div className="flex-1 py-6 overflow-y-auto">
-          <nav className="space-y-2 px-4">
+        {/* Navigation Items - More Compact */}
+        <div className="flex-1 py-4 overflow-y-auto">
+          <nav className="space-y-1 px-3">
             {navItems.map((item, index) => (
               item.isInternal ? (
                 <Link
                   key={item.label}
                   to={item.href}
                   onClick={() => handleNavClick(item)}
-                  className={`block px-4 py-4 text-white/80 hover:text-orange hover:bg-orange/10 rounded-xl transition-all duration-200 font-medium text-base border border-transparent hover:border-orange/20 transform hover:translate-x-1`}
+                  className={`block px-3 py-3 text-white/80 hover:text-orange hover:bg-orange/10 rounded-lg transition-all duration-200 font-medium text-sm border border-transparent hover:border-orange/20 transform hover:translate-x-0.5`}
                   style={{ 
                     animationDelay: `${index * 50}ms`,
                     animation: isOpen ? 'slideInRight 0.3s ease-out forwards' : 'none'
@@ -132,7 +113,7 @@ const MobileAppDrawer = ({ isOpen, onClose }: MobileAppDrawerProps) => {
                 <button
                   key={item.label}
                   onClick={() => handleNavClick(item)}
-                  className={`block w-full text-left px-4 py-4 text-white/80 hover:text-orange hover:bg-orange/10 rounded-xl transition-all duration-200 font-medium text-base border border-transparent hover:border-orange/20 transform hover:translate-x-1`}
+                  className={`block w-full text-left px-3 py-3 text-white/80 hover:text-orange hover:bg-orange/10 rounded-lg transition-all duration-200 font-medium text-sm border border-transparent hover:border-orange/20 transform hover:translate-x-0.5`}
                   style={{ 
                     animationDelay: `${index * 50}ms`,
                     animation: isOpen ? 'slideInRight 0.3s ease-out forwards' : 'none'
@@ -145,14 +126,10 @@ const MobileAppDrawer = ({ isOpen, onClose }: MobileAppDrawerProps) => {
           </nav>
         </div>
         
-        {/* Bottom CTA & Auth */}
-        <div className="p-4 border-t border-gold/10 space-y-3">
-          <div className="flex items-center gap-2 mb-3">
-            <User className="h-4 w-4 text-gold" />
-            <AuthButton />
-          </div>
+        {/* Bottom CTA - Compact, No Auth Button */}
+        <div className="p-3 border-t border-gold/10">
           <Button 
-            className="w-full bg-gradient-to-r from-orange to-gold hover:from-orange/90 hover:to-gold/90 text-navy font-bold py-4 text-base rounded-xl shadow-lg transform hover:scale-105 transition-all duration-200"
+            className="w-full bg-gradient-to-r from-orange to-gold hover:from-orange/90 hover:to-gold/90 text-navy font-bold py-3 text-sm rounded-lg shadow-lg transform hover:scale-105 transition-all duration-200"
             onClick={handleWhatsAppClick}
           >
             Work With Lee
