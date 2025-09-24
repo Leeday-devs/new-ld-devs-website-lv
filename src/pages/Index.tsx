@@ -13,8 +13,6 @@ import BreadcrumbsNavigation from "@/components/BreadcrumbsNavigation";
 import StatsBar from "@/components/StatsBar";
 import TrustedByLogos from "@/components/TrustedByLogos";
 import FAQ from "@/components/FAQ";
-import AIBenefitsSection from "@/components/AIBenefitsSection";
-import ApplicationsSection from "@/components/ApplicationsSection";
 import AboutMe from "@/components/AboutMe";
 import LiveChatWidget from "@/components/LiveChatWidget";
 import MobilePerformanceOptimizer from "@/components/MobilePerformanceOptimizer";
@@ -68,9 +66,6 @@ const Index = () => {
           {/* Trusted By Logos - Social Proof */}
           <TrustedByLogos />
           
-          {/* AI Benefits Section - Charts and examples */}
-          <AIBenefitsSection />
-          
           {/* Services (dark background) - Premium spacing */}
           <section id="services" aria-label="Web development services" className="bg-transparent">
             <Services />
@@ -90,9 +85,6 @@ const Index = () => {
           <section aria-label="Client testimonials and reviews" className="section-navy">
             <TestimonialsCarousel />
           </section>
-          
-          {/* Applications Section - AI and website features */}
-          <ApplicationsSection />
           
           {/* About Me Section */}
           <AboutMe />
