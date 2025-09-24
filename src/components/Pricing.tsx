@@ -39,6 +39,7 @@ const Pricing = () => {
       icon: Code,
       description: "Perfect for small businesses and personal brands",
       price: "from £500",
+      monthlyPrice: "£40",
       paymentLink: "https://buy.stripe.com/aFa00jf1ceRsb9kceV0Ny08",
       depositAmount: 5000,
       // £50 deposit in pence
