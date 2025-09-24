@@ -1,7 +1,10 @@
 import { MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const WhatsAppWidget = () => {
+  const isMobile = useIsMobile();
+
   const handleWhatsAppClick = () => {
     // Analytics event
     if (typeof window !== 'undefined' && (window as any).gtag) {
@@ -18,7 +21,7 @@ const WhatsAppWidget = () => {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-50">
+    <div className={`fixed right-6 z-40 ${isMobile ? 'bottom-20' : 'bottom-6'}`}>
       <Button
         onClick={handleWhatsAppClick}
         className="group rounded-full w-16 h-16 shadow-2xl transition-all duration-300 bg-green-500 hover:bg-green-600 text-white hover:scale-110 border-2 border-green-400 animate-pulse hover:animate-none"
