@@ -302,7 +302,7 @@ const Pricing = () => {
               <ChevronRight className="h-4 w-4" />
             </div>
             
-            <div className="overflow-x-auto scrollbar-hide">
+            <div className="overflow-x-auto scrollbar-hide horizontal-scroll-container">
               <div className="flex gap-6 px-6 pb-4 snap-x snap-mandatory" style={{ width: 'max-content' }}>
                 {currentPlans.map((plan, index) => {
                   const IconComponent = plan.icon;
@@ -312,10 +312,12 @@ const Pricing = () => {
                   return (
                     <div
                       key={plan.id}
-                      className={`relative w-80 flex-shrink-0 snap-center transition-all duration-700 ${
+                      className={`relative w-80 flex-shrink-0 snap-center transition-all duration-700 lazy-load ${
                         isCenterCard && isPopular ? 'scale-105' : 'scale-100'
                       }`}
                       style={{ animationDelay: `${index * 150}ms` }}
+                      role="region"
+                      aria-label={`${plan.name} pricing plan`}
                     >
                       {/* Most Popular Badge */}
                       {isPopular && (

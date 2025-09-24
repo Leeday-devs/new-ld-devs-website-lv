@@ -57,7 +57,7 @@ const FAQ = () => {
   };
 
   return (
-    <section id="faq" className="bg-transparent py-20">
+    <section id="faq" className="bg-transparent py-20 large-section">
       <div className="container mx-auto px-4">
         {/* Header Section */}
         <div className="text-center mb-16">
@@ -67,24 +67,16 @@ const FAQ = () => {
           </div>
           
           <h2 className="heading-primary heading-lg mb-6 text-navy">
-            Frequently Asked Questions
+            Frequently Asked <span className="text-orange">Questions</span>
           </h2>
-          <p className="text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed">
-            Find answers to the most common questions about our web development services, 
-            hosting solutions, and project process.
+          <p className="text-body max-w-3xl mx-auto text-text-secondary mb-4 leading-relaxed">
+            Here are the most common questions I get as a freelancer.
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-12 items-start">
           {/* FAQ Items */}
           <div className="lg:col-span-2">
-            {/* Intro Line */}
-            <div className="text-center mb-8">
-              <p className="text-lg text-text-secondary/80 font-medium">
-                Here are the most common questions I get as a freelancer.
-              </p>
-            </div>
-            
             <div className="space-y-4">
               {faqItems.map((item, index) => (
                 <Card 
@@ -95,6 +87,9 @@ const FAQ = () => {
                     <button
                       onClick={() => toggleItem(index)}
                       className="w-full text-left p-6 flex items-center justify-between group/button"
+                      aria-expanded={openItem === index}
+                      aria-controls={`faq-answer-${index}`}
+                      aria-label={`Toggle answer for: ${item.question}`}
                     >
                       <div className="flex items-center justify-between">
                         <h3 className="text-lg font-bold text-navy group-hover/button:text-primary transition-colors duration-300 pr-4">
@@ -110,9 +105,14 @@ const FAQ = () => {
                       </div>
                     </button>
                     
-                    <div className={`overflow-hidden transition-all duration-700 ease-out ${
-                      openItem === index ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-                    }`}>
+                    <div 
+                      id={`faq-answer-${index}`}
+                      className={`overflow-hidden transition-all duration-700 ease-out ${
+                        openItem === index ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+                      }`}
+                      role="region"
+                      aria-labelledby={`faq-question-${index}`}
+                    >
                       <div className="px-6 pb-6 pt-0">
                         <div className="h-px bg-gradient-to-r from-primary/20 via-primary/40 to-primary/20 mb-4"></div>
                         <p className="text-text-secondary leading-relaxed">
@@ -127,12 +127,16 @@ const FAQ = () => {
             
             {/* Contact Link Below FAQs */}
             <div className="text-center mt-12">
+              <p className="text-text-secondary mb-4 leading-relaxed">
+                Didn't find your answer?
+              </p>
               <button
                 onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-                className="text-lg text-primary hover:text-primary/80 font-semibold transition-colors duration-300 inline-flex items-center gap-2 group"
+                className="text-orange font-semibold hover:text-orange/80 transition-colors duration-300 text-lg inline-flex items-center gap-2 group"
+                aria-label="Contact Lee directly for more information"
               >
-                Still have questions? Message me directly
-                <span className="transform group-hover:translate-x-1 transition-transform duration-300">→</span>
+                → Message me directly
+                <span className="transform group-hover:translate-x-1 transition-transform duration-300"></span>
               </button>
             </div>
           </div>
@@ -159,7 +163,8 @@ const FAQ = () => {
                 <div className="space-y-4">
                   <a 
                     href="#contact" 
-                    className="block w-full bg-primary hover:bg-primary/90 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 hover:scale-105 text-center shadow-lg hover:shadow-xl"
+                    className="block w-full bg-primary hover:bg-primary/90 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 hover:scale-105 text-center shadow-lg hover:shadow-xl focus-visible:outline-2 focus-visible:outline-orange focus-visible:outline-offset-2"
+                    aria-label="Get in touch with Lee"
                   >
                     Get In Touch
                   </a>
@@ -167,9 +172,10 @@ const FAQ = () => {
                     href="https://wa.me/447586266007" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="block w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 hover:scale-105 text-center shadow-lg hover:shadow-xl"
+                    className="block w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 hover:scale-105 text-center shadow-lg hover:shadow-xl focus-visible:outline-2 focus-visible:outline-green-500 focus-visible:outline-offset-2"
+                    aria-label="Contact Lee via WhatsApp"
                   >
-                    WhatsApp Us
+                    WhatsApp Me
                   </a>
                 </div>
 

@@ -3,7 +3,7 @@ import leeHeadshot from "../assets/lee-headshot.jpg";
 
 const AboutMe = () => {
   return (
-    <section className="bg-transparent py-20" aria-label="About Lee - Web Developer">
+    <section className="bg-transparent py-20 large-section" aria-label="About Lee - Web Developer">
       <div className="container mx-auto px-6">
         {/* Section Header */}
         <div className="text-center mb-16">

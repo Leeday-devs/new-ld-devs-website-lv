@@ -392,6 +392,8 @@
     .scrollbar-hide {
       scrollbar-width: none;
       -ms-overflow-style: none;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
     }
     
     .scrollbar-hide::-webkit-scrollbar {
@@ -406,10 +408,20 @@
       scroll-snap-align: center;
     }
     
-    /* Smooth scrolling for app feel */
-    .scrollbar-hide {
-      scroll-behavior: smooth;
-      -webkit-overflow-scrolling: touch;
+    .snap-start {
+      scroll-snap-align: start;
+    }
+    
+    /* Performance optimization for horizontal scrolling */
+    .horizontal-scroll-container {
+      will-change: scroll-position;
+      contain: layout style paint;
+    }
+    
+    /* Lazy loading optimization */
+    .lazy-load {
+      content-visibility: auto;
+      contain-intrinsic-size: 320px 240px;
     }
     
     /* Enhanced touch feedback */

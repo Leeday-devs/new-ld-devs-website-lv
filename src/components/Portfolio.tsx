@@ -162,19 +162,30 @@ const Portfolio = () => {
               <ChevronRight className="h-4 w-4" />
             </div>
             
-            <div className="overflow-x-auto scrollbar-hide">
-              <div className="flex gap-4 px-6 pb-4" style={{ width: 'max-content' }}>
-                {projects.map((project) => (
+            <div className="overflow-x-auto scrollbar-hide horizontal-scroll-container">
+              <div className="flex gap-4 px-6 pb-4 snap-x" style={{ width: 'max-content' }}>
+                {projects.map((project, index) => (
                   <div
                     key={project.id}
-                    className="w-80 flex-shrink-0 card-premium overflow-hidden cursor-pointer group transform transition-all duration-500 hover:shadow-luxury snap-center"
+                    className="w-80 flex-shrink-0 card-premium overflow-hidden cursor-pointer group transform transition-all duration-500 hover:shadow-luxury snap-center lazy-load"
                     onClick={() => openCaseStudy(project)}
+                    role="button"
+                    tabIndex={0}
+                    aria-label={`View ${project.title} project details`}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        openCaseStudy(project);
+                      }
+                    }}
                   >
                     <div className="relative h-48 overflow-hidden">
                       <img
                         src={project.image}
-                        alt={`${project.title} case study`}
+                        alt={`${project.title} case study showcasing ${project.category} project`}
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        loading={index > 0 ? "lazy" : "eager"}
+                        decoding="async"
                       />
                       
                       {/* Orange Overlay */}
@@ -195,10 +206,10 @@ const Portfolio = () => {
                     {/* Card Content */}
                     <div className="p-4">
                       <h3 className="font-bold text-navy mb-2">{project.title}</h3>
-                      <p className="text-sm text-text-secondary mb-3">{project.description}</p>
+                      <p className="text-sm text-text-secondary mb-3 leading-relaxed">{project.description}</p>
                       <div className="flex flex-wrap gap-1">
-                        {project.technologies.slice(0, 3).map((tech, index) => (
-                          <span key={index} className="text-xs bg-orange/10 text-orange px-2 py-1 rounded-full">
+                        {project.technologies.slice(0, 3).map((tech, techIndex) => (
+                          <span key={techIndex} className="text-xs bg-orange/10 text-orange px-2 py-1 rounded-full">
                             {tech}
                           </span>
                         ))}
@@ -266,6 +277,7 @@ const Portfolio = () => {
           <button 
             className="btn-primary px-10 py-4 text-lg font-semibold rounded-2xl"
             onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+            aria-label="Contact Lee to discuss your project"
           >
             View Project Details
           </button>

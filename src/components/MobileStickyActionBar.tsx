@@ -69,6 +69,7 @@ const MobileStickyActionBar = () => {
         <Button
           onClick={handleWorkWithMeClick}
           className="flex-1 btn-primary min-h-[52px] rounded-2xl font-bold text-base tracking-wide shadow-orange-glow active:scale-95 transition-all duration-200"
+          aria-label="Work with Lee - Get in touch about your project"
         >
           <Briefcase className="h-5 w-5 mr-2" />
           Work With Me
@@ -79,6 +80,7 @@ const MobileStickyActionBar = () => {
           onClick={handleWhatsAppClick}
           variant="outline"
           className="flex-1 min-h-[52px] rounded-2xl font-semibold text-base tracking-wide border-2 border-green-500 text-green-600 hover:bg-green-500 hover:text-white active:scale-95 transition-all duration-200"
+          aria-label="Contact Lee via WhatsApp"
         >
           <MessageCircle className="h-5 w-5 mr-2" />
           WhatsApp Me

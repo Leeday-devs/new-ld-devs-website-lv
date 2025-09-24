@@ -85,6 +85,7 @@ const MobileBottomNavigation = () => {
                     ? 'bg-orange/20 text-orange' 
                     : 'text-white/70 hover:text-orange hover:bg-orange/10'
                 }`}
+                aria-label={`Navigate to ${item.label}`}
               >
                 <Icon className={`h-5 w-5 mb-1 ${active ? 'scale-110' : ''}`} />
                 <span className="text-xs font-medium text-center leading-tight">{item.label}</span>
@@ -97,6 +98,7 @@ const MobileBottomNavigation = () => {
               key={item.label}
               onClick={() => handleNavClick(item)}
               className="flex flex-col items-center py-2 px-2 rounded-xl transition-all duration-200 flex-1 min-h-[64px] text-white/70 hover:text-orange hover:bg-orange/10"
+              aria-label={`Navigate to ${item.label} section`}
             >
               <Icon className="h-5 w-5 mb-1" />
               <span className="text-xs font-medium text-center leading-tight">{item.label}</span>
