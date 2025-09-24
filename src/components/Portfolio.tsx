@@ -142,7 +142,7 @@ const Portfolio = () => {
             Some of My <span className="text-orange">Recent Work</span>
           </h2>
           <p className="text-body max-w-3xl mx-auto text-text-secondary">
-            As a freelancer, I work one-on-one with each client to deliver results that look premium and perform.
+            Here's a look at some projects I've built personally for clients.
           </p>
         </div>
 

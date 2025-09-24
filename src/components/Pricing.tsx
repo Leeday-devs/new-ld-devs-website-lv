@@ -415,7 +415,7 @@ const Pricing = () => {
               </div>
               
               <h3 className="font-serif font-bold text-5xl lg:text-6xl mb-8 text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-orange group-hover:to-orange/80 transition-all duration-500">
-                Need Something <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange to-orange/80">Extraordinary</span>?
+                Need Something <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange to-orange/80">Extraordinary Built</span>?
               </h3>
               
               <p className="text-xl lg:text-2xl mb-12 text-gray-200 leading-relaxed max-w-3xl mx-auto">

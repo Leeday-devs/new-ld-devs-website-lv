@@ -80,9 +80,9 @@ const FinalCTA = () => {
         <div className="max-w-4xl mx-auto text-center">
           {/* Main Headline */}
           <h2 className="heading-primary text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
-            Ready to Build Something
+            Invest in Your Digital Future
             <span className="block text-orange mt-2">
-              Extraordinary With Me?
+              With Me
             </span>
           </h2>
 
