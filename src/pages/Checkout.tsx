@@ -26,12 +26,16 @@ const Checkout = () => {
   const handleFormSubmit = async (customerInfo: any) => {
     setIsSubmitting(true);
     try {
-      // Save inquiry in orders for traceability
+      // Save inquiry in orders for traceability with enhanced information
       const { error: dbError } = await supabase.from('orders').insert({
         customer_name: customerInfo.fullName,
         customer_email: customerInfo.email,
         customer_phone: customerInfo.phone,
         customer_company: customerInfo.company,
+        customer_website_url: customerInfo.websiteUrl,
+        customer_project_goals: customerInfo.projectGoals,
+        customer_timeline: customerInfo.timeline,
+        customer_add_hosting: customerInfo.addHosting,
         service_name: serviceName,
         amount: amount || 2000,
         status: 'inquiry'

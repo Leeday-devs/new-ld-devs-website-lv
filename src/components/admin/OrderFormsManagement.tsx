@@ -18,7 +18,11 @@ import {
   Building2,
   User,
   DollarSign,
-  Calendar
+  Calendar,
+  Globe,
+  Target,
+  Timer,
+  Server
 } from "lucide-react";
 
 interface OrderForm {
@@ -27,6 +31,10 @@ interface OrderForm {
   customer_email: string;
   customer_phone: string | null;
   customer_company: string | null;
+  customer_website_url: string | null;
+  customer_project_goals: string | null;
+  customer_timeline: string | null;
+  customer_add_hosting: boolean | null;
   service_name: string;
   amount: number;
   status: string;
@@ -83,7 +91,10 @@ export function OrderFormsManagement() {
         order.customer_name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
         order.customer_email?.toLowerCase().includes(searchTerm.toLowerCase()) ||
         order.service_name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        order.customer_company?.toLowerCase().includes(searchTerm.toLowerCase())
+        order.customer_company?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        order.customer_website_url?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        order.customer_project_goals?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        order.customer_timeline?.toLowerCase().includes(searchTerm.toLowerCase())
       );
     }
 
@@ -113,6 +124,27 @@ export function OrderFormsManagement() {
     return `£${(amount / 100).toFixed(2)}`;
   };
 
+  const getProjectGoalsLabel = (goals: string) => {
+    switch (goals) {
+      case 'new-website': return 'New Website';
+      case 'redesign': return 'Redesign';
+      case 'ecommerce': return 'E-commerce';
+      case 'ai-tools': return 'AI Tools';
+      case 'other': return 'Other';
+      default: return goals;
+    }
+  };
+
+  const getTimelineLabel = (timeline: string) => {
+    switch (timeline) {
+      case 'asap': return 'ASAP';
+      case '1-2-weeks': return '1–2 weeks';
+      case '1-month-plus': return '1 month+';
+      case 'flexible': return 'Flexible';
+      default: return timeline;
+    }
+  };
+
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('en-GB', {
       day: '2-digit',
@@ -125,13 +157,17 @@ export function OrderFormsManagement() {
 
   const exportOrders = () => {
     const csvContent = [
-      ['Date', 'Customer Name', 'Email', 'Phone', 'Company', 'Service', 'Amount', 'Payment Status', 'Stripe Session ID'].join(','),
+      ['Date', 'Customer Name', 'Email', 'Phone', 'Company', 'Website URL', 'Project Goals', 'Timeline', 'Hosting', 'Service', 'Amount', 'Payment Status', 'Stripe Session ID'].join(','),
       ...filteredOrders.map(order => [
         formatDate(order.created_at),
         order.customer_name || '',
         order.customer_email || '',
         order.customer_phone || '',
         order.customer_company || '',
+        order.customer_website_url || '',
+        order.customer_project_goals ? getProjectGoalsLabel(order.customer_project_goals) : '',
+        order.customer_timeline ? getTimelineLabel(order.customer_timeline) : '',
+        order.customer_add_hosting ? 'Yes' : 'No',
         order.service_name || '',
         formatAmount(order.amount),
         getPaymentStatus(order).label,
@@ -278,7 +314,7 @@ export function OrderFormsManagement() {
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4 border-t">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pt-4 border-t">
                       <div className="flex items-center gap-2">
                         <Mail className="h-4 w-4 text-muted-foreground" />
                         <span className="text-sm">{order.customer_email}</span>
@@ -295,6 +331,36 @@ export function OrderFormsManagement() {
                         <div className="flex items-center gap-2">
                           <Building2 className="h-4 w-4 text-muted-foreground" />
                           <span className="text-sm">{order.customer_company}</span>
+                        </div>
+                      )}
+
+                      {order.customer_website_url && (
+                        <div className="flex items-center gap-2">
+                          <Globe className="h-4 w-4 text-muted-foreground" />
+                          <span className="text-sm">{order.customer_website_url}</span>
+                        </div>
+                      )}
+
+                      {order.customer_project_goals && (
+                        <div className="flex items-center gap-2">
+                          <Target className="h-4 w-4 text-muted-foreground" />
+                          <span className="text-sm">{getProjectGoalsLabel(order.customer_project_goals)}</span>
+                        </div>
+                      )}
+
+                      {order.customer_timeline && (
+                        <div className="flex items-center gap-2">
+                          <Timer className="h-4 w-4 text-muted-foreground" />
+                          <span className="text-sm">{getTimelineLabel(order.customer_timeline)}</span>
+                        </div>
+                      )}
+
+                      {order.customer_add_hosting !== null && (
+                        <div className="flex items-center gap-2">
+                          <Server className="h-4 w-4 text-muted-foreground" />
+                          <span className="text-sm">
+                            Hosting: {order.customer_add_hosting ? 'Yes (£40/month)' : 'No'}
+                          </span>
                         </div>
                       )}
                     </div>

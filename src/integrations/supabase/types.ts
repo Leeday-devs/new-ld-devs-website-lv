@@ -442,10 +442,14 @@ export type Database = {
           amount: number
           created_at: string
           currency: string | null
+          customer_add_hosting: boolean | null
           customer_company: string | null
           customer_email: string | null
           customer_name: string | null
           customer_phone: string | null
+          customer_project_goals: string | null
+          customer_timeline: string | null
+          customer_website_url: string | null
           id: string
           service_name: string | null
           status: string | null
@@ -457,10 +461,14 @@ export type Database = {
           amount: number
           created_at?: string
           currency?: string | null
+          customer_add_hosting?: boolean | null
           customer_company?: string | null
           customer_email?: string | null
           customer_name?: string | null
           customer_phone?: string | null
+          customer_project_goals?: string | null
+          customer_timeline?: string | null
+          customer_website_url?: string | null
           id?: string
           service_name?: string | null
           status?: string | null
@@ -472,10 +480,14 @@ export type Database = {
           amount?: number
           created_at?: string
           currency?: string | null
+          customer_add_hosting?: boolean | null
           customer_company?: string | null
           customer_email?: string | null
           customer_name?: string | null
           customer_phone?: string | null
+          customer_project_goals?: string | null
+          customer_timeline?: string | null
+          customer_website_url?: string | null
           id?: string
           service_name?: string | null
           status?: string | null

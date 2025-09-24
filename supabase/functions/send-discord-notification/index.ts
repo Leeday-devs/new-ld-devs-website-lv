@@ -260,18 +260,64 @@ serve(async (req) => {
         break;
 
       case 'customer_info':
+        const projectGoalsMap = {
+          'new-website': 'New Website',
+          'redesign': 'Redesign', 
+          'ecommerce': 'E-commerce',
+          'ai-tools': 'AI Tools',
+          'other': 'Other'
+        };
+        
+        const timelineMap = {
+          'asap': 'ASAP',
+          '1-2-weeks': '1–2 weeks',
+          '1-month-plus': '1 month+',
+          'flexible': 'Flexible'
+        };
+
+        const fields = [
+          { name: 'Full Name', value: data.fullName, inline: true },
+          { name: 'Email', value: data.email, inline: true },
+          { name: 'Phone', value: data.phone || 'Not provided', inline: true },
+          { name: 'Company', value: data.company || 'Not provided', inline: true },
+          { name: 'Service', value: data.serviceName, inline: false },
+          { name: 'Source', value: 'Checkout Form', inline: true }
+        ];
+
+        // Add enhanced fields if they exist
+        if (data.websiteUrl) {
+          fields.push({ name: 'Current Website', value: data.websiteUrl, inline: true });
+        }
+        
+        if (data.projectGoals) {
+          fields.push({ 
+            name: 'Project Goals', 
+            value: projectGoalsMap[data.projectGoals] || data.projectGoals, 
+            inline: true 
+          });
+        }
+        
+        if (data.timeline) {
+          fields.push({ 
+            name: 'Timeline', 
+            value: timelineMap[data.timeline] || data.timeline, 
+            inline: true 
+          });
+        }
+        
+        if (data.addHosting !== undefined) {
+          fields.push({ 
+            name: 'Hosting & Maintenance', 
+            value: data.addHosting ? '✅ Yes (£40/month)' : '❌ No', 
+            inline: true 
+          });
+        }
+
         embed = {
           title: '💼 Customer Information Submitted!',
-          description: `**${data.fullName}** submitted information for ${data.serviceName}`,
+          description: `**${data.fullName}** submitted enhanced information for ${data.serviceName}`,
           color: eventColors.customer_inquiry,
-          fields: [
-            { name: 'Full Name', value: data.fullName, inline: true },
-            { name: 'Email', value: data.email, inline: true },
-            { name: 'Phone', value: data.phone || 'Not provided', inline: true },
-            { name: 'Company', value: data.company || 'Not provided', inline: true },
-            { name: 'Service', value: data.serviceName, inline: false },
-            { name: 'Source', value: 'Pricing Card Form', inline: true }
-          ],
+          fields: fields,
           timestamp: new Date().toISOString()
         };
         break;
