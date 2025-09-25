@@ -45,6 +45,7 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 const PricingPage = lazy(() => import("./pages/PricingPage"));
 const CustomQuote = lazy(() => import("./pages/CustomQuote"));
 const Checkout = lazy(() => import("./pages/Checkout"));
+const TemplateCheckout = lazy(() => import("./pages/TemplateCheckout"));
 
 // Optimized QueryClient configuration
 const queryClient = new QueryClient({
@@ -106,6 +107,7 @@ const App = () => (
                 <Route path="/payment-success" element={<PaymentSuccess />} />
                 <Route path="/payment-canceled" element={<PaymentCanceled />} />
                 <Route path="/checkout" element={<Checkout />} />
+                <Route path="/template-checkout" element={<TemplateCheckout />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </Suspense>

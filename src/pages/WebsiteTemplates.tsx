@@ -10,12 +10,13 @@ import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { ArrowRight, Check, Clock, Palette, Zap, Shield, Eye, CreditCard, Lock, Users, Star, FileText, Globe, Mail, Phone, MessageSquare, Wrench, Scissors, Car, UtensilsCrossed, Dumbbell, Stethoscope, Code, Sparkles, Layers, Monitor, Home, Heart } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 
 const WebsiteTemplates = () => {
   const { toast } = useToast();
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [isBusinessDetailsOpen, setIsBusinessDetailsOpen] = useState(false);
@@ -125,8 +126,12 @@ const WebsiteTemplates = () => {
   };
 
   const handleBuyNow = (template: any) => {
-    setSelectedTemplate(template);
-    setIsBusinessDetailsOpen(true);
+    const qs = new URLSearchParams({
+      name: template.name,
+      price: template.price,
+      ...(template.stripeProductKey ? { productKey: template.stripeProductKey } : {})
+    }).toString();
+    navigate(`/template-checkout?${qs}`);
   };
 
   const handleFormSubmit = async (e: React.FormEvent) => {
