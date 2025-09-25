@@ -18,10 +18,10 @@ const DialogOverlay = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <DialogPrimitive.Overlay
     ref={ref}
-    className={cn(
-      "fixed inset-0 z-40 modal-overlay data-[state=open]:animate-[modal-overlay-in_var(--modal-overlay-duration)_ease-out] data-[state=closed]:animate-[modal-overlay-out_var(--modal-overlay-duration)_ease-out]",
-      className
-    )}
+      className={cn(
+        "fixed inset-0 z-[9998] modal-overlay data-[state=open]:animate-[modal-overlay-in_var(--modal-overlay-duration)_ease-out] data-[state=closed]:animate-[modal-overlay-out_var(--modal-overlay-duration)_ease-out]",
+        className
+      )}
     {...props}
   />
 ))
