@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -95,9 +95,9 @@ export const CustomQuoteModal = ({ isOpen, onOpenChange }: CustomQuoteModalProps
           <DialogTitle className="text-3xl font-bold text-center bg-gradient-to-r from-orange to-orange/80 bg-clip-text text-transparent">
             Get Your Custom Quote
           </DialogTitle>
-          <p className="text-center text-muted-foreground mt-2">
+          <DialogDescription className="text-center text-muted-foreground mt-2">
             Tell us about your project and we'll provide a detailed quote within 24 hours
-          </p>
+          </DialogDescription>
         </DialogHeader>
 
         <div className="px-2 py-6">
