@@ -29,15 +29,51 @@
     <link rel="dns-prefetch" href="https://fonts.googleapis.com">
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     
-    <!-- Block unwanted tracking scripts -->
-    <script>
-      // Block TikTok Pixel if not needed
-      if (typeof window !== 'undefined') {
-        window.ttq = window.ttq || function() {
-          console.warn('TikTok Pixel blocked - not configured for this site');
-        };
+    <!-- Preload critical resources for LCP optimization -->
+    <link rel="preload" href="/videos/hero-new.mp4" as="video" type="video/mp4">
+    <link rel="preload" href="/lovable-uploads/2b71c5d0-b143-4337-b814-e4dec0c11b15.png" as="image">
+    
+    <!-- Security headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    
+    <!-- Performance and accessibility meta -->
+    <meta name="theme-color" content="#FF7A00">
+    <meta name="color-scheme" content="light dark">
+    
+    <!-- Critical CSS inlined for faster render -->
+    <style>
+      /* Critical above-the-fold styles */
+      html { scroll-behavior: smooth; }
+      body { 
+        margin: 0; 
+        font-family: 'Inter', system-ui, sans-serif;
+        background: #ffffff;
+        color: #0A192F;
+        line-height: 1.6;
       }
-    </script>
+      #root { min-height: 100vh; }
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        border: 0;
+      }
+      .sr-only:focus {
+        position: static;
+        width: auto;
+        height: auto;
+        padding: 0.5rem 1rem;
+        margin: 0;
+        overflow: visible;
+        clip: auto;
+      }
+    </style>
   </head>
 
   <body>

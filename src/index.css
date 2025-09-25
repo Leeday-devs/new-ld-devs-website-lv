@@ -287,7 +287,59 @@
     }
   }
 
-  /* Premium Card System - Enhanced Luxury Effects */
+  /* Button System - Optimized Performance */
+  .btn-primary {
+    background: linear-gradient(135deg, hsl(var(--orange)), hsl(25 100% 45%));
+    color: hsl(var(--text-white));
+    border: 2px solid transparent;
+    font-weight: 600;
+    letter-spacing: 0.025em;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateZ(0); /* Enable hardware acceleration */
+    will-change: transform, box-shadow;
+  }
+
+  .btn-primary:hover {
+    background: linear-gradient(135deg, hsl(25 100% 45%), hsl(25 100% 40%));
+    box-shadow: 0 8px 25px hsl(25 100% 50% / 0.4);
+    transform: translateY(-2px) translateZ(0);
+  }
+
+  .btn-primary:active {
+    transform: translateY(0) scale(0.98) translateZ(0);
+  }
+
+  .btn-secondary {
+    background: hsl(var(--bg-white));
+    color: hsl(var(--text-primary));
+    border: 2px solid hsl(var(--border-light));
+    font-weight: 600;
+    letter-spacing: 0.025em;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateZ(0);
+    will-change: transform, background-color, border-color;
+  }
+
+  .btn-secondary:hover {
+    background: hsl(var(--bg-grey));
+    border-color: hsl(var(--orange));
+    transform: translateY(-1px) translateZ(0);
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: hsl(var(--text-secondary));
+    border: 2px solid transparent;
+    font-weight: 500;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateZ(0);
+    will-change: color, background-color;
+  }
+
+  .btn-ghost:hover {
+    background: hsl(var(--bg-grey));
+    color: hsl(var(--text-primary));
+  }
   .card-premium {
     background: hsl(var(--bg-white));
     border: 1px solid #E5E7EB;

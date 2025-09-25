@@ -9,7 +9,8 @@ import DiscordNotificationTracker from "./components/DiscordNotificationTracker"
 import { PopupManager } from "@/components/PopupManager";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import Loading from "./components/Loading";
-import PerformanceMonitor from "@/components/PerformanceMonitor";
+import OptimizedPerformanceMonitor from "@/components/OptimizedPerformanceMonitor";
+import AccessibilityEnhancer from "@/components/AccessibilityEnhancer";
 
 // Lazy load pages for better performance
 const CreateBlogPost = lazy(() => import("./pages/CreateBlogPost"));
@@ -67,7 +68,8 @@ const App = () => (
     <TooltipProvider>
       <ErrorBoundary>
         <AuthProvider>
-          <PerformanceMonitor />
+          <OptimizedPerformanceMonitor />
+          <AccessibilityEnhancer />
           <Toaster />
           <Sonner />
           <BrowserRouter>

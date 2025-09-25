@@ -19,4 +19,27 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    // Production optimizations
+    minify: 'esbuild',
+    cssMinify: true,
+    sourcemap: false,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom'],
+          ui: ['@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu', '@radix-ui/react-toast'],
+          utils: ['date-fns', 'clsx', 'tailwind-merge'],
+        },
+      },
+    },
+    // Optimize chunk loading
+    chunkSizeWarningLimit: 1000,
+    // Enable compression
+    reportCompressedSize: false,
+  },
+  // Performance optimizations
+  optimizeDeps: {
+    include: ['react', 'react-dom', '@supabase/supabase-js'],
+  },
 }));

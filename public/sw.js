@@ -1,7 +1,10 @@
-// Simple Service Worker for Performance Optimization
-const CACHE_NAME = 'ld-development-v3';
+// Enhanced Service Worker for Performance Optimization
+const VERSION = '1.2.1';
+const CACHE_NAME = `ld-development-v${VERSION}`;
 const STATIC_ASSETS = [
   '/',
+  '/src/main.tsx',
+  '/src/index.css',
   'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap'
 ];
 
