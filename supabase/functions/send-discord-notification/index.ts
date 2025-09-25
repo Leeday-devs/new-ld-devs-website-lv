@@ -95,8 +95,10 @@ serve(async (req) => {
           color: eventColors.contact,
           fields: [
             { name: 'Email', value: data.email, inline: true },
-            { name: 'Subject', value: data.subject || 'No subject', inline: true },
-            { name: 'Message', value: data.message, inline: false }
+            { name: 'Phone', value: data.phone || 'Not provided', inline: true },
+            { name: 'Project Goals', value: data.projectGoals || data.message || 'No details provided', inline: false },
+            { name: 'Budget Range', value: data.budgetRange || 'Not specified', inline: true },
+            { name: 'Timeline', value: data.timeline || 'Not specified', inline: true }
           ],
           timestamp: new Date().toISOString()
         };
