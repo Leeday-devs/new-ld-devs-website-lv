@@ -28,7 +28,6 @@ import {
   Trash2,
   MoreVertical
 } from "lucide-react";
-import { ViewOrderModal } from "./ViewOrderModal";
 import { EditOrderModal } from "./EditOrderModal";
 import { DeleteOrderDialog } from "./DeleteOrderDialog";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
@@ -58,7 +57,6 @@ export function OrderFormsManagement() {
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState("all");
   const [selectedOrder, setSelectedOrder] = useState<OrderForm | null>(null);
-  const [viewModalOpen, setViewModalOpen] = useState(false);
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const { toast } = useToast();
@@ -221,11 +219,6 @@ export function OrderFormsManagement() {
     }
   };
 
-  const handleViewOrder = (order: OrderForm) => {
-    setSelectedOrder(order);
-    setViewModalOpen(true);
-  };
-
   const handleEditOrder = (order: OrderForm) => {
     setSelectedOrder(order);
     setEditModalOpen(true);
@@ -310,7 +303,7 @@ export function OrderFormsManagement() {
                   <Card key={order.id} className="glass-card hover:shadow-xl transition-all duration-300 group">
                     <CardContent className="p-6">
                       {/* Header with customer info and actions */}
-                      <div className="flex items-start justify-between mb-4">
+                      <div className="flex items-start justify-between mb-6">
                         <div className="flex items-center gap-3">
                           <div className="p-2 rounded-full bg-gradient-to-br from-primary/10 to-primary/5">
                             <User className="h-5 w-5 text-primary" />
@@ -342,10 +335,6 @@ export function OrderFormsManagement() {
                               </Button>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end">
-                              <DropdownMenuItem onClick={() => handleViewOrder(order)}>
-                                <Eye className="h-4 w-4 mr-2" />
-                                View Details
-                              </DropdownMenuItem>
                               <DropdownMenuItem onClick={() => handleEditOrder(order)}>
                                 <Edit className="h-4 w-4 mr-2" />
                                 Edit Order
@@ -363,82 +352,149 @@ export function OrderFormsManagement() {
                       </div>
 
                       {/* Amount and date */}
-                      <div className="flex items-center justify-between mb-4 p-3 bg-gradient-to-r from-primary/5 to-transparent rounded-lg">
+                      <div className="flex items-center justify-between mb-6 p-4 bg-gradient-to-r from-primary/5 to-transparent rounded-lg">
                         <div className="flex items-center gap-2">
-                          <DollarSign className="h-5 w-5 text-primary" />
-                          <span className="text-2xl font-bold text-primary">
+                          <DollarSign className="h-6 w-6 text-primary" />
+                          <span className="text-3xl font-bold text-primary">
                             {formatAmount(order.amount)}
                           </span>
                         </div>
-                        <div className="flex items-center gap-1 text-sm text-muted-foreground">
-                          <Calendar className="h-4 w-4" />
-                          {formatDate(order.created_at)}
+                        <div className="text-center">
+                          <div className="flex items-center gap-1 text-sm text-muted-foreground mb-1">
+                            <Calendar className="h-4 w-4" />
+                            Order Date
+                          </div>
+                          <p className="font-medium">{formatDate(order.created_at)}</p>
                         </div>
                       </div>
 
-                      {/* Customer details grid */}
-                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mb-4">
-                        <div className="flex items-center gap-2 p-2 bg-muted/30 rounded-lg">
-                          <Mail className="h-4 w-4 text-muted-foreground flex-shrink-0" />
-                          <span className="text-sm truncate">{order.customer_email}</span>
+                      {/* Customer Information Section */}
+                      <div className="mb-6">
+                        <h4 className="font-semibold text-base mb-3 flex items-center gap-2 text-foreground">
+                          <User className="h-4 w-4 text-primary" />
+                          Customer Information
+                        </h4>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                          <div className="flex items-center gap-2 p-3 bg-muted/30 rounded-lg">
+                            <Mail className="h-4 w-4 text-muted-foreground flex-shrink-0" />
+                            <div>
+                              <p className="text-xs text-muted-foreground">Email</p>
+                              <p className="text-sm font-medium truncate">{order.customer_email}</p>
+                            </div>
+                          </div>
+                          
+                          {order.customer_phone && (
+                            <div className="flex items-center gap-2 p-3 bg-muted/30 rounded-lg">
+                              <Phone className="h-4 w-4 text-muted-foreground flex-shrink-0" />
+                              <div>
+                                <p className="text-xs text-muted-foreground">Phone</p>
+                                <p className="text-sm font-medium">{order.customer_phone}</p>
+                              </div>
+                            </div>
+                          )}
+                          
+                          {order.customer_company && (
+                            <div className="flex items-center gap-2 p-3 bg-muted/30 rounded-lg">
+                              <Building2 className="h-4 w-4 text-muted-foreground flex-shrink-0" />
+                              <div>
+                                <p className="text-xs text-muted-foreground">Company</p>
+                                <p className="text-sm font-medium truncate">{order.customer_company}</p>
+                              </div>
+                            </div>
+                          )}
+
+                          {order.customer_website_url && (
+                            <div className="flex items-center gap-2 p-3 bg-muted/30 rounded-lg">
+                              <Globe className="h-4 w-4 text-muted-foreground flex-shrink-0" />
+                              <div>
+                                <p className="text-xs text-muted-foreground">Website</p>
+                                <p className="text-sm font-medium truncate">{order.customer_website_url}</p>
+                              </div>
+                            </div>
+                          )}
                         </div>
-                        
-                        {order.customer_phone && (
-                          <div className="flex items-center gap-2 p-2 bg-muted/30 rounded-lg">
-                            <Phone className="h-4 w-4 text-muted-foreground flex-shrink-0" />
-                            <span className="text-sm">{order.customer_phone}</span>
-                          </div>
-                        )}
-                        
-                        {order.customer_company && (
-                          <div className="flex items-center gap-2 p-2 bg-muted/30 rounded-lg">
-                            <Building2 className="h-4 w-4 text-muted-foreground flex-shrink-0" />
-                            <span className="text-sm truncate">{order.customer_company}</span>
-                          </div>
-                        )}
-
-                        {order.customer_website_url && (
-                          <div className="flex items-center gap-2 p-2 bg-muted/30 rounded-lg">
-                            <Globe className="h-4 w-4 text-muted-foreground flex-shrink-0" />
-                            <span className="text-sm truncate">{order.customer_website_url}</span>
-                          </div>
-                        )}
-
-                        {order.customer_project_goals && (
-                          <div className="flex items-center gap-2 p-2 bg-muted/30 rounded-lg">
-                            <Target className="h-4 w-4 text-muted-foreground flex-shrink-0" />
-                            <span className="text-sm">{getProjectGoalsLabel(order.customer_project_goals)}</span>
-                          </div>
-                        )}
-
-                        {order.customer_timeline && (
-                          <div className="flex items-center gap-2 p-2 bg-muted/30 rounded-lg">
-                            <Timer className="h-4 w-4 text-muted-foreground flex-shrink-0" />
-                            <span className="text-sm">{getTimelineLabel(order.customer_timeline)}</span>
-                          </div>
-                        )}
-
-                        {order.customer_add_hosting !== null && (
-                          <div className="flex items-center gap-2 p-2 bg-muted/30 rounded-lg">
-                            <Server className="h-4 w-4 text-muted-foreground flex-shrink-0" />
-                            <span className="text-sm">
-                              Hosting: {order.customer_add_hosting ? '£40/month' : 'No'}
-                            </span>
-                          </div>
-                        )}
                       </div>
 
-                      {/* Payment info */}
-                      {order.stripe_session_id && (
-                        <div className="p-3 bg-green-50 border border-green-200 rounded-lg mb-4">
-                          <p className="text-xs text-green-700 font-medium">
-                            ✓ Payment Confirmed
-                          </p>
-                          <code className="text-xs text-green-600 bg-green-100 px-2 py-1 rounded mt-1 inline-block">
-                            {order.stripe_session_id.substring(0, 24)}...
-                          </code>
+                      {/* Project Details Section */}
+                      {(order.customer_project_goals || order.customer_timeline || order.customer_add_hosting !== null) && (
+                        <div className="mb-6">
+                          <h4 className="font-semibold text-base mb-3 flex items-center gap-2 text-foreground">
+                            <Target className="h-4 w-4 text-primary" />
+                            Project Details
+                          </h4>
+                          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                            {order.customer_project_goals && (
+                              <div className="flex items-center gap-2 p-3 bg-muted/30 rounded-lg">
+                                <Target className="h-4 w-4 text-muted-foreground flex-shrink-0" />
+                                <div>
+                                  <p className="text-xs text-muted-foreground">Project Goals</p>
+                                  <p className="text-sm font-medium">{getProjectGoalsLabel(order.customer_project_goals)}</p>
+                                </div>
+                              </div>
+                            )}
+
+                            {order.customer_timeline && (
+                              <div className="flex items-center gap-2 p-3 bg-muted/30 rounded-lg">
+                                <Timer className="h-4 w-4 text-muted-foreground flex-shrink-0" />
+                                <div>
+                                  <p className="text-xs text-muted-foreground">Timeline</p>
+                                  <p className="text-sm font-medium">{getTimelineLabel(order.customer_timeline)}</p>
+                                </div>
+                              </div>
+                            )}
+
+                            {order.customer_add_hosting !== null && (
+                              <div className="flex items-center gap-2 p-3 bg-muted/30 rounded-lg">
+                                <Server className="h-4 w-4 text-muted-foreground flex-shrink-0" />
+                                <div>
+                                  <p className="text-xs text-muted-foreground">Hosting & Maintenance</p>
+                                  <p className="text-sm font-medium">
+                                    {order.customer_add_hosting ? 'Yes (£40/month)' : 'No'}
+                                  </p>
+                                </div>
+                              </div>
+                            )}
+                          </div>
                         </div>
                       )}
+
+                      {/* Payment Information Section */}
+                      <div className="mb-4">
+                        <h4 className="font-semibold text-base mb-3 flex items-center gap-2 text-foreground">
+                          <CreditCard className="h-4 w-4 text-primary" />
+                          Payment Information
+                        </h4>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                          <div className="p-3 bg-muted/30 rounded-lg">
+                            <p className="text-xs text-muted-foreground mb-1">Order Status</p>
+                            <Badge variant="outline" className="capitalize">
+                              {order.status}
+                            </Badge>
+                          </div>
+
+                          <div className="p-3 bg-muted/30 rounded-lg">
+                            <p className="text-xs text-muted-foreground mb-1">Last Updated</p>
+                            <p className="text-sm font-medium">{formatDate(order.updated_at)}</p>
+                          </div>
+                        </div>
+
+                        {order.stripe_session_id && (
+                          <div className="mt-3 p-4 bg-green-50 border border-green-200 rounded-lg">
+                            <div className="flex items-center gap-2 mb-2">
+                              <CheckCircle className="h-4 w-4 text-green-600" />
+                              <p className="text-sm text-green-700 font-medium">
+                                Payment Confirmed
+                              </p>
+                            </div>
+                            <div>
+                              <p className="text-xs text-green-600 mb-1">Stripe Session ID</p>
+                              <code className="text-xs text-green-700 bg-green-100 px-2 py-1 rounded">
+                                {order.stripe_session_id}
+                              </code>
+                            </div>
+                          </div>
+                        )}
+                      </div>
 
                       {/* Status and actions */}
                       <div className="flex items-center justify-between pt-3 border-t border-border/50">
@@ -464,15 +520,6 @@ export function OrderFormsManagement() {
                           <Button 
                             variant="outline" 
                             size="sm"
-                            onClick={() => handleViewOrder(order)}
-                            className="hover:bg-primary/10 hover:border-primary/30"
-                          >
-                            <Eye className="h-4 w-4 mr-1" />
-                            View
-                          </Button>
-                          <Button 
-                            variant="outline" 
-                            size="sm"
                             onClick={() => handleEditOrder(order)}
                             className="hover:bg-primary/10 hover:border-primary/30"
                           >
@@ -491,12 +538,6 @@ export function OrderFormsManagement() {
       </Card>
 
       {/* Modals and Dialogs */}
-      <ViewOrderModal
-        order={selectedOrder}
-        isOpen={viewModalOpen}
-        onClose={() => setViewModalOpen(false)}
-      />
-
       <EditOrderModal
         order={selectedOrder}
         isOpen={editModalOpen}
