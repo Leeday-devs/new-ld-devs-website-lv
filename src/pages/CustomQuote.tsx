@@ -73,6 +73,11 @@ const CustomQuote = () => {
         needsMaintenance: false
       });
 
+      // Redirect to home page after a short delay
+      setTimeout(() => {
+        navigate('/');
+      }, 2000);
+
     } catch (error) {
       console.error('Error:', error);
       toast({
