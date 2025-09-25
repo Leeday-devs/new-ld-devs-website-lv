@@ -11,6 +11,8 @@ import ErrorBoundary from "@/components/ErrorBoundary";
 import Loading from "./components/Loading";
 import OptimizedPerformanceMonitor from "@/components/OptimizedPerformanceMonitor";
 import AccessibilityEnhancer from "@/components/AccessibilityEnhancer";
+import MobilePerformanceOptimizer from "@/components/MobilePerformanceOptimizer";
+import MobileOptimizedLayout from "@/components/MobileOptimizedLayout";
 
 // Lazy load pages for better performance
 const CreateBlogPost = lazy(() => import("./pages/CreateBlogPost"));
@@ -68,14 +70,16 @@ const App = () => (
     <TooltipProvider>
       <ErrorBoundary>
         <AuthProvider>
-          <OptimizedPerformanceMonitor />
-          <AccessibilityEnhancer />
-          <Toaster />
-          <Sonner />
-          <BrowserRouter>
-            <DiscordNotificationTracker />
-            <PopupManager />
-            <Suspense fallback={<Loading message="Loading page..." />}>
+          <MobileOptimizedLayout>
+            <OptimizedPerformanceMonitor />
+            <MobilePerformanceOptimizer />
+            <AccessibilityEnhancer />
+            <Toaster />
+            <Sonner />
+            <BrowserRouter>
+              <DiscordNotificationTracker />
+              <PopupManager />
+              <Suspense fallback={<Loading message="Loading page..." />}>
               <Routes>
                 <Route path="/" element={<Index />} />
                 <Route path="/pricing" element={<PricingPage />} />
@@ -114,10 +118,11 @@ const App = () => (
               </Routes>
             </Suspense>
           </BrowserRouter>
-        </AuthProvider>
-      </ErrorBoundary>
-    </TooltipProvider>
-  </QueryClientProvider>
+        </MobileOptimizedLayout>
+      </AuthProvider>
+    </ErrorBoundary>
+  </TooltipProvider>
+</QueryClientProvider>
 );
 
 export default App;
