@@ -1,9 +1,7 @@
 import { MapPin, MessageCircle, User } from "lucide-react";
 import leeHeadshot from "../assets/lee-headshot.jpg";
-
 const AboutMe = () => {
-  return (
-    <section className="bg-transparent py-20 large-section" aria-label="About Lee - Web Developer">
+  return <section className="bg-transparent py-20 large-section" aria-label="About Lee - Web Developer">
       <div className="container mx-auto px-6">
         {/* Section Header */}
         <div className="text-center mb-16">
@@ -25,11 +23,7 @@ const AboutMe = () => {
                 
                 {/* Photo Card */}
                 <div className="relative w-80 h-96 bg-gradient-to-br from-navy/10 to-purple-900/10 rounded-3xl border border-orange/20 shadow-luxury overflow-hidden">
-                  <img 
-                    src={leeHeadshot} 
-                    alt="Lee and his wife - Freelance Web Developer from London"
-                    className="absolute inset-0 w-full h-full object-cover"
-                  />
+                  <img src={leeHeadshot} alt="Lee and his wife - Freelance Web Developer from London" className="absolute inset-0 w-full h-full object-cover" />
                   {/* Subtle overlay */}
                   <div className="absolute inset-0 bg-gradient-to-br from-transparent via-orange/5 to-transparent"></div>
                 </div>
@@ -39,9 +33,7 @@ const AboutMe = () => {
             {/* Right Column - Content */}
             <div className="text-center lg:text-left">
               <div className="space-y-6 mb-8">
-                <p className="text-body text-lg leading-relaxed text-text-secondary">
-                  Hi, I'm Lee, a London based freelancer. I work directly with small businesses to create everything from websites and apps to AI automations and contract portals & tools that save time, build trust, and help your business grow.
-                </p>
+                <p className="text-body text-lg leading-relaxed text-text-secondary">Hi, I'm Lee, a London based freelancer. I work directly with small businesses to create everything from websites and apps to AI automations  &amp; tools that save time, build trust, and help your business grow.</p>
                 <p className="text-body text-lg leading-relaxed text-text-secondary">
                   That's me in the photo with my wife—my biggest supporter. I keep my process simple: clear communication, fast turnarounds, and solutions that deliver a premium finish without the agency price tag.
                 </p>
@@ -73,8 +65,6 @@ const AboutMe = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default AboutMe;
