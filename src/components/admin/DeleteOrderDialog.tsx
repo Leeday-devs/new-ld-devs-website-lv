@@ -65,7 +65,7 @@ export function DeleteOrderDialog({ order, isOpen, onClose, onDeleted }: DeleteO
   };
 
   return (
-    <AlertDialog open={isOpen} onOpenChange={onClose}>
+    <AlertDialog open={isOpen} onOpenChange={(open) => { if (!open) onClose(); }}>
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>Delete Order</AlertDialogTitle>

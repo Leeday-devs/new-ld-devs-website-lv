@@ -108,7 +108,7 @@ export const ContactQuoteModal = ({ isOpen, onClose }: ContactQuoteModalProps) =
   const descriptionId = "contact-quote-description";
 
   return (
-    <Dialog open={isOpen} onOpenChange={onClose}>
+    <Dialog open={isOpen} onOpenChange={(open) => { if (!open) onClose(); }}>
       <DialogContent 
         ref={modalRef}
         className="modal-default"

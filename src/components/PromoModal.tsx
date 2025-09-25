@@ -61,7 +61,7 @@ export const PromoModal = ({
   const descriptionId = "promo-description";
 
   return (
-    <Dialog open={isOpen && shouldShow} onOpenChange={onClose}>
+    <Dialog open={isOpen && shouldShow} onOpenChange={(open) => { if (!open) onClose(); }}>
       <DialogContent 
         ref={modalRef}
         className="modal-small"

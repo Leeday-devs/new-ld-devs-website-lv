@@ -106,7 +106,7 @@ export const LeadCaptureModal = ({ isOpen, onClose }: LeadCaptureModalProps) => 
   const descriptionId = "lead-capture-description";
 
   return (
-    <Dialog open={isOpen && shouldShow} onOpenChange={onClose}>
+    <Dialog open={isOpen && shouldShow} onOpenChange={(open) => { if (!open) onClose(); }}>
       <DialogContent 
         ref={modalRef}
         className="modal-default"

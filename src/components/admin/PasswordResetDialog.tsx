@@ -141,7 +141,7 @@ const PasswordResetDialog = ({ open, onClose, customerEmail, customerName }: Pas
   };
 
   return (
-    <AlertDialog open={open} onOpenChange={onClose}>
+    <AlertDialog open={open} onOpenChange={(open) => { if (!open) onClose(); }}>
       <AlertDialogContent className="sm:max-w-md">
         <AlertDialogHeader>
           <AlertDialogTitle className="flex items-center gap-2">
