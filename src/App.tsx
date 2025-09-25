@@ -43,6 +43,7 @@ const TermsOfService = lazy(() => import("./pages/TermsOfService"));
 const CookiePolicy = lazy(() => import("./pages/CookiePolicy"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const PricingPage = lazy(() => import("./pages/PricingPage"));
+const CustomQuote = lazy(() => import("./pages/CustomQuote"));
 const Checkout = lazy(() => import("./pages/Checkout"));
 
 // Optimized QueryClient configuration
@@ -75,6 +76,7 @@ const App = () => (
               <Routes>
                 <Route path="/" element={<Index />} />
                 <Route path="/pricing" element={<PricingPage />} />
+                <Route path="/custom-quote" element={<CustomQuote />} />
                 <Route path="/auth" element={<UnifiedAuth />} />
                 <Route path="/admin/auth" element={<AdminAuth />} />
                 <Route path="/admin/panel" element={<AdminPanel />} />

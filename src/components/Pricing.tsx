@@ -1,6 +1,5 @@
 import { CheckCircle, Star, Crown, Code, ShoppingCart, Server, Smartphone, Brain, Monitor, Award, Sparkles, Zap, Shield, ChevronDown, ChevronUp, ChevronLeft, ChevronRight } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
-import { CustomQuoteModal } from "@/components/CustomQuoteModal";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
@@ -10,7 +9,6 @@ import pricingHeroBg from "@/assets/pricing-hero-bg.jpg";
 import { useNavigate } from "react-router-dom";
 const Pricing = () => {
   const [activeCategory, setActiveCategory] = useState('websites');
-  const [isCustomQuoteOpen, setIsCustomQuoteOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showComparison, setShowComparison] = useState(false);
   const isMobile = useIsMobile();
@@ -734,7 +732,7 @@ const Pricing = () => {
                 Every business has unique challenges. Let's create a tailored solution that perfectly fits your vision and exceeds your expectations.
               </p>
               
-              <button className="group/btn bg-gradient-to-r from-orange to-orange/80 text-white px-12 py-5 text-xl font-bold rounded-2xl shadow-2xl hover:shadow-orange/50 hover:-translate-y-2 transition-all duration-500 relative overflow-hidden" onClick={() => setIsCustomQuoteOpen(true)}>
+              <button className="group/btn bg-gradient-to-r from-orange to-orange/80 text-white px-12 py-5 text-xl font-bold rounded-2xl shadow-2xl hover:shadow-orange/50 hover:-translate-y-2 transition-all duration-500 relative overflow-hidden" onClick={() => navigate('/custom-quote')}>
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 translate-x-[-200%] group-hover/btn:translate-x-[200%] transition-transform duration-1000"></div>
                 <span className="relative z-10 flex items-center space-x-2">
                   <span>Get Custom Quote</span>
@@ -749,9 +747,6 @@ const Pricing = () => {
           </div>
       </div>
     </div>
-    
-    {/* Custom Quote Modal */}
-    <CustomQuoteModal isOpen={isCustomQuoteOpen} onOpenChange={setIsCustomQuoteOpen} />
   </section>;
 };
 export default Pricing;
