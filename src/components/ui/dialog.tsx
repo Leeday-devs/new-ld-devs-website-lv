@@ -19,7 +19,7 @@ const DialogOverlay = React.forwardRef<
   <DialogPrimitive.Overlay
     ref={ref}
       className={cn(
-        "fixed inset-0 z-[9998] modal-overlay data-[state=open]:animate-[modal-overlay-in_var(--modal-overlay-duration)_ease-out] data-[state=closed]:animate-[modal-overlay-out_var(--modal-overlay-duration)_ease-out]",
+        "fixed inset-0 z-[9998] modal-overlay backdrop-blur-0 data-[state=open]:animate-[modal-overlay-in_var(--modal-overlay-duration)_ease-out] data-[state=closed]:animate-[modal-overlay-out_var(--modal-overlay-duration)_ease-out]",
         className
       )}
     {...props}
@@ -38,7 +38,7 @@ const DialogContent = React.forwardRef<
       role="dialog"
       aria-modal="true"
       className={cn(
-        "fixed left-[50%] top-[50%] z-[9999] -translate-x-1/2 -translate-y-1/2 modal-content modal-default focus:outline-none data-[state=open]:animate-[modal-content-in_var(--modal-content-duration)_ease-out] data-[state=closed]:animate-[modal-content-out_var(--modal-content-duration)_ease-out] max-h-[90vh] overflow-y-auto",
+        "fixed left-[50%] top-[50%] z-[9999] -translate-x-1/2 -translate-y-1/2 modal-content modal-default bg-background focus:outline-none data-[state=open]:animate-[modal-content-in_var(--modal-content-duration)_ease-out] data-[state=closed]:animate-[modal-content-out_var(--modal-content-duration)_ease-out] max-h-[90vh] overflow-y-auto",
         className
       )}
       tabIndex={-1}
