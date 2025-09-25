@@ -2,78 +2,43 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>LD Development - Professional Web Development & Hosting</title>
     <link rel="icon" href="/lovable-uploads/c05ee520-dfce-4d37-9abd-2ecb7430e4da.png" type="image/png">
     <meta name="description" content="Professional web development, hosting, and digital solutions in London. Custom websites, e-commerce, AI automation, and 24/7 hosting support." />
-    <meta name="author" content="Lee Day Devs" />
-
-    <meta property="og:title" content="Lee Day Devs - Professional Web Development & Hosting Services" />
-    <meta property="og:description" content="Professional web development, hosting, and digital solutions in London. Custom websites, e-commerce, AI automation, and 24/7 hosting support." />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="/lovable-uploads/c05ee520-dfce-4d37-9abd-2ecb7430e4da.png" />
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Lee Day Devs - Professional Web Development & Hosting Services" />
-    <meta name="twitter:description" content="Professional web development, hosting, and digital solutions in London. Custom websites, e-commerce, AI automation, and 24/7 hosting support." />
-    <meta name="twitter:image" content="/lovable-uploads/c05ee520-dfce-4d37-9abd-2ecb7430e4da.png" />
     
-    <!-- Performance optimizations -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <!-- Critical performance optimizations for mobile -->
+    <link rel="preload" href="/lovable-uploads/2b71c5d0-b143-4337-b814-e4dec0c11b15.png" as="image" fetchpriority="high">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
-    <!-- Optimized font loading with font-display -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- DNS prefetch for external resources -->
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
-    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
-    
-    <!-- Preload critical resources for LCP optimization -->
-    <link rel="preload" href="/videos/hero-new.mp4" as="video" type="video/mp4">
-    <link rel="preload" href="/lovable-uploads/2b71c5d0-b143-4337-b814-e4dec0c11b15.png" as="image">
-    
-    <!-- Security headers -->
-    <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta http-equiv="X-Frame-Options" content="DENY">
-    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
-    
-    <!-- Performance and accessibility meta -->
-    <meta name="theme-color" content="#FF7A00">
-    <meta name="color-scheme" content="light dark">
-    
-    <!-- Critical CSS inlined for faster render -->
+    <!-- Critical inline CSS for mobile LCP -->
     <style>
-      /* Critical above-the-fold styles */
-      html { scroll-behavior: smooth; }
-      body { 
-        margin: 0; 
-        font-family: 'Inter', system-ui, sans-serif;
-        background: #ffffff;
-        color: #0A192F;
-        line-height: 1.6;
-      }
-      #root { min-height: 100vh; }
-      .sr-only {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        padding: 0;
-        margin: -1px;
-        overflow: hidden;
-        clip: rect(0, 0, 0, 0);
-        border: 0;
-      }
-      .sr-only:focus {
-        position: static;
-        width: auto;
-        height: auto;
-        padding: 0.5rem 1rem;
-        margin: 0;
-        overflow: visible;
-        clip: auto;
+      /* Critical above-the-fold styles for mobile */
+      *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+      body{font:16px/1.5 -apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;color:#0A192F;background:#fff;-webkit-text-size-adjust:100%;-webkit-font-smoothing:antialiased}
+      .container{width:100%;max-width:100vw;padding:0 1rem;margin:0 auto}
+      .hero-section{min-height:100vh;background:#0A192F;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem 1rem}
+      .hero-section h1{font-size:2rem;font-weight:700;line-height:1.2;margin-bottom:1rem;opacity:1;transform:none}
+      .hero-section p{margin-bottom:1rem;line-height:1.6;opacity:0.9}
+      .btn{display:inline-block;padding:12px 24px;background:#FF7A00;color:#fff;text-decoration:none;border-radius:8px;font-weight:600;border:none;cursor:pointer;min-height:48px;touch-action:manipulation}
+      img{max-width:100%;height:auto;display:block}
+      .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0)}
+      #root{min-height:100vh}
+      
+      /* Remove all animations and transitions for mobile performance */
+      @media (max-width: 768px) {
+        *,*::before,*::after{animation:none!important;transition:none!important;transform:none!important}
+        .backdrop-blur-sm,.backdrop-blur-md,.backdrop-blur-lg{backdrop-filter:none!important}
+        .shadow-xl,.shadow-2xl{box-shadow:none!important}
+        [data-aos],.animate-pulse,.animate-spin,.particle-container{display:none!important}
+        video{display:none!important}
       }
     </style>
+    
+    <!-- Security and performance headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta name="theme-color" content="#FF7A00">
   </head>
 
   <body>
