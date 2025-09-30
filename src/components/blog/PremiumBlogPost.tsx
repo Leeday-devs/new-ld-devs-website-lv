@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams, Navigate, Link } from 'react-router-dom';
+import { useParams, Navigate, Link, useLocation } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
@@ -40,9 +40,13 @@ interface BlogPostData {
 
 const PremiumBlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
+  const location = useLocation();
   const [post, setPost] = useState<BlogPostData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [readTime, setReadTime] = useState(5);
+  
+  // Detect if this is a Knowledge Hub route
+  const isKnowledgeHub = location.pathname.startsWith('/knowledge-hub');
 
   useEffect(() => {
     if (slug) {
@@ -165,34 +169,60 @@ const PremiumBlogPost = () => {
   }
 
   if (!post) {
-    return <Navigate to="/blog" replace />;
+    return <Navigate to={isKnowledgeHub ? "/knowledge-hub" : "/blog"} replace />;
   }
 
   return (
     <>
       <SEOHead 
-        title={`${post.title} - LD Development Blog`}
+        title={`${post.title} - LD Development ${isKnowledgeHub ? 'Knowledge Hub' : 'Blog'}`}
         description={post.excerpt || post.title}
         keywords={`${post.category?.toLowerCase()}, web development, ${post.title.toLowerCase()}`}
         url={typeof window !== 'undefined' ? window.location.href : undefined}
         ogImage={post.images?.[0] || post.featured_image}
-        structuredData={{
-          "@context": "https://schema.org",
-          "@type": "BlogPosting",
-          headline: post.title,
-          image: post.images?.[0] || post.featured_image || '',
-          datePublished: post.published_at || post.created_at,
-          dateModified: post.published_at || post.created_at,
-          author: { "@type": "Organization", name: "LD Development Team" },
-          publisher: { 
-            "@type": "Organization", 
-            name: "LD Development",
-            logo: { "@type": "ImageObject", url: `${typeof window !== 'undefined' ? window.location.origin : 'https://leedaydevs.com'}/lovable-uploads/c05ee520-dfce-4d37-9abd-2ecb7430e4da.png` }
+        structuredData={[
+          {
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            headline: post.title,
+            image: post.images?.[0] || post.featured_image || '',
+            datePublished: post.published_at || post.created_at,
+            dateModified: post.published_at || post.created_at,
+            author: { "@type": "Organization", name: "LD Development Team" },
+            publisher: { 
+              "@type": "Organization", 
+              name: "LD Development",
+              logo: { "@type": "ImageObject", url: `${typeof window !== 'undefined' ? window.location.origin : 'https://leeday.uk'}/lovable-uploads/c05ee520-dfce-4d37-9abd-2ecb7430e4da.png` }
+            },
+            description: post.excerpt || post.title,
+            mainEntityOfPage: { "@type": "WebPage", "@id": typeof window !== 'undefined' ? window.location.href : 'https://leeday.uk' },
+            articleSection: post.category
           },
-          description: post.excerpt || post.title,
-          mainEntityOfPage: { "@type": "WebPage", "@id": typeof window !== 'undefined' ? window.location.href : 'https://leedaydevs.com' },
-          articleSection: post.category
-        }}
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": typeof window !== 'undefined' ? window.location.origin : 'https://leeday.uk'
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": isKnowledgeHub ? "Knowledge Hub" : "Blog",
+                "item": `${typeof window !== 'undefined' ? window.location.origin : 'https://leeday.uk'}${isKnowledgeHub ? '/knowledge-hub' : '/blog'}`
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": post.title,
+                "item": typeof window !== 'undefined' ? window.location.href : 'https://leeday.uk'
+              }
+            ]
+          }
+        ]}
         organizationSameAs={[
           "https://www.facebook.com/profile.php?id=61563893127712"
         ]}
@@ -201,24 +231,24 @@ const PremiumBlogPost = () => {
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50/30 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
         <ReadingProgress />
         <Navigation />
-        <StickyShareButtons url={`/blog/${slug}`} title={post.title} excerpt={post.excerpt} />
+        <StickyShareButtons url={`${isKnowledgeHub ? '/knowledge-hub' : '/blog'}/${slug}`} title={post.title} excerpt={post.excerpt} />
         
         <main className="container mx-auto px-4 pt-28 pb-8">
           {/* Breadcrumbs */}
           <div className="mb-8 max-w-4xl mx-auto">
             <Breadcrumbs items={[
               { label: 'Home', href: '/' },
-              { label: 'Blog', href: '/blog' },
+              { label: isKnowledgeHub ? 'Knowledge Hub' : 'Blog', href: isKnowledgeHub ? '/knowledge-hub' : '/blog' },
               { label: post.title }
             ]} />
           </div>
 
           {/* Back button */}
           <div className="mb-8 max-w-4xl mx-auto">
-            <Link to="/blog">
+            <Link to={isKnowledgeHub ? "/knowledge-hub" : "/blog"}>
               <Button variant="outline" className="gap-2 hover:bg-gradient-to-r hover:from-[#FF7A00]/10 hover:to-[#0D6EFD]/10 transition-all duration-200">
                 <ArrowLeft className="h-4 w-4" />
-                Back to Blog
+                Back to {isKnowledgeHub ? 'Knowledge Hub' : 'Blog'}
               </Button>
             </Link>
           </div>
