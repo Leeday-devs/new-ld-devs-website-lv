@@ -21,6 +21,7 @@ const AdminPanel = lazy(() => import("./pages/AdminPanel"));
 const CustomerDashboard = lazy(() => import("./pages/CustomerDashboard"));
 const RequestWork = lazy(() => import("./pages/RequestWork"));
 const Blog = lazy(() => import("./pages/Blog"));
+const KnowledgeHub = lazy(() => import("./pages/KnowledgeHub"));
 const BlogPost = lazy(() => import("./pages/BlogPost"));
 const PaymentSuccess = lazy(() => import("./pages/PaymentSuccess"));
 const PaymentCanceled = lazy(() => import("./pages/PaymentCanceled"));
@@ -86,7 +87,9 @@ const App = () => (
                 <Route path="/dashboard" element={<CustomerDashboard />} />
                 <Route path="/request-work" element={<RequestWork />} />
                 <Route path="/blog" element={<Blog />} />
+                <Route path="/knowledge-hub" element={<KnowledgeHub />} />
                 <Route path="/blog/:slug" element={<BlogPost />} />
+                <Route path="/knowledge-hub/:slug" element={<BlogPost />} />
                 <Route path="/templates" element={<WebsiteTemplates />} />
                 <Route path="/templates/:templateId" element={<TemplateDetail />} />
                 <Route path="/demo/plumber-pro" element={<PlumberProDemo />} />

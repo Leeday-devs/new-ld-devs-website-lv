@@ -20,7 +20,7 @@ const MobileOptimizedNavigation = () => {
     { name: "What I Do", href: "#services", isInternal: false },
     { name: "Pricing (From)", href: "/pricing", isInternal: true },
     { name: "Pre-Built", href: "/templates", isInternal: true },
-    { name: "Blog", href: "/blog", isInternal: true }
+    { name: "Knowledge Hub", href: "/knowledge-hub", isInternal: true }
   ];
 
   const dropdownItems = [

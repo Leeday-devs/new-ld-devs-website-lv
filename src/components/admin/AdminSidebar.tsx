@@ -98,7 +98,7 @@ const menuItems = [
     section: "communication"
   },
   {
-    title: "Blog Posts",
+    title: "Knowledge Hub Posts",
     url: "/admin/panel?tab=blog",
     icon: PenTool,
     section: "content"

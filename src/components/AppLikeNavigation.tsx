@@ -12,7 +12,7 @@ const primaryNavItems = [
   { label: "What I Do", href: "/#services", isInternal: false },
   { label: "Pricing (From)", href: "/pricing", isInternal: true },
   { label: "Pre-Built", href: "/templates", isInternal: true },
-  { label: "Blog", href: "/blog", isInternal: true }
+  { label: "Knowledge Hub", href: "/knowledge-hub", isInternal: true }
 ];
 
 const dropdownItems = [

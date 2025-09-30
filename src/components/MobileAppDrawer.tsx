@@ -33,7 +33,7 @@ const MobileAppDrawer = ({ isOpen, onClose }: MobileAppDrawerProps) => {
     { label: "Services", href: "#services", isInternal: false },
     { label: "Pricing", href: "/pricing", isInternal: true },
     { label: "Templates", href: "/templates", isInternal: true },
-    { label: "Blog", href: "/blog", isInternal: true },
+    { label: "Knowledge Hub", href: "/knowledge-hub", isInternal: true },
     { label: "Portfolio", href: "#portfolio", isInternal: false },
     { label: "FAQ", href: "#faq", isInternal: false }
   ];
