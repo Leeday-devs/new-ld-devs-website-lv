@@ -172,6 +172,101 @@ const PremiumBlogPost = () => {
     return <Navigate to={isKnowledgeHub ? "/knowledge-hub" : "/blog"} replace />;
   }
 
+  // Build structured data array
+  const structuredDataArray: any[] = [
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      headline: post.title,
+      image: post.images?.[0] || post.featured_image || '',
+      datePublished: post.published_at || post.created_at,
+      dateModified: post.published_at || post.created_at,
+      author: { "@type": "Organization", name: "LD Development Team" },
+      publisher: { 
+        "@type": "Organization", 
+        name: "LD Development",
+        logo: { "@type": "ImageObject", url: `${typeof window !== 'undefined' ? window.location.origin : 'https://leeday.uk'}/lovable-uploads/c05ee520-dfce-4d37-9abd-2ecb7430e4da.png` }
+      },
+      description: post.excerpt || post.title,
+      mainEntityOfPage: { "@type": "WebPage", "@id": typeof window !== 'undefined' ? window.location.href : 'https://leeday.uk' },
+      articleSection: post.category
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": typeof window !== 'undefined' ? window.location.origin : 'https://leeday.uk'
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": isKnowledgeHub ? "Knowledge Hub" : "Blog",
+          "item": `${typeof window !== 'undefined' ? window.location.origin : 'https://leeday.uk'}${isKnowledgeHub ? '/knowledge-hub' : '/blog'}`
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": post.title,
+          "item": typeof window !== 'undefined' ? window.location.href : 'https://leeday.uk'
+        }
+      ]
+    }
+  ];
+
+  // Add FAQ schema for website cost article
+  if (slug === 'website-cost-uk-2025') {
+    structuredDataArray.push({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How much does a small business website cost in the UK in 2025?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Typically £500–£5,000 depending on scope, features, and custom design. High-end bespoke builds can exceed £10,000."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What factors affect website cost?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Type of site, number of pages, design quality, integrations, and hosting/maintenance."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Are there hidden costs for websites?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes—hosting & maintenance (£40/mo with us), domains (£10–£20/yr), content/photos, and future updates."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do you structure payments at LeeDay.uk?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "£20 slot deposit, 50% upfront, 50% on completion. The deposit is fully refundable if you're not happy with the mockup."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I start small and add features later?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes—begin with the core site, then add bookings, chat, or automations as you grow."
+          }
+        }
+      ]
+    });
+  }
+
   return (
     <>
       <SEOHead 
@@ -180,49 +275,7 @@ const PremiumBlogPost = () => {
         keywords={`${post.category?.toLowerCase()}, web development, ${post.title.toLowerCase()}`}
         url={typeof window !== 'undefined' ? window.location.href : undefined}
         ogImage={post.images?.[0] || post.featured_image}
-        structuredData={[
-          {
-            "@context": "https://schema.org",
-            "@type": "BlogPosting",
-            headline: post.title,
-            image: post.images?.[0] || post.featured_image || '',
-            datePublished: post.published_at || post.created_at,
-            dateModified: post.published_at || post.created_at,
-            author: { "@type": "Organization", name: "LD Development Team" },
-            publisher: { 
-              "@type": "Organization", 
-              name: "LD Development",
-              logo: { "@type": "ImageObject", url: `${typeof window !== 'undefined' ? window.location.origin : 'https://leeday.uk'}/lovable-uploads/c05ee520-dfce-4d37-9abd-2ecb7430e4da.png` }
-            },
-            description: post.excerpt || post.title,
-            mainEntityOfPage: { "@type": "WebPage", "@id": typeof window !== 'undefined' ? window.location.href : 'https://leeday.uk' },
-            articleSection: post.category
-          },
-          {
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            "itemListElement": [
-              {
-                "@type": "ListItem",
-                "position": 1,
-                "name": "Home",
-                "item": typeof window !== 'undefined' ? window.location.origin : 'https://leeday.uk'
-              },
-              {
-                "@type": "ListItem",
-                "position": 2,
-                "name": isKnowledgeHub ? "Knowledge Hub" : "Blog",
-                "item": `${typeof window !== 'undefined' ? window.location.origin : 'https://leeday.uk'}${isKnowledgeHub ? '/knowledge-hub' : '/blog'}`
-              },
-              {
-                "@type": "ListItem",
-                "position": 3,
-                "name": post.title,
-                "item": typeof window !== 'undefined' ? window.location.href : 'https://leeday.uk'
-              }
-            ]
-          }
-        ]}
+        structuredData={structuredDataArray}
         organizationSameAs={[
           "https://www.facebook.com/profile.php?id=61563893127712"
         ]}
