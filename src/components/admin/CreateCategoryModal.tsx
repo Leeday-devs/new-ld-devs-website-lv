@@ -74,13 +74,13 @@ const CreateCategoryModal = ({ open, onClose, onSuccess }: CreateCategoryModalPr
 
   return (
     <Dialog open={open} onOpenChange={(open) => { if (!open) onClose(); }}>
-      <DialogContent className="max-w-lg" style={{ zIndex: 10000 }}>
+      <DialogContent className="max-w-lg z-[100000]" aria-labelledby="create-category-title" aria-describedby="create-category-description" style={{ zIndex: 100000 }}>
         <DialogHeader>
-          <DialogTitle className="flex items-center gap-2">
+          <DialogTitle id="create-category-title" className="flex items-center gap-2">
             <Plus className="h-5 w-5 text-primary" />
             New Category
           </DialogTitle>
-          <DialogDescription>
+          <DialogDescription id="create-category-description">
             Create a new category for organizing Knowledge Hub articles.
           </DialogDescription>
         </DialogHeader>
