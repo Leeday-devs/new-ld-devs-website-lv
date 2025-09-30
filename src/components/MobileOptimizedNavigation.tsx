@@ -18,7 +18,7 @@ const MobileOptimizedNavigation = () => {
   const primaryNavItems = [
     { name: "Home", href: "/", isInternal: true },
     { name: "What I Do", href: "#services", isInternal: false },
-    { name: "Pricing (From)", href: "/pricing", isInternal: true },
+    { name: "Pricing", href: "/pricing", isInternal: true },
     { name: "Pre-Built", href: "/templates", isInternal: true },
     { name: "Knowledge Hub", href: "/knowledge-hub", isInternal: true }
   ];

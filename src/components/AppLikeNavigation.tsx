@@ -10,7 +10,7 @@ import MobileAppDrawer from "./MobileAppDrawer";
 const primaryNavItems = [
   { label: "Home", href: "/", isInternal: true },
   { label: "What I Do", href: "/#services", isInternal: false },
-  { label: "Pricing (From)", href: "/pricing", isInternal: true },
+  { label: "Pricing", href: "/pricing", isInternal: true },
   { label: "Pre-Built", href: "/templates", isInternal: true },
   { label: "Knowledge Hub", href: "/knowledge-hub", isInternal: true }
 ];
