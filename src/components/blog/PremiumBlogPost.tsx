@@ -347,7 +347,7 @@ const PremiumBlogPost = () => {
 
               <GradientSectionDivider />
 
-              {/* Main Content - Sanitized HTML */}
+              {/* Main Content - Sanitized HTML with skimmable structure */}
               <div className="prose prose-lg max-w-none space-y-8">
                 <div 
                   className="blog-content text-lg leading-relaxed"
@@ -362,66 +362,62 @@ const PremiumBlogPost = () => {
               </div>
 
               <GradientSectionDivider />
-
-              {/* Case Study / Key Stats - at the end before FAQ */}
-              <div className="my-12">
-                <PremiumContentCard
-                  type="story"
-                  title={caseStudyData.title}
-                >
-                  <blockquote className="text-lg mb-6 italic border-l-4 border-gradient-to-b from-[#FF7A00] to-[#0D6EFD] pl-6">
-                    "{caseStudyData.quote}"
-                  </blockquote>
-                  <p className="text-muted-foreground font-semibold mb-8">
-                    — {caseStudyData.author}
-                  </p>
-                  
-                  {/* Key Stats */}
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-                    {caseStudyData.stats.map((stat, index) => (
-                      <div key={index} className="text-center p-6 bg-gradient-to-br from-white/50 to-blue-50/30 dark:from-white/5 dark:to-blue-900/10 rounded-xl border border-blue-200/30 dark:border-white/10">
-                        <div className="text-3xl font-bold bg-gradient-to-r from-[#FF7A00] to-[#0D6EFD] bg-clip-text text-transparent mb-2">
-                          {stat.value}
-                        </div>
-                        <div className="text-sm text-muted-foreground">
-                          {stat.label}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </PremiumContentCard>
-              </div>
             </article>
           </div>
 
           {/* Expanded FAQ Section */}
           <BlogFAQSection faqs={faqData} />
 
-          {/* Strong Closing CTA */}
+          {/* Case Study / Success Story - moved to bottom after FAQ */}
+          <div className="max-w-4xl mx-auto my-16">
+            <PremiumContentCard
+              type="story"
+              title={caseStudyData.title}
+            >
+              <blockquote className="text-lg mb-6 italic border-l-4 border-gradient-to-b from-[#FF7A00] to-[#0D6EFD] pl-6">
+                "{caseStudyData.quote}"
+              </blockquote>
+              <p className="text-muted-foreground font-semibold mb-8">
+                — {caseStudyData.author}
+              </p>
+              
+              {/* Key Stats */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+                {caseStudyData.stats.map((stat, index) => (
+                  <div key={index} className="text-center p-6 bg-gradient-to-br from-white/50 to-blue-50/30 dark:from-white/5 dark:to-blue-900/10 rounded-xl border border-blue-200/30 dark:border-white/10">
+                    <div className="text-3xl font-bold bg-gradient-to-r from-[#FF7A00] to-[#0D6EFD] bg-clip-text text-transparent mb-2">
+                      {stat.value}
+                    </div>
+                    <div className="text-sm text-muted-foreground">
+                      {stat.label}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </PremiumContentCard>
+          </div>
+
+
+          {/* Unified Strong CTA - single closing block */}
           <div className="max-w-4xl mx-auto my-16">
             <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#FF7A00] via-[#FF8A1A] to-[#0D6EFD] p-12 shadow-2xl">
               <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZ3JpZCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNIDQwIDAgTCAwIDAgMCA0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLW9wYWNpdHk9IjAuMSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+')] opacity-30"></div>
               <div className="relative text-center space-y-6">
                 <h2 className="text-3xl md:text-4xl font-bold text-white">
-                  Want results like this?
+                  Get Your Free Mockup Today
                 </h2>
                 <p className="text-xl text-white/90 max-w-2xl mx-auto">
-                  Get a free mockup today and see exactly how your new website will look before paying a penny.
+                  See exactly how your new website will look before paying a penny. Start with a risk-free £20 deposit—fully refundable if you're not happy with the design.
                 </p>
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-                  <Link to="/pricing">
-                    <Button size="lg" className="bg-white text-[#FF7A00] hover:bg-white/90 font-bold px-8 py-6 text-lg shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105">
-                      Get Your Free Mockup →
-                    </Button>
-                  </Link>
-                  <Link to="/custom-quote">
-                    <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white/10 font-semibold px-8 py-6 text-lg">
-                      Request Custom Quote
+                <div className="pt-4">
+                  <Link to="/contact">
+                    <Button size="lg" className="bg-white text-[#FF7A00] hover:bg-white/90 font-bold px-10 py-7 text-lg shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105">
+                      Get Started Now →
                     </Button>
                   </Link>
                 </div>
-                <p className="text-sm text-white/80 pt-4">
-                  💰 £20 deposit • 100% refundable if you don't love the mockup
+                <p className="text-sm text-white/80 pt-2">
+                  💰 £20 deposit • 100% refundable • No obligation
                 </p>
               </div>
             </div>
