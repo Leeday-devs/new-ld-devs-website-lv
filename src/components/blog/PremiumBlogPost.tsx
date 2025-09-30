@@ -398,7 +398,7 @@ const PremiumBlogPost = () => {
           </div>
 
 
-          {/* Unified Strong CTA - single closing block */}
+          {/* Unified Final CTA - single strong closing block */}
           <div className="max-w-4xl mx-auto my-16">
             <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#FF7A00] via-[#FF8A1A] to-[#0D6EFD] p-12 shadow-2xl">
               <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZ3JpZCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNIDQwIDAgTCAwIDAgMCA0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLW9wYWNpdHk9IjAuMSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+')] opacity-30"></div>
@@ -407,17 +407,17 @@ const PremiumBlogPost = () => {
                   Get Your Free Mockup Today
                 </h2>
                 <p className="text-xl text-white/90 max-w-2xl mx-auto">
-                  See exactly how your new website will look before paying a penny. Start with a risk-free £20 deposit—fully refundable if you're not happy with the design.
+                  See how your website could look before committing to anything. Fully refundable deposit.
                 </p>
                 <div className="pt-4">
                   <Link to="/contact">
                     <Button size="lg" className="bg-white text-[#FF7A00] hover:bg-white/90 font-bold px-10 py-7 text-lg shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105">
-                      Get Started Now →
+                      Book My Free Mockup →
                     </Button>
                   </Link>
                 </div>
                 <p className="text-sm text-white/80 pt-2">
-                  💰 £20 deposit • 100% refundable • No obligation
+                  💰 Only £20 deposit • 100% refundable • No obligation
                 </p>
               </div>
             </div>
