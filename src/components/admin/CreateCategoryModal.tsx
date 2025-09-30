@@ -74,7 +74,7 @@ const CreateCategoryModal = ({ open, onClose, onSuccess }: CreateCategoryModalPr
 
   return (
     <Dialog open={open} onOpenChange={(open) => { if (!open) onClose(); }}>
-      <DialogContent className="max-w-lg">
+      <DialogContent className="max-w-lg" style={{ zIndex: 10000 }}>
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
             <Plus className="h-5 w-5 text-primary" />
