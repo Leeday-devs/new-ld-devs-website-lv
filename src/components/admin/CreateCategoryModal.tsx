@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
 import { Plus, Save } from "lucide-react";
 import { sanitizeInput } from "@/utils/security";
@@ -80,6 +80,9 @@ const CreateCategoryModal = ({ open, onClose, onSuccess }: CreateCategoryModalPr
             <Plus className="h-5 w-5 text-primary" />
             New Category
           </DialogTitle>
+          <DialogDescription>
+            Create a new category for organizing Knowledge Hub articles.
+          </DialogDescription>
         </DialogHeader>
 
         <form onSubmit={handleSubmit} className="space-y-5">
