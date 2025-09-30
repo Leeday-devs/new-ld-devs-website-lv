@@ -125,13 +125,49 @@ const KnowledgeHub = () => {
     </Card>
   );
 
+  const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://leeday.uk';
+  
   return (
     <>
       <SEOHead 
         title="Knowledge Hub - LD Development | Web Development Guides & Resources"
         description="Guides, FAQs, and resources to help small businesses get the most out of websites, apps, and AI automation."
         keywords="web development guides, small business resources, AI automation, website costs, app development"
-        url={typeof window !== 'undefined' ? window.location.href : undefined}
+        url={typeof window !== 'undefined' ? window.location.href : `${baseUrl}/knowledge-hub`}
+        structuredData={[
+          {
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            "name": "Knowledge Hub",
+            "description": "Guides, FAQs, and resources to help small businesses get the most out of websites, apps, and AI automation.",
+            "url": `${baseUrl}/knowledge-hub`,
+            "hasPart": blogPosts.slice(0, 9).map(post => ({
+              "@type": "Article",
+              "headline": post.title,
+              "description": post.excerpt,
+              "url": `${baseUrl}/knowledge-hub/${post.slug}`,
+              "datePublished": post.created_at
+            }))
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": baseUrl
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Knowledge Hub",
+                "item": `${baseUrl}/knowledge-hub`
+              }
+            ]
+          }
+        ]}
       />
       <div className="min-h-screen">
         <Navigation />
