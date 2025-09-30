@@ -15,6 +15,7 @@ interface BlogPost {
   title: string;
   excerpt: string;
   slug: string;
+  category?: string;
   category_id?: string | null;
   created_at: string;
 }
@@ -33,7 +34,7 @@ const KnowledgeHub = () => {
       const [postsResult, categoriesResult] = await Promise.all([
         supabase
           .from('blog_posts')
-          .select('id, title, excerpt, slug, category_id, created_at')
+          .select('id, title, excerpt, slug, category, category_id, created_at')
           .eq('status', 'published')
           .order('published_at', { ascending: false }),
         supabase
@@ -61,12 +62,16 @@ const KnowledgeHub = () => {
   };
 
   const getCategoryName = (post: BlogPost) => {
-    return post.category_id ? categoryMap[post.category_id] || "" : "";
+    // Try to get category from category_id mapping first, then fall back to text category field
+    if (post.category_id && categoryMap[post.category_id]) {
+      return categoryMap[post.category_id];
+    }
+    return post.category || "";
   };
 
   const categorizePost = (post: BlogPost) => {
     const category = getCategoryName(post).toLowerCase();
-    if (category.includes('cost') || category.includes('design') || category.includes('website')) {
+    if (category.includes('cost') || category.includes('design') || category.includes('website') || category.includes('web development') || category.includes('ld info')) {
       return 'costs';
     } else if (category.includes('ai') || category.includes('automation')) {
       return 'ai';
