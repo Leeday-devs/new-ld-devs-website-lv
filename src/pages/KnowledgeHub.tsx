@@ -4,8 +4,9 @@ import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { Button } from "@/components/ui/button";
-import { BookOpen, Bot, Smartphone, ArrowRight, Sparkles } from "lucide-react";
-import { useState, useEffect } from "react";
+import { Input } from "@/components/ui/input";
+import { BookOpen, Bot, Smartphone, ArrowRight, Sparkles, Search } from "lucide-react";
+import { useState, useEffect, useMemo } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Card } from "@/components/ui/card";
 import { CTAButton } from "@/components/CTAButton";
@@ -24,6 +25,7 @@ const KnowledgeHub = () => {
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [categoryMap, setCategoryMap] = useState<Record<string, string>>({});
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     fetchData();
@@ -81,51 +83,93 @@ const KnowledgeHub = () => {
     return 'general';
   };
 
-  const costsPosts = blogPosts.filter(p => categorizePost(p) === 'costs');
-  const aiPosts = blogPosts.filter(p => categorizePost(p) === 'ai');
-  const appsPosts = blogPosts.filter(p => categorizePost(p) === 'apps');
+  // Filter posts by search query
+  const filteredPosts = useMemo(() => {
+    if (!searchQuery.trim()) return blogPosts;
+    
+    const query = searchQuery.toLowerCase();
+    return blogPosts.filter(post => 
+      post.title.toLowerCase().includes(query) ||
+      post.excerpt.toLowerCase().includes(query) ||
+      getCategoryName(post).toLowerCase().includes(query)
+    );
+  }, [blogPosts, searchQuery, categoryMap]);
+
+  const costsPosts = filteredPosts.filter(p => categorizePost(p) === 'costs');
+  const aiPosts = filteredPosts.filter(p => categorizePost(p) === 'ai');
+  const appsPosts = filteredPosts.filter(p => categorizePost(p) === 'apps');
 
   const CategorySection = ({ 
     icon: Icon, 
-    title, 
+    title,
+    description,
     posts 
   }: { 
     icon: any; 
-    title: string; 
+    title: string;
+    description: string;
     posts: BlogPost[] 
   }) => (
     <Card className="p-8 bg-gradient-to-br from-white/80 to-white/60 backdrop-blur-xl border-2 border-primary/10 hover:border-primary/30 transition-all duration-300 hover:shadow-premium">
-      <div className="flex items-center gap-3 mb-6">
+      <div className="flex items-center gap-3 mb-3">
         <div className="p-3 bg-gradient-primary rounded-xl">
           <Icon className="h-6 w-6 text-white" />
         </div>
         <h2 className="text-2xl font-bold text-navy">{title}</h2>
       </div>
       
+      <p className="text-sm text-text-secondary mb-6 ml-1">
+        {description}
+      </p>
+      
       {posts.length > 0 ? (
         <div className="space-y-4">
-          {posts.slice(0, 3).map((post) => (
-            <Link
-              key={post.id}
-              to={`/knowledge-hub/${post.slug}`}
-              className="block group"
-            >
-              <div className="p-4 rounded-lg bg-white/50 hover:bg-white transition-all duration-300 border border-transparent hover:border-primary/20">
-                <h3 className="font-semibold text-navy mb-2 group-hover:text-primary transition-colors">
-                  {post.title}
-                </h3>
-                <p className="text-sm text-text-secondary line-clamp-2 mb-3">
-                  {post.excerpt}
-                </p>
-                <span className="text-sm text-primary font-medium inline-flex items-center gap-2">
-                  Read More <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                </span>
+          {posts.slice(0, 4).map((post, index) => {
+            const allPostsInCategory = posts;
+            const nextPost = allPostsInCategory[index + 1] || allPostsInCategory[0];
+            
+            // Standardize excerpt to 20-30 words
+            const words = post.excerpt.split(' ');
+            const standardizedExcerpt = words.slice(0, 25).join(' ') + (words.length > 25 ? '...' : '.');
+            
+            return (
+              <div key={post.id} className="block group">
+                <Link
+                  to={`/knowledge-hub/${post.slug}`}
+                  className="block"
+                >
+                  <div className="p-4 rounded-lg bg-white/50 hover:bg-white transition-all duration-300 border border-transparent hover:border-primary/20">
+                    <h3 className="font-semibold text-navy mb-2 group-hover:text-primary transition-colors">
+                      {post.title}
+                    </h3>
+                    <p className="text-sm text-text-secondary mb-3">
+                      {standardizedExcerpt}
+                    </p>
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm text-primary font-medium inline-flex items-center gap-2">
+                        Read More <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                      </span>
+                    </div>
+                  </div>
+                </Link>
+                {nextPost && nextPost.id !== post.id && (
+                  <div className="mt-2 ml-4">
+                    <Link 
+                      to={`/knowledge-hub/${nextPost.slug}`}
+                      className="text-xs text-muted-foreground hover:text-primary transition-colors inline-flex items-center gap-1"
+                    >
+                      Related: {nextPost.title}
+                    </Link>
+                  </div>
+                )}
               </div>
-            </Link>
-          ))}
+            );
+          })}
         </div>
       ) : (
-        <p className="text-text-secondary text-center py-8">Coming soon...</p>
+        <p className="text-text-secondary text-center py-8">
+          {searchQuery ? 'No articles found matching your search.' : 'Coming soon...'}
+        </p>
       )}
     </Card>
   );
@@ -146,13 +190,18 @@ const KnowledgeHub = () => {
             "name": "Knowledge Hub",
             "description": "Guides, FAQs, and resources to help small businesses get the most out of websites, apps, and AI automation.",
             "url": `${baseUrl}/knowledge-hub`,
-            "hasPart": blogPosts.slice(0, 9).map(post => ({
-              "@type": "Article",
-              "headline": post.title,
-              "description": post.excerpt,
-              "url": `${baseUrl}/knowledge-hub/${post.slug}`,
-              "datePublished": post.created_at
-            }))
+            "hasPart": blogPosts.map(post => {
+              const words = post.excerpt.split(' ');
+              const shortDescription = words.slice(0, 25).join(' ') + (words.length > 25 ? '...' : '.');
+              
+              return {
+                "@type": "Article",
+                "headline": post.title,
+                "description": shortDescription,
+                "url": `${baseUrl}/knowledge-hub/${post.slug}`,
+                "datePublished": post.created_at
+              };
+            })
           },
           {
             "@context": "https://schema.org",
@@ -216,8 +265,31 @@ const KnowledgeHub = () => {
           </div>
         </section>
 
+        {/* Search Bar */}
+        <section className="section-white pt-12 pb-8" aria-label="Search articles">
+          <div className="container mx-auto px-6">
+            <div className="max-w-2xl mx-auto">
+              <div className="relative">
+                <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+                <Input
+                  type="text"
+                  placeholder="Search articles by keyword or category..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="pl-12 pr-4 py-6 text-base rounded-xl border-2 border-primary/10 focus:border-primary/30 transition-all duration-300"
+                />
+              </div>
+              {searchQuery && (
+                <p className="mt-3 text-sm text-muted-foreground text-center">
+                  {filteredPosts.length} {filteredPosts.length === 1 ? 'article' : 'articles'} found
+                </p>
+              )}
+            </div>
+          </div>
+        </section>
+
         {/* Category Sections */}
-        <section className="section-white py-20" aria-label="Knowledge categories">
+        <section className="section-white py-12" aria-label="Knowledge categories">
           <div className="container mx-auto px-6">
             {isLoading ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -232,16 +304,19 @@ const KnowledgeHub = () => {
                 <CategorySection 
                   icon={BookOpen}
                   title="💰 Website Costs & Design"
+                  description="Transparent pricing guides and design insights to help you plan and budget for your perfect website."
                   posts={costsPosts}
                 />
                 <CategorySection 
                   icon={Bot}
                   title="🤖 AI for Small Businesses"
+                  description="Practical AI and automation strategies that save time and boost efficiency for small business owners."
                   posts={aiPosts}
                 />
                 <CategorySection 
                   icon={Smartphone}
                   title="📱 Apps & Automations"
+                  description="Mobile apps, workflow automation, and digital tools to streamline your operations and scale faster."
                   posts={appsPosts}
                 />
               </div>
