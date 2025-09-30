@@ -52,12 +52,12 @@ const BlogPostsList = ({ posts, onDelete }: BlogPostsListProps) => {
     return (
       <div className="text-center py-12">
         <BarChart3 className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
-        <h3 className="text-lg font-semibold text-foreground mb-2">No blog posts yet</h3>
+        <h3 className="text-lg font-semibold text-foreground mb-2">No Knowledge Hub articles yet</h3>
         <p className="text-muted-foreground mb-4">
-          Create your first blog post to get started.
+          Create your first Knowledge Hub article to get started.
         </p>
         <Button className="btn-premium">
-          Create Your First Post
+          Create Your First Article
         </Button>
       </div>
     );
@@ -126,7 +126,7 @@ const BlogPostsList = ({ posts, onDelete }: BlogPostsListProps) => {
                     <Button
                       variant="outline"
                       size="sm"
-                      onClick={() => window.open(`/blog/${post.slug}`, '_blank')}
+                      onClick={() => window.open(`/knowledge-hub/${post.slug}`, '_blank')}
                       className="hover:bg-secondary/10 hover:text-secondary hover:border-secondary"
                     >
                       <Eye className="h-3 w-3" />

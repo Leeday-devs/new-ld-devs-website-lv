@@ -72,7 +72,7 @@ const EditBlogPost = () => {
       if (error) {
         toast({
           title: "Error",
-          description: "Failed to load blog post.",
+          description: "Failed to load Knowledge Hub article.",
           variant: "destructive",
         });
         navigate('/admin/panel?tab=blog');
@@ -250,7 +250,7 @@ const EditBlogPost = () => {
           body: {
             eventType: 'admin_action',
             data: {
-              action: 'Blog Post Updated',
+              action: 'Knowledge Hub Article Updated',
               adminEmail: user?.email || 'Unknown Admin',
               details: `Updated "${formData.title}" - Status: ${formData.status}`,
               postTitle: formData.title,
@@ -266,7 +266,7 @@ const EditBlogPost = () => {
 
       toast({
         title: "Success",
-        description: "Blog post updated successfully!",
+        description: "Knowledge Hub article updated successfully!",
       });
 
       navigate('/admin/panel?tab=blog');
@@ -297,7 +297,7 @@ const EditBlogPost = () => {
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-4"></div>
-          <p className="text-muted-foreground">Loading blog post...</p>
+          <p className="text-muted-foreground">Loading Knowledge Hub article...</p>
         </div>
       </div>
     );
@@ -307,7 +307,7 @@ const EditBlogPost = () => {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center">
-          <p className="text-muted-foreground">Blog post not found.</p>
+          <p className="text-muted-foreground">Knowledge Hub article not found.</p>
           <Button onClick={() => navigate('/admin/panel?tab=blog')} className="mt-4">
             Back to Admin
           </Button>
@@ -333,9 +333,9 @@ const EditBlogPost = () => {
             <div>
               <h1 className="text-3xl font-bold text-foreground flex items-center gap-2">
                 <Edit className="h-8 w-8 text-primary" />
-                Edit Blog Post
+                Edit Knowledge Hub Article
               </h1>
-              <p className="text-muted-foreground mt-1">Update your blog post. Fields marked * are required.</p>
+              <p className="text-muted-foreground mt-1">Update your Knowledge Hub article. Fields marked * are required.</p>
             </div>
           </div>
         </div>
@@ -491,7 +491,7 @@ const EditBlogPost = () => {
                 value={formData.content}
                 onChange={(content) => setFormData(prev => ({ ...prev, content }))}
                 modules={quillModules}
-                placeholder="Write your blog post content here..."
+                placeholder="Write your Knowledge Hub article content here..."
                 style={{ minHeight: '400px' }}
               />
             </div>

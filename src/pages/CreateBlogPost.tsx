@@ -194,7 +194,7 @@ const CreateBlogPost = () => {
           body: {
             eventType: 'admin_action',
             data: {
-              action: 'Blog Post Created',
+              action: 'Knowledge Hub Article Created',
               adminEmail: user?.email || 'Unknown Admin',
               details: `${formData.status === 'published' ? 'Published' : 'Created draft'}: "${formData.title}"`,
               postTitle: formData.title,
@@ -210,7 +210,7 @@ const CreateBlogPost = () => {
 
       toast({
         title: "Success",
-        description: `Blog post ${formData.status === 'published' ? 'published' : 'saved as draft'} successfully!`,
+        description: `Knowledge Hub article ${formData.status === 'published' ? 'published' : 'saved as draft'} successfully!`,
       });
 
       // Navigate back to admin panel
@@ -252,8 +252,8 @@ const CreateBlogPost = () => {
               Back to Admin
             </Button>
             <div>
-              <h1 className="text-3xl font-bold text-foreground">Create New Blog Post</h1>
-              <p className="text-muted-foreground mt-1">Create and publish a new blog post. Fields marked * are required.</p>
+              <h1 className="text-3xl font-bold text-foreground">Create Knowledge Hub Article</h1>
+              <p className="text-muted-foreground mt-1">Create and publish a new Knowledge Hub article. Fields marked * are required.</p>
             </div>
           </div>
         </div>
@@ -418,7 +418,7 @@ const CreateBlogPost = () => {
                 value={formData.content}
                 onChange={(content) => setFormData(prev => ({ ...prev, content }))}
                 modules={quillModules}
-                placeholder="Write your blog post content here..."
+                placeholder="Write your Knowledge Hub article content here..."
                 style={{ minHeight: '400px' }}
               />
             </div>
@@ -439,7 +439,7 @@ const CreateBlogPost = () => {
               disabled={isLoading || isUploading}
             >
               <Save className="h-4 w-4" />
-              {isLoading ? "Saving..." : formData.status === 'published' ? "Publish Post" : "Save Draft"}
+              {isLoading ? "Saving..." : formData.status === 'published' ? "Publish Article" : "Save Draft"}
             </Button>
           </div>
         </form>

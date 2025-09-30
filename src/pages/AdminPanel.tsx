@@ -241,7 +241,7 @@ const AdminPanel = () => {
                   className="gap-2 bg-primary hover:bg-primary/90"
                 >
                   <Plus className="h-4 w-4" />
-                  New Post
+                  New Article
                 </Button>
               </div>
             </div>
@@ -250,7 +250,7 @@ const AdminPanel = () => {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <PenTool className="h-5 w-5 text-primary" />
-                  Blog Posts
+                  Knowledge Hub Articles
                 </CardTitle>
               </CardHeader>
               <CardContent>

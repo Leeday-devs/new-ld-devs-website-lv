@@ -207,9 +207,9 @@ const CreatePostModal = ({ open, onClose, onSuccess }: CreatePostModalProps) => 
         tags: ""
       });
 
-      toast({
-        title: "Success",
-        description: `Blog post ${formData.status === 'published' ? 'published' : 'saved as draft'} successfully!`,
+        toast({
+          title: "Success",
+          description: `Knowledge Hub article ${formData.status === 'published' ? 'published' : 'saved as draft'} successfully!`,
       });
 
       // Send Discord notification
@@ -217,9 +217,9 @@ const CreatePostModal = ({ open, onClose, onSuccess }: CreatePostModalProps) => 
         await supabase.functions.invoke('send-discord-notification', {
           body: {
             eventType: 'admin_action',
-            data: {
-              action: 'Blog Post Created',
-              adminEmail: user?.email || 'Unknown Admin',
+              data: {
+                action: 'Knowledge Hub Article Created',
+                adminEmail: user?.email || 'Unknown Admin',
               details: `${formData.status === 'published' ? 'Published' : 'Created draft'}: "${formData.title}"`,
               postTitle: formData.title,
               category: formData.category,
@@ -264,10 +264,10 @@ const CreatePostModal = ({ open, onClose, onSuccess }: CreatePostModalProps) => 
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
             <Plus className="h-5 w-5 text-primary" />
-            Create New Blog Post
+            Create New Knowledge Hub Article
           </DialogTitle>
           <DialogDescription className="text-muted-foreground">
-            Create and publish a new blog post. Fields marked * are required.
+            Create and publish a new Knowledge Hub article. Fields marked * are required.
           </DialogDescription>
         </DialogHeader>
 
@@ -429,7 +429,7 @@ const CreatePostModal = ({ open, onClose, onSuccess }: CreatePostModalProps) => 
                 value={formData.content}
                 onChange={(content) => setFormData(prev => ({ ...prev, content }))}
                 modules={quillModules}
-                placeholder="Write your blog post content here..."
+                placeholder="Write your Knowledge Hub article content here..."
                 style={{ minHeight: '300px' }}
               />
             </div>
