@@ -15,6 +15,7 @@ import PendingCustomersManagement from "@/components/admin/PendingCustomersManag
 import BannedEmailsManagement from "@/components/admin/BannedEmailsManagement";
 import { CookieConsentManagement } from "@/components/admin/CookieConsentManagement";
 import { CollectedEmailsManagement } from "@/components/admin/CollectedEmailsManagement";
+import { KnowledgeHubCategoriesManagement } from "@/components/admin/KnowledgeHubCategoriesManagement";
 import DiscordWebhookSettings from "@/components/DiscordWebhookSettings";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -219,6 +220,8 @@ const AdminPanel = () => {
         return <CookieConsentManagement />;
       case "discord":
         return <DiscordWebhookSettings />;
+      case "categories":
+        return <KnowledgeHubCategoriesManagement />;
       case "blog":
         return (
           <div className="space-y-6">

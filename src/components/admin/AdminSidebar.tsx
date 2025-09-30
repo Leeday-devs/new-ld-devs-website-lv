@@ -13,7 +13,8 @@ import {
   LogOut,
   User,
   Database,
-  MessageSquare
+  MessageSquare,
+  FolderKanban
 } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import {
@@ -101,6 +102,12 @@ const menuItems = [
     title: "Knowledge Hub Posts",
     url: "/admin/panel?tab=blog",
     icon: PenTool,
+    section: "content"
+  },
+  {
+    title: "Hub Categories",
+    url: "/admin/panel?tab=categories",
+    icon: FolderKanban,
     section: "content"
   },
 ];

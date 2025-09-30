@@ -71,16 +71,37 @@ const KnowledgeHub = () => {
     return post.category || "";
   };
 
+  // Fetch all active categories from database for dynamic rendering
+  const [dbCategories, setDbCategories] = useState<Array<{
+    id: string;
+    name: string;
+    description: string | null;
+    icon: string | null;
+    display_order: number;
+  }>>([]);
+
+  useEffect(() => {
+    const fetchDbCategories = async () => {
+      const { data, error } = await supabase
+        .from('blog_categories')
+        .select('id, name, description, icon, display_order')
+        .eq('status', 'active')
+        .order('display_order', { ascending: true });
+      
+      if (!error && data) {
+        setDbCategories(data);
+      }
+    };
+    fetchDbCategories();
+  }, []);
+
   const categorizePost = (post: BlogPost) => {
-    const category = getCategoryName(post).toLowerCase();
-    if (category.includes('cost') || category.includes('design') || category.includes('website') || category.includes('web development') || category.includes('ld info')) {
-      return 'costs';
-    } else if (category.includes('ai') || category.includes('automation')) {
-      return 'ai';
-    } else if (category.includes('app') || category.includes('mobile')) {
-      return 'apps';
-    }
-    return 'general';
+    const categoryName = getCategoryName(post);
+    // Return the actual category ID for better matching
+    const matchedCategory = dbCategories.find(c => 
+      c.name.toLowerCase() === categoryName.toLowerCase()
+    );
+    return matchedCategory?.id || 'general';
   };
 
   // Filter posts by search query
@@ -95,9 +116,14 @@ const KnowledgeHub = () => {
     );
   }, [blogPosts, searchQuery, categoryMap]);
 
-  const costsPosts = filteredPosts.filter(p => categorizePost(p) === 'costs');
-  const aiPosts = filteredPosts.filter(p => categorizePost(p) === 'ai');
-  const appsPosts = filteredPosts.filter(p => categorizePost(p) === 'apps');
+  // Group posts by category dynamically
+  const postsByCategory = useMemo(() => {
+    const grouped: Record<string, BlogPost[]> = {};
+    dbCategories.forEach(cat => {
+      grouped[cat.id] = filteredPosts.filter(p => categorizePost(p) === cat.id);
+    });
+    return grouped;
+  }, [filteredPosts, dbCategories]);
 
   const CategorySection = ({ 
     icon: Icon, 
@@ -299,26 +325,27 @@ const KnowledgeHub = () => {
                   </div>
                 ))}
               </div>
+            ) : dbCategories.length === 0 ? (
+              <div className="text-center py-12">
+                <p className="text-muted-foreground">No categories available yet.</p>
+              </div>
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <CategorySection 
-                  icon={BookOpen}
-                  title="💰 Website Costs & Design"
-                  description="Transparent pricing guides and design insights to help you plan and budget for your perfect website."
-                  posts={costsPosts}
-                />
-                <CategorySection 
-                  icon={Bot}
-                  title="🤖 AI for Small Businesses"
-                  description="Practical AI and automation strategies that save time and boost efficiency for small business owners."
-                  posts={aiPosts}
-                />
-                <CategorySection 
-                  icon={Smartphone}
-                  title="📱 Apps & Automations"
-                  description="Mobile apps, workflow automation, and digital tools to streamline your operations and scale faster."
-                  posts={appsPosts}
-                />
+              <div className={`grid gap-8 ${
+                dbCategories.length === 1 ? 'grid-cols-1 max-w-2xl mx-auto' :
+                dbCategories.length === 2 ? 'grid-cols-1 md:grid-cols-2' :
+                dbCategories.length === 3 ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3' :
+                dbCategories.length === 4 ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4' :
+                'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
+              }`}>
+                {dbCategories.map((category) => (
+                  <CategorySection 
+                    key={category.id}
+                    icon={BookOpen}
+                    title={`${category.icon || '📄'} ${category.name}`}
+                    description={category.description || ''}
+                    posts={postsByCategory[category.id] || []}
+                  />
+                ))}
               </div>
             )}
           </div>
