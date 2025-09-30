@@ -101,10 +101,40 @@ const PremiumBlogPost = () => {
     }
   };
 
-  // Generate short answer for Answer Box (this would ideally come from the database)
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-background">
+        <ReadingProgress />
+        <Navigation />
+        <div className="pt-24 pb-16">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto animate-pulse">
+              <div className="space-y-6">
+                <div className="h-8 bg-muted rounded mb-4 w-1/4"></div>
+                <div className="h-16 bg-muted rounded mb-6"></div>
+                <div className="h-4 bg-muted rounded mb-2 w-1/3"></div>
+                <div className="h-64 bg-muted rounded mb-8"></div>
+                <div className="space-y-4">
+                  <div className="h-4 bg-muted rounded"></div>
+                  <div className="h-4 bg-muted rounded w-5/6"></div>
+                  <div className="h-4 bg-muted rounded w-4/6"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (!post) {
+    return <Navigate to={isKnowledgeHub ? "/knowledge-hub" : "/blog"} replace />;
+  }
+
+  // Generate short answer for Answer Box (moved after null check)
   const shortAnswer = post.excerpt || "Discover proven strategies and solutions tailored to your business needs. Our approach has helped 500+ UK businesses achieve measurable growth and sustainable success.";
 
-  // Generate FAQ data (this would ideally come from the database)
+  // Generate FAQ data
   const faqData = [
     {
       question: "How long does it take to see results from these strategies?",
@@ -147,36 +177,6 @@ const PremiumBlogPost = () => {
       { label: "Project Success Rate", value: "99.2%" }
     ]
   };
-
-  if (isLoading) {
-    return (
-      <div className="min-h-screen bg-background">
-        <ReadingProgress />
-        <Navigation />
-        <div className="pt-24 pb-16">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto animate-pulse">
-              <div className="space-y-6">
-                <div className="h-8 bg-muted rounded mb-4 w-1/4"></div>
-                <div className="h-16 bg-muted rounded mb-6"></div>
-                <div className="h-4 bg-muted rounded mb-2 w-1/3"></div>
-                <div className="h-64 bg-muted rounded mb-8"></div>
-                <div className="space-y-4">
-                  <div className="h-4 bg-muted rounded"></div>
-                  <div className="h-4 bg-muted rounded w-5/6"></div>
-                  <div className="h-4 bg-muted rounded w-4/6"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  if (!post) {
-    return <Navigate to={isKnowledgeHub ? "/knowledge-hub" : "/blog"} replace />;
-  }
 
   // Build structured data array
   const structuredDataArray: any[] = [
