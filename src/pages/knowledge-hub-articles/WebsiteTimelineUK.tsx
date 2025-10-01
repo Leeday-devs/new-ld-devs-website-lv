@@ -62,6 +62,32 @@ const WebsiteTimelineUK = () => {
             ]
           })}
         </script>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://leeday.uk"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Knowledge Hub",
+                "item": "https://leeday.uk/knowledge-hub"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "How Long Does It Take to Build a Professional Website?",
+                "item": "https://leeday.uk/knowledge-hub/website-timeline-uk"
+              }
+            ]
+          })}
+        </script>
       </Helmet>
 
       <article className="max-w-4xl mx-auto px-4 py-12">
