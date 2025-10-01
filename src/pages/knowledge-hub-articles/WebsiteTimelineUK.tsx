@@ -14,6 +14,54 @@ const WebsiteTimelineUK = () => {
           content="Most small-business websites launch in ~4 weeks from approved mockup. Learn what speeds up or delays projects, and how our process ensures on-time delivery."
         />
         <link rel="canonical" href="https://leewilliams.pro/knowledge-hub/website-timeline-uk" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "How long does a small-business website take to build?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Around 4 weeks from approved mockup to launch, assuming timely content and feedback."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What causes delays?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Late content, slow approvals, scope changes, complex integrations, and domain or email provisioning issues."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can we launch faster?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes—provide content/branding upfront, keep scope tight, and give same-day feedback for critical steps."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How do payments work?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "£20 slot deposit (fully refundable if the mockup isn't approved), then 50% to start and 50% on completion."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What support do I get after launch?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "One month of free revisions; optional hosting & maintenance at £40/month thereafter."
+                }
+              }
+            ]
+          })}
+        </script>
       </Helmet>
 
       <article className="max-w-4xl mx-auto px-4 py-12">
