@@ -306,12 +306,16 @@ export const KnowledgeHubCategoriesManagement = () => {
 
       {/* Create/Edit Dialog */}
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-        <DialogContent className="z-[100] max-w-lg" style={{ zIndex: 100 }}>
+        <DialogContent
+          className="max-w-lg z-[100000]"
+          aria-labelledby="kh-category-dialog-title"
+          aria-describedby="kh-category-dialog-description"
+        >
           <DialogHeader>
-            <DialogTitle>
+            <DialogTitle id="kh-category-dialog-title">
               {editingCategory ? "Edit Category" : "Create New Category"}
             </DialogTitle>
-            <DialogDescription>
+            <DialogDescription id="kh-category-dialog-description">
               {editingCategory
                 ? "Update the category details below."
                 : "Fill in the details to create a new category."}
