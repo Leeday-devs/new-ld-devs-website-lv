@@ -35,6 +35,7 @@ const FitnessStudioDemo = lazy(() => import("./pages/FitnessStudioDemo"));
 const AutoRepairDemo = lazy(() => import("./pages/AutoRepairDemo"));
 const CleaningServicesDemo = lazy(() => import("./pages/CleaningServicesDemo"));
 const PetGroomingDemo = lazy(() => import("./pages/PetGroomingDemo"));
+const WebsiteTimelineUK = lazy(() => import("./pages/knowledge-hub-articles/WebsiteTimelineUK"));
 const BusinessDetailsForm = lazy(() => import("./pages/BusinessDetailsForm"));
 const BusinessDetailsSuccess = lazy(() => import("./pages/BusinessDetailsSuccess"));
 const WebsiteSetupForm = lazy(() => import("./pages/WebsiteSetupForm"));
@@ -89,6 +90,7 @@ const App = () => (
                 <Route path="/request-work" element={<RequestWork />} />
                 <Route path="/blog" element={<Blog />} />
                 <Route path="/knowledge-hub" element={<KnowledgeHub />} />
+                <Route path="/knowledge-hub/website-timeline-uk" element={<WebsiteTimelineUK />} />
                 <Route path="/blog/:slug" element={<BlogPost />} />
                 <Route path="/knowledge-hub/:slug" element={<BlogPost />} />
                 <Route path="/templates" element={<WebsiteTemplates />} />
