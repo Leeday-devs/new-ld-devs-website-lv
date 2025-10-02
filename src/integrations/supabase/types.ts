@@ -112,15 +112,23 @@ export type Database = {
       blog_posts: {
         Row: {
           author_id: string | null
+          author_name: string | null
           category: string
           category_id: string | null
           content: string
           created_at: string
           excerpt: string | null
+          faqs: Json | null
           featured_image: string | null
+          featured_image_alt: string | null
+          focus_keyword: string | null
           id: string
           images: string[] | null
+          meta_description: string | null
+          meta_title: string | null
           published_at: string | null
+          related_article_ids: string[] | null
+          short_answer: string | null
           slug: string
           status: string | null
           title: string
@@ -128,15 +136,23 @@ export type Database = {
         }
         Insert: {
           author_id?: string | null
+          author_name?: string | null
           category: string
           category_id?: string | null
           content: string
           created_at?: string
           excerpt?: string | null
+          faqs?: Json | null
           featured_image?: string | null
+          featured_image_alt?: string | null
+          focus_keyword?: string | null
           id?: string
           images?: string[] | null
+          meta_description?: string | null
+          meta_title?: string | null
           published_at?: string | null
+          related_article_ids?: string[] | null
+          short_answer?: string | null
           slug: string
           status?: string | null
           title: string
@@ -144,15 +160,23 @@ export type Database = {
         }
         Update: {
           author_id?: string | null
+          author_name?: string | null
           category?: string
           category_id?: string | null
           content?: string
           created_at?: string
           excerpt?: string | null
+          faqs?: Json | null
           featured_image?: string | null
+          featured_image_alt?: string | null
+          focus_keyword?: string | null
           id?: string
           images?: string[] | null
+          meta_description?: string | null
+          meta_title?: string | null
           published_at?: string | null
+          related_article_ids?: string[] | null
+          short_answer?: string | null
           slug?: string
           status?: string | null
           title?: string

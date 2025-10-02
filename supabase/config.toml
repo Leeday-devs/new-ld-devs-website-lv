@@ -14,3 +14,9 @@ verify_jwt = false
 
 [functions.test-discord-buttons]
 verify_jwt = false
+
+[functions.generate-sitemap]
+verify_jwt = false
+
+[functions.suggest-interlinking]
+verify_jwt = false
