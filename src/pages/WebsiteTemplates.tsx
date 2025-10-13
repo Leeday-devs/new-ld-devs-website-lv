@@ -9,7 +9,6 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import BrowserMockup from "@/components/BrowserMockup";
 import { ArrowRight, Check, Clock, Palette, Zap, Shield, Eye, CreditCard, Lock, Users, Star, FileText, Globe, Mail, Phone, MessageSquare, Wrench, Scissors, Car, UtensilsCrossed, Dumbbell, Stethoscope, Code, Sparkles, Layers, Monitor, Home, Heart } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
@@ -329,150 +328,134 @@ const WebsiteTemplates = () => {
         <Navigation />
         
         <main>
-          {/* Hero Section - Warm Yellow Background like Avada */}
-          <section className="relative overflow-hidden bg-gradient-to-br from-amber-100 via-yellow-50 to-amber-50 py-24">
-            <div className="container mx-auto px-4">
-              <div className="mb-12">
-                <Breadcrumbs 
-                  items={[
-                    { label: "Home", href: "/" },
-                    { label: "Pre-Built Websites", href: "/templates" }
-                  ]}
-                />
+          {/* Hero Section - Navy Background */}
+          <section className="section-navy relative overflow-hidden">
+            {/* Animated Background Elements */}
+            <div className="absolute inset-0">
+              <div className="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl animate-pulse"></div>
+              <div className="absolute bottom-20 right-10 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-pulse delay-700"></div>
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-primary/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+            </div>
+            
+            {/* Floating Elements */}
+            <div className="absolute top-40 left-1/4 animate-float">
+              <div className="bg-white/10 rounded-2xl p-4 backdrop-blur-sm border border-white/20">
+                <Monitor className="h-8 w-8 text-white" />
               </div>
-              
-              <div className="grid lg:grid-cols-2 gap-16 items-center">
-                {/* Left: Animated Template Previews */}
-                <div className="relative h-[500px] hidden lg:block">
-                  {/* Stacked Template Cards Animation */}
-                  <div className="absolute top-0 left-0 w-64 animate-float">
-                    <div className="bg-white rounded-lg shadow-xl overflow-hidden border border-gray-200">
-                      <div className="bg-gradient-to-br from-slate-800 to-slate-900 p-8 text-white">
-                        <div className="flex items-center gap-2 mb-4">
-                          <Wrench className="h-5 w-5" />
-                          <span className="font-bold">Caterer</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div className="absolute top-20 left-32 w-64 animate-float delay-300">
-                    <div className="bg-white rounded-lg shadow-xl overflow-hidden border border-gray-200">
-                      <div className="bg-gradient-to-br from-blue-900 to-slate-900 p-8 text-white">
-                        <div className="flex items-center gap-2 mb-4">
-                          <Car className="h-5 w-5" />
-                          <span className="font-bold">Extreme Sports</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div className="absolute top-48 left-8 w-64 animate-float delay-500">
-                    <div className="bg-white rounded-lg shadow-xl overflow-hidden border border-gray-200">
-                      <div className="bg-gradient-to-br from-orange-500 to-amber-600 p-8 text-white">
-                        <div className="flex items-center gap-2 mb-4">
-                          <Home className="h-5 w-5" />
-                          <span className="font-bold">Handyman</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div className="absolute top-64 left-40 w-64 animate-float delay-700">
-                    <div className="bg-white rounded-lg shadow-xl overflow-hidden border border-gray-200">
-                      <div className="bg-gradient-to-br from-slate-700 to-slate-900 p-8 text-white">
-                        <div className="flex items-center gap-2 mb-4">
-                          <Users className="h-5 w-5" />
-                          <span className="font-bold">Business Coach</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+            </div>
+            <div className="absolute top-60 right-1/4 animate-float delay-500">
+              <div className="bg-primary/20 rounded-2xl p-4 backdrop-blur-sm border border-primary/30">
+                <Layers className="h-8 w-8 text-primary" />
+              </div>
+            </div>
+            <div className="absolute top-80 left-1/3 animate-float delay-1000">
+              <div className="bg-white/10 rounded-2xl p-4 backdrop-blur-sm border border-white/20">
+                <Sparkles className="h-8 w-8 text-white" />
+              </div>
+            </div>
 
-                {/* Right: Content */}
-                <div>
-                  <div className="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-full mb-6 shadow-sm border border-gray-200">
-                    <Sparkles className="h-4 w-4 text-primary" />
-                    <span className="text-sm font-semibold text-foreground">One-Time Purchase • 100% Unique</span>
-                  </div>
-                  
-                  <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight text-foreground">
-                    {templates.length} Prebuilt L-Development Websites
-                  </h1>
-                  
-                  <p className="text-lg md:text-xl text-muted-foreground mb-8 leading-relaxed">
-                    Professional pre-built websites designed for small businesses and tradesmen. 
-                    Each purchase is <strong className="text-foreground">unique</strong> – once bought, 
-                    it's removed from our catalog and customized exclusively for you.
-                  </p>
-                  
+            <div className="container mx-auto px-4 relative z-10">
+              <Breadcrumbs 
+                items={[
+                  { label: "Home", href: "/" },
+                  { label: "Pre-Built Websites", href: "/templates" }
+                ]}
+              />
+              
+              <div className="text-center mt-16 mb-16">
+                <div className="inline-flex items-center gap-2 bg-primary/10 px-6 py-3 rounded-full mb-8 border border-primary/20">
+                  <Sparkles className="h-5 w-5 text-primary" />
+                  <span className="text-primary font-semibold">One-Time Purchase • 100% Unique</span>
+                </div>
+                
+                <h1 className="text-5xl md:text-7xl font-bold mb-8 leading-tight text-white">
+                  <span className="text-primary">
+                    Professional
+                  </span>
+                  <br />
+                  <span className="text-white">Pre-Built Websites</span>
+                </h1>
+                
+                <p className="text-xl md:text-2xl text-white/90 mb-12 max-w-4xl mx-auto leading-relaxed">
+                  Industry-focused designs that get <strong className="text-primary">removed from our catalog</strong> once purchased. 
+                  Your business deserves a unique online presence that stands out from the competition.
+                </p>
+                
+                <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
                   <Button 
                     onClick={scrollToTemplates}
                     size="lg" 
-                    className="btn-primary px-8 py-6 text-lg font-semibold shadow-lg hover:shadow-xl transition-all"
+                    className="btn-primary px-10 py-4 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
                   >
-                    View Prebuilt Websites
+                    <Eye className="mr-3 h-6 w-6" />
+                    Browse Unique Designs
+                    <ArrowRight className="ml-3 h-6 w-6" />
                   </Button>
+                  
+                  <div className="text-center sm:text-left">
+                    <div className="text-sm text-white/70">Starting from</div>
+                    <div className="text-3xl font-bold text-primary">£350</div>
+                    <div className="text-sm text-white/70">+ £40/month hosting</div>
+                  </div>
                 </div>
               </div>
             </div>
           </section>
 
-          {/* Uniqueness Guarantee Section - Clean White */}
-          <section className="py-24 bg-gradient-to-br from-slate-50 via-white to-slate-50">
+          {/* Uniqueness Guarantee Section - Navy Background */}
+          <section className="section-navy">
             <div className="container mx-auto px-4">
-              <div className="bg-gradient-to-r from-amber-50 via-yellow-50 to-amber-50 rounded-3xl p-12 md:p-16 border border-amber-200/50 shadow-lg">
+              <div className="bg-gradient-to-r from-primary/5 via-primary/10 to-primary/5 rounded-3xl p-8 md:p-12 border-2 border-primary/20">
                 <div className="max-w-4xl mx-auto text-center">
                   <div className="flex items-center justify-center mb-6">
-                    <div className="bg-primary/10 rounded-full w-16 h-16 flex items-center justify-center">
+                    <div className="bg-primary/20 rounded-full w-16 h-16 flex items-center justify-center">
                       <Lock className="h-8 w-8 text-primary" />
                     </div>
                   </div>
-                  <h2 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">
+                  <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
                     Your Site Will Be 100% Unique
                   </h2>
-                  <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
-                    These are <strong className="text-foreground font-semibold">one-time purchases</strong>. Once you buy a pre-built website, we immediately remove it from our catalog and fully customize it for your business. 
-                    This means <strong className="text-foreground font-semibold">no one else will ever have the same website as you</strong>.
+                  <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto leading-relaxed">
+                    These are <strong className="text-primary font-semibold">one-time purchases</strong>. Once you buy a pre-built website, we immediately remove it from our catalog and fully customize it for your business. 
+                    This means <strong className="text-primary font-semibold">no one else will ever have the same website as you</strong>.
                   </p>
                 </div>
                 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
                   <div className="text-center">
-                    <div className="bg-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4 shadow-sm">
+                    <div className="bg-primary/10 rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4">
                       <Check className="h-6 w-6 text-primary" />
                     </div>
-                    <h3 className="font-semibold text-lg mb-2 text-foreground">One-Time Purchase</h3>
-                    <p className="text-muted-foreground">Buy once, removed forever from our catalog</p>
+                    <h3 className="font-semibold text-lg mb-2 text-primary">One-Time Purchase</h3>
+                    <p className="text-white/80">Buy once, removed forever from our catalog</p>
                   </div>
                   
                   <div className="text-center">
-                    <div className="bg-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4 shadow-sm">
+                    <div className="bg-primary/10 rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4">
                       <Star className="h-6 w-6 text-primary" />
                     </div>
-                    <h3 className="font-semibold text-lg mb-2 text-foreground">Fully Customized</h3>
-                    <p className="text-muted-foreground">Personalized with your branding and content</p>
+                    <h3 className="font-semibold text-lg mb-2 text-primary">Fully Customized</h3>
+                    <p className="text-white/80">Personalized with your branding and content</p>
                   </div>
                   
                   <div className="text-center">
-                    <div className="bg-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4 shadow-sm">
+                    <div className="bg-primary/10 rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4">
                       <Users className="h-6 w-6 text-primary" />
                     </div>
-                    <h3 className="font-semibold text-lg mb-2 text-foreground">Exclusive to You</h3>
-                    <p className="text-muted-foreground">No other business will have your design</p>
+                    <h3 className="font-semibold text-lg mb-2 text-primary">Exclusive to You</h3>
+                    <p className="text-white/80">No other business will have your design</p>
                   </div>
                 </div>
               </div>
             </div>
           </section>
 
-          {/* What You Get Section - White Background */}
-          <section className="py-24 bg-white">
+          {/* What You Get Section - Navy Background */}
+          <section className="section-navy">
             <div className="container mx-auto px-4">
               <div className="text-center mb-16">
-                <h2 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">What's Included in Your Pre-Built Website</h2>
-                <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+                <h2 className="heading-primary heading-lg mb-6 text-white">What's Included in Your Pre-Built Website</h2>
+                <p className="text-xl text-white/90 max-w-2xl mx-auto">
                 Every pre-built website comes as a complete 5-page package, professionally designed and ready to customize for your business.
                 </p>
               </div>
@@ -486,8 +469,8 @@ const WebsiteTemplates = () => {
                         <FileText className="h-5 w-5 text-primary" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-lg mb-2 text-foreground">5 Complete Pages</h3>
-                        <p className="text-muted-foreground">Home, About, Services, Portfolio/Gallery, and Contact pages - everything your business needs to get started online.</p>
+                        <h3 className="font-semibold text-lg mb-2 text-white">5 Complete Pages</h3>
+                        <p className="text-white/70">Home, About, Services, Portfolio/Gallery, and Contact pages - everything your business needs to get started online.</p>
                       </div>
                     </div>
 
@@ -496,8 +479,8 @@ const WebsiteTemplates = () => {
                         <Globe className="h-5 w-5 text-primary" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-lg mb-2 text-foreground">Mobile Responsive</h3>
-                        <p className="text-muted-foreground">Looks perfect on all devices - desktop, tablet, and mobile. Your customers can access your site anywhere.</p>
+                        <h3 className="font-semibold text-lg mb-2 text-white">Mobile Responsive</h3>
+                        <p className="text-white/70">Looks perfect on all devices - desktop, tablet, and mobile. Your customers can access your site anywhere.</p>
                       </div>
                     </div>
 
@@ -506,8 +489,8 @@ const WebsiteTemplates = () => {
                         <Mail className="h-5 w-5 text-primary" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-lg mb-2 text-foreground">Contact Integration</h3>
-                        <p className="text-muted-foreground">Working contact forms, Google Maps integration, and social media links to connect with your customers.</p>
+                        <h3 className="font-semibold text-lg mb-2 text-white">Contact Integration</h3>
+                        <p className="text-white/70">Working contact forms, Google Maps integration, and social media links to connect with your customers.</p>
                       </div>
                     </div>
 
@@ -516,8 +499,8 @@ const WebsiteTemplates = () => {
                         <Zap className="h-5 w-5 text-primary" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-lg mb-2 text-foreground">SEO Optimized</h3>
-                        <p className="text-muted-foreground">Built with search engine optimization in mind to help your business get found online.</p>
+                        <h3 className="font-semibold text-lg mb-2 text-white">SEO Optimized</h3>
+                        <p className="text-white/70">Built with search engine optimization in mind to help your business get found online.</p>
                       </div>
                     </div>
 
@@ -526,8 +509,8 @@ const WebsiteTemplates = () => {
                         <Star className="h-5 w-5 text-primary" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-lg mb-2 text-foreground">Full Customization</h3>
-                        <p className="text-muted-foreground">We'll customize everything — your logo, colors, content, images, and branding to match your business perfectly.</p>
+                        <h3 className="font-semibold text-lg mb-2 text-white">Full Customization</h3>
+                        <p className="text-white/70">We'll customize everything — your logo, colors, content, images, and branding to match your business perfectly.</p>
                       </div>
                     </div>
                   </div>
@@ -535,13 +518,13 @@ const WebsiteTemplates = () => {
 
                 {/* Right Side - Additional Pages & Custom Request */}
                 <div className="space-y-8">
-                  <Card className="p-8 border border-border bg-gradient-to-br from-slate-50 to-white shadow-lg">
+                  <Card className="p-8 border-2 border-primary/20 bg-white/10 backdrop-blur-sm">
                     <div className="text-center mb-6">
-                      <div className="bg-primary/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                      <div className="bg-primary/20 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                         <Clock className="h-8 w-8 text-primary" />
                       </div>
-                      <h3 className="text-xl font-bold mb-2 text-foreground">Quick 2-Day Delivery</h3>
-                      <p className="text-muted-foreground mb-4">
+                      <h3 className="text-xl font-bold mb-2 text-white">Quick 2-Day Delivery</h3>
+                      <p className="text-white/70 mb-4">
                         Your customized website will be ready within 2 business days of purchase. 
                         We'll send you mockups for approval before going live.
                       </p>
@@ -549,33 +532,33 @@ const WebsiteTemplates = () => {
 
                     <div className="space-y-4">
                       <div className="flex items-center gap-3">
-                        <Check className="h-5 w-5 text-green-600 flex-shrink-0" />
-                        <span className="text-sm text-muted-foreground">✓ Your content and images</span>
+                        <Check className="h-5 w-5 text-primary flex-shrink-0" />
+                        <span className="text-sm text-white/70">✓ Your content and images</span>
                       </div>
                       <div className="flex items-center gap-3">
-                        <Check className="h-5 w-5 text-green-600 flex-shrink-0" />
-                        <span className="text-sm text-muted-foreground">✓ Your brand colors and logo</span>
+                        <Check className="h-5 w-5 text-primary flex-shrink-0" />
+                        <span className="text-sm text-white/70">✓ Your brand colors and logo</span>
                       </div>
                       <div className="flex items-center gap-3">
-                        <Check className="h-5 w-5 text-green-600 flex-shrink-0" />
-                        <span className="text-sm text-muted-foreground">✓ Professional copywriting included</span>
+                        <Check className="h-5 w-5 text-primary flex-shrink-0" />
+                        <span className="text-sm text-white/70">✓ Professional copywriting included</span>
                       </div>
                       <div className="flex items-center gap-3">
-                        <Check className="h-5 w-5 text-green-600 flex-shrink-0" />
-                        <span className="text-sm text-muted-foreground">✓ Free revisions until you're happy</span>
+                        <Check className="h-5 w-5 text-primary flex-shrink-0" />
+                        <span className="text-sm text-white/70">✓ Free revisions until you're happy</span>
                       </div>
                     </div>
                   </Card>
 
-                  <Card className="p-6 border border-border bg-white shadow-md">
-                    <h3 className="text-lg font-semibold mb-4 text-foreground">Don't See Your Industry?</h3>
-                    <p className="text-muted-foreground mb-4">
+                  <Card className="p-6 border-2 border-primary/20 bg-white/10 backdrop-blur-sm">
+                    <h3 className="text-lg font-semibold mb-4 text-white">Don't See Your Industry?</h3>
+                    <p className="text-white/70 mb-4">
                       We can create a custom pre-built website specifically for your industry. 
                       Just tell us what you need!
                     </p>
                     <Dialog open={isFormOpen} onOpenChange={setIsFormOpen}>
                       <DialogTrigger asChild>
-                        <Button className="w-full btn-primary">
+                        <Button className="w-full bg-secondary hover:bg-secondary/90 text-secondary-foreground">
                           <MessageSquare className="mr-2 h-4 w-4" />
                           Request Custom Example
                         </Button>
@@ -641,130 +624,163 @@ const WebsiteTemplates = () => {
             </div>
           </section>
 
-          {/* Pre-Built Sites Grid - Clean White Background */}
-          <section id="templates-grid" className="py-24 bg-white">
+          {/* Pre-Built Sites Grid - Navy Background */}
+          <section id="templates-grid" className="section-navy">
             <div className="container mx-auto px-4">
               <div className="text-center mb-16">
-                <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
-                  Professionally Designed For You
+                <div className="inline-flex items-center gap-2 bg-primary/10 px-6 py-3 rounded-full mb-6 border border-primary/20">
+                  <Palette className="h-5 w-5 text-primary" />
+                  <span className="text-primary font-semibold">Industry-Specific Designs</span>
+                </div>
+                <h2 className="heading-primary heading-lg mb-6 text-white">
+                  Choose Your Perfect Pre-Built Website
                 </h2>
-                <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                  Working with our pre-built websites is fast. Import any design with a couple of clicks, 
-                  customize it for your business, and launch your website in no time.
+                <p className="text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
+                Each design is professionally crafted and optimized for your specific industry, 
+                ensuring maximum impact and conversion for your business type.
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-12">
                 {templates.map((template, index) => {
                   const IconComponent = getTemplateIcon(template.category);
-                  const isNew = index < 2; // Mark first 2 as NEW
-                  
                   return (
                     <Card 
                       key={template.id} 
-                      className="group relative overflow-hidden bg-white border border-border hover:border-primary/40 transition-all duration-300 hover:shadow-xl rounded-lg"
+                      className="group relative overflow-hidden bg-white/10 backdrop-blur-sm border-2 border-primary/20 hover:border-primary/40 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/20 hover:scale-105 rounded-2xl"
+                      style={{ animationDelay: `${index * 100}ms` }}
                     >
-                      {/* NEW Badge */}
-                      {isNew && (
-                        <div className="absolute top-4 left-4 z-20">
-                          <Badge className="bg-green-500 text-white font-bold px-3 py-1 shadow-lg">
-                            NEW
-                          </Badge>
+                      {/* Gradient Overlay for Premium Feel */}
+                      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                      
+                      {/* Category Icon & Badge */}
+                      <div className="absolute top-2 left-2 z-10 flex items-center gap-1">
+                        <div className="bg-primary/20 backdrop-blur-sm rounded-full p-1 border border-primary/30">
+                          <IconComponent className="h-3 w-3 text-primary" />
                         </div>
-                      )}
+                        <Badge className="bg-primary/90 text-primary-foreground shadow-lg backdrop-blur-sm text-xs">
+                          {template.category}
+                        </Badge>
+                      </div>
 
-                      {/* Large Preview Image with Browser Mockup */}
-                      <div className="relative overflow-hidden bg-gradient-to-br from-slate-50 to-slate-100 p-4">
+                      {/* 5 Page Website Badge */}
+                      <div className="absolute top-2 right-2 z-10">
+                        <div className="bg-green-600 text-white px-2 py-1 rounded-full flex items-center gap-1 shadow-lg backdrop-blur-sm border border-green-500/50">
+                          <Check className="h-3 w-3" />
+                          <span className="text-xs font-semibold">5 Pages</span>
+                        </div>
+                      </div>
+
+                      {/* Live Preview with Enhanced Overlay */}
+                      <div className="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-muted to-muted/50 rounded-t-2xl">
                         {template.demoUrl !== "#" ? (
-                          <BrowserMockup 
-                            browserType={index % 2 === 0 ? "chrome" : "safari"}
-                            demoUrl={`preview.leeday.uk`}
-                          >
+                          <>
                             <iframe
                               src={template.demoUrl}
-                              className="w-full h-full border-0"
-                              style={{ pointerEvents: "none" }}
+                              width="100%"
+                              height="100%"
+                              style={{
+                                border: "none",
+                                borderRadius: "0",
+                                transform: "scale(0.5)",
+                                transformOrigin: "top left",
+                                width: "200%",
+                                height: "200%",
+                                pointerEvents: "none"
+                              }}
                               title={`${template.name} Preview`}
                               loading="lazy"
                             />
-                          </BrowserMockup>
+                            
+                            {/* Interactive Overlay - Removed buttons */}
+                            <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-all duration-300 backdrop-blur-sm">
+                            </div>
+                          </>
                         ) : (
-                          <BrowserMockup 
-                            browserType="chrome"
-                            demoUrl="preview.leeday.uk"
-                          />
+                          <div className="flex items-center justify-center h-full bg-gradient-to-br from-primary/10 to-secondary/10">
+                            <span className="text-muted-foreground">Demo Coming Soon</span>
+                          </div>
                         )}
-                        
-                        {/* Hover Overlay */}
-                        <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       </div>
 
-                      <CardContent className="p-6">
-                        {/* Category Badge */}
-                        <div className="flex items-center gap-2 mb-3">
-                          <div className="bg-primary/10 rounded-full p-1.5">
-                            <IconComponent className="h-4 w-4 text-primary" />
-                          </div>
-                          <span className="text-sm font-semibold text-primary">{template.category}</span>
-                        </div>
-
-                        {/* Template Name */}
-                        <h3 className="text-2xl font-bold text-foreground mb-2">
-                          {template.name}
-                        </h3>
-
-                        {/* Description */}
-                        <p className="text-sm text-muted-foreground mb-4 leading-relaxed min-h-[40px]">
-                          {template.description}
-                        </p>
-
-                        {/* Key Features - Compact */}
-                        <div className="space-y-1.5 mb-4 pb-4 border-b border-border">
-                          {template.features.slice(0, 3).map((feature, idx) => (
-                            <div key={idx} className="flex items-center gap-2 text-sm text-muted-foreground">
-                              <Check className="h-3.5 w-3.5 text-green-600 flex-shrink-0" />
-                              <span>{feature}</span>
-                            </div>
-                          ))}
-                        </div>
-
-                        {/* Pricing and Actions */}
-                        <div className="flex items-center justify-between">
+                      <CardContent className="p-3 relative z-10">
+                        <div className="flex justify-between items-start mb-2">
                           <div>
-                            <div className="text-2xl font-bold text-primary">{template.price}</div>
-                            <div className="text-xs text-muted-foreground">+ {template.monthlyPrice} hosting</div>
-                          </div>
-                          
-                          <div className="flex gap-2">
-                            {template.demoUrl !== "#" && (
-                              <Button
-                                size="sm"
-                                variant="outline"
-                                onClick={() => window.open(template.demoUrl, '_blank')}
-                                className="gap-2"
-                              >
-                                <Eye className="h-4 w-4" />
-                                Preview
-                              </Button>
-                            )}
-                            
-                            <Button
-                              size="sm"
-                              onClick={() => handleBuyNow(template)}
-                              className="btn-primary gap-2"
-                            >
-                              <CreditCard className="h-4 w-4" />
-                              Buy Now
-                            </Button>
+                            <h3 className="text-lg font-bold text-white mb-1">{template.name}</h3>
+                            <p className="text-white/70 text-xs mb-3 leading-relaxed">{template.description}</p>
                           </div>
                         </div>
 
-                        {/* Unique Badge */}
-                        <div className="mt-4 pt-4 border-t border-border">
-                          <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                            <Lock className="h-3.5 w-3.5 text-amber-600" />
-                            <span>One-time purchase • Becomes unique to you</span>
+                        {/* Features List */}
+                        <div className="space-y-2 mb-4">
+                          {/* Template-Specific Features */}
+                          <div>
+                            <h4 className="text-xs font-semibold text-white/90 mb-1">Template Features:</h4>
+                            <div className="space-y-0.5">
+                              {template.features.slice(0, 2).map((feature, idx) => (
+                                <div key={idx} className="flex items-center gap-1 text-xs text-white/70">
+                                  <Check className="h-2 w-2 text-primary flex-shrink-0" />
+                                  <span>{feature}</span>
+                                </div>
+                              ))}
+                            </div>
                           </div>
+
+                          {/* Standard Features */}
+                          <div>
+                            <h4 className="text-xs font-semibold text-white/90 mb-1">What's Included:</h4>
+                            <div className="space-y-0.5">
+                              <div className="flex items-center gap-1 text-xs text-white/70">
+                                <Check className="h-2 w-2 text-green-500 flex-shrink-0" />
+                                <span>Up to 5 pages</span>
+                              </div>
+                              <div className="flex items-center gap-1 text-xs text-white/70">
+                                <Check className="h-2 w-2 text-green-500 flex-shrink-0" />
+                                <span>Mobile-friendly design</span>
+                              </div>
+                              <div className="flex items-center gap-1 text-xs text-white/70">
+                                <Check className="h-2 w-2 text-green-500 flex-shrink-0" />
+                                <span>Basic SEO & SSL</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Pricing and Action Buttons */}
+                        <div className="flex justify-between items-center mb-3">
+                          <div>
+                            <div className="text-lg font-bold text-primary">{template.price}</div>
+                            <div className="text-xs text-white/60">+ {template.monthlyPrice}</div>
+                          </div>
+                          <div className="text-right">
+                            <div className="text-xs text-white/60">One-time</div>
+                            <div className="text-xs font-semibold text-destructive">Unique</div>
+                          </div>
+                        </div>
+
+                        {/* Action Buttons */}
+                        <div className="flex gap-2">
+                          {template.demoUrl !== "#" && (
+                            <Button 
+                              variant="outline" 
+                              size="sm"
+                              className="flex-1 border-primary text-primary hover:bg-primary hover:text-white text-xs"
+                              asChild
+                            >
+                              <Link to={template.demoUrl}>
+                                <Eye className="mr-1 h-3 w-3" />
+                                Demo
+                              </Link>
+                            </Button>
+                          )}
+                          <Button 
+                            size="sm"
+                            className="flex-1 btn-primary text-xs"
+                            onClick={() => handleBuyNow(template)}
+                          >
+                            <CreditCard className="mr-1 h-3 w-3" />
+                            Buy Now
+                          </Button>
                         </div>
                       </CardContent>
                     </Card>
