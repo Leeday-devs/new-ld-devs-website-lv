@@ -9,6 +9,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import BrowserMockup from "@/components/BrowserMockup";
 import { ArrowRight, Check, Clock, Palette, Zap, Shield, Eye, CreditCard, Lock, Users, Star, FileText, Globe, Mail, Phone, MessageSquare, Wrench, Scissors, Car, UtensilsCrossed, Dumbbell, Stethoscope, Code, Sparkles, Layers, Monitor, Home, Heart } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
@@ -671,35 +672,34 @@ const WebsiteTemplates = () => {
                         </div>
                       </div>
 
-                      {/* Live Preview with Enhanced Overlay */}
-                      <div className="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-muted to-muted/50 rounded-t-2xl">
+                      {/* Live Preview with Browser Mockup */}
+                      <div className="relative overflow-hidden rounded-t-2xl p-6 bg-gradient-to-br from-slate-50 to-slate-100">
                         {template.demoUrl !== "#" ? (
-                          <>
-                            <iframe
-                              src={template.demoUrl}
-                              width="100%"
-                              height="100%"
-                              style={{
-                                border: "none",
-                                borderRadius: "0",
-                                transform: "scale(0.5)",
-                                transformOrigin: "top left",
-                                width: "200%",
-                                height: "200%",
-                                pointerEvents: "none"
-                              }}
-                              title={`${template.name} Preview`}
-                              loading="lazy"
-                            />
+                          <div className="relative">
+                            <BrowserMockup 
+                              browserType={index % 2 === 0 ? "chrome" : "safari"}
+                              demoUrl={`${template.name.toLowerCase().replace(/\s+/g, '-')}.leeday.uk`}
+                            >
+                              <iframe
+                                src={template.demoUrl}
+                                className="w-full h-full border-0"
+                                style={{
+                                  pointerEvents: "none"
+                                }}
+                                title={`${template.name} Preview`}
+                                loading="lazy"
+                              />
+                            </BrowserMockup>
                             
-                            {/* Interactive Overlay - Removed buttons */}
-                            <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-all duration-300 backdrop-blur-sm">
+                            {/* Interactive Hover Overlay */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-primary/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 rounded-xl pointer-events-none">
                             </div>
-                          </>
-                        ) : (
-                          <div className="flex items-center justify-center h-full bg-gradient-to-br from-primary/10 to-secondary/10">
-                            <span className="text-muted-foreground">Demo Coming Soon</span>
                           </div>
+                        ) : (
+                          <BrowserMockup 
+                            browserType="chrome"
+                            demoUrl="coming-soon.leeday.uk"
+                          />
                         )}
                       </div>
 
