@@ -157,22 +157,27 @@ const MobileOptimizedHero = () => {
           </div>
           
           <h1 className={`text-white mb-4 sm:mb-6 leading-[0.9] font-black tracking-tight ${
-            isMobile 
+            isMobile
               ? "text-2xl xs:text-3xl" // Smaller mobile sizes for better 2-3 line wrapping
               : "text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl"
           }`}>
-            Premium Web Development{" "}
+            <span className="bg-gradient-to-r from-white via-white to-orange bg-clip-text text-transparent animate-gradient-flow">
+              Premium Web Development
+            </span>
+            {" "}
             <span className="text-highlight block xs:inline">Solutions</span>
             <span className={`block mt-2 sm:mt-6 ${
-              isMobile 
+              isMobile
                 ? "text-xl xs:text-2xl" // Proportionally smaller on mobile
                 : "text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl"
             }`}>
               Built By{" "}
-              <span className="text-highlight relative">
+              <span className="bg-gradient-to-r from-orange via-orange to-yellow-300 bg-clip-text text-transparent animate-gradient-pulse relative">
                 Me
-                {!isMobile && <span className="absolute -inset-1 bg-orange/20 blur-xl animate-pulse"></span>}
               </span>
+              {!isMobile && (
+                <span className="absolute -inset-1 bg-gradient-to-r from-orange via-orange to-transparent blur-2xl opacity-30 animate-pulse -z-10"></span>
+              )}
             </span>
           </h1>
         </div>
