@@ -594,10 +594,10 @@ const Pricing = () => {
           </div>
         )}
 
-        {/* Compare Plans Button - only show for websites on desktop */}
-        {activeCategory === 'websites' && !isMobile && (
+        {/* Compare Plans Button - show for websites on all devices */}
+        {activeCategory === 'websites' && (
           <div className="text-center mb-12 animate-fade-in-up">
-            <button 
+            <button
               onClick={() => setShowComparison(!showComparison)}
               className="inline-flex items-center space-x-2 text-white/80 hover:text-orange transition-colors duration-300 text-lg font-medium"
             >
@@ -607,7 +607,7 @@ const Pricing = () => {
           </div>
         )}
 
-        {/* Comparison Table - Desktop Only */}
+        {/* Comparison Table - Desktop Version */}
         {activeCategory === 'websites' && showComparison && !isMobile && (
           <div className="mb-16 animate-fade-in-up">
             <div className="bg-gradient-to-br from-navy/90 via-navy to-purple-900/30 backdrop-blur-2xl rounded-3xl p-8 lg:p-12 border border-white/10 shadow-2xl overflow-hidden">
@@ -680,7 +680,61 @@ const Pricing = () => {
             </div>
           </div>
         )}
-        
+
+        {/* Comparison Sheet - Mobile Version */}
+        {activeCategory === 'websites' && showComparison && isMobile && (
+          <div className="mb-16 animate-fade-in-up">
+            <div className="bg-gradient-to-br from-navy/90 via-navy to-purple-900/30 backdrop-blur-2xl rounded-3xl p-6 border border-white/10 shadow-2xl overflow-hidden">
+              <div className="relative z-10">
+                <h3 className="text-2xl font-bold text-white mb-6 text-center">Plan Comparison</h3>
+
+                <div className="space-y-6">
+                  {/* Features List - Mobile Friendly */}
+                  {[
+                    { feature: 'Pages', starter: 'Up to 5', growth: 'Up to 10', pro: 'Unlimited' },
+                    { feature: 'SEO', starter: 'Basic', growth: 'Advanced + Analytics', pro: 'Advanced + Reports' },
+                    { feature: 'Blog', starter: '✗', growth: '✓', pro: '✓' },
+                    { feature: 'E-commerce', starter: '✗', growth: '✗', pro: '✓' },
+                    { feature: 'AI/Automation', starter: '✗', growth: 'AI Chatbot', pro: 'Advanced Workflows' },
+                    { feature: 'CRM', starter: '✗', growth: '✗', pro: '✓' },
+                    { feature: 'Support', starter: 'Standard', growth: 'Priority', pro: 'Same-day Priority' },
+                    { feature: 'Revisions', starter: '1 round', growth: '2 rounds', pro: 'Unlimited' }
+                  ].map((row) => (
+                    <div key={row.feature} className="border-b border-white/10 pb-4 last:border-b-0">
+                      <div className="font-semibold text-white mb-2 text-lg">{row.feature}</div>
+                      <div className="grid grid-cols-3 gap-2 text-sm">
+                        <div className="bg-white/5 rounded-lg p-2 text-center text-gray-300">
+                          <div className="text-xs text-white/60 mb-1">Starter</div>
+                          {row.starter}
+                        </div>
+                        <div className="bg-orange/10 rounded-lg p-2 text-center text-gray-300 border border-orange/30">
+                          <div className="text-xs text-orange mb-1 font-semibold">Growth</div>
+                          {row.growth}
+                        </div>
+                        <div className="bg-white/5 rounded-lg p-2 text-center text-gray-300">
+                          <div className="text-xs text-white/60 mb-1">Pro</div>
+                          {row.pro}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-8 pt-6 border-t border-white/10 text-center">
+                  <p className="text-gray-400 text-sm mb-4">Choose a plan above to get started</p>
+                  <button
+                    onClick={() => setShowComparison(false)}
+                    className="inline-flex items-center text-orange hover:text-orange/80 transition-colors"
+                  >
+                    <ChevronUp className="h-5 w-5 mr-1" />
+                    Close Comparison
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* Custom Pricing Note */}
         <div className="text-center mb-16 animate-fade-in-up" style={{
           animationDelay: '1.0s'

@@ -292,10 +292,10 @@ const Services = () => {
                   {/* Ultra-premium Call-to-Action */}
                   {(service.pricingCategory || service.isTemplates) && (
                     <div className="text-center">
-                      <div className={`inline-flex items-center px-6 py-3 rounded-xl ${colorScheme.gradient} ${colorScheme.border} backdrop-blur-md shadow-lg opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-150 hover:scale-105`}>
+                      <div className={`inline-flex items-center px-6 py-3 rounded-xl ${colorScheme.gradient} ${colorScheme.border} backdrop-blur-md shadow-lg opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transform translate-y-0 sm:translate-y-4 sm:group-hover:translate-y-0 transition-all duration-500 delay-150 hover:scale-105`}>
                         <span className={`text-sm font-bold ${colorScheme.icon} tracking-wide`}>
-                          {service.pricingCategory ? 'View Luxury Packages' : 'Browse Premium Templates'} 
-                          <span className="ml-2 group-hover:translate-x-1 inline-block transition-transform duration-300">→</span>
+                          {service.pricingCategory ? 'View Luxury Packages' : 'Browse Premium Templates'}
+                          <span className="ml-2 sm:group-hover:translate-x-1 inline-block transition-transform duration-300">→</span>
                         </span>
                       </div>
                     </div>

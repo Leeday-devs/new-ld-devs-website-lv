@@ -6,7 +6,7 @@ import { Mail, Phone, MapPin, Send, Loader2, MessageCircle, Zap, ChevronDown, Ch
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { isRateLimited, sanitizeInput, isValidEmail, logSecureError } from "@/utils/security";
+import { isRateLimited, sanitizeInput, isValidEmail, logSecureError, isHoneypotFilled, containsSpamPatterns, isSubmissionTooFast } from "@/utils/security";
 import { z } from 'zod';
 // Zod validation schema for security
 const contactSchema = z.object({
@@ -15,7 +15,8 @@ const contactSchema = z.object({
   phone: z.string().trim().max(20, "Phone number must be less than 20 characters").optional(),
   projectGoals: z.string().trim().min(1, "Project goals cannot be empty").max(2000, "Project goals must be less than 2000 characters"),
   budgetRange: z.string().trim().max(50, "Budget range must be less than 50 characters").optional(),
-  timeline: z.string().trim().max(50, "Timeline must be less than 50 characters").optional()
+  timeline: z.string().trim().max(50, "Timeline must be less than 50 characters").optional(),
+  honeypot: z.string().optional() // Hidden field for bot detection
 });
 
 const Contact = () => {
@@ -24,6 +25,8 @@ const Contact = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showDetailedForm, setShowDetailedForm] = useState(false);
   const [quickMessage, setQuickMessage] = useState("");
+  const [formStartTime] = useState(Date.now()); // Track form load time
+  const [honeypot, setHoneypot] = useState(""); // Hidden field for bot detection
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -60,7 +63,28 @@ const Contact = () => {
   };
   const handleQuickSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
+    // Bot detection checks
+    if (isHoneypotFilled(honeypot)) {
+      console.warn('Honeypot field filled - likely bot');
+      toast({
+        title: "Error",
+        description: "Form submission failed",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    if (isSubmissionTooFast(formStartTime, 1)) {
+      console.warn('Form submitted too quickly - likely bot');
+      toast({
+        title: "Error",
+        description: "Please take a moment to fill out the form properly",
+        variant: "destructive"
+      });
+      return;
+    }
+
     if (!quickMessage.trim()) {
       toast({
         title: "Error",
@@ -72,8 +96,19 @@ const Contact = () => {
 
     if (quickMessage.length > 1000) {
       toast({
-        title: "Error", 
+        title: "Error",
         description: "Message is too long. Please keep it under 1000 characters.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    // Check for spam patterns
+    if (containsSpamPatterns(quickMessage)) {
+      console.warn('Spam patterns detected in quick message');
+      toast({
+        title: "Error",
+        description: "Your message contains content that was flagged as spam",
         variant: "destructive"
       });
       return;
@@ -132,11 +167,44 @@ const Contact = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
+    // Bot detection checks
+    if (isHoneypotFilled(honeypot)) {
+      console.warn('Honeypot field filled - likely bot');
+      toast({
+        title: "Error",
+        description: "Form submission failed",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    if (isSubmissionTooFast(formStartTime, 2)) {
+      console.warn('Form submitted too quickly - likely bot');
+      toast({
+        title: "Error",
+        description: "Please take time to fill out the form properly",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    // Check for spam patterns in all fields
+    const allText = `${formData.name} ${formData.email} ${formData.phone} ${formData.projectGoals} ${formData.budgetRange} ${formData.timeline}`;
+    if (containsSpamPatterns(allText)) {
+      console.warn('Spam patterns detected in form');
+      toast({
+        title: "Error",
+        description: "Your message contains content that was flagged as spam",
+        variant: "destructive"
+      });
+      return;
+    }
+
     // Validate with Zod schema
     try {
       const validatedData = contactSchema.parse(formData);
-      
+
       // Rate limiting
       if (isRateLimited(`contact-${validatedData.email}`, 3, 300000)) {
         toast({
@@ -430,7 +498,18 @@ const Contact = () => {
                         </div>
                       </div>
                     </div>
-                    
+
+                    {/* Honeypot field - hidden from users */}
+                    <input
+                      type="text"
+                      name="honeypot"
+                      value={honeypot}
+                      onChange={(e) => setHoneypot(e.target.value)}
+                      style={{ display: 'none' }}
+                      tabIndex={-1}
+                      autoComplete="off"
+                    />
+
                     <Button
                       type="submit"
                       disabled={isLoading}

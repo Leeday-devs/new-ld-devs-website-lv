@@ -6,14 +6,14 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { 
-  CreditCard, 
-  Search, 
-  Filter, 
-  Download, 
-  Clock, 
-  CheckCircle, 
-  Phone, 
+import {
+  CreditCard,
+  Search,
+  Filter,
+  Download,
+  Clock,
+  CheckCircle,
+  Phone,
   Mail,
   Building2,
   User,
@@ -26,7 +26,9 @@ import {
   Eye,
   Edit,
   Trash2,
-  MoreVertical
+  MoreVertical,
+  ChevronLeft,
+  ChevronRight
 } from "lucide-react";
 import { EditOrderModal } from "./EditOrderModal";
 import { DeleteOrderDialog } from "./DeleteOrderDialog";
@@ -50,6 +52,8 @@ interface OrderForm {
   updated_at: string;
 }
 
+const ITEMS_PER_PAGE = 20;
+
 export function OrderFormsManagement() {
   const [orders, setOrders] = useState<OrderForm[]>([]);
   const [filteredOrders, setFilteredOrders] = useState<OrderForm[]>([]);
@@ -59,6 +63,7 @@ export function OrderFormsManagement() {
   const [selectedOrder, setSelectedOrder] = useState<OrderForm | null>(null);
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
   const { toast } = useToast();
 
   useEffect(() => {
@@ -120,6 +125,7 @@ export function OrderFormsManagement() {
     }
 
     setFilteredOrders(filtered);
+    setCurrentPage(1); // Reset to first page when filters change
   };
 
   const getPaymentStatus = (order: OrderForm) => {
@@ -295,8 +301,11 @@ export function OrderFormsManagement() {
               <p className="text-muted-foreground">No order forms found.</p>
             </div>
           ) : (
-            <div className="grid gap-6">
-              {filteredOrders.map((order) => {
+            <>
+              <div className="grid gap-6">
+                {filteredOrders
+                  .slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE)
+                  .map((order) => {
                 const paymentStatus = getPaymentStatus(order);
                 
                 return (
@@ -532,7 +541,58 @@ export function OrderFormsManagement() {
                   </Card>
                 );
               })}
-            </div>
+              </div>
+
+              {/* Pagination Controls */}
+              {filteredOrders.length > ITEMS_PER_PAGE && (
+                <div className="flex items-center justify-between mt-6 p-4 bg-muted/30 rounded-lg">
+                  <div className="text-sm text-muted-foreground">
+                    Showing {Math.min((currentPage - 1) * ITEMS_PER_PAGE + 1, filteredOrders.length)} to {Math.min(currentPage * ITEMS_PER_PAGE, filteredOrders.length)} of {filteredOrders.length} orders
+                  </div>
+
+                  <div className="flex items-center gap-2">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                      disabled={currentPage === 1}
+                      className="gap-1"
+                    >
+                      <ChevronLeft className="h-4 w-4" />
+                      Previous
+                    </Button>
+
+                    <div className="flex items-center gap-1">
+                      {Array.from({ length: Math.ceil(filteredOrders.length / ITEMS_PER_PAGE) }, (_, i) => i + 1)
+                        .slice(Math.max(0, currentPage - 2), Math.min(Math.ceil(filteredOrders.length / ITEMS_PER_PAGE), currentPage + 1))
+                        .map(page => (
+                          <Button
+                            key={page}
+                            variant={currentPage === page ? "default" : "outline"}
+                            size="sm"
+                            onClick={() => setCurrentPage(page)}
+                            className="w-10 h-10"
+                          >
+                            {page}
+                          </Button>
+                        ))
+                      }
+                    </div>
+
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => setCurrentPage(p => Math.min(Math.ceil(filteredOrders.length / ITEMS_PER_PAGE), p + 1))}
+                      disabled={currentPage === Math.ceil(filteredOrders.length / ITEMS_PER_PAGE)}
+                      className="gap-1"
+                    >
+                      Next
+                      <ChevronRight className="h-4 w-4" />
+                    </Button>
+                  </div>
+                </div>
+              )}
+            </>
           )}
         </CardContent>
       </Card>

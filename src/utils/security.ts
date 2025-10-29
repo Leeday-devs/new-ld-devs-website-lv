@@ -68,3 +68,30 @@ export const logSecureError = (context: string, error: unknown): void => {
     console.error(`[${context}] An error occurred`);
   }
 };
+
+// Honeypot field detection for bot prevention
+export const isHoneypotFilled = (honeypotValue: string): boolean => {
+  // If honeypot field has any value, it's likely a bot
+  return honeypotValue && honeypotValue.trim().length > 0;
+};
+
+// Bot detection - check for common spam patterns
+export const containsSpamPatterns = (input: string): boolean => {
+  const spamPatterns = [
+    /viagra|cialis|casino|lottery|prize/gi,
+    /click here|buy now|limited offer/gi,
+    /http[s]?:\/\//g, // Multiple URLs
+    /[a-z0-9]{50,}/gi, // Suspiciously long strings
+  ];
+
+  let urlCount = (input.match(/http[s]?:\/\//g) || []).length;
+  if (urlCount > 1) return true;
+
+  return spamPatterns.some(pattern => pattern.test(input));
+};
+
+// Verify form submission timing (humans take at least a few seconds)
+export const isSubmissionTooFast = (startTimeMs: number, minSeconds: number = 2): boolean => {
+  const elapsedSeconds = (Date.now() - startTimeMs) / 1000;
+  return elapsedSeconds < minSeconds;
+};

@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { TrendingUp, FileText, Eye, Trophy, RefreshCw, Calendar } from "lucide-react";
+import { TrendingUp, FileText, Eye, Trophy, RefreshCw, Calendar, Users, DollarSign, AlertCircle, CheckCircle } from "lucide-react";
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
@@ -21,6 +21,10 @@ const AdminStats = ({ posts, onRefresh }: AdminStatsProps) => {
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [monthlyViews, setMonthlyViews] = useState(0);
   const [mostViewedThisMonth, setMostViewedThisMonth] = useState<BlogPost | null>(null);
+  const [totalCustomers, setTotalCustomers] = useState(0);
+  const [monthlyRevenue, setMonthlyRevenue] = useState(0);
+  const [pendingQuotes, setPendingQuotes] = useState(0);
+  const [newCustomersThisMonth, setNewCustomersThisMonth] = useState(0);
   const { toast } = useToast();
 
   const totalPosts = posts.length;
@@ -34,7 +38,7 @@ const AdminStats = ({ posts, onRefresh }: AdminStatsProps) => {
   const fetchMonthlyStats = async () => {
     try {
       setIsRefreshing(true);
-      
+
       // Get current month start and end dates
       const now = new Date();
       const monthStart = new Date(now.getFullYear(), now.getMonth(), 1);
@@ -71,6 +75,31 @@ const AdminStats = ({ posts, onRefresh }: AdminStatsProps) => {
           }
         }
       }
+
+      // Fetch customer count
+      const { data: usersData } = await supabase.auth.admin.listUsers();
+      setTotalCustomers(usersData?.users?.length || 0);
+
+      // Fetch pending custom quotes
+      const { data: quotesData } = await supabase
+        .from('custom_quotes')
+        .select('*', { count: 'exact' })
+        .eq('status', 'pending');
+      setPendingQuotes(quotesData?.length || 0);
+
+      // Simulate monthly revenue (in real app, this would come from payment records)
+      // For now, we'll show a placeholder that can be updated with actual payment data
+      setMonthlyRevenue(0);
+
+      // Count new customers this month
+      const { data: newCustomersData } = await supabase.auth.admin.listUsers();
+      if (newCustomersData?.users) {
+        const newCount = newCustomersData.users.filter(user => {
+          const createdAt = new Date(user.created_at);
+          return createdAt >= monthStart && createdAt <= monthEnd;
+        }).length;
+        setNewCustomersThisMonth(newCount);
+      }
     } catch (error) {
       console.error('Error fetching monthly stats:', error);
       toast({
@@ -101,32 +130,53 @@ const AdminStats = ({ posts, onRefresh }: AdminStatsProps) => {
 
   const stats = [
     {
+      title: "Total Customers",
+      value: totalCustomers,
+      subtitle: `+${newCustomersThisMonth} this month`,
+      icon: Users,
+      gradient: "bg-gradient-primary"
+    },
+    {
+      title: "Pending Quotes",
+      value: pendingQuotes,
+      subtitle: "Awaiting response",
+      icon: AlertCircle,
+      gradient: "bg-red-500"
+    },
+    {
+      title: "Monthly Revenue",
+      value: monthlyRevenue > 0 ? `£${monthlyRevenue.toFixed(2)}` : "—",
+      subtitle: "Add payment tracking",
+      icon: DollarSign,
+      gradient: "bg-gradient-secondary"
+    },
+    {
       title: "Total Posts",
       value: totalPosts,
       subtitle: `${publishedPosts} published`,
       icon: FileText,
-      gradient: "bg-gradient-primary"
+      gradient: "bg-gradient-accent"
     },
     {
       title: "Total Views",
       value: totalViews.toLocaleString(),
       subtitle: "All time",
       icon: Eye,
-      gradient: "bg-gradient-secondary"
+      gradient: "bg-gradient-primary"
     },
     {
       title: "Monthly Views",
       value: monthlyViews.toLocaleString(),
       subtitle: "This month",
       icon: Calendar,
-      gradient: "bg-gradient-accent"
+      gradient: "bg-gradient-secondary"
     },
     {
       title: "Top Post This Month",
       value: mostViewedThisMonth?.view_count || 0,
       subtitle: mostViewedThisMonth?.title?.substring(0, 25) + (mostViewedThisMonth?.title?.length > 25 ? '...' : '') || 'No views yet',
       icon: Trophy,
-      gradient: "bg-gradient-primary"
+      gradient: "bg-gradient-accent"
     }
   ];
 
@@ -146,7 +196,7 @@ const AdminStats = ({ posts, onRefresh }: AdminStatsProps) => {
         </Button>
       </div>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8 max-h-[500px] overflow-y-auto pr-2">
         {stats.map((stat, index) => (
           <Card key={index} className="card-premium overflow-hidden relative">
             <div className={`absolute top-0 right-0 w-24 h-24 ${stat.gradient} opacity-10 rounded-full -translate-y-6 translate-x-6`}></div>
