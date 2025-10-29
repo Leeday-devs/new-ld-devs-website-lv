@@ -1,5 +1,6 @@
 import { CheckCircle, Star, Crown, Code, ShoppingCart, Server, Smartphone, Brain, Monitor, Award, Sparkles, Zap, Shield, ChevronDown, ChevronUp, ChevronLeft, ChevronRight } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
+import { Button as EnhancedButton } from "@/components/ui/button-enhanced";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
@@ -429,19 +430,14 @@ const Pricing = () => {
                           </div>
 
                           {/* CTA Button */}
-                          <button 
-                            onClick={() => handleGetStarted(plan)} 
+                          <EnhancedButton
+                            variant={isPopular ? "premium" : "outline"}
+                            onClick={() => handleGetStarted(plan)}
                             disabled={isSubmitting}
-                            className={`w-full py-3 px-6 rounded-2xl font-bold text-sm transition-all duration-500 transform active:scale-95 shadow-2xl ${
-                              isPopular 
-                                ? 'bg-gradient-to-r from-orange to-orange/80 text-white' 
-                                : 'bg-gradient-to-r from-white/10 to-white/5 text-white border-2 border-orange/30'
-                            } relative overflow-hidden`}
+                            className="w-full py-3 px-6 rounded-2xl font-bold text-sm"
                           >
-                            <span className="relative z-10">
-                              {isSubmitting ? 'Processing...' : (activeCategory === 'websites' && plan.ctaText ? plan.ctaText : "Get Started")}
-                            </span>
-                          </button>
+                            {isSubmitting ? 'Processing...' : (activeCategory === 'websites' && plan.ctaText ? plan.ctaText : "Get Started")}
+                          </EnhancedButton>
                         </div>
                       </div>
                     </div>
@@ -579,13 +575,18 @@ const Pricing = () => {
                       </div>
 
                       {/* Premium CTA Button */}
-                      <button onClick={() => handleGetStarted(plan)} disabled={isSubmitting} className={`w-full py-4 px-8 rounded-2xl font-bold text-lg transition-all duration-500 transform hover:scale-105 active:scale-95 shadow-2xl ${isPopular ? 'bg-gradient-to-r from-orange to-orange/80 text-white hover:shadow-orange/50 hover:shadow-2xl' : 'bg-gradient-to-r from-white/10 to-white/5 text-white border-2 border-orange/30 hover:border-orange hover:bg-orange/10 hover:shadow-orange/30'} group/button overflow-hidden relative`}>
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-200%] group-hover/button:translate-x-[200%] transition-transform duration-1000"></div>
-                        <div className="relative z-10 flex items-center justify-center space-x-2">
+                      <EnhancedButton
+                        variant={isPopular ? "premium" : "outline"}
+                        size="lg"
+                        onClick={() => handleGetStarted(plan)}
+                        disabled={isSubmitting}
+                        className="w-full py-4 px-8 rounded-2xl font-bold text-lg"
+                      >
+                        <span className="flex items-center justify-center space-x-2">
                           <span>{isSubmitting ? 'Processing...' : (activeCategory === 'websites' && plan.ctaText ? plan.ctaText : "Let's Build Your Project")}</span>
-                          <Zap className="h-5 w-5 group-hover/button:rotate-12 transition-transform duration-300" />
-                        </div>
-                      </button>
+                          <Zap className="h-5 w-5" />
+                        </span>
+                      </EnhancedButton>
                     </div>
                   </div>
                 </div>

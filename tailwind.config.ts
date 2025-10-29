@@ -367,7 +367,7 @@ export default {
 				'float-delayed': 'float-delayed 4s ease-in-out infinite',
 				'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
 				'rotate-slow': 'rotate-slow 20s linear infinite',
-				'gradient-shift': 'gradientShift 6s ease infinite',
+				'gradient-shift': 'gradient-flow 8s ease infinite',
 				'shimmer': 'shimmer 2s linear infinite',
 				'bounce-gentle': 'bounce-gentle 2s infinite',
 				'gradient-flow': 'gradient-flow 8s ease infinite',

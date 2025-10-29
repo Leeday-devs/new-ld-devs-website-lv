@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { Button as EnhancedButton } from "@/components/ui/button-enhanced";
 import { ArrowRight, Shield, Zap, Award } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import heroPoster from "@/assets/hero-cinematic.jpg";
@@ -9,12 +10,27 @@ const Hero = () => {
   const [showSubtext, setShowSubtext] = useState(false);
   const [showButton, setShowButton] = useState(false);
   const [videoLoaded, setVideoLoaded] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
   const videoRef = useRef<HTMLVideoElement>(null);
   const hasTriedPlay = useRef(false);
 
   useEffect(() => {
     setIsVisible(true);
-    
+
+    // Parallax scroll listener with throttling
+    let ticking = false;
+    const handleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          setScrollY(window.scrollY);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
     // Staggered animations
     const timer1 = setTimeout(() => setShowHeading(true), 300);
     const timer2 = setTimeout(() => setShowSubtext(true), 800);
@@ -55,6 +71,7 @@ const Hero = () => {
       clearTimeout(timer1);
       clearTimeout(timer2);
       clearTimeout(timer3);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
@@ -63,7 +80,7 @@ const Hero = () => {
       className="bg-navy min-h-screen flex items-center justify-center relative overflow-hidden pt-24 md:pt-16"
       aria-label="Hero section with company introduction"
     >
-      {/* Subtle Video Background - Local video for reliability */}
+      {/* Subtle Video Background - Local video for reliability with parallax */}
       <video
         ref={videoRef}
         autoPlay
@@ -74,7 +91,11 @@ const Hero = () => {
         poster={heroPoster}
         aria-hidden="true"
         disablePictureInPicture
-        className="absolute inset-0 w-full h-full object-cover opacity-100 z-10"
+        className="absolute inset-0 w-full h-full object-cover opacity-100 z-10 transition-transform duration-300"
+        style={{
+          transform: `translateY(${scrollY * 0.5}px)`,
+          willChange: 'transform'
+        }}
         onCanPlay={() => {
           if (!videoLoaded) {
             setVideoLoaded(true);
@@ -124,9 +145,15 @@ const Hero = () => {
       </div>
 
       <div className="container mx-auto px-6 relative z-20">
-        <div className="max-w-6xl mx-auto text-center px-4">
+        <div className="max-w-6xl mx-auto text-center px-4" style={{
+          transform: `translateY(${scrollY * 0.3}px)`,
+          willChange: 'transform'
+        }}>
           {/* Hero Heading with staggered animation - Mobile Optimized */}
-          <div className={`transition-all duration-1000 ease-out ${showHeading ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16'}`}>
+          <div className={`transition-all duration-1000 ease-out ${showHeading ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16'}`} style={{
+            transform: `translateY(${scrollY * 0.2}px)`,
+            willChange: 'transform'
+          }}>
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-white mb-4 sm:mb-6 leading-[0.9] font-black tracking-tight">
               Premium Web Development <span className="text-highlight animate-pulse block sm:inline">Solutions</span>
               <span className="block mt-3 sm:mt-6">
@@ -150,26 +177,18 @@ const Hero = () => {
           {/* CTA Buttons with pill shape, glow effect and delayed animation - Mobile Optimized */}
           <div className={`mb-8 sm:mb-16 transition-all duration-1000 ease-out delay-500 ${showButton ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'}`}>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button 
-                size="lg" 
-                className="btn-primary px-6 sm:px-8 md:px-10 lg:px-12 py-3 sm:py-4 md:py-5 lg:py-6 text-base sm:text-lg md:text-xl lg:text-2xl font-black rounded-full shadow-2xl relative overflow-hidden group hover:scale-105 transition-all duration-300 animate-pulse-slow hover:animate-none w-full sm:w-auto max-w-xs sm:max-w-none"
+              <EnhancedButton
+                variant="premium"
+                size="lg"
+                className="px-6 sm:px-8 md:px-10 lg:px-12 py-3 sm:py-4 md:py-5 lg:py-6 text-base sm:text-lg md:text-xl lg:text-2xl font-black rounded-full w-full sm:w-auto max-w-xs sm:max-w-none"
                 onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
               >
-                {/* Enhanced Glow effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-orange via-orange to-orange opacity-0 group-hover:opacity-40 blur-xl transition-opacity duration-500 group-hover:scale-110"></div>
-                
-                {/* Ripple effect */}
-                <div className="absolute inset-0 bg-orange/20 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping transition-opacity duration-300"></div>
-                
-                {/* Shine effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out"></div>
-                
-                <span className="relative z-10 flex items-center justify-center">
+                <span className="flex items-center justify-center">
                   <span className="hidden sm:inline">Work With Me</span>
                   <span className="sm:hidden">Work With Me</span>
-                  <ArrowRight className="ml-2 sm:ml-3 h-5 sm:h-6 md:h-7 w-5 sm:w-6 md:w-7 group-hover:translate-x-1 transition-transform duration-300" />
+                  <ArrowRight className="ml-2 sm:ml-3 h-5 sm:h-6 md:h-7 w-5 sm:w-6 md:w-7" />
                 </span>
-              </Button>
+              </EnhancedButton>
               
               <Button 
                 variant="outline"

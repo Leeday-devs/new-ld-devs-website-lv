@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { memo } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Button as EnhancedButton } from "@/components/ui/button-enhanced";
 
 const Services = () => {
   const navigate = useNavigate();
@@ -223,7 +224,7 @@ const Services = () => {
             return (
               <div
                 key={index}
-                className={`relative group overflow-hidden rounded-2xl ${colorScheme.gradient} ${colorScheme.border} ${colorScheme.glow} ${colorScheme.hoverGlow} transition-all duration-700 hover:scale-[1.03] hover:-translate-y-2 hover:shadow-2xl ${service.pricingCategory || service.isTemplates ? 'cursor-pointer' : ''}`}
+                className={`relative group overflow-hidden rounded-2xl ${colorScheme.gradient} ${colorScheme.border} ${colorScheme.glow} ${colorScheme.hoverGlow} transition-all duration-700 hover:scale-[1.05] hover:-translate-y-3 hover:shadow-2xl ${service.pricingCategory || service.isTemplates ? 'cursor-pointer' : ''}`}
                 onClick={() => handleServiceClick(service.pricingCategory, service.isTemplates)}
                 style={{
                   backgroundImage: `
@@ -323,12 +324,14 @@ const Services = () => {
 
         {/* CTA Section */}
         <div className="text-center mt-16">
-          <button 
-            className="btn-primary px-10 py-4 text-lg font-semibold rounded-2xl"
+          <EnhancedButton
+            variant="premium"
+            size="lg"
+            className="px-10 py-4 text-lg font-semibold rounded-2xl"
             onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
           >
             Work With Lee
-          </button>
+          </EnhancedButton>
         </div>
       </div>
     </section>

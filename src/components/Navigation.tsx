@@ -76,10 +76,10 @@ const Navigation = () => {
   }, []);
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out ${
       isScrolled
-        ? 'bg-gradient-to-r from-navy via-navy to-navy/90 backdrop-blur-xl border-b border-orange/20 shadow-premium'
-        : 'bg-gradient-to-r from-transparent via-transparent to-transparent'
+        ? 'bg-gradient-to-r from-navy via-orange/5 via-navy/95 to-navy/90 backdrop-blur-xl border-b border-orange/30 shadow-[0_8px_32px_rgba(255,122,0,0.1)] bg-[length:200%_100%] animate-gradient-shift'
+        : 'bg-gradient-to-r from-transparent via-orange/10 to-transparent backdrop-blur-md transition-all duration-700'
     }`}>
       <div className="container mx-auto px-4">
         {/* Google Trust Banner - Mobile Optimized */}
@@ -118,19 +118,19 @@ const Navigation = () => {
                 <Link
                   key={item.label}
                   to={item.href}
-                  className="relative px-4 py-2 text-white/70 hover:text-orange transition-colors duration-300 font-semibold tracking-wide group"
+                  className="relative px-4 py-2 text-white/80 hover:text-orange transition-all duration-300 font-semibold tracking-wide group"
                 >
                   {item.label}
-                  <span className="absolute inset-x-0 -bottom-1 h-1 bg-gradient-to-r from-orange via-orange to-orange/0 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300 rounded-full"></span>
+                  <span className="absolute inset-x-0 -bottom-1.5 h-1.5 bg-gradient-to-r from-orange via-orange/80 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500 rounded-full shadow-orange-glow/50"></span>
                 </Link>
               ) : (
                 <a
                   key={item.label}
                   href={item.href}
-                  className="relative px-4 py-2 text-white/70 hover:text-orange transition-colors duration-300 font-semibold tracking-wide group"
+                  className="relative px-4 py-2 text-white/80 hover:text-orange transition-all duration-300 font-semibold tracking-wide group"
                 >
                   {item.label}
-                  <span className="absolute inset-x-0 -bottom-1 h-1 bg-gradient-to-r from-orange via-orange to-orange/0 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300 rounded-full"></span>
+                  <span className="absolute inset-x-0 -bottom-1.5 h-1.5 bg-gradient-to-r from-orange via-orange/80 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500 rounded-full shadow-orange-glow/50"></span>
                 </a>
               )
             ))}
