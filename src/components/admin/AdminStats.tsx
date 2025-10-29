@@ -82,14 +82,25 @@ const AdminStats = ({ posts, onRefresh }: AdminStatsProps) => {
 
       // Fetch pending custom quotes
       const { data: quotesData } = await supabase
-        .from('custom_quotes')
+        .from('custom_quote_requests')
         .select('*', { count: 'exact' })
         .eq('status', 'pending');
       setPendingQuotes(quotesData?.length || 0);
 
-      // Simulate monthly revenue (in real app, this would come from payment records)
-      // For now, we'll show a placeholder that can be updated with actual payment data
-      setMonthlyRevenue(0);
+      // Fetch monthly revenue from completed orders
+      const { data: ordersData } = await supabase
+        .from('orders')
+        .select('amount, stripe_session_id')
+        .gte('created_at', monthStart.toISOString())
+        .lte('created_at', monthEnd.toISOString())
+        .not('stripe_session_id', 'is', null); // Only completed payments
+
+      if (ordersData && ordersData.length > 0) {
+        const totalRevenue = ordersData.reduce((sum, order) => sum + (order.amount || 0), 0);
+        setMonthlyRevenue(totalRevenue / 100); // Convert from pence to pounds
+      } else {
+        setMonthlyRevenue(0);
+      }
 
       // Count new customers this month
       const { data: newCustomersData } = await supabase.auth.admin.listUsers();
