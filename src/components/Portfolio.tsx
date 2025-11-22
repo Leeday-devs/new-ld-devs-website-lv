@@ -141,13 +141,10 @@ const Portfolio = () => {
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="heading-primary heading-lg mb-6 text-navy">
-            A Few Projects I've <span className="text-orange">Personally Built</span>
+            Projects We've <span className="text-orange">Built</span>
           </h2>
-          <p className="text-body max-w-3xl mx-auto text-text-secondary mb-4">
-            Here's a look at some of the work I've created directly for clients.
-          </p>
-          <p className="text-sm font-medium text-text-secondary/80 italic">
-            Every project here was designed and built by me, start to finish.
+          <p className="text-body max-w-3xl mx-auto text-text-secondary">
+            Real results for real businesses. Here's some of our recent work.
           </p>
         </div>
 
@@ -265,7 +262,7 @@ const Portfolio = () => {
                 
                 {/* Card Footer */}
                 <div className="p-4 text-center">
-                  <p className="text-text-secondary text-sm font-medium">Built by Lee</p>
+                  <p className="text-text-secondary text-sm font-medium">Built by our team</p>
                 </div>
               </div>
             ))}

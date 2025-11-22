@@ -29,6 +29,8 @@ const AppLikeNavigation = () => {
   const isMobile = useIsMobile();
   
   const isPricingPage = location.pathname === '/pricing';
+  const isHomepage = location.pathname === '/';
+  const needsSolidBackground = !isHomepage || isScrolled || isPricingPage;
 
   // Handle scroll for sticky header color change
   useEffect(() => {
@@ -82,8 +84,8 @@ const AppLikeNavigation = () => {
   return (
     <>
       <nav className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-        isScrolled || isPricingPage
-          ? 'bg-navy/95 backdrop-blur-xl border-b border-gold/20 shadow-premium' 
+        needsSolidBackground
+          ? 'bg-navy/95 backdrop-blur-xl border-b border-gold/20 shadow-premium'
           : 'bg-transparent'
       }`}>
         <div className="container mx-auto px-4">
