@@ -38,8 +38,8 @@ const Contact = () => {
   const contactInfo = [{
     icon: Mail,
     label: "Email",
-    value: "LeeDayDevs@gmail.com",
-    href: "mailto:LeeDayDevs@gmail.com"
+    value: "leedaydevs@gmail.com",
+    href: "mailto:leedaydevs@gmail.com"
   }, {
     icon: Phone,
     label: "Phone",
@@ -149,7 +149,7 @@ const Contact = () => {
       
       toast({
         title: "Message sent!",
-        description: "I'll get back to you shortly."
+        description: "We'll get back to you shortly."
       });
 
       setQuickMessage("");
@@ -248,8 +248,8 @@ const Contact = () => {
       }
       
       toast({
-        title: "Thanks—I'll reply personally, usually the same day.",
-        description: "Your message has been sent directly to Lee!"
+        title: "Thanks—we'll reply personally, usually the same day.",
+        description: "Your message has been sent to our team!"
       });
 
       // Reset form
@@ -287,10 +287,10 @@ const Contact = () => {
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="heading-primary heading-lg mb-6 text-white">
-            Work With Me <span className="text-orange">Directly</span>
+            Work With Us <span className="text-orange">Directly</span>
           </h2>
           <p className="text-body text-white/80 max-w-3xl mx-auto">
-            Tell me what you need—your message comes straight to me.
+            Tell us what you need—your message comes straight to our team.
           </p>
         </div>
 
@@ -329,7 +329,7 @@ const Contact = () => {
                     className="w-full min-h-[56px] text-lg font-semibold rounded-2xl bg-green-500 hover:bg-green-600 text-white border-0 transition-all duration-300 hover:scale-[1.02] shadow-lg"
                   >
                     <MessageCircle className="mr-3 h-6 w-6" />
-                    WhatsApp Me
+                    WhatsApp Us
                   </Button>
                 </div>
 
@@ -579,7 +579,7 @@ const Contact = () => {
                       Call <span className="text-orange font-semibold">07586 266007</span>
                     </p>
                     <p className="text-white/60 text-sm">
-                      No sales team—just me.
+                      No sales team—just our small team.
                     </p>
                   </div>
                 </div>
@@ -588,7 +588,7 @@ const Contact = () => {
                 <div className="lg:col-span-3 p-6 sm:p-8 lg:p-12">
                   <div className="max-w-2xl">
                     <h3 className="heading-primary heading-md text-navy mb-8 font-bold">
-                      Send to <span className="text-orange">Lee</span>
+                      Send to <span className="text-orange">Our Team</span>
                     </h3>
                     
                     <form onSubmit={handleSubmit} className="space-y-8">
@@ -688,12 +688,12 @@ const Contact = () => {
                             {isLoading ? (
                               <>
                                 <Loader2 className="mr-3 h-5 w-5 animate-spin" />
-                                Sending to Lee...
+                                Sending...
                               </>
                             ) : (
                               <>
                                 <Send className="mr-3 h-5 w-5" />
-                                Send to Lee
+                                Send Message
                               </>
                             )}
                           </span>

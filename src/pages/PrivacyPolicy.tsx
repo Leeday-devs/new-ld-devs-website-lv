@@ -162,8 +162,8 @@ const PrivacyPolicy = () => {
               <h2 className="text-2xl font-bold text-brand-navy mb-4">11. Contact Information</h2>
               <div className="bg-gray-50 p-6 rounded-lg">
                 <p className="mb-4"><strong>Data Controller:</strong> LD Development (Part of Hosting Easy Ltd)</p>
-                <p className="mb-2"><strong>Email:</strong> <a href="mailto:lee@leedaydevs.com" className="text-brand-orange hover:underline">lee@leedaydevs.com</a></p>
-                <p className="mb-2"><strong>Phone:</strong> <a href="tel:+447586266007" className="text-brand-orange hover:underline">+44 7586 266007</a></p>
+                <p className="mb-2"><strong>Email:</strong> <a href="mailto:leedaydevs@gmail.com" className="text-brand-orange hover:underline">leedaydevs@gmail.com</a></p>
+                <p className="mb-2"><strong>Phone:</strong> <a href="tel:07586266007" className="text-brand-orange hover:underline">07586 266007</a></p>
                 <p className="mb-4"><strong>Address:</strong> London, United Kingdom</p>
                 
                 <p className="text-sm text-gray-600">

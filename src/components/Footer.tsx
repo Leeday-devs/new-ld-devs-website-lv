@@ -106,7 +106,7 @@ const Footer = () => {
               <div className="text-center">
                 <h3 className="text-xl font-black font-serif text-white mb-3">LD Development</h3>
                 <p className="text-white/70 text-sm leading-relaxed">
-                  I'm Lee, a London-based freelancer building websites, apps & AI solutions.
+                  We're a small London-based team building websites, apps & AI solutions.
                 </p>
               </div>
 
@@ -192,7 +192,7 @@ const Footer = () => {
                 <div className="space-y-3">
                   <h3 className="text-2xl sm:text-3xl font-black font-serif text-white">LD Development</h3>
                   <p className="text-white/70 text-sm sm:text-base leading-relaxed">
-                    I'm Lee, a London-based freelancer building websites, apps, and AI solutions for small businesses.
+                    We're a small London-based team building websites, apps, and AI solutions for small businesses.
                   </p>
                 </div>
                 
@@ -253,22 +253,22 @@ const Footer = () => {
               <div className="space-y-3 sm:space-y-4">
                 <h4 className="text-base sm:text-lg font-bold text-white">Contact Info</h4>
                 <div className="space-y-4">
-                  <a href="tel:+447586266007" className="flex items-center gap-3 group cursor-pointer">
+                  <a href="tel:07586266007" className="flex items-center gap-3 group cursor-pointer">
                     <div className="p-2 bg-white/10 rounded-lg group-hover:bg-orange/20 transition-colors">
                       <Phone className="h-4 w-4 text-orange" />
                     </div>
                     <div>
-                      <div className="text-white/80 group-hover:text-orange transition-colors">+44 7586 266007</div>
+                      <div className="text-white/80 group-hover:text-orange transition-colors">07586 266007</div>
                       <div className="text-xs text-white/60">24/7 Support Line</div>
                     </div>
                   </a>
-                  <a href="mailto:lee@leedaydevs.com?subject=Free Quote Request" className="flex items-center gap-3 group cursor-pointer">
+                  <a href="mailto:leedaydevs@gmail.com?subject=Free Quote Request" className="flex items-center gap-3 group cursor-pointer">
                     <div className="p-2 bg-white/10 rounded-lg group-hover:bg-orange/20 transition-colors">
                       <Mail className="h-4 w-4 text-orange" />
                     </div>
                     <div>
-                      <div className="text-white/80 group-hover:text-orange transition-colors">lee@leedaydevs.com</div>
-                      <div className="text-xs text-white/60">Contact Lee</div>
+                      <div className="text-white/80 group-hover:text-orange transition-colors">leedaydevs@gmail.com</div>
+                      <div className="text-xs text-white/60">Contact Us</div>
                     </div>
                   </a>
                   <div className="flex items-center gap-3 group">

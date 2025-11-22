@@ -47,8 +47,8 @@ const TermsOfService = () => {
                 <p className="mb-2"><strong>Company:</strong> LD Development (Trading name of Hosting Easy Ltd)</p>
                 <p className="mb-2"><strong>Registration:</strong> Company registered in England and Wales</p>
                 <p className="mb-2"><strong>Address:</strong> London, United Kingdom</p>
-                <p className="mb-2"><strong>Email:</strong> lee@leedaydevs.com</p>
-                <p><strong>Phone:</strong> +44 7586 266007</p>
+                <p className="mb-2"><strong>Email:</strong> leedaydevs@gmail.com</p>
+                <p><strong>Phone:</strong> 07586 266007</p>
               </div>
             </section>
 
@@ -258,8 +258,8 @@ const TermsOfService = () => {
                 <p className="mb-4">
                   For questions about these Terms of Service, please contact us:
                 </p>
-                <p className="mb-2"><strong>Email:</strong> <a href="mailto:lee@leedaydevs.com" className="text-brand-orange hover:underline">lee@leedaydevs.com</a></p>
-                <p className="mb-2"><strong>Phone:</strong> <a href="tel:+447586266007" className="text-brand-orange hover:underline">+44 7586 266007</a></p>
+                <p className="mb-2"><strong>Email:</strong> <a href="mailto:leedaydevs@gmail.com" className="text-brand-orange hover:underline">leedaydevs@gmail.com</a></p>
+                <p className="mb-2"><strong>Phone:</strong> <a href="tel:07586266007" className="text-brand-orange hover:underline">07586 266007</a></p>
                 <p><strong>Address:</strong> London, United Kingdom</p>
               </div>
             </section>

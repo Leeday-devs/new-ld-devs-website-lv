@@ -52,8 +52,8 @@ export const generateLocalBusinessStructuredData = () => {
     "alternateName": "Lee Day Devs",
     "description": "Premium web development and AI solutions for UK businesses. Custom websites, e-commerce platforms, and digital automation services.",
     "url": "https://leedaydevs.com",
-    "telephone": "+447586266007",
-    "email": "LeeDayDevs@gmail.com",
+    "telephone": "07586266007",
+    "email": "leedaydevs@gmail.com",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "3rd Floor 86-90, Paul Street",

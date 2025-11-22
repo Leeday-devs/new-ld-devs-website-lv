@@ -6,10 +6,10 @@ const AboutMe = () => {
         {/* Section Header */}
         <div className="text-center mb-16">
           <p className="text-text-secondary/70 font-medium text-sm sm:text-base mb-4 tracking-wide">
-            London-based Freelancer • Websites • Apps • AI Tools
+            London-based Team • Websites • Apps • AI Tools
           </p>
           <h2 className="heading-primary heading-lg mb-6 text-navy">
-            Meet <span className="text-orange">Lee</span>
+            Meet <span className="text-orange">Our Team</span>
           </h2>
         </div>
 
@@ -33,9 +33,9 @@ const AboutMe = () => {
             {/* Right Column - Content */}
             <div className="text-center lg:text-left">
               <div className="space-y-6 mb-8">
-                <p className="text-body text-lg leading-relaxed text-text-secondary">Hi, I'm Lee, a London based freelancer. I work directly with small businesses to create everything from websites and apps to AI automations  &amp; tools that save time, build trust, and help your business grow.</p>
+                <p className="text-body text-lg leading-relaxed text-text-secondary">Hi, I'm Lee, the founder of LD Development. Together with my small team, we work directly with businesses and startups to create everything from websites and apps to AI automations &amp; tools that save time, build trust, and help your business grow.</p>
                 <p className="text-body text-lg leading-relaxed text-text-secondary">
-                  That's me in the photo with my wife—my biggest supporter. I keep my process simple: clear communication, fast turnarounds, and solutions that deliver a premium finish without the agency price tag.
+                  That's me in the photo with my wife—my biggest supporter. We keep our process simple: clear communication, fast turnarounds, and solutions that deliver a premium finish without the agency price tag.
                 </p>
               </div>
 

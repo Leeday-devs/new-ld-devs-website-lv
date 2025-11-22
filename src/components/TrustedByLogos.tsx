@@ -33,6 +33,10 @@ const TrustedByLogos = () => {
     url: "https://openai.com",
     displayName: "OpenAI"
   }, {
+    name: "Claude",
+    url: "https://claude.ai",
+    displayName: "Claude"
+  }, {
     name: "Leonardo.ai",
     url: "https://leonardo.ai",
     displayName: "Leonardo.ai"
@@ -41,7 +45,7 @@ const TrustedByLogos = () => {
       <div className="container mx-auto px-4 sm:px-6">
         <div className="text-center mb-8 sm:mb-12">
           <p className="text-white/60 text-sm sm:text-base md:text-lg font-medium tracking-wide uppercase">
-            Trusted Technology Partners
+            Technologies We Use
           </p>
         </div>
         
@@ -55,7 +59,7 @@ const TrustedByLogos = () => {
         
         <div className="text-center mt-8 sm:mt-12">
           <p className="text-white/50 text-xs sm:text-sm my-[18px]">
-            Certified partners delivering enterprise-grade solutions
+            Modern tools for fast, reliable, and scalable solutions
           </p>
         </div>
       </div>

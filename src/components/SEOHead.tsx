@@ -66,7 +66,7 @@ const SEOHead = ({
       brand: "LD Development",
       url: "https://leeday.uk",
       image: "https://leeday.uk/path-to-headshot.jpg",
-      telephone: "+447586266007",
+      telephone: "07586266007",
       email: "mailto:leedaydevs@gmail.com",
       address: {
         "@type": "PostalAddress",
@@ -220,8 +220,8 @@ const SEOHead = ({
       <meta property="business:contact_data:locality" content="London" />
       <meta property="business:contact_data:postal_code" content="EC2A 4NE" />
       <meta property="business:contact_data:country_name" content="United Kingdom" />
-      <meta property="business:contact_data:phone_number" content="+447586266007" />
-      <meta property="business:contact_data:email" content="LeeDayDevs@gmail.com" />
+      <meta property="business:contact_data:phone_number" content="07586266007" />
+      <meta property="business:contact_data:email" content="leedaydevs@gmail.com" />
 
       {/* Twitter Enhanced */}
       <meta name="twitter:card" content="summary_large_image" />

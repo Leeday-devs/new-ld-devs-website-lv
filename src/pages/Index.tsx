@@ -58,18 +58,18 @@ const Index = () => {
             <MobileOptimizedHero />
           </section>
           
-          {/* Trust/Stats (navy band, count-up) */}
-          <section aria-label="Company statistics and trust indicators">
-            <StatsBar />
-          </section>
-          
-          {/* Trusted By Logos - Social Proof */}
-          <TrustedByLogos />
-          
           {/* Services (dark background) - Premium spacing */}
           <section id="services" aria-label="Web development services" className="bg-transparent">
             <Services />
           </section>
+
+          {/* Trust/Stats (navy band, count-up) */}
+          <section aria-label="Company statistics and trust indicators">
+            <StatsBar />
+          </section>
+
+          {/* Trusted By Logos - Social Proof */}
+          <TrustedByLogos />
           
           {/* Portfolio / Case Studies (dark background) - Premium spacing */}
           <section id="portfolio" aria-label="Portfolio of completed projects" className="bg-transparent">

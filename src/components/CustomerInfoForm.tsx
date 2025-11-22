@@ -92,7 +92,7 @@ export const CustomerInfoForm = ({ onSubmit, isLoading, serviceName }: CustomerI
           Your Information
         </h3>
         <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 leading-relaxed">
-          Once you complete payment, I'll contact you within 24 hours to discuss your project details and next steps. You'll be working directly with me (Lee) — no sales team, no middlemen.
+          Once you complete payment, we'll contact you within 24 hours to discuss your project details and next steps. You'll be working directly with our small team — no sales reps, no middlemen.
         </p>
       </div>
       

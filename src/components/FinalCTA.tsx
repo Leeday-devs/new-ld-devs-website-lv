@@ -54,7 +54,7 @@ const FinalCTA = () => {
         setIsSubmitted(true);
         toast({
           title: "Success!",
-          description: "Thank you! I'll get back to you shortly.",
+          description: "Thank you! We'll get back to you shortly.",
         });
       }
     } catch (error) {
@@ -79,29 +79,28 @@ const FinalCTA = () => {
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
           {/* Main Headline */}
-          <h2 className="heading-primary text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
-            Invest in Your Digital Future
+          <h2 className="heading-primary text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+            Ready to Get Started?
             <span className="block text-orange mt-2">
-              With Me
+              Let's Chat
             </span>
           </h2>
 
           {/* Subheading */}
           <p className="text-xl md:text-2xl text-white/80 mb-8 max-w-3xl mx-auto leading-relaxed">
-            Join hundreds of successful businesses who trust me to create 
-            websites that not only look amazing but deliver real results.
+            Drop us your email and we'll get back to you within 24 hours to talk through your project.
           </p>
 
           {/* Trust Indicators */}
-          <div className="flex flex-wrap justify-center items-center gap-8 mb-12 text-white/70">
+          <div className="flex flex-wrap justify-center items-center gap-6 mb-12 text-white/70">
             <div className="flex items-center gap-2">
               <Star className="h-5 w-5 text-orange fill-orange" />
               <span className="font-medium">5-Star Rated</span>
             </div>
-            <div className="w-px h-6 bg-white/20"></div>
-            <div className="font-medium">250+ Happy Clients</div>
-            <div className="w-px h-6 bg-white/20"></div>
-            <div className="font-medium">99.9% Uptime</div>
+            <div className="w-px h-6 bg-white/20 hidden sm:block"></div>
+            <div className="font-medium">50+ Projects Delivered</div>
+            <div className="w-px h-6 bg-white/20 hidden sm:block"></div>
+            <div className="font-medium">Quick Response</div>
           </div>
 
           {/* Email Input and CTA */}
@@ -110,7 +109,7 @@ const FinalCTA = () => {
               <div className="max-w-2xl mx-auto text-center">
                 <div className="bg-white/10 border border-white/20 rounded-xl px-8 py-6">
                   <h3 className="text-2xl font-bold text-white mb-2">Thank You!</h3>
-                  <p className="text-white/80 text-lg">I'll get back to you shortly.</p>
+                  <p className="text-white/80 text-lg">We'll get back to you shortly.</p>
                 </div>
               </div>
             ) : (
@@ -128,7 +127,7 @@ const FinalCTA = () => {
                   disabled={isSubmitting}
                   className="bg-orange hover:bg-orange/90 text-white font-bold text-lg px-8 py-4 rounded-xl transition-all duration-300 hover:-translate-y-1 shadow-2xl hover:shadow-orange/20 inline-flex items-center gap-3 whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0"
                 >
-                  {isSubmitting ? "Submitting..." : "Send a Message to Lee"}
+                  {isSubmitting ? "Submitting..." : "Send Us a Message"}
                   <ArrowRight className="h-5 w-5" />
                 </button>
               </form>

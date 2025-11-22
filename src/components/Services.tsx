@@ -13,45 +13,51 @@ const Services = () => {
   const services = [
     {
       icon: Monitor,
-      title: "Web Design & Development",
-      description: "I design and build fast, modern websites tailored to your goals.",
-      features: ["Responsive Design", "Fast Loading", "SEO Optimized", "Mobile Friendly", "SSL Secured"],
-      pricingCategory: "websites"
+      title: "Websites",
+      description: "We build fast, modern websites that look great and help customers find you online.",
+      features: ["Works on All Devices", "Loads Quickly", "Easy to Find on Google", "Mobile Friendly", "Safe & Secure"],
+      pricingCategory: "websites",
+      startingPrice: "£500"
     },
     {
       icon: ShoppingBag,
-      title: "Ecommerce Solutions",  
-      description: "I set up high-converting shops with secure payments and simple management.",
-      features: ["Payment Integration", "Product Management", "Order Tracking", "Customer Accounts", "Analytics"],
-      pricingCategory: "websites"
+      title: "Online Shops",
+      description: "We set up online shops where your customers can browse and buy easily.",
+      features: ["Accept Card Payments", "Manage Your Products", "Track Orders", "Customer Accounts", "See What's Selling"],
+      pricingCategory: "websites",
+      startingPrice: "£1,200"
     },
     {
       icon: Package,
-      title: "Re-Designs",
-      description: "I overhaul outdated sites into premium, trustworthy experiences.",
-      features: ["Ready-Made Designs", "Fully Responsive", "Easy Customization", "Quick Setup", "Professional Look"],
-      isTemplates: true
+      title: "Website Makeovers",
+      description: "We transform old, outdated websites into modern, professional sites that build trust.",
+      features: ["Modern Designs", "Works on All Screens", "Easy to Update", "Quick Turnaround", "Professional Look"],
+      isTemplates: true,
+      startingPrice: "£300"
     },
     {
       icon: Cloud,
-      title: "Hosting & Maintenance",
-      description: "I host, secure, and maintain your site with updates and backups.",
-      features: ["99.9% Uptime", "Daily Backups", "Security Updates", "Performance Monitoring", "Technical Support"],
-      pricingCategory: "software"
+      title: "Hosting & Support",
+      description: "We keep your website running smoothly, safe, and up-to-date — you don't have to worry about a thing.",
+      features: ["Always Online", "Daily Backups", "Stays Safe & Secure", "We Monitor Everything", "Help When You Need It"],
+      pricingCategory: "software",
+      startingPrice: "£25/mo"
     },
     {
       icon: Bot,
-      title: "AI & Automation",
-      description: "I build AI tools and automations that save you hours each week.",
-      features: ["Chatbots", "Process Automation", "Data Analysis", "Smart Workflows", "AI Content"],
-      pricingCategory: "ai"
+      title: "AI Tools & Automation",
+      description: "We build tools that do the boring stuff for you — so you can focus on your business.",
+      features: ["Chat Assistants", "Automate Repetitive Tasks", "Make Sense of Your Data", "Save Hours Every Week", "AI-Written Content"],
+      pricingCategory: "ai",
+      startingPrice: "£150"
     },
     {
       icon: Smartphone,
-      title: "Integrations",
-      description: "I connect your site to CRMs, calendars, and payment systems.",
-      features: ["iOS & Android", "Cross-Platform", "App Store Deployment", "Push Notifications", "Offline Support"],
-      pricingCategory: "mobile"
+      title: "Connect Your Tools",
+      description: "We link your website to booking systems, email marketing, payments, and more.",
+      features: ["Booking & Calendars", "Email Marketing", "Payment Systems", "Send Customer Alerts", "All Your Tools in One Place"],
+      pricingCategory: "mobile",
+      startingPrice: "£200"
     }
   ];
 
@@ -87,68 +93,17 @@ const Services = () => {
       className="relative pb-20 overflow-hidden min-h-screen" 
       aria-label="Our web development services"
     >
-      {/* Rain on Glass Background Effect */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50/90 via-blue-100/60 to-blue-200/40" />
-      
-      {/* Glass texture overlay */}
-      <div className="absolute inset-0 opacity-30" style={{
-        backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Ccircle cx='7' cy='7' r='1'/%3E%3Ccircle cx='27' cy='7' r='1'/%3E%3Ccircle cx='47' cy='7' r='1'/%3E%3Ccircle cx='7' cy='27' r='1'/%3E%3Ccircle cx='27' cy='27' r='1'/%3E%3Ccircle cx='47' cy='27' r='1'/%3E%3Ccircle cx='7' cy='47' r='1'/%3E%3Ccircle cx='27' cy='47' r='1'/%3E%3Ccircle cx='47' cy='47' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
-      }} />
-      
-      {/* Animated Raindrops - More realistic */}
-      <div className="absolute inset-0 overflow-hidden">
-        {[...Array(25)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute animate-pulse opacity-60"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              width: `${2 + Math.random() * 4}px`,
-              height: `${15 + Math.random() * 30}px`,
-              background: 'linear-gradient(to bottom, rgba(59,130,246,0.4), rgba(59,130,246,0.1), transparent)',
-              borderRadius: '50px',
-              animationDelay: `${Math.random() * 4}s`,
-              animationDuration: `${3 + Math.random() * 2}s`,
-              transform: `rotate(${-10 + Math.random() * 20}deg)`,
-            }}
-          />
-        ))}
-      </div>
-      
-      {/* Water droplets on glass */}
-      <div className="absolute inset-0">
-        {[...Array(40)].map((_, i) => (
-          <div
-            key={`droplet-${i}`}
-            className="absolute rounded-full bg-gradient-radial from-blue-400/30 to-transparent animate-pulse"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              width: `${3 + Math.random() * 8}px`,
-              height: `${3 + Math.random() * 8}px`,
-              animationDelay: `${Math.random() * 6}s`,
-              animationDuration: `${4 + Math.random() * 3}s`,
-              filter: 'blur(0.5px)',
-            }}
-          />
-        ))}
-      </div>
-      
-      {/* Glass distortion effect */}
-      <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/5 to-blue-100/10 backdrop-blur-[0.5px]" />
-      
-      {/* Frosted glass overlay */}
-      <div className="absolute inset-0 bg-white/20 backdrop-blur-sm" />
+      {/* Clean gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-slate-50 via-white to-slate-50" />
       
       <div className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-16 pt-20">
           <h2 className="heading-lg spacing-section text-navy drop-shadow-sm">
-            What <span className="text-highlight">I Can Build</span> For You
+            What <span className="text-highlight">We Can Build</span> For You
           </h2>
           <p className="text-body max-w-3xl mx-auto text-text-secondary drop-shadow-sm">
-            Work directly with me from strategy to launch—fast replies, clear milestones, premium finish.
+            Work directly with our team from strategy to launch—personal service, fast replies, and a premium finish every time.
           </p>
         </div>
 
@@ -164,11 +119,14 @@ const Services = () => {
               return (
                 <AccordionItem key={index} value={`item-${index}`} className="border-orange/20 mb-4">
                   <AccordionTrigger className="hover:no-underline p-4 bg-white/90 rounded-t-xl border border-orange/25">
-                    <div className="flex items-center space-x-4">
-                      <div className="p-2 rounded-lg bg-gradient-to-br from-orange/15 to-orange/25 backdrop-blur-md">
-                        <service.icon className={`h-5 w-5 ${colorScheme.icon}`} />
+                    <div className="flex items-center justify-between w-full pr-2">
+                      <div className="flex items-center space-x-4">
+                        <div className="p-2 rounded-lg bg-gradient-to-br from-orange/15 to-orange/25 backdrop-blur-md">
+                          <service.icon className={`h-5 w-5 ${colorScheme.icon}`} />
+                        </div>
+                        <span className={`font-bold ${colorScheme.icon} text-left`}>{service.title}</span>
                       </div>
-                      <span className={`font-bold ${colorScheme.icon} text-left`}>{service.title}</span>
+                      <span className="text-xs font-semibold text-orange bg-orange/10 px-2 py-1 rounded-full">From {service.startingPrice}</span>
                     </div>
                   </AccordionTrigger>
                   <AccordionContent className="bg-white/95 border-x border-b border-orange/25 rounded-b-xl p-4">
@@ -260,9 +218,14 @@ const Services = () => {
 
                    {/* Luxury Typography */}
                   <div className="mb-6">
-                    <h3 className={`heading-md font-bold mb-2 ${colorScheme.icon} group-hover:text-navy transition-colors duration-500 leading-tight`}>
-                      {service.title}
-                    </h3>
+                    <div className="flex items-start justify-between gap-2 mb-2">
+                      <h3 className={`heading-md font-bold ${colorScheme.icon} group-hover:text-navy transition-colors duration-500 leading-tight`}>
+                        {service.title}
+                      </h3>
+                      <span className="text-xs font-semibold text-orange bg-orange/10 px-2 py-1 rounded-full whitespace-nowrap">
+                        From {service.startingPrice}
+                      </span>
+                    </div>
                     <div className={`h-0.5 w-12 ${colorScheme.accent} rounded-full opacity-60 group-hover:w-20 group-hover:opacity-100 transition-all duration-500`} />
                   </div>
 
@@ -295,7 +258,7 @@ const Services = () => {
                     <div className="text-center">
                       <div className={`inline-flex items-center px-6 py-3 rounded-xl ${colorScheme.gradient} ${colorScheme.border} backdrop-blur-md shadow-lg opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transform translate-y-0 sm:translate-y-4 sm:group-hover:translate-y-0 transition-all duration-500 delay-150 hover:scale-105`}>
                         <span className={`text-sm font-bold ${colorScheme.icon} tracking-wide`}>
-                          {service.pricingCategory ? 'View Luxury Packages' : 'Browse Premium Templates'}
+                          {service.pricingCategory ? 'See Pricing' : 'Browse Designs'}
                           <span className="ml-2 sm:group-hover:translate-x-1 inline-block transition-transform duration-300">→</span>
                         </span>
                       </div>
@@ -318,7 +281,7 @@ const Services = () => {
         {/* Direct Contact Guarantee */}
         <div className="text-center mt-12 mb-8">
           <p className="text-lg font-medium text-navy">
-            You'll always deal directly with me—no middlemen.
+            You'll always work directly with our team—no middlemen, no runaround.
           </p>
         </div>
 
@@ -330,7 +293,7 @@ const Services = () => {
             className="px-10 py-4 text-lg font-semibold rounded-2xl"
             onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
           >
-            Work With Lee
+            Work With Us
           </EnhancedButton>
         </div>
       </div>

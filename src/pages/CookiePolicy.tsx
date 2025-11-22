@@ -318,8 +318,8 @@ const CookiePolicy = () => {
                 <p className="mb-4">
                   If you have questions about our cookie policy or want to exercise your privacy rights:
                 </p>
-                <p className="mb-2"><strong>Email:</strong> <a href="mailto:lee@leedaydevs.com" className="text-brand-orange hover:underline">lee@leedaydevs.com</a></p>
-                <p className="mb-2"><strong>Phone:</strong> <a href="tel:+447586266007" className="text-brand-orange hover:underline">+44 7586 266007</a></p>
+                <p className="mb-2"><strong>Email:</strong> <a href="mailto:leedaydevs@gmail.com" className="text-brand-orange hover:underline">leedaydevs@gmail.com</a></p>
+                <p className="mb-2"><strong>Phone:</strong> <a href="tel:07586266007" className="text-brand-orange hover:underline">07586 266007</a></p>
                 <p className="mb-4"><strong>Address:</strong> London, United Kingdom</p>
                 
                 <p className="text-sm text-gray-600">

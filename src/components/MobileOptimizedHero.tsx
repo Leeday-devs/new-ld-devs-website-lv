@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Shield, Zap, Award } from "lucide-react";
+import { ArrowRight, Shield, Zap, Award, Star, ChevronDown } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import heroPoster from "@/assets/hero-cinematic.jpg";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -125,26 +125,10 @@ const MobileOptimizedHero = () => {
       
       {/* Mobile-Optimized Overlay - Reduced complexity */}
       <div className={`absolute inset-0 z-[15] pointer-events-none ${
-        isMobile 
+        isMobile
           ? 'bg-navy/70' // Simple solid overlay on mobile
-          : 'bg-navy/60 bg-gradient-to-r from-orange/5 via-transparent to-navy/10 animate-gradient bg-[length:200%_200%]'
+          : 'bg-navy/60'
       }`} />
-      
-      {/* Reduced particles on mobile for performance */}
-      <div className="absolute inset-0 overflow-hidden">
-        {[...Array(isMobile ? 5 : 8)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-1 h-1 sm:w-2 sm:h-2 bg-orange/20 rounded-full animate-pulse"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 4}s`,
-              animationDuration: `${3 + Math.random() * 2}s`,
-            }}
-          />
-        ))}
-      </div>
 
       <div className="container mx-auto relative z-20 text-center max-w-4xl">
         {/* Mobile-First Hero Heading with faster animations */}
@@ -152,7 +136,7 @@ const MobileOptimizedHero = () => {
           {/* Micro-headline */}
           <div className={`transition-all duration-500 ease-out ${showHeading ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'} mb-4 sm:mb-6`}>
             <p className="text-xs sm:text-sm md:text-base text-orange/80 uppercase font-semibold tracking-[0.2em] text-center">
-              Websites • Apps • AI Automation • Hosting
+              Websites • Online Shops • Apps • Ongoing Support
             </p>
           </div>
           
@@ -161,81 +145,61 @@ const MobileOptimizedHero = () => {
               ? "text-2xl xs:text-3xl" // Smaller mobile sizes for better 2-3 line wrapping
               : "text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl"
           }`}>
-            <span className="bg-gradient-to-r from-white via-white to-orange bg-clip-text text-transparent animate-gradient-flow">
-              Premium Web Development
+            <span className="text-white">
+              Websites That Help Your
             </span>
             {" "}
-            <span className="text-highlight block xs:inline">Solutions</span>
-            <span className={`block mt-2 sm:mt-6 ${
-              isMobile
-                ? "text-xl xs:text-2xl" // Proportionally smaller on mobile
-                : "text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl"
-            }`}>
-              Built By{" "}
-              <span className="bg-gradient-to-r from-orange via-orange to-yellow-300 bg-clip-text text-transparent animate-gradient-pulse relative">
-                Me
-              </span>
-              {!isMobile && (
-                <span className="absolute -inset-1 bg-gradient-to-r from-orange via-orange to-transparent blur-2xl opacity-30 animate-pulse -z-10"></span>
-              )}
-            </span>
+            <span className="text-highlight block xs:inline">Business Grow</span>
           </h1>
         </div>
         
         {/* Mobile-Optimized Subtext - Reduced animation complexity */}
         <div className={`transition-all duration-500 ease-out ${showSubtext ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
           <p className="text-sm xs:text-base sm:text-lg md:text-xl max-w-3xl mx-auto text-white/90 leading-relaxed font-medium mb-6 sm:mb-8 px-2">
-            I'm Lee, a London-based freelancer. I help small businesses grow online with websites, apps, and AI solutions — all without agency overheads.
+            We're a small London team that builds beautiful, easy-to-use websites for businesses and startups. You tell us what you need — we handle everything else.
           </p>
         </div>
         
-        {/* Mobile: Stacked CTAs, Desktop: Single CTA */}
-        <div className={`mb-8 sm:mb-16 transition-all duration-500 ease-out ${showButton ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-4 scale-98'}`}>
-          {isMobile ? (
-            // Mobile: Stacked buttons with gap
-            <div className="flex flex-col gap-4 max-w-sm mx-auto">
-              <Button 
-                size="lg" 
-                className="btn-primary w-full min-h-[52px] px-8 py-4 text-lg font-black rounded-2xl shadow-orange-glow relative overflow-hidden group transition-all duration-300 active:scale-95"
-                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-              >
-                <span className="relative z-10 flex items-center justify-center">
-                  Work With Me
-                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
-                </span>
-              </Button>
-              
-              <Button 
-                variant="outline"
-                size="lg" 
-                className="w-full min-h-[52px] px-8 py-4 text-lg font-semibold rounded-2xl border-2 border-white/30 text-white hover:bg-white/10 active:scale-95 transition-all duration-300"
-                onClick={() => {
-                  const workSection = document.getElementById('work') || document.querySelector('#portfolio');
-                  workSection?.scrollIntoView({ behavior: 'smooth' });
-                }}
-              >
-                <span className="flex items-center justify-center">
-                  See My Work
-                </span>
-              </Button>
+        {/* Social Proof Badge */}
+        <div className={`mb-6 transition-all duration-500 ease-out ${showSubtext ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20">
+            <div className="flex -space-x-1">
+              {[...Array(5)].map((_, i) => (
+                <Star key={i} className="h-4 w-4 text-yellow-400 fill-yellow-400" />
+              ))}
             </div>
-          ) : (
-            // Desktop: Single button with effects
-            <Button 
-              size="lg" 
-              className="btn-primary w-auto px-8 sm:px-10 md:px-12 py-4 sm:py-5 md:py-6 text-lg sm:text-xl md:text-2xl font-black rounded-full shadow-2xl relative overflow-hidden group transition-all duration-300 max-w-sm mx-auto hover:scale-105 animate-pulse-slow hover:animate-none"
+            <span className="text-white/90 text-sm font-medium">50+ Projects Delivered</span>
+          </div>
+        </div>
+
+        {/* CTAs - Both Mobile and Desktop get two buttons */}
+        <div className={`mb-8 sm:mb-16 transition-all duration-500 ease-out ${showButton ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-4 scale-98'}`}>
+          <div className={`flex ${isMobile ? 'flex-col' : 'flex-row'} gap-4 justify-center items-center max-w-lg mx-auto`}>
+            <Button
+              size="lg"
+              className="btn-primary w-full sm:w-auto min-h-[52px] px-8 py-4 text-lg font-black rounded-2xl shadow-orange-glow relative overflow-hidden group transition-all duration-300 hover:scale-105 active:scale-95"
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-orange via-orange to-orange opacity-0 group-hover:opacity-40 blur-xl transition-opacity duration-500 group-hover:scale-110"></div>
-              <div className="absolute inset-0 bg-orange/20 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping transition-opacity duration-300"></div>
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out"></div>
-              
               <span className="relative z-10 flex items-center justify-center">
-                Work With Me
-                <ArrowRight className="ml-2 sm:ml-3 h-5 sm:h-6 md:h-7 w-5 sm:w-6 md:w-7 group-hover:translate-x-1 transition-transform duration-300" />
+                Work With Us
+                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
               </span>
             </Button>
-          )}
+
+            <Button
+              variant="outline"
+              size="lg"
+              className="w-full sm:w-auto min-h-[52px] px-8 py-4 text-lg font-semibold rounded-2xl border-2 border-white/30 text-white hover:bg-white/10 hover:scale-105 active:scale-95 transition-all duration-300"
+              onClick={() => {
+                const workSection = document.getElementById('work') || document.querySelector('#portfolio');
+                workSection?.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
+              <span className="flex items-center justify-center">
+                See Our Work
+              </span>
+            </Button>
+          </div>
         </div>
         
         {/* Mobile-Optimized Trust Indicators - Simplified */}
@@ -243,17 +207,29 @@ const MobileOptimizedHero = () => {
           <div className="flex flex-col xs:flex-row flex-wrap justify-center items-center gap-3 sm:gap-6 md:gap-8 text-white/60">
             <div className={`flex items-center gap-2 transition-colors duration-300 ${isMobile ? '' : 'hover:text-orange'}`}>
               <Shield className="h-4 sm:h-5 w-4 sm:w-5" />
-              <span className="text-xs sm:text-sm font-semibold">Secure & Fast</span>
+              <span className="text-xs sm:text-sm font-semibold">We Handle the Tech</span>
             </div>
             <div className={`flex items-center gap-2 transition-colors duration-300 ${isMobile ? '' : 'hover:text-orange'}`}>
               <Zap className="h-4 sm:h-5 w-4 sm:w-5" />
-              <span className="text-xs sm:text-sm font-semibold">Quick Delivery</span>
+              <span className="text-xs sm:text-sm font-semibold">Ready in Weeks</span>
             </div>
             <div className={`flex items-center gap-2 transition-colors duration-300 ${isMobile ? '' : 'hover:text-orange'}`}>
               <Award className="h-4 sm:h-5 w-4 sm:w-5" />
-              <span className="text-xs sm:text-sm font-semibold">Premium Quality</span>
+              <span className="text-xs sm:text-sm font-semibold">Looks Professional</span>
             </div>
           </div>
+        </div>
+
+        {/* Scroll Indicator */}
+        <div className={`absolute bottom-8 left-1/2 -translate-x-1/2 transition-all duration-500 ${showButton ? 'opacity-100' : 'opacity-0'}`}>
+          <button
+            onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
+            className="flex flex-col items-center gap-2 text-white/50 hover:text-white/80 transition-colors duration-300"
+            aria-label="Scroll to services"
+          >
+            <span className="text-xs font-medium uppercase tracking-wider">Scroll</span>
+            <ChevronDown className="h-5 w-5 animate-bounce" />
+          </button>
         </div>
       </div>
     </section>

@@ -8,30 +8,31 @@ const StatsBar = () => {
   const stats = [
     {
       icon: Users,
-      value: 100,
-      label: "Applications",
-      description: "Built & Deployed",
+      value: 50,
+      label: "Happy Clients",
+      description: "Projects Delivered",
       suffix: "+"
     },
     {
       icon: Globe,
-      value: 500,
-      label: "Websites Built",
-      description: "Projects Delivered"
+      value: 8,
+      label: "Years Experience",
+      description: "In Web Development",
+      suffix: "+"
     },
     {
       icon: Award,
-      value: 99,
-      label: "Success Rate",
-      description: "Client Satisfaction",
+      value: 100,
+      label: "Satisfaction",
+      description: "Client Rating",
       suffix: "%"
     },
     {
       icon: CheckCircle,
       value: 24,
-      label: "Support",
-      description: "Hours Available",
-      suffix: "/7"
+      label: "Response Time",
+      description: "Hours or Less",
+      suffix: "hr"
     }
   ];
 
@@ -59,7 +60,7 @@ const StatsBar = () => {
                 }`}
                 style={{ transitionDelay: `${index * 100}ms` }}
               >
-                <IconComponent className="h-8 w-8 text-highlight mx-auto mb-4 animate-pulse" />
+                <IconComponent className="h-8 w-8 text-highlight mx-auto mb-4" />
                 <div className="heading-lg text-highlight mb-2 font-serif animate-fade-in">
                   {count?.toLocaleString()}{stat.suffix || ''}
                 </div>

@@ -125,24 +125,6 @@ const Hero = () => {
       <div className="absolute inset-0 bg-navy/40 z-[15] pointer-events-none" />
       
       
-      {/* Animated gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-orange/10 via-transparent to-navy/20 animate-gradient bg-[length:200%_200%] z-[15] pointer-events-none" />
-      
-      {/* Floating particles effect */}
-      <div className="absolute inset-0 overflow-hidden">
-        {[...Array(15)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-2 h-2 bg-orange/20 rounded-full animate-pulse"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 4}s`,
-              animationDuration: `${3 + Math.random() * 2}s`,
-            }}
-          />
-        ))}
-      </div>
 
       <div className="container mx-auto px-6 relative z-20">
         <div className="max-w-6xl mx-auto text-center px-4" style={{
@@ -155,12 +137,9 @@ const Hero = () => {
             willChange: 'transform'
           }}>
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-white mb-4 sm:mb-6 leading-[0.9] font-black tracking-tight">
-              Premium Web Development <span className="text-highlight animate-pulse block sm:inline">Solutions</span>
+              Premium Web Development <span className="text-highlight block sm:inline">Solutions</span>
               <span className="block mt-3 sm:mt-6">
-                Built For <span className="text-highlight relative">
-                  You
-                  <span className="absolute -inset-1 bg-orange/20 blur-xl animate-pulse"></span>
-                </span>
+                Built For <span className="text-highlight">You</span>
               </span>
             </h1>
           </div>
@@ -184,8 +163,8 @@ const Hero = () => {
                 onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
               >
                 <span className="flex items-center justify-center">
-                  <span className="hidden sm:inline">Work With Me</span>
-                  <span className="sm:hidden">Work With Me</span>
+                  <span className="hidden sm:inline">Work With Us</span>
+                  <span className="sm:hidden">Work With Us</span>
                   <ArrowRight className="ml-2 sm:ml-3 h-5 sm:h-6 md:h-7 w-5 sm:w-6 md:w-7" />
                 </span>
               </EnhancedButton>
@@ -197,7 +176,7 @@ const Hero = () => {
                 onClick={() => document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' })}
               >
                 <span className="relative z-10 flex items-center justify-center">
-                  <span>See My Work</span>
+                  <span>See Our Work</span>
                 </span>
               </Button>
             </div>

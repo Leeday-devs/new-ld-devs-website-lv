@@ -8,47 +8,47 @@ const FAQ = () => {
   const faqItems = [
     {
       question: "How long does it take to build a website?",
-      answer: "Most websites are completed within 2-4 weeks, depending on complexity. Simple brochure websites take 1-2 weeks, while complex e-commerce or custom applications may take 4-8 weeks. We'll provide you with a detailed timeline during our initial consultation."
+      answer: "Most websites are finished in 2-4 weeks. Simple websites take 1-2 weeks, while online shops or more complex sites may take 4-8 weeks. We'll give you a clear timeline when we chat about your project."
     },
     {
       question: "Do you provide hosting and domain registration?",
-      answer: "Yes! I offer comprehensive hosting packages starting from £40/month, including SSL certificates, regular backups, security monitoring, and technical support. I can also help you register a domain or transfer your existing one to my hosting platform."
+      answer: "Yes! We offer hosting packages starting from £40/month. This includes keeping your site secure, regular backups (saving copies of your site), and support when you need help. We can also help you get your website address (like yourname.com) set up."
     },
     {
-      question: "Will my website work on mobile devices?",
-      answer: "Absolutely! All my websites are built with a mobile-first approach, ensuring they look and function perfectly on smartphones, tablets, and desktop computers. I test extensively across all devices and browsers before launch."
+      question: "Will my website work on mobile phones?",
+      answer: "Absolutely! All our websites look and work perfectly on phones, tablets, and computers. We test on different devices before we hand it over to make sure everything works smoothly."
     },
     {
-      question: "Can I update my website content myself?",
-      answer: "Yes, I build websites with user-friendly content management systems. I'll provide training and documentation so you can easily update text, images, and other content. For more complex changes, I'm always available to help."
+      question: "Can I update my website myself?",
+      answer: "Yes! We set things up so you can easily change text, images, and other content yourself. We'll show you how it works, and we're always here if you need help with anything more complicated."
     },
     {
       question: "What's included in your ongoing support?",
-      answer: "My support includes regular security updates, performance monitoring, backup management, technical support via email/phone, and minor content updates. I also offer monthly maintenance packages for more extensive ongoing support."
+      answer: "We keep your website safe with security updates, monitor that it's working well, save regular backups, and help you via email or phone when you have questions. We can also make small updates for you."
     },
     {
       question: "Do you work with businesses outside of London?",
-      answer: "Yes! While I'm based in London, I work with clients throughout the UK and internationally. Most of my communication is done remotely via video calls, email, and project management tools, making location no barrier to great service."
+      answer: "Yes! We're based in London but work with clients across the UK and internationally. We do everything through video calls, email, and online tools — so wherever you are, we can help."
     },
     {
       question: "Can you help improve my existing website?",
-      answer: "Definitely! I offer website audits, redesigns, performance optimisation, SEO improvements, and feature additions for existing websites. I can work with most platforms and technologies to enhance your current online presence."
+      answer: "Definitely! We can give your current website a fresh look, make it faster, help it show up better on Google, and add new features. Just show us what you have and we'll tell you what we can do."
     },
     {
       question: "What if I'm not happy with the final result?",
-      answer: "Your satisfaction is our priority. We work closely with you throughout the project with regular check-ins and revisions. We offer unlimited revisions during the design phase and a 30-day satisfaction guarantee after launch. If you're not happy, we'll make it right."
+      answer: "We want you to love your website. We'll check in with you regularly throughout the project and make as many changes as you need during the design stage. After launch, you have 30 days to let us know if anything isn't right — we'll fix it."
     },
     {
-      question: "Do you offer e-commerce solutions?",
-      answer: "Yes, we specialize in building custom e-commerce platforms with secure payment processing, inventory management, order tracking, and customer accounts. We work with various payment providers and can integrate with existing business systems."
+      question: "Do you build online shops?",
+      answer: "Yes! We create online shops where your customers can browse products, add them to a basket, and pay securely. You'll be able to manage your products, see orders, and track what's selling well."
     },
     {
       question: "How much does a website cost?",
-      answer: "Our websites start from £350 for simple brochure sites, with custom projects ranging from £1,500-£15,000+ depending on complexity and features. We also offer pre-built industry-specific templates that are perfect for getting online quickly and cost-effectively."
+      answer: "Simple websites start from £350. Custom projects typically range from £1,500-£15,000+ depending on what you need. We also have ready-made designs that are great for getting online quickly without a big budget."
     },
     {
-      question: "Do I work with tight timelines?",
-      answer: "Yes—message me with your deadline."
+      question: "Can you work with tight deadlines?",
+      answer: "Yes! Just message us with your deadline and we'll let you know if we can help."
     }
   ];
 
@@ -70,7 +70,7 @@ const FAQ = () => {
             Frequently Asked <span className="text-orange">Questions</span>
           </h2>
           <p className="text-body max-w-3xl mx-auto text-text-secondary mb-4 leading-relaxed">
-            Here are the most common questions I get as a freelancer.
+            Here are the most common questions we get from businesses and startups.
           </p>
         </div>
 
@@ -135,7 +135,7 @@ const FAQ = () => {
                 className="text-orange font-semibold hover:text-orange/80 transition-colors duration-300 text-lg inline-flex items-center gap-2 group"
                 aria-label="Contact Lee directly for more information"
               >
-                → Message me directly
+                → Message us directly
                 <span className="transform group-hover:translate-x-1 transition-transform duration-300"></span>
               </button>
             </div>
@@ -156,7 +156,7 @@ const FAQ = () => {
                     Still Have Questions?
                   </h3>
                   <p className="text-text-secondary leading-relaxed">
-                    Can't find what you're looking for? I'm here to help with personalised answers to your specific needs.
+                    Can't find what you're looking for? We're here to help with personalised answers to your specific needs.
                   </p>
                 </div>
 
@@ -164,7 +164,7 @@ const FAQ = () => {
                   <a 
                     href="#contact" 
                     className="block w-full bg-primary hover:bg-primary/90 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 hover:scale-105 text-center shadow-lg hover:shadow-xl focus-visible:outline-2 focus-visible:outline-orange focus-visible:outline-offset-2"
-                    aria-label="Get in touch with Lee"
+                    aria-label="Get in touch with our team"
                   >
                     Get In Touch
                   </a>
@@ -173,9 +173,9 @@ const FAQ = () => {
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="block w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 hover:scale-105 text-center shadow-lg hover:shadow-xl focus-visible:outline-2 focus-visible:outline-green-500 focus-visible:outline-offset-2"
-                    aria-label="Contact Lee via WhatsApp"
+                    aria-label="Contact us via WhatsApp"
                   >
-                    WhatsApp Me
+                    WhatsApp Us
                   </a>
                 </div>
 
