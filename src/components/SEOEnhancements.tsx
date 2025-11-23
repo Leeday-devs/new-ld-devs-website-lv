@@ -10,13 +10,13 @@ const SEOEnhancements = () => {
       const schema = {
         "@context": "https://schema.org",
         "@type": "LocalBusiness",
-        "@id": "https://leedaydevs.com/#organization",
+        "@id": "https://leeday.uk/#organization",
         "name": "LD Development",
         "alternateName": "Lee Day Development",
         "description": "Premium web development and AI solutions for UK businesses. Custom websites, e-commerce platforms, and digital automation services.",
-        "url": "https://leedaydevs.com",
-        "telephone": "+44-20-XXXX-XXXX",
-        "email": "hello@leedaydevs.com",
+        "url": "https://leeday.uk",
+        "telephone": "07586266007",
+        "email": "hello@leeday.uk",
         "address": {
           "@type": "PostalAddress",
           "addressLocality": "London",
@@ -110,16 +110,16 @@ const SEOEnhancements = () => {
       const schema = {
         "@context": "https://schema.org",
         "@type": "WebSite",
-        "@id": "https://leedaydevs.com/#website",
-        "url": "https://leedaydevs.com",
+        "@id": "https://leeday.uk/#website",
+        "url": "https://leeday.uk",
         "name": "LD Development - Premium Web Development & AI Solutions",
         "description": "Award-winning web development agency in London specializing in custom websites, e-commerce, and AI automation for UK businesses.",
         "publisher": {
-          "@id": "https://leedaydevs.com/#organization"
+          "@id": "https://leeday.uk/#organization"
         },
         "potentialAction": {
           "@type": "SearchAction",
-          "target": "https://leedaydevs.com/search?q={search_term_string}",
+          "target": "https://leeday.uk/search?q={search_term_string}",
           "query-input": "required name=search_term_string"
         },
         "sameAs": [
@@ -144,11 +144,11 @@ const SEOEnhancements = () => {
       const schema = {
         "@context": "https://schema.org",
         "@type": "ProfessionalService",
-        "@id": "https://leedaydevs.com/#service",
+        "@id": "https://leeday.uk/#service",
         "name": "Web Development Services",
         "description": "Professional web development and AI automation services for businesses across the UK.",
         "provider": {
-          "@id": "https://leedaydevs.com/#organization"
+          "@id": "https://leeday.uk/#organization"
         },
         "areaServed": {
           "@type": "Country",

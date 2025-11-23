@@ -25,7 +25,7 @@ export const generateMetaDescription = (description: string, maxLength = 160) =>
   return truncated.substring(0, lastSpaceIndex) + '...';
 };
 
-export const generateCanonicalUrl = (pathname: string, baseUrl = "https://leedaydevs.com") => {
+export const generateCanonicalUrl = (pathname: string, baseUrl = "https://leeday.uk") => {
   // Remove trailing slash and clean path
   const cleanPath = pathname.replace(/\/$/, '') || '';
   return `${baseUrl}${cleanPath}`;
@@ -51,7 +51,7 @@ export const generateLocalBusinessStructuredData = () => {
     "name": "LD Development",
     "alternateName": "Lee Day Devs",
     "description": "Premium web development and AI solutions for UK businesses. Custom websites, e-commerce platforms, and digital automation services.",
-    "url": "https://leedaydevs.com",
+    "url": "https://leeday.uk",
     "telephone": "07586266007",
     "email": "leedaydevs@gmail.com",
     "address": {

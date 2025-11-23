@@ -181,7 +181,7 @@ const RequestWork = () => {
         title="Submit Work Request - LD Development Customer Portal"
         description="Submit a new work request through our customer portal. Get professional web development services with transparent project management and secure communication."
         keywords="work request, customer portal, web development services, project management, LD Development"
-        url="https://leedaydevs.com/request-work"
+        url="https://leeday.uk/request-work"
       />
       <div className="min-h-screen bg-background">
         <Navigation />

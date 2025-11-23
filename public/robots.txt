@@ -4,11 +4,13 @@ Allow: /
 # Priority pages for indexing
 Allow: /
 Allow: /services
-Allow: /portfolio 
+Allow: /portfolio
 Allow: /blog
 Allow: /contact
 Allow: /request-work
 Allow: /templates
+Allow: /pricing
+Allow: /web-design
 
 # Block sensitive areas
 Disallow: /admin/
@@ -22,20 +24,94 @@ Disallow: /config/
 Disallow: /src/
 Disallow: /*?*
 Disallow: /search
+Disallow: /checkout
+Disallow: /customer-dashboard
 
 # Allow Googlebot access to CSS and JS for better rendering
 User-agent: Googlebot
 Allow: *.css
 Allow: *.js
 Allow: *.png
-Allow: *.jpg  
+Allow: *.jpg
 Allow: *.jpeg
 Allow: *.gif
 Allow: *.svg
 Allow: *.webp
 
+# AI Search Engine Crawlers - Explicitly Allow
+# ChatGPT / OpenAI
+User-agent: OAI-SearchBot
+Allow: /
+Crawl-delay: 1
+
+User-agent: ChatGPT-User
+Allow: /
+Crawl-delay: 1
+
+User-agent: GPTBot
+Allow: /
+Crawl-delay: 1
+
+# Perplexity AI
+User-agent: PerplexityBot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Perplexity-User
+Allow: /
+Crawl-delay: 1
+
+# Anthropic Claude
+User-agent: Claude-SearchBot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Claude-User
+Allow: /
+Crawl-delay: 1
+
+User-agent: ClaudeBot
+Allow: /
+Crawl-delay: 1
+
+User-agent: anthropic-ai
+Allow: /
+Crawl-delay: 1
+
+# Google AI / Gemini
+User-agent: Google-Extended
+Allow: /
+Crawl-delay: 1
+
+# Microsoft Copilot / Bing AI
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# Meta AI
+User-agent: FacebookBot
+Allow: /
+Crawl-delay: 1
+
+User-agent: meta-externalagent
+Allow: /
+Crawl-delay: 1
+
+# Cohere AI
+User-agent: cohere-ai
+Allow: /
+Crawl-delay: 1
+
+# Apple AI
+User-agent: Applebot-Extended
+Allow: /
+Crawl-delay: 1
+
 # Sitemaps
-Sitemap: https://leedaydevs.com/sitemap.xml
+Sitemap: https://leeday.uk/sitemap.xml
+
+# LLMs.txt for AI crawlers
+# See: https://leeday.uk/llms.txt
 
 # Crawl delay for respectful crawling (1 second)
 Crawl-delay: 1

@@ -146,11 +146,11 @@ const transformPostForCard = (post: BlogPost) => ({
           "@context": "https://schema.org",
           "@type": "Blog",
           "name": "LD Development Blog",
-          "url": typeof window !== 'undefined' ? window.location.href : 'https://leedaydevs.com/blog',
+          "url": typeof window !== 'undefined' ? window.location.href : 'https://leeday.uk/blog',
           "blogPost": (blogPosts || []).slice(0, 10).map(p => ({
             "@type": "BlogPosting",
             "headline": p.title,
-            "url": `${(typeof window !== 'undefined' ? window.location.origin : 'https://leedaydevs.com')}/blog/${p.slug}`,
+            "url": `${(typeof window !== 'undefined' ? window.location.origin : 'https://leeday.uk')}/blog/${p.slug}`,
             "datePublished": p.created_at,
           }))
         }}

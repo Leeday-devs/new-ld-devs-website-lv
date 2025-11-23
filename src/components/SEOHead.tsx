@@ -48,8 +48,8 @@ const SEOHead = ({
   serviceData,
   faqData,
 }: SEOHeadProps) => {
-  const currentUrl = url || (typeof window !== "undefined" ? window.location.href : "https://leedaydevs.com");
-  const originUrl = typeof window !== "undefined" ? window.location.origin : "https://leedaydevs.com";
+  const currentUrl = url || (typeof window !== "undefined" ? window.location.href : "https://leeday.uk");
+  const originUrl = typeof window !== "undefined" ? window.location.origin : "https://leeday.uk";
   const sdArray = structuredData ? (Array.isArray(structuredData) ? structuredData : [structuredData]) : [];
 
   // Generate structured data
@@ -233,13 +233,17 @@ const SEOHead = ({
       <meta name="twitter:image" content={`${originUrl}${ogImage}`} />
       <meta name="twitter:image:alt" content={title} />
 
-      {/* Apple Meta Tags */}
-      <meta name="apple-mobile-web-app-capable" content="yes" />
+      {/* Mobile Web App Meta Tags (Updated from deprecated apple-mobile-web-app-capable) */}
+      <meta name="mobile-web-app-capable" content="yes" />
       <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
       <meta name="apple-mobile-web-app-title" content={siteName} />
 
       {/* Microsoft Meta Tags */}
       <meta name="msapplication-config" content="/browserconfig.xml" />
+
+      {/* AI Search Engine Optimization */}
+      <meta name="ai-content-declaration" content="human-created" />
+      <meta name="generator" content="LD Development - Professional Web Agency" />
 
       {/* Performance & Preload Hints */}
       <link rel="preconnect" href="https://fonts.googleapis.com" />
