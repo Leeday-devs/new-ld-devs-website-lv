@@ -61,8 +61,8 @@ const MobileOptimizedHero = () => {
   }, [isMobile]);
 
   return (
-    <section 
-      className="bg-navy min-h-screen flex items-center justify-center relative overflow-hidden pt-20 px-4"
+    <section
+      className="bg-navy min-h-screen flex items-start md:items-center justify-center relative overflow-hidden pt-24 md:pt-20 px-4"
       aria-label="Hero section with company introduction"
     >
       {/* Video Background - Desktop Only (saves mobile bandwidth) */}
