@@ -15,7 +15,7 @@ const PricingPage = () => {
     <>
       <SEOHead 
         title="Pricing - LD Development | Premium Web Development Packages UK"
-        description="Transparent pricing for premium web development services. Website packages from £500, AI automation from £350, mobile apps from £1,500. All prices include hosting, SSL & support. UK-based agency with 150+ happy clients."
+        description="Transparent pricing for premium web development services. Website packages from £500, AI automation from £350, mobile apps from £1,500. All prices include hosting, SSL & support. UK based agency with 150+ happy clients."
         keywords="web development pricing UK, website cost, app development pricing, AI automation cost, web design packages London, affordable websites UK, premium web development rates"
         url="https://leedaydevs.com/pricing"
         breadcrumbs={[
