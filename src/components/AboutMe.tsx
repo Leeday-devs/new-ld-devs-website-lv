@@ -1,14 +1,14 @@
 import { MapPin, MessageCircle, User } from "lucide-react";
 import leeHeadshot from "../assets/lee-headshot.jpg";
 const AboutMe = () => {
-  return <section className="bg-transparent py-20 large-section" aria-label="About Lee - Web Developer">
+  return <section className="bg-transparent py-16 sm:py-20" aria-label="About Lee - Web Developer">
       <div className="container mx-auto px-6">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-12 sm:mb-16">
           <p className="text-text-secondary/70 font-medium text-sm sm:text-base mb-4 tracking-wide">
-            London-based Team • Websites • Apps • AI Tools
+            London Based Team • Websites • Apps • AI Tools
           </p>
-          <h2 className="heading-primary heading-lg mb-6 text-navy">
+          <h2 className="heading-primary heading-lg mb-4 sm:mb-6 text-navy">
             Meet <span className="text-orange">Our Team</span>
           </h2>
         </div>
@@ -43,7 +43,7 @@ const AboutMe = () => {
               <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-6 sm:gap-8 mb-6">
                 <div className="flex items-center space-x-2 text-navy">
                   <MapPin className="h-5 w-5 text-orange" />
-                  <span className="font-semibold">London-based</span>
+                  <span className="font-semibold">London Based</span>
                 </div>
                 <div className="flex items-center space-x-2 text-navy">
                   <MessageCircle className="h-5 w-5 text-orange" />

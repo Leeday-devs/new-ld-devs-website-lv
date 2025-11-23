@@ -35,7 +35,7 @@ const TestimonialsCarousel = () => {
   ];
 
   return (
-    <section className="bg-navy py-20 relative overflow-hidden" aria-label="Client testimonials and reviews">
+    <section className="section-navy relative overflow-hidden" aria-label="Client testimonials and reviews">
       {/* Background pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{
@@ -45,8 +45,8 @@ const TestimonialsCarousel = () => {
 
       <div className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="heading-primary heading-lg mb-6 text-white">
+        <div className="text-center mb-12 sm:mb-16">
+          <h2 className="heading-primary heading-lg mb-4 sm:mb-6 text-white">
             What Our <span className="text-orange">Clients Say</span>
           </h2>
           <p className="text-body max-w-3xl mx-auto text-white/80">

@@ -136,11 +136,11 @@ const Portfolio = () => {
   };
 
   return (
-    <section id="portfolio" className="bg-transparent py-20" aria-label="Case studies showing real business results">
+    <section id="portfolio" className="bg-transparent py-16 sm:py-20" aria-label="Case studies showing real business results">
       <div className="container mx-auto px-6">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="heading-primary heading-lg mb-6 text-navy">
+        <div className="text-center mb-12 sm:mb-16">
+          <h2 className="heading-primary heading-lg mb-4 sm:mb-6 text-navy">
             Projects We've <span className="text-orange">Built</span>
           </h2>
           <p className="text-body max-w-3xl mx-auto text-text-secondary">

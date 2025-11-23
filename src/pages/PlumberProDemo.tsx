@@ -196,7 +196,7 @@ const PlumberProDemo = () => {
                 </div>
                 <div className="text-center">
                   <Star className="h-8 w-8 text-blue-400 mx-auto mb-2" />
-                  <div className="text-sm font-medium">5-Star Rated</div>
+                  <div className="text-sm font-medium">5 Star Rated</div>
                 </div>
               </div>
             </div>

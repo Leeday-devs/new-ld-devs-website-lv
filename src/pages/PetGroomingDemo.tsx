@@ -106,7 +106,7 @@ const PetGroomingDemo = () => {
                 </div>
                 <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-6 shadow-xl border border-indigo-200">
                   <div className="text-4xl mb-3">⭐</div>
-                  <div className="text-2xl font-bold text-indigo-600 mb-2">5-Star Reviews</div>
+                  <div className="text-2xl font-bold text-indigo-600 mb-2">5 Star Reviews</div>
                   <div className="text-sm text-gray-600">From Pet Parents</div>
                 </div>
                 <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-6 shadow-xl border border-yellow-200">

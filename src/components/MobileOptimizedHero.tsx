@@ -65,40 +65,42 @@ const MobileOptimizedHero = () => {
       className="bg-navy min-h-screen flex items-center justify-center relative overflow-hidden pt-20 px-4"
       aria-label="Hero section with company introduction"
     >
-      {/* Video Background for Mobile & Desktop */}
-      <video
-        ref={videoRef}
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload={isMobile ? "metadata" : "auto"} // Lighter preload on mobile
-        poster={heroPoster}
-        aria-hidden="true"
-        disablePictureInPicture
-        className="absolute inset-0 w-full h-full object-cover opacity-100 z-10"
-        onCanPlay={() => {
-          if (!videoLoaded) {
-            setVideoLoaded(true);
+      {/* Video Background - Desktop Only (saves mobile bandwidth) */}
+      {!isMobile && (
+        <video
+          ref={videoRef}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          poster={heroPoster}
+          aria-hidden="true"
+          disablePictureInPicture
+          className="absolute inset-0 w-full h-full object-cover opacity-100 z-10"
+          onCanPlay={() => {
+            if (!videoLoaded) {
+              setVideoLoaded(true);
+              document.getElementById('video-fallback')?.classList.add('opacity-0');
+            }
+          }}
+          onLoadedData={() => {
+            if (!videoLoaded) {
+              setVideoLoaded(true);
+              document.getElementById('video-fallback')?.classList.add('opacity-0');
+            }
+          }}
+          onPlay={() => {
             document.getElementById('video-fallback')?.classList.add('opacity-0');
-          }
-        }}
-        onLoadedData={() => {
-          if (!videoLoaded) {
-            setVideoLoaded(true);
-            document.getElementById('video-fallback')?.classList.add('opacity-0');
-          }
-        }}
-        onPlay={() => {
-          document.getElementById('video-fallback')?.classList.add('opacity-0');
-        }}
-        onError={(e) => {
-          (e.target as HTMLVideoElement).style.display = 'none';
-          document.getElementById('video-fallback')?.classList.remove('opacity-0');
-        }}
-      >
-        <source src="/videos/hero-new.mp4" type="video/mp4" />
-      </video>
+          }}
+          onError={(e) => {
+            (e.target as HTMLVideoElement).style.display = 'none';
+            document.getElementById('video-fallback')?.classList.remove('opacity-0');
+          }}
+        >
+          <source src="/videos/hero-new.mp4" type="video/mp4" />
+        </video>
+      )}
       
       {/* Mobile: Optimized Static Background with WebP support */}
       <div className="absolute inset-0 z-0">
@@ -140,16 +142,16 @@ const MobileOptimizedHero = () => {
             </p>
           </div>
           
-          <h1 className={`text-white mb-4 sm:mb-6 leading-[0.9] font-black tracking-tight ${
+          <h1 className={`text-white mb-4 sm:mb-6 leading-[1.1] font-black tracking-tight ${
             isMobile
-              ? "text-2xl xs:text-3xl" // Smaller mobile sizes for better 2-3 line wrapping
+              ? "text-3xl xs:text-4xl" // Improved mobile sizes - slightly larger for better readability
               : "text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl"
           }`}>
             <span className="text-white">
               Websites That Help Your
             </span>
             {" "}
-            <span className="text-highlight block xs:inline">Business Grow</span>
+            <span className="text-orange block xs:inline">Business Grow</span>
           </h1>
         </div>
         

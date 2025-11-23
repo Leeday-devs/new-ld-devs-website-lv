@@ -106,7 +106,7 @@ const Footer = () => {
               <div className="text-center">
                 <h3 className="text-xl font-black font-serif text-white mb-3">LD Development</h3>
                 <p className="text-white/70 text-sm leading-relaxed">
-                  We're a small London-based team building websites, apps & AI solutions.
+                  We're a small London based team building websites, apps & AI solutions.
                 </p>
               </div>
 
@@ -192,7 +192,7 @@ const Footer = () => {
                 <div className="space-y-3">
                   <h3 className="text-2xl sm:text-3xl font-black font-serif text-white">LD Development</h3>
                   <p className="text-white/70 text-sm sm:text-base leading-relaxed">
-                    We're a small London-based team building websites, apps, and AI solutions for small businesses.
+                    We're a small London based team building websites, apps, and AI solutions for small businesses.
                   </p>
                 </div>
                 

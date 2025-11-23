@@ -1,7 +1,7 @@
 
-import { Monitor, ShoppingBag, Cloud, CheckCircle, Package, Smartphone, Bot } from "lucide-react";
+import { Monitor, ShoppingBag, Cloud, CheckCircle, Package, Smartphone, Bot, Star } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { memo } from "react";
+import { memo, useEffect, useRef } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Button as EnhancedButton } from "@/components/ui/button-enhanced";
@@ -9,6 +9,35 @@ import { Button as EnhancedButton } from "@/components/ui/button-enhanced";
 const Services = () => {
   const navigate = useNavigate();
   const isMobile = useIsMobile();
+  const cardsRef = useRef<HTMLDivElement>(null);
+
+  // Intersection Observer for staggered entrance animations
+  useEffect(() => {
+    if (isMobile) return; // Skip on mobile for performance
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const cards = entry.target.querySelectorAll('.service-card-animate');
+            cards.forEach((card, index) => {
+              setTimeout(() => {
+                card.classList.add('animate-in');
+              }, index * 100); // 100ms stagger between cards
+            });
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    if (cardsRef.current) {
+      observer.observe(cardsRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [isMobile]);
   
   const services = [
     {
@@ -88,21 +117,21 @@ const Services = () => {
   };
 
   return (
-    <section 
-      id="services" 
-      className="relative pb-20 overflow-hidden min-h-screen" 
+    <section
+      id="services"
+      className="relative py-16 sm:py-20 overflow-hidden"
       aria-label="Our web development services"
     >
       {/* Clean gradient background */}
       <div className="absolute inset-0 bg-gradient-to-b from-slate-50 via-white to-slate-50" />
-      
+
       <div className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-16 pt-20">
-          <h2 className="heading-lg spacing-section text-navy drop-shadow-sm">
-            What <span className="text-highlight">We Can Build</span> For You
+        <div className="text-center mb-12 sm:mb-16">
+          <h2 className="heading-primary heading-lg mb-4 sm:mb-6 text-navy">
+            What <span className="text-orange">We Can Build</span> For You
           </h2>
-          <p className="text-body max-w-3xl mx-auto text-text-secondary drop-shadow-sm">
+          <p className="text-body max-w-3xl mx-auto text-text-secondary">
             Work directly with our team from strategy to launch—personal service, fast replies, and a premium finish every time.
           </p>
         </div>
@@ -153,11 +182,12 @@ const Services = () => {
             })}
           </Accordion>
         ) : (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div ref={cardsRef} className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, index) => {
             // Ultra-premium color schemes with glass morphism
             const isPrimary = index % 2 === 0;
-            const colorScheme = isPrimary 
+            const isPopular = index === 0; // Websites card is most popular
+            const colorScheme = isPrimary
               ? {
                   gradient: 'bg-gradient-to-br from-orange/12 via-orange/8 via-white/95 to-orange/6',
                   border: 'border border-orange/25',
@@ -178,11 +208,11 @@ const Services = () => {
                   glow: 'shadow-[0_8px_32px_rgba(10,25,47,0.15),0_0_0_1px_rgba(10,25,47,0.08)]',
                   hoverGlow: 'hover:shadow-[0_20px_60px_rgba(10,25,47,0.3),0_0_0_1px_rgba(10,25,47,0.2)]'
                 };
-            
+
             return (
               <div
                 key={index}
-                className={`relative group overflow-hidden rounded-2xl ${colorScheme.gradient} ${colorScheme.border} ${colorScheme.glow} ${colorScheme.hoverGlow} transition-all duration-700 hover:scale-[1.05] hover:-translate-y-3 hover:shadow-2xl ${service.pricingCategory || service.isTemplates ? 'cursor-pointer' : ''}`}
+                className={`service-card-animate animate-gradient-border relative group overflow-hidden rounded-2xl ${colorScheme.gradient} ${colorScheme.border} ${colorScheme.glow} ${colorScheme.hoverGlow} transition-all duration-700 hover:scale-[1.05] hover:-translate-y-3 hover:shadow-2xl ${service.pricingCategory || service.isTemplates ? 'cursor-pointer' : ''}`}
                 onClick={() => handleServiceClick(service.pricingCategory, service.isTemplates)}
                 style={{
                   backgroundImage: `
@@ -192,6 +222,15 @@ const Services = () => {
                   `
                 }}
               >
+                {/* Most Popular Badge - Corner ribbon style */}
+                {isPopular && (
+                  <div className="absolute top-4 right-4 z-20">
+                    <div className="bg-gradient-to-r from-orange to-orange/90 text-white px-3 py-1 rounded-lg text-[10px] font-bold uppercase tracking-wider shadow-md shadow-orange/30 flex items-center gap-1">
+                      <Star className="h-2.5 w-2.5 fill-white" />
+                      Popular
+                    </div>
+                  </div>
+                )}
                 {/* Ultra-premium glass morphism overlay */}
                 <div className={`absolute inset-0 rounded-2xl ${colorScheme.glass} opacity-60 group-hover:opacity-80 transition-opacity duration-500`} />
                 
@@ -205,10 +244,10 @@ const Services = () => {
                 <div className={`absolute top-0 left-0 right-0 h-[2px] ${colorScheme.accent} opacity-60 group-hover:opacity-100 transition-opacity duration-500`} />
                 
                 <div className="relative p-8 z-10">
-                  {/* Ultra-premium Icon Container with enhanced animations */}
+                  {/* Ultra-premium Icon Container with floating animation */}
                   <div className="mb-6 relative">
-                    <div className={`inline-flex p-4 rounded-xl ${colorScheme.iconBg} backdrop-blur-md border border-white/20 shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 group-hover:shadow-2xl`}>
-                      <service.icon className={`h-7 w-7 ${colorScheme.icon} drop-shadow-sm transition-all duration-500 group-hover:text-orange group-hover:animate-pulse`} />
+                    <div className={`animate-float-gentle inline-flex p-4 rounded-xl ${colorScheme.iconBg} backdrop-blur-md border border-white/20 shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 group-hover:shadow-2xl`}>
+                      <service.icon className={`h-7 w-7 ${colorScheme.icon} drop-shadow-sm transition-all duration-500 group-hover:text-orange`} />
                     </div>
                     
                     {/* Floating particles effect */}

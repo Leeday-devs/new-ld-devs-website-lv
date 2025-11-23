@@ -170,7 +170,7 @@ const Pricing = () => {
       description: `Getting started with ${plan.name}`
     });
   };
-  return <section id="pricing" className="relative py-32 overflow-hidden" aria-label="Pricing plans and packages">
+  return <section id="pricing" className="relative py-16 sm:py-20 lg:py-24 overflow-hidden" aria-label="Pricing plans and packages">
       {/* Premium Background with Hero Image */}
       <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{
       backgroundImage: `url(${pricingHeroBg})`
@@ -185,37 +185,37 @@ const Pricing = () => {
       
       <div className="relative container mx-auto px-6">
         {/* Premium Section Header */}
-        <div className="text-center mb-20">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange/10 border border-orange/20 text-orange font-semibold mb-6 animate-fade-in-up">
-            <Sparkles className="h-4 w-4" />
+        <div className="text-center mb-12 sm:mb-16">
+          <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-orange/10 border border-orange/20 text-orange font-semibold mb-4 sm:mb-6 animate-fade-in-up text-sm sm:text-base">
+            <Sparkles className="h-3 w-3 sm:h-4 sm:w-4" />
             <span>Simple, Clear Pricing</span>
           </div>
 
-          <h1 className="font-serif font-bold text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl mb-8 text-white animate-fade-in-up stagger-delay-1 leading-tight">
+          <h1 className="font-serif font-bold text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-4 sm:mb-6 text-white animate-fade-in-up stagger-delay-1 leading-tight">
             Choose a Package That{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange to-orange/80 animate-gradient-x">
               Fits Your Business
             </span>
           </h1>
-          
-          <div className="max-w-4xl mx-auto mb-12 animate-fade-in-up stagger-delay-2">
-            <p className="text-xl md:text-2xl text-gray-200 mb-6 leading-relaxed">
+
+          <div className="max-w-4xl mx-auto mb-8 sm:mb-12 animate-fade-in-up stagger-delay-2">
+            <p className="text-body text-white/80 mb-4 sm:mb-6">
               You'll work directly with our small team—no sales reps, just dedicated people focused on your project.
             </p>
-            
-            <div className="bg-gradient-to-r from-orange/20 to-orange/10 backdrop-blur-xl border border-orange/30 rounded-2xl p-8 inline-block shadow-2xl">
-              <div className="flex items-center justify-center gap-3 text-white">
-                <Shield className="h-6 w-6 text-orange" />
-                <span className="text-lg font-semibold">
+
+            <div className="bg-gradient-to-r from-orange/20 to-orange/10 backdrop-blur-md border border-orange/30 rounded-xl sm:rounded-2xl p-4 sm:p-6 inline-block shadow-2xl">
+              <div className="flex items-center justify-center gap-2 sm:gap-3 text-white">
+                <Shield className="h-5 w-5 sm:h-6 sm:w-6 text-orange flex-shrink-0" />
+                <span className="text-sm sm:text-base lg:text-lg font-semibold text-center">
                   Complete builds delivered - no technical knowledge required
                 </span>
-                <Zap className="h-6 w-6 text-orange" />
+                <Zap className="h-5 w-5 sm:h-6 sm:w-6 text-orange flex-shrink-0 hidden sm:block" />
               </div>
             </div>
           </div>
 
           {/* Premium Category Switcher - Centered in Middle */}
-          <div className="flex justify-center mb-16 px-4 animate-fade-in-up stagger-delay-3">
+          <div className="flex justify-center mb-8 sm:mb-12 px-4 animate-fade-in-up stagger-delay-3">
             <div className="w-full max-w-5xl">
               {/* Mobile: Stacked Layout */}
               <div className="grid grid-cols-2 gap-3 sm:hidden">
@@ -232,7 +232,7 @@ const Pricing = () => {
               </div>
               
               {/* Desktop: Horizontal Layout */}
-              <div className="hidden sm:inline-flex items-center justify-center space-x-3 bg-navy/40 backdrop-blur-2xl p-3 rounded-3xl border border-white/10 shadow-2xl mx-auto">
+              <div className="hidden sm:inline-flex items-center justify-center space-x-3 bg-navy/40 backdrop-blur-lg p-3 rounded-3xl border border-white/10 shadow-2xl mx-auto">
                 {categories.map((category, index) => {
                 const IconComponent = category.icon;
                 return <button key={category.id} data-category={category.id} onClick={() => setActiveCategory(category.id)} className={`group relative overflow-hidden flex items-center space-x-3 px-8 py-4 rounded-2xl font-semibold transition-all duration-500 text-base ${activeCategory === category.id ? 'bg-gradient-to-r from-orange to-orange/80 text-white shadow-2xl scale-105' : 'text-white/80 hover:text-white hover:bg-white/10 hover:shadow-xl hover:scale-105'}`} style={{
@@ -262,10 +262,11 @@ const Pricing = () => {
                 key={plan.id}
                 className={`relative group transition-all duration-300 hover:-translate-y-1 ${isPopular ? 'md:scale-105 md:z-10' : ''}`}
               >
-                {/* Popular Badge */}
+                {/* Popular Badge - Enhanced visibility on mobile */}
                 {isPopular && (
                   <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 z-20">
-                    <div className="bg-orange text-white px-4 py-1 rounded-full text-xs font-bold">
+                    <div className="bg-orange text-white px-5 py-1.5 rounded-full text-xs sm:text-sm font-bold shadow-lg shadow-orange/40 animate-pulse-slow flex items-center gap-1.5">
+                      <Star className="h-3 w-3 sm:h-4 sm:w-4 fill-white" />
                       POPULAR
                     </div>
                   </div>
@@ -350,7 +351,7 @@ const Pricing = () => {
         {/* Comparison Table - Desktop Version */}
         {activeCategory === 'websites' && showComparison && !isMobile && (
           <div className="mb-16 animate-fade-in-up">
-            <div className="bg-gradient-to-br from-navy/90 via-navy to-purple-900/30 backdrop-blur-2xl rounded-3xl p-8 lg:p-12 border border-white/10 shadow-2xl overflow-hidden">
+            <div className="bg-gradient-to-br from-navy/90 via-navy to-purple-900/30 backdrop-blur-lg rounded-3xl p-8 lg:p-12 border border-white/10 shadow-2xl overflow-hidden">
               <div className="relative z-10">
                 <h3 className="text-2xl font-bold text-white mb-8 text-center">Plan Comparison</h3>
                 
@@ -424,7 +425,7 @@ const Pricing = () => {
         {/* Comparison Sheet - Mobile Version */}
         {activeCategory === 'websites' && showComparison && isMobile && (
           <div className="mb-16 animate-fade-in-up">
-            <div className="bg-gradient-to-br from-navy/90 via-navy to-purple-900/30 backdrop-blur-2xl rounded-3xl p-6 border border-white/10 shadow-2xl overflow-hidden">
+            <div className="bg-gradient-to-br from-navy/90 via-navy to-purple-900/30 backdrop-blur-lg rounded-3xl p-6 border border-white/10 shadow-2xl overflow-hidden">
               <div className="relative z-10">
                 <h3 className="text-2xl font-bold text-white mb-6 text-center">Plan Comparison</h3>
 
@@ -502,7 +503,7 @@ const Pricing = () => {
           {/* Glow Effect */}
           <div className="absolute -inset-1 bg-gradient-to-r from-orange to-orange/80 rounded-3xl blur-lg opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
           
-          <div className="relative bg-gradient-to-br from-navy/90 via-navy to-purple-900/30 backdrop-blur-2xl rounded-3xl p-12 lg:p-16 text-center border border-white/10 shadow-2xl overflow-hidden">
+          <div className="relative bg-gradient-to-br from-navy/90 via-navy to-purple-900/30 backdrop-blur-lg rounded-3xl p-12 lg:p-16 text-center border border-white/10 shadow-2xl overflow-hidden">
             {/* Background Pattern */}
             <div className="absolute inset-0 bg-gradient-to-br from-orange/5 via-transparent to-purple-500/5"></div>
             <div className="absolute top-0 left-0 w-64 h-64 bg-gradient-to-br from-orange/10 to-transparent rounded-full blur-3xl"></div>

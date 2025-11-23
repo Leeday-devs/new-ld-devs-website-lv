@@ -145,8 +145,9 @@ const Contact = () => {
 
       if (discordError) {
         console.error('Discord notification failed:', discordError);
+        // Still show success since the message was saved to database
       }
-      
+
       toast({
         title: "Message sent!",
         description: "We'll get back to you shortly."
@@ -285,8 +286,8 @@ const Contact = () => {
   return (
     <section className="section-navy">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="heading-primary heading-lg mb-6 text-white">
+        <div className="text-center mb-12 sm:mb-16">
+          <h2 className="heading-primary heading-lg mb-4 sm:mb-6 text-white">
             Work With Us <span className="text-orange">Directly</span>
           </h2>
           <p className="text-body text-white/80 max-w-3xl mx-auto">
@@ -372,14 +373,19 @@ const Contact = () => {
               <div className="bg-white text-navy rounded-3xl p-6 shadow-luxury">
                 <h3 className="text-xl font-bold text-navy mb-4">Quick Message</h3>
                 <form onSubmit={handleQuickSubmit} className="space-y-4">
-                  <Textarea
-                    value={quickMessage}
-                    onChange={(e) => setQuickMessage(e.target.value)}
-                    placeholder="Tell me about your project in a few words..."
-                    className="premium-input min-h-[80px] resize-none"
-                    maxLength={1000}
-                    required
-                  />
+                  <div className="relative">
+                    <Textarea
+                      value={quickMessage}
+                      onChange={(e) => setQuickMessage(e.target.value)}
+                      placeholder="Tell me about your project in a few words..."
+                      className="premium-input min-h-[80px] resize-none"
+                      maxLength={1000}
+                      required
+                    />
+                    <span className="absolute bottom-2 right-3 text-xs text-text-muted">
+                      {quickMessage.length}/1000
+                    </span>
+                  </div>
                   <Button
                     type="submit"
                     disabled={isLoading}
@@ -461,15 +467,20 @@ const Contact = () => {
                       
                       <div className="space-y-2">
                         <label className="text-sm font-semibold text-navy">Project Goals *</label>
-                        <Textarea
-                          name="projectGoals"
-                          value={formData.projectGoals}
-                          onChange={handleInputChange}
-                          placeholder="Tell me what you're looking to achieve..."
-                          className="premium-input min-h-[100px] resize-none"
-                          maxLength={2000}
-                          required
-                        />
+                        <div className="relative">
+                          <Textarea
+                            name="projectGoals"
+                            value={formData.projectGoals}
+                            onChange={handleInputChange}
+                            placeholder="Tell me what you're looking to achieve..."
+                            className="premium-input min-h-[100px] resize-none pb-6"
+                            maxLength={2000}
+                            required
+                          />
+                          <span className="absolute bottom-2 right-3 text-xs text-text-muted">
+                            {formData.projectGoals.length}/2000
+                          </span>
+                        </div>
                       </div>
                       
                       <div className="grid grid-cols-2 gap-4">
@@ -636,15 +647,20 @@ const Contact = () => {
                       
                       <div className="space-y-3">
                         <label className="text-base font-semibold text-navy">Project Goals *</label>
-                        <Textarea
-                          name="projectGoals"
-                          value={formData.projectGoals}
-                          onChange={handleInputChange}
-                          placeholder="Tell me what you're looking to achieve..."
-                          className="premium-input min-h-32 resize-none"
-                          maxLength={2000}
-                          required
-                        />
+                        <div className="relative">
+                          <Textarea
+                            name="projectGoals"
+                            value={formData.projectGoals}
+                            onChange={handleInputChange}
+                            placeholder="Tell me what you're looking to achieve..."
+                            className="premium-input min-h-32 resize-none pb-6"
+                            maxLength={2000}
+                            required
+                          />
+                          <span className="absolute bottom-2 right-3 text-xs text-text-muted">
+                            {formData.projectGoals.length}/2000
+                          </span>
+                        </div>
                       </div>
                       
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">

@@ -166,7 +166,7 @@ const ModernBarberDemo = () => {
                   </div>
                   <div className="bg-black/50 rounded-xl p-6 border border-amber-600/20">
                     <Star className="h-8 w-8 text-amber-400 mb-4" />
-                    <h3 className="text-white font-semibold mb-2">5-Star Rated</h3>
+                    <h3 className="text-white font-semibold mb-2">5 Star Rated</h3>
                     <p className="text-gray-300 text-sm">Consistently exceptional</p>
                   </div>
                 </div>

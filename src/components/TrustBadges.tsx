@@ -68,7 +68,7 @@ const TrustBadges = () => {
                 <Zap className="h-6 w-6 text-secondary" />
               </div>
               <h4 className="font-bold text-foreground mb-1">24/7 Support</h4>
-              <p className="text-sm text-muted-foreground">UK-based team</p>
+              <p className="text-sm text-muted-foreground">UK based team</p>
             </div>
           </div>
         </div>

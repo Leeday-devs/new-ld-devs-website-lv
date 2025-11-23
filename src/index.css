@@ -2006,4 +2006,141 @@
     opacity: 1;
     transform: translateX(0);
   }
+
+  /* Stagger delay utilities for animations */
+  .stagger-delay-1 {
+    animation-delay: 100ms;
+  }
+  .stagger-delay-2 {
+    animation-delay: 200ms;
+  }
+  .stagger-delay-3 {
+    animation-delay: 300ms;
+  }
+  .stagger-delay-4 {
+    animation-delay: 400ms;
+  }
+  .stagger-delay-5 {
+    animation-delay: 500ms;
+  }
+
+  /* Service Card Enhancements */
+
+  /* Animated gradient border */
+  @keyframes gradient-border-flow {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  .animate-gradient-border {
+    position: relative;
+  }
+
+  .animate-gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 2px;
+    background: linear-gradient(
+      90deg,
+      hsl(var(--orange)),
+      hsl(var(--navy)),
+      hsl(var(--orange)),
+      hsl(var(--navy)),
+      hsl(var(--orange))
+    );
+    background-size: 300% 100%;
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: gradient-border-flow 3s linear infinite;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .animate-gradient-border:hover::before {
+    opacity: 1;
+  }
+
+  /* Gentle floating animation for icons */
+  @keyframes float-gentle {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-6px);
+    }
+  }
+
+  .animate-float-gentle {
+    animation: float-gentle 3s ease-in-out infinite;
+  }
+
+  /* Service card entrance animation */
+  @keyframes service-card-enter {
+    from {
+      opacity: 0;
+      transform: translateY(40px) scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  .service-card-animate {
+    opacity: 0;
+  }
+
+  .service-card-animate.animate-in {
+    animation: service-card-enter 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  /* Template Card Animations */
+  @keyframes template-card-enter {
+    from {
+      opacity: 0;
+      transform: translateY(30px) scale(0.97);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  .template-card-animate {
+    opacity: 0;
+  }
+
+  .template-card-animate.animate-in {
+    animation: template-card-enter 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  /* Respect reduced motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-gradient-border::before,
+    .animate-float-gentle,
+    .service-card-animate.animate-in,
+    .template-card-animate.animate-in {
+      animation: none;
+    }
+
+    .service-card-animate,
+    .template-card-animate {
+      opacity: 1;
+    }
+  }
 }

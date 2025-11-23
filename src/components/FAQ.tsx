@@ -57,16 +57,16 @@ const FAQ = () => {
   };
 
   return (
-    <section id="faq" className="bg-transparent py-20 large-section">
-      <div className="container mx-auto px-4">
+    <section id="faq" className="bg-transparent py-16 sm:py-20">
+      <div className="container mx-auto px-6">
         {/* Header Section */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 bg-primary/10 px-6 py-3 rounded-full mb-6 border border-primary/20">
-            <HelpCircle className="h-5 w-5 text-primary" />
-            <span className="text-primary font-semibold">Common Questions</span>
+        <div className="text-center mb-12 sm:mb-16">
+          <div className="inline-flex items-center gap-2 bg-primary/10 px-4 sm:px-6 py-2 sm:py-3 rounded-full mb-4 sm:mb-6 border border-primary/20">
+            <HelpCircle className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
+            <span className="text-primary font-semibold text-sm sm:text-base">Common Questions</span>
           </div>
-          
-          <h2 className="heading-primary heading-lg mb-6 text-navy">
+
+          <h2 className="heading-primary heading-lg mb-4 sm:mb-6 text-navy">
             Frequently Asked <span className="text-orange">Questions</span>
           </h2>
           <p className="text-body max-w-3xl mx-auto text-text-secondary mb-4 leading-relaxed">
