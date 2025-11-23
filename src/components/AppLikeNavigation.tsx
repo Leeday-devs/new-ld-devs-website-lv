@@ -196,17 +196,19 @@ const AppLikeNavigation = () => {
               </Button>
             </div>
 
-            {/* Mobile Menu Button - App-style */}
+            {/* Mobile Menu Button - Animated hamburger */}
             <div className="md:hidden flex items-center gap-2">
               <button
-                className="p-3 rounded-xl transition-all duration-200 bg-gradient-to-r from-orange/20 to-gold/20 border border-orange/30 hover:from-orange/30 hover:to-gold/30 hover:scale-105 active:scale-95"
+                className="relative w-12 h-12 rounded-xl transition-all duration-300 bg-gradient-to-br from-orange/20 to-gold/20 border border-orange/30 hover:from-orange/30 hover:to-gold/30 hover:border-orange/50 hover:shadow-lg hover:shadow-orange/20 active:scale-95 group"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
+                aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+                aria-expanded={isMenuOpen}
               >
-                {isMenuOpen ? (
-                  <X className="h-5 w-5 text-orange" />
-                ) : (
-                  <Menu className="h-5 w-5 text-orange" />
-                )}
+                <div className="absolute inset-0 flex flex-col items-center justify-center gap-1.5">
+                  <span className={`block h-0.5 w-5 bg-orange rounded-full transition-all duration-300 origin-center ${isMenuOpen ? 'rotate-45 translate-y-2' : ''}`} />
+                  <span className={`block h-0.5 w-5 bg-orange rounded-full transition-all duration-300 ${isMenuOpen ? 'opacity-0 scale-0' : ''}`} />
+                  <span className={`block h-0.5 w-5 bg-orange rounded-full transition-all duration-300 origin-center ${isMenuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
+                </div>
               </button>
             </div>
           </div>

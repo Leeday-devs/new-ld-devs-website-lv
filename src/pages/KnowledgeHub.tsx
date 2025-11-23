@@ -232,7 +232,7 @@ const KnowledgeHub = () => {
           }
         ]}
       />
-      <MobileAppLayout showNavigation={true} showFooter={true} showBottomNav={true}>
+      <MobileAppLayout showNavigation={true} showFooter={true}>
         <div className="bg-slate-50">
           <div className="container mx-auto px-6 pt-20">
             <Breadcrumbs items={[

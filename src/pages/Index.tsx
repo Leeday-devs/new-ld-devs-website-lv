@@ -50,7 +50,7 @@ const Index = () => {
       name: "Home",
       url: "/"
     }]} />
-      <MobileAppLayout showNavigation={true} showFooter={true} showBottomNav={true}>
+      <MobileAppLayout showNavigation={true} showFooter={true}>
         <BreadcrumbsNavigation />
         <main className="mobile-scroll">
           {/* Hero (navy) - Mobile Optimized */}

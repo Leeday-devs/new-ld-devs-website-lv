@@ -87,7 +87,7 @@ const PremiumBlogPost = () => {
 
   if (isLoading) {
     return (
-      <MobileAppLayout showNavigation={true} showFooter={true} showBottomNav={true}>
+      <MobileAppLayout showNavigation={true} showFooter={true}>
         <div className="bg-slate-50 min-h-screen">
           <ReadingProgress />
           <div className="pt-24 pb-16">
@@ -154,7 +154,7 @@ const PremiumBlogPost = () => {
         structuredData={structuredDataArray}
       />
 
-      <MobileAppLayout showNavigation={true} showFooter={true} showBottomNav={true}>
+      <MobileAppLayout showNavigation={true} showFooter={true}>
         <div className="bg-slate-50 min-h-screen">
           <ReadingProgress />
 
