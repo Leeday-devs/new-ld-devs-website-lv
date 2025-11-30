@@ -137,14 +137,14 @@ export const GetStartedModal = ({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[500px]">
+      <DialogContent className="sm:max-w-[500px] p-4 sm:p-6">
         {!showConsultationForm ? (
           <>
-            <DialogHeader>
-              <DialogTitle className="text-2xl font-bold text-navy">
+            <DialogHeader className="space-y-2 sm:space-y-3">
+              <DialogTitle className="text-xl sm:text-2xl font-bold text-navy">
                 Let's Get Started!
               </DialogTitle>
-              <DialogDescription className="text-gray-600">
+              <DialogDescription className="text-gray-600 text-sm sm:text-base">
                 Choose how you'd like to proceed with{" "}
                 <span className="text-orange font-semibold">
                   {selectedPackage?.name}
@@ -152,22 +152,22 @@ export const GetStartedModal = ({
               </DialogDescription>
             </DialogHeader>
 
-            <div className="grid gap-4 py-6">
+            <div className="grid gap-3 sm:gap-4 py-4 sm:py-6">
               {/* Pay Now Option */}
               <button
                 onClick={handlePayNow}
-                className="group relative p-6 rounded-xl border-2 border-gray-200 hover:border-orange bg-gray-50 hover:bg-orange/5 transition-all duration-300 text-left"
+                className="group relative p-4 sm:p-6 rounded-xl border-2 border-orange/30 hover:border-orange bg-white hover:bg-orange/5 transition-all duration-300 text-left shadow-sm"
               >
-                <div className="flex items-start gap-4">
-                  <div className="p-3 rounded-lg bg-orange/20 text-orange group-hover:bg-orange group-hover:text-white transition-colors">
-                    <CreditCard className="h-6 w-6" />
+                <div className="flex items-start gap-3 sm:gap-4">
+                  <div className="p-2.5 sm:p-3 rounded-lg bg-orange text-white flex-shrink-0">
+                    <CreditCard className="h-5 w-5 sm:h-6 sm:w-6" />
                   </div>
-                  <div className="flex-1">
-                    <h3 className="text-lg font-bold text-navy mb-1 flex items-center gap-2">
-                      Pay Now & Get Started
-                      <ArrowRight className="h-4 w-4 text-orange opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-base sm:text-lg font-bold text-navy mb-1 flex items-center gap-2">
+                      <span>Pay Now & Get Started</span>
+                      <ArrowRight className="h-4 w-4 text-orange opacity-0 group-hover:opacity-100 transition-opacity hidden sm:inline" />
                     </h3>
-                    <p className="text-gray-600 text-sm">
+                    <p className="text-gray-600 text-xs sm:text-sm">
                       Proceed to checkout and we'll start building your website
                       right away
                     </p>
@@ -178,18 +178,18 @@ export const GetStartedModal = ({
               {/* Request Consultation Option */}
               <button
                 onClick={handleRequestConsultation}
-                className="group relative p-6 rounded-xl border-2 border-gray-200 hover:border-orange bg-gray-50 hover:bg-orange/5 transition-all duration-300 text-left"
+                className="group relative p-4 sm:p-6 rounded-xl border-2 border-orange/30 hover:border-orange bg-white hover:bg-orange/5 transition-all duration-300 text-left shadow-sm"
               >
-                <div className="flex items-start gap-4">
-                  <div className="p-3 rounded-lg bg-orange/20 text-orange group-hover:bg-orange group-hover:text-white transition-colors">
-                    <Calendar className="h-6 w-6" />
+                <div className="flex items-start gap-3 sm:gap-4">
+                  <div className="p-2.5 sm:p-3 rounded-lg bg-orange text-white flex-shrink-0">
+                    <Calendar className="h-5 w-5 sm:h-6 sm:w-6" />
                   </div>
-                  <div className="flex-1">
-                    <h3 className="text-lg font-bold text-navy mb-1 flex items-center gap-2">
-                      Request a Free Consultation
-                      <ArrowRight className="h-4 w-4 text-orange opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-base sm:text-lg font-bold text-navy mb-1 flex items-center gap-2">
+                      <span>Request a Free Consultation</span>
+                      <ArrowRight className="h-4 w-4 text-orange opacity-0 group-hover:opacity-100 transition-opacity hidden sm:inline" />
                     </h3>
-                    <p className="text-gray-600 text-sm">
+                    <p className="text-gray-600 text-xs sm:text-sm">
                       Have questions? Let's chat about your project first
                     </p>
                   </div>
@@ -199,18 +199,18 @@ export const GetStartedModal = ({
           </>
         ) : (
           <>
-            <DialogHeader>
-              <DialogTitle className="text-2xl font-bold text-navy">
+            <DialogHeader className="space-y-2 sm:space-y-3">
+              <DialogTitle className="text-xl sm:text-2xl font-bold text-navy">
                 Request a Consultation
               </DialogTitle>
-              <DialogDescription className="text-gray-600">
+              <DialogDescription className="text-gray-600 text-sm sm:text-base">
                 Tell us how to reach you and we'll contact you shortly
               </DialogDescription>
             </DialogHeader>
 
-            <form onSubmit={handleSubmitConsultation} className="space-y-4 py-4">
+            <form onSubmit={handleSubmitConsultation} className="space-y-4 sm:space-y-5 py-4">
               <div className="space-y-2">
-                <Label htmlFor="name" className="text-navy flex items-center gap-2">
+                <Label htmlFor="name" className="text-navy flex items-center gap-2 text-sm sm:text-base">
                   <User className="h-4 w-4 text-orange" />
                   Your Name
                 </Label>
@@ -223,12 +223,12 @@ export const GetStartedModal = ({
                     setFormData({ ...formData, name: e.target.value })
                   }
                   required
-                  className="bg-white border-gray-300 text-navy placeholder:text-gray-400"
+                  className="bg-white border-gray-300 text-navy placeholder:text-gray-400 h-11 sm:h-10 text-base"
                 />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="phone" className="text-navy flex items-center gap-2">
+                <Label htmlFor="phone" className="text-navy flex items-center gap-2 text-sm sm:text-base">
                   <Phone className="h-4 w-4 text-orange" />
                   Phone Number
                 </Label>
@@ -241,12 +241,12 @@ export const GetStartedModal = ({
                     setFormData({ ...formData, phone: e.target.value })
                   }
                   required
-                  className="bg-white border-gray-300 text-navy placeholder:text-gray-400"
+                  className="bg-white border-gray-300 text-navy placeholder:text-gray-400 h-11 sm:h-10 text-base"
                 />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="email" className="text-navy flex items-center gap-2">
+                <Label htmlFor="email" className="text-navy flex items-center gap-2 text-sm sm:text-base">
                   <Mail className="h-4 w-4 text-orange" />
                   Email Address
                 </Label>
@@ -259,16 +259,16 @@ export const GetStartedModal = ({
                     setFormData({ ...formData, email: e.target.value })
                   }
                   required
-                  className="bg-white border-gray-300 text-navy placeholder:text-gray-400"
+                  className="bg-white border-gray-300 text-navy placeholder:text-gray-400 h-11 sm:h-10 text-base"
                 />
               </div>
 
-              <div className="flex gap-3 pt-4">
+              <div className="flex gap-3 pt-2 sm:pt-4">
                 <EnhancedButton
                   type="button"
                   variant="outline"
                   onClick={handleBackToOptions}
-                  className="flex-1"
+                  className="flex-1 h-11 sm:h-10"
                   disabled={isSubmitting}
                 >
                   Back
@@ -276,7 +276,7 @@ export const GetStartedModal = ({
                 <EnhancedButton
                   type="submit"
                   variant="premium"
-                  className="flex-1"
+                  className="flex-1 h-11 sm:h-10"
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? "Sending..." : "Request Consultation"}
