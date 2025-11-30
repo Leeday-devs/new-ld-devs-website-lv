@@ -107,11 +107,11 @@ export const CustomerInfoForm = ({ onSubmit, isLoading, serviceName }: CustomerI
                   <FormLabel className="text-sm font-semibold text-gray-700 dark:text-gray-300">Full Name *</FormLabel>
                   <FormControl>
                     <div className="relative">
-                      <User className="absolute left-4 top-4 h-5 w-5 text-orange" />
-                      <Input 
-                        placeholder="Enter your full name" 
-                        className="pl-12 h-12 border-2 border-gray-200 dark:border-gray-700 focus:border-orange transition-colors" 
-                        {...field} 
+                      <User className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-orange" />
+                      <Input
+                        placeholder="Enter your full name"
+                        className="pl-11 h-12 border-2 border-gray-200 dark:border-gray-700 focus:border-orange transition-colors"
+                        {...field}
                       />
                     </div>
                   </FormControl>
@@ -128,12 +128,12 @@ export const CustomerInfoForm = ({ onSubmit, isLoading, serviceName }: CustomerI
                   <FormLabel className="text-sm font-semibold text-gray-700 dark:text-gray-300">Email Address *</FormLabel>
                   <FormControl>
                     <div className="relative">
-                      <Mail className="absolute left-4 top-4 h-5 w-5 text-orange" />
-                      <Input 
-                        type="email" 
-                        placeholder="Enter your email address" 
-                        className="pl-12 h-12 border-2 border-gray-200 dark:border-gray-700 focus:border-orange transition-colors" 
-                        {...field} 
+                      <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-orange" />
+                      <Input
+                        type="email"
+                        placeholder="Enter your email address"
+                        className="pl-11 h-12 border-2 border-gray-200 dark:border-gray-700 focus:border-orange transition-colors"
+                        {...field}
                       />
                     </div>
                   </FormControl>
@@ -150,12 +150,12 @@ export const CustomerInfoForm = ({ onSubmit, isLoading, serviceName }: CustomerI
                   <FormLabel className="text-sm font-semibold text-gray-700 dark:text-gray-300">Phone Number *</FormLabel>
                   <FormControl>
                     <div className="relative">
-                      <Phone className="absolute left-4 top-4 h-5 w-5 text-orange" />
-                      <Input 
-                        type="tel" 
-                        placeholder="Enter your phone number" 
-                        className="pl-12 h-12 border-2 border-gray-200 dark:border-gray-700 focus:border-orange transition-colors" 
-                        {...field} 
+                      <Phone className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-orange" />
+                      <Input
+                        type="tel"
+                        placeholder="Enter your phone number"
+                        className="pl-11 h-12 border-2 border-gray-200 dark:border-gray-700 focus:border-orange transition-colors"
+                        {...field}
                       />
                     </div>
                   </FormControl>
@@ -172,11 +172,11 @@ export const CustomerInfoForm = ({ onSubmit, isLoading, serviceName }: CustomerI
                   <FormLabel className="text-sm font-semibold text-gray-700 dark:text-gray-300">Company Name (Optional)</FormLabel>
                   <FormControl>
                     <div className="relative">
-                      <Building className="absolute left-4 top-4 h-5 w-5 text-orange" />
-                      <Input 
-                        placeholder="Enter your company name" 
-                        className="pl-12 h-12 border-2 border-gray-200 dark:border-gray-700 focus:border-orange transition-colors" 
-                        {...field} 
+                      <Building className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-orange" />
+                      <Input
+                        placeholder="Enter your company name"
+                        className="pl-11 h-12 border-2 border-gray-200 dark:border-gray-700 focus:border-orange transition-colors"
+                        {...field}
                       />
                     </div>
                   </FormControl>
@@ -193,11 +193,11 @@ export const CustomerInfoForm = ({ onSubmit, isLoading, serviceName }: CustomerI
                   <FormLabel className="text-sm font-semibold text-gray-700 dark:text-gray-300">Website URL (Optional)</FormLabel>
                   <FormControl>
                     <div className="relative">
-                      <Globe className="absolute left-4 top-4 h-5 w-5 text-orange" />
-                      <Input 
-                        placeholder="https://yourwebsite.com" 
-                        className="pl-12 h-12 border-2 border-gray-200 dark:border-gray-700 focus:border-orange transition-colors" 
-                        {...field} 
+                      <Globe className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-orange" />
+                      <Input
+                        placeholder="https://yourwebsite.com"
+                        className="pl-11 h-12 border-2 border-gray-200 dark:border-gray-700 focus:border-orange transition-colors"
+                        {...field}
                       />
                     </div>
                   </FormControl>
@@ -214,9 +214,9 @@ export const CustomerInfoForm = ({ onSubmit, isLoading, serviceName }: CustomerI
                   <FormLabel className="text-sm font-semibold text-gray-700 dark:text-gray-300">Project Goals *</FormLabel>
                   <FormControl>
                     <div className="relative">
-                      <Target className="absolute left-4 top-4 h-5 w-5 text-orange z-10" />
+                      <Target className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-orange z-10" />
                       <Select onValueChange={field.onChange} defaultValue={field.value}>
-                        <SelectTrigger className="pl-12 h-12 border-2 border-gray-200 dark:border-gray-700 focus:border-orange transition-colors">
+                        <SelectTrigger className="pl-11 h-12 border-2 border-gray-200 dark:border-gray-700 focus:border-orange transition-colors">
                           <SelectValue placeholder="What's your main goal?" />
                         </SelectTrigger>
                         <SelectContent>
@@ -242,9 +242,9 @@ export const CustomerInfoForm = ({ onSubmit, isLoading, serviceName }: CustomerI
                   <FormLabel className="text-sm font-semibold text-gray-700 dark:text-gray-300">Timeline *</FormLabel>
                   <FormControl>
                     <div className="relative">
-                      <Clock className="absolute left-4 top-4 h-5 w-5 text-orange z-10" />
+                      <Clock className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-orange z-10" />
                       <Select onValueChange={field.onChange} defaultValue={field.value}>
-                        <SelectTrigger className="pl-12 h-12 border-2 border-gray-200 dark:border-gray-700 focus:border-orange transition-colors">
+                        <SelectTrigger className="pl-11 h-12 border-2 border-gray-200 dark:border-gray-700 focus:border-orange transition-colors">
                           <SelectValue placeholder="When do you need this completed?" />
                         </SelectTrigger>
                         <SelectContent>
