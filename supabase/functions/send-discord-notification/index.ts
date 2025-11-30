@@ -28,7 +28,7 @@ serve(async (req) => {
     // Create different embed colors for different events
     const eventColors = {
       'purchase': 0x00ff00,      // Green
-      'signup': 0x0099ff,       // Blue  
+      'signup': 0x0099ff,       // Blue
       'login': 0xffaa00,        // Orange
       'visit': 0x9966cc,        // Purple
       'contact': 0xff6600,      // Orange-red
@@ -39,7 +39,8 @@ serve(async (req) => {
       'business_details': 0x3366ff, // Royal blue
       'admin_action': 0x9933cc, // Purple
       'customer_inquiry': 0x33ccff, // Light blue
-      'security_action': 0xff3333 // Red
+      'security_action': 0xff3333, // Red
+      'consultation_request': 0xff7a00 // Orange
     };
 
     // Create embed based on event type
@@ -323,7 +324,25 @@ serve(async (req) => {
           timestamp: new Date().toISOString()
         };
         break;
-        
+
+      case 'consultation_request':
+        embed = {
+          title: '🎯 New Consultation Request!',
+          description: `**${data.customerName}** requested a free consultation`,
+          color: eventColors.consultation_request,
+          fields: [
+            { name: 'Package', value: data.packageName, inline: true },
+            { name: 'Build Price', value: data.buildPrice, inline: true },
+            { name: 'Monthly Price', value: data.monthlyPrice, inline: true },
+            { name: 'Customer Name', value: data.customerName, inline: true },
+            { name: 'Email', value: data.email, inline: true },
+            { name: 'Phone', value: data.phone, inline: true },
+            { name: 'Source', value: 'Pricing Page - Get Started Modal', inline: false }
+          ],
+          timestamp: new Date().toISOString()
+        };
+        break;
+
       default:
         embed = {
           title: '📱 Website Activity',

@@ -12,6 +12,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { EnhancedPackage } from "@/types/pricing";
+import { supabase } from "@/integrations/supabase/client";
 
 interface GetStartedModalProps {
   open: boolean;
@@ -64,54 +65,23 @@ export const GetStartedModal = ({
     setIsSubmitting(true);
 
     try {
-      // Send to Discord webhook
-      const discordWebhookUrl = import.meta.env.VITE_DISCORD_WEBHOOK_URL;
+      // Send to Discord via Supabase edge function
+      const { error: discordError } = await supabase.functions.invoke('send-discord-notification', {
+        body: {
+          eventType: 'consultation_request',
+          data: {
+            packageName: selectedPackage?.name || 'Unknown',
+            buildPrice: selectedPackage?.buildPrice || 'N/A',
+            monthlyPrice: selectedPackage?.monthlyPrice || 'N/A',
+            customerName: formData.name,
+            phone: formData.phone,
+            email: formData.email,
+          }
+        }
+      });
 
-      if (discordWebhookUrl) {
-        const message = {
-          embeds: [
-            {
-              title: "🎯 New Consultation Request",
-              color: 0xff7a00, // Orange color
-              fields: [
-                {
-                  name: "Package",
-                  value: selectedPackage?.name || "Unknown",
-                  inline: true,
-                },
-                {
-                  name: "Price",
-                  value: `${selectedPackage?.buildPrice} + ${selectedPackage?.monthlyPrice}`,
-                  inline: true,
-                },
-                {
-                  name: "Customer Name",
-                  value: formData.name,
-                  inline: false,
-                },
-                {
-                  name: "Phone",
-                  value: formData.phone,
-                  inline: true,
-                },
-                {
-                  name: "Email",
-                  value: formData.email,
-                  inline: true,
-                },
-              ],
-              timestamp: new Date().toISOString(),
-            },
-          ],
-        };
-
-        await fetch(discordWebhookUrl, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(message),
-        });
+      if (discordError) {
+        console.error('Discord notification failed:', discordError);
       }
 
       // Show success message
@@ -125,6 +95,7 @@ export const GetStartedModal = ({
       setShowConsultationForm(false);
       onOpenChange(false);
     } catch (error) {
+      console.error('Failed to send consultation request:', error);
       toast({
         title: "Something went wrong",
         description: "Please try again or contact us directly.",
