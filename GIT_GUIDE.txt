@@ -1,0 +1,235 @@
+===========================================
+GIT COMMANDS GUIDE - Quick Reference
+===========================================
+
+## BASIC WORKFLOW (Most Common)
+
+### 1. Check What Changed
+git status
+# Shows: modified files, new files, deleted files
+
+### 2. Add Files to Commit
+git add .                    # Add ALL changes
+git add file.txt             # Add specific file
+git add src/components/      # Add specific folder
+
+### 3. Commit Your Changes
+git commit -m "Your message here"
+# Example: git commit -m "Add new pricing modal"
+
+### 4. Push to GitHub
+git push
+# Sends your commits to GitHub
+
+### 5. Pull Latest Changes from GitHub
+git pull
+# Gets updates from GitHub before you start working
+
+---
+
+## COMPLETE WORKFLOW EXAMPLE
+
+# Start of work session
+git pull                                    # Get latest changes
+# ... make your changes ...
+git status                                  # See what you changed
+git add .                                   # Stage all changes
+git commit -m "Add consultation feature"    # Commit with message
+git push                                    # Push to GitHub
+
+---
+
+## USEFUL COMMANDS
+
+### See Your Commit History
+git log --oneline
+# Shows recent commits
+
+### See What Changed in a File
+git diff                        # All changes
+git diff src/components/Pricing.tsx   # Specific file
+
+### Undo Changes (Before Commit)
+git restore file.txt            # Undo changes to specific file
+git restore .                   # Undo ALL uncommitted changes
+
+### Undo Last Commit (Keep Changes)
+git reset --soft HEAD~1
+# Moves commit back but keeps your file changes
+
+### See Remote Repository
+git remote -v
+# Shows GitHub repository URL
+
+---
+
+## AUTHENTICATION
+
+When you first push, GitHub will ask for credentials:
+
+**Option 1: Personal Access Token (Recommended)**
+1. Go to GitHub.com > Settings > Developer Settings > Personal Access Tokens
+2. Generate new token (classic)
+3. Copy the token
+4. When git asks for password, paste the token
+
+**Option 2: SSH Key (Better for frequent use)**
+1. Generate SSH key: ssh-keygen -t ed25519 -C "your_email@example.com"
+2. Add to SSH agent: eval "$(ssh-agent -s)" && ssh-add ~/.ssh/id_ed25519
+3. Add public key to GitHub: Settings > SSH and GPG keys
+4. Change remote URL: git remote set-url origin git@github.com:username/repo.git
+
+---
+
+## COMMON SCENARIOS
+
+### "I made changes and want to save them"
+git add .
+git commit -m "Describe what you changed"
+git push
+
+### "I want the latest code from GitHub"
+git pull
+
+### "I want to see what I changed"
+git status          # Summary
+git diff            # Detailed changes
+
+### "I messed up and want to start over"
+git restore .       # Undo all uncommitted changes
+# OR
+git reset --hard origin/main    # Reset to match GitHub (DANGEROUS!)
+
+### "I forgot what I was working on"
+git status
+git log --oneline -5
+
+---
+
+## BRANCHING (Advanced)
+
+### Create New Branch
+git checkout -b feature-name
+# Example: git checkout -b add-dark-mode
+
+### Switch Between Branches
+git checkout main               # Switch to main
+git checkout feature-name       # Switch to feature
+
+### Merge Branch into Main
+git checkout main
+git merge feature-name
+
+### Push Branch to GitHub
+git push -u origin feature-name
+
+### Delete Branch
+git branch -d feature-name      # Delete local
+git push origin --delete feature-name   # Delete on GitHub
+
+---
+
+## COMMIT MESSAGE BEST PRACTICES
+
+Good:
+✅ "Add consultation request modal to pricing page"
+✅ "Fix mobile navigation menu not closing"
+✅ "Update pricing to show daily cost breakdown"
+
+Bad:
+❌ "updates"
+❌ "fix stuff"
+❌ "changes"
+
+Format for larger commits:
+git commit -m "Short summary
+
+- Detailed point 1
+- Detailed point 2
+- Detailed point 3"
+
+---
+
+## TROUBLESHOOTING
+
+### "fatal: not a git repository"
+You're not in the project folder. Use:
+cd /path/to/your/project
+
+### "fatal: could not read Username"
+You need to authenticate. See AUTHENTICATION section above.
+
+### "Your branch is behind 'origin/main'"
+Someone else pushed changes. Run:
+git pull
+
+### "Merge conflict"
+1. Open conflicted files (marked with <<<<<<<)
+2. Manually fix conflicts
+3. git add .
+4. git commit -m "Resolve merge conflicts"
+5. git push
+
+### "Permission denied (publickey)"
+Your SSH key isn't set up. Use Personal Access Token or set up SSH.
+
+---
+
+## QUICK REFERENCE CHEAT SHEET
+
+git status          → What changed?
+git add .           → Stage all changes
+git commit -m "x"   → Save changes with message
+git push            → Send to GitHub
+git pull            → Get from GitHub
+git log             → See history
+git diff            → See changes
+git restore .       → Undo changes
+
+---
+
+## YOUR CURRENT PROJECT
+
+Repository: (Check with: git remote -v)
+Branch: main
+Remote: origin
+
+To push your latest changes:
+1. git status (check changes)
+2. git add . (stage all)
+3. git commit -m "Your message"
+4. git push
+
+---
+
+## NOTES
+
+- ALWAYS git pull before starting work (gets latest changes)
+- Commit often (small commits are better than huge ones)
+- Write clear commit messages (you'll thank yourself later)
+- Don't commit sensitive data (.env files, passwords, API keys)
+- .gitignore file tells git what NOT to commit
+
+---
+
+## HELPFUL ALIASES (Optional)
+
+Add these to ~/.gitconfig:
+
+[alias]
+    st = status
+    co = checkout
+    br = branch
+    ci = commit
+    unstage = reset HEAD --
+    last = log -1 HEAD
+
+Then you can use:
+git st      instead of    git status
+git co      instead of    git checkout
+git ci      instead of    git commit
+
+===========================================
+Save this file for quick reference!
+Last updated: 2025-11-29
+===========================================
