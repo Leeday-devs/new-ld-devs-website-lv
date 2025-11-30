@@ -1,73 +1,249 @@
-# Welcome to your Lovable project
+# LD Devs - Professional Web Development Services
 
-## Project info
+A comprehensive SaaS platform for Lee Day Devs, a London-based web development agency specializing in premium web design, e-commerce solutions, and AI automation.
 
-**URL**: https://lovable.dev/projects/658469cf-c55f-44ae-ac8a-ddb3a67b329f
+## 🚀 Project Overview
 
-## How can I edit this code?
+This is a full-featured platform combining:
+- **Marketing Website** - Showcasing services and portfolio
+- **Customer Dashboard** - Client portal for project management
+- **Admin Control Panel** - Business operations management
+- **Blog & Knowledge Hub** - Content management system
+- **Template Showcase** - 8 industry-specific website demos
+- **E-commerce Integration** - Payment processing and checkout
 
-There are several ways of editing your application.
+## 🛠️ Tech Stack
 
-**Use Lovable**
+### Core Technologies
+- **React 18.3.1** - UI framework
+- **TypeScript 5.5.3** - Type-safe development
+- **Vite 5.4.1** - Ultra-fast build tool
+- **React Router 7.9.1** - Client-side routing
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/658469cf-c55f-44ae-ac8a-ddb3a67b329f) and start prompting.
+### Styling & UI
+- **Tailwind CSS 3.4.11** - Utility-first CSS framework
+- **shadcn/ui** - High-quality accessible components
+- **Radix UI** - Component primitives
+- **Lucide React** - Icon library
 
-Changes made via Lovable will be committed automatically to this repo.
+### Backend & Database
+- **Supabase** - PostgreSQL database + authentication
+- **Supabase JS SDK 2.57.4** - Client integration
+- **Row-Level Security** - Data protection
 
-**Use your preferred IDE**
+### State & Forms
+- **TanStack React Query 5.85.5** - Server state management
+- **React Hook Form 7.53.0** - Form handling
+- **Zod 3.23.8** - Schema validation
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Additional Libraries
+- **Recharts** - Analytics & data visualization
+- **React Quill** - Rich text editor for blog posts
+- **Sonner** - Toast notifications
+- **DOMPurify** - XSS protection
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## 📁 Project Structure
 
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+```
+├── src/
+│   ├── components/          # Reusable UI components
+│   │   ├── ui/             # shadcn/ui primitives
+│   │   ├── admin/          # Admin dashboard components
+│   │   ├── customer/       # Customer dashboard components
+│   │   └── blog/           # Blog-specific components
+│   ├── pages/              # Route pages
+│   ├── hooks/              # Custom React hooks
+│   ├── integrations/       # Supabase integration
+│   ├── utils/              # Utility functions
+│   ├── lib/                # Helper libraries
+│   └── assets/             # Images and static files
+├── public/                 # Public assets
+├── supabase/              # Supabase functions & migrations
+└── Configuration files
 ```
 
-**Edit a file directly in GitHub**
+## 🎨 Key Features
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### Marketing & Sales
+- ✅ Mobile-first responsive design
+- ✅ SEO optimized with meta tags & schema markup
+- ✅ Lead capture modals
+- ✅ Contact forms with spam protection
+- ✅ Live chat widget integration
+- ✅ WhatsApp direct messaging
 
-**Use GitHub Codespaces**
+### Content Management
+- ✅ Full blog CRUD operations
+- ✅ Rich text editor with media support
+- ✅ Knowledge hub articles
+- ✅ Auto-generated table of contents
+- ✅ Social sharing buttons
+- ✅ Reading progress tracking
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+### E-commerce
+- ✅ Product pricing pages
+- ✅ Shopping cart & checkout
+- ✅ Stripe payment integration
+- ✅ Custom quote request system
+- ✅ Template checkout flow
 
-## What technologies are used for this project?
+### Admin Dashboard
+- ✅ Business KPI metrics
+- ✅ Revenue analytics & charts
+- ✅ Customer management
+- ✅ Order tracking
+- ✅ Blog post management
+- ✅ Email marketing tools
+- ✅ Payment reminders system
+- ✅ Team management with roles
 
-This project is built with:
+### Customer Portal
+- ✅ Project dashboard
+- ✅ Billing history
+- ✅ Service management
+- ✅ Notification center
+- ✅ Account preferences
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+### Website Templates (8 Demos)
+1. Plumber Pro
+2. Electrician Expert
+3. Modern Barber
+4. Restaurant Deluxe
+5. Fitness Studio
+6. Auto Repair Shop
+7. Cleaning Services
+8. Pet Grooming
 
-## How can I deploy this project?
+## 🚀 Getting Started
 
-Simply open [Lovable](https://lovable.dev/projects/658469cf-c55f-44ae-ac8a-ddb3a67b329f) and click on Share -> Publish.
+### Prerequisites
+- Node.js 18+ (recommended: use [nvm](https://github.com/nvm-sh/nvm))
+- npm or yarn
 
-## Can I connect a custom domain to my Lovable project?
+### Installation
 
-Yes, you can!
+```bash
+# Clone the repository
+git clone <YOUR_GIT_URL>
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+# Navigate to project directory
+cd new-ld-devs-website-lv
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+# Install dependencies
+npm install
+```
+
+### Development
+
+```bash
+# Start development server (runs on http://localhost:8080)
+npm run dev
+
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
+
+# Run linter
+npm run lint
+```
+
+## 🔐 Environment Setup
+
+Create a `.env` file in the root directory:
+
+```env
+VITE_SUPABASE_URL=your_supabase_url
+VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+```
+
+## 📊 Database Schema
+
+### Key Tables
+- `profiles` - User profiles with role management
+- `blog_posts` - Blog content and metadata
+- `custom_quotes` - Quote requests from customers
+- `orders` - E-commerce orders and payments
+- `newsletter_subscribers` - Email marketing list
+- `notifications` - User notifications
+
+## 🎨 Design System
+
+### Color Palette
+- **Primary Orange**: #FF7A00
+- **Navy**: #0A192F
+- **White**: #FFFFFF
+- **Grey Shades**: Multiple levels
+
+### Typography
+- **Headers**: Playfair Display (serif)
+- **Body**: Inter (sans-serif)
+- **Accent**: Cormorant Garamond (serif)
+
+### Responsive Breakpoints
+- `xs`: 400px
+- `sm`: 640px
+- `md`: 768px
+- `lg`: 1024px
+- `xl`: 1280px
+
+## 🔧 Configuration Files
+
+- `vite.config.ts` - Build configuration
+- `tailwind.config.ts` - Styling configuration
+- `tsconfig.json` - TypeScript settings
+- `components.json` - shadcn/ui configuration
+
+## 📱 Mobile Optimization
+
+- Mobile-first design approach
+- Touch-friendly UI (48x48px minimum targets)
+- Optimized font sizes for readability
+- Performance-optimized animations
+- Service worker for offline capability
+
+## 🔒 Security Features
+
+- Spam protection on contact forms
+- Rate limiting on submissions
+- Honeypot fields for bot detection
+- XSS protection with DOMPurify
+- Supabase Row-Level Security (RLS)
+- Secure authentication flow
+
+## 🚢 Deployment
+
+### Build for Production
+```bash
+npm run build
+# Output: dist/ folder
+```
+
+### Deploy Options
+- **Recommended**: Vercel, Netlify, or Cloudflare Pages
+- Static hosting with SPA routing support
+- Environment variables configuration required
+
+## 📖 Documentation
+
+For detailed project documentation, see [.claude.md](.claude.md)
+
+## 🤝 Contributing
+
+This is a private project for Lee Day Devs. For questions or issues, contact the development team.
+
+## 📄 License
+
+Proprietary - All rights reserved by Lee Day Devs
+
+## 🔗 Links
+
+- **Project Dashboard**: [Lovable Project](https://lovable.dev/projects/658469cf-c55f-44ae-ac8a-ddb3a67b329f)
+- **Live Site**: TBD
+- **Support**: Contact Lee Day Devs team
+
+---
+
+**Last Updated**: November 2024
+**Status**: Production-ready
